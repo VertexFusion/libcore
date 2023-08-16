@@ -3,7 +3,7 @@
 // Library:     VertexFusion Library
 // Purpose:     Memory Management for objects
 //
-// Author:      Uwe Runtemund (2013-today)
+// Author:      Uwe Runtemund (2015-today)
 // Modified by:
 // Created:     28.11.2015
 //
@@ -58,17 +58,20 @@ namespace jm
 			~AutoreleasePool();
 
 			/*!
-			 \brief Sendet ein Release an alle im Pool angesammelten Objekte.
+			 \brief Sends a Release() to all objects accumulated in the AutoreleasePool.
 			 */
 			void Drain();
 
 			/*!
-			 \brief Gibt den Zeiger auf das Mutex-Objekt zurück.
+			 \brief Returns the pointer to the mutex object.
 			 */
 			Mutex* GetMutex();
 
 		private:
 
+			/*!
+			 \brief Struct for the entries of the pool. The pool is a linked list.
+			 */
 			struct PoolEntry
 			{
 				Object* object;
@@ -76,27 +79,27 @@ namespace jm
 			};
 
 			/*!
-			 \brief Referenzzähler für Referenzzählung
+			 \brief First element in the pool.
 			 */
 			PoolEntry* mPool;
 
 			/*!
-			 \brief Oberstes Poolelement um FIFO zu realisieren.
+			 \brief Top pool element to realise FIFO.
 			 */
 			PoolEntry* mTop;
 
 			/*!
-			 \brief Mutex für Referenzzählermanimulation
+			 \brief Mutex for reference counter manipulation
 			 */
 			Mutex mMutex;
 
 			/*!
-			 \brief Fügt ein Object hinzu. Wird in Object->Autorelease aufgerufen
+			 \brief Adds an object. Called in Object::Autorelease().
 			 */
 			void AddObject(Object* object);
 
 			/*!
-			 \brief Erlaube Autorelease zugriff auf AddObject
+			 \brief Allow Object::Autorelease() access to AddObject().
 			 */
 			friend Object* Object::Autorelease();
 

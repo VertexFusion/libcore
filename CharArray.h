@@ -45,28 +45,28 @@ namespace jm
 	struct CharArray
 	{
 		/*!
-		 \brief Die Länge des Arrays.
+		 \brief The length of the array.
 		 */
 		uint32 length;
 
 		/*!
-		 \brief Das Datenfeld
+		 \brief The array itself.
 		 */
 		uint16* buffer;
 
 		/*!
-		 \brief Standardkonstruktor
+		 \brief Constructor. Everything remains 0 or NULL.
 		 */
 		CharArray();
 
 		/*!
-		 \brief Konstruktor erzeugt ein nicht initialisiertes Feld mit definierter Länge.
-		 \param length Die Länge, mit der das Feld erzeugt werden soll.
+		 \brief Constructor create an unitialized array.
+		 \param length The length of the array
 		 */
 		CharArray(uint32 length);
 
 		/*!
-		 \brief Copykonstruktor
+		 \brief Copy constructor
 		 */
 		CharArray(const CharArray &another);
 

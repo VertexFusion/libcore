@@ -152,19 +152,21 @@ namespace jm
 		private:
 
 			/*!
-			 Die Länge des Arrays
+			 The length of the array.
 			 */
 			uint32 mLength;
 
 			/*!
-			 \brief Das Array mit den Daten
+			 \brief The data array itself.
 			 */
 			T* mData;
 
 	};
 
 
-	/*! SPezialisung für Pointerarray */
+	/*!
+	Specialization for pointer arrays.
+	*/
 	template <class T>
 	class Array<T*> : public Object
 	{
@@ -219,7 +221,7 @@ namespace jm
 					const T& a2 = *mData[j];
 					if (a1->CompareTo(a2) > 0)
 					{
-						//Vertausche
+						// Swap
 						T* tmp = mData[i];
 						mData[i] = mData[j];
 						mData[j] = tmp;
@@ -244,13 +246,6 @@ namespace jm
 				throw new Exception("Array index out of bounds.");
 			mData[index] = item;
 		};
-
-/*		inline T* operator[](const uint32 index) const
-		{
-			if (index >= mLength)
-				throw new Exception("Array index out of bounds.");
-			return &mData[index];
-		}*/
 
 		inline T*& operator[](const uint32 index) const
 		{
@@ -413,12 +408,12 @@ namespace jm
 		private:
 
 			/*!
-			 Die Länge des Arrays
+			 The length of the array
 			 */
 			uint32 mLength;
 
 			/*!
-			 \brief Das Array mit den Daten
+			 \brief The array itself
 			 */
 			float* mData;
 
@@ -546,12 +541,12 @@ namespace jm
 	private:
 
 		/*!
-		 Die Länge des Arrays
+		 The length of array
 		 */
 		uint32 mLength;
 
 		/*!
-		 \brief Das Array mit den Daten
+		 \brief The array itself.
 		 */
 		uint8* mData;
 
