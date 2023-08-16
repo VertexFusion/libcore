@@ -16,10 +16,10 @@ File::File(): Stream(), Comparable<File>()
 	mHandle = NULL;
 }
 
-File::File(String _pathname): Stream(), Comparable<File>()
+File::File(const String &pathname): Stream(), Comparable<File>()
 {
-	if(_pathname.Length() < 1)throw new Exception("Pathname is empty.");
-	mPathname = Normalize(_pathname);
+	if(pathname.Length() < 1)throw new Exception("Pathname is empty.");
+	mPathname = Normalize(pathname);
 	SetCString();
 	mHandle = NULL;
 }
@@ -108,19 +108,20 @@ String File::Resolve(String parent, String child)
 	}
 }
 
-String File::Normalize(String _pathname)
+String File::Normalize(const String &path)
 {
-	uint32 length = _pathname.Length();
+	String pathname=path;
+	uint32 length = pathname.Length();
 	uint16 prev = 0;
 
 	for(uint32 a = 0; a < length; a++)
 	{
-		uint16 character = _pathname.CharAt(a);
+		uint16 character = pathname.CharAt(a);
 
 		//Entferne doppelte Pfadtrenner
 		if(prev == DIR_SEP && character == DIR_SEP)
 		{
-			_pathname.DeleteCharAt(a);
+			pathname.DeleteCharAt(a);
 			a--;
 			length--;
 		}
@@ -128,11 +129,11 @@ String File::Normalize(String _pathname)
 	}
 
 	//Wenn letzter Buchstabe Pfadtrenner ist und Dateiname länger als 1
-	if(prev == DIR_SEP && _pathname.Length() > 1)_pathname.DeleteCharAt(_pathname.Length() - 1);
+	if(prev == DIR_SEP && pathname.Length() > 1)pathname.DeleteCharAt(pathname.Length() - 1);
 	//_pathname = URLDecode( _pathname ); //ACHTUNG, dies ist wegen iOS und Leerzeichen eingefügt worden, es ist zu prüfen, ob das allgemeingültig sein muss
 	//Unter Windows definitiv NEIN
 	//Unter macOS definitiv NEIN
-	return _pathname;
+	return pathname;
 }
 
 bool File::MakeDirectory()

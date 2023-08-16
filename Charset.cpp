@@ -57,7 +57,7 @@ namespace jm
 	CharArray &CharArray::operator=(const CharArray &another)
 	{
 		if(this == &another) return *this;
-		if(buffer != NULL)delete buffer;
+		if(buffer != NULL)delete[] buffer;
 		length = another.length;
 		buffer = new uint16[length];
 		memcpy(buffer, another.buffer, length * 2);

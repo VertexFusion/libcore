@@ -17,7 +17,11 @@ Date::Date(): Object(), Comparable<Date>()
 	//Unter macOS
 	struct timeval tp;
 	gettimeofday(&tp, NULL);
-    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	#elif defined __linux__//Linux
+	struct timeval tp;
+	gettimeofday(&tp, NULL);
+	mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	#elif defined _WIN32
 	std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 	mTime = ms.count();
