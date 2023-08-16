@@ -981,7 +981,7 @@ namespace jm
 	{
 		char cstr[256];
 		in.getline(cstr, 256);
-		str = String(cstr, in.gcount());
+		str = String(cstr, (uint32)in.gcount());
 		return in;
 	}
 
@@ -1165,7 +1165,7 @@ uint64 jm::HexToInt(const String &str, uint32 begin, uint32 count)
 {
 	uint64 r = 0;
 
-	uint16 cnt = begin;
+	uint32 cnt = begin;
 	uint32 sz = begin + count;
 
 	while(cnt < sz)
@@ -1206,13 +1206,13 @@ String jm::URLDecode(const String &str)
 	uint32 pos = 0;
 
 	// Eliminate URL-Decoding
-	uint8 c;
+	int8 c;
 	for(uint32 a = 0; a < str.Length(); a++)
 	{
 		switch(str.CharAt(a))
 		{
 			case '%':
-				c = (uint8)jm::HexToInt(str.Substring(a + 1, a + 3));
+				c = (int8)jm::HexToInt(str.Substring(a + 1, a + 3));
 				a += 2;
 				buffer[pos++] = c;
 				break;
@@ -1222,7 +1222,7 @@ String jm::URLDecode(const String &str)
 				break;
 
 			default:
-				buffer[pos++] = str.CharAt(a);
+				buffer[pos++] = (int8)str.CharAt(a);
 				break;
 		}
 	}

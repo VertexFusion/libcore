@@ -465,16 +465,16 @@ Array<File>* File::ListFiles()
 		do
 		{
 			//cFilename ist der nackte Dateiname ohne Pfad.
-			uint16* wstr = (uint16*)data.cFileName;
+			uint16* wstr2 = (uint16*)data.cFileName;
 			uint32 len = 0;
-			while(wstr[len] != 0)len++;
-			files.push_back(String(wstr, len));
+			while(wstr2[len] != 0)len++;
+			files.push_back(String(wstr2, len));
 		}
 		while(FindNextFile(hFind, &data));
 		FindClose(hFind);
 
 		//Array füllen
-		Array<File>* list = new Array<File>(files.size());
+		Array<File>* list = new Array<File>((uint32)files.size());
 		for(uint32 a = 0; a < files.size(); a++)
 		{
 			//In Files ist nur der Dateiname gespeichert. Pfadname muss also davor, damit es klappt...

@@ -132,7 +132,7 @@ String Integer::ToLatinAlphabetString(uint64 number)
 	while(number > 0)
 	{
 		int32 div = static_cast<int32>(number / 26);
-		int32 rest = number % 26 - 1;
+		int16 rest = (int16)(number % 26 - 1);
 
 		output.Append('A' + rest);
 
