@@ -1,10 +1,33 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Name:        Object.cpp
+// Library:     VertexFusion Library
+// Purpose:     Implementation of Object class
 //
-//  Object.cpp
-//  Jameo
+// Author:      Uwe Runtemund (2014-today)
+// Modified by:
+// Created:     20.04.2014
 //
-//  Created by Uwe Runtemund on 20.04.2014.
-//  Copyright (c) 2014 Jameo Software. All rights reserved.
+// Copyright:   (c) 2014 Jameo Software, Germany. https://jameo.de
 //
+// Licence:     The MIT License
+//              Permission is hereby granted, free of charge, to any person obtaining a copy of this
+//              software and associated documentation files (the "Software"), to deal in the
+//              Software without restriction, including without limitation the rights to use, copy,
+//              modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+//              and to permit persons to whom the Software is furnished to do so, subject to the
+//              following conditions:
+//
+//              The above copyright notice and this permission notice shall be included in all
+//              copies or substantial portions of the Software.
+//
+//              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//              INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+//              PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//              HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+//              CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+//              OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Precompiled.h"
 
@@ -14,7 +37,7 @@ Object::Object()
 {
 	mRefCount = 1;
 	mPool = System::GetAutoreleasePool();
-	//Zombie finden
+	// Find Zombie
 	//mRefCount=2;
 }
 
@@ -25,7 +48,7 @@ Object::~Object()
 
 void Object::Release()
 {
-	if(mPool == NULL)return;  //Sicherheit
+	if(mPool == NULL)return;
 
 	uint32 count;
 	Mutex* mutex = mPool->GetMutex();
@@ -37,9 +60,11 @@ void Object::Release()
 
 	if(count == 0)
 	{
-		//Zombie finden
+		// Find Zombie
 		//std::cout<<"Zombie delete"<<std::endl;
-		delete this;//Wenn Refcount=0 ist, darf Release oder Retain logischer Weise nicht nochmals aufgerufen werden.
+		
+		//! If mRefCount==0, Release() or Retain() must not called.
+		delete this;
 	}
 }
 
@@ -63,17 +88,22 @@ uint32 Object::GetReferenceCount() const
 	return mRefCount;
 }
 
-bool Object::Equals(const Object* other) const
+bool Object::Equals(const Object*) const
 {
 	return false;
 }
 
 int8* Object::GetDiffName() const
 {
-	return "Object";
+	int8* name=new int8[4];
+	name[0]='O';
+	name[1]='b';
+	name[2]='j';
+	name[3]=0;
+	return name;
 }
 
-void Object::PrintDiffInfo(DiffOperation operation, Object* other) const
+void Object::PrintDiffInfo(DiffOperation, Object*) const
 {
-	//Tue hier nichts
+	// Nothing to do here. Placeholder method.
 }

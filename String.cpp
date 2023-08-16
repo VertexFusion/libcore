@@ -1,17 +1,32 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Strings.cpp
-// Library:     jameo
-// Purpose:     Usefull math functions
+// Name:        String.cpp
+// Library:     VertexFusion Library
+// Purpose:     Implementation of String class
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2014-today)
 // Modified by:
 // Created:     08.10.2012
 //
 // Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
 //
-//              All rights reserved. The methods and techniques described herein are considered
-//              trade secrets and/or confidential. Reproduction or distribution, in whole or in 
-//              part, is forbidden except by express written permission of Jameo.
+// Licence:     The MIT License
+//              Permission is hereby granted, free of charge, to any person obtaining a copy of this
+//              software and associated documentation files (the "Software"), to deal in the
+//              Software without restriction, including without limitation the rights to use, copy,
+//              modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+//              and to permit persons to whom the Software is furnished to do so, subject to the
+//              following conditions:
+//
+//              The above copyright notice and this permission notice shall be included in all
+//              copies or substantial portions of the Software.
+//
+//              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//              INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+//              PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//              HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+//              CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+//              OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Precompiled.h"
@@ -51,9 +66,8 @@ String::String(const int8* buffer, uint32 size): Object(), Comparable<String>()
 	memcpy(cstring, buffer, size);
 	cstring[size] = 0;
 
-	//Absichtlich nicht Charset::GetDefault genutzt, da dies
-	//bei globalen Strings zu Problemen führt.
-	//(Initialisierungsreihenfolge nicht vorhersehbar)
+	// Intentionally not used Charset::GetDefault, since this leads to problems with global strings.
+	// (Initialization sequence not predictable)
 	UTF8Decoder dec = UTF8Decoder();
 	CharArray array = dec.Decode(cstring);
 	Copy(array);
@@ -68,9 +82,8 @@ String::String(const uint8* buffer, uint32 size): Object(), Comparable<String>()
 	memcpy(cstring, buffer, size);
 	cstring[size] = 0;
 
-	//Absichtlich nicht Charset::GetDefault genutzt, da dies
-	//bei globalen Strings zu Problemen führt.
-	//(Initialisierungsreihenfolge nicht vorhersehbar)
+	// Intentionally not used Charset::GetDefault, since this leads to problems with global strings.
+	// (Initialization sequence not predictable)
 	UTF8Decoder dec = UTF8Decoder();
 	CharArray array = dec.Decode(cstring);
 	Copy(array);
@@ -84,7 +97,7 @@ String::String(const int8* buffer, uint32 size, Charset* charset): Object(), Com
 	int8* cstring = new int8[size + 2];
 	memcpy(cstring, buffer, size);
 	cstring[size] = 0;
-	cstring[size + 1] = 0; //Für UTF16 benötigt
+	cstring[size + 1] = 0; //For UTF16 required
 	CharArray array = charset->Decode(cstring);
 	Copy(array);
 	delete[] cstring;
@@ -95,9 +108,8 @@ String::String(const int8* cstring): Object(), Comparable<String>()
 	mHash = 0;
 	if(cstring != NULL)
 	{
-		//Absichtlich nicht Charset::GetDefault genutzt, da dies
-		//bei globalen Strings zu Problemen führt.
-		//(Initialisierungsreihenfolge nicht vorhersehbar)
+		// Intentionally not used Charset::GetDefault, since this leads to problems with global
+		// strings. (Initialization sequence not predictable)
 		UTF8Decoder dec = UTF8Decoder();
 		CharArray array = dec.Decode(cstring);
 		Copy(array);
@@ -355,10 +367,10 @@ String String::ReplaceAll(String oldStr, String newStr)const
 
 	do
 	{
-		//Alles davor anhängen
+		// Append everything in front
 		output.Append(Substring(pos1, pos2));
 
-		//Neue Zeichenkette anhängen
+		// Append new string
 		output.Append(newStr);
 
 		pos1 = pos2 + oldStr.Length();
@@ -367,7 +379,7 @@ String String::ReplaceAll(String oldStr, String newStr)const
 	}
 	while(pos2 >= pos1);
 
-	//Letztes Stück anhängen.
+	// Append last part.
 	output.Append(Substring(pos1));
 
 	return output;
@@ -579,7 +591,7 @@ int32 String::CompareFancyTo(const String &another) const
 	}
 	l1 = cntout;
 
-	//Konvertiere 2. String
+	// Convert 2nd String
 	cntin = 0;
 	cntout = 0;
 	while(cntin < strl2)
@@ -602,7 +614,7 @@ int32 String::CompareFancyTo(const String &another) const
 	}
 	l2 = cntout;
 
-	//Vergleiche
+	// Compare
 	uint32 smallest = min(l1, l2);
 
 	uint32 cnt = 0;
@@ -648,19 +660,19 @@ String String::ValueOf(int64 number)
 	String ret;
 	bool neg = false;
 
-	//Prüfe auf Vorzeichen
+	// Check sign
 	if(number < 0)
 	{
 		number *= -1;
 		neg = true;
 	}
-	//Prüfe auf 0
+	// Check 0
 	else if(number == 0)
 	{
 		ret.Append('0');
 	}
 
-	//Löse die einzelnen Zahlen auf... Achtung: die letzte Ziffer kommt zuerst
+	// Solve the individual digits... Attention: the last digit comes first
 	while(number > 0)
 	{
 		int64 digit = number % 10;
@@ -669,7 +681,7 @@ String String::ValueOf(int64 number)
 	}
 	if(neg)ret.Append('-');
 
-	//Zahlen umkehren
+	// Reverse digits
 	uint32 cnt = ret.Length() / 2;
 	for(uint32 a = 0; a < cnt; a++)
 	{
@@ -685,14 +697,14 @@ String String::ValueOf(uint64 number)
 {
 	String ret;
 
-	//Prüfe auf 0
+	// Check 0
 	if(number == 0)
 	{
 		ret.Append('0');
 		return ret;
 	}
 
-	//Löse die einzelnen Zahlen auf... Achtung: die letzte Ziffer kommt zuerst
+	// Solve the individual digits... Attention: the last digit comes first
 	while(number > 0)
 	{
 		int64 digit = number % 10;
@@ -700,7 +712,7 @@ String String::ValueOf(uint64 number)
 		ret.Append((int16)(digit + '0'));
 	}
 
-	//Zahlen umkehren
+	// Reverse digits
 	uint32 cnt = ret.Length() / 2;
 	for(uint32 a = 0; a < cnt; a++)
 	{
@@ -817,7 +829,7 @@ String String::LineSeparator()
 
 	va_end(args);
 
-
+*/
 	/*	//Bestimme die Eigenschaften aller Formatierungsstrings
 		int cnt=0;//Index im String
 		int i=-1;//Index auf den gefundenen Formatierungsstring
@@ -967,7 +979,6 @@ namespace jm
 
 	istream& operator>> (istream& in, String& str)
 	{
-		uint32 length=0;
 		char cstr[256];
 		in.getline(cstr, 256);
 		str = String(cstr, in.gcount());
@@ -1188,14 +1199,13 @@ uint64 jm::HexToInt(const String &str, uint32 begin, uint32 count)
 String jm::URLDecode(const String &str)
 {
 	//
-	// Ein URL-Kodierter String enthält nur ASCII-Zeichen...
+	// A URL-encoded string contains only ASCII characters...
 	//
-	//UTF-8 Kodierung wird angenommen
 
 	int8* buffer = new int8[str.Length()];
 	uint32 pos = 0;
 
-	//URL-Dekorierung beseitigen
+	// Eliminate URL-Decoding
 	uint8 c;
 	for(uint32 a = 0; a < str.Length(); a++)
 	{
@@ -1225,9 +1235,8 @@ String jm::URLDecode(const String &str)
 String jm::URLEncode(const String &str)
 {
 	//
-	// Ein URL-Kodierter String enthält nur ASCII-Zeichen...
+	// A URL-encoded string contains only ASCII characters...
 	//
-	//UTF-8 Kodierung wird angenommen
 	String ret;
 
 	for(uint32 a = 0; a < str.Length(); a++)
@@ -1236,9 +1245,6 @@ String jm::URLEncode(const String &str)
 		{
 			case ' ':
 				ret.Append('+');
-				//				ret.Append('%');
-				//				ret.Append('2');
-				//				ret.Append('0');
 				break;
 
 			case '%':
