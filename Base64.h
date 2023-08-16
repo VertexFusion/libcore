@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Core.h
+// Name:        Base64.h
 // Library:     VertexFusion Library
-// Purpose:     Header for core classes
+// Purpose:     Base64 Encoding/Decoding
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2020-today)
 // Modified by:
-// Created:     18.10.2012
+// Created:     28.12.2020
 //
-// Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
+// Copyright:   (c) 2020 Jameo Software, Germany. https://jameo.de
 //
 // Licence:     The MIT License
 //              Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -28,59 +28,44 @@
 //              OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+#ifndef jm_Base64_h
+#define jm_Base64_h
 
-#ifndef jm_Core_h
-#define jm_Core_h
-
-
-#include "Types.h"
-
-#include "Array.h"
-#include "Base64.h"
-#include "CharArray.h"
-#include "Charset.h"
-#include "Colour.h"
-#include "CRC.h"
-#include "Date.h"
-#include "Deflater.h"
-#include "Diff.h"
-#include "DiffBacktrace.h"
-#include "DiffDiag.h"
-#include "DiffDistance.h"
-#include "DiffInfo.h"
-#include "Document.h"
-#include "Exception.h"
-#include "Geometry.h"
-#include "I18nBundle.h"
-#include "Inflater.h"
-#include "Integer.h"
-#include "Math.h"
-#include "Matrix.h"
-#include "MemoryStream.h"
-#include "Mutex.h"
-#include "Nurbs.h"
-#include "PaintingBackend.h"
-#include "SAXParser.h"
-#include "Serializer.h"
 #include "String.h"
-#include "StringTokenizer.h"
-#include "System.h"
-#include "Test.h"
-#include "Thread.h"
-#include "URI.h"
-#include "Vector.h"
-#include "Vertex2.h"
-#include "Vertex3.h"
-#include "XMLWriter.h"
-#include "ZipFile.h"
 
-/*!
- \defgroup core Core
+namespace jm
+{
 
- \brief Core classes provides basic functionality for every application.
+	/*!
+	 \brief Implementation of the BASE64-algorithm.
+	 \ingroup core
+	 */
+	class DllExport Base64
+	{
+		public:
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
- different algorithms and so on.
-*/
+			/*!
+			 \brief Kodiert den Datenstrom mit dem BASE64-Algorithmus
+			 \param data Die Daten, die kodiert werden sollen,
+			 \param length Die Länge des Eingabepuffers. Nach Verlassen der Methode wird hier die Länge
+			        des Ausgabepuffers zurückgegeben
+			 \return Den Ausgabepuffer. Der Aufrufer der Methode übernimmt das Array und muss es selbst
+			         aufräumen.
+			 */
+			static uint8* Encode(const uint8* data, uint32 &length);
 
-#endif
+			/*!
+			 \brief Dekodiert den Datenstrom mit dem BASE64-Algorithmus
+			 \param data Die Daten, die kodiert werden sollen,
+			 \param length Die Länge des Eingabepuffers. Nach Verlassen der Methode wird hier die Länge
+			        des Ausgabepuffers zurückgegeben
+			 \return Den Ausgabepuffer. Der Aufrufer der Methode übernimmt das Array und muss es selbst
+			         aufräumen.
+			 */
+			static uint8* Decode(const uint8* data, uint32 &length);
+
+	};
+
+}
+
+#endif /* Base64_h */

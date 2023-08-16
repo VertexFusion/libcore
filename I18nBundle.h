@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Core.h
+// Name:        I18nBundle.h
 // Library:     VertexFusion Library
-// Purpose:     Header for core classes
+// Purpose:     Declaration of Translation helper class
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2013-today)
 // Modified by:
-// Created:     18.10.2012
+// Created:     03.06.2013
 //
-// Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
+// Copyright:   (c) 2013 Jameo Software, Germany. https://jameo.de
 //
 // Licence:     The MIT License
 //              Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -29,58 +29,40 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Core_h
-#define jm_Core_h
+#ifndef jm_I18nBundle_h
+#define jm_I18nBundle_h
 
+#include "Properties.h"
 
-#include "Types.h"
+namespace jm
+{
+	/*!
+	 \brief This class provides a central resource to translate an application into the local 
+	 language for the user.
+	 \ingroup core
+	 */
+	class DllExport I18nBundle: public Properties
+	{
+		public:
 
-#include "Array.h"
-#include "Base64.h"
-#include "CharArray.h"
-#include "Charset.h"
-#include "Colour.h"
-#include "CRC.h"
-#include "Date.h"
-#include "Deflater.h"
-#include "Diff.h"
-#include "DiffBacktrace.h"
-#include "DiffDiag.h"
-#include "DiffDistance.h"
-#include "DiffInfo.h"
-#include "Document.h"
-#include "Exception.h"
-#include "Geometry.h"
-#include "I18nBundle.h"
-#include "Inflater.h"
-#include "Integer.h"
-#include "Math.h"
-#include "Matrix.h"
-#include "MemoryStream.h"
-#include "Mutex.h"
-#include "Nurbs.h"
-#include "PaintingBackend.h"
-#include "SAXParser.h"
-#include "Serializer.h"
-#include "String.h"
-#include "StringTokenizer.h"
-#include "System.h"
-#include "Test.h"
-#include "Thread.h"
-#include "URI.h"
-#include "Vector.h"
-#include "Vertex2.h"
-#include "Vertex3.h"
-#include "XMLWriter.h"
-#include "ZipFile.h"
+			/*!
+			 \brief Konstruktor lädt die Ressourcen aus dem Ressourcenverzeichnis
+			 \param language Sprachkürzel "de" für Deutsch, "en" für Englisch usw.
+			 */
+			I18nBundle(const String &appID,
+				const String &name, 
+				const String &language,
+				String subfolder = kEmptyString);
 
-/*!
- \defgroup core Core
+			I18nBundle(const File &file, const String &language);
 
- \brief Core classes provides basic functionality for every application.
+	private:
+		/*!
+		 \brief Sprachkürzel
+		 */
+		String mLanguage;
+	};
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
- different algorithms and so on.
-*/
+}
 
 #endif

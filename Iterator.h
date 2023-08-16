@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Core.h
+// Name:        Iterator.h
 // Library:     VertexFusion Library
-// Purpose:     Header for core classes
+// Purpose:     Itrator Interface
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2013-today)
 // Modified by:
-// Created:     18.10.2012
+// Created:     29.01.2013
 //
-// Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
+// Copyright:   (c) 2013 Jameo Software, Germany. https://jameo.de
 //
 // Licence:     The MIT License
 //              Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -29,58 +29,43 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Core_h
-#define jm_Core_h
-
+#ifndef jm_Iterator_h
+#define jm_Iterator_h
 
 #include "Types.h"
 
-#include "Array.h"
-#include "Base64.h"
-#include "CharArray.h"
-#include "Charset.h"
-#include "Colour.h"
-#include "CRC.h"
-#include "Date.h"
-#include "Deflater.h"
-#include "Diff.h"
-#include "DiffBacktrace.h"
-#include "DiffDiag.h"
-#include "DiffDistance.h"
-#include "DiffInfo.h"
-#include "Document.h"
-#include "Exception.h"
-#include "Geometry.h"
-#include "I18nBundle.h"
-#include "Inflater.h"
-#include "Integer.h"
-#include "Math.h"
-#include "Matrix.h"
-#include "MemoryStream.h"
-#include "Mutex.h"
-#include "Nurbs.h"
-#include "PaintingBackend.h"
-#include "SAXParser.h"
-#include "Serializer.h"
-#include "String.h"
-#include "StringTokenizer.h"
-#include "System.h"
-#include "Test.h"
-#include "Thread.h"
-#include "URI.h"
-#include "Vector.h"
-#include "Vertex2.h"
-#include "Vertex3.h"
-#include "XMLWriter.h"
-#include "ZipFile.h"
+namespace jm
+{
+	class Object;
 
-/*!
- \defgroup core Core
+	/*!
+	 \brief The abstract class Iterator is used to provide an interface with which one can
+	 conveniently iterate through a list or array. It depends on the implementation which data is
+	 obtained.
+	 
+	 \note With initialisation of the list, the pointer to the elements precedes the first element,
+	 so that the first call to Next() actually returns the first element.
+	 \ingroup core
+	 */
+	class DllExport Iterator
+	{
 
- \brief Core classes provides basic functionality for every application.
+		public:
+			/*!
+			 \brief Diese Methode prüft, ob die Liste noch ein weiteres Element enthält
+			 \return "Wahr", wenn noch mindestens ein weiteres Element in der Liste existiert,
+			 andernfalls "Falsch".
+			 */
+			virtual bool HasNext() = 0;
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
- different algorithms and so on.
-*/
+			/*!
+			 \brief Diese Methode iteriert zum nächsten Element in der Liste und gibt es zurück.
+			 */
+			virtual Object* Next() = 0;
 
+			virtual ~Iterator();
+	};
+
+
+}
 #endif

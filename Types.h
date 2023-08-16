@@ -32,8 +32,8 @@
 #include <iostream>
 #include <limits>
 
-#ifndef vxf_Types_h
-#define vxf_Types_h
+#ifndef jm_Types_h
+#define jm_Types_h
 
 #ifndef M_2_PI
 #define M_2_PI    2.0*3.14159265358979323846264338328 /*!<  Defines a value for "2 x pi" */

@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Core.h
+// Name:        DiffDiag.h
 // Library:     VertexFusion Library
-// Purpose:     Header for core classes
+// Purpose:     Diff Algorithm
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2013-today)
 // Modified by:
-// Created:     18.10.2012
+// Created:     17.12.2013
 //
-// Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
+// Copyright:   (c) 2013 Jameo Software, Germany. https://jameo.de
 //
 // Licence:     The MIT License
 //              Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -29,58 +29,84 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Core_h
-#define jm_Core_h
+
+#ifndef jm_DiffDiag_h
+#define jm_DiffDiag_h
+
+#include <vector>
+#include "Object.h"
+#include "DiffTypes.h"
+
+namespace jm
+{
+
+	class DiffDistance;
+
+	/*!
+	 \brief This class represents a diagonal in the diff algorithm.
+	 \ingroup core
+	 */
+	class DllExport DiffDiag
+	{
+
+		public:
+
+			DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, int offset);
+
+			~DiffDiag();
+
+			DiffDiag* GetAbove();
+			DiffDiag* GetBelow();
+
+			int32 GetUpperEntry(int32 i);
+			int32 GetLeftEntry(int32 i);
+
+			int32 GetEntry(int32 j);
+
+			Object* GetObjU(int32 i);
+			Object* GetObjV(int32 i);
+
+			int32 GetOffset();
 
 
-#include "Types.h"
+		private:
 
-#include "Array.h"
-#include "Base64.h"
-#include "CharArray.h"
-#include "Charset.h"
-#include "Colour.h"
-#include "CRC.h"
-#include "Date.h"
-#include "Deflater.h"
-#include "Diff.h"
-#include "DiffBacktrace.h"
-#include "DiffDiag.h"
-#include "DiffDistance.h"
-#include "DiffInfo.h"
-#include "Document.h"
-#include "Exception.h"
-#include "Geometry.h"
-#include "I18nBundle.h"
-#include "Inflater.h"
-#include "Integer.h"
-#include "Math.h"
-#include "Matrix.h"
-#include "MemoryStream.h"
-#include "Mutex.h"
-#include "Nurbs.h"
-#include "PaintingBackend.h"
-#include "SAXParser.h"
-#include "Serializer.h"
-#include "String.h"
-#include "StringTokenizer.h"
-#include "System.h"
-#include "Test.h"
-#include "Thread.h"
-#include "URI.h"
-#include "Vector.h"
-#include "Vertex2.h"
-#include "Vertex3.h"
-#include "XMLWriter.h"
-#include "ZipFile.h"
+			/*!
+			 \brief speichert den Offset der Diagonale.
+			 Diagonalen beginnen bei u[0] , v[abs(offset)]
+			 Diagonalen unterhalb der Mittleren haben negative offsets.
+			 */
+			int32 offset;
 
-/*!
- \defgroup core Core
+			/*!
+			 \brief Zeiger auf Vergleichsvektor 1
+			 */
+			std::vector<Object*>* mU;
 
- \brief Core classes provides basic functionality for every application.
+			/*!
+			 \brief Zeiger auf Vergleichsvektor 2
+			 */
+			std::vector<Object*>* mV;
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
- different algorithms and so on.
-*/
+			/*!
+			 \brief Verkettete Liste
+			 */
+			DiffDiag* below;
+			DiffDiag* above;
+
+			/*!
+			 \brief Vektor mit den Diagonalelementen
+			 */
+			std::vector<int32> elements;
+
+			/*!
+			 \brief Zeiger auf Diff-Distance, um Anzahl der berechneten Werte zu ermitteln.
+			 */
+			DiffDistance* dist;
+
+	};
+
+}
+
 
 #endif

@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Core.h
+// Name:        Diff.h
 // Library:     VertexFusion Library
-// Purpose:     Header for core classes
+// Purpose:     Diff Algorithm
 //
-// Author:      Uwe Runtemund (2012-today)
+// Author:      Uwe Runtemund (2013-today)
 // Modified by:
-// Created:     18.10.2012
+// Created:     17.12.2013
 //
-// Copyright:   (c) 2012 Jameo Software, Germany. https://jameo.de
+// Copyright:   (c) 2013 Jameo Software, Germany. https://jameo.de
 //
 // Licence:     The MIT License
 //              Permission is hereby granted, free of charge, to any person obtaining a copy of this
@@ -29,58 +29,50 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Core_h
-#define jm_Core_h
+#ifndef jm_Diff_h
+#define jm_Diff_h
 
-
-#include "Types.h"
-
-#include "Array.h"
-#include "Base64.h"
-#include "CharArray.h"
-#include "Charset.h"
-#include "Colour.h"
-#include "CRC.h"
-#include "Date.h"
-#include "Deflater.h"
-#include "Diff.h"
+#include "Object.h"
 #include "DiffBacktrace.h"
-#include "DiffDiag.h"
-#include "DiffDistance.h"
-#include "DiffInfo.h"
-#include "Document.h"
-#include "Exception.h"
-#include "Geometry.h"
-#include "I18nBundle.h"
-#include "Inflater.h"
-#include "Integer.h"
-#include "Math.h"
-#include "Matrix.h"
-#include "MemoryStream.h"
-#include "Mutex.h"
-#include "Nurbs.h"
-#include "PaintingBackend.h"
-#include "SAXParser.h"
-#include "Serializer.h"
-#include "String.h"
-#include "StringTokenizer.h"
-#include "System.h"
-#include "Test.h"
-#include "Thread.h"
-#include "URI.h"
-#include "Vector.h"
-#include "Vertex2.h"
-#include "Vertex3.h"
-#include "XMLWriter.h"
-#include "ZipFile.h"
+#include "dwg/Dwg.h"
 
-/*!
- \defgroup core Core
+namespace jm
+{
 
- \brief Core classes provides basic functionality for every application.
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
- different algorithms and so on.
-*/
+	/*!
+	 \brief Diff makes the diff function generally available.
+	 \ingroup core
+	 */
+	class DllExport Diff
+	{
+
+		public:
+
+			/*!
+			 \brief Führt die DIFF-Operation an den übergebenen Dateien aus.
+			 \param f1 Die erste (linke) Datei, die zum Vergleich genommen wird.
+			 \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
+			 \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
+			 */
+			static unsigned int MakeDiff(DwgDocument* c1, DwgDocument* c2);
+
+		static void HandleEntityU(DiffDistance* dd, DwgEntity* e);
+		static void HandleEntityV(DiffDistance* dd, DwgEntity* e);
+
+		private:
+			/*!
+			 \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+			 */
+			static void HandleObjectU(DiffDistance* dd, Object* e);
+
+			/*!
+			 \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+			 */
+			static void HandleObjectV(DiffDistance* dd, Object* e);
+
+	};
+
+}
 
 #endif
