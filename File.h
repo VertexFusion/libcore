@@ -70,7 +70,7 @@ namespace jm
 			 \brief Konstruktor
 			 \param pathname Der Pfadname der Datei.
 			 */
-			File(String pathname);
+			File(const String &pathname);
 
 			/*!
 			 \brief Konstruktor
@@ -311,7 +311,7 @@ namespace jm
 			 \discussion Unter Unix enthält ein normalisierter Pfadname keine doppelten Schrägstriche
 			 und endet nicht mit einem Schrägstrich.
 			 */
-			String Normalize(String pathnames);
+			String Normalize(const String &pathnames);
 
 			/*!
 			 \brief Diese Methode kombiniert den Vaternamen mit dem Childnamen
