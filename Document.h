@@ -43,7 +43,7 @@ namespace jm
 	/*!
 	 \brief This class represents the "model" in the MVC context. This class is also the ideal parent
 	 class for all document-based applications, because basic functionalities that every user expects
-	 are already predefined here.In addition, development time is saved. These include:
+	 are already predefined here. In addition, development time is saved. These include:
 	 - Undo and redo management
 	 - File path, load and save
 	 \ingroup core
@@ -54,11 +54,15 @@ namespace jm
 		public:
 
 			/*!
-			 \brief Konstruktor
-			 \discussion Im Konnstruktor hier wird bereits der UndoManager aktiviert. Dies hat zur Folge, dass z.B. der gesamte Einleseprozess
-			 eines Dokumentes von der Festplatte als einzelner Undoschritt bereits "geloggt" ist. Dies ist aber zwingend notwendig, damit
-			 beim Löschen von Objekten diese auf dem UndoStack erhalten bleiben sollen, weil z.B. die LinkedList die Pointer nicht
-			 selbst, sondern nur über den UndoStack verwaltet.
+			 \brief Constructor
+
+			 Shall create an empty not initalized document.
+
+			 In the constructor here, the UndoManager is already activated. This means that, for
+			 example, the entire process of reading a document from the hard disk is already "logged"
+			 as a single undo step. This is absolutely necessary, however, so that when objects are
+			 deleted, they are retained on the UndoStack, because the LinkedList, for example, does not
+			 manage the pointers itself, but only via the UndoStack.
 			 */
 			Document();
 
@@ -69,129 +73,140 @@ namespace jm
 
 			/*
 			 *
-			 * UNDO- UND REDO-MANAGEMENT
+			 * UNDO AND REDO MANAGEMENT
 			 *
 			 */
 
 			/*!
-			 \brief Gibt den Undomanager zurück, wenn er existiert.
+			 \brief Returns the undo manager if it exists.
 			 */
 			UndoManager* GetUndoManager();
 
 			/*!
-			 \brief Legt fest, ob ein Undomanager existiert oder nicht.
-			 Wenn der Wert auf ja gesetzt wird und kein  Undomanager existiert, wird einer erzeugt.
-			 Wenn bereits einer existiert, passiert nichts.
-			 Wenn auf nein gesetzt wird, wird ein eventueller Undomanager freigegeben
+			 \brief Determines whether an undo manager exists or not.
+
+			 If the value is set to yes and no undomanager exists, one is created. If one already
+			 exists, nothing happens. If the value is set to no, a possible undo manager is released.
+
+			 \param status Turn undo manager on (\c true) or off (\c false).
 			 */
 			void SetUndoManager(bool status);
 
 			/*!
-			 \brief Gibt den Status zurück, ob ein UndoManager existiert
+			 \brief Returns the status of whether an undo manager exists.
 			 */
-			bool HasUndoManager();
+			bool HasUndoManager() const;
 
 			/*!
-			 \brief Gibt den Status zurück, ob das Dokument bearbeitet wurde.
-			 \discussion Dieser Wert wird beim Speichert auf false gesetzt. Trotzdem kann der UndoManager Schritte zum
-			 Rückggängig machen enthalten.
+			 \brief Returns the status of whether the document has been edited since last saving.
+
+			  This value is set to false when saving. Nevertheless, the undo manager can contain steps
+			  for undo.
 			 */
-			bool IsDocumentChanged();
+			bool IsDocumentChanged() const;
 
 			/*!
-			 \brief Legt den Status fest, ob die Datei verändert wurde. Das Setzen dieses Wertes hat Einfluss darauf, ob die Datei als geändert "markiert" ist.
-			 Immer wenn die Datei gespeichert wird, wird dieser Wert auf false gesetzt.
-			 In der Workbench wird dieser Wert automatisch gesetzt und muss nur manuell verändert werden, wenn man nicht die Workbench mit dem Undo-Mechanismus benuttz.
+			 \brief Sets the status of whether the file has been changed.
+
+			 This method is primary intended for internal use.
+			 Setting this value affects whether the file is "marked" as changed. Whenever the file is
+			 saved, this value is set to false. In the undo machanism, this value is set automatically
+			 and only needs to be changed manually if you do not use the undo mechanism.
+
+			 \param status status if whether the file hase been changed (\c true) or not (\ false) 
 			 */
 			void SetDocumentChanged(bool status);
 
 			/*
 			 *
-			 * DATEIFPAD, LADEN UND SPEICHERN
+			 * FILE PATH, LOAD AND SAVE
 			 *
 			 */
 
 			/*!
-			 \brief Legt die Datei zu diesem Dokument fest
+			 \brief Sets the file for this document
 			 */
 			void SetFile(File* file);
 
 			/*!
-			 \brief Gibt die Datei zu diesem Dokument zurück
+			 \brief Returns the File object of this document.
 			 */
 			File* GetFile();
 
 			/*!
-			 \brief Speichert die Datei.
-			 Diese Methode wird vom System aufgerufen, wenn die Datei gespeichert werden soll.
-			 GetFile() liefert die Datei zurück.
-			 Muss von abgeleiteten Klassen implementiert werden.
+			 \brief Saves the file on the drive.
+
+			 This method shall called by your software when the file shall be saved.
+			 GetFile() returns the file.
+
+			 Must be implemented by derived classes.
 			 */
 			virtual bool SaveDocument() = 0;
 
 			/*!
-			 \brief Lädt die Datei
+			 \brief Loads the file from the drive.
+
+			 This method shall called by your software when the file shall be loaded.
+			 GetFile() returns the file.
+
+			 \warning If this method is to be called, InitNewDocument() must not be called and vice
+			 versa.
+
+			 Must be implemented by derived classes.
 			 */
 			virtual bool LoadDocument() = 0;
 
 			/*!
-			 \brief Konstruktor erzeugt "leeres" Objekt.
-			 Diese Methode wird alternativ zu LoadDocument aufgerufen,
-			 wenn eine neue leere Datei erzeugt wird, anstatt eine zu laden.
-			 \param props Einstellungen, welche ggf. Programmeinstellungen an die Datei übergeben.
+			 \brief Initializes an "empty" document, ready for the user to work with it.
+
+			 The constructor creates an empty, uninitialised document. However, an "empty" and new
+			 document from the user's point of view may contain content that is mandatory or preset.
+			 However, this content must not be present when a document is loaded. Therefore, this
+			 content must be deliberately created here.
+
+			 \warning If this method is to be called, LoadDocument() must not be called and vice versa.
+
+			 \param props Settings, which pass programme settings to the file, if applicable.
 			 */
 			virtual bool InitNewDocument(Properties* props) = 0;
 
 			/*!
-			 \brief Liefert einen Iterator, der über Inhalte des Dokumentes iteriert. Übergeben wird
-			 ein Referenzobjekt. Diese Methode ist typisch für die Schnellauswahl
+			 \brief Determines that the visual representation should be renewed for this document in
+			 the next run.
 			 */
-			//virtual Iterator* GetIterator(EditableObject*) = 0;
+			virtual void Regenerate();
 
 			/*!
-				\brief Legt fest, dass für dieses Objekt im nächsten Durchlauf die visuelle Repräsentation erneuert werden sollte.
-				*/
-			virtual void Regenerate()
-			{
-				mRegenerate = true;
-			}
-
-			/*!
-			\brief Diese Methode soll von der Regenerationsmethode aufgerufen werden nachdem die visuelle Repräsentation
-			dieses Objektes aktualisiert wurde.
+			\brief This method should be called by the regeneration method after the visual
+			representation of this object has been updated.
 			*/
-			virtual void RegenerationDone()
-			{
-				mRegenerate = false;
-			}
+			virtual void RegenerationDone();
 
 			/*!
-			\brief Gibt den Regenerationsstatus zurück.
+			\brief Returns the regeneration status.
 			*/
-			virtual bool ShouldRegenerate() const
-			{
-				return mRegenerate;
-			}
+			virtual bool ShouldRegenerate() const;
 
 		private:
 
 			/*!
-			\brief Status, ob im nächten Durchlauf die visuelle Repräsentation erneuert werden sollte
+			\brief Status whether the visual representation should be renewed in the next run.
 			*/
 			bool mRegenerate;
 
 			/*!
-			 \brief Ein Undo-Manager, wenn er existiert. Ansonsten null. Standardwert ist NULL
+			 \brief An undo manager, if it exists. Otherwise NULL.
 			 */
 			UndoManager* mUndoManager;
 
 			/*!
-			 \brief Der Dateipfad, an dem die Datei gespeichert ist. \todo URI???
+			 \brief The file path where the file is stored.
+			 \todo Change to URI???
 			 */
 			File* mFile;
 
 			/*!
-			 \brief Status, ob die Datei verändert wurde
+			 \brief Status on wehter the file is changed since last saving.
 			 */
 			bool mChanged;
 
@@ -200,4 +215,4 @@ namespace jm
 
 }
 
-#endif /* Document_h */
+#endif

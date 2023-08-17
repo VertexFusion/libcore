@@ -35,10 +35,10 @@
 #include "Types.h"
 #include "DiffTypes.h"
 
-
 namespace jm
 {
 	class AutoreleasePool;
+	class String;
 
 	/*!
 	 \brief Most objects are derived from this class. This makes it possible to simplify the API, as
@@ -91,11 +91,13 @@ namespace jm
 			virtual bool Equals(const Object* other) const;
 
 			/*!
-			 \brief This method must be implemented by objects that are to be suitable for the diff
-			 algorithm.
-			 \deprecated Should be deleted or merged with similar methods in derived objects.
+			 \brief Returns the display name of the object intended to present to a user.
+
+			 This method should be implemented by objects that want to present the name of the object
+			 to the user of an application. For example the diff-algorithm uses this or also the dwg
+			 objects.
 			 */
-			virtual int8* GetDiffName() const;
+			virtual String GetDisplayName() const;
 
 			/*!
 			 \brief Output method for outputting the diff results for the diff algorithm.
@@ -103,7 +105,6 @@ namespace jm
 			 \param other The object to compare with.
 			 */
 			virtual void PrintDiffInfo(DiffOperation operation, Object* other) const;
-
 
 		private:
 

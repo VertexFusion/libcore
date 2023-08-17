@@ -37,7 +37,7 @@ namespace jm
 {
 
 	/*!
-	 \brief Implementation of the BASE64-algorithm.
+	 \brief Implementation of the BASE64 algorithm.
 	 \ingroup core
 	 */
 	class DllExport Base64
@@ -45,22 +45,22 @@ namespace jm
 		public:
 
 			/*!
-			 \brief Kodiert den Datenstrom mit dem BASE64-Algorithmus
-			 \param data Die Daten, die kodiert werden sollen,
-			 \param length Die Länge des Eingabepuffers. Nach Verlassen der Methode wird hier die Länge
-			        des Ausgabepuffers zurückgegeben
-			 \return Den Ausgabepuffer. Der Aufrufer der Methode übernimmt das Array und muss es selbst
-			         aufräumen.
+			 \brief Encodes the data stream with the BASE64 algorithm.
+			 \param data The data to be encoded.
+			 \param length The length of the input buffer. After exiting the method, the length of the
+			 output buffer is returned here.
+			 \return The output buffer. The caller of the method takes over the array and has to clean
+			 it up by himself.
 			 */
 			static uint8* Encode(const uint8* data, uint32 &length);
 
 			/*!
-			 \brief Dekodiert den Datenstrom mit dem BASE64-Algorithmus
-			 \param data Die Daten, die kodiert werden sollen,
-			 \param length Die Länge des Eingabepuffers. Nach Verlassen der Methode wird hier die Länge
-			        des Ausgabepuffers zurückgegeben
-			 \return Den Ausgabepuffer. Der Aufrufer der Methode übernimmt das Array und muss es selbst
-			         aufräumen.
+			 \brief Decodes the data stream with the BASE64 algorithm.
+			 \param data The data to be decoded.
+			 \param length The length of the input buffer. After exiting the method, the length of the
+			 output buffer is returned here.
+			 \return The output buffer. The caller of the method takes over the array and has to clean
+			 it up by himself.
 			 */
 			static uint8* Decode(const uint8* data, uint32 &length);
 
@@ -68,4 +68,4 @@ namespace jm
 
 }
 
-#endif /* Base64_h */
+#endif

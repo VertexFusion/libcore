@@ -81,6 +81,6 @@
 
  These classes are not CAD related. Typical classes are general math functions, string operations,
  different algorithms and so on.
-*/
+ */
 
 #endif
