@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Transform.h
 // Library:     VertexFusion Library
-// Purpose:     CAD related utilities for coordinate system transformations 
+// Purpose:     CAD related utilities for coordinate system transformations
 //
 // Author:      Uwe Runtemund (2014-today)
 // Modified by:
@@ -43,13 +43,13 @@ namespace jm
 	 \brief Diese Methode rechnet WCS-Koordinaten in OCS-Koordinaten um
 	 */
 	Vertex3 WCSToOCS(Vertex3 wcs,
-	                     Vertex3 extrusion);
+	                 Vertex3 extrusion);
 
 	/*!
 	 \brief Diese Methode rechnet OCS-Koordinaten in WCS-Koordinaten um
 	 */
 	Vertex3 OCSToWCS(const Vertex3& ocs,
-	                  const Vertex3& extrusion);
+	                 const Vertex3& extrusion);
 
 	/*!
 	 \brief Diese Methode berechnet die OCS-Transformationsmatrix.

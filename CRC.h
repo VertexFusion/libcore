@@ -35,8 +35,8 @@
 namespace jm
 {
 	/*!
-	 \brief DWG files use many CRC (cyclic redundancy check) checksum algorithms to verify the 
-	 integrity of the file. This method provides the appropriate methods to calculate and check the 
+	 \brief DWG files use many CRC (cyclic redundancy check) checksum algorithms to verify the
+	 integrity of the file. This method provides the appropriate methods to calculate and check the
 	 checksums.
 	 \ingroup core
 	 */

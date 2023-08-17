@@ -109,7 +109,7 @@ namespace jm
 		 <ul><li>If the scalar product is 0, then two vectors are perpendicular to each other.</li>
 		 <li>If the scalar conduct > 0, then the included angle is acute.</li>
 		 <li>If the scalar conduct < 0, then the included angle is obtuse.</li>
-		 <li>For normalised vectors, the scalar product corresponds to the projection of one vector 
+		 <li>For normalised vectors, the scalar product corresponds to the projection of one vector
 		 onto the other.</li>
 		 </ul>
 		 \param another The vector with which the scalar product "this × other" is formed.

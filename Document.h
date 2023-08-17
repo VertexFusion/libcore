@@ -42,7 +42,7 @@ namespace jm
 {
 	/*!
 	 \brief This class represents the "model" in the MVC context. This class is also the ideal parent
-	 class for all document-based applications, because basic functionalities that every user expects 
+	 class for all document-based applications, because basic functionalities that every user expects
 	 are already predefined here.In addition, development time is saved. These include:
 	 - Undo and redo management
 	 - File path, load and save
@@ -148,37 +148,37 @@ namespace jm
 			 */
 			//virtual Iterator* GetIterator(EditableObject*) = 0;
 
-		/*!
-			\brief Legt fest, dass für dieses Objekt im nächsten Durchlauf die visuelle Repräsentation erneuert werden sollte.
-			*/
-		  virtual void Regenerate()
-		  {
-			  mRegenerate = true;
-		  }
+			/*!
+				\brief Legt fest, dass für dieses Objekt im nächsten Durchlauf die visuelle Repräsentation erneuert werden sollte.
+				*/
+			virtual void Regenerate()
+			{
+				mRegenerate = true;
+			}
 
-		  /*!
+			/*!
 			\brief Diese Methode soll von der Regenerationsmethode aufgerufen werden nachdem die visuelle Repräsentation
 			dieses Objektes aktualisiert wurde.
 			*/
-		  virtual void RegenerationDone()
-		  {
-			  mRegenerate = false;
-		  }
+			virtual void RegenerationDone()
+			{
+				mRegenerate = false;
+			}
 
-		  /*!
+			/*!
 			\brief Gibt den Regenerationsstatus zurück.
 			*/
-		  virtual bool ShouldRegenerate() const
-		  {
-			  return mRegenerate;
-		  }
+			virtual bool ShouldRegenerate() const
+			{
+				return mRegenerate;
+			}
 
-	  private:
+		private:
 
-		  /*!
+			/*!
 			\brief Status, ob im nächten Durchlauf die visuelle Repräsentation erneuert werden sollte
 			*/
-		  bool mRegenerate;
+			bool mRegenerate;
 
 			/*!
 			 \brief Ein Undo-Manager, wenn er existiert. Ansonsten null. Standardwert ist NULL

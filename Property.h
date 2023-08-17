@@ -41,15 +41,15 @@
 
 namespace jm
 {
-	/*! 
-	 \brief Status, to what extent changing the property has an influence on the status of other 
+	/*!
+	 \brief Status, to what extent changing the property has an influence on the status of other
 	 values of all properties.
 	 */
 	enum PropertyChangeMode
 	{
 		kPropertyChangeItself = 0, /*!< Property only changes own value. */
-		kPropertyChangeOthers = 1, /*!< Property can have influence on other values. E.g. if you 
-											     change a point of a line, the property "length" will also 
+		kPropertyChangeOthers = 1, /*!< Property can have influence on other values. E.g. if you
+											     change a point of a line, the property "length" will also
 												  changed. */
 		kPropertyChangeCount = 2 /*!< Property can change the number of properties. */
 	};
@@ -63,9 +63,9 @@ namespace jm
 		kPropertyTypeBoolean,
 		kPropertyTypeValue
 	};
-	 
+
 	/*!
-	 \brief This interface defines the possibility to edit properties of an object via a uniform 
+	 \brief This interface defines the possibility to edit properties of an object via a uniform
 	 interface. This is particularly useful for saving time when objects are to be edited in the GUI.
 	 */
 	struct DllExport Property
@@ -108,7 +108,7 @@ namespace jm
 			 \brief Status, ob die Eigenschaft auch die Werte anderer Felder beeinflussen kann
 			 */
 			bool IsChangingOtherValues() const;
-		
+
 			/*!
 			 \brief Verkürzte Methode, um die ID zu überprüfen. Statt "GetId().IsEqual()"
 			 */
@@ -199,14 +199,14 @@ namespace jm
 			 */
 			double GetDoubleValue() const;
 
-		/*!
-		 \brief Returns the type of the last value which was set. It is assumed that this is the
-		 right property type. Consider that on type (like comboboxes) this type can be wrong and has
-		 no meaning in that case.
-		 */
-		PropertyType GetType() const;
+			/*!
+			 \brief Returns the type of the last value which was set. It is assumed that this is the
+			 right property type. Consider that on type (like comboboxes) this type can be wrong and has
+			 no meaning in that case.
+			 */
+			PropertyType GetType() const;
 
-		void SetType(PropertyType type);
+			void SetType(PropertyType type);
 
 			/*!
 			 \brief Übernimmt den Wert aus dem anderen Property
@@ -225,7 +225,7 @@ namespace jm
 			friend bool operator==(Property const &v1, Property const &v2);
 
 		private:
-		
+
 			/*!
 			 \brief Type of Property
 			 */

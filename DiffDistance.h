@@ -44,10 +44,10 @@ namespace jm
 
 	/*!
 	 \brief This class calculates the Levenshtein distance between individual entities.
-	 
-	 For the distance calculation, the only decisive factor is whether the two objects are identical 
-	 or not. The "O(|A|(1+DAB)) Levenshtein distance algorithm with lazy evaluation" is used because 
-	 calculating a fully populated matrix is much too slow for the classical algorithm for large 
+
+	 For the distance calculation, the only decisive factor is whether the two objects are identical
+	 or not. The "O(|A|(1+DAB)) Levenshtein distance algorithm with lazy evaluation" is used because
+	 calculating a fully populated matrix is much too slow for the classical algorithm for large
 	 files.
 
 	 \ingroup core

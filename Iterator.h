@@ -42,7 +42,7 @@ namespace jm
 	 \brief The abstract class Iterator is used to provide an interface with which one can
 	 conveniently iterate through a list or array. It depends on the implementation which data is
 	 obtained.
-	 
+
 	 \note With initialisation of the list, the pointer to the elements precedes the first element,
 	 so that the first call to Next() actually returns the first element.
 	 \ingroup core

@@ -51,7 +51,7 @@ namespace jm
 
 	/*!
 	 \brief Die Stream-Klasse ist eine Abstraktionsklasse, um Datenströme über eine einheitliche
-	 Schnittstelle bearbeiten zu können. Der Stream selbst kann dabei eine Datei, ein Byte-Array, 
+	 Schnittstelle bearbeiten zu können. Der Stream selbst kann dabei eine Datei, ein Byte-Array,
 	 eine Neztwerkschnittstelle, oder irgendetwas anderes sein.
 	 */
 	class DllExport Stream: public Object
@@ -76,15 +76,15 @@ namespace jm
 			virtual bool IsOpen() = 0;
 
 			/*!
-			 \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen 
+			 \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen
 			 frei.
 			 */
 			virtual void Close() = 0;
 
 			/*!
 			 \brief Liest maximal length bytes in das Array.
-			 \details Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil 
-			 noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil 
+			 \details Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
+			 noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
 			 zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man ReadFully()
 			 aufrufen.
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
@@ -100,7 +100,7 @@ namespace jm
 			virtual uint32 ReadFully(uint8* buffer, uint32 length) = 0;
 
 			/*!
-			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang 
+			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
 			 (0-basierter Index).
 			 \note Nicht jeder Stream unterstützt diese Methode.
 			 */

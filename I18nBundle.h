@@ -37,7 +37,7 @@
 namespace jm
 {
 	/*!
-	 \brief This class provides a central resource to translate an application into the local 
+	 \brief This class provides a central resource to translate an application into the local
 	 language for the user.
 	 \ingroup core
 	 */
@@ -50,17 +50,17 @@ namespace jm
 			 \param language Sprachkürzel "de" für Deutsch, "en" für Englisch usw.
 			 */
 			I18nBundle(const String &appID,
-				const String &name, 
-				const String &language,
-				String subfolder = kEmptyString);
+			           const String &name,
+			           const String &language,
+			           String subfolder = kEmptyString);
 
 			I18nBundle(const File &file, const String &language);
 
-	private:
-		/*!
-		 \brief Sprachkürzel
-		 */
-		String mLanguage;
+		private:
+			/*!
+			 \brief Sprachkürzel
+			 */
+			String mLanguage;
 	};
 
 }

@@ -57,8 +57,8 @@ namespace jm
 			 */
 			static unsigned int MakeDiff(DwgDocument* c1, DwgDocument* c2);
 
-		static void HandleEntityU(DiffDistance* dd, DwgEntity* e);
-		static void HandleEntityV(DiffDistance* dd, DwgEntity* e);
+			static void HandleEntityU(DiffDistance* dd, DwgEntity* e);
+			static void HandleEntityV(DiffDistance* dd, DwgEntity* e);
 
 		private:
 			/*!

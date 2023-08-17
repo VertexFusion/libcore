@@ -41,7 +41,7 @@ namespace jm
 	class AutoreleasePool;
 
 	/*!
-	 \brief Most objects are derived from this class. This makes it possible to simplify the API, as 
+	 \brief Most objects are derived from this class. This makes it possible to simplify the API, as
 	 object pointers can passed and not just void*.
 	 */
 	class DllExport Object
@@ -60,7 +60,7 @@ namespace jm
 			virtual ~Object();
 
 			/*!
-			 \brief Decreases the reference counter and releases the object immediately when the 
+			 \brief Decreases the reference counter and releases the object immediately when the
 			 reference counter becomes 0.
 			 */
 			void Release();
@@ -73,7 +73,7 @@ namespace jm
 			Object* Retain();
 
 			/*!
-			 \brief Same function as Release(), but releases the object with a delay if the reference 
+			 \brief Same function as Release(), but releases the object with a delay if the reference
 			 counter is 0. AutoreleasePool::Drain() must be called in the to release the object.
 			 \return Reference to this object.
 			 */
@@ -91,7 +91,7 @@ namespace jm
 			virtual bool Equals(const Object* other) const;
 
 			/*!
-			 \brief This method must be implemented by objects that are to be suitable for the diff 
+			 \brief This method must be implemented by objects that are to be suitable for the diff
 			 algorithm.
 			 \deprecated Should be deleted or merged with similar methods in derived objects.
 			 */

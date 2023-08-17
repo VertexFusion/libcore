@@ -41,7 +41,7 @@ namespace jm
 	/*!
 	 \brief Date represents a date or time.
 
-	 Internally, the time is stored in milliseconds from 01.01.1970 0:00 UTC. This time is referred 
+	 Internally, the time is stored in milliseconds from 01.01.1970 0:00 UTC. This time is referred
 	 to as absolute time in this context. Leap seconds are ignored.
 
 	 The basis of this implementation is the Date object from the ECMA standard.
@@ -89,9 +89,9 @@ namespace jm
 			static const int16 THURSDAY = 4;
 			static const int16 FRIDAY = 5;
 			static const int16 SATURDAY = 6;
-        
+
 			//Konstante für Null
-         static const int64 EMPTY = 0x8000000000000000;
+			static const int64 EMPTY = 0x8000000000000000;
 
 			/*!
 			 \brief Standardkonstruktor
@@ -133,11 +133,11 @@ namespace jm
 			 \brief Destructor
 			 */
 			~Date();
-        
-            /*!
-             \brief Status, ob das Daten leer ist
-            */
-            bool IsEmpty() const;
+
+			/*!
+			 \brief Status, ob das Daten leer ist
+			*/
+			bool IsEmpty() const;
 
 			/*!
 			 \brief Gibt die Zeit in Millisekunden seit Mitternacht des 01.01.1970 in UTC zurück
@@ -215,7 +215,7 @@ namespace jm
 			 \brief Gibt die Sekunden der Minute in lokaler Zeit zurück
 			 */
 			int64 GetSeconds() const;
-		
+
 			/*!
 			 \brief Gibt den Tag des Jahres zurück
 			 */
@@ -250,26 +250,26 @@ namespace jm
 			/*!
 			 \brief Implementierung des Operators <
 			*/
-		  DllExport
-		  friend bool operator<(Date const &v1, Date const &v2);
+			DllExport
+			friend bool operator<(Date const &v1, Date const &v2);
 
-		/*!
-			\brief Implementierung des Operators >
-		  */
-		 DllExport
-		 friend bool operator>(Date const &v1, Date const &v2);
+			/*!
+				\brief Implementierung des Operators >
+			  */
+			DllExport
+			friend bool operator>(Date const &v1, Date const &v2);
 
-		/*!
-			\brief Implementierung des Operators <=
-		  */
-		 DllExport
-		 friend bool operator<=(Date const &v1, Date const &v2);
+			/*!
+				\brief Implementierung des Operators <=
+			  */
+			DllExport
+			friend bool operator<=(Date const &v1, Date const &v2);
 
-		/*!
-			\brief Implementierung des Operators >=
-		  */
-		 DllExport
-		 friend bool operator>=(Date const &v1, Date const &v2);
+			/*!
+				\brief Implementierung des Operators >=
+			  */
+			DllExport
+			friend bool operator>=(Date const &v1, Date const &v2);
 
 			/*!
 			 \brief Implementierung des Operators ==
@@ -283,145 +283,145 @@ namespace jm
 			DllExport
 			friend bool operator!=(Date const &v1, Date const &v2);
 
-	private:
+		private:
 
-		  /*!
+			/*!
 			\brief Die absolute Zeit in n Millisekunden ab dem 01.01.1970 0:00 Uhr UTC
 			*/
-		  int64 mTime;
+			int64 mTime;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt die Tagesnummer zurück. Day(t)=floor(t/msPerDay)
 			msPerDay=86400 000
 			\param t absolute Zeit.
 			*/
-		  int64 Day(int64 t) const;
+			int64 Day(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Millisekungen im aktuellen Tag
 			\param t absolute Zeit.
 			*/
-		  int64 TimeWithinDay(int64 t) const;
+			int64 TimeWithinDay(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Anzahl der Tage im angebenen Jahr
 			\param y Das Jahr.
 			*/
-		  int64 DaysInYear(int64 y) const;
+			int64 DaysInYear(int64 y) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt die Tagessnummer des ersten Tages im Jahr zurück
 			\param y Das Jahr.
 			*/
-		  int64 DayFromYear(int64 y) const;
+			int64 DayFromYear(int64 y) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt den Zeitwert des Jahresbeginns an
 			\param y Das Jahr.
 			*/
-		  int64 TimeFromYear(int64 y) const;
+			int64 TimeFromYear(int64 y) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt das Jahr des angegebenen Zeitwertes an
 			\param t absolute Zeit.
 			*/
-		  int64 YearFromTime(int64 t) const;
+			int64 YearFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt 0 zurück, wenn man sich in einem normalen Jahr befindet und
 			1, wenn man sich in einem Schaltjahr befindet
 			\param t absolute Zeit.
 			*/
-		  int16 InLeapYear(int64 t) const;
+			int16 InLeapYear(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt den Tag innerhalb eines Jahres an
 			\param t absolute Zeit.
 			*/
-		  int64 DayWithinYear(int64 t) const;
+			int64 DayWithinYear(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt den Monat der angegebenen Zeit zurück
 			\param t absolute Zeit.
 			\return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 11 (0 = Januar, 11=Dezember)
 			*/
-		  int64 MonthFromTime(int64 t) const;
+			int64 MonthFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt den Tag in einem Monat zurück.
 			\param t absolute Zeit.
 			\return Eine Zahl zwischen (einschließlich) 1 und (einschließlich) 31
 			*/
-		  int64 DateFromTime(int64 t) const;
+			int64 DateFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode gibt den Wochentag der Zeit zurück
 			\param t absolute Zeit.
 			\return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 6 (0=Sonntag, 6=Sammstag)
 			*/
-		  int64 WeekDay(int64 t) const;
+			int64 WeekDay(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Diese Helfermethode gibt die lokale Zeitzonenjustierung zurück
 			\return Differenz in ms
 			*/
-		  int64 LocalTimeZoneAdjustment() const;
+			int64 LocalTimeZoneAdjustment() const;
 
-		  /*!
+			/*!
 			\brief Diese Helfermethode gibt die Justierung durch Winter-/Sommerzeit zurück
 			*/
-		  int64 DaylightSavingTimeAdjustment() const;
+			int64 DaylightSavingTimeAdjustment() const;
 
-		  /*!
+			/*!
 			\brief Helfermethode wandelt die abolute Zeit (UTC) in lokale Zeit um
 			\param t absolute Zeit.
 			*/
-		  int64 LocalTime(int64 t) const;
+			int64 LocalTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die absolute Zeit (UTC) aus lokaler ZEit
 			\param t lokale Zeit.
 			*/
-		  int64 UTC(int64 t) const;
+			int64 UTC(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Stunde der Zeit
 			\param t absolute Zeit.
 			*/
-		  int64 HourFromTime(int64 t) const;
+			int64 HourFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Minute der Zeit
 			\param t absolute Zeit.
 			*/
-		  int64 MinuteFromTime(int64 t) const;
+			int64 MinuteFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Sekunde der Zeit
 			\param t absolute Zeit.
 			*/
-		  int64 SecondFromTime(int64 t) const;
+			int64 SecondFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Millisekunde der Zeit
 			\param t absolute Zeit.
 			*/
-		  int64 MilliFromTime(int64 t) const;
+			int64 MilliFromTime(int64 t) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Zeit in Millisekunden aus ihren Argumenten
 			*/
-		  int64 MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
+			int64 MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
 
-		  /*!
+			/*!
 			\brief Helfermethode berechnet die Anzahl der Tage aus ihren Argumenten
 			*/
-		  int64 MakeDay(int64 year, int64 month, int64 date) const;
+			int64 MakeDay(int64 year, int64 month, int64 date) const;
 
-		  /*!
+			/*!
 			\brief Die Helfermethode berechnet die Anzahl der Millisekunden aus ihren Argumenten
 			*/
-		  int64 MakeDate(int64 day, int64 millis) const;
+			int64 MakeDate(int64 day, int64 millis) const;
 
 
 	};
@@ -494,10 +494,10 @@ namespace jm
 
 				//Pattern-Typ
 				PatternType type;
-				
+
 				//Länge der Pattern
 				uint8 length;
-				
+
 				//Text (Wenn Text)
 				String text;
 

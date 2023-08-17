@@ -41,8 +41,8 @@ namespace jm
 
 	/*!
 	 \brief A hash table is an instrument used to sort data. A string serves as the access key, whose
-	 hash value ensures fast access. This class provides all the necessary methods to be able to work 
-	 comfortably with a hash table.	 
+	 hash value ensures fast access. This class provides all the necessary methods to be able to work
+	 comfortably with a hash table.
 	 \ingroup core
 	 */
 	class DllExport Hashtable: public Object

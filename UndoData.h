@@ -264,15 +264,15 @@ namespace jm
 
 	class DllExport UndoChangeVertex2 : public UndoChange
 	{
-	public:
+		public:
 
-		UndoChangeVertex2(Object* object, Vertex2* ptr);
-		void Swap();
+			UndoChangeVertex2(Object* object, Vertex2* ptr);
+			void Swap();
 
-	private:
+		private:
 
-		Vertex2* mPointer;
-		Vertex2 mValue;
+			Vertex2* mPointer;
+			Vertex2 mValue;
 
 	};
 

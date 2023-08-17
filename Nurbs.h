@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        NURBS.h
 // Library:     VertexFusion Library
-// Purpose:     NURBS 
+// Purpose:     NURBS
 //
 // Author:      Uwe Runtemund (2013-today)
 // Modified by:
@@ -40,7 +40,7 @@ namespace jm
 {
 
 	/*!
-	 \brief NURBS (nonuniform rational basis splines) sind eine verallgemeinerte Form der B-Splines. 
+	 \brief NURBS (nonuniform rational basis splines) sind eine verallgemeinerte Form der B-Splines.
 	 Mit ihnen ist es möglich viele Kurven auch in projezierter Form zu modellieren. Die DXF-Splines
 	 z.B. basieren auf diesen NURBS. Diese Klasse stellt Funktionen und Methoden zur Verfügung, um
 	 mit NURBS arbeiten zu können.
@@ -48,8 +48,8 @@ namespace jm
 
 	 - NURBS sind eine Verallgemeinerung der B-Splines. Für hi = 1 ∀i reduziert sich die NURBS-Kurve
 	   zur entsprechenden B-Spline-Kurve.
-	 - NURBS sind invariant bzgl. perspektivischer Projektion. Dies bedeutet, dass zur Projektion 
-	   einer Kurve nicht alle Kurvenpunkte projeziert werden müssen, sondern es reicht, die 
+	 - NURBS sind invariant bzgl. perspektivischer Projektion. Dies bedeutet, dass zur Projektion
+	   einer Kurve nicht alle Kurvenpunkte projeziert werden müssen, sondern es reicht, die
 		Stützpunkte zu projezieren und dann zu einer Kurve zu verbinden.
 	 - NURBS sind (im Gegensatz zu nicht-rationalen B-Splines) in der Lage, Kreise zu beschreiben.
 	 */
@@ -148,7 +148,7 @@ namespace jm
 			/*!
 			 \brief Diese Methode gibt den Wert N_i,k(t) zurück
 			 \param i Die Laufvariable in den Vektoren
-			 \param k Der Grad des Polynoms, für den N zurückgegeben werden soll. (Ist nicht 
+			 \param k Der Grad des Polynoms, für den N zurückgegeben werden soll. (Ist nicht
 			          zwangsläufig der Grad der NURBS)
 			 \param t Die Laufvariable über die Kurve
 			 */

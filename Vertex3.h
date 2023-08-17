@@ -126,7 +126,7 @@ namespace jm
 			bool IsNull() const;
 
 			/*!
-			 \brief Diese Methode prüft, ob der Vektor einen "NaN"-Eintrag hat. Wenn alle Einträge 
+			 \brief Diese Methode prüft, ob der Vektor einen "NaN"-Eintrag hat. Wenn alle Einträge
 			 definiert sind, wird wahr zurückgegeben.
 			 */
 			bool IsValid() const;
@@ -234,7 +234,7 @@ namespace jm
 
 	/*!
 	 \brief Diese Methode prüft, ob die drei Vektoren linear unabhängig sind.
-	 Die Vektoren sind linear unabhängig, wenn die Determinante einer 3x3 Matrix, in der die 3 
+	 Die Vektoren sind linear unabhängig, wenn die Determinante einer 3x3 Matrix, in der die 3
 	 Vektoren die Spalten sind, ungleich 0 ist.
 	 \return true, wenn die Vektoren linear unabhängig sind.
 	 */
@@ -260,31 +260,31 @@ namespace jm
 	 */
 	class DllExport Extents
 	{
-	public:
+		public:
 
-		Extents();
+			Extents();
 
-		/*!
-		 \brief Expand the box to also enclose the point pt.
-		 */
-		void Add(const Vertex3& pt);
+			/*!
+			 \brief Expand the box to also enclose the point pt.
+			 */
+			void Add(const Vertex3& pt);
 
-		/*!
-		 \brief Expand the box to also enclode the box ext. 
-		 If the other box is invalid (no point was added), then it will be ignored.
-		 */
-		void Add(const Extents& ext);
+			/*!
+			 \brief Expand the box to also enclode the box ext.
+			 If the other box is invalid (no point was added), then it will be ignored.
+			 */
+			void Add(const Extents& ext);
 
-		Vertex3 GetMinPoint()const;
-		Vertex3 GetMaxPoint()const;
+			Vertex3 GetMinPoint()const;
+			Vertex3 GetMaxPoint()const;
 
-		bool IsValid()const;
+			bool IsValid()const;
 
-	private:
+		private:
 
-		Vertex3 mPtMin;
+			Vertex3 mPtMin;
 
-		Vertex3 mPtMax;
+			Vertex3 mPtMax;
 	};
 
 }

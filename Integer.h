@@ -39,72 +39,72 @@ namespace jm
 
 
 	/*!
-	 \brief This class represents an integer number as an object. This makes it easy to perform 
+	 \brief This class represents an integer number as an object. This makes it easy to perform
 	 certain object operations.
 	 \ingroup core
 	 */
 	class DllExport Integer : public Object, public Comparable<Integer>
 	{
-	public:
+		public:
 
-		Integer();
+			Integer();
 
-		Integer(int64 value);
+			Integer(int64 value);
 
-		/*!
-		  \brief Objektvergleich
-		  */
-		bool Equals(const Object* other) const override;
+			/*!
+			  \brief Objektvergleich
+			  */
+			bool Equals(const Object* other) const override;
 
-		bool Equals(const Integer& another) const;
+			bool Equals(const Integer& another) const;
 
-		int32 CompareTo(const Integer& another) const override;
+			int32 CompareTo(const Integer& another) const override;
 
-		int64 Value() const;
+			int64 Value() const;
 
-		/*!
-		 \brief Methode wandelt einen String in einen Integer-Wert um.
-		 \param string Die Zeichenkette, z.B. "1", die in eine Gleitkommazahl umgewandelt werden
-		 soll.
-		 \return Die gewünschte Integer-Zahl.
-		 */
-		static int64 ValueOf(const String& string);
+			/*!
+			 \brief Methode wandelt einen String in einen Integer-Wert um.
+			 \param string Die Zeichenkette, z.B. "1", die in eine Gleitkommazahl umgewandelt werden
+			 soll.
+			 \return Die gewünschte Integer-Zahl.
+			 */
+			static int64 ValueOf(const String& string);
 
-		/*!
-		 \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
-		 \param number Die Integer-Zahl, welche in einen std::string umgewandelt werden soll.
-		 \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
-		 Also z.B. "FF" für 255.
-		 */
-		static String ToHexString(uint64 number);
+			/*!
+			 \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
+			 \param number Die Integer-Zahl, welche in einen std::string umgewandelt werden soll.
+			 \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
+			 Also z.B. "FF" für 255.
+			 */
+			static String ToHexString(uint64 number);
 
-		/*!
-		 \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
-		 \param number Die Integer-Zahl, welche in einen std::string umgewandelt werden soll.
-		 \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
-		 Also z.B. "FF" für 255.
-		 */
-		static String ToHexString(Integer number);
+			/*!
+			 \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
+			 \param number Die Integer-Zahl, welche in einen std::string umgewandelt werden soll.
+			 \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
+			 Also z.B. "FF" für 255.
+			 */
+			static String ToHexString(Integer number);
 
-		/*!
-		 \brief Methode wandelt eine Integer-Zahl in einen String um, der eine Römische Zahl
-		 darstellt.
-		 @aram number Die Integer-Zahl, welche umgewandelt werden soll.
-		 \return Gibt die gewünschte Zahl als String mit dem Wert einer Römischen Zahl zurück.
-		 */
-		static String ToRomanString(uint64 number);
+			/*!
+			 \brief Methode wandelt eine Integer-Zahl in einen String um, der eine Römische Zahl
+			 darstellt.
+			 @aram number Die Integer-Zahl, welche umgewandelt werden soll.
+			 \return Gibt die gewünschte Zahl als String mit dem Wert einer Römischen Zahl zurück.
+			 */
+			static String ToRomanString(uint64 number);
 
-		/*!
-		 \brief Methode wandelt eine Integer-Zahl in einen String um, der einm Großbuchstaben
-		 entspricht. 1=A,2=C,3=C usw-
-		 \param number Die Integer-Zahl, welche umgewandelt werden soll.
-		 \return Gibt die gewünschte Zahl als String mit dem Wert eines Großbuchstaben zurück.
-		 */
-		static String ToLatinAlphabetString(uint64 number);
+			/*!
+			 \brief Methode wandelt eine Integer-Zahl in einen String um, der einm Großbuchstaben
+			 entspricht. 1=A,2=C,3=C usw-
+			 \param number Die Integer-Zahl, welche umgewandelt werden soll.
+			 \return Gibt die gewünschte Zahl als String mit dem Wert eines Großbuchstaben zurück.
+			 */
+			static String ToLatinAlphabetString(uint64 number);
 
-	private:
+		private:
 
-		int64 mValue;
+			int64 mValue;
 	};
 }
 #endif

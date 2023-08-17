@@ -39,7 +39,7 @@ namespace jm
 {
 
 	/*!
-	 \brief The class Charset is a mapping function to make a string out of arbitrarily coded 
+	 \brief The class Charset is a mapping function to make a string out of arbitrarily coded
 	 C-strings, or vice versa.
 	 \ingroup core
 	 */
@@ -166,7 +166,7 @@ namespace jm
 			 obigen Werte zurückgegeben wurde.
 			 */
 			static String Guess(uint8* stream,
-			                        uint32 length);
+			                    uint32 length);
 
 		private:
 
@@ -205,7 +205,7 @@ namespace jm
 	};
 
 	/*!
-	 \brief Decoder converts the bytes 1 to 1. Only the LSB is taken into account. Values > 255 are 
+	 \brief Decoder converts the bytes 1 to 1. Only the LSB is taken into account. Values > 255 are
 	 therefore truncated.
 	 \ingroup core
 	 */

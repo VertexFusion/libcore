@@ -54,10 +54,10 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 IntersectionPointLineAndPlane(const Vertex3 &planePosition,
-	      const Vertex3 &normal,
-	      const Vertex3 &linePosition,
-	      const Vertex3 &direction,
-	      bool extend);
+	                                      const Vertex3 &normal,
+	                                      const Vertex3 &linePosition,
+	                                      const Vertex3 &direction,
+	                                      bool extend);
 
 	/*!
 	 \brief Diese Methode berechnet den Punkt auf der Ebene mit dem minimalen Abstand zwischen dem
@@ -69,8 +69,8 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 ClosestPointOnPlane(const Vertex3 &point,
-	                                const Vertex3 &position,
-	                                const Vertex3 &normal);
+	                            const Vertex3 &position,
+	                            const Vertex3 &normal);
 
 	/*!
 	 \brief Diese Methode berechnet den Punkt auf der Geraden mit dem minimalen Abstand zwischen
@@ -83,8 +83,8 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 ClosestPointOnLine(const Vertex3 &point,
-	                               const Vertex3 &position,
-	                               const Vertex3 &direction);
+	                           const Vertex3 &position,
+	                           const Vertex3 &direction);
 
 	/*!
 	 \brief Diese Methode berechnet den Punkt auf der 2. Geraden mit dem minimalen Abstand
@@ -98,9 +98,9 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 ClosestPointOnLine(const Vertex3 &position1,
-	                               const Vertex3 &direction1,
-	                               const Vertex3 &position2,
-	                               const Vertex3 &direction2);
+	                           const Vertex3 &direction1,
+	                           const Vertex3 &position2,
+	                           const Vertex3 &direction2);
 
 	/*!
 	 \brief Diese Methode berechnet den Punkt auf der Geraden mit dem minimalen Abstand zwischen
@@ -114,9 +114,9 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 ClosestPointOnLine(const Vertex3 &point,
-	                               const Vertex3 &lineStart,
-	                               const Vertex3 &lineEnd,
-	                               bool extend);
+	                           const Vertex3 &lineStart,
+	                           const Vertex3 &lineEnd,
+	                           bool extend);
 
 	/*!
 	 \brief Diese Methode berechnet minimalen Abstand vom gegebenen Punkt auf den Kreis
@@ -128,9 +128,9 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 ClosestPointOnCircle(const Vertex3 &point,
-	                                 const Vertex3 &center,
-	                                 double radius,
-	                                 const Vertex3 &normal);
+	                             const Vertex3 &center,
+	                             double radius,
+	                             const Vertex3 &normal);
 
 	/*!
 	 \brief Diese Methode berechnet den Punkt auf der Geraden mit dem  minimalen Abstand zwischen
@@ -303,9 +303,9 @@ namespace jm
 	 */
 	DllExport
 	Vertex2 IntersectionPoint(const Vertex2 &position1,
-	                              const Vertex2 &direction1,
-	                              const Vertex2 &position2,
-	                              const Vertex2 &direction2);
+	                          const Vertex2 &direction1,
+	                          const Vertex2 &position2,
+	                          const Vertex2 &direction2);
 
 	/*!
 	\brief Diese Methode berechnet den dreidimensionalen Schnittpunkt der beiden Geraden,
@@ -318,10 +318,10 @@ namespace jm
 	 windschiefer Geraten hat der Punkt die Werte NAN
 	 */
 	DllExport
-		Vertex3 IntersectionPoint(const Vertex3 &position1,
-			const Vertex3 &direction1,
-			const Vertex3 &position2,
-			const Vertex3 &direction2);
+	Vertex3 IntersectionPoint(const Vertex3 &position1,
+	                          const Vertex3 &direction1,
+	                          const Vertex3 &position2,
+	                          const Vertex3 &direction2);
 
 	/*!
 	 \brief Diese Methode prüft, ob sich zwei Linien zwischen Ihren Endpunkten schneiden/kreuzen.
@@ -354,9 +354,9 @@ namespace jm
 	 */
 	DllExport
 	Vertex2 ExtensionPointOnLine(const Vertex2 &rayorigin,
-	                                 const Vertex2 &direction,
-	                                 const Vertex2 &start,
-	                                 const Vertex2 &end);
+	                             const Vertex2 &direction,
+	                             const Vertex2 &start,
+	                             const Vertex2 &end);
 
 	/*!
 	 \brief Diese Methode prüft, ob ein Strahl (Linie) einen Kreisbogen schneidet. Dabei
@@ -376,11 +376,11 @@ namespace jm
 	 */
 	DllExport
 	Vertex2 ExtensionPointOnArc(const Vertex2 &rayorigin,
-	                                const Vertex2 &direction,
-	                                const Vertex2 &center,
-	                                double radius,
-	                                double start,
-	                                double end);
+	                            const Vertex2 &direction,
+	                            const Vertex2 &center,
+	                            double radius,
+	                            double start,
+	                            double end);
 
 	/*!
 	 \brief Diese Methode prüft, ob ein Strahl (Linie) einen Ellipsenbogen schneidet. Dabei
@@ -402,12 +402,12 @@ namespace jm
 	 */
 	DllExport
 	Vertex2 ExtensionPointOnEllipse(const Vertex2 &rayorigin,
-	                                    const Vertex2 &direction,
-	                                    const Vertex2 &center,
-	                                    const Vertex2 &mainAxis,
-	                                    double minorAxisRatio,
-	                                    double start,
-	                                    double end);
+	                                const Vertex2 &direction,
+	                                const Vertex2 &center,
+	                                const Vertex2 &mainAxis,
+	                                double minorAxisRatio,
+	                                double start,
+	                                double end);
 
 	/*!
 	 \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
@@ -415,14 +415,14 @@ namespace jm
 	 */
 	DllExport
 	Vertex3 AngleBisector(const Vertex3 &direction1,
-									  const Vertex3 &direction2);
-/*!
- \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
- Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
- */
-DllExport
-Vertex2 AngleBisector(const Vertex2 &direction1,
-								  const Vertex2 &direction2);
+	                      const Vertex3 &direction2);
+	/*!
+	 \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
+	 Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
+	 */
+	DllExport
+	Vertex2 AngleBisector(const Vertex2 &direction1,
+	                      const Vertex2 &direction2);
 
 }
 

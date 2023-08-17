@@ -44,100 +44,100 @@ namespace jm
 	{
 		public:
 
-		/*!
-		 \brief X component of vector.
-			 \note We need fast acces to this value and other protection measures are not necessary.
-			 So we leave it public.
-		 */
-		double x;
+			/*!
+			 \brief X component of vector.
+				 \note We need fast acces to this value and other protection measures are not necessary.
+				 So we leave it public.
+			 */
+			double x;
 
-		/*!
-		 \brief Y component of vector.
-			 \note We need fast acces to this value and other protection measures are not necessary.
-			 So we leave it public.
-		 */
-		double y;
+			/*!
+			 \brief Y component of vector.
+				 \note We need fast acces to this value and other protection measures are not necessary.
+				 So we leave it public.
+			 */
+			double y;
 
 
-		/*!
-		 \brief Konstruktor erzeugt Nullvektor.
-		 */
-		Vertex2();
+			/*!
+			 \brief Konstruktor erzeugt Nullvektor.
+			 */
+			Vertex2();
 
-		/*!
-		 \brief Konstruktor erzeugt beliebigen Vektor
-		 \param x X-Komponente des Vektors
-		 \param y Y-Komponente des Vektors
-		 */
-		Vertex2(double x, double y);
+			/*!
+			 \brief Konstruktor erzeugt beliebigen Vektor
+			 \param x X-Komponente des Vektors
+			 \param y Y-Komponente des Vektors
+			 */
+			Vertex2(double x, double y);
 
-		/*!
-		 \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
-		 */
-		double Abs() const;
+			/*!
+			 \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
+			 */
+			double Abs() const;
 
-		/*!
-		 \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die Länge 1.
-		 */
-		void Normalize();
-		Vertex2 Normalized()const;
+			/*!
+			 \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die Länge 1.
+			 */
+			void Normalize();
+			Vertex2 Normalized()const;
 
-		/*!
-		 \brief Gibt das Kreuzprodukt aus diesem Vektor multipliziert mit einem anderen zurück.
-		 */
-		double CrossProduct(const Vertex2 &another) const;
+			/*!
+			 \brief Gibt das Kreuzprodukt aus diesem Vektor multipliziert mit einem anderen zurück.
+			 */
+			double CrossProduct(const Vertex2 &another) const;
 
-		/*!
-		 \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück
-		 */
-		double DotProduct(const Vertex2 &another) const;
+			/*!
+			 \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück
+			 */
+			double DotProduct(const Vertex2 &another) const;
 
-		/*!
-		 \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
-		   Also ob beide Vektoren parallel sind.
-		 */
-		bool IsCollinear(const Vertex2 &another) const;
+			/*!
+			 \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
+			   Also ob beide Vektoren parallel sind.
+			 */
+			bool IsCollinear(const Vertex2 &another) const;
 
-		/*!
-		 \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
-		 Also ob sie senktrecht aufeinander stehen
-		 */
-		bool IsOrthogonal(const Vertex2 &another) const;
+			/*!
+			 \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
+			 Also ob sie senktrecht aufeinander stehen
+			 */
+			bool IsOrthogonal(const Vertex2 &another) const;
 
-		/*!
-		 \brief Gibt den Winkel von einem zum anderen Winkel zurück.
-		 \return Winkel im Bogenmaß zwischen 0 und pi (0 - 180°)
-		 */
-		double AngleTo(const Vertex2 &another) const;
+			/*!
+			 \brief Gibt den Winkel von einem zum anderen Winkel zurück.
+			 \return Winkel im Bogenmaß zwischen 0 und pi (0 - 180°)
+			 */
+			double AngleTo(const Vertex2 &another) const;
 
-		/*!
-		 \brief Diese Methode berechnet, ob dieser Vector "rechts" also im Uhrzeigersinn neben dem anderen Vector liegt
-		 */
-		bool IsRightTo(const Vertex2 &another) const;
+			/*!
+			 \brief Diese Methode berechnet, ob dieser Vector "rechts" also im Uhrzeigersinn neben dem anderen Vector liegt
+			 */
+			bool IsRightTo(const Vertex2 &another) const;
 
-		/*!
-		 \brief Diese Methode berechnet, ob dieser Vector "links" also geden den Uhrzeigersinn neben dem anderem Vector liegt
-		 */
-		bool IsLeftTo(const Vertex2 &another) const;
+			/*!
+			 \brief Diese Methode berechnet, ob dieser Vector "links" also geden den Uhrzeigersinn neben dem anderem Vector liegt
+			 */
+			bool IsLeftTo(const Vertex2 &another) const;
 
-		/*!
-		 \brief Diese Methode gibt wahr zurück, wennd er Vektor definiert ist, also beie Zahlen nicht
-		 NAN sind.
-		 */
-		bool IsValid() const;
+			/*!
+			 \brief Diese Methode gibt wahr zurück, wennd er Vektor definiert ist, also beie Zahlen nicht
+			 NAN sind.
+			 */
+			bool IsValid() const;
 
-		/*!
-		 \brief Diese Methode rotiert den Vektor um die Z-Achse mit dem angegebenen Winkel.
-		 \param angle Der Rotationswinkel im mathematisch positivem Sinn im Bogenmaß.
-		 */
-		Vertex2& Rotate(double angle);
+			/*!
+			 \brief Diese Methode rotiert den Vektor um die Z-Achse mit dem angegebenen Winkel.
+			 \param angle Der Rotationswinkel im mathematisch positivem Sinn im Bogenmaß.
+			 */
+			Vertex2& Rotate(double angle);
 
-		Vertex2 &operator+=(const Vertex2 &another);
+			Vertex2 &operator+=(const Vertex2 &another);
 
-		Vertex2 &operator-=(const Vertex2 &another);
+			Vertex2 &operator-=(const Vertex2 &another);
 
-		DllExport
-		friend std::ostream& operator<< (std::ostream& out, const Vertex2 & vertex);
+			DllExport
+			friend std::ostream& operator<< (std::ostream& out, const Vertex2 & vertex);
 	};
 
 

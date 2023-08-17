@@ -144,8 +144,8 @@ namespace jm
 			uint32 GetEntryCount() const;
 
 			/*!
-			 \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer 
-			 dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur 
+			 \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer
+			 dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur
 			 geeignet die Daten einer ZIP-Datei zu lesen. In den Stream kann nicht geschrieben werden.
 			 */
 			Stream* GetStream(const ZipEntry* entry);

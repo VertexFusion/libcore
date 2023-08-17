@@ -68,20 +68,20 @@ namespace jm
 
 			//wake Up
 			void WakeUp();
-		
-	private:
-		#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
-		pthread_mutex_t criticalSection;
-		pthread_mutexattr_t attr;
-		pthread_condattr_t attrc;
-		pthread_cond_t cond;
 
-		#elif defined _WIN32//Windows
+		private:
+			#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+			pthread_mutex_t criticalSection;
+			pthread_mutexattr_t attr;
+			pthread_condattr_t attrc;
+			pthread_cond_t cond;
 
-		//Unter Windows 7 und 10 liefert sizeof(CRITICAL_SECTION) 40 Bytes
-		uint8 mCriticalSection[40];
+			#elif defined _WIN32//Windows
 
-		#endif
+			//Unter Windows 7 und 10 liefert sizeof(CRITICAL_SECTION) 40 Bytes
+			uint8 mCriticalSection[40];
+
+			#endif
 	};
 
 
@@ -103,10 +103,10 @@ namespace jm
 
 			//unlock
 			void SetUnlock();
-		
-	private:
-		Mutex &mutex;
-		bool locked;
+
+		private:
+			Mutex &mutex;
+			bool locked;
 
 	};
 

@@ -37,8 +37,8 @@
 namespace jm
 {
 	/*!
-	 \brief This value defines when two points or values are considered identical. This serves to 
-	 catch numerical inaccuracies and the resulting errors. The predefined value can be changed, but 
+	 \brief This value defines when two points or values are considered identical. This serves to
+	 catch numerical inaccuracies and the resulting errors. The predefined value can be changed, but
 	 this may change the calculations considerably. 1E-6 is highly recommended as the highest value.
 	 */
 	double const RESABS = 1E-6;
@@ -82,8 +82,8 @@ namespace jm
 	 \param f Zahl, die gerundet werden soll.
 	 \return Gerundete Zahl
 	 */
-	 extern "C" DllExport
-	float RoundFrac(float f,int32 digits);
+	extern "C" DllExport
+	float RoundFrac(float f, int32 digits);
 
 	/*!
 	 \brief Diese Methode prüft unter Berücksichtigung von resabs, ob die beiden Werte identisch
@@ -254,7 +254,7 @@ namespace jm
 	int64 DivFloor(int64 x, int64 y);
 
 	/*!
-	 \brief Calculates the residual value after dividing one integer by another and rounds the 
+	 \brief Calculates the residual value after dividing one integer by another and rounds the
 	 quotient towards minus infinity.
 	 \param x Dividend
 	 \param y Divisor

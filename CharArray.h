@@ -37,8 +37,8 @@
 namespace jm
 {
 	/*!
-	 \brief This data type represents a Unicode character array. It is deliberately used in 
-	 distinction to the character string and serves as a supporting class when encoding and 
+	 \brief This data type represents a Unicode character array. It is deliberately used in
+	 distinction to the character string and serves as a supporting class when encoding and
 	 decoding character strings.
 	 \ingroup core
 	 */

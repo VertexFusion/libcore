@@ -79,7 +79,7 @@
 
  \brief Core classes provides basic functionality for every application.
 
- These classes are not CAD related. Typical classes are general math functions, string operations, 
+ These classes are not CAD related. Typical classes are general math functions, string operations,
  different algorithms and so on.
 */
 

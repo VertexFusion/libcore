@@ -64,117 +64,117 @@ namespace jm
 			 * */
 			void TestUnexpectedException(String failmessage);
 
-	protected:
-		bool debug;
-		String name;
+		protected:
+			bool debug;
+			String name;
 
-		/*!
-		 \brief Legt Fehlermeldung fest
-		 */
-		void SetErrorCode(String error);
+			/*!
+			 \brief Legt Fehlermeldung fest
+			 */
+			void SetErrorCode(String error);
 
-		/*!
-		 \brief Liefert Fehlermeldung zurück
-		 */
-		String GetErrorCode();
+			/*!
+			 \brief Liefert Fehlermeldung zurück
+			 */
+			String GetErrorCode();
 
-		/*!
-		 \brief Wenn diese Methode aufgerufen wird, dann ist der Test fehlgeschlagen.
-		 */
-		void TestFail(String message);
+			/*!
+			 \brief Wenn diese Methode aufgerufen wird, dann ist der Test fehlgeschlagen.
+			 */
+			void TestFail(String message);
 
-		/*!
-		 \brief Diese Methode testet, ob die zwei Double-Werte unter Berücksichtigung von resabs
-		 gleich sind. Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben.
-		 */
-		void TestEquals(const double actual, const double expected, const String &failmessage);
+			/*!
+			 \brief Diese Methode testet, ob die zwei Double-Werte unter Berücksichtigung von resabs
+			 gleich sind. Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben.
+			 */
+			void TestEquals(const double actual, const double expected, const String &failmessage);
 
-		/*!
-		 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 */
-		void TestEquals(uint64 actual, uint64 expected, String failmessage);
+			/*!
+			 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 */
+			void TestEquals(uint64 actual, uint64 expected, String failmessage);
 
-		/*!
-		 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 */
-		void TestEquals(void* actual, void* expected, String failmessage);
+			/*!
+			 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 */
+			void TestEquals(void* actual, void* expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(int64 actual, int64 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(int64 actual, int64 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(uint64 actual, int32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(uint64 actual, int32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(uint64 actual, uint32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(uint64 actual, uint32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(int32 actual, int32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(int32 actual, int32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(uint32 actual, uint32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(uint32 actual, uint32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(uint32 actual, int32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(uint32 actual, int32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
-		 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
-		 * */
-		void TestEquals(int32 actual, uint32 expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 * Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 * */
+			void TestEquals(int32 actual, uint32 expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei String gleich sind
-		 * */
-		void TestEquals(String actual, String expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei String gleich sind
+			 * */
+			void TestEquals(String actual, String expected, String failmessage);
 
-		/**
-		 * Diese Methode testet, ob die zwei String gleich sind
-		 * */
-		void TestEqualsIgnoreCase(String actual, String expected, String failmessage);
+			/**
+			 * Diese Methode testet, ob die zwei String gleich sind
+			 * */
+			void TestEqualsIgnoreCase(String actual, String expected, String failmessage);
 
-		/**
-		 * Diese Methode prüft, ob das übergebene Objekt null ist
-		 * */
-		void TestNull(void* actual, String failmessage);
+			/**
+			 * Diese Methode prüft, ob das übergebene Objekt null ist
+			 * */
+			void TestNull(void* actual, String failmessage);
 
-		/**
-		 * Diese Methode prüft, ob das übergebene NICHT Objekt null ist
-		 * */
-		void TestNotNull(void* actual, String failmessage);
+			/**
+			 * Diese Methode prüft, ob das übergebene NICHT Objekt null ist
+			 * */
+			void TestNotNull(void* actual, String failmessage);
 
-		/**
-		 * Diese Methode prüft, ob das übergebene wahr ist
-		 * */
-		void TestTrue(bool actual, String failmessage);
+			/**
+			 * Diese Methode prüft, ob das übergebene wahr ist
+			 * */
+			void TestTrue(bool actual, String failmessage);
 
-		/**
-		 * Diese Methode prüft, ob das übergebene falsch ist
-		 * */
-		void TestFalse(bool actual, String failmessage);
+			/**
+			 * Diese Methode prüft, ob das übergebene falsch ist
+			 * */
+			void TestFalse(bool actual, String failmessage);
 
-					private:
-						String error;
+		private:
+			String error;
 	};
 
 	class TestVector
