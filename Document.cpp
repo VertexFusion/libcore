@@ -38,22 +38,25 @@ Document::Document(): Object()
 	mUndoManager = NULL;
 	mFile = NULL;
 	mChanged = false;
+	mRegenerate = false;
 	SetUndoManager(true);
 }
 
 Document::~Document()
 {
-	if(mUndoManager != NULL)
-	{
-		mUndoManager->Release();
-		mUndoManager = NULL;
-	}
-
+	// File could be owned by others. We just release
 	if(mFile != NULL)
 	{
 		if(mFile->IsOpen())mFile->Close();
 		mFile->Release();
 		mFile = NULL;
+	}
+
+	// We own the undo manage. We delete it.
+	if(mUndoManager != NULL)
+	{
+		delete mUndoManager;
+		mUndoManager = NULL;
 	}
 }
 

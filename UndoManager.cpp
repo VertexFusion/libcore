@@ -126,6 +126,7 @@ void UndoManager::Close()
 
 void UndoManager::ClearStacks()
 {
+	Close();
 	ClearUndoStack();
 	ClearRedoStack();
 }
@@ -250,7 +251,7 @@ void UndoManager::RegisterChange(UndoChange* change)
 {
 	if(!mActive || mUndoing)
 	{
-		//delete change; \todo Das hier müsste möglich sein, weil changes eigentlich immer uns gehören
+		delete change;
 		return;
 	}
 
@@ -273,4 +274,9 @@ void UndoManager::RegisterChange(Object* object, uint8** pointer, uint64 length)
 void UndoManager::RegisterRegenerationMarker(jm::EditableObject* object)
 {
 	RegisterChange(new UndoRegenerationMarker(object));
+}
+
+void UndoManager::RegisterRelease(Object* object)
+{
+    RegisterChange(new UndoObjectRelease(object));
 }

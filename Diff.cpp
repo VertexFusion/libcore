@@ -157,7 +157,7 @@ uint32 Diff::MakeDiff(DwgDocument* c1, DwgDocument* c2)
 			while(bi.HasNext())HandleEntityV(&dd, static_cast<DwgEntity*>(bi.Next()));
 		}
 
-
+/*
 		//Vergleiche Entitäten
 		DwgEntity* ent = c1->GetFirstEntity();
 		while(ent != NULL)
@@ -170,13 +170,15 @@ uint32 Diff::MakeDiff(DwgDocument* c1, DwgDocument* c2)
 		{
 			HandleEntityV(&dd, ent);
 			ent = ent->next;
-		}
+		}*/
 
 		//Vergleiche Objekte
-		li = c1->GetObjectIterator();
-		while(li.HasNext())dd.AddU(li.Next());
-		li = c2->GetObjectIterator();
-		while(li.HasNext())dd.AddV(li.Next());
+		Iterator* it = c1->GetIterator();
+		while(it->HasNext())dd.AddU(it->Next());
+		delete it;
+		it = c2->GetIterator();
+		while(it->HasNext())dd.AddV(it->Next());
+		delete it;
 
 		//Löse DIFF
 		DiffBacktrace* db = dd.Solve();

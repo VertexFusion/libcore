@@ -344,6 +344,9 @@ void UndoChangeObjectRef::Swap()
 
 	Object* tmpValue = *mPointer;
 
+	if(tmpValue!=NULL)tmpValue->Retain();
+    if(mValue!=NULL)mValue->Release();
+
 	*mPointer = mValue;
 	mValue = tmpValue;
 
@@ -395,5 +398,30 @@ UndoRegenerationMarker::UndoRegenerationMarker(EditableObject* object): UndoChan
 void UndoRegenerationMarker::Swap()
 {
 	//Hier wird automatisch ein Regenerate ausgelöst...
+	UndoChange::Swap();
+}
+
+UndoObjectRelease::UndoObjectRelease(Object* object): UndoChange(object)
+{
+    // Nothing to do here. The super method will Retain() the object.
+    // This is just the one thing we want to do.
+    mReleased=true;
+    mObject=object;
+}
+
+UndoObjectRelease::~UndoObjectRelease()
+{
+    // Nothing to do here. The super method will Release() the object.
+    // This is just the one thing we want to do.
+}
+
+void UndoObjectRelease::Swap()
+{
+    // We swap the reference counter here
+    if(mReleased)mObject->Retain();
+    else mObject->Release();
+
+    mReleased!=mReleased;
+
 	UndoChange::Swap();
 }

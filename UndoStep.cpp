@@ -20,13 +20,13 @@ UndoStep::UndoStep()
 
 UndoStep::~UndoStep()
 {
-	UndoChange* change = eldest;
+	UndoChange* change = recent;
 
 	while(change != NULL)
 	{
-		UndoChange* prev = change->mPrev;
-		delete change;
-		change = prev;
+		UndoChange* victim = change;
+		change = change->mPrev;
+		delete victim;
 	}
 
 	prev = NULL;

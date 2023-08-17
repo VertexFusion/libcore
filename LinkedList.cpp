@@ -24,7 +24,7 @@ LinkedList::LinkedList(Object* owner): Object()
 	current = NULL;
 	count = 0;
 	mOwner = owner;
-	if(mOwner == NULL)mOwner = this;
+	if(mOwner == NULL)throw new Exception("Owner of LinkedList must not be NULL!");
 }
 
 LinkedList::~LinkedList()
@@ -72,13 +72,17 @@ void LinkedList::Clear(UndoManager* um)
 {
 	if(um != NULL)
 	{
-		um->RegisterChange(mOwner, (Object**) &listEnd);
-		um->RegisterChange(mOwner, (Object**) &listStart);
-		um->RegisterChange(mOwner, &count);
+		while(listStart!=NULL)
+		{
+			LListElement* victim=listStart;
+			Remove(victim,um);
+		}
+//		um->RegisterChange(mOwner, (Object**) &listEnd);
+//		um->RegisterChange(mOwner, (Object**) &listStart);
+//		um->RegisterChange(mOwner, &count);
 	}
 	else
 	{
-		//\todoLeak???
 		Rewind();
 		while(HasNext())delete NextElement();
 	}
@@ -92,7 +96,7 @@ void LinkedList::Clear(UndoManager* um)
 LListElement* LinkedList::Add(Object* data, UndoManager* um)
 {
 	LListElement* item = new LListElement();
-	if(um != NULL)um->RegisterChange(this, reinterpret_cast<Object**>(&(item->data)));
+	if(um != NULL)um->RegisterChange(mOwner, reinterpret_cast<Object**>(&(item->data)));
 	item->data = data;
 	Add(item, um);
 	return item;
@@ -155,23 +159,25 @@ void LinkedList::AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
 {
 	if(um != NULL)
 	{
-		um->RegisterChange(mOwner, (Object**) & (itemToAdd->prev));
-		um->RegisterChange(mOwner, (Object**) & (itemToAdd->next));
+		um->RegisterChange(mOwner, (Object**)& (itemToAdd->prev));
+		um->RegisterChange(mOwner, (Object**)& (itemToAdd->next));
 		if(listStart == addBeforeThis)um->RegisterChange(mOwner, (Object**)&listStart);
-		um->RegisterChange(mOwner, (Object**) & (addBeforeThis->prev));
-		if(addBeforeThis->prev != NULL)um->RegisterChange(mOwner, (Object**) & (addBeforeThis->prev->next));
+		um->RegisterChange(mOwner, (Object**)& (addBeforeThis->prev));
+		if(addBeforeThis->prev != NULL)um->RegisterChange(mOwner, (Object**)& (addBeforeThis->prev->next));
 		um->RegisterChange(mOwner, &count);
 	}
 
 	//Listenanfang anpassen
 	if(listStart == addBeforeThis)listStart = itemToAdd;
 
+	LListElement* addAfterThis = addBeforeThis->prev;
+
 	//ItemToAdd anpassen
-	itemToAdd->prev = addBeforeThis->prev;
+	itemToAdd->prev = addAfterThis;
 	itemToAdd->next = addBeforeThis;
 
 	//Vorgänger anpassen
-	if(addBeforeThis->prev != NULL)itemToAdd->prev->next = itemToAdd;
+	if(addAfterThis != NULL)addAfterThis->next = itemToAdd;
 
 	//Nachfolger anpassen
 	addBeforeThis->prev = itemToAdd;
@@ -195,6 +201,7 @@ void LinkedList::Remove(LListElement* element, UndoManager* um)
 		um->RegisterChange(mOwner, reinterpret_cast<Object**>(&element->prev));
 		um->RegisterChange(mOwner, (Object**) & (element->next));
 		um->RegisterChange(mOwner, &count);
+		um->RegisterRelease(element);
 	}
 
 	if(prev != NULL)prev->next = next;
@@ -214,6 +221,7 @@ void LinkedList::Remove(LListElement* element, UndoManager* um)
 
 	element->prev = NULL;
 	element->next = NULL;
+	element->Release();
 	count--;
 }
 
