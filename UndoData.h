@@ -360,6 +360,17 @@ namespace jm
 
 	};
 
+	class DllExport UndoObjectRelease: public UndoChange
+	{
+		public:
+			UndoObjectRelease(Object* object);
+			virtual ~UndoObjectRelease();
+			void Swap();
+        private:
+            bool mReleased;
+            Object* mObject;
+	};
+
 	/*!
 	 \brief Dieses Objekt speichert einen Bearbeitungsschritt an der Datei.
 	 Die Undoliste ist eine doppelt verkettete Liste.

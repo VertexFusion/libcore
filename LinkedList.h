@@ -93,10 +93,14 @@ namespace jm
 			 \param owner Der Besitzer der Liste. Bestenfalls ein Editable-Objekt. Dieses erhält
 			 ggf. Regenerate-Events bei Undo-Schritten.
 			 */
-			LinkedList(Object* owner = NULL);
+			LinkedList(Object* owner);
 
 			/*!
 			 \brief Destructor für die verkettete Liste. Hier werden alle Variabeln gelöscht
+			 \warning If you use the LinkedList together with UndoManager, you must call 
+			 LinkedList::Clear() with the UndoManager object to erase the objects gracefully. 
+			 Alternatively you can call UndoManager::ClearStacks() to get the same effect.
+			 Otherwise memory errors occur.
 			 */
 			~LinkedList();
 

@@ -343,6 +343,8 @@ namespace jm
 			 */
 			void RegisterRegenerationMarker(EditableObject* object);
 
+			void RegisterRelease(Object* object);
+
 		private:
 
 			/*!

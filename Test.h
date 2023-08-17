@@ -39,7 +39,7 @@
 namespace jm
 {
 
-	class DllExport Test
+	class DllExport Test: public Object
 	{
 
 		public:
