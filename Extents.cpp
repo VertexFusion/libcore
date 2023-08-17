@@ -11,7 +11,7 @@
 //              (c) 2023 VertexFusion Project
 //
 // Licence:     LGPL V2.1
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Precompiled.h"
@@ -37,7 +37,7 @@ void Extents::Add(const Vertex3& pt)
 
 void Extents::Add(const Extents& ext)
 {
-	if (!ext.IsValid())return;
+	if(!ext.IsValid())return;
 
 	Add(ext.mPtMin);
 	Add(ext.mPtMax);

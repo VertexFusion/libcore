@@ -44,15 +44,15 @@ void ZipFile::Open()
 		signature = jm::DeserializeLEInt32(eocd, 0);
 		seek--;
 
-		if (signature == 0x06054b50)
+		if(signature == 0x06054b50)
 		{
 			found = true;
 			break;
 		}
 	}
-	while(seek>0);
+	while(seek > 0);
 
-	if (!found)throw new jm::Exception("ZIP-File is invalid.");
+	if(!found)throw new jm::Exception("ZIP-File is invalid.");
 
 	uint16 recordCount = jm::DeserializeLEUInt16(eocd, 10);
 	uint32 dictSize = jm::DeserializeLEUInt32(eocd, 12);
@@ -140,7 +140,7 @@ jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
 	mFile->ReadFully(localHeader, 30);
 	uint32 signature = jm::DeserializeLEUInt32(localHeader, 0);
 
-	if (signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
+	if(signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
 
 	uint16 cm = jm::DeserializeLEUInt16(localHeader, 8);
 	uint32 fl = jm::DeserializeLEUInt16(localHeader, 26);

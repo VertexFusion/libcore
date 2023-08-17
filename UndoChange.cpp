@@ -11,8 +11,8 @@ using namespace jm;
 
 UndoChange::UndoChange(Object* object)
 {
-	mPrev=NULL;
-	mNext=NULL;
+	mPrev = NULL;
+	mNext = NULL;
 	mObject = object;
 	mObject->Retain();
 }
@@ -368,7 +368,8 @@ UndoChangeBuffer::UndoChangeBuffer(Object* object, uint8** pointer, uint64 lengt
 		mPointer = pointer;
 		mValue = new uint8[length];
 		memcpy(mValue, *pointer, length);
-	}			throw new Exception("Undo not implemented");
+	}
+	throw new Exception("Undo not implemented");
 
 }
 
@@ -382,7 +383,8 @@ void UndoChangeBuffer::Swap()
 
 	delete[] tmpValue;
 
-	UndoChange::Swap();			throw new Exception("Undo not implemented");
+	UndoChange::Swap();
+	throw new Exception("Undo not implemented");
 
 }
 

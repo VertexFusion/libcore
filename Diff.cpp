@@ -134,26 +134,26 @@ uint32 Diff::MakeDiff(DwgDocument* c1, DwgDocument* c2)
 		while(li.HasNext())dd.AddV(li.Next());
 
 		//Vergleiche Klassen
-		li=c1->GetClassSection()->GetClassIterator();
+		li = c1->GetClassSection()->GetClassIterator();
 		while(li.HasNext())dd.AddU(li.Next());
-		li=c2->GetClassSection()->GetClassIterator();
+		li = c2->GetClassSection()->GetClassIterator();
 		while(li.HasNext())dd.AddV(li.Next());
 
 		//Vergleiche Blockobjekte.
-		li=c1->GetBlockSection()->GetBlockIterator();
+		li = c1->GetBlockSection()->GetBlockIterator();
 		while(li.HasNext())
 		{
 			DwgBlock* b = static_cast<DwgBlock*>(li.Next());
 			dd.AddU(b);
-			LinkedListIterator bi=b->GetEntityIterator();
+			LinkedListIterator bi = b->GetEntityIterator();
 			while(bi.HasNext())HandleEntityU(&dd, static_cast<DwgEntity*>(bi.Next()));
 		}
-		li=c2->GetBlockSection()->GetBlockIterator();
+		li = c2->GetBlockSection()->GetBlockIterator();
 		while(li.HasNext())
 		{
 			DwgBlock* b = static_cast<DwgBlock*>(li.Next());
 			dd.AddV(b);
-			LinkedListIterator bi=b->GetEntityIterator();
+			LinkedListIterator bi = b->GetEntityIterator();
 			while(bi.HasNext())HandleEntityV(&dd, static_cast<DwgEntity*>(bi.Next()));
 		}
 

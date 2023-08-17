@@ -30,39 +30,39 @@ Date::Date(): Object(), Comparable<Date>()
 
 Date::Date(const Date &other): Object(), Comparable<Date>()
 {
-    mTime = other.mTime;
+	mTime = other.mTime;
 }
 
 Date::Date(int64 milliseconds): Object(), Comparable<Date>()
 {
-    mTime = milliseconds;
+	mTime = milliseconds;
 }
 
 Date::Date(uint16 year, uint16 month, uint16 day): Object(), Comparable<Date>()
 {
 	//\todo Ist month bei makeday 0 oder 1-basiert?
-    mTime = UTC(MakeDate(MakeDay(year, month-1, day), 0));
+	mTime = UTC(MakeDate(MakeDay(year, month - 1, day), 0));
 }
 
 Date::Date(uint16 year,
-			  uint16 month,
-			  uint16 day,
-			  uint16 hours,
-			  uint16 minutes,
-			  uint16 seconds,
-			  uint16 millis): Object(),Comparable<Date>()
+           uint16 month,
+           uint16 day,
+           uint16 hours,
+           uint16 minutes,
+           uint16 seconds,
+           uint16 millis): Object(), Comparable<Date>()
 {
-    mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
+	mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
 }
 
 Date::~Date()
 {
-    mTime = 0;
+	mTime = 0;
 }
 
 int64 Date::Day(int64 t) const
 {
-	return DivFloor(t,MS_PER_DAY) ;
+	return DivFloor(t, MS_PER_DAY) ;
 }
 
 int64 Date::TimeWithinDay(int64 t) const
@@ -82,9 +82,9 @@ int64 Date::DaysInYear(int64 y) const
 int64 Date::DayFromYear(int64 y) const
 {
 	return 365 * (y - 1970)
-	+ DivFloor(y - 1969, 4)
-	- DivFloor(y - 1901, 100)
-	+ DivFloor(y - 1601, 400);
+	       + DivFloor(y - 1969, 4)
+	       - DivFloor(y - 1901, 100)
+	       + DivFloor(y - 1601, 400);
 }
 
 int64 Date::TimeFromYear(int64 y) const
@@ -225,22 +225,22 @@ int64 Date::UTC(int64 t) const
 
 int64 Date::HourFromTime(int64 t) const
 {
-	return ModFloor(DivFloor(t,MS_PER_HOUR) , HOURS_PER_DAY);
+	return ModFloor(DivFloor(t, MS_PER_HOUR), HOURS_PER_DAY);
 }
 
 int64 Date::MinuteFromTime(int64 t) const
 {
-	return ModFloor(DivFloor(t , MS_PER_MINUTE) , MINUTES_PER_HOUR);
+	return ModFloor(DivFloor(t, MS_PER_MINUTE), MINUTES_PER_HOUR);
 }
 
 int64 Date::SecondFromTime(int64 t) const
 {
-	return ModFloor(DivFloor(t ,MS_PER_SECOND) , SECONDS_PER_MINUTE);
+	return ModFloor(DivFloor(t, MS_PER_SECOND), SECONDS_PER_MINUTE);
 }
 
 int64 Date::MilliFromTime(int64 t) const
 {
-	return ModFloor(t , MS_PER_SECOND);
+	return ModFloor(t, MS_PER_SECOND);
 }
 
 int64 Date::MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const
@@ -250,7 +250,7 @@ int64 Date::MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const
 
 int64 Date::MakeDay(int64 year, int64 month, int64 date) const
 {
-	int64 theYear = year + DivFloor(month , 12);
+	int64 theYear = year + DivFloor(month, 12);
 	int64 theMonth = month % 12;
 
 	//Find t with: (==r7)
@@ -331,7 +331,7 @@ int64 Date::MakeDate(int64 day, int64 millis) const
 
 bool Date::IsEmpty() const
 {
-    return mTime==EMPTY;
+	return mTime == EMPTY;
 }
 
 int64 Date::GetTime() const
@@ -341,7 +341,7 @@ int64 Date::GetTime() const
 
 void Date::SetTime(int64 t)
 {
-    mTime = t;
+	mTime = t;
 }
 
 int64 Date::GetYear() const
@@ -463,7 +463,7 @@ String Date::ToString() const
 
 	int millis = GetUTCMilliseconds() % 1000;
 	pre[20] = static_cast<char>('0' + millis / 100);
-	millis=millis%100;
+	millis = millis % 100;
 	pre[21] = static_cast<char>('0' + millis / 10);
 	pre[22] = static_cast<char>('0' + millis % 10);
 

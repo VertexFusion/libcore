@@ -113,10 +113,10 @@ void SAXParser::Parse(const String &xml)
 			else if(escape.Equals("gt;"))token.Append('>');
 			else if(escape.Equals("amp;"))token.Append('&');
 			else if(escape.Equals("quot;"))token.Append('"');
-			else if (escape.Equals("le;"))token.Append(0x2264);//≤
-			else if (escape.Equals("ge;"))token.Append(0x2265);//≥
-			else if (escape.Equals("leq;"))token.Append(0x2264);//≤
-			else if (escape.Equals("geq;"))token.Append(0x2265);//≥
+			else if(escape.Equals("le;"))token.Append(0x2264); //≤
+			else if(escape.Equals("ge;"))token.Append(0x2265); //≥
+			else if(escape.Equals("leq;"))token.Append(0x2264); //≤
+			else if(escape.Equals("geq;"))token.Append(0x2265); //≥
 		}
 		else if(c == '>' && inTag == true && inValue == false)
 		{

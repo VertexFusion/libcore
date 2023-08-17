@@ -62,7 +62,7 @@ void XMLWriter::StartElement(const jm::String &name)
 		mOutput->Write(">");
 	}
 
-	if (mLastIndent)
+	if(mLastIndent)
 	{
 		WriteIndent();
 	}
@@ -80,13 +80,13 @@ void XMLWriter::StartElement(const jm::String &name)
 
 void XMLWriter::EndElement()
 {
-	if (mOpenElements.Top().hasContent == false)
+	if(mOpenElements.Top().hasContent == false)
 	{
 		mOutput->Write("/>");
 	}
 	else
 	{
-		if (mOpenElements.Top().indent && mOpenElements.Top().hasCharacters==false)
+		if(mOpenElements.Top().indent && mOpenElements.Top().hasCharacters == false)
 		{
 			WriteIndent();
 		}
@@ -108,7 +108,7 @@ void XMLWriter::WriteCDATA(const jm::String &cdata, bool xmlencode)
 		mOutput->Write(">");
 	}
 
-	if (mOpenElements.Size() > 0 && mOpenElements.Top().hasCharacters == false)
+	if(mOpenElements.Size() > 0 && mOpenElements.Top().hasCharacters == false)
 	{
 		mOpenElements.TopRef()->hasCharacters = true;
 	}
@@ -198,7 +198,7 @@ void XMLWriter::WriteIndent()
 {
 	jm::String str;
 	str << '\n';
-	for (int32 a = 0; a < mIndent; a++)str.Append(' ');
-	if (str.Length() == 0)return;
+	for(int32 a = 0; a < mIndent; a++)str.Append(' ');
+	if(str.Length() == 0)return;
 	mOutput->Write(str);
 }

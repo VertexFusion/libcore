@@ -11,7 +11,7 @@
 //              (c) 2023 VertexFusion Project
 //
 // Licence:     LGPL V2.1
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Precompiled.h"
@@ -41,13 +41,13 @@ int64 jm::Round(double d)
 	return (int64)((d > 0.0) ? std::floor(d + 0.5) : std::ceil(d - 0.5));
 }
 
-float jm::RoundFrac(float f,int32 digits)
+float jm::RoundFrac(float f, int32 digits)
 {
-	double factor=std::pow(10, digits);
-	double value=f*factor;
-	int64 result=Round(value);
-	value=static_cast<double>(result);
-	return static_cast<float>(value/factor);
+	double factor = std::pow(10, digits);
+	double value = f * factor;
+	int64 result = Round(value);
+	value = static_cast<double>(result);
+	return static_cast<float>(value / factor);
 }
 
 bool jm::IsEqual(double v1, double v2)
@@ -84,7 +84,7 @@ bool jm::IsGreaterEqual(double v1, double v2)
 
 bool jm::IsNaN(double d)
 {
-	return d != d; 
+	return d != d;
 }
 
 void jm::Swap(double &v1, double &v2)
@@ -128,6 +128,8 @@ double jm::Random()
 	uint16 x[3] = {(uint16)rand(), (uint16)rand(), (uint16)rand()};
 	return erand48(x);
 	#elif defined __linux__
+	uint16 x[3] = {(uint16)rand(), (uint16)rand(), (uint16)rand()};
+	return erand48(x);
 	#elif defined _WIN32
 	uint32 i = rand();
 	uint32 m = RAND_MAX;
@@ -198,18 +200,18 @@ float jm::FloatMaschineEpsilon()
 
 int64 jm::DivFloor(int64 x, int64 y)
 {
-	int64 q = x/y;
-	int64 r = x%y;
-	if ((r!=0) && ((r<0) != (y<0))) --q;
+	int64 q = x / y;
+	int64 r = x % y;
+	if((r != 0) && ((r < 0) != (y < 0))) --q;
 	return q;
 }
 
 int64 jm::ModFloor(int64 x, int64 y)
 {
-	 int64 r = x%y;
-	 if ((r!=0) && ((r<0) != (y<0)))
-	 {
-		 r += y;
-	 }
-	 return r;
+	int64 r = x % y;
+	if((r != 0) && ((r < 0) != (y < 0)))
+	{
+		r += y;
+	}
+	return r;
 }

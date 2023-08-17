@@ -77,9 +77,9 @@ DiffBacktrace* DiffDistance::Solve()
 
 	distance = diagonal->GetEntry((int)std::min(m, n));
 
-	unsigned long sz=m*n;
+	unsigned long sz = m * n;
 	std::cout << "Distance " << distance << std::endl;
-	std::cout << "Calcucalted " << calc << "/" << sz << ": " << (calc*100.0/((double)sz)) << "%" << std::endl;
+	std::cout << "Calcucalted " << calc << "/" << sz << ": " << (calc * 100.0 / ((double)sz)) << "%" << std::endl;
 
 	int i = (int) std::min(m, n);
 	return DiffBacktrace::Backtrace(diagonal, i);

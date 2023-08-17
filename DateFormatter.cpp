@@ -50,7 +50,7 @@ DateFormatter::DateFormatter(const String &pattern): Object()
 
 			if(c != l)
 			{
-				Pattern* tpattern=new Pattern(token);
+				Pattern* tpattern = new Pattern(token);
 				mLast->next = tpattern;
 				mLast = tpattern;
 
@@ -61,7 +61,7 @@ DateFormatter::DateFormatter(const String &pattern): Object()
 		}
 	}
 
-	if (token.Length() > 0)
+	if(token.Length() > 0)
 	{
 		Pattern* tpattern = new Pattern(token);
 		mLast->next = tpattern;
@@ -72,7 +72,7 @@ DateFormatter::DateFormatter(const String &pattern): Object()
 DateFormatter::~DateFormatter()
 {
 	Pattern* p = mPatterns;
-	while (p != NULL)
+	while(p != NULL)
 	{
 		Pattern* tmp = p;
 		p = p->next;
@@ -85,7 +85,7 @@ String DateFormatter::Format(const Date &date) const
 	String value;
 
 	Pattern* p = mPatterns;
-	while (p != NULL)
+	while(p != NULL)
 	{
 		p->AppendPattern(value, date);
 		p = p->next;
@@ -142,7 +142,7 @@ DateFormatter::Pattern::Pattern(const String &value, bool isText)
 			case 's':
 				type = kSecond;
 				break;
-				
+
 			case 'S':
 				type = kMillisecond;
 				break;
@@ -451,7 +451,7 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
 				}
 			}
 			return;
-			
+
 		case kDayInYear:
 			value.Append(String::ValueOf(date.GetDayOfYear() + 1));
 			return;

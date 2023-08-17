@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        NURBS.cpp
 // Library:     jameo
-// Purpose:     NURBS 
+// Purpose:     NURBS
 //
 // Author:      Uwe Runtemund (2013-today)
 // Modified by:
@@ -10,7 +10,7 @@
 // Copyright:   (c) 2013 Jameo Software, Germany. https://jameo.de
 //
 //              All rights reserved. The methods and techniques described herein are considered
-//              trade secrets and/or confidential. Reproduction or distribution, in whole or in 
+//              trade secrets and/or confidential. Reproduction or distribution, in whole or in
 //              part, is forbidden except by express written permission of Jameo.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

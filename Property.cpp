@@ -16,7 +16,7 @@ Property::Property()
 	mNumberValue.intValue = 0;
 	mChangeMode = kPropertyChangeItself;
 	mAllowEmpty = true;
-	mType=kPropertyTypeString;
+	mType = kPropertyTypeString;
 }
 
 Property::Property(const String &id)
@@ -26,7 +26,7 @@ Property::Property(const String &id)
 	mNumberValue.intValue = 0;
 	mChangeMode = kPropertyChangeItself;
 	mAllowEmpty = true;
-	mType=kPropertyTypeString;
+	mType = kPropertyTypeString;
 }
 
 
@@ -48,7 +48,7 @@ Property::Property(const String &id,
 	mChangeMode = changeMode;
 	mNumberValue.intValue = 0;
 	mAllowEmpty = allowEmpty;
-	mType=kPropertyTypeString;
+	mType = kPropertyTypeString;
 }
 
 bool Property::Is(const String &id)const
@@ -119,7 +119,7 @@ PropertyChangeMode Property::GetChangeMode() const
 VxfErrorStatus Property::SetStringValue(const String &value)
 {
 	mTextValue = value;
-	mType=kPropertyTypeString;
+	mType = kPropertyTypeString;
 	return eOK;
 }
 
@@ -131,14 +131,14 @@ String Property::GetStringValue() const
 VxfErrorStatus Property::SetIntegerValue(int64 value)
 {
 	mNumberValue.intValue = value;
-	mType=kPropertyTypeInteger;
+	mType = kPropertyTypeInteger;
 	return eOK;
 }
 
 VxfErrorStatus Property::SetDwgColourValue(const DwgColour& value)
 {
 	mDwgColourValue = value;
-	mType=kPropertyTypeDwgColour;
+	mType = kPropertyTypeDwgColour;
 	return eOK;
 }
 
@@ -155,7 +155,7 @@ int64 Property::GetIntegerValue() const
 VxfErrorStatus Property::SetDoubleValue(double value)
 {
 	mNumberValue.doubleValue = value;
-	mType=kPropertyTypeDouble;
+	mType = kPropertyTypeDouble;
 	return eOK;
 }
 
@@ -167,7 +167,7 @@ double Property::GetDoubleValue() const
 VxfErrorStatus Property::SetBoolValue(bool value)
 {
 	mNumberValue.boolValue = value;
-	mType=kPropertyTypeBoolean;
+	mType = kPropertyTypeBoolean;
 	return eOK;
 }
 
@@ -194,7 +194,7 @@ bool jm::operator==(Property const &v1, Property const &v2)
 {
 	// Actially we do not check mType, because if  values are equal, but type different
 	// (like for compoboxes), they are supposed to be equal anyway.
-	
+
 	if(v1.mId.Equals(v2.mId) == false)return false;
 	if(v1.mEditor.Equals(v2.mEditor) == false)return false;
 
@@ -225,7 +225,7 @@ bool jm::operator==(Property const &v1, Property const &v2)
 		//if (vvalue.GetUnit().IsEmpty())vvalue.SetUnit(physics::Unit::Eval(WxStr2Jm(property->GetAttribute(wxPG_ATTR_UNITS))));
 		return v1.GetStringValue().Equals(v2.GetStringValue());
 	}
-	else if (editor.Equals("dwgcolour"))
+	else if(editor.Equals("dwgcolour"))
 	{
 		return v1.mDwgColourValue == v2.mDwgColourValue;
 	}

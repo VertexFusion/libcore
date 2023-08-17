@@ -43,65 +43,65 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 {
 	gSystemMutex.Lock();
 
-		jm::String msg;
-		msg.Append('[');
-		msg.Append(jm::Date().ToString());
-		msg.Append(']');
+	jm::String msg;
+	msg.Append('[');
+	msg.Append(jm::Date().ToString());
+	msg.Append(']');
 
-		switch(logLevel)
-		{
-			case kLogError:
-				msg.Append(" FEHLER: ");
-				gSystemError = message;
-				break;
-
-			case 	kLogWarning:
-				msg.Append(" WARNUNG: ");
-				break;
-
-			case kLogInformation:
-				msg.Append(" INFO: ");
-				break;
-
-			case kLogDebug:
-				msg.Append(" DEBUG: ");
-				break;
-		}
-		msg.Append(message);
-
-		//Ausgabe auf Console
-		if(logLevel < kLogDebug)std::cout << msg << std::endl;
-
-		//Ausgabe ins Logfile
-		#ifdef __APPLE__ //macOS und iOS
-
-		if(logLevel == kLogError)
-		{
-			//	setlogmask (LOG_UPTO (LOG_NOTICE));
-
-			//	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
-
-			const int8* cstr = msg.ToCString();
-			syslog(LOG_ERR, "%s", cstr);
-			delete cstr;
-			//	syslog (LOG_INFO, "A tree falls in a forest");
-
-			//	closelog ();
-		}
-
-		#elif defined __linux__//Linux
-
-
-		#elif defined _WIN32//Windows
-
-		if(logLevel == kLogError)
-		{
+	switch(logLevel)
+	{
+		case kLogError:
+			msg.Append(" FEHLER: ");
 			gSystemError = message;
-		}
+			break;
 
-		#endif
+		case 	kLogWarning:
+			msg.Append(" WARNUNG: ");
+			break;
 
-		gSystemMutex.Unlock();
+		case kLogInformation:
+			msg.Append(" INFO: ");
+			break;
+
+		case kLogDebug:
+			msg.Append(" DEBUG: ");
+			break;
+	}
+	msg.Append(message);
+
+	//Ausgabe auf Console
+	if(logLevel < kLogDebug)std::cout << msg << std::endl;
+
+	//Ausgabe ins Logfile
+	#ifdef __APPLE__ //macOS und iOS
+
+	if(logLevel == kLogError)
+	{
+		//	setlogmask (LOG_UPTO (LOG_NOTICE));
+
+		//	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+
+		const int8* cstr = msg.ToCString();
+		syslog(LOG_ERR, "%s", cstr);
+		delete cstr;
+		//	syslog (LOG_INFO, "A tree falls in a forest");
+
+		//	closelog ();
+	}
+
+	#elif defined __linux__//Linux
+
+
+	#elif defined _WIN32//Windows
+
+	if(logLevel == kLogError)
+	{
+		gSystemError = message;
+	}
+
+	#endif
+
+	gSystemMutex.Unlock();
 }
 
 jm::String jm::System::GetLastErrorMessage()

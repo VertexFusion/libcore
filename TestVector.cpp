@@ -30,9 +30,9 @@ void TestVector::AddTest(Test* test)
 
 void TestVector::Execute()
 {
-	jm::gTotalTestCount=0;
-	jm::gTotalErrorCount=0;
-	
+	jm::gTotalTestCount = 0;
+	jm::gTotalErrorCount = 0;
+
 	clock_t bt = clock();
 
 	int32 single = -1;
@@ -58,8 +58,8 @@ void TestVector::Execute()
 
 	int8 str[100];
 	sprintf(str, "Cycle finished! In total  %d tests, %d errors, duration %1.3f sec.",
-			  jm::gTotalTestCount,
-			  jm::gTotalErrorCount,
+	        jm::gTotalTestCount,
+	        jm::gTotalErrorCount,
 	        (double)(et - bt) / CLOCKS_PER_SEC);
 
 	puts(str);

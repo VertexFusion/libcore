@@ -141,24 +141,24 @@ void Matrix::Zeros()
 
 VxfErrorStatus Matrix::Det(double &det) const
 {
-	if (m == n)
+	if(m == n)
 	{
-		if (m == 1)
+		if(m == 1)
 		{
-			det=data[0];
+			det = data[0];
 
 			return eOK;
 		}
-		else if (m == 2)
+		else if(m == 2)
 		{
 			// Index
 			// | 0 2 |
 			// | 1 3 |
-			det= data[0] * data[3] - data[1] * data[2];
+			det = data[0] * data[3] - data[1] * data[2];
 
 			return eOK;
 		}
-		else if (m == 3)
+		else if(m == 3)
 		{
 			// Index
 			// | 0 3 6 |
@@ -170,12 +170,12 @@ VxfErrorStatus Matrix::Det(double &det) const
 			double m1 = data[6] * data[4] * data[2];
 			double m2 = data[7] * data[5] * data[0];
 			double m3 = data[8] * data[3] * data[1];
-			
+
 			det = p1 + p2 + p3 - m1 - m2 - m3;
 
 			return eOK;
 		}
-		else if (m == 4)
+		else if(m == 4)
 		{
 			// Index
 			// | 0 4  8 12 |   | a e i m |   | 11 12 13 14 |
@@ -210,7 +210,7 @@ VxfErrorStatus Matrix::Det(double &det) const
 			double m4 = a14 * a21 * a32 * a43 + a14 * a22 * a33 * a41 + a14 * a23 * a31 * a42;
 
 			det = p1 + p2 + p3 + p4 - m1 - m2 - m3 - m4;
-			
+
 			return eOK;
 		}
 		else
@@ -376,8 +376,8 @@ void Matrix::Insert(const Matrix &A)
 
 void Matrix::Insert(const Matrix &A, uint32 _r, uint32 _c)
 {
-	uint32 rows = std::min(m-_r, A.m);
-	uint32 cols = std::min(n-_c, A.n);
+	uint32 rows = std::min(m - _r, A.m);
+	uint32 cols = std::min(n - _c, A.n);
 
 	for(uint32 r = 0; r < rows; r++)
 	{
@@ -721,14 +721,14 @@ const Vector jm::operator*(Matrix const& A, Vector const& b)
 	// | 0 3 6 |   | x |
 	// | 1 4 7 | * | y |
 	// | 2 5 8 |   | z |
-	if (A.n != b.m) throw("Matrix muss gleiche Spaltenzahl wie Vektor Zeilenzahl haben");
+	if(A.n != b.m) throw("Matrix muss gleiche Spaltenzahl wie Vektor Zeilenzahl haben");
 
 	Vector ret = Vector(A.m);
 
-	for (uint32 r = 0; r < A.m; r++)
+	for(uint32 r = 0; r < A.m; r++)
 	{
 		ret.data[r] = 0.0;
-		for (uint32 c = 0; c < A.n; c++)
+		for(uint32 c = 0; c < A.n; c++)
 		{
 			ret.data[r] += b.data[c] * A.Get(r, c);
 		}

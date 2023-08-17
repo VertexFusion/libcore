@@ -28,7 +28,7 @@ Document::~Document()
 
 	if(mFile != NULL)
 	{
-		if (mFile->IsOpen())mFile->Close();
+		if(mFile->IsOpen())mFile->Close();
 		mFile->Release();
 		mFile = NULL;
 	}

@@ -62,7 +62,7 @@ void Object::Release()
 	{
 		// Find Zombie
 		//std::cout<<"Zombie delete"<<std::endl;
-		
+
 		//! If mRefCount==0, Release() or Retain() must not called.
 		delete this;
 	}
@@ -95,11 +95,11 @@ bool Object::Equals(const Object*) const
 
 int8* Object::GetDiffName() const
 {
-	int8* name=new int8[4];
-	name[0]='O';
-	name[1]='b';
-	name[2]='j';
-	name[3]=0;
+	int8* name = new int8[4];
+	name[0] = 'O';
+	name[1] = 'b';
+	name[2] = 'j';
+	name[3] = 0;
 	return name;
 }
 

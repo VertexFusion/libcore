@@ -110,7 +110,7 @@ String File::Resolve(String parent, String child)
 
 String File::Normalize(const String &path)
 {
-	String pathname=path;
+	String pathname = path;
 	uint32 length = pathname.Length();
 	uint16 prev = 0;
 
@@ -258,7 +258,7 @@ bool File::IsHidden() const
 	struct stat filestat;
 	int32 result = stat(mCstr, &filestat);
 	if(result != 0)return false;  //Existiert nicht
-	if((filestat.st_mode & _S_IFREG)==0) return true;
+	if((filestat.st_mode & _S_IFREG) == 0) return true;
 	return false;
 
 	#endif
@@ -346,7 +346,7 @@ Date File::LastModified() const
 	//Umrechnen
 	const time_t ct = st.st_mtime;//time_t ist die Zeit in Sekunden
 	int64 epoch = (int64)ct;
-	return Date(epoch*1000LL);
+	return Date(epoch * 1000LL);
 	#endif
 
 }
@@ -513,8 +513,8 @@ const String& File::GetAbsolutePath() const
 
 String File::GetParent() const
 {
-	int32 idx=mPathname.LastIndexOf(DIR_SEP);
-	if(idx<0)idx=0;
+	int32 idx = mPathname.LastIndexOf(DIR_SEP);
+	if(idx < 0)idx = 0;
 	return mPathname.Substring(0, idx);
 }
 
@@ -585,7 +585,7 @@ void File::Seek(uint64 position)
 void File::Move(int64 offset)
 {
 	size_t res = fseek(mHandle, offset, SEEK_CUR);
-	if (res != 0)throw new Exception("Error while moving file reading pointer!");
+	if(res != 0)throw new Exception("Error while moving file reading pointer!");
 }
 
 uint64 File::GetPosition()

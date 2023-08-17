@@ -11,7 +11,7 @@
 //              (c) 2023 VertexFusion Project
 //
 // Licence:     LGPL V2.1
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "Precompiled.h"
@@ -60,9 +60,9 @@ double Vertex2::AngleTo(const Vertex2 &another) const
 {
 	// Enclosed angles returned
 	double tmp = this->DotProduct(another) / (this->Abs() * another.Abs());
-	
+
 	// Same sign convention as in SVG
-	double sgn = (x*another.y-y*another.x)>0?1:-1;
+	double sgn = (x * another.y - y * another.x) > 0 ? 1 : -1;
 	double angle = acos(tmp) * sgn;
 
 	return angle;
@@ -176,7 +176,7 @@ Vertex2 jm::SolveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r)
 	double R2 = r.y;
 
 	//Pivotisierung
-	if (IsEqual(A1, 0))
+	if(IsEqual(A1, 0))
 	{
 		Swap(A1, A2);
 		Swap(B1, B2);

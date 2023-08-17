@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Transform.cpp
 // Library:     jameo
-// Purpose:     CAD related utilities for coordinate system transformations 
+// Purpose:     CAD related utilities for coordinate system transformations
 //
 // Author:      Uwe Runtemund (2014-today)
 // Modified by:
@@ -10,7 +10,7 @@
 // Copyright:   (c) 2014 Jameo Software, Germany. https://jameo.de
 //
 //              All rights reserved. The methods and techniques described herein are considered
-//              trade secrets and/or confidential. Reproduction or distribution, in whole or in 
+//              trade secrets and/or confidential. Reproduction or distribution, in whole or in
 //              part, is forbidden except by express written permission of Jameo.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -187,8 +187,8 @@ void Transform::InitMirroring(const jm::Vertex3 &planePoint,
 	double b = planeNormal.y;
 	double c = planeNormal.z;
 	double d = - planePoint.x * planeNormal.x
-				  - planePoint.y * planeNormal.y
-				  - planePoint.z * planeNormal.z;
+	           - planePoint.y * planeNormal.y
+	           - planePoint.z * planeNormal.z;
 
 	Zeros();
 	Set(0, 0, 1.0 - 2.0 * a * a);
@@ -263,7 +263,7 @@ Matrix jm::WCSMatrix(const jm::Vertex3 &extrusion)
 
 
 Vertex3 jm::WCSToOCS(jm::Vertex3 wcs,
-                          jm::Vertex3 extrusion)
+                     jm::Vertex3 extrusion)
 {
 	/*	Matrix in = Matrix( 1, 3 );
 	 in.Set( 0, 0, wcs.x );
@@ -279,7 +279,7 @@ Vertex3 jm::WCSToOCS(jm::Vertex3 wcs,
 	//	return ocs;
 }
 
-Vertex3 jm::OCSToWCS(const jm::Vertex3& ocs,const jm::Vertex3& extrusion)
+Vertex3 jm::OCSToWCS(const jm::Vertex3& ocs, const jm::Vertex3& extrusion)
 {
 	/*	Matrix in = Matrix( 1, 3 );
 	 in.Set( 0, 0, ocs.x );

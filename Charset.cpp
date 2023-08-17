@@ -174,7 +174,7 @@ String Charset::Guess(uint8* stream, uint32 length)
 	//
 
 	// Es kann sein, das eine UTF16-Kodierung ohne Marker vorliegt. Die Wahrscheinlichkeit dafür ist hoch, wenn bei "europäischem" Text jedes zweite Byte 0 ist
-	uint16 frame =(uint16) min(4096, static_cast<int32>(length));
+	uint16 frame = (uint16) min(4096, static_cast<int32>(length));
 	float count1 = 0;
 	float count2 = 0;
 	for(uint16 a = 0; a < frame; a++)

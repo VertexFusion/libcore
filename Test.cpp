@@ -118,7 +118,7 @@ void Test::TestEqualsIgnoreCase(String actual, String expected, String failmessa
 {
 	jm::gTotalTestCount++;
 	jm::gTestCount++;
-	
+
 	if(expected.EqualsIgnoreCase(actual))return;
 
 	jm::gTotalErrorCount++;

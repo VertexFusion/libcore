@@ -48,9 +48,9 @@ void DiffInfo::Print( uint32 obj1, uint32 obj2, String label )
 }*/
 
 void DiffInfo::Print(DiffOperation operation,
-							double obj1,
-							double obj2,
-							const String &label)
+                     double obj1,
+                     double obj2,
+                     const String &label)
 {
 	switch(operation)
 	{
@@ -62,7 +62,7 @@ void DiffInfo::Print(DiffOperation operation,
 		case kDiffModified:
 			if(IsNotEqual(obj1, obj2))
 			{
-				std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: "<< (obj2-obj1) << std::endl;
+				std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " << (obj2 - obj1) << std::endl;
 			}
 			break;
 
@@ -72,9 +72,9 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-							const String &obj1,
-							const String &obj2,
-							const String &label)
+                     const String &obj1,
+                     const String &obj2,
+                     const String &label)
 {
 	switch(operation)
 	{
@@ -96,9 +96,9 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::PrintIC(DiffOperation operation,
-							const String &obj1,
-							const String &obj2,
-							const String &label)
+                       const String &obj1,
+                       const String &obj2,
+                       const String &label)
 {
 	switch(operation)
 	{
@@ -120,11 +120,11 @@ void DiffInfo::PrintIC(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-							const DwgColour &obj1,
-							const DwgColour &obj2,
-							const String &label )
+                     const DwgColour &obj1,
+                     const DwgColour &obj2,
+                     const String &label)
 {
-	switch( operation )
+	switch(operation)
 	{
 		case kDiffAdd:
 		case kDiffDelete:
@@ -134,7 +134,7 @@ void DiffInfo::Print(DiffOperation operation,
 			break;
 
 		case kDiffModified:
-			if( obj1 != obj2 )
+			if(obj1 != obj2)
 			{
 				std::cout << "  " << label << ": ";
 				obj1.Print();
@@ -150,11 +150,11 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-							const Vertex2 &obj1,
-							const Vertex2 &obj2,
-							const String &label )
+                     const Vertex2 &obj1,
+                     const Vertex2 &obj2,
+                     const String &label)
 {
-	switch( operation )
+	switch(operation)
 	{
 		case kDiffAdd:
 		case kDiffDelete:
@@ -163,10 +163,10 @@ void DiffInfo::Print(DiffOperation operation,
 			break;
 
 		case kDiffModified:
-			if( obj1 != obj2 )
+			if(obj1 != obj2)
 			{
 				std::cout << "  " << label << ": ";
-				std::cout << obj1 << " -> "<< obj2 << std::endl;
+				std::cout << obj1 << " -> " << obj2 << std::endl;
 			}
 			break;
 
@@ -176,11 +176,11 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-							const Vertex3 &obj1,
-							const Vertex3 &obj2,
-							const String &label )
+                     const Vertex3 &obj1,
+                     const Vertex3 &obj2,
+                     const String &label)
 {
-	switch( operation )
+	switch(operation)
 	{
 		case kDiffAdd:
 		case kDiffDelete:
@@ -189,10 +189,10 @@ void DiffInfo::Print(DiffOperation operation,
 			break;
 
 		case kDiffModified:
-			if( obj1 != obj2 )
+			if(obj1 != obj2)
 			{
 				std::cout << "  " << label << ": ";
-				std::cout << obj1 << " -> "<< obj2 << std::endl;
+				std::cout << obj1 << " -> " << obj2 << std::endl;
 			}
 			break;
 
@@ -203,28 +203,28 @@ void DiffInfo::Print(DiffOperation operation,
 
 
 void DiffInfo::Print(DiffOperation operation,
-	const DwgHandle& obj1,
-	const DwgHandle& obj2,
-	const String& label)
+                     const DwgHandle& obj1,
+                     const DwgHandle& obj2,
+                     const String& label)
 {
-	switch (operation)
+	switch(operation)
 	{
-	case kDiffAdd:
-	case kDiffDelete:
-		std::cout << "  " << label << ": ";
-		std::cout << obj1.GetValue() << std::endl;
-		break;
-
-	case kDiffModified:
-		if (obj1 != obj2)
-		{
+		case kDiffAdd:
+		case kDiffDelete:
 			std::cout << "  " << label << ": ";
-			std::cout << obj1.GetValue() << " -> " << obj2.GetValue() << std::endl;
-		}
-		break;
+			std::cout << obj1.GetValue() << std::endl;
+			break;
 
-	default:
-		break;
+		case kDiffModified:
+			if(obj1 != obj2)
+			{
+				std::cout << "  " << label << ": ";
+				std::cout << obj1.GetValue() << " -> " << obj2.GetValue() << std::endl;
+			}
+			break;
+
+		default:
+			break;
 	}
 }
 
@@ -514,9 +514,9 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
 
 	//Object wurde durch ein anderes ersetzt
 	if(obj1 != NULL &&
-		obj2 != NULL &&
-		typeid(*obj1) != typeid(*obj2) &&
-		operation == kDiffModified)
+	      obj2 != NULL &&
+	      typeid(*obj1) != typeid(*obj2) &&
+	      operation == kDiffModified)
 	{
 		std::cout << "R " << obj1->GetDiffName() << " -> " << obj2->GetDiffName() << ":" << std::endl;
 		return;

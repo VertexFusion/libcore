@@ -18,7 +18,7 @@ MemoryStream::MemoryStream(uint8* stream, uint32 length): Stream()
 	mWritelength = 0;
 }
 
-void MemoryStream::Open(FileMode mode)
+void MemoryStream::Open(FileMode)
 {
 	mPosition = 0;
 	mWritelength = 0;
@@ -70,7 +70,7 @@ uint32 MemoryStream::Write(uint8* buffer, uint32 length)
 	uint32 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
 	memcpy(&mStream[mPosition], buffer, length);
 	mPosition += available;
-	if (mPosition > mWritelength)mWritelength = mPosition;
+	if(mPosition > mWritelength)mWritelength = mPosition;
 	return available;
 }
 

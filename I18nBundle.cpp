@@ -85,6 +85,8 @@ I18nBundle::I18nBundle(const String &appID, const String &name, const String &la
 
 I18nBundle::I18nBundle(const File &file, const String &language): Properties()
 {
+	mLanguage = language;
+
 	if(!file.Exists())
 	{
 		System::Log("Bundle does not exist", kLogError);
