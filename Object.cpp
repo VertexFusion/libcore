@@ -93,14 +93,9 @@ bool Object::Equals(const Object*) const
 	return false;
 }
 
-int8* Object::GetDiffName() const
+String Object::GetDisplayName() const
 {
-	int8* name = new int8[4];
-	name[0] = 'O';
-	name[1] = 'b';
-	name[2] = 'j';
-	name[3] = 0;
-	return name;
+	return "jm::Object";
 }
 
 void Object::PrintDiffInfo(DiffOperation, Object*) const

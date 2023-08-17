@@ -518,7 +518,7 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
 	      typeid(*obj1) != typeid(*obj2) &&
 	      operation == kDiffModified)
 	{
-		std::cout << "R " << obj1->GetDiffName() << " -> " << obj2->GetDiffName() << ":" << std::endl;
+		std::cout << "R " << obj1->GetDisplayName() << " -> " << obj2->GetDisplayName() << ":" << std::endl;
 		return;
 	}
 
@@ -531,15 +531,15 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
 	//Gib Überschrift aus:
 	if(operation == kDiffAdd)
 	{
-		std::cout << "A " << obj1->GetDiffName() << std::endl;
+		std::cout << "A " << obj1->GetDisplayName() << std::endl;
 	}
 	else if(operation == kDiffDelete)
 	{
-		std::cout << "D " << obj1->GetDiffName() << std::endl;
+		std::cout << "D " << obj1->GetDisplayName() << std::endl;
 	}
 	else if(operation == kDiffModified)
 	{
-		std::cout << "M " << obj1->GetDiffName() << std::endl;
+		std::cout << "M " << obj1->GetDisplayName() << std::endl;
 	}
 	else return;
 
