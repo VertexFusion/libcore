@@ -345,6 +345,8 @@ namespace jm
 
 			void RegisterRelease(Object* object);
 
+			void RegisterRetain(Object* object);
+
 		private:
 
 			/*!

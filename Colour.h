@@ -295,7 +295,7 @@ namespace jm
 	};
 
 	// Under windows we do not need that, under macOS it is required
-	#if defined __APPLE__
+	#if defined __APPLE__ || defined __linux__
 	DllExport
 	Colour Blend(Colour background, Colour foreground, uint8 alpha);
 

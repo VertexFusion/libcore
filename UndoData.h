@@ -363,7 +363,7 @@ namespace jm
 	class DllExport UndoObjectRelease: public UndoChange
 	{
 		public:
-			UndoObjectRelease(Object* object);
+			UndoObjectRelease(Object* object, bool release);
 			virtual ~UndoObjectRelease();
 			void Swap();
         private:
