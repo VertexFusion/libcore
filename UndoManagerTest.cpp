@@ -56,7 +56,7 @@ void UndoManagerTest::DoTest()
 	obj->undo=undo;
 
 	//Objekt prüfen
-	TestEquals(obj->GetReferenceCount(), 1, "Referenzzähler muss 1 sein.");
+	TestEquals(obj->GetReferenceCount(), 1, "Reference Counter must be 1.");
 	TestEquals(undo->GetUndoCount(),0,"Undostack not empty. (1)");
 	TestEquals(undo->GetRedoCount(),0,"Redostack not empty. (1)");
 
@@ -276,7 +276,7 @@ void UndoManagerTest::DoTest()
 
 	TestEquals(undo->GetUndoCount(),6,"Undostack not empty. (13)");
 	TestEquals(undo->GetRedoCount(),0,"Redostack not empty.v(13)");
-	
+
 	TestRef(obj);
 
 	//
@@ -340,7 +340,7 @@ void UndoManagerTest::DoTest()
 
 	TestEquals(undo->GetUndoCount(),8,"Undostack not empty. (13)");
 	TestEquals(undo->GetRedoCount(),0,"Redostack not empty.v(13)");
-	
+
 	TestRef(obj);
 
 	//
@@ -404,7 +404,7 @@ void UndoManagerTest::DoTest()
 
 	TestEquals(undo->GetUndoCount(),10,"Undostack not empty. (13)");
 	TestEquals(undo->GetRedoCount(),0,"Redostack not empty.v(13)");
-	
+
 	TestRef(obj);
 
 	//
@@ -451,7 +451,8 @@ void UndoManagerTest::DoTest()
 	undo->Close();
 
 	//+1 Zähler für obj
-	TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 3 sein. (b)");
+	//+1 Zähler für Undo/Retain
+	TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (b)");
 
 	//Objekt prüfen
 	TestEquals(obj->GetReferenceCount(), 13, "Referenzzähler muss 13 sein.");
@@ -467,7 +468,7 @@ void UndoManagerTest::DoTest()
 	//-1 Zähler für obj
 	//+1 Zähler für UndoManager
 	//= Zähler bleibt gleich
-	TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (c)");
+	TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (c)");
 
 	TestEquals(undo->GetUndoCount(),11,"Undostack not empty.(15)");
 	TestEquals(undo->GetRedoCount(),1,"Redostack not empty.(15)");
@@ -481,7 +482,7 @@ void UndoManagerTest::DoTest()
 	//+1 Zähler für obj
 	//-1 Zähler für UndoManager
 	//= Zähler bleibt gleich
-	TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (d)");
+	TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (d)");
 
 	TestEquals(undo->GetUndoCount(),12,"Undostack not empty. (16)");
 	TestEquals(undo->GetRedoCount(),0,"Redostack not empty.v(16)");

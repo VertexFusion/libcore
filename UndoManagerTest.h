@@ -120,9 +120,17 @@ public:
 	void SetObject(UndoTestObject* other)
 	{
 		undo->RegisterChange(this, (jm::Object**)&obj);
-		if(obj!=NULL)obj->Release();
+		if(obj!=NULL)
+        {
+            undo->RegisterRelease(obj);
+            obj->Release();
+        }
 		obj=other;
-		if(obj!=NULL)obj->Retain();
+		if(obj!=NULL)
+        {
+            undo->RegisterRetain(obj);
+            obj->Retain();
+        }
 	}
 
 };

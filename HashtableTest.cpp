@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Jameo Software. All rights reserved.
 //
 
-#include "HashtableTest.h"
 #include "core/Hashtable.h"
-#include "core/Exception.h"
+#include "HashtableTest.h"
 
 using namespace jm;
 
