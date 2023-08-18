@@ -14,7 +14,8 @@ using namespace jm;
 // ZIP FILE
 //
 
-ZipFile::ZipFile(File* file): jm::Object()
+ZipFile::ZipFile(File* file): jm::Object(),
+mEntries(this)
 {
 	mFile = file;
 }

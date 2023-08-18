@@ -278,5 +278,10 @@ void UndoManager::RegisterRegenerationMarker(jm::EditableObject* object)
 
 void UndoManager::RegisterRelease(Object* object)
 {
-    RegisterChange(new UndoObjectRelease(object));
+    RegisterChange(new UndoObjectRelease(object,true));
+}
+
+void UndoManager::RegisterRetain(Object* object)
+{
+    RegisterChange(new UndoObjectRelease(object,false));
 }

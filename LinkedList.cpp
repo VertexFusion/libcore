@@ -24,7 +24,7 @@ LinkedList::LinkedList(Object* owner): Object()
 	current = NULL;
 	count = 0;
 	mOwner = owner;
-	if(mOwner == NULL)throw new Exception("Owner of LinkedList must not be NULL!");
+	if(mOwner == NULL)System::Log("Owner of LinkedList must not be NULL!",kLogWarning);
 }
 
 LinkedList::~LinkedList()

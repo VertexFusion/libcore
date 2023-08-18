@@ -29,7 +29,8 @@ uint32 CRC32(const char *s, uint32 n)
 	return ~crc;
 }
 
-ZipOutputFile::ZipOutputFile(File* file): jm::Object()
+ZipOutputFile::ZipOutputFile(File* file): jm::Object(),
+mEntries(this)
 {
 	mFile = file;
 	mTemp = NULL;

@@ -401,11 +401,11 @@ void UndoRegenerationMarker::Swap()
 	UndoChange::Swap();
 }
 
-UndoObjectRelease::UndoObjectRelease(Object* object): UndoChange(object)
+UndoObjectRelease::UndoObjectRelease(Object* object,bool release): UndoChange(object)
 {
     // Nothing to do here. The super method will Retain() the object.
     // This is just the one thing we want to do.
-    mReleased=true;
+    mReleased=release;
     mObject=object;
 }
 
@@ -421,7 +421,7 @@ void UndoObjectRelease::Swap()
     if(mReleased)mObject->Retain();
     else mObject->Release();
 
-    mReleased!=mReleased;
+    mReleased=!mReleased;
 
 	UndoChange::Swap();
 }
