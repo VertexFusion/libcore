@@ -35,6 +35,12 @@
 #ifndef jm_Types_h
 #define jm_Types_h
 
+//! ASCII Constants for colors in the console stream.
+#define kTxtReset "\033[0m"
+#define kTxtRed "\033[31m"
+#define kTxtGreen "\033[32m"
+
+
 #ifndef M_2_PI
 #define M_2_PI    2.0*3.14159265358979323846264338328 /*!<  Defines a value for "2 x pi" */
 #endif
