@@ -140,7 +140,8 @@ bool File::MakeDirectory()
 {
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
-	throw "STUB";
+	int32 result = mkdir(mCstr,S_IRWXU|S_IRGRP|S_IROTH);
+	return result == 0;
 
 	#elif defined _WIN32//Windows
 	int32 result = mkdir(mCstr);

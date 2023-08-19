@@ -92,6 +92,11 @@ void Properties::Store(File* file)
 {
 	try
 	{
+		if(file->Exists()==false)
+		{
+			jm::File dir = jm::File(file->GetParent());
+			if(dir.Exists()==false)dir.MakeDirectory();
+		}
 		file->Open(kFmWrite);
 
 		Iterator* keys = Keys();
@@ -103,7 +108,7 @@ void Properties::Store(File* file)
 
 			//Ersetzungen
 			//Ersetze
-			int32 index = 0;
+			uint32 index = 0;
 			while(index < value.Length())
 			{
 				int8 c = value.CharAt(index);
@@ -130,8 +135,9 @@ void Properties::Store(File* file)
 			int32 cl = 0;
 			while(cstr[cl] != 0)cl++;
 			file->Write((uint8*)cstr, cl);
-			delete cstr;
+			delete[] cstr;
 		}
+		delete keys;
 
 		file->Close();
 	}
