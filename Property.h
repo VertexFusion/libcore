@@ -162,12 +162,12 @@ namespace jm
 			/*!
 			 \brief String festlegen
 			 */
-			VxfErrorStatus SetDwgColourValue(const DwgColour& value);
+			VxfErrorStatus SetDwgColourValue(const dwg::Colour& value);
 
 			/*!
 			 \brief Gibt String zurück
 			 */
-			DwgColour GetDwgColourValue() const;
+			dwg::Colour GetDwgColourValue() const;
 
 			/*!
 			 \brief Legt Integer fest
@@ -296,7 +296,7 @@ namespace jm
 			} mNumberValue;
 
 			String mTextValue;
-			DwgColour mDwgColourValue;
+			dwg::Colour mDwgColourValue;
 
 
 	};

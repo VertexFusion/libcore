@@ -41,16 +41,16 @@ namespace jm
 {
 
 	/*!
-	 \brief Liste mit den verfügbaren Matrix-Normen
+	 \brief List of available matrix norms
 	 */
 	enum MatrixNorm
 	{
-		kMatrixNorm1,//Spaltensummennorm
-		kMatrixNormInf//Zeilensummennorm
+		kMatrixNorm1,//!< Column Sum Norm
+		kMatrixNormInf//!< Row Sum Norm
 	};
 
 	/*!
-	 \brief An mxn-dimensional matrix.
+	 \brief An m x n-dimensional matrix.
 	 \ingroup core
 	 */
 	struct DllExport Matrix
@@ -73,58 +73,55 @@ namespace jm
 			DllExport
 			friend const Matrix operator/(const Matrix &A, const double &d);
 
-		private:
-
-			/*!
-			 \brief Dieses Feld speichert die Daten. In Analogie zur OpenGL Speicherkonvention werden die Daten Spaltenweise gespeichert.
-			 */
-			double* data;
-
 		public:
 
 			/*!
-			 \brief Anzahl der Zeilen
+			 \brief Number of rows.
 			 */
 			uint32 m;
 
 			/*!
-			 \brief Anzahl der Spalten
+			 \brief Number of columms.
 			 */
 			uint32 n;
 
 			/*!
-			 \brief Dieser Konstruktor erzeugt eine Matrix und initialisiert sie mit Nullen.
-			 \param rows Anzahl der Zeilen, die die Matrix enthalten soll.
-			 \param cols Anzahl der Spalten, die die Matrix enthalten soll.
+			 \brief This constructor creates a matrix and initializes it with zeros.
+			 \param rows Number of rows.
+			 \param cols Number of columns.
 			 */
 			Matrix(uint32 rows, uint32 cols);
 
 			/*!
-			 \brief Spezialkonstruktor für eine 3x3-Matrix.
-			 \param c1 Die erste Spalte der Matrix
-			 \param c2 Die zweite Spalte der Matrix
-			 \param c3 Die dritte Spalte der Matrix
-			 \param rowwise wenn wahr, dann wird die Matrix zeilenweise gefüllt.
+			 \brief Special constructor for a 3x3 matrix.
+			 \param c1 The 1st column of the matrix
+			 \param c2 The 2nd column of the matrix
+			 \param c3 The 3rd column of the matrix
+			 \param rowwise if \c true, then the matrix is filled row by row otherwise column by
+			 column.
 			 */
-			Matrix(Vertex3 c1, Vertex3 c2, Vertex3 c3, bool rowwise);
+			Matrix(const Vertex3 &c1,
+					 const Vertex3 &c2,
+					 const Vertex3 &c3,
+					 bool rowwise);
 
 			/*!
-			 \brief Standardkonstruktor
+			 \brief Default constructor.
 			 */
 			Matrix();
 
 			/*!
-			 \brief Konstruktor richtet eine Matrix 1x1 mit dem Zahlenwert als Eintrag ein
+			 \brief Constructor sets up a matrix 1x1 with the numerical value as entry,
 			 */
 			Matrix(double value);
 
 			/*!
-			 \brief Copy-Konstruktor
+			 \brief Copy constructor
 			 */
 			Matrix(const Matrix &other);
 
 			/*!
-			 \brief Copy-Konstruktor
+			 \brief Copy constructor
 			 */
 			Matrix(const Matrix* other);
 
@@ -134,114 +131,142 @@ namespace jm
 			virtual ~Matrix();
 
 			/*!
-			 \brief Legt den Wert eine Zelle fest
-			 \param row Der 0-basierte Index der Zeile
-			 \param col Der 0-basierte Index der Spalte
-			 \param value Der Wert der Zelle
+			 \brief Sets the value of a cell.
+			 \param row The 0-based index of the row.
+			 \param col The 0-based index of the column.
+			 \param value The value of the cell.
 			 */
 			void Set(uint32 row, uint32 col, double value);
 
 			/*!
-			 \brief Addiert auf den Wert einer Zelle den übergebenen Wert hinzu
-			 \param row Der 0-basierte Index der Zeile
-			 \param col Der 0-basierte Index der Spalte
-			 \param value Der Wert, der auf die Zelle hinzuaddiert werden soll
+			 \brief Adds to the value of a cell the passed value.
+			 \param row The 0-based index of the row.
+			 \param col The 0-based index of the column.
+			 \param value The value to be added to the cell.
 			 */
 			void Add(uint32 row, uint32 col, double value);
 
 			/*!
-			 \brief Gibt den Wert eine Zelle zurück
-			 \param row Der 0-basierte Index der Zeile
-			 \param col Der 0-basierte Index der Spalte
+			 \brief Returns the value of a cell.
+			 \param row The 0-based index of the row.
+			 \param col The 0-based index of the column.
 			 */
 			double Get(uint32 row, uint32 col) const;
 
 			/*!
-			 \brief Diese Methode füllt alle Elemente der Matrix mit 0.
+			 \brief This method fills all elements of the matrix with 0.
 			 */
 			void Zeros();
 
 			/*!
-			 \brief Diese Methode transponiert die Matrix
+			 \brief This method transposes the matrix,
 			 */
 			void Transpose();
 
 			/*!
-			 \brief Diese Methode fügt den Inhalt der Anderen Matrix in diese Matrix ein.
-			 Oberes linkes Element ist 0,0
+			 \brief This method inserts the contents of the other matrix into this matrix. Upper left
+			 element is 0,0
 			 */
 			void Insert(const Matrix &A);
 
 			/*!
-			\brief Diese Methode fügt den Inhalt der Anderen Matrix in diese Matrix ein.
-			Oberes linkes Element ist r,c
+			\brief This method inserts the contents of the Other matrix into this matrix. Upper left
+			 element is r,c
 			*/
 			void Insert(const Matrix &A, uint32 r, uint32 c);
 
 			/*!
-			 \brief Diese Methode setzt alle Werte auf den Diagonalelementen auf den gewünschten Wert.
+			 \brief This method sets all values on the diagonal elements to the desired value.
 			 */
 			void Diag(double value);
 
-			Matrix &operator=(const Matrix &A);
-
 			/*!
-			 \brief berechnet die Determinante einer Matrix
+			 \brief Calculates the determinant of a matrix.
+			 
+			 This method is currently limited to a maximum of 4x4 matrices.
 			 */
 			VxfErrorStatus Det(double &det) const;
 
 			/*!
-			 \brief Invertiert diese Matrix
+			 \brief Inverts this matrix.
+			 
+			 This method is currently limited to a maximum of 4x4 matrices.
 			 */
 			VxfErrorStatus Inverse();
 
 			/*!
-			 \brief Diese Methode gibt die Referenz auf das Datenarray zurück.
-			 Zwar wäre es möglich, hierrüber die Werte direkt zu bearbeiten, aber
-			 einziger Grund für diese Methode ist der Zugriff für OpenGL.
+			 \brief This method returns the reference to the data array.
+			 
+			 Only needed for efficient access for OpenGL.
 			 */
-			double* GetRef();
+			const double* GetRef() const;
 
 			/*!
-			 \brief Diese Methode berechnet die Kondition der Matrix nach entsprechender Matrixnorm
+			 \brief This method calculates the condition of the matrix according to the corresponding
+			 matrix norm.
 			 */
-			double Norm(MatrixNorm norm);
+			double Norm(MatrixNorm norm) const;
+		
+			/*!
+			 \brief Returns the sum of the diagonal elements.
+			 */
+			double Trace() const;
+		
+			/*!
+			 \brief Returns the Eigen Values of the matrix.
+			 
+			 Currentrly this is restricted to matrices of maximum 3x3.
+			 */
+			Vector Eigen() const;
 
 			/*!
-			 \brief Diese Statische Funktion generiert eine 3x3 Rotationsmatrix
-			 \param angle Rotationswinkel im Bogenmaß
-			 \param axis Rotationsachse (muss normalisiert sein)
-			 */
-			static Matrix Generate3x3RotationMatrix(const double angle, const Vertex3 &axis);
-
-			/*!
-			 \brief Diese Statische Funktion generiert eine 3x3 Rotationsmatrix für eine Rotation um die X-Achse
-			 \param angle Rotationswinkel im Bogenmaß
-			 */
-			static Matrix Generate3x3RotationXMatrix(const double angle);
-
-			/*!
-			 \brief Diese Statische Funktion generiert eine 3x3 Rotationsmatrix für eine Rotation um die Y-Achse
-			 \param angle Rotationswinkel im Bogenmaß
-			 */
-			static Matrix Generate3x3RotationYMatrix(const double angle);
-
-			/*!
-			 \brief Diese Statische Funktion generiert eine 3x3 Rotationsmatrix für eine Rotation um die Z-Achse
-			 \param angle Rotationswinkel im Bogenmaß
-			 */
-			static Matrix Generate3x3RotationZMatrix(const double angle);
-
-			/*!
-			 \brief Gibt den Inhalt der Matric auf der Konsole aus...
+			 \brief Prints the content of the matrix on \c std::cout
 			 */
 			void Print() const;
 
 			/*!
-			 \brief Diese Methode berechnet die Anzahl der Elemente, die nicht 0.0 sind.
-			 Zur Zeit wird dies ohne eps gemacht.
+			 \brief This method calculates the number of elements that are not 0.0.
+			 Currently this is done without EPS.
 			 */
 			uint32 CountNonZeroElements() const;
+
+			/*!
+			 \brief This static function generates a 3x3 rotation matrix
+			 \param angle Angle of rotation in radians
+			 \param axis Rotation axis (must be normalized)
+			 */
+			static Matrix Generate3x3RotationMatrix(double angle, const Vertex3 &axis);
+
+			/*!
+			 \brief This static function generates a 3x3 rotation matrix for a rotation around the
+			 X-axis.
+			 \param angle Angle of rotation in radians
+			 */
+			static Matrix Generate3x3RotationXMatrix(double angle);
+
+			/*!
+			 \brief This static function generates a 3x3 rotation matrix for a rotation around the
+			 Y-axis.
+			 \param angle Angle of rotation in radians
+			 */
+			static Matrix Generate3x3RotationYMatrix(double angle);
+
+			/*!
+			 \brief This static function generates a 3x3 rotation matrix for a rotation around the
+			 Z-axis.
+			 \param angle Angle of rotation in radians
+			 */
+			static Matrix Generate3x3RotationZMatrix(double angle);
+
+			Matrix &operator=(const Matrix &A);
+
+		private:
+
+			/*!
+			 \brief This field stores the data. In analogy to the OpenGL storage convention, the data
+			 is stored column by column.
+			 */
+			double* data;
 	};
 
 

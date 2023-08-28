@@ -73,7 +73,7 @@ namespace jm
 			static void PrintIC(DiffOperation operation,
 			                    const String& obj1, const String& obj2, const String& label);// Ignore Case
 			static void Print(DiffOperation operation,
-			                  const DwgColour &obj1, const DwgColour &obj2, const String &label);
+			                  const dwg::Colour &obj1, const dwg::Colour &obj2, const String &label);
 			static void Print(DiffOperation operation,
 			                  const Vertex2 &obj1, const Vertex2 &obj2, const String &label);
 			static void Print(DiffOperation operation,
@@ -104,7 +104,7 @@ namespace jm
 							void Print(dxf::Point* obj1, dxf::Point* obj2);
 							void Print(dxf::Polyline* obj1, dxf::Polyline* obj2);
 							void Print(dxf::Scale* obj1, dxf::Scale* obj2);*/
-			void Print(DwgHeader* obj1, DwgHeader* obj2);
+			void Print(dwg::Header* obj1, dwg::Header* obj2);
 			/*				void Print(dxf::Style* obj1, dxf::Style* obj2);
 							void Print(dxf::Text* obj1, dxf::Text* obj2);
 							void Print(dxf::DwgTrace* obj1, dxf::DwgTrace* obj2);

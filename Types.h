@@ -37,8 +37,11 @@
 
 //! ASCII Constants for colors in the console stream.
 #define kTxtReset "\033[0m"
+#define kTxtBold "\033[1m"
 #define kTxtRed "\033[31m"
 #define kTxtGreen "\033[32m"
+#define kTxtYellow "\033[33m"
+#define kTxtBlue "\033[34m"
 
 
 #ifndef M_2_PI

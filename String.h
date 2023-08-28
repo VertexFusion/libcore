@@ -40,8 +40,15 @@ namespace jm
 	class Charset;
 
 	/*!
-	 \brief \c String implementiert unsere generische Zeichenkette, weil \c std::string unzureichend
-	 und unkomfortabel ist. Die interne Zeichencodierung ist Unicode (UTF-8).
+	 \brief \c string implements our generic string because \c std::string is inadequate and
+	 inconvenient. The internal character encoding is Unicode (UTF-8).
+	 
+	 For the conversion from std::string to jm::String the following call can be used:
+	 \code{.cpp}
+	 std::string msg = "Hello World!";
+	 jm::String str = jm::String(msg.c_str());
+	 \endcode
+	 
 	  \ingroup core
 	 */
 	class DllExport String: public Object, public Comparable<String>
@@ -61,13 +68,6 @@ namespace jm
 			 gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
 			 */
 			String(const int8* cstring);
-
-			/*!
-			 \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
-			 (UTF-8).
-			 \param string Ein Array-String, der die Zeichenkette darstellt.
-			 */
-			//String( const Array<int8> &string );
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette.
@@ -526,11 +526,9 @@ namespace jm
 			 Formatparameter:
 			 %s StringValue
 			 //\param format Der Formatierungsstring
-			 //\param count Die Anzahl der nachfolgenden Argumente. Muss angegeben und korrekt sein.
-			 Anfernfalls gibt es unvorhergesehene Fehler
-			 //\param args Die Variablen Argumente
+			 //\param ... Die Variablen Argumente
 			 */
-			//static String Format(String *format,  ...);
+			static String Format(const String format, ... );
 
 
 			/*!
