@@ -45,7 +45,7 @@ jm::Vertex3 Transform::Trans(const jm::Vertex3 &vertex) const
 
 double Transform::Trans(const double &value) const
 {
-	//TODO Gibt es eine bessere Lösung?
+	//!\todo  Gibt es eine bessere Lösung?
 	jm::Vertex3 p1 = Trans(jm::Vertex3(0, 0, 0));
 	jm::Vertex3 p2 = Trans(jm::Vertex3(value, 0, 0));
 	return (p2 - p1).Abs();

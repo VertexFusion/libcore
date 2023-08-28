@@ -135,14 +135,14 @@ VxfErrorStatus Property::SetIntegerValue(int64 value)
 	return eOK;
 }
 
-VxfErrorStatus Property::SetDwgColourValue(const DwgColour& value)
+VxfErrorStatus Property::SetDwgColourValue(const dwg::Colour& value)
 {
 	mDwgColourValue = value;
 	mType = kPropertyTypeDwgColour;
 	return eOK;
 }
 
-DwgColour Property::GetDwgColourValue() const
+dwg::Colour Property::GetDwgColourValue() const
 {
 	return mDwgColourValue;
 }

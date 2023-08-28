@@ -11,6 +11,9 @@
 jm::Mutex gSystemMutex;
 jm::String gSystemError;
 
+bool gSystemLogDate=true;
+jm::LogLevel mSystemLogLabel=jm::kLogDebug;
+
 jm::String jm::System::GetLanguage()
 {
 	#ifdef __APPLE__ //macOS und iOS
@@ -39,38 +42,66 @@ jm::String jm::System::GetLanguage()
 
 }
 
+void jm::System::LogEnableDate(bool status)
+{
+	gSystemMutex.Lock();
+	gSystemLogDate=status;
+	gSystemMutex.Unlock();
+}
+
+void jm::System::LogEnableLabel(jm::LogLevel logLevel)
+{
+	gSystemMutex.Lock();
+	mSystemLogLabel=logLevel;
+	gSystemMutex.Unlock();
+}
+
+
 void jm::System::Log(const String &message, LogLevel logLevel)
 {
 	gSystemMutex.Lock();
 
 	jm::String msg;
-	msg.Append('[');
-	msg.Append(jm::Date().ToString());
-	msg.Append(']');
+	if(gSystemLogDate)msg <<'[' << jm::Date().ToString() << "] ";
 
 	switch(logLevel)
 	{
 		case kLogError:
-			msg.Append(" FEHLER: ");
+			msg << kTxtBold << kTxtRed;
+			if(logLevel>=mSystemLogLabel)msg << "FEHLER: ";
 			gSystemError = message;
 			break;
 
 		case 	kLogWarning:
-			msg.Append(" WARNUNG: ");
+			msg << kTxtBold << kTxtYellow;
+			if(logLevel>=mSystemLogLabel)msg << "WARNUNG: ";
 			break;
 
 		case kLogInformation:
-			msg.Append(" INFO: ");
+			if(logLevel>=mSystemLogLabel)msg << "INFO: ";
 			break;
 
 		case kLogDebug:
-			msg.Append(" DEBUG: ");
+			if(logLevel>=mSystemLogLabel)msg << "DEBUG: ";
 			break;
 	}
-	msg.Append(message);
+	msg << message;
+	
+	switch(logLevel)
+	{
+		case kLogError:
+		case kLogWarning:
+			msg << kTxtReset;
+			break;
+			
+		default:
+			// Do nothing here.
+			break;
+	}
 
+	
 	//Ausgabe auf Console
-	if(logLevel < kLogDebug)std::cout << msg << std::endl;
+	if(logLevel > kLogDebug)std::cout << msg << std::endl;
 
 	//Ausgabe ins Logfile
 	#ifdef __APPLE__ //macOS und iOS

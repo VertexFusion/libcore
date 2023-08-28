@@ -20,7 +20,10 @@ Matrix::Matrix(uint32 rows, uint32 cols)
 	Zeros();
 }
 
-Matrix::Matrix(Vertex3 c1, Vertex3 c2, Vertex3 c3, bool rowwise)
+Matrix::Matrix(const Vertex3 &c1,
+					const Vertex3 &c2,
+					const Vertex3 &c3,
+					bool rowwise)
 {
 	m = 3;
 	n = 3;
@@ -151,6 +154,7 @@ VxfErrorStatus Matrix::Det(double &det) const
 		}
 		else if(m == 2)
 		{
+			// Rule of Sarrus
 			// Index
 			// | 0 2 |
 			// | 1 3 |
@@ -160,6 +164,7 @@ VxfErrorStatus Matrix::Det(double &det) const
 		}
 		else if(m == 3)
 		{
+			// Rule of Sarrus
 			// Index
 			// | 0 3 6 |
 			// | 1 4 7 |
@@ -238,9 +243,9 @@ VxfErrorStatus Matrix::Inverse()
 		}
 		else if(m == 2)
 		{
-			double _det;
-			Det(_det);
-			_det = 1.0 / _det;
+			double det;
+			Det(det);
+			det = 1.0 / det;
 
 			// Index
 			// | 0 2 |   | a b |
@@ -250,18 +255,18 @@ VxfErrorStatus Matrix::Inverse()
 			double b = data[2];
 			double c = data[1];
 			double d = data[3];
-			data[0] = d * _det;
-			data[2] = (-b) * _det;
-			data[1] = (-c) * _det;
-			data[3] = a * _det;
+			data[0] = d * det;
+			data[2] = (-b) * det;
+			data[1] = (-c) * det;
+			data[3] = a * det;
 
 			return eOK;
 		}
 		else if(m == 3)
 		{
-			double _det;
-			Det(_det);
-			_det = 1.0 / _det;
+			double det;
+			Det(det);
+			det = 1.0 / det;
 
 			// Index
 			// | 0 3 6 |   | a b c |
@@ -277,23 +282,23 @@ VxfErrorStatus Matrix::Inverse()
 			double g = data[2];
 			double h = data[5];
 			double i = data[8];
-			data[0] = (e * i - f * h) * _det;
-			data[3] = (c * h - b * i) * _det;
-			data[6] = (b * f - c * e) * _det;
-			data[1] = (f * g - d * i) * _det;
-			data[4] = (a * i - c * g) * _det;
-			data[7] = (c * d - a * f) * _det;
-			data[2] = (d * h - e * g) * _det;
-			data[5] = (b * g - a * h) * _det;
-			data[8] = (a * e - b * d) * _det;
+			data[0] = (e * i - f * h) * det;
+			data[3] = (c * h - b * i) * det;
+			data[6] = (b * f - c * e) * det;
+			data[1] = (f * g - d * i) * det;
+			data[4] = (a * i - c * g) * det;
+			data[7] = (c * d - a * f) * det;
+			data[2] = (d * h - e * g) * det;
+			data[5] = (b * g - a * h) * det;
+			data[8] = (a * e - b * d) * det;
 
 			return eOK;
 		}
 		else if(m == 4)
 		{
-			double _det;
-			Det(_det);
-			_det = 1.0 / _det;
+			double det;
+			Det(det);
+			det = 1.0 / det;
 
 			// Index
 			// | 0 4  8 12 |   | a e i m |   | 11 12 13 14 |
@@ -318,22 +323,22 @@ VxfErrorStatus Matrix::Inverse()
 			double a34 = data[14];
 			double a44 = data[15];
 
-			data[0] = (a22 * a33 * a44 + a23 * a34 * a42 + a24 * a32 * a43 - a22 * a34 * a43 - a23 * a32 * a44 - a24 * a33 * a42) * _det;
-			data[1] = (a21 * a34 * a43 + a23 * a31 * a44 + a24 * a33 * a41 - a21 * a33 * a44 - a23 * a34 * a41 - a24 * a31 * a43) * _det;
-			data[2] = (a21 * a32 * a44 + a22 * a34 * a41 + a24 * a31 * a42 - a21 * a34 * a42 - a22 * a31 * a44 - a24 * a32 * a41) * _det;
-			data[3] = (a21 * a33 * a42 + a22 * a31 * a43 + a23 * a32 * a41 - a21 * a32 * a43 - a22 * a33 * a41 - a23 * a31 * a42) * _det;
-			data[4] = (a12 * a34 * a43 + a13 * a32 * a44 + a14 * a33 * a42 - a12 * a33 * a44 - a13 * a34 * a42 - a14 * a32 * a43) * _det;
-			data[5] = (a11 * a33 * a44 + a13 * a34 * a41 + a14 * a31 * a43 - a11 * a34 * a43 - a13 * a31 * a44 - a14 * a33 * a41) * _det;
-			data[6] = (a11 * a34 * a42 + a12 * a31 * a44 + a14 * a32 * a41 - a11 * a32 * a44 - a12 * a34 * a41 - a14 * a31 * a42) * _det;
-			data[7] = (a11 * a32 * a43 + a12 * a33 * a41 + a13 * a31 * a42 - a11 * a33 * a42 - a12 * a31 * a43 - a13 * a32 * a41) * _det;
-			data[8] = (a12 * a23 * a44 + a13 * a24 * a42 + a14 * a22 * a43 - a12 * a24 * a43 - a13 * a22 * a44 - a14 * a23 * a42) * _det;
-			data[9] = (a11 * a24 * a43 + a13 * a21 * a44 + a14 * a23 * a41 - a11 * a23 * a44 - a13 * a24 * a41 - a14 * a21 * a43) * _det;
-			data[10] = (a11 * a22 * a44 + a12 * a24 * a41 + a14 * a21 * a42 - a11 * a24 * a42 - a12 * a21 * a44 - a14 * a22 * a41) * _det;
-			data[11] = (a11 * a23 * a42 + a12 * a21 * a43 + a13 * a22 * a41 - a11 * a22 * a43 - a12 * a23 * a41 - a13 * a21 * a42) * _det;
-			data[12] = (a12 * a24 * a33 + a13 * a22 * a34 + a14 * a23 * a32 - a12 * a23 * a34 - a13 * a24 * a32 - a14 * a22 * a33) * _det;
-			data[13] = (a11 * a23 * a34 + a13 * a24 * a31 + a14 * a21 * a33 - a11 * a24 * a33 - a13 * a21 * a34 - a14 * a23 * a31) * _det;
-			data[14] = (a11 * a24 * a32 + a12 * a21 * a34 + a14 * a22 * a31 - a11 * a22 * a34 - a12 * a24 * a31 - a14 * a21 * a32) * _det;
-			data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33 - a13 * a22 * a31) * _det;
+			data[0] = (a22 * a33 * a44 + a23 * a34 * a42 + a24 * a32 * a43 - a22 * a34 * a43 - a23 * a32 * a44 - a24 * a33 * a42) * det;
+			data[1] = (a21 * a34 * a43 + a23 * a31 * a44 + a24 * a33 * a41 - a21 * a33 * a44 - a23 * a34 * a41 - a24 * a31 * a43) * det;
+			data[2] = (a21 * a32 * a44 + a22 * a34 * a41 + a24 * a31 * a42 - a21 * a34 * a42 - a22 * a31 * a44 - a24 * a32 * a41) * det;
+			data[3] = (a21 * a33 * a42 + a22 * a31 * a43 + a23 * a32 * a41 - a21 * a32 * a43 - a22 * a33 * a41 - a23 * a31 * a42) * det;
+			data[4] = (a12 * a34 * a43 + a13 * a32 * a44 + a14 * a33 * a42 - a12 * a33 * a44 - a13 * a34 * a42 - a14 * a32 * a43) * det;
+			data[5] = (a11 * a33 * a44 + a13 * a34 * a41 + a14 * a31 * a43 - a11 * a34 * a43 - a13 * a31 * a44 - a14 * a33 * a41) * det;
+			data[6] = (a11 * a34 * a42 + a12 * a31 * a44 + a14 * a32 * a41 - a11 * a32 * a44 - a12 * a34 * a41 - a14 * a31 * a42) * det;
+			data[7] = (a11 * a32 * a43 + a12 * a33 * a41 + a13 * a31 * a42 - a11 * a33 * a42 - a12 * a31 * a43 - a13 * a32 * a41) * det;
+			data[8] = (a12 * a23 * a44 + a13 * a24 * a42 + a14 * a22 * a43 - a12 * a24 * a43 - a13 * a22 * a44 - a14 * a23 * a42) * det;
+			data[9] = (a11 * a24 * a43 + a13 * a21 * a44 + a14 * a23 * a41 - a11 * a23 * a44 - a13 * a24 * a41 - a14 * a21 * a43) * det;
+			data[10] = (a11 * a22 * a44 + a12 * a24 * a41 + a14 * a21 * a42 - a11 * a24 * a42 - a12 * a21 * a44 - a14 * a22 * a41) * det;
+			data[11] = (a11 * a23 * a42 + a12 * a21 * a43 + a13 * a22 * a41 - a11 * a22 * a43 - a12 * a23 * a41 - a13 * a21 * a42) * det;
+			data[12] = (a12 * a24 * a33 + a13 * a22 * a34 + a14 * a23 * a32 - a12 * a23 * a34 - a13 * a24 * a32 - a14 * a22 * a33) * det;
+			data[13] = (a11 * a23 * a34 + a13 * a24 * a31 + a14 * a21 * a33 - a11 * a24 * a33 - a13 * a21 * a34 - a14 * a23 * a31) * det;
+			data[14] = (a11 * a24 * a32 + a12 * a21 * a34 + a14 * a22 * a31 - a11 * a22 * a34 - a12 * a24 * a31 - a14 * a21 * a32) * det;
+			data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33 - a13 * a22 * a31) * det;
 
 			return eOK;
 		}
@@ -398,12 +403,12 @@ void Matrix::Diag(double value)
 	}
 }
 
-double* Matrix::GetRef()
+const double* Matrix::GetRef() const
 {
 	return data;
 }
 
-double Matrix::Norm(MatrixNorm nm)
+double Matrix::Norm(MatrixNorm nm) const
 {
 	double norm = 0;
 	double sum;
@@ -471,6 +476,96 @@ uint32 Matrix::CountNonZeroElements() const
 	return count;
 }
 
+double Matrix::Trace() const
+{
+	double sum=0.0;
+	
+	// Just do ensure, that we make no error even if the matrix is not square.
+	uint32 cnt = std::min(m, n);
+
+	for(uint32 i = 0; i < cnt; i++)
+	{
+		sum+=data[i * (m + 1)];
+	}
+	
+	return sum;
+}
+
+Vector Matrix::Eigen() const
+{
+	if(m!=n)throw new Exception("Matrix must be square");
+	
+	// See: https://en.wikipedia.org/wiki/Eigenvalue_algorithm
+	
+	if(m==1)
+	{
+		Vector v = Vector(1);
+		v.data[0]=Get(0,0);
+		return v;
+	}
+	if(m==2)
+	{
+		Vector v = Vector(2);
+		
+		double trA=Trace();
+		double detA;
+		Det(detA);
+		double gapA = sqrt(trA*trA-4*detA);
+		
+		v.data[0]=(trA-gapA)/2.0;
+		v.data[1]=(trA+gapA)/2.0;
+
+		return v;
+	}
+	if(m==3)
+	{
+		// Note: Matrix must be symmetric
+		Vector v = Vector(3);
+		
+		double p1=pow(Get(0,1), 2.0)+pow(Get(0,2),2.0)+pow(Get(1,2),2.0);
+		
+		if(p1==0.0)
+		{
+			v.data[0]=Get(0,0);
+			v.data[1]=Get(1,1);
+			v.data[2]=Get(2,2);
+		}
+		else
+		{
+			double q=Trace()/3.0;
+			double p2 = pow(Get(0,0)-q,2.0)+pow(Get(1,1)-q,2.0)+pow(Get(2,2)-q,2.0) +2.0*p1;
+			double p = sqrt(p2/6.0);
+			
+			Matrix A=*this;
+			Matrix I(3,3);
+			I.Diag(1.0);
+			
+			Matrix B = (1.0/p) * (A-q*I);
+			
+			double detB;
+			B.Det(detB);
+			
+			double r=detB/2.0;
+			
+			double phi;
+			
+			if( r <= -1.0)phi=M_PI/3.0;
+			else if (r >= 1.0)phi=0.0;
+			else phi = acos(r)/3.0;
+			
+			double eig1=q + 2.0 * p * cos(phi);
+			double eig3=q + 2.0 * p * cos(phi+(M_2_PI/3.0));
+			double eig2=3.0 * q - eig1 - eig3;
+			
+			v.data[0]=eig1;
+			v.data[1]=eig2;
+			v.data[2]=eig3;
+		}
+		return v;
+	}
+	
+	throw new Exception("Matrix is greater than 3x3");
+}
 
 namespace jm
 {
@@ -619,7 +714,7 @@ const Matrix jm::operator/(Matrix const &A, double const &d)
 	return R;
 }
 
-Matrix Matrix::Generate3x3RotationMatrix(const double angle, const Vertex3 &axis)
+Matrix Matrix::Generate3x3RotationMatrix(double angle, const Vertex3 &axis)
 {
 	//Siehe https://www.opengl.org/sdk/docs/man2/xhtml/glRotate.xml (eher nicht)
 	//      https://en.wikipedia.org/wiki/Rotation_matrix
@@ -654,7 +749,7 @@ Matrix Matrix::Generate3x3RotationMatrix(const double angle, const Vertex3 &axis
 	return r;
 }
 
-Matrix Matrix::Generate3x3RotationXMatrix(const double angle)
+Matrix Matrix::Generate3x3RotationXMatrix(double angle)
 {
 
 	// Index
@@ -674,7 +769,7 @@ Matrix Matrix::Generate3x3RotationXMatrix(const double angle)
 	return r;
 }
 
-Matrix Matrix::Generate3x3RotationYMatrix(const double angle)
+Matrix Matrix::Generate3x3RotationYMatrix(double angle)
 {
 
 	// Index
@@ -694,7 +789,7 @@ Matrix Matrix::Generate3x3RotationYMatrix(const double angle)
 	return r;
 }
 
-Matrix Matrix::Generate3x3RotationZMatrix(const double angle)
+Matrix Matrix::Generate3x3RotationZMatrix(double angle)
 {
 
 	// Index

@@ -802,16 +802,16 @@ String String::LineSeparator()
 
  */
 
-/*String String::Format(String *format, ...)
+String String::Format(const String format, ...)
 {
-	//Zähle Anzahl der Argumente
-	uint32 count = 0;
-	for(uint32 a = 0; a < format->Length(); a++)
+	// Count the number of used arguments in the string
+	uint32 count1 = 0;
+	for(uint32 a = 0; a < format.Length(); a++)
 	{
-		if(format->CharAt(a) == '%')
+		if(format.CharAt(a) == '%')
 		{
-			bool escape = (a > 0 && format->CharAt(a - 1) == '/') ? true : false;
-			if(!escape)count++;
+			bool escape = (a > 0 && format.CharAt(a - 1) == '/') ? true : false;
+			if(!escape)count1++;
 		}
 	}
 
@@ -819,21 +819,15 @@ String String::LineSeparator()
 
 
 	va_list args;
-	va_start(args, format);
+	va_start(args,format);
 
-	for(uint32 a = 0; a < count; a++)
+	/*for(uint32 a = 0; a < count; a++)
 	{
 		//va_arg weiß nicht, was kommt... wir müssen das voher bestimmen
 		void* ap = va_arg(args, void*);
-	}
-
-	va_end(args);
-
-*/
-/*	//Bestimme die Eigenschaften aller Formatierungsstrings
-	int cnt=0;//Index im String
-	int i=-1;//Index auf den gefundenen Formatierungsstring
-	while(cnt<format.Length())
+	}*/
+	
+	for(uint32 cnt=0;cnt<format.Length();cnt++)
 	{
 
 		uint16 c = format.CharAt(cnt);
@@ -841,125 +835,29 @@ String String::LineSeparator()
 		//Formatierungsstring bearbeiten
 		//Formatierung allgemein: %[argument_index$][flags][width][.precision]conversion
 		// Der Index ist 1-basiert
-		if(c=='%')
+		if(c=='%' && ( cnt==0 || (cnt>0 && format.CharAt(cnt-1)!='\\')))
 		{
-			i++;//Gehe auf den nächsten Eintrag
-			fs.push_back(FormatString());
-
-			//Schritt, in dem man sich bewegt
-			//1 : Index
-			//2 : Flag
-			//3 : Width
-			//4 : Presicion
-			//5 : Conversion
-			int step=1;
-
-			//Index auf das Element
-			fs[i].argindex=0;
-
-			//Index im String
-			fs[i].strbegin=cnt;
-
-			//Erwarteter Typ
-			fs[i].flag=UNKNOWN;
-
-			//Aktuelles Token für Formatstring-Verarbeitung
-			String token;
-
-			//Formatierungsstring verarbeiten
-			while(true && cnt < format.Length()-1)
+			if(cnt<format.Length()+1)
 			{
-				cnt++;
-
-				uint16 s =format.CharAt(cnt);
-
-				if(step==1)// Index im Array
+				uint16 char1 = format.CharAt(cnt++);
+				
+				//Integer parameter
+				if(char1=='i')
 				{
-					if(s>='0' && s<='9')
-					{
-						//Hänge Zahl dem Token an, damit es später verarbeitet werden kann
-						token.Append(s);
-					}
-					else if (s=='$')
-					{
-						//Tokenende wird durch & markiert. Verarbeite nun die Zahl
-						if(token.Length()==0)throw new Exception("Index identifier has length 0 in format-string.");
-						step++;
-						fs[i].argindex=(int)IntegerValueOf(token)-1;//Index ist 1 basiert, aber va_list ist 0-basiert.
-						token.Clear();
-					}
-					else
-					{
-						if(token.Length()!=0)throw new Exception("Index end marker ($) is missing.");
-						step++;
-						cnt--;
-					}
-				}
-				else if(step==2)//Flag
-				{
-					if(s=='s' || s=='S')fs[i].flag=STRING;
-
-					step++;
-				}
-				else
-				{
-					//Ende des Formatierungsstrings
-					token.Clear();
-
-					//Index auf den "1. Buchstaben danach"
-					fs[i].strend=cnt;
-
-					break;
+					int32 i = va_arg(args,int32);
 				}
 			}
-			cnt--;
 
 		}
-
+		else result.Append(c);
 		cnt++;
 	}
 
+	va_end(args);
 
-	//Durchlaufe alle Argumente
-	for(int a=0;a<count;a++)
-	{
-		for(int b=0;b<fs.size();b++)
-		{
-			if(fs[b].argindex == a)
-			{
-				switch(fs[b].flag)
-				{
-					case STRING:
-						fs[b].replace=*((String*)args[a]);
-						break;
-
-					case INT:
-						fs[b].replace=String::ValueOf(*((int*)args[a]));
-						break;
-
-					default:
-						throw new Exception("Unkown Argument Type");
-				}
-				break;
-			}
-		}
-	}
-
-	//Baue String Zusammen
-	//Das Array fs ist in den Indizies implizit aufsteigend sortiert.
-	cnt=0;
-	for(int a=0;a<fs.size();a++)
-	{
-		FormatString f=fs[a];
-
-		result.Append(format.Substring(cnt,f.strbegin));
-		cnt=f.strend;
-	}
-
-
-return result;
+	return result;
 }
-*/
+
 
 namespace jm
 {

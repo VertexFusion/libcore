@@ -120,8 +120,8 @@ void DiffInfo::PrintIC(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-                     const DwgColour &obj1,
-                     const DwgColour &obj2,
+                     const dwg::Colour &obj1,
+                     const dwg::Colour &obj2,
                      const String &label)
 {
 	switch(operation)
