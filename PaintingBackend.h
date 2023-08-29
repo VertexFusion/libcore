@@ -236,7 +236,7 @@ namespace jm
 			 wenn eine durchgehende Linie gezeichnet wird.
 			 \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
 			 */
-			LineType* curLineType;
+			dwg::LineType* curLineType;
 
 			/*!
 			 \brief Die aktuelle Skalierung des Linienmusters.

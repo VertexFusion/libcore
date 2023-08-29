@@ -79,7 +79,7 @@ namespace jm
 			static void Print(DiffOperation operation,
 			                  const Vertex3 &obj1, const Vertex3 &obj2, const String &label);
 			static void Print(DiffOperation operation,
-			                  const DwgHandle& obj1, const DwgHandle& obj2, const String& label);
+			                  const dwg::Handle& obj1, const dwg::Handle& obj2, const String& label);
 			/*
 							//Objekte
 							void Print(dxf::DwgAppId* obj1, dxf::DwgAppId* obj2);

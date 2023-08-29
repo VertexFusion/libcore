@@ -55,10 +55,10 @@ namespace jm
 			 \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
 			 \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
 			 */
-			static unsigned int MakeDiff(DwgDocument* c1, DwgDocument* c2);
+			static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
 
-			static void HandleEntityU(DiffDistance* dd, DwgEntity* e);
-			static void HandleEntityV(DiffDistance* dd, DwgEntity* e);
+			static void HandleEntityU(DiffDistance* dd, dwg::Entity* e);
+			static void HandleEntityV(DiffDistance* dd, dwg::Entity* e);
 
 		private:
 			/*!

@@ -48,7 +48,7 @@ namespace jm
 	 - File path, load and save
 	 \ingroup core
 	 */
-	class DllExport Document: public Object
+	class DllExport Document: public jm::Object
 	{
 
 		public:

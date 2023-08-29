@@ -36,9 +36,8 @@
 
 namespace jm
 {
-
 	class Document;
-
+	
 	/*!
 	 \brief Diese Klasse repräsentiert den Manager für Rückgängig-Operationen.
 	 Es werden Bearbeitungsschritte an einer Datei direkt in der Datei gespeichert.
@@ -78,7 +77,7 @@ namespace jm
 			 \brief Legt das Dokument fest, welches mit diesem Manager assoziiert wird.
 			 Dadurch werden Änderungen automatisch verfolgt.
 			 */
-			void SetDocument(Document* document);
+			void SetDocument(jm::Document* document);
 
 			/*!
 			 \brief Legt fest, ob Änderungen verfolgt werden sollen, oder nicht
@@ -352,7 +351,7 @@ namespace jm
 			/*!
 			 \brief Das zugehörige Dokument
 			 */
-			Document* mDocument;
+			jm::Document* mDocument;
 
 			/*!
 			 \brief Status, ob Änderungen an der Datei verfolgt werden sollen, oder nicht
