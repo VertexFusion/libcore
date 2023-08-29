@@ -203,8 +203,8 @@ void DiffInfo::Print(DiffOperation operation,
 
 
 void DiffInfo::Print(DiffOperation operation,
-                     const DwgHandle& obj1,
-                     const DwgHandle& obj2,
+                     const dwg::Handle& obj1,
+                     const dwg::Handle& obj2,
                      const String& label)
 {
 	switch(operation)

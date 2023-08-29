@@ -51,7 +51,7 @@ void Diff::HandleEntityV(DiffDistance* dd, DwgEntity* e)
 	else dd->AddV(e);
 }
 
-uint32 Diff::MakeDiff(DwgDocument* c1, DwgDocument* c2)
+uint32 Diff::MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2)
 {
 	DiffDistance dd = DiffDistance();
 	int distance = 1;
