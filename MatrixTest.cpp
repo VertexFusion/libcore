@@ -84,7 +84,7 @@ void MatrixTest::DoTest()
     A.Set(2,1,8);
     A.Set(2,2,9);
 
-    double* data=A.GetRef();
+    const double* data=A.GetRef();
 
     // Index
     // | 0 3 6 |
