@@ -52,8 +52,8 @@ namespace jm
 			Integer(int64 value);
 
 			/*!
-			  \brief Objektvergleich
-			  */
+			 \copydoc jm::Object::Equals()
+			 */
 			bool Equals(const Object* other) const override;
 
 			bool Equals(const Integer& another) const;

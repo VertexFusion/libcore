@@ -168,7 +168,7 @@ namespace jm
 
 			 \param props Settings, which pass programme settings to the file, if applicable.
 			 */
-			virtual bool InitNewDocument(Properties* props) = 0;
+			virtual VxfErrorStatus InitNewDocument(Properties* props) = 0;
 
 			/*!
 			 \brief Determines that the visual representation should be renewed for this document in

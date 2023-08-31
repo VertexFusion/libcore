@@ -47,7 +47,7 @@ namespace jm
 	{
 		public:
 			/*!
-			 \brief Konstruktor
+			 \brief Constructor
 			 */
 			CharsetDecoder();
 

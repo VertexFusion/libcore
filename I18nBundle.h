@@ -34,6 +34,11 @@
 
 #include "Properties.h"
 
+/*!
+\brief Quick macro for translation
+ */
+#define Tr(X) jm::I18nBundle::GetDefault()->Translate(X)
+
 namespace jm
 {
 	/*!
@@ -55,6 +60,12 @@ namespace jm
 			           String subfolder = kEmptyString);
 
 			I18nBundle(const File &file, const String &language);
+
+			String Translate(const String& key) const;
+
+			static I18nBundle* GetDefault();
+
+			static void SetDefault(I18nBundle* bundle);
 
 		private:
 			/*!

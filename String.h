@@ -188,8 +188,8 @@ namespace jm
 			void DeleteCharRangeAt(uint32 index, uint32 length);
 
 			/*!
-			\brief Objektvergleich
-			*/
+			 \copydoc jm::Object::Equals()
+			 */
 			bool Equals(const Object* other) const override;
 
 			/*!
@@ -522,11 +522,16 @@ namespace jm
 			static String ValueOf(bool value);
 
 			/*!
-			 \brief Diese Methode formatiert den Ausgangsstring.
-			 Formatparameter:
-			 %s StringValue
-			 //\param format Der Formatierungsstring
-			 //\param ... Die Variablen Argumente
+			 \brief Formatting method for string.
+			 Format parameter:
+			 %s String value
+			 %i Integer value
+
+			 // %4s -> fill with leading spaces if string is less than 4 characters
+			 // %-4s -> fill with trailing spaces if string is less than 4 characters
+
+			 //\param format format string
+			 //\param ... variable arguments
 			 */
 			static String Format(const String format, ... );
 

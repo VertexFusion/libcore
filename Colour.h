@@ -130,7 +130,7 @@ namespace jm
 			uint8 Magenta() const;
 
 			/*!
-			 \briefReturns yellow component directly.
+			 \brief Returns yellow component directly.
 			  \note Value only has meaning in CMYK mode
 			 */
 			uint8 Yellow() const;

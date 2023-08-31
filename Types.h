@@ -35,6 +35,9 @@
 #ifndef jm_Types_h
 #define jm_Types_h
 
+//! ASCII Constants for different operations
+#define kTxtClearScreen "\033[2J\033[H" // CLEAR SCREEN AND CURSOR TO HOME
+
 //! ASCII Constants for colors in the console stream.
 #define kTxtReset "\033[0m"
 #define kTxtBold "\033[1m"
@@ -42,6 +45,8 @@
 #define kTxtGreen "\033[32m"
 #define kTxtYellow "\033[33m"
 #define kTxtBlue "\033[34m"
+#define kTxtMagenta "\033[35m"
+#define kTxtCyan "\033[36m"
 
 
 #ifndef M_2_PI
