@@ -821,11 +821,6 @@ String String::Format(const String format, ...)
 	va_list args;
 	va_start(args,format);
 
-	/*for(uint32 a = 0; a < count; a++)
-	{
-		//va_arg weiß nicht, was kommt... wir müssen das voher bestimmen
-		void* ap = va_arg(args, void*);
-	}*/
 	
 	for(uint32 cnt=0;cnt<format.Length();cnt++)
 	{
@@ -835,22 +830,100 @@ String String::Format(const String format, ...)
 		//Formatierungsstring bearbeiten
 		//Formatierung allgemein: %[argument_index$][flags][width][.precision]conversion
 		// Der Index ist 1-basiert
-		if(c=='%' && ( cnt==0 || (cnt>0 && format.CharAt(cnt-1)!='\\')))
+		if(c=='%' &&
+			cnt < format.Length()-1 &&
+			( cnt==0 || (cnt>0 && format.CharAt(cnt-1)!='\\')) )
 		{
-			if(cnt<format.Length()+1)
+			// Count the length of flags
+			uint32 count = 1;
+			while (cnt + count < format.Length())
 			{
-				uint16 char1 = format.CharAt(cnt++);
+				uint16 ck = format.CharAt(cnt + count);
+
+				if (ck == 's' ||
+					 ck == 'f' ||
+					 ck == 'i')break;
+
+				count++;
+			}
+
+			// The format command
+			uint16 cmd = format.CharAt(cnt+count);
+			int32 flg1=0;
+
+			if (count > 1)flg1 = Integer::ValueOf(format.Substring(cnt+1,cnt+count));
 				
-				//Integer parameter
-				if(char1=='i')
+			//Integer parameter
+			if(cmd=='i')
+			{
+				int32 i = va_arg(args,int32);
+				String s = String::ValueOf(i);
+
+				// Leading space if flg1 > 0
+				if (flg1 > 0)
 				{
-					int32 i = va_arg(args,int32);
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+				}
+
+
+				result << s;
+
+				// Trailing space if flg1 < 0
+				if (flg1 < 0)
+				{
+					flg1 = abs(flg1);
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+				}
+
+			}
+			//double parameter
+			if (cmd == 'f')
+			{
+				double i = va_arg(args, double);
+
+				String s = String::ValueOf(i);
+
+				// Leading space if flg1 > 0
+				if (flg1 > 0)
+				{
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+				}
+
+
+				result << s;
+
+				// Trailing space if flg1 < 0
+				if (flg1 < 0)
+				{
+					flg1 = abs(flg1);
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+				}
+			}
+			//String
+			if (cmd == 's')
+			{
+			
+				// Works with windows!
+				String s = va_arg(args, String);
+
+				// Leading space if flg1 > 0
+				if (flg1 > 0)
+				{
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+				}
+				result << s;
+
+				// Trailing space if flg1 < 0
+				if (flg1 < 0)
+				{
+					flg1 = abs(flg1);
+					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
 				}
 			}
 
+			cnt += count;
 		}
 		else result.Append(c);
-		cnt++;
 	}
 
 	va_end(args);

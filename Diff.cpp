@@ -192,7 +192,7 @@ uint32 Diff::MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2)
 	{
 		e->PrintStackTrace();
 		delete e;
-		std::cout << "An Error occured during DIFF .\n";
+		std::cout << Tr("An Error occured during DIFF.") << std::endl;
 	}
 
 	return distance;

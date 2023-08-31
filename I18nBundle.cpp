@@ -10,6 +10,8 @@
 
 using namespace jm;
 
+I18nBundle* gDefaultTranslation = NULL;
+
 
 I18nBundle::I18nBundle(const String &appID, const String &name, const String &language, String subfolder): Properties()
 {
@@ -95,4 +97,20 @@ I18nBundle::I18nBundle(const File &file, const String &language): Properties()
 	File* f = new File(file);
 	Load(f);
 	delete f;
+}
+
+String I18nBundle::Translate(const String& key) const
+{
+	return GetProperty(key, key);
+}
+
+
+I18nBundle* I18nBundle::GetDefault()
+{
+	return gDefaultTranslation;
+}
+
+void I18nBundle::SetDefault(I18nBundle* bundle)
+{
+	gDefaultTranslation = bundle;
 }

@@ -229,6 +229,6 @@ bool jm::operator==(Property const &v1, Property const &v2)
 	{
 		return v1.mDwgColourValue == v2.mDwgColourValue;
 	}
-	std::cout << "Property not comparable" << std::endl;
+	std::cout << Tr("Property not comparable") << std::endl;
 	return false;
 }
