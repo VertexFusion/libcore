@@ -743,6 +743,40 @@ String String::ValueOf(double number)
 	return String(cstr);
 }
 
+String String::ValueOf(double number,int precision,bool trunc)
+{
+	bool neg = jm::IsLess(number, 0.0);
+	int64 before = static_cast<int64>(number);
+	if (neg)before *= -1;
+
+	int64 factor = std::pow(10, precision);
+
+	number = std::fmod(number, 1.0) * 10 * factor;
+	int64 after = labs(static_cast<int64>(number));
+
+	//Runden
+	int64 rnd = after % 10;
+	after = after / 10;
+	if (rnd >= 5)after++;
+	if (after == factor)
+	{
+		after = 0;
+		before++;
+	}
+
+	jm::String b = jm::String::ValueOf(before);
+	if (neg)b.Insert(0, '-');
+
+	jm::String a = jm::String::ValueOf(after);
+	while (a.Length() < precision)a.Insert(0, '0');
+
+	while (trunc && a.Length() > 1 && a.CharAt(a.Length() - 1) == '0')a.DeleteCharAt(a.Length() - 1);
+
+	if (after != 0 || trunc == false)return b + "," + a;
+	else return b;
+}
+
+
 String String::ValueOf(bool value)
 {
 	return value ? "true" : "false";
@@ -850,14 +884,15 @@ String String::Format(const String format, ...)
 			// The format command
 			uint16 cmd = format.CharAt(cnt+count);
 			int32 flg1=0;
-
-			if (count > 1)flg1 = Integer::ValueOf(format.Substring(cnt+1,cnt+count));
+			int32 dec = 5;
 				
 			//Integer parameter
 			if(cmd=='i')
 			{
 				int32 i = va_arg(args,int32);
 				String s = String::ValueOf(i);
+
+				if (count > 1)flg1 = Integer::ValueOf(format.Substring(cnt + 1, cnt + count));
 
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
@@ -881,7 +916,32 @@ String String::Format(const String format, ...)
 			{
 				double i = va_arg(args, double);
 
-				String s = String::ValueOf(i);
+				bool fillzero = false;
+
+				if (count > 1)
+				{
+					jm::String flag = format.Substring(cnt + 1, cnt + count);
+					if (flag.CharAt(0) == '0')
+					{
+						fillzero = true;
+						flag.DeleteCharAt(0);
+					}
+
+					int32 div = flag.IndexOf('.');
+					if (div > -1)
+					{
+						flg1 = Integer::ValueOf(flag.Substring(0,div));
+						dec = Integer::ValueOf(flag.Substring(div+1));
+					}
+					else
+					{
+						flg1 = Integer::ValueOf(flag);
+					}
+				}
+
+
+
+				String s = String::ValueOf(i,dec,false);
 
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
@@ -902,7 +962,8 @@ String String::Format(const String format, ...)
 			//String
 			if (cmd == 's')
 			{
-			
+				if (count > 1)flg1 = Integer::ValueOf(format.Substring(cnt + 1, cnt + count));
+
 				// Works with windows!
 				String s = va_arg(args, String);
 
@@ -931,11 +992,16 @@ String String::Format(const String format, ...)
 	return result;
 }
 
+Charset* gConsoleCharset = NULL;
+
+void jm::String::SetConsoleCharset(Charset* cs)
+{
+	gConsoleCharset = cs;
+}
 
 namespace jm
 {
 
-	Charset* gConsoleCharset = NULL;
 
 	ostream &operator << (ostream &out, const String &str)
 	{

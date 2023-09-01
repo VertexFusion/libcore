@@ -95,6 +95,13 @@ String DateFormatter::Format(const Date &date) const
 }
 
 
+String DateFormatter::Format(const String& format, const Date& date)
+{
+	DateFormatter df = DateFormatter(format);
+	return df.Format(date);
+}
+
+
 DateFormatter::Pattern::Pattern()
 {
 	next = NULL;
