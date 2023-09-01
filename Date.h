@@ -463,6 +463,8 @@ namespace jm
 
 			String Format(const Date &date)const;
 
+			static String Format(const String &format, const Date &date);
+
 		private:
 
 			enum PatternType

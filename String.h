@@ -428,6 +428,8 @@ namespace jm
 			 */
 			void Insert(uint32 index, const String &string);
 
+			static void SetConsoleCharset(Charset* cs);
+
 			//Operatoren
 			String &operator=(const String &another);
 			String &operator+=(const String &another);
@@ -502,6 +504,14 @@ namespace jm
 			   \return Einen String, der die übergebene Zahl darstellt. Z.B. "12.23" oder "24.0".
 			   */
 			static String ValueOf(double number);
+
+			/*!
+			 \brief Converts the double to decimal String
+			 \param number The double value.
+			 \param precision Number of digits after .
+			 \param trunc Truncate trailing 0 ?
+			 */
+			static String ValueOf(double number,int precision,bool trunc);
 
 
 			/*!

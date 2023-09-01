@@ -48,6 +48,8 @@
 #define kTxtMagenta "\033[35m"
 #define kTxtCyan "\033[36m"
 
+#define kTxtBrightMagenta "\033[95m"
+
 
 #ifndef M_2_PI
 #define M_2_PI    2.0*3.14159265358979323846264338328 /*!<  Defines a value for "2 x pi" */
