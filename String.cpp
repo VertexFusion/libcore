@@ -637,6 +637,7 @@ int32 String::CompareFancyTo(const String &another) const
 String String::Substring(uint32 beginIndex, uint32 endIndex) const
 {
 	if(endIndex < beginIndex)throw new Exception("End index is before start index.");
+	if (endIndex > mStrLength) endIndex = mStrLength;
 	uint32 sublength = endIndex - beginIndex;
 	String ret;
 
