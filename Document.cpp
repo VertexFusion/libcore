@@ -36,7 +36,6 @@ using namespace jm;
 Document::Document(): Object()
 {
 	mUndoManager = NULL;
-	mFile = NULL;
 	mChanged = false;
 	mRegenerate = false;
 	SetUndoManager(true);
@@ -44,13 +43,8 @@ Document::Document(): Object()
 
 Document::~Document()
 {
-	// File could be owned by others. We just release
-	if(mFile != NULL)
-	{
-		if(mFile->IsOpen())mFile->Close();
-		mFile->Release();
-		mFile = NULL;
-	}
+	if(mFile.IsOpen())mFile.Close();
+
 
 	// We own the undo manage. We delete it.
 	if(mUndoManager != NULL)
@@ -102,17 +96,14 @@ void Document::SetDocumentChanged(bool status)
 	mChanged = status;
 }
 
-void Document::SetFile(File* file)
+void Document::SetFile(const File &file)
 {
-	if(file != NULL)file->Retain();
-	if(mFile != NULL)mFile->Release();
 	mFile = file;
-
 }
 
 File* Document::GetFile()
 {
-	return mFile;
+	return &mFile;
 }
 
 void Document::Regenerate()

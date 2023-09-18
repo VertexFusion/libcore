@@ -106,6 +106,12 @@ Vertex2::Vertex2(double xx, double yy)
 	y = yy;
 }
 
+Vertex2::Vertex2(const Vertex3 &v3)
+{
+	x=v3.x;
+	y=v3.y;
+}
+
 bool Vertex2::IsValid() const
 {
 	return  !(IsNaN(x) || IsNaN(y));

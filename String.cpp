@@ -34,6 +34,8 @@
 using namespace std;
 using namespace jm;
 
+Hashtable gStrings;
+
 String::String(): Object(), Comparable<String>()
 {
 	mHash = 0;
@@ -966,20 +968,20 @@ String String::Format(const String format, ...)
 				if (count > 1)flg1 = Integer::ValueOf(format.Substring(cnt + 1, cnt + count));
 
 				// Works with windows!
-				String s = va_arg(args, String);
+				String* s = va_arg(args, String*);
 
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
 				{
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (uint32 a = s->Length(); a < flg1; a++)result << ' ';
 				}
-				result << s;
+				result << *s;
 
 				// Trailing space if flg1 < 0
 				if (flg1 < 0)
 				{
 					flg1 = abs(flg1);
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (uint32 a = s->Length(); a < flg1; a++)result << ' ';
 				}
 			}
 
@@ -991,6 +993,17 @@ String String::Format(const String format, ...)
 	va_end(args);
 
 	return result;
+}
+
+const String* String::Ref(const String &str)
+{
+	const String* ref = (const String*)gStrings.Get(str);
+	if(ref==NULL)
+	{
+		ref=new String(str);
+		gStrings.Put(str, (void*)ref);
+	}
+	return ref;
 }
 
 Charset* gConsoleCharset = NULL;

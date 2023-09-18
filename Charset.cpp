@@ -139,7 +139,7 @@ Charset* Charset::ForName(const String &name)
 	{
 		if(Charset::gCharsets[a]->HasName(name))return Charset::gCharsets[a];
 	}
-	throw new Exception("Unknown charset name: \"" + name + "\"");
+	throw new Exception(jm::String::Format(Tr("Unknown Charset Name: \"%s\""), &name));
 }
 
 String Charset::Guess(uint8* stream, uint32 length)

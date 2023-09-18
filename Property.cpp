@@ -123,7 +123,7 @@ VxfErrorStatus Property::SetStringValue(const String &value)
 	return eOK;
 }
 
-String Property::GetStringValue() const
+const String& Property::GetStringValue() const
 {
 	return mTextValue;
 }

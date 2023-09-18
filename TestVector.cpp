@@ -56,15 +56,10 @@ void TestVector::Execute()
 
 	clock_t et = clock();
 
-	int8 str[100];
-	sprintf(str, "Cycle finished! In total  %d tests, %d errors, duration %1.3f sec.",
+	std::cout<<jm::String::Format("Cycle finished! In total  %i tests, %i errors, duration %1.3f sec.",
 	        jm::gTotalTestCount,
 	        jm::gTotalErrorCount,
-	        (double)(et - bt) / CLOCKS_PER_SEC);
-
-	puts(str);
-
-
+	        (double)(et - bt) / CLOCKS_PER_SEC)<<std::endl;
 }
 
 void TestVector::Testrun(Test* test)
@@ -93,12 +88,10 @@ void TestVector::Testrun(Test* test)
 		{
 			test->TestUnexpectedException("Unbekannter Fehler");
 		}*/
-	int8 str[100];
-	sprintf(str, "Test finished! %d Tests, %d Errors.",
-	        gTestCount,
-	        gErrorCount);
 
-	puts(str);
+	std::cout<<jm::String::Format("Test finished! %i Tests, %i Errors.",
+	        gTestCount,
+	        gErrorCount)<<std::endl;
 
 	gErrorCount = 0;
 	gTestCount = 0;

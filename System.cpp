@@ -135,7 +135,7 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 	gSystemMutex.Unlock();
 }
 
-jm::String jm::System::GetLastErrorMessage()
+const jm::String& jm::System::GetLastErrorMessage()
 {
 	return gSystemError;
 }

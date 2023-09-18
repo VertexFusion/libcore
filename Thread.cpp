@@ -153,7 +153,9 @@ void Thread::WakeUp()
 void Thread::Interrupt()
 {
 	#if defined __APPLE__ || defined __linux__
+	pthread_mutex_lock(&criticalSection);
 	alive = false;
+	pthread_mutex_unlock(&criticalSection);
 	pthread_cond_signal(&cond);
 	pthread_join(thread, NULL);
 	#elif defined _WIN32

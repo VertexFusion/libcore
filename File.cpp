@@ -18,7 +18,7 @@ File::File(): Stream(), Comparable<File>()
 
 File::File(const String &pathname): Stream(), Comparable<File>()
 {
-	if(pathname.Length() < 1)throw new Exception("Pathname is empty.");
+	if(pathname.Length() < 1)throw new Exception(Tr("Pathname is empty."));
 	mPathname = Normalize(pathname);
 	SetCString();
 	mHandle = NULL;
@@ -26,7 +26,7 @@ File::File(const String &pathname): Stream(), Comparable<File>()
 
 File::File(String parent, String child): Stream(), Comparable<File>()
 {
-	if(child.Length() < 1)throw new Exception("Child is empty.");
+	if(child.Length() < 1)throw new Exception(Tr("Child is empty."));
 	mPathname = Resolve(Normalize(parent), Normalize(child));
 	SetCString();
 	mHandle = NULL;
@@ -34,7 +34,7 @@ File::File(String parent, String child): Stream(), Comparable<File>()
 
 File::File(File* parent, String child): Stream(), Comparable<File>()
 {
-	if(child.Length() < 1)throw new Exception("Child is empty.");
+	if(child.Length() < 1)throw new Exception(Tr("Child is empty."));
 	mPathname = Resolve(parent->GetAbsolutePath(), Normalize(child));
 	SetCString();
 	mHandle = NULL;
@@ -423,7 +423,7 @@ Array<File>* File::ListFiles()
 
 	if(dp == NULL)
 	{
-		throw new Exception("Cannot open directory");
+		throw new Exception(Tr("Cannot open directory"));
 	}
 
 	uint32 fileCount = 0;
@@ -488,7 +488,7 @@ Array<File>* File::ListFiles()
 	else
 	{
 		delete wstr;
-		throw new Exception("Cannot open directory");
+		throw new Exception(Tr("Cannot open directory"));
 	}
 
 	#endif
@@ -501,7 +501,8 @@ uint64 File::Length() const
 	int32 result = stat(mCstr, &filestat);
 
 	//Wenn sie nicht existiert, dann kann ich sie nicht lesen.
-	if(result != 0)throw new Exception("File \"" + GetAbsolutePath() + "\" does not exist.");
+	if(result != 0)throw new Exception(jm::String::Format(Tr("File \"%s\" does not exist."),
+																			&GetAbsolutePath()));
 
 	return filestat.st_size;
 }
@@ -556,11 +557,17 @@ void File::Open(FileMode mode)
 
 	if(mHandle == NULL)
 	{
-		if(errno == EACCES)throw new Exception("Permission denied! \"" + mPathname);
-		if(errno == ENOENT)throw new Exception("File or directory not found! \"" + mPathname);
-		if(errno == ETIMEDOUT)throw new Exception("Connection timed out! \"" + mPathname);
-		if(errno == ENOTDIR)throw new Exception("Not a directory \"" + mPathname);
-		throw new Exception("Cannot open file! \"" + mPathname + "\" Errno: " + String::ValueOf(errno));
+		if(errno == EACCES)throw new Exception(String::Format(Tr("Permission denied! \"%s\""),
+																				&mPathname));
+		if(errno == ENOENT)throw new Exception(String::Format(Tr("File or directory not found! \"%s\""),
+																				&mPathname));
+		if(errno == ETIMEDOUT)throw new Exception(String::Format(Tr("Connection timed out! \""),
+																					&mPathname));
+		if(errno == ENOTDIR)throw new Exception(String::Format(Tr("Not a directory \"%s\""),
+																				 &mPathname));
+		throw new Exception(String::Format(Tr("Cannot open file! \"%s\" Errno: %i"),
+													  &mPathname,
+													  errno));
 	}
 }
 
@@ -573,20 +580,20 @@ void File::Close()
 {
 	if(mHandle == NULL)return;
 	int32 eof = fclose(mHandle);
-	if(eof == EOF)throw new Exception("Error while closing file!");
+	if(eof == EOF)throw new Exception(Tr("Error while closing file!"));
 	mHandle = NULL;
 }
 
 void File::Seek(uint64 position)
 {
 	size_t res = fseek(mHandle, position, SEEK_SET);
-	if(res != 0)throw new Exception("Error while seeking file!");
+	if(res != 0)throw new Exception(Tr("Error while seeking file!"));
 }
 
 void File::Move(int64 offset)
 {
 	size_t res = fseek(mHandle, offset, SEEK_CUR);
-	if(res != 0)throw new Exception("Error while moving file reading pointer!");
+	if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
 }
 
 uint64 File::GetPosition()
@@ -645,7 +652,7 @@ String jm::ExecPath()
 	int ok = _NSGetExecutablePath(path, &size);
 	if(ok < 0)
 	{
-		throw new Exception("Cannot determinate executable Path");
+		throw new Exception(Tr("Cannot determinate executable Path"));
 	}
 	path[size - 1] = '\0';
 	String ret = String(path);
@@ -682,7 +689,7 @@ String jm::ExecPath()
 
 		return ret;
 	}
-	throw new Exception("Cannot determinate executable Path");
+	throw new Exception(Tr("Cannot determinate executable Path"));
 	#endif
 
 }
@@ -718,7 +725,7 @@ File* jm::ResourceDir(String bundleId)
 		//Aufräumen
 		CFRelease(cfstr);
 
-		System::Log("NO BUNDLE-REF for " + bundleId, kLogError);
+		System::Log(String::Format(Tr("NO BUNDLE-REF for %s"),&bundleId), kLogError);
 		return new File("/");
 	}
 

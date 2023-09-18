@@ -136,9 +136,9 @@ void UndoManager::ClearUndoStack()
 	UndoStep* step = mUndoStack;
 	while(step != NULL)
 	{
-		UndoStep* prev = step->prev;
-		delete step;
-		step = prev;
+		UndoStep* victim=step;
+		step = step->prev;
+		delete victim;
 	}
 	mUndoStack = NULL;
 	mUndoCount = 0;
