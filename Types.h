@@ -166,6 +166,7 @@ namespace jm
 
 		// General Errors
 		eError,					/*!< Operation not done. Unspecified error occured. */
+		eNotAllowed,			/*! < Operation not allowed. */
 		eNotImplemented,		/*!< Operation not done. Not implemented. */
 		eNullPointer,			/*!< Operation not done. Null pointer found. */
 		eIndexOutOfBounds,	/*!< Operation not done. Array overflow underflow and similar */

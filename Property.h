@@ -60,6 +60,8 @@ namespace jm
 		kPropertyTypeInteger,
 		kPropertyTypeDouble,
 		kPropertyTypeDwgColour,
+		kPropertyTypeDwgLayer,
+		kPropertyTypeDwgLineType,
 		kPropertyTypeBoolean,
 		kPropertyTypeValue
 	};
@@ -157,7 +159,7 @@ namespace jm
 			/*!
 			 \brief Gibt String zurück
 			 */
-			String GetStringValue() const;
+			const String& GetStringValue() const;
 
 			/*!
 			 \brief String festlegen

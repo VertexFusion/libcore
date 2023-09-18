@@ -76,21 +76,20 @@ namespace jm
 
 			/*!
 			 \brief Constructor for arbitrary vector.
-			 \param x X component of vector
-			 \param y Y component of vector
+			 \param xy 2D Vector with x and y component.
 			 \param z Z component of vector
 			 */
 			Vertex3(const Vertex2 xy, double z = 0);
 
 			/*!
 			 \brief Copy constructor
-			 \param The other vector
+			 \param another The other vector
 			 */
 			Vertex3(const Vertex3 &another);
 
 			/*!
 			\brief Calculates the cross-product of this vector with the other.
-			\param The other vector.
+			\param another The other vector.
 			\return The result of "this x another".
 			*/
 			Vertex3 CrossProduct(const Vertex3 &another) const;
@@ -267,7 +266,12 @@ namespace jm
 			/*!
 			 \brief Expand the box to also enclose the point pt.
 			 */
-			void Add(const Vertex3& pt);
+			void Add(const Vertex2& pt);
+
+		/*!
+			\brief Expand the box to also enclose the point pt.
+			*/
+		  void Add(const Vertex3& pt);
 
 			/*!
 			 \brief Expand the box to also enclode the box ext.

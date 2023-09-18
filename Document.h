@@ -126,7 +126,7 @@ namespace jm
 			/*!
 			 \brief Sets the file for this document
 			 */
-			void SetFile(File* file);
+			void SetFile(const File &file);
 
 			/*!
 			 \brief Returns the File object of this document.
@@ -203,7 +203,7 @@ namespace jm
 			 \brief The file path where the file is stored.
 			 \todo Change to URI???
 			 */
-			File* mFile;
+			File mFile;
 
 			/*!
 			 \brief Status on wehter the file is changed since last saving.

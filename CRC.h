@@ -46,7 +46,7 @@ namespace jm
 
 			/*!
 			 \brief Calculate checksum.
-			 \param inital Start value for CRC calculation
+			 \param initial Start value for CRC calculation
 			 \param buffer Pointer to the first byte in the buffer to check.
 			 \param length Length to check
 			 */

@@ -542,9 +542,12 @@ namespace jm
 
 			 //\param format format string
 			 //\param ... variable arguments
+			\warning jm::Strings must be passed by pointer, because clang does not accept non-POD-Types
 			 */
 			static String Format(const String format, ... );
 
+			//! Provides Refs for Format
+			static const String* Ref(const String &str);
 
 			/*!
 			 \brief Gibt OS-Abhängigen Zeilentrenner zurück

@@ -110,7 +110,7 @@ namespace jm
 			/*!
 			 \brief Gibt die letzte Fehlermeldung zurück
 			 */
-			static String GetLastErrorMessage();
+			static const String& GetLastErrorMessage();
 
 			/*!
 			 \brief Diese Methode lädt eine dynamische Bibliothek. Unter macOS *.dylib, Windows *.dll

@@ -36,6 +36,7 @@
 
 namespace jm
 {
+	class Vertex3;
 
 	/*!
 	 \brief A two dimensional vector. Owns special functions for 3D space.
@@ -70,6 +71,8 @@ namespace jm
 			 \param y Y-Komponente des Vektors
 			 */
 			Vertex2(double x, double y);
+		
+			Vertex2(const Vertex3 &v3);
 
 			/*!
 			 \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
