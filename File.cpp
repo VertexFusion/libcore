@@ -157,6 +157,7 @@ bool File::Exists() const
 	return access(mCstr, F_OK) == 0;
 
 	#elif defined _WIN32//Windows
+	if (mCstr == NULL)return false;
 
 	struct stat filestat;
 	int32 result = stat(mCstr, &filestat);
