@@ -554,7 +554,7 @@ Vector Matrix::Eigen() const
 			else phi = acos(r)/3.0;
 			
 			double eig1=q + 2.0 * p * cos(phi);
-			double eig3=q + 2.0 * p * cos(phi+(M_2_PI/3.0));
+			double eig3=q + 2.0 * p * cos(phi+(M_2PI/3.0));
 			double eig2=3.0 * q - eig1 - eig3;
 			
 			v.data[0]=eig1;
