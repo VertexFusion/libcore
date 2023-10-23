@@ -115,19 +115,18 @@ typedef short               int16;
 typedef unsigned short      uint16;
 typedef int                 int32;
 typedef unsigned int        uint32;
+typedef unsigned long       ulong;
 
-typedef char                tribool;
-
-#ifndef TBNOTSET
-#define TBNOTSET -1
+#ifndef indeterminate
+#define indeterminate -1
 #endif
 
-#ifndef TBFALSE
-#define TBFALSE 0
+#ifndef BoolFalse
+#define BoolFalse 0
 #endif
 
-#ifndef TBTRUE
-#define TBTRUE 1
+#ifndef BoolTrue
+#define BoolTrue 1
 #endif
 
 #ifdef __APPLE__
