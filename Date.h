@@ -51,7 +51,7 @@ namespace jm
 	 "Empty" "Zero" "Nil"
 	 \ingroup core
 	 */
-	class DllExport Date: public Object, public Comparable<Date>
+	class DllExport Date: public Comparable<Date>
 	{
 		public:
 

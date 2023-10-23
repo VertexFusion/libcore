@@ -47,7 +47,7 @@ namespace jm
 
 			/*!
 			 */
-			uint32 mWritelength;
+			Integer mWritelength;
 
 
 			/*!
@@ -77,38 +77,38 @@ namespace jm
 			\brief Liest maximal length bytes in das Array
 			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
 			*/
-			uint32 Read(uint8* buffer, uint32 length) override;
+			Integer Read(uint8* buffer, Integer length) override;
 
 			/*!
 			\brief Liest maximal length bytes in das Array
 			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
 			*/
-			uint32 ReadFully(uint8* buffer, uint32 length) override;
+			Integer ReadFully(uint8* buffer, Integer length) override;
 
 			/*!
 			\brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)
 			*/
-			void Seek(uint64 position) override;
+			void Seek(Integer position) override;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
 			 */
-			void Move(int64 offset) override;
+			void Move(Integer offset) override;
 
 			/*!
 			\brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
 			*/
-			uint64 GetPosition() override;
+			Integer GetPosition() override;
 
 			/*!
 			\brief Schreibt einen Buffer in die Ausgabedatei
 			*/
-			uint32 Write(uint8* buffer, uint32 length) override;
+			Integer Write(uint8* buffer, Integer length) override;
 
 			/*!
 			 \brief Gibt die Länge des Streams zurück
 			 */
-			uint32 Length();
+			Integer Length();
 
 			/*!
 			 \brief Gibt den Puffer zurück
@@ -125,12 +125,12 @@ namespace jm
 			/*!
 			 \brief Die Länge des Arrays.
 			 */
-			uint32 mStreamlength;
+			Integer mStreamlength;
 
 			/*!
 			 \brief Die aktuelle Zeigerposition in dem Array.
 			 */
-			uint32 mPosition;
+			Integer mPosition;
 
 	};
 

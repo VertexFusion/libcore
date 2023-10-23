@@ -216,7 +216,7 @@ namespace jm
 			/*!
 			 \brief Gibt die Größe der Datei in Bytes zurück
 			 */
-			uint64 Length() const;
+			Integer Length() const;
 
 			/*!
 			 \brief Gibt das Datum der letzten Änderung zurück
@@ -248,38 +248,38 @@ namespace jm
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF)
 			 */
-			uint32 Read(unsigned char* buffer,
-			            uint32 length) override;
+			Integer Read(unsigned char* buffer,
+				Integer length) override;
 
 			/*!
 			 \brief Liest maximal length bytes in das Array
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF)
 			 */
-			uint32 ReadFully(unsigned char* buffer,
-			                 uint32 length) override;
+			Integer ReadFully(unsigned char* buffer,
+				Integer length) override;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
 			 (0-basierter Index)
 			 */
-			void Seek(uint64 position) override;
+			void Seek(Integer position) override;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
 			 */
-			void Move(int64 offset) override;
+			void Move(Integer offset) override;
 
 			/*!
 			 \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
 			 */
-			uint64 GetPosition() override;
+			Integer GetPosition() override;
 
 			/*!
 			 \brief Schreibt einen Buffer in die Ausgabedatei
 			 */
-			uint32 Write(uint8* buffer,
-			             uint32 length) override;
+			Integer Write(uint8* buffer,
+				Integer length) override;
 
 			/*!
 			 \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander

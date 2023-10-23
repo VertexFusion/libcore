@@ -54,12 +54,12 @@ namespace jm
 			 \param retDelim Status, ob die Trennzeichen als eigene Tokens betrachtet und zurückgegeben
 			 werden oder nicht.
 			 */
-			StringTokenizer(String str, String delimiter, bool retDelim);
+			StringTokenizer(const String &str, const String &delimiter, Bool retDelim);
 
 			/*!
 			 \brief Gibt zurück, ob noch weitere Tokens in der Zeichenkette vorhanden sind.
 			 */
-			bool HasMoreTokens();
+			Bool HasMoreTokens();
 
 			/*!
 			 \brief Gibt das Nächste Token zurück.
@@ -68,30 +68,31 @@ namespace jm
 			String NextToken();
 
 		private:
+
 			/*!
 			 \brief Der String, der untersucht werden soll.
 			 */
-			String str;
+			String mStr;
 
 			/*!
 			 \brief Die Trennzeichen, an denen der String unterteilt werden soll.
 			 */
-			String delimiters;
+			String mDelimiters;
 
 			/*!
 			 \brief Die aktuelle Zeigerposition.
 			 */
-			int32 position;
+			Integer mPosition;
 
 			/*!
 			 \brief Die Zeigerposition des ersten Zeichens des nächsten Tokens)
 			 */
-			int32 newStart;
+			Integer mNewStart;
 
 			/*!
 			 \brief Status, ob auch die Trennzeichen als Token zurückgegeben werden sollen.
 			 */
-			bool retDelim;
+			Bool mRetDelim;
 
 			/*!
 			 \brief Diese Methode prüft, ob das Zeichen an einer Stelle ein Trennzeichen ist
@@ -99,7 +100,7 @@ namespace jm
 			 \return "Wahr", wenn das Zeichen an der Stelle index ein definiertes Trennzeichen ist.
 			 Andernfalls "falsch".
 			 */
-			bool IsDelimiter(int32 index);
+			Bool IsDelimiter(Integer index) const;
 
 			/*!
 			 \brief Diese Methode such ab einer gewünschten Position nach dem Ende eines Tokens,
@@ -108,7 +109,7 @@ namespace jm
 			 \return Den Index im String str, an der das Tokenende gefunden wurde oder die Länge des
 			 Tokens, wenn kein Delimiter mehr vorkommt.
 			 */
-			int32 FindTokenEnd(int32 startPos);
+			Integer FindTokenEnd(Integer startPos) const;
 
 			/*!
 			 \brief Sucht nach dem Ende des Trennzeichens ab einer bestimmten Position. Wenn
@@ -118,7 +119,7 @@ namespace jm
 			 \param startPos Die Position, die gesucht werden soll.
 			 \return Den Index im String str, an der das Trennende gefunden wurde.
 			 */
-			int32 FindDelimEnd(int32 startPos);
+			Integer FindDelimEnd(Integer startPos) const;
 	};
 
 

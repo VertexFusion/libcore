@@ -88,7 +88,7 @@ namespace jm
 			/*!
 			 \brief Diese Methode gibt die Anzahl der Einträge in der Hashtabelle zurück
 			 */
-			uint32 Size() const;
+			Integer Size() const;
 
 			/*!
 			 \brief Diese Methode gibt "wahr" zurück, wenn die Hashtabelle leer ist.
@@ -141,7 +141,7 @@ namespace jm
 			 */
 			struct HashtableEntry
 			{
-				int32 hash;
+				Integer hash;
 				String key;
 				void* value;
 				HashtableEntry* next;//Verkettete liste :-)
@@ -157,25 +157,25 @@ namespace jm
 			/*!
 			 \brief Diese Variable speichert die tatsächliche Länge des Speicherarrays.
 			 */
-			uint32 mArrLength;
+			Integer mArrLength;
 
 			/*!
 			 \brief Diese Variable speichert die Anzahl der Einträge in der Hashtabelle.
 			 */
-			uint32 mDataLength;
+			Integer mDataLength;
 
 			/*!
 			 \brief Dieser Schwellwert definiert, ab welchen "Füllstand" das Speicherarray für die
 			 Daten vergrößert werden soll. Es ist die absolute Zahl an Einträgen, ab der eine
 			 Speicherneusortierung vorgenommen wird.
 			 */
-			uint32 mThreshold;
+			Integer mThreshold;
 
 			/*!
 			 \brief Diese Variable speichert den prozentualen Schwellwert, ab dem neu sortiert wird.
 			 0 bedeutet 0%, 1 bedeutet 100%
 			 */
-			float mLoadfactor;
+			Double mLoadfactor;
 
 			/*!
 			 \brief Diese Unterklasse implementiert einen Iterator, mit dem durch die Hashtabelle
@@ -184,13 +184,13 @@ namespace jm
 			class HashtableIterator: public Iterator
 			{
 				private:
-					bool retKey;
+					Bool retKey;
 					Hashtable* table;
 					HashtableEntry* entry;
 					HashtableEntry* last;
-					uint32 index;
+					Integer index;
 				public:
-					HashtableIterator(Hashtable* table, bool retKey);
+					HashtableIterator(Hashtable* table, Bool retKey);
 					bool HasNext();
 					Object* Next();
 			};

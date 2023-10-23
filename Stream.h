@@ -90,37 +90,37 @@ namespace jm
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF).
 			 */
-			virtual uint32 Read(uint8* buffer, uint32 length) = 0;
+			virtual Integer Read(uint8* buffer, Integer length) = 0;
 
 			/*!
 			 \brief Liest maximal length bytes in das Array
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF).
 			 */
-			virtual uint32 ReadFully(uint8* buffer, uint32 length) = 0;
+			virtual Integer ReadFully(uint8* buffer, Integer length) = 0;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
 			 (0-basierter Index).
 			 \note Nicht jeder Stream unterstützt diese Methode.
 			 */
-			virtual void Seek(uint64 position) = 0;
+			virtual void Seek(Integer position) = 0;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
 			 */
-			virtual void Move(int64 offset) = 0;
+			virtual void Move(Integer offset) = 0;
 
 			/*!
 			 \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
 			 Nicht jeder Stream unterstützt diese Methode.
 			 */
-			virtual uint64 GetPosition() = 0;
+			virtual Integer GetPosition() = 0;
 
 			/*!
 			 \brief Schreibt einen Buffer in die Ausgabedatei
 			 */
-			virtual uint32 Write(uint8* buffer, uint32 length) = 0;
+			virtual Integer Write(uint8* buffer, Integer length) = 0;
 
 			/*!
 			 \brief Schreibt einen String in die Ausgabedatei. Kodierung ist die Standardkodierung

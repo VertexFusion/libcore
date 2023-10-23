@@ -147,6 +147,12 @@ namespace jm
 	 \brief Diese Methode vertausch die beiden Variablen
 	 */
 	DllExport
+	void Swap(Double& v1, Double& v2);
+
+	/*!
+	 \brief Diese Methode vertausch die beiden Variablen
+	 */
+	DllExport
 	void Swap(double &v1, double &v2);
 
 	/*!

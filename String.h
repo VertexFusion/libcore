@@ -34,6 +34,7 @@
 
 #include "Object.h"
 #include "CharArray.h"
+#include "Integer.h"
 
 namespace jm
 {
@@ -84,7 +85,7 @@ namespace jm
 			 \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
 			 Zeichenkette übernommen werden.
 			 */
-			String(const int8* buffer, uint32 size);
+			String(const int8* buffer, Integer size);
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
@@ -93,7 +94,7 @@ namespace jm
 			 \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
 			 Zeichenkette übernommen werden.
 			 */
-			String(const uint8* buffer, uint32 size);
+			String(const uint8* buffer, Integer size);
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist Unicode.
@@ -101,7 +102,7 @@ namespace jm
 			 \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
 			 Zeichenkette übernommen werden.
 			 */
-			String(const uint16* buffer, uint32 size);
+			String(const uint16* buffer, Integer size);
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette.
@@ -110,7 +111,7 @@ namespace jm
 			 Zeichenkette übernommen werden.
 			 \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
 			 */
-			String(const int8* buffer, uint32 size, Charset* charset);
+			String(const int8* buffer, Integer size, Charset* charset);
 
 			/*!
 			 \brief Copy-Konstruktor
@@ -125,7 +126,7 @@ namespace jm
 			/*!
 			 \brief Diese Methode gibt die Länge der Zeichenkette zurück.
 			 */
-			uint32 Length() const;
+			Integer Length() const;
 
 			/*!
 			 \brief Diese Methode erzeugt unter Berücksichtigung der Standardkodierung (UTF-8) einen
@@ -178,14 +179,14 @@ namespace jm
 			 \brief Diese Methode löscht einen Buchstaben aus dieser Zeichenkette heraus.
 			 \param index Der 0-basierte Index der Position des Buchstabens.
 			 */
-			void DeleteCharAt(uint32 index);
+			void DeleteCharAt(Integer index);
 
 			/*!
 			 \brief Diese Methode löscht einen Abschnitt aus dieser Zeichenkette heraus.
 			 \param index Der 0-basierte Index der Position des Anfangs.
 			 \param length Die Länge des Abschnitts
 			 */
-			void DeleteCharRangeAt(uint32 index, uint32 length);
+			void DeleteCharRangeAt(Integer index, Integer length);
 
 			/*!
 			 \copydoc jm::Object::Equals()
@@ -247,7 +248,7 @@ namespace jm
 			/*!
 			 \brief Diese Methode berechnet den Hashcode für diese Zeichenkette und gibt ihn zurück.
 			 */
-			int32 HashCode();
+			Integer HashCode();
 
 			/*!
 			 \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Großbuchstaben durch
@@ -269,7 +270,7 @@ namespace jm
 			 \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und bis zum Ende der
 			 Zeichenkette geht.
 			 */
-			String Substring(uint32 beginIndex)const;
+			String Substring(Integer beginIndex)const;
 
 			/*!
 			 \brief Diese Methode erzeugt eine Zeichenkette, die nur auf einem Teil dieser
@@ -281,7 +282,7 @@ namespace jm
 			 \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und einen Buchstaben vor dem
 			 endIndex endet..
 			 */
-			String Substring(uint32 beginIndex, uint32 endIndex) const;
+			String Substring(Integer beginIndex, Integer endIndex) const;
 
 			/*!
 			 \brief Diese Methode gibt eine neue Zeichenkette zurück, an der alle nicht sichtbaren
@@ -319,7 +320,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 IndexOf(uint16 character) const;
+			Integer IndexOf(uint16 character) const;
 
 			/*!
 			 \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
@@ -328,7 +329,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 IndexOf(const String &str) const;
+			Integer IndexOf(const String &str) const;
 
 
 			/*!
@@ -339,7 +340,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 IndexOf(uint16 character, uint32 fromIndex) const;
+			Integer IndexOf(uint16 character, Integer fromIndex) const;
 
 			/*!
 			 \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
@@ -349,7 +350,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 IndexOf(const String &str, uint32 fromIndex) const;
+			Integer IndexOf(const String &str, Integer fromIndex) const;
 
 			/*!
 			 \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens des gewünschten
@@ -360,7 +361,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 LastIndexOf(uint16 character) const;
+			Integer LastIndexOf(uint16 character) const;
 
 			/*!
 			 \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
@@ -371,7 +372,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 LastIndexOf(const String &str) const;
+			Integer LastIndexOf(const String &str) const;
 
 
 			/*!
@@ -384,7 +385,7 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 LastIndexOf(uint16 character, uint32 fromIndex) const;
+			Integer LastIndexOf(uint16 character, Integer fromIndex) const;
 
 			/*!
 			 \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
@@ -396,21 +397,21 @@ namespace jm
 			 \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
 			 nicht vorkommt.
 			 */
-			int32 LastIndexOf(const String &str, uint32 fromIndex) const;
+			Integer LastIndexOf(const String &str, Integer fromIndex) const;
 
 			/*!
 			 \brief Diese Methode gibt das Zeichen an einer bestimmten Position in der Zeichenkette
 			 zurück.
 			 \param index Der 0-basierte Index, dessen Zeichen gewünscht ist.
 			 */
-			uint16 CharAt(uint32 index) const;
+			uint16 CharAt(Integer index) const;
 
 			/*!
 			 \brief Diese Methode ersetzt ein Zeichen in der Zeichenkette durch ein Neues.
 			 \param index Der 0-basierte Index des Zeichens, der ersetzt werden soll.
 			 \param character Das Zeichen, welches eingesetzt werden soll.
 			 */
-			void SetCharAt(uint32 index, uint16 character);
+			void SetCharAt(Integer index, uint16 character);
 
 			/*!
 			 \brief Diese Methode fügt ein Zeichen in die Zeichenkette an der Position index ein
@@ -418,7 +419,7 @@ namespace jm
 			 \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
 			 \param character Das Zeichen, welches eingefügt werden soll
 			 */
-			void Insert(uint32 index, uint16 character);
+			void Insert(Integer index, uint16 character);
 
 			/*!
 			 \brief Diese Methode fügt eine Zeichenkette in die Zeichenkette an der Position index ein
@@ -426,7 +427,7 @@ namespace jm
 			 \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
 			 \param string Die Zeichenkette, welchee eingefügt werden soll
 			 */
-			void Insert(uint32 index, const String &string);
+			void Insert(Integer index, const String &string);
 
 			static void SetConsoleCharset(Charset* cs);
 
@@ -511,7 +512,7 @@ namespace jm
 			 \param precision Number of digits after .
 			 \param trunc Truncate trailing 0 ?
 			 */
-			static String ValueOf(double number,int precision,bool trunc);
+			static String ValueOf(double number,Integer precision,bool trunc);
 
 
 			/*!
@@ -559,7 +560,7 @@ namespace jm
 			 vergrößert zu werden.
 			 Es wird das Array ggf. Vergrößert.
 			 */
-			void CheckCapacity(uint32 more);
+			void CheckCapacity(Integer more);
 
 		private:
 
@@ -574,12 +575,12 @@ namespace jm
 			/*!
 			 \brief Die tatsächliche Länge des Arrays
 			 */
-			uint32 mArrLength;
+			Integer mArrLength;
 
 			/*!
 			 \brief Die Länge der Zeichenkette
 			 */
-			uint32 mStrLength;
+			Integer mStrLength;
 
 			/*!
 			 \brief Der Hashwert für Hash-Operationen.

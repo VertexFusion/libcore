@@ -50,14 +50,14 @@ namespace jm
 				 \note We need fast acces to this value and other protection measures are not necessary.
 				 So we leave it public.
 			 */
-			double x;
+			Double x;
 
 			/*!
 			 \brief Y component of vector.
 				 \note We need fast acces to this value and other protection measures are not necessary.
 				 So we leave it public.
 			 */
-			double y;
+			Double y;
 
 
 			/*!
@@ -70,7 +70,7 @@ namespace jm
 			 \param x X-Komponente des Vektors
 			 \param y Y-Komponente des Vektors
 			 */
-			Vertex2(double x, double y);
+			Vertex2(Double x, Double y);
 		
 			Vertex2(const Vertex3 &v3);
 

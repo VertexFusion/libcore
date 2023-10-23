@@ -106,8 +106,8 @@ public:
 
 
 /*!
- \brief This class represents an integer number as an object. This makes it easy to perform
- certain object operations.
+ \brief This class represents an integer number. This makes it easy to perform certain object
+ operations. We assume it as 64 bit value.
  \ingroup core
  */
 class DllExport Integer : public jm::Comparable<Integer>
@@ -167,7 +167,7 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	Integer Abs() const;
 
-	operator int32() const;
+	operator int64() const;
 
 	/*!
 		\brief Implementation of the increment operator (PRE).
@@ -198,21 +198,41 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	Integer &operator-=(const Integer &another);
 
+	Integer operator<<(const Integer& shift);
+
+	Integer operator<<(int32 shift);
+
+	Integer operator>>(const Integer& shift);
+
+	Integer operator>>(int32 shift);
+
 	DllExport
 	friend Integer operator+(Integer left, Integer right);
+
+	DllExport
+		friend Integer operator+(Integer left, int64 right);
+
+	DllExport
+		friend Integer operator+(int64 left, Integer right);
+
+	DllExport
+		friend Integer operator+(Integer left, int32 right);
 
 	DllExport
 	friend Integer operator+(int32 left, Integer right);
 
 	DllExport
-	friend Integer operator+(Integer left, int32 right);
-	
+		friend Integer operator+(Integer left, uint32 right);
+
 	DllExport
 	friend Integer operator+(uint32 left, Integer right);
 
 	DllExport
-	friend Integer operator+(Integer left, uint32 right);
-	
+		friend Integer operator+(Integer left, uint16 right);
+
+	DllExport
+	friend Integer operator+(uint16 left, Integer right);
+
 	DllExport
 	friend Integer operator-(Integer left, Integer right);
 	
@@ -244,28 +264,40 @@ class DllExport Integer : public jm::Comparable<Integer>
 	friend Integer operator*(uint32 left, Integer right);
 
 	DllExport
+	friend Integer operator*(Integer left, uint64 right);
+
+	DllExport
+	friend Integer operator*(uint64 left, Integer right);
+
+	DllExport
 	friend Integer operator*(Integer left, ulong right);
 
 	DllExport
 	friend Integer operator*(ulong left, Integer right);
 
 	DllExport
-friend Double operator*(Integer left, double right);
+	friend Double operator*(Integer left, double right);
 
-DllExport
-friend Double operator*(double left, Integer right);
+	DllExport
+	friend Double operator*(double left, Integer right);
 
-DllExport
-friend Double operator*(Integer left, float right);
+	DllExport
+	friend Double operator*(Integer left, float right);
 
-DllExport
-friend Double operator*(float left, Integer right);
+	DllExport
+	friend Double operator*(float left, Integer right);
 
 	DllExport
 	friend Integer operator/(Integer left, Integer right);
 	
 	DllExport
 	friend Integer operator/(Integer left, int32 right);
+
+	DllExport
+	friend Double operator/(Double left, Integer right);
+
+	DllExport
+	friend Double operator/(Integer left, Double right);
 
 	DllExport
 	friend bool operator<(Integer left, Integer right);
@@ -287,6 +319,12 @@ friend Double operator*(float left, Integer right);
 
 	DllExport
 	friend bool operator<(ulong left, Integer right);
+
+	DllExport
+	friend bool operator<(Integer left, Double right);
+
+	DllExport
+	friend bool operator<(Double left, Integer right);
 
 	DllExport
 	friend bool operator<=(Integer left, Integer right);
@@ -317,6 +355,12 @@ friend Double operator*(float left, Integer right);
 
 	DllExport
 	friend bool operator>(uint32 left, Integer right);
+
+	DllExport
+	friend bool operator>(Double left, Integer right);
+
+	DllExport
+	friend bool operator>(Integer left, Double right);
 
 	DllExport
 	friend bool operator>=(Integer left, Integer right);
@@ -357,17 +401,13 @@ friend Double operator*(float left, Integer right);
 	DllExport
 	friend bool operator!=(Integer left, uint32 right);
 
-
 	private:
 
-		int32 mValue;
+		int64 mValue;
 };
 
 Integer Min(Integer left,Integer right);
 Integer Max(Integer left,Integer right);
-
-
-
 
 
 /*!
@@ -477,22 +517,28 @@ friend Integer operator+(uint32 left, Integer right);
 
 DllExport
 friend Integer operator+(Integer left, uint32 right);
-
-DllExport
-friend Integer operator-(Integer left, Integer right);
-
-DllExport
-friend Integer operator-(Integer left, int32 right);
-
-DllExport
-friend Integer operator-(int32 left, Integer right);
-
-DllExport
-friend Integer operator-(Integer left, uint32 right);
-
-DllExport
-friend Integer operator-(uint32 left, Integer right);
 */
+DllExport
+friend Double operator-(Double left, Double right);
+
+DllExport
+friend Double operator-(Double left, double right);
+
+DllExport
+friend Double operator-(double left, Double right);
+
+DllExport
+friend Double operator-(Double left, float right);
+
+DllExport
+friend Double operator-(float left, Double right);
+
+DllExport
+friend Double operator-(Double left, int32 right);
+
+DllExport
+friend Double operator-(int32 left, Double right);
+
 DllExport
 friend Double operator*(Double left, Double right);
 
@@ -542,6 +588,12 @@ DllExport
 friend Double operator/(float left, Double right);
 
 DllExport
+friend Double operator/(Double left, Integer right);
+
+DllExport
+friend Double operator/(Integer left, Double right);
+
+DllExport
 friend Double operator/(Double left, int32 right);
 
 DllExport
@@ -555,6 +607,12 @@ friend bool operator<(Double left, double right);
 
 DllExport
 friend bool operator<(double left, Double right);
+
+DllExport
+friend bool operator<(Double left, Integer right);
+
+DllExport
+friend bool operator<(Integer left, Double right);
 
 DllExport
 friend bool operator<(Double left, int32 right);
@@ -597,13 +655,19 @@ friend bool operator>(Double left, float right);
 
 DllExport
 friend bool operator>(float left, Double right);
+
+DllExport
+friend bool operator>(Double left, Integer right);
+
+DllExport
+friend bool operator>(Integer left, Double right);
+
+DllExport
+friend bool operator>(Double left, int32 right);
+
+DllExport
+friend bool operator>(int32 left, Double right);
 /*
-DllExport
-friend bool operator>(Integer left, uint32 right);
-
-DllExport
-friend bool operator>(uint32 left, Integer right);
-
 DllExport
 friend bool operator>=(Integer left, Integer right);
 

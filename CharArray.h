@@ -33,6 +33,7 @@
 #define jm_CharArray_h
 
 #include "Types.h"
+#include "Integer.h"
 
 namespace jm
 {
@@ -47,7 +48,7 @@ namespace jm
 		/*!
 		 \brief The length of the array.
 		 */
-		uint32 length;
+		Integer length;
 
 		/*!
 		 \brief The array itself.
@@ -63,7 +64,7 @@ namespace jm
 		 \brief Constructor create an unitialized array.
 		 \param length The length of the array
 		 */
-		CharArray(uint32 length);
+		CharArray(Integer length);
 
 		/*!
 		 \brief Copy constructor
