@@ -41,7 +41,7 @@ void TestVector::Execute()
 	{
 		try
 		{
-			single = (int32)jm::Integer::ValueOf(arg);
+			single = Integer::ValueOf(arg);
 		}
 		catch(jm::Exception* e)
 		{
