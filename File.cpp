@@ -496,7 +496,7 @@ Array<File>* File::ListFiles()
 }
 
 
-uint64 File::Length() const
+Integer File::Length() const
 {
 	struct stat filestat;
 	int32 result = stat(mCstr, &filestat);
@@ -516,7 +516,7 @@ const String& File::GetAbsolutePath() const
 
 String File::GetParent() const
 {
-	int32 idx = mPathname.LastIndexOf(DIR_SEP);
+	Integer idx = mPathname.LastIndexOf(DIR_SEP);
 	if(idx < 0)idx = 0;
 	return mPathname.Substring(0, idx);
 }
@@ -533,26 +533,27 @@ String File::GetExtension() const
 
 bool File::CreateNewFile()
 {
-	mHandle = fopen(mCstr, "wb");
-	bool ret = mHandle != NULL;
+	Integer ret = fopen_s(&mHandle,mCstr, "wb");
 	Close();
-	return ret;
+	return ret==0;
 }
 
 void File::Open(FileMode mode)
 {
+	Integer ret = 0;
+
 	switch(mode)
 	{
 		case kFmRead:
-			mHandle = fopen(mCstr, "rb");
+			ret = fopen_s(&mHandle, mCstr, "rb");
 			break;
 
 		case kFmWrite:
-			mHandle = fopen(mCstr, "wb");
+			ret = fopen_s(&mHandle, mCstr, "wb");
 			break;
 
 		case kFmReadWrite:
-			mHandle = fopen(mCstr, "rb+");
+			ret = fopen_s(&mHandle, mCstr, "rb+");
 			break;
 	}
 
@@ -585,34 +586,36 @@ void File::Close()
 	mHandle = NULL;
 }
 
-void File::Seek(uint64 position)
+void File::Seek(Integer position)
 {
-	size_t res = fseek(mHandle, position, SEEK_SET);
+	//Data type is long int in fseek
+	size_t res = fseek(mHandle, (long int)position, SEEK_SET);
 	if(res != 0)throw new Exception(Tr("Error while seeking file!"));
 }
 
-void File::Move(int64 offset)
+void File::Move(Integer offset)
 {
-	size_t res = fseek(mHandle, offset, SEEK_CUR);
+	//Data type is long int in fseek
+	size_t res = fseek(mHandle, (long int)offset, SEEK_CUR);
 	if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
 }
 
-uint64 File::GetPosition()
+Integer File::GetPosition()
 {
 	return ftell(mHandle);
 }
 
 
-uint32 File::Read(uint8* buffer, uint32 length)
+Integer File::Read(uint8* buffer, Integer length)
 {
 	return (uint32)fread(buffer, 1, length, mHandle);
 }
 
-uint32 File::ReadFully(uint8* buffer, uint32 length)
+Integer File::ReadFully(uint8* buffer, Integer length)
 {
-	uint32 rest = length;
-	uint32 read = 0;
-	uint32 step;
+	Integer rest = length;
+	Integer read = 0;
+	Integer step;
 
 	while((rest > 0) && ((step = Read(&buffer[read], rest)) > 0))
 	{
@@ -623,9 +626,9 @@ uint32 File::ReadFully(uint8* buffer, uint32 length)
 	return read;
 }
 
-uint32 File::Write(uint8* buffer, uint32 length)
+Integer File::Write(uint8* buffer, Integer length)
 {
-	return (uint32)fwrite(buffer, 1, length, mHandle);
+	return fwrite(buffer, 1, length, mHandle);
 }
 
 int32 File::CompareTo(const File &other) const

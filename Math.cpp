@@ -87,7 +87,14 @@ bool jm::IsNaN(double d)
 	return d != d;
 }
 
-void jm::Swap(double &v1, double &v2)
+void jm::Swap(Double &v1, Double &v2)
+{
+	double tmp = v1;
+	v1 = v2;
+	v2 = tmp;
+}
+
+void jm::Swap(double& v1, double& v2)
 {
 	double tmp = v1;
 	v1 = v2;

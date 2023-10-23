@@ -36,7 +36,7 @@ CharArray::CharArray(const CharArray &another)
 	memcpy(buffer, another.buffer, length * 2);
 }
 
-CharArray::CharArray(uint32 alength)
+CharArray::CharArray(Integer alength)
 {
 	length = alength;
 	buffer = new uint16[length];

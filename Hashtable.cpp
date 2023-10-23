@@ -14,10 +14,10 @@ Hashtable::Hashtable(): Object()
 {
 	mArrLength = 7;
 	mData = new HashtableEntry*[mArrLength];//Array mit den Daten
-	for(uint32 a = 0; a < mArrLength; a++)mData[a] = NULL;
+	for(Integer a = 0; a < mArrLength; a++)mData[a] = NULL;
 	mDataLength = 0;
 	mLoadfactor = 0.75f;
-	mThreshold = (uint32)(mArrLength * mLoadfactor);
+	mThreshold = (mArrLength * mLoadfactor).Round();
 }
 
 Hashtable::~Hashtable()
@@ -31,8 +31,8 @@ Hashtable::~Hashtable()
 void* Hashtable::Put(String key, void* value)
 {
 	// Stelle sicher, dass kein Eintrag bereits in der Hashtabelle vorhanden ist.
-	int32 hash = key.HashCode();
-	uint32 index = (hash & 0x7FFFFFFF) % mArrLength;
+	Integer hash = key.HashCode();
+	Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 	for(HashtableEntry* e = mData[index] ; e != NULL ; e = e->next)
 	{
 		if((e->hash == hash) && e->key.Equals(key))
@@ -64,9 +64,9 @@ void* Hashtable::Put(String key, void* value)
 
 void* Hashtable::Get(String key) const
 {
-	int32 hash = key.HashCode();
+	Integer hash = key.HashCode();
 
-	uint32 index = (hash & 0x7FFFFFFF) % mArrLength;
+	Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 	for(HashtableEntry* e = mData[index] ; e != NULL ; e = e->next)
 	{
 		if((e->hash == hash) && e->key.Equals(key))
@@ -80,8 +80,8 @@ void* Hashtable::Get(String key) const
 
 void* Hashtable::Remove(String key)
 {
-	int32 hash = key.HashCode();
-	uint32 index = (hash & 0x7FFFFFFF) % mArrLength;
+	Integer hash = key.HashCode();
+	Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 
 	HashtableEntry* prev = NULL;
 	HashtableEntry* e = mData[index];
@@ -115,7 +115,7 @@ void* Hashtable::Remove(String key)
 
 void Hashtable::Clear()
 {
-	for(uint32 index = 0; index < mArrLength; index++)
+	for(Integer index = 0; index < mArrLength; index++)
 	{
 		HashtableEntry* e = mData[index];
 		while(e != NULL)
@@ -129,26 +129,26 @@ void Hashtable::Clear()
 	mDataLength = 0;
 }
 
-uint32 Hashtable::Size() const
+Integer Hashtable::Size() const
 {
 	return mDataLength;
 }
 
 void Hashtable::Rehash()
 {
-	uint32 oldLength = mArrLength;
+	Integer oldLength = mArrLength;
 	HashtableEntry** oldData = mData;
 
-	uint32 newLength = oldLength * 2 + 1;
+	Integer newLength = oldLength * 2 + 1;
 
 	HashtableEntry** newData = new HashtableEntry*[newLength];
 
-	for(uint32 a = 0; a < newLength; a++)newData[a] = NULL;
+	for(Integer a = 0; a < newLength; a++)newData[a] = NULL;
 
 	mArrLength = newLength;
-	mThreshold = (uint32) std::ceil(newLength * mLoadfactor);
+	mThreshold = (newLength * mLoadfactor).Ceil();
 
-	for(uint32 a = 0 ; a < oldLength ; a++)
+	for(Integer a = 0 ; a < oldLength ; a++)
 	{
 		HashtableEntry* old = oldData[a];
 
@@ -156,7 +156,7 @@ void Hashtable::Rehash()
 		{
 			HashtableEntry* next = old->next;
 
-			uint32 index = (old->hash & 0x7FFFFFFF) % mArrLength;
+			Integer index = (old->hash & 0x7FFFFFFF) % mArrLength;
 			old->next = newData[index];
 			newData[index] = old;
 
@@ -182,7 +182,7 @@ Iterator* Hashtable::Values()
  HASHTABLITERATOR
 */
 
-Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey): Iterator()
+Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, Bool _retKey): Iterator()
 {
 	table = _table;
 	retKey = _retKey;

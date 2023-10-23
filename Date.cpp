@@ -11,7 +11,7 @@
 using namespace jm;
 
 
-Date::Date(): Object(), Comparable<Date>()
+Date::Date():Comparable<Date>()
 {
 	#ifdef __APPLE__
 	//Unter macOS
@@ -28,17 +28,17 @@ Date::Date(): Object(), Comparable<Date>()
 	#endif
 }
 
-Date::Date(const Date &other): Object(), Comparable<Date>()
+Date::Date(const Date &other):Comparable<Date>()
 {
 	mTime = other.mTime;
 }
 
-Date::Date(int64 milliseconds): Object(), Comparable<Date>()
+Date::Date(int64 milliseconds): Comparable<Date>()
 {
 	mTime = milliseconds;
 }
 
-Date::Date(uint16 year, uint16 month, uint16 day): Object(), Comparable<Date>()
+Date::Date(uint16 year, uint16 month, uint16 day): Comparable<Date>()
 {
 	//\todo Ist month bei makeday 0 oder 1-basiert?
 	mTime = UTC(MakeDate(MakeDay(year, month - 1, day), 0));
@@ -50,7 +50,7 @@ Date::Date(uint16 year,
            uint16 hours,
            uint16 minutes,
            uint16 seconds,
-           uint16 millis): Object(), Comparable<Date>()
+           uint16 millis): Comparable<Date>()
 {
 	mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
 }

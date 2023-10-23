@@ -34,9 +34,9 @@ void MemoryStream::Close()
 	mPosition = 0;
 }
 
-uint32 MemoryStream::Read(uint8* buffer, uint32 length)
+Integer MemoryStream::Read(uint8* buffer, Integer length)
 {
-	uint32 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+	Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
 	if(available > 0)memcpy(buffer, &mStream[mPosition], available);
 	else return 0;
 
@@ -44,37 +44,37 @@ uint32 MemoryStream::Read(uint8* buffer, uint32 length)
 	return available;
 }
 
-uint32 MemoryStream::ReadFully(uint8* buffer, uint32 length)
+Integer MemoryStream::ReadFully(uint8* buffer, Integer length)
 {
 	return Read(buffer, length);
 }
 
-void MemoryStream::Seek(uint64 newPosition)
+void MemoryStream::Seek(Integer newPosition)
 {
+	mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
+}
+
+void MemoryStream::Move(Integer offset)
+{
+	Integer newPosition = mPosition + offset;
 	mPosition = (newPosition < mStreamlength) ? (uint32)newPosition : mPosition;
 }
 
-void MemoryStream::Move(int64 offset)
-{
-	uint64 newPosition = mPosition + offset;
-	mPosition = (newPosition < mStreamlength) ? (uint32)newPosition : mPosition;
-}
-
-uint64 MemoryStream::GetPosition()
+Integer MemoryStream::GetPosition()
 {
 	return mPosition;
 }
 
-uint32 MemoryStream::Write(uint8* buffer, uint32 length)
+Integer MemoryStream::Write(uint8* buffer, Integer length)
 {
-	uint32 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+	Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
 	memcpy(&mStream[mPosition], buffer, length);
 	mPosition += available;
-	if(mPosition > mWritelength)mWritelength = mPosition;
+	if(mPosition > mWritelength) mWritelength = mPosition;
 	return available;
 }
 
-uint32 MemoryStream::Length()
+Integer MemoryStream::Length()
 {
 	return mStreamlength;
 }

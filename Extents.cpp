@@ -26,11 +26,11 @@ Extents::Extents()
 
 void Extents::Add(const Vertex2& pt)
 {
-	mPtMin.x = std::min(mPtMin.x, pt.x);
-	mPtMin.y = std::min(mPtMin.y, pt.y);
+	mPtMin.x = Min(mPtMin.x, pt.x);
+	mPtMin.y = Min(mPtMin.y, pt.y);
 
-	mPtMax.x = std::max(mPtMax.x, pt.x);
-	mPtMax.y = std::max(mPtMax.y, pt.y);
+	mPtMax.x = Max(mPtMax.x, pt.x);
+	mPtMax.y = Max(mPtMax.y, pt.y);
 }
 
 void Extents::Add(const Vertex3& pt)

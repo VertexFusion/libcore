@@ -57,7 +57,7 @@
 		mValue = (int32)value;
 	}
 
-	Integer::Integer(size_t value): Comparable<Integer>()
+	Integer::Integer(ulong value): Comparable<Integer>()
 	{
 		mValue = (int32)value;
 	}
@@ -99,7 +99,7 @@
 	{
 		jm::String ret;
 		
-		uint32 number=mValue;
+		Integer number=mValue;
 
 		//Prüfe auf 0
 		if(number == 0)
@@ -126,14 +126,14 @@
 	{
 		jm::String output;
 
-		int32 index = 12;
+		Integer index = 12;
 
-		int32 number = mValue;
+		Integer number = mValue;
 
 		while(index >= 0)
 		{
-			int32 div = static_cast<int32>(number / gArabic[index]);
-			int32 rest = number % gArabic[index];
+			Integer div = number / gArabic[index];
+			Integer rest = number % gArabic[index];
 			number = rest;
 
 			while(div > 0)
@@ -151,7 +151,7 @@
 	{
 		jm::String output;
 		
-		uint32 number=mValue;
+		Integer number=mValue;
 
 		while(number > 0)
 		{
@@ -169,12 +169,12 @@
 
 	int8 Integer::Int8()const
 	{
-		return mValue;
+		return (int8)mValue;
 	}
 
 	int16 Integer::Int16()const
 	{
-		return mValue;
+		return (int16)mValue;
 	}
 
 	int64 Integer::Int64()const
@@ -184,12 +184,12 @@
 
 	int32 Integer::Int32()const
 	{
-		return mValue;
+		return (int32) mValue; 
 	}
 
 	double Integer::Dbl()const
 	{
-		return mValue;
+		return (double)mValue;
 	}
 
 	Integer Integer::Abs() const
@@ -197,7 +197,7 @@
 		return std::abs(mValue);
 	}
 
-	Integer::operator int32() const
+	Integer::operator int64() const
 	{
 		return mValue;
 	}
@@ -221,7 +221,7 @@
 		return *this;
 	}
 
-	Integer Integer::operator--(int32 increment)
+	Integer Integer::operator--(int32)
 	{
 		Integer i = *this;
 		mValue--;
@@ -255,22 +255,22 @@
 
 	bool operator<(Integer left, uint32 right)
 	{
-		return left.mValue < right;
+		return left.mValue < (int32)right;
 	}
 
 	bool operator<(uint32 left, Integer right)
 	{
-		return left < right.mValue;
+		return (int32)left < right.mValue;
 	}
 
 	bool operator<(Integer left, ulong right)
 	{
-		return left.mValue < right;
+		return left.mValue < (slong)right;
 	}
 
 	bool operator<(ulong left, Integer right)
 	{
-		return left < right.mValue;
+		return (slong)left < right.mValue;
 	}
 
 	bool operator<=(Integer left, Integer right)
@@ -290,12 +290,12 @@
 
 	bool operator<=(Integer left, uint32 right)
 	{
-		return left.mValue <= right;
+		return left.mValue <= (int32)right;
 	}
 
 	bool operator<=(uint32 left, Integer right)
 	{
-		return left <= right.mValue;
+		return (int32)left <= right.mValue;
 	}
 
 	bool operator>(Integer left, Integer right)
@@ -315,12 +315,12 @@
 
 	bool operator>(Integer left, uint32 right)
 	{
-		return left.mValue > right;
+		return left.mValue > (int32)right;
 	}
 
 	bool operator>(uint32 left, Integer right)
 	{
-		return left > right.mValue;
+		return (int32)left > right.mValue;
 	}
 
 	bool operator>=(Integer left, Integer right)
@@ -340,12 +340,12 @@
 
 	bool operator>=(Integer left, uint32 right)
 	{
-		return left.mValue >= right;
+		return left.mValue >= (int32)right;
 	}
 
 	bool operator>=(uint32 left, Integer right)
 	{
-		return left >= right.mValue;
+		return (int32)left >= right.mValue;
 	}
 
 	bool operator==(Integer left, Integer right)
@@ -375,17 +375,17 @@
 
 	bool operator!=(Integer left, uint32 right)
 	{
-		return left.mValue != right;
+		return left.mValue != (int32)right;
 	}
 
 	bool operator==(uint32 left, Integer right)
 	{
-		return left == right.mValue;
+		return (int32)left == right.mValue;
 	}
 
 	bool operator==(Integer left, uint32 right)
 	{
-		return left.mValue == right;
+		return left.mValue == (int32)right;
 	}
 
 	Integer& Integer::operator+=(const Integer &another)
@@ -400,19 +400,54 @@
 		return *this;
 	}
 
+	Integer Integer::operator<<(const Integer& shift)
+	{
+		return Integer(mValue << shift.mValue);
+	}
+
+	Integer Integer::operator<<(int32 shift)
+	{
+		return Integer(mValue << shift);
+	}
+
+	Integer Integer::operator>>(const Integer& shift)
+	{
+		return Integer(mValue >> shift.mValue);
+	}
+
+	Integer Integer::operator>>(int32 shift)
+	{
+		return Integer(mValue >> shift);
+	}
+
 	Integer operator+(Integer left, Integer right)
 	{
 		return Integer(left.mValue+right.mValue);
 	}
 
-	Integer operator+(int32 left, Integer right)
+	Integer operator+(Integer left, int64 right)
+	{
+		return Integer(left.mValue + right);
+	}
+
+	Integer operator+(int64 left, Integer right)
 	{
 		return Integer(left+right.mValue);
 	}
 
 	Integer operator+(Integer left, int32 right)
 	{
-		return Integer(left.mValue+right);
+		return Integer(left.mValue + right);
+	}
+
+	Integer operator+(int32 left, Integer right)
+	{
+		return Integer(left + right.mValue);
+	}
+
+	Integer operator+(Integer left, uint32 right)
+	{
+		return Integer(left.mValue + right);
 	}
 
 	Integer operator+(uint32 left, Integer right)
@@ -420,9 +455,14 @@
 		return Integer(left+right.mValue);
 	}
 
-	Integer operator+(Integer left, uint32 right)
+	Integer operator+(Integer left, uint16 right)
 	{
-		return Integer(left.mValue+right);
+		return Integer(left.mValue + right);
+	}
+
+	Integer operator+(uint16 left, Integer right)
+	{
+		return Integer(left + right.mValue);
 	}
 
 	Integer operator-(Integer left, Integer right)
@@ -475,9 +515,44 @@
 		return Integer(left*right.mValue);
 	}
 
-	Double operator*(Integer left, float right)
+	Integer operator*(Integer left, uint64 right)
+	{
+		return Integer(left.mValue * right);
+	}
+
+	Integer operator*(uint64 left, Integer right)
+	{
+		return Integer(left * right.mValue);
+	}
+
+	Integer operator*(Integer left, ulong right)
+	{
+		return Integer(left.mValue * right);
+	}
+
+	Integer operator*(ulong left, Integer right)
+	{
+		return Integer(left * right.mValue);
+	}
+
+	Double operator*(Integer left, double right)
 	{
 		return Double(left.mValue*right);
+	}
+
+	Double operator*(double left, Integer right)
+	{
+		return Double(left * right.mValue);
+	}
+
+	Double operator*(Integer left, float right)
+	{
+		return Double(left.mValue * right);
+	}
+
+	Double operator*(float left, Integer right)
+	{
+		return Double(left * right.mValue);
 	}
 
 	Integer operator/(Integer left, Integer right)
@@ -577,8 +652,7 @@
 	{
 		Double factor = std::pow(10, digits.Int32());
 		Double value = mValue * factor;
-		int64 result = value.Round();
-		value = static_cast<double>(result);
+		value = value.Round().Dbl();
 		return Double(value / factor);
 	}
 
@@ -635,6 +709,26 @@
 		return left > right.mValue;
 	}
 
+	bool operator>(Double left, Integer right)
+	{
+		return left.mValue > right.mValue;
+	}
+
+	bool operator>(Integer left, Double right)
+	{
+		return left.mValue > right.mValue;
+	}
+
+	bool operator>(Double left, int32 right)
+	{
+		return left.mValue > right;
+	}
+
+	bool operator>(int32 left, Double right)
+	{
+		return left > right.mValue;
+	}
+
 	bool operator<(Double left, Double right)
 	{
 		return left.mValue < right.mValue;
@@ -648,6 +742,16 @@
 	bool operator<(double left, Double right)
 	{
 		return left < right.mValue;
+	}
+
+	bool operator<(Double left, Integer right)
+	{
+		return left.mValue < right.mValue;
+	}
+
+	bool operator<(Integer left, Double right)
+	{
+		return left.mValue < right.mValue;
 	}
 
 	bool operator<(Double left, int32 right)
@@ -717,6 +821,41 @@
 	Double operator+(int32 left, Double right)
 	{
 		return Double(left+right.mValue);
+	}
+
+	Double operator-(Double left, Double right)
+	{
+		return Double(left.mValue - right.mValue);
+	}
+
+	Double operator-(Double left, double right)
+	{
+		return Double(left.mValue - right);
+	}
+
+	Double operator-(double left, Double right)
+	{
+		return Double(left - right.mValue);
+	}
+
+	Double operator-(Double left, float right)
+	{
+		return Double(left.mValue - right);
+	}
+
+	Double operator-(float left, Double right)
+	{
+		return Double(left - right.mValue);
+	}
+
+	Double operator-(Double left, int32 right)
+	{
+		return Double(left.mValue - right);
+	}
+
+	Double operator-(int32 left, Double right)
+	{
+		return Double(left - right.mValue);
 	}
 
 	Double operator*(Double left, Double right)
@@ -797,6 +936,16 @@
 	Double operator/(float left, Double right)
 	{
 		return Double(left/right.mValue);
+	}
+
+	Double operator/(Double left, Integer right)
+	{
+		return Double(left.mValue / right.mValue);
+	}
+
+	Double operator/(Integer left, Double right)
+	{
+		return Double(left.mValue / right.mValue);
 	}
 
 	Double operator/(Double left, int32 right)

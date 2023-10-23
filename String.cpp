@@ -44,7 +44,7 @@ String::String(): Object(), Comparable<String>()
 	mValue = new uint16[mArrLength];
 }
 
-String::String(const uint16* buffer, uint32 size): Object(), Comparable<String>()
+String::String(const uint16* buffer, Integer size): Object(), Comparable<String>()
 {
 	mHash = 0;
 	CharArray array = CharArray(size);
@@ -61,7 +61,7 @@ String::String(const String &another): Object(), Comparable<String>()
 	memcpy(mValue, another.mValue, sizeof(uint16) * mStrLength);
 }
 
-String::String(const int8* buffer, uint32 size): Object(), Comparable<String>()
+String::String(const int8* buffer, Integer size): Object(), Comparable<String>()
 {
 	mHash = 0;
 	int8* cstring = new int8[size + 1];
@@ -77,7 +77,7 @@ String::String(const int8* buffer, uint32 size): Object(), Comparable<String>()
 	delete[] cstring;
 }
 
-String::String(const uint8* buffer, uint32 size): Object(), Comparable<String>()
+String::String(const uint8* buffer, Integer size): Object(), Comparable<String>()
 {
 	mHash = 0;
 	int8* cstring = new int8[size + 1];
@@ -93,7 +93,7 @@ String::String(const uint8* buffer, uint32 size): Object(), Comparable<String>()
 	delete[] cstring;
 }
 
-String::String(const int8* buffer, uint32 size, Charset* charset): Object(), Comparable<String>()
+String::String(const int8* buffer, Integer size, Charset* charset): Object(), Comparable<String>()
 {
 	mHash = 0;
 	int8* cstring = new int8[size + 2];
@@ -151,13 +151,13 @@ void String::Copy(const CharArray &array)
 	memcpy(mValue, array.buffer, 2 * mStrLength);
 }
 
-void String::CheckCapacity(uint32 more)
+void String::CheckCapacity(Integer more)
 {
 	if(mStrLength + more < mArrLength)return;
 
 	//Vergrößere
-	uint32 newLength = mStrLength + more;
-	uint32 mod = newLength % 16;
+	Integer newLength = mStrLength + more;
+	Integer mod = newLength % 16;
 	if(mod != 0)newLength += 16 - mod;
 	mArrLength = newLength;
 	uint16* tmp = new uint16 [mArrLength];
@@ -166,7 +166,7 @@ void String::CheckCapacity(uint32 more)
 	mValue = tmp;
 }
 
-uint32 String::Length() const
+Integer String::Length() const
 {
 	return mStrLength;
 }
@@ -216,11 +216,11 @@ bool String::EndsWith(const String &another) const
 	return true;
 }
 
-int32 String::HashCode()
+Integer String::HashCode()
 {
 	if(mHash != 0)return mHash;
-	uint32 hash = 0;
-	for(uint32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a];
+	int32 hash = 0;
+	for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a];
 	mHash = hash;
 	return mHash;
 }
@@ -251,8 +251,8 @@ String String::ToUpperCase() const
 
 String String::Trim() const
 {
-	uint32 beginIndex = 0;
-	uint32 endIndex = mStrLength;
+	Integer beginIndex = 0;
+	Integer endIndex = mStrLength;
 
 	if(mStrLength == 0)return kEmptyString;
 
@@ -267,31 +267,35 @@ String String::Trim() const
 	return Substring(beginIndex, endIndex);
 }
 
-int32 String::IndexOf(uint16 character) const
+Integer String::IndexOf(uint16 character) const
 {
 	return IndexOf(character, 0);
 }
 
-int32 String::IndexOf(const String &str) const
+Integer String::IndexOf(const String &str) const
 {
 	return IndexOf(str, 0);
 }
 
-int32 String::IndexOf(uint16 character, uint32 fromIndex) const
+Integer String::IndexOf(uint16 character, Integer fromIndex) const
 {
-	for(uint32 a = fromIndex; a < mStrLength; a++)
+	if (fromIndex < 0 || fromIndex >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+
+	for(Integer a = fromIndex; a < mStrLength; a++)
 	{
 		if(mValue[a] == character)return a;
 	}
 	return -1;
 }
 
-int32 String::IndexOf(const String &str, uint32 fromIndex) const
+Integer String::IndexOf(const String &str, Integer fromIndex) const
 {
-	for(uint32 a = fromIndex; a < mStrLength; a++)
+	if (fromIndex < 0 || fromIndex >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+
+	for(Integer a = fromIndex; a < mStrLength; a++)
 	{
 		bool found = true;
-		for(uint32 b = 0 ; b < str.mStrLength; b++)
+		for(Integer b = 0 ; b < str.mStrLength; b++)
 		{
 			if(mValue[a + b] != str.mValue[b])
 			{
@@ -304,36 +308,38 @@ int32 String::IndexOf(const String &str, uint32 fromIndex) const
 	return -1;
 }
 
-int32 String::LastIndexOf(uint16 character) const
+Integer String::LastIndexOf(uint16 character) const
 {
 	return LastIndexOf(character, mStrLength - 1);
 }
 
-int32 String::LastIndexOf(const String &str) const
+Integer String::LastIndexOf(const String &str) const
 {
 	return LastIndexOf(str, mStrLength - 1);
 }
 
-int32 String::LastIndexOf(uint16 character, uint32 fromIndex) const
+Integer String::LastIndexOf(uint16 character, Integer fromIndex) const
 {
+	if (fromIndex >= mStrLength) throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+	if (fromIndex < 0)fromIndex = 0;
 	if(fromIndex > mStrLength - 1)fromIndex = mStrLength - 1;
 
-	for(int32 a = fromIndex; a >= 0; a--)
+	for(Integer a = fromIndex; a >= 0; a--)
 	{
 		if(mValue[a] == character)return a;
 	}
 	return -1;
 }
 
-int32 String::LastIndexOf(const String &str, uint32 fromIndex) const
+Integer String::LastIndexOf(const String &str, Integer fromIndex) const
 {
-	uint32 begin = mStrLength - str.mStrLength;
+	Integer begin = mStrLength - str.mStrLength;
 	fromIndex = (fromIndex > begin) ? begin : fromIndex;
 
-	for(int32 a = fromIndex; a >= 0; a--)
+	for(Integer a = fromIndex; a >= 0; a--)
 	{
 		bool found = true;
-		for(uint32 b = 0 ; b < str.mStrLength; b++)
+		for(Integer b = 0 ; b < str.mStrLength; b++)
 		{
 			if(mValue[a + b] != str.mValue[b])
 			{
@@ -361,8 +367,8 @@ String String::Replace(uint16 oldChar, uint16 newChar) const
 
 String String::ReplaceAll(String oldStr, String newStr)const
 {
-	int32 pos1 = 0;
-	int32 pos2 = IndexOf(oldStr);
+	Integer pos1 = 0;
+	Integer pos2 = IndexOf(oldStr);
 	if(pos2 < 0)return *this;
 
 	String output;
@@ -391,9 +397,9 @@ String String::ReplaceAll(String oldStr, String newStr)const
 String String::Reverse() const
 {
 	String ret = String(*this);
-	uint32 cnt = mStrLength / 2;
-	uint32 last = mStrLength - 1;
-	for(uint32 a = 0; a < cnt; a++)
+	Integer cnt = mStrLength / 2;
+	Integer last = mStrLength - 1;
+	for(Integer a = 0; a < cnt; a++)
 	{
 		uint16 tmp = ret.mValue[a];
 		ret.mValue[a] = ret.mValue[last];
@@ -404,16 +410,16 @@ String String::Reverse() const
 	return ret;
 }
 
-uint16 String::CharAt(uint32 index) const
+uint16 String::CharAt(Integer index) const
 {
-	if(index >= mStrLength)
+	if(index < 0 || index >= mStrLength)
 		throw new Exception("Index out of Bounds: " + String::ValueOf(index));
 	return mValue[index];
 }
 
-void String::SetCharAt(uint32 index, uint16 character)
+void String::SetCharAt(Integer index, uint16 character)
 {
-	if(index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+	if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
 	mValue[index] = character;
 	mHash = 0;
 }
@@ -434,35 +440,35 @@ void String::Append(uint16 utf8char)
 	mHash = 0;
 }
 
-void String::Insert(uint32 index, uint16 character)
+void String::Insert(Integer index, uint16 character)
 {
-	if(index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+	if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
 	CheckCapacity(1);
-	for(uint32 a = mStrLength; a > index; a--)mValue[a] = mValue[a - 1];
+	for(Integer a = mStrLength; a > index; a--)mValue[a] = mValue[a - 1];
 	mValue[index] = character;
 	mStrLength++;
 	mHash = 0;
 }
 
-void String::Insert(uint32 index, const String &str)
+void String::Insert(Integer index, const String &str)
 {
-	if(index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+	if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
 
-	uint32 len = str.Length();
+	Integer len = str.Length();
 	CheckCapacity(len);
 
-	for(uint32 a = mStrLength; a > index; a--)mValue[a + len - 1] = mValue[a - 1];
+	for(Integer a = mStrLength; a > index; a--)mValue[a + len - 1] = mValue[a - 1];
 
-	for(uint32 a = 0; a < len; a++)mValue[index + a] = str.CharAt(a);
+	for(Integer a = 0; a < len; a++)mValue[index + a] = str.CharAt(a);
 
 	mStrLength += len;
 	mHash = 0;
 }
 
-void String::DeleteCharAt(uint32 index)
+void String::DeleteCharAt(Integer index)
 {
-	if(index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
-	for(uint32 a = index ; a < mStrLength - 1; a++)
+	if(index<0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+	for(Integer a = index ; a < mStrLength - 1; a++)
 	{
 		mValue[a] = mValue[a + 1];
 	}
@@ -470,10 +476,10 @@ void String::DeleteCharAt(uint32 index)
 	mHash = 0;
 }
 
-void String::DeleteCharRangeAt(uint32 index, uint32 length)
+void String::DeleteCharRangeAt(Integer index, Integer length)
 {
-	if(index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
-	for(uint32 a = index ; a < mStrLength - length; a++)
+	if(index<0 || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+	for(Integer a = index ; a < mStrLength - length; a++)
 	{
 		mValue[a] = mValue[a + length];
 	}
@@ -540,9 +546,9 @@ bool String::EqualsIgnoreCase(const String &another) const
 
 int32 String::CompareTo(const String &another) const
 {
-	uint32 smallest = min(mStrLength, another.mStrLength);
+	Integer smallest = Min(mStrLength, another.mStrLength);
 
-	uint32 cnt = 0;
+	Integer cnt = 0;
 	while(cnt < smallest)
 	{
 		uint16 c1 = mValue[cnt];
@@ -565,8 +571,8 @@ int32 String::CompareFancyTo(const String &another) const
 	uint32 str1[256];
 	uint32 str2[256];
 
-	uint32 strl1 = min(mStrLength, 256u);
-	uint32 strl2 = min(another.mStrLength, 256u);
+	Integer strl1 = Min(mStrLength, 256u);
+	Integer strl2 = Min(another.mStrLength, 256u);
 
 	uint32 l1, l2;
 
@@ -636,11 +642,13 @@ int32 String::CompareFancyTo(const String &another) const
 }
 
 
-String String::Substring(uint32 beginIndex, uint32 endIndex) const
+String String::Substring(Integer beginIndex, Integer endIndex) const
 {
+
 	if(endIndex < beginIndex)throw new Exception("End index is before start index.");
+	if (beginIndex < 0)beginIndex = 0;
 	if (endIndex > mStrLength) endIndex = mStrLength;
-	uint32 sublength = endIndex - beginIndex;
+	Integer sublength = endIndex - beginIndex;
 	String ret;
 
 	if(sublength > 0)
@@ -653,7 +661,7 @@ String String::Substring(uint32 beginIndex, uint32 endIndex) const
 	return ret;
 }
 
-String String::Substring(uint32 beginIndex) const
+String String::Substring(Integer beginIndex) const
 {
 	return Substring(beginIndex, mStrLength);
 }
@@ -685,8 +693,8 @@ String String::ValueOf(int64 number)
 	if(neg)ret.Append('-');
 
 	// Reverse digits
-	uint32 cnt = ret.Length() / 2;
-	for(uint32 a = 0; a < cnt; a++)
+	Integer cnt = ret.Length() / 2;
+	for(Integer a = 0; a < cnt; a++)
 	{
 		uint16 s1 = ret.CharAt(a);
 		uint16 s2 = ret.CharAt(ret.Length() - 1 - a);
@@ -716,8 +724,8 @@ String String::ValueOf(uint64 number)
 	}
 
 	// Reverse digits
-	uint32 cnt = ret.Length() / 2;
-	for(uint32 a = 0; a < cnt; a++)
+	Integer cnt = ret.Length() / 2;
+	for(Integer a = 0; a < cnt; a++)
 	{
 		uint16 s1 = ret.CharAt(a);
 		uint16 s2 = ret.CharAt(ret.Length() - 1 - a);
@@ -746,13 +754,13 @@ String String::ValueOf(double number)
 	return String(cstr);
 }
 
-String String::ValueOf(double number,int precision,bool trunc)
+String String::ValueOf(double number,Integer precision,bool trunc)
 {
 	bool neg = jm::IsLess(number, 0.0);
 	int64 before = static_cast<int64>(number);
 	if (neg)before *= -1;
 
-	int64 factor = std::pow(10, precision);
+	int64 factor = std::pow(10, precision.Int32());
 
 	number = std::fmod(number, 1.0) * 10 * factor;
 	int64 after = labs(static_cast<int64>(number));
@@ -767,10 +775,10 @@ String String::ValueOf(double number,int precision,bool trunc)
 		before++;
 	}
 
-	jm::String b = jm::String::ValueOf(before);
+	String b = String::ValueOf(before);
 	if (neg)b.Insert(0, '-');
 
-	jm::String a = jm::String::ValueOf(after);
+	String a = String::ValueOf(after);
 	while (a.Length() < precision)a.Insert(0, '0');
 
 	while (trunc && a.Length() > 1 && a.CharAt(a.Length() - 1) == '0')a.DeleteCharAt(a.Length() - 1);
@@ -859,7 +867,7 @@ String String::Format(const String format, ...)
 	va_start(args,format);
 
 	
-	for(uint32 cnt=0;cnt<format.Length();cnt++)
+	for(Integer cnt=0;cnt<format.Length();cnt++)
 	{
 
 		uint16 c = format.CharAt(cnt);
@@ -872,7 +880,7 @@ String String::Format(const String format, ...)
 			( cnt==0 || (cnt>0 && format.CharAt(cnt-1)!='\\')) )
 		{
 			// Count the length of flags
-			uint32 count = 1;
+			Integer count = 1;
 			while (cnt + count < format.Length())
 			{
 				uint16 ck = format.CharAt(cnt + count);
@@ -886,8 +894,8 @@ String String::Format(const String format, ...)
 
 			// The format command
 			uint16 cmd = format.CharAt(cnt+count);
-			int32 flg1=0;
-			int32 dec = 5;
+			Integer flg1=0;
+			Integer dec = 5;
 				
 			//Integer parameter
 			if(cmd=='i')
@@ -900,7 +908,7 @@ String String::Format(const String format, ...)
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
 				{
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s.Length(); a < flg1; a++)result << ' ';
 				}
 
 
@@ -910,7 +918,7 @@ String String::Format(const String format, ...)
 				if (flg1 < 0)
 				{
 					flg1 = abs(flg1);
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s.Length(); a < flg1; a++)result << ' ';
 				}
 
 			}
@@ -930,7 +938,7 @@ String String::Format(const String format, ...)
 						flag.DeleteCharAt(0);
 					}
 
-					int32 div = flag.IndexOf('.');
+					Integer div = flag.IndexOf('.');
 					if (div > -1)
 					{
 						flg1 = Integer::ValueOf(flag.Substring(0,div));
@@ -949,7 +957,7 @@ String String::Format(const String format, ...)
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
 				{
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s.Length(); a < flg1; a++)result << ' ';
 				}
 
 
@@ -959,7 +967,7 @@ String String::Format(const String format, ...)
 				if (flg1 < 0)
 				{
 					flg1 = abs(flg1);
-					for (uint32 a = s.Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s.Length(); a < flg1; a++)result << ' ';
 				}
 			}
 			//String
@@ -973,7 +981,7 @@ String String::Format(const String format, ...)
 				// Leading space if flg1 > 0
 				if (flg1 > 0)
 				{
-					for (uint32 a = s->Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s->Length(); a < flg1; a++)result << ' ';
 				}
 				result << *s;
 
@@ -981,7 +989,7 @@ String String::Format(const String format, ...)
 				if (flg1 < 0)
 				{
 					flg1 = abs(flg1);
-					for (uint32 a = s->Length(); a < flg1; a++)result << ' ';
+					for (Integer a = s->Length(); a < flg1; a++)result << ' ';
 				}
 			}
 

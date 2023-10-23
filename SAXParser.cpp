@@ -49,7 +49,7 @@ void SAXParser::Parse(const String &xml)
 				String endWhiteSpaces;
 
 				//Whitespaces am Anfang abtrennen
-				uint32 sub = 0;
+				Integer sub = 0;
 				while(sub < token.Length() && CharacterIsWhitespace(token.CharAt(sub)))
 				{
 					beginWhitespaces.Append(token.CharAt(sub));
@@ -65,7 +65,7 @@ void SAXParser::Parse(const String &xml)
 
 				//Whitespaces am Ende abtrennen
 				sub = token.Length() - 1;
-				while(sub < token.Length() && CharacterIsWhitespace(token.CharAt(sub)))
+				while(sub >= 0 && sub < token.Length() && CharacterIsWhitespace(token.CharAt(sub)))
 				{
 					endWhiteSpaces.Insert(0, token.CharAt(sub));
 					sub--;
