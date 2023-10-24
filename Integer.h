@@ -36,7 +36,7 @@
 
 class Double;
 
- struct Bool
+struct DllExport Bool
 {
 private:
 	
@@ -321,6 +321,18 @@ class DllExport Integer : public jm::Comparable<Integer>
 	friend bool operator<(ulong left, Integer right);
 
 	DllExport
+		friend bool operator<(Integer left, int64 right);
+
+	DllExport
+		friend bool operator<(int64 left, Integer right);
+
+	DllExport
+		friend bool operator<(Integer left, uint64 right);
+
+	DllExport
+		friend bool operator<(uint64 left, Integer right);
+
+	DllExport
 	friend bool operator<(Integer left, Double right);
 
 	DllExport
@@ -406,7 +418,10 @@ class DllExport Integer : public jm::Comparable<Integer>
 		int64 mValue;
 };
 
+DllExport
 Integer Min(Integer left,Integer right);
+
+DllExport
 Integer Max(Integer left,Integer right);
 
 
@@ -714,7 +729,10 @@ private:
 
 };
 
+DllExport
 Double Min(Double left,Double right);
+
+DllExport
 Double Max(Double left,Double right);
 
 

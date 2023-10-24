@@ -127,7 +127,7 @@ namespace jm
 			 (also UTF-8).
 			 NICHT ALS C_STRING
 			 */
-			uint32 Write(const String &string);
+			Integer Write(const String &string);
 
 	};
 }
