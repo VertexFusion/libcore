@@ -27,11 +27,11 @@ void SAXParser::Parse(const String &xml)
 
 	StartDocument();
 
-	uint32 length = xml.Length(); //Länge dex XML-Codes
-	uint32 pos = 0; //Position des Zeigers
+	Integer length = xml.Length(); //Länge dex XML-Codes
+	Integer pos = 0; //Position des Zeigers
 
-	bool inTag = false; //Status, ob man in einem Tag ist
-	bool inValue = false; //Status, ob man in einem Value ist.
+	Bool inTag = false; //Status, ob man in einem Tag ist
+	Bool inValue = false; //Status, ob man in einem Value ist.
 	uint16 opener = '\"'; //Zeichen, welches ein Tagwert begrenzt. entweder ' oder "
 	uint16 c;
 
@@ -152,13 +152,13 @@ void SAXParser::ParseTagString(const String &xmlline)
 
 	line.Append(' ');//Whitespace am Ende erleichtert das Parsen, weil Code gespart wird.
 
-	uint32 pos = 0; //Position des Zeigers
-	uint32 length = line.Length(); //Länge
+	Integer pos = 0; //Position des Zeigers
+	Integer length = line.Length(); //Länge
 	bool inValue = false; //Status, ob man in einem Value ist.
 	uint16 c;
 	uint16 opener = 0;
-	int32 tagType = 0; //0: Open, 1: Close 2: Open/Close
-	int32 step = 0; // 0:Tagname, 1: Attributname, 2:Attributwert
+	Integer tagType = 0; //0: Open, 1: Close 2: Open/Close
+	Integer step = 0; // 0:Tagname, 1: Attributname, 2:Attributwert
 
 	//Prüfe auf / am Ende
 	pos = line.Length() - 1;
@@ -274,53 +274,62 @@ void SAXParser::ParseTagString(const String &xmlline)
 
 }
 
-void SAXParser::Characters(const String &characters)
+void SAXParser::Characters(const String& /*characters*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: Characters: " << std::endl;
 }
 
 void SAXParser::EndDocument()
 {
+	// Dummy method
 	//	std::cout << "SAX: EndDocument" << std::endl;
 }
 
-void SAXParser::EndElement(const String &uri,
-                           const String &localName,
-                           const String &qName)
+void SAXParser::EndElement(const String& /*uri*/,
+                           const String& /*localName*/,
+                           const String& /*qName*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: EndElement " << localName << std::endl;
 }
 
-void SAXParser::EndPrefixMapping(const String &prefix)
+void SAXParser::EndPrefixMapping(const String& /*prefix*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: EndPrefixMapping" << std::endl;
 }
 
-void SAXParser::IgnorableWhiteSpaces(const String &characters)
+void SAXParser::IgnorableWhiteSpaces(const String& /*characters*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: IgnorableWhitespaces" <<std::endl;
 }
 
-void SAXParser::ProcessingInstruction(const String &target,
-                                      const String &data)
+void SAXParser::ProcessingInstruction(const String& /*target*/,
+                                      const String& /*data*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: ProcessingInstruxtion" << std::endl;
 }
 
-void SAXParser::SkippedEntity(const String &name)
+void SAXParser::SkippedEntity(const String& /*name*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: SkippedEntity" << std::endl;
 }
 
 void SAXParser::StartDocument()
 {
+	// Dummy method
 	//	std::cout << "SAX: StartDocument" << std::endl;
 }
 
-void SAXParser::StartElement(const String &uri,
-                             const String &localName,
-                             const String &qName,
-                             const SAXAttributes &attributes)
+void SAXParser::StartElement(const String& /*uri*/,
+                             const String& /*localName*/,
+                             const String& /*qName*/,
+                             const SAXAttributes& /*attributes*/)
 {
+	// Dummy method
 	//	std::cout << "SAX: StartElement " << localName  << " " << attributes.GetLength() << std::endl;
 }

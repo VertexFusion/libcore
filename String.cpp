@@ -279,7 +279,7 @@ Integer String::IndexOf(const String &str) const
 
 Integer String::IndexOf(uint16 character, Integer fromIndex) const
 {
-	if (fromIndex < 0 || fromIndex >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+	if (fromIndex < 0)fromIndex = 0;
 
 	for(Integer a = fromIndex; a < mStrLength; a++)
 	{
@@ -290,7 +290,7 @@ Integer String::IndexOf(uint16 character, Integer fromIndex) const
 
 Integer String::IndexOf(const String &str, Integer fromIndex) const
 {
-	if (fromIndex < 0 || fromIndex >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+	if (fromIndex < 0)fromIndex = 0;
 
 	for(Integer a = fromIndex; a < mStrLength; a++)
 	{

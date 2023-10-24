@@ -111,10 +111,10 @@ String File::Resolve(String parent, String child)
 String File::Normalize(const String &path)
 {
 	String pathname = path;
-	uint32 length = pathname.Length();
+	Integer length = pathname.Length();
 	uint16 prev = 0;
 
-	for(uint32 a = 0; a < length; a++)
+	for(Integer a = 0; a < length; a++)
 	{
 		uint16 character = pathname.CharAt(a);
 
@@ -701,14 +701,14 @@ String jm::ExecPath()
 String jm::ExecName()
 {
 	String exec = ExecPath();
-	int32 pos = exec.LastIndexOf(DIR_SEP);
+	Integer pos = exec.LastIndexOf(DIR_SEP);
 	return exec.Substring(pos + 1);
 }
 
 String jm::ExecDir()
 {
 	String exec = ExecPath();
-	int32 pos = exec.LastIndexOf(DIR_SEP);
+	Integer pos = exec.LastIndexOf(DIR_SEP);
 	if(exec.CharAt(pos - 1) == '.' && exec.CharAt(pos - 2) == DIR_SEP)pos -= 2;
 	return exec.Substring(0, pos);
 }

@@ -35,7 +35,7 @@ void TestVector::Execute()
 
 	clock_t bt = clock();
 
-	int32 single = -1;
+	Integer single = -1;
 
 	if(arg.Length() > 0)
 	{
@@ -49,9 +49,9 @@ void TestVector::Execute()
 		}
 	}
 
-	for(uint32 a = 0; a < tests.size(); a++)
+	for(Integer a = 0; a < tests.size(); a++)
 	{
-		if(single < 0 || single == (int32)a)Testrun(tests[a]);
+		if(single < 0 || single == a)Testrun(tests[a]);
 	}
 
 	clock_t et = clock();

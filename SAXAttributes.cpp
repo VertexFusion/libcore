@@ -85,22 +85,22 @@ String SAXAttributes::GetQName(uint32 index) const
 	return mNames[index];
 }
 
-String SAXAttributes::GetType(uint32 index) const
+String SAXAttributes::GetType(uint32 /*index*/) const
 {
 	return "CDATA";
 }
 
-String SAXAttributes::GetType(String qname) const
+String SAXAttributes::GetType(String /*qname*/) const
 {
 	return "CDATA";
 }
 
-String SAXAttributes::GetType(String uri, String localName) const
+String SAXAttributes::GetType(String /*uri*/, String /*localName*/) const
 {
 	return "CDATA";
 }
 
-String SAXAttributes::GetURI(uint32 index) const
+String SAXAttributes::GetURI(uint32 /*index*/) const
 {
 	return kEmptyString;
 }

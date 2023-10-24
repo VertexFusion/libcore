@@ -30,10 +30,10 @@ Properties::~Properties()
 
 void Properties::Load(File* file)
 {
-	uint32 l = (uint32) file->Length();
+	Integer l = file->Length();
 	uint8* buffer = new uint8[l];
 	file->Open(kFmRead);
-	uint32 check = file->ReadFully(buffer, l);
+	Integer check = file->ReadFully(buffer, l);
 	file->Close();
 	String data = String(buffer, l);
 	delete[] buffer;
@@ -47,7 +47,7 @@ void Properties::Load(File* file)
 	{
 		String line = st->NextToken();
 
-		int32 pos = line.IndexOf('=');
+		Integer pos = line.IndexOf('=');
 		if(pos > 0)
 		{
 			String key = line.Substring(0, pos).Trim();
@@ -60,14 +60,14 @@ void Properties::Load(File* file)
 			}
 
 			//Ersetze
-			uint32 index = 0;
+			Integer index = 0;
 			while(index < value.Length())
 			{
-				int8 c = value.CharAt(index);
+				int16 c = value.CharAt(index);
 
 				if(c == '\\' && index + 1 < value.Length())
 				{
-					int8 d = value.CharAt(index + 1);
+					int16 d = value.CharAt(index + 1);
 					if(d == 't')
 					{
 						value.SetCharAt(index, '\t');
@@ -111,7 +111,7 @@ void Properties::Store(File* file)
 			uint32 index = 0;
 			while(index < value.Length())
 			{
-				int8 c = value.CharAt(index);
+				int16 c = value.CharAt(index);
 
 				if(c == '\\')
 				{

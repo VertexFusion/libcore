@@ -273,6 +273,26 @@
 		return (slong)left < right.mValue;
 	}
 
+	bool operator<(Integer left, int64 right)
+	{
+		return left.mValue < right;
+	}
+
+	bool operator<(int64 left, Integer right)
+	{
+		return left < right.mValue;
+	}
+
+	bool operator<(Integer left, uint64 right)
+	{
+		return left.mValue < (int64)right;
+	}
+
+	bool operator<(uint64 left, Integer right)
+	{
+		return (int64)left < right.mValue;
+	}
+
 	bool operator<=(Integer left, Integer right)
 	{
 		return left.mValue <= right.mValue;
