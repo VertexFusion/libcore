@@ -105,7 +105,7 @@ namespace jm
 			/*!
 			 \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
 			 */
-			inline T Top()
+			inline T& Top() const
 			{
 				return top->data;
 			};

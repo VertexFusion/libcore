@@ -55,7 +55,7 @@ namespace jm
 			/*!
 			 \brief Destructor
 			 */
-			~SAXAttributes();
+			virtual ~SAXAttributes();
 
 			/*!
 			 \brief Copykonstruktor
@@ -144,8 +144,8 @@ namespace jm
 
 		private:
 
-			std::vector<String> mNames;
-			std::vector<String> mValues;
+			std::vector<String>* mNames;
+			std::vector<String>* mValues;
 
 	};
 

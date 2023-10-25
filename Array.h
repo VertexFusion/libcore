@@ -55,7 +55,7 @@ namespace jm
 				mData = new T[0];
 			};
 
-			Array(uint32 length): Object()
+			Array(Integer length): Object()
 			{
 				mLength = length;
 				mData = new T[length];
@@ -65,7 +65,7 @@ namespace jm
 			{
 				mLength = other.mLength;
 				mData = new T[mLength];
-				for(uint32 a = 0; a < mLength; a++)
+				for(Integer a = 0; a < mLength; a++)
 				{
 					mData[a] = other.mData[a];
 				}
@@ -77,7 +77,7 @@ namespace jm
 				if(mData != NULL)delete[] mData;
 			};
 
-			inline uint32 Length() const
+			inline Integer Length() const
 			{
 				return mLength;
 			};
@@ -87,13 +87,13 @@ namespace jm
 				if(mLength < 1)return;
 				if(dynamic_cast<Comparable<T>*>(&mData[0]) == NULL)return;
 
-				uint32 n = mLength;
+				Integer n = mLength;
 				do
 				{
-					uint32 newn = 1;
-					for(uint32 i = 0; i < n - 1; ++i)
+					Integer newn = 1;
+					for(Integer i = 0; i < n - 1; ++i)
 					{
-						uint32 j = i + 1;
+						Integer j = i + 1;
 						Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
 						Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
 						if(a1->CompareTo(*(T*)a2) > 0)
@@ -111,23 +111,23 @@ namespace jm
 				while(n > 1);
 			}
 
-			inline T Get(uint32 index) const
+			inline T Get(Integer index) const
 			{
-				if(index >= mLength)
+				if(index < 0 || index >= mLength)
 					throw new Exception("Array index out of bounds.");
 				return mData[index];
 			};
 
-			inline void Set(uint32 index, T item)
+			inline void Set(Integer index, T item)
 			{
-				if(index >= mLength)
+				if(index < 0 || index >= mLength)
 					throw new Exception("Array index out of bounds.");
 				mData[index] = item;
 			};
 
-			inline T &operator[](const uint32 index) const
+			inline T &operator[](const Integer index) const
 			{
-				if(index >= mLength)
+				if(index < 0 || index >= mLength)
 					throw new Exception("Array index out of bounds.");
 				return mData[index];
 			}
@@ -140,7 +140,7 @@ namespace jm
 
 					mLength = another.mLength;
 					mData = new T[mLength];
-					for(uint32 a = 0; a < mLength; a++)
+					for(Integer a = 0; a < mLength; a++)
 					{
 						mData[a] = another.mData[a];
 					}
@@ -154,7 +154,7 @@ namespace jm
 			/*!
 			 The length of the array.
 			 */
-			uint32 mLength;
+			Integer mLength;
 
 			/*!
 			 \brief The data array itself.

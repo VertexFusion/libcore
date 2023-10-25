@@ -51,6 +51,8 @@ namespace jm
 			 */
 			XMLWriter(Stream* output);
 
+			virtual ~XMLWriter();
+
 			/*!
 			 \brief Diese Methode muss am Anfang aufgerufen werden. Hier wird der Stream geöffnet,
 			 falls das noch nicht geschehen ist.
@@ -156,7 +158,7 @@ namespace jm
 
 			};
 
-			Stack<ElementInfo> mOpenElements;
+			Stack<ElementInfo>* mOpenElements;
 
 			String Encode(const String &input);
 

@@ -163,6 +163,7 @@ class DllExport Integer : public jm::Comparable<Integer>
 	int16 Int16()const;
 	int64 Int64()const;
 	int32 Int32()const;
+	uint32 Uint32()const;
 	double Dbl()const;
 
 	Integer Abs() const;
@@ -354,6 +355,18 @@ class DllExport Integer : public jm::Comparable<Integer>
 	friend bool operator<=(uint32 left, Integer right);
 
 	DllExport
+	friend bool operator<=(Integer left, ulong right);
+
+	DllExport
+	friend bool operator<=(ulong left, Integer right);
+
+	DllExport
+	friend bool operator<=(Integer left, uint64 right);
+
+	DllExport
+	friend bool operator<=(uint64 left, Integer right);
+
+	DllExport
 	friend bool operator>(Integer left, Integer right);
 
 	DllExport
@@ -406,6 +419,12 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	DllExport
 	friend bool operator!=(Integer left, Integer right);
+
+	DllExport
+	friend bool operator!=(Integer left, int16 right);
+
+	DllExport
+	friend bool operator!=(Integer left, uint16 right);
 
 	DllExport
 	friend bool operator!=(Integer left, int32 right);
@@ -470,6 +489,8 @@ Integer Round() const;
  \return Gerundete Zahl
  */
 Double RoundFrac(Integer digits) const;
+
+double Dbl()const;
 
   operator double() const;
 

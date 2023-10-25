@@ -59,12 +59,17 @@ namespace jm
 			/*!
 			 \brief Anzahl der berechneten Schritte für statistische Auswertung.
 			 */
-			int32 calc;
+			Integer calc;
 
 			/*!
-			 \brief Konstruktor
+			 \brief Konstructor
 			 */
 			DiffDistance();
+
+			/*!
+			 \brief Destructor
+			 */
+			~DiffDistance();
 
 			/*!
 			 \brief Räum auf, um neue Berechnung machen zu können
@@ -89,14 +94,14 @@ namespace jm
 			/*!
 			 \brief Gibt die Levenshtein-Distanz zurück
 			 */
-			uint32 GetDistance();
+			Integer GetDistance() const;
 
 		private:
 
 			/*!
 			 \brief Levenshtein-Distanz. Wenn 0, dann sind die Objekte gleicht.
 			 */
-			int32 distance;
+			Integer distance;
 
 			/*!
 			 \brief Berechnete Diagonale
@@ -106,22 +111,22 @@ namespace jm
 			/*!
 			 \brief Anzahl der Zeilen
 			 */
-			uint64 m;
+			Integer m;
 
 			/*!
 			 \brief Anzahl der Spalten
 			 */
-			uint64 n;
+			Integer n;
 
 			/*!
 			 \brief Vergleichsvektor 1
 			 */
-			std::vector<Object*> u;
+			std::vector<Object*>* u;
 
 			/*!
 			 \brief Vergleichsvektor 2
 			 */
-			std::vector<Object*> v;
+			std::vector<Object*>* v;
 
 	};
 

@@ -51,22 +51,22 @@ namespace jm
 
 		public:
 
-			DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, int offset);
+			DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, Integer offset);
 
 			~DiffDiag();
 
 			DiffDiag* GetAbove();
 			DiffDiag* GetBelow();
 
-			int32 GetUpperEntry(int32 i);
-			int32 GetLeftEntry(int32 i);
+			Integer GetUpperEntry(Integer i);
+			Integer GetLeftEntry(Integer i);
 
-			int32 GetEntry(int32 j);
+			Integer GetEntry(Integer j);
 
-			Object* GetObjU(int32 i);
-			Object* GetObjV(int32 i);
+			Object* GetObjU(Integer i);
+			Object* GetObjV(Integer i);
 
-			int32 GetOffset();
+			Integer GetOffset();
 
 
 		private:
@@ -76,7 +76,7 @@ namespace jm
 			 Diagonalen beginnen bei u[0] , v[abs(offset)]
 			 Diagonalen unterhalb der Mittleren haben negative offsets.
 			 */
-			int32 offset;
+			Integer offset;
 
 			/*!
 			 \brief Zeiger auf Vergleichsvektor 1
@@ -97,7 +97,7 @@ namespace jm
 			/*!
 			 \brief Vektor mit den Diagonalelementen
 			 */
-			std::vector<int32> elements;
+			std::vector<Integer>* elements;
 
 			/*!
 			 \brief Zeiger auf Diff-Distance, um Anzahl der berechneten Werte zu ermitteln.

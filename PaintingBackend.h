@@ -229,7 +229,7 @@ namespace jm
 			/*!
 			 \brief Der Stack mit den Transformationseinstellungen... Notwendig bei Inserts
 			 */
-			std::vector<Transform>transformstack;
+			std::vector<Transform>* transformstack;
 
 			/*!
 			 \brief Der aktuelle Linienstil, mit dem Linien gezeichnet werden, oder NULL,
@@ -281,7 +281,7 @@ namespace jm
 			/*!
 			 \brief Zwischenspeicher für die Punkte, die in einem Pfad gezeichnet werden müssen.
 			 */
-			std::vector<BufferElement> buffer;
+			std::vector<BufferElement>* buffer;
 
 			/*!
 			 \brief Aktualisiert die Transofrmationsmatrix
