@@ -10,20 +10,22 @@
 
 using namespace jm;
 
-DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, int32 offset)
+DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, Integer offset)
 {
 	mU = u;
 	mV = v;
-	this->below = NULL;
-	this->above = NULL;
+	below = NULL;
+	above = NULL;
 	this->offset = offset;
-	elements.push_back(std::abs(offset));
+	elements= new std::vector<Integer>();
+	elements->push_back(std::abs(offset));
 	this->dist = dist;
 }
 
 DiffDiag::~DiffDiag()
 {
-	elements.clear();
+	elements->clear();
+	delete elements;
 }
 
 
@@ -50,12 +52,12 @@ DiffDiag* DiffDiag::GetBelow()
 	return below;
 }
 
-int DiffDiag::GetUpperEntry(int i)
+Integer DiffDiag::GetUpperEntry(Integer i)
 {
 	return GetAbove()->GetEntry(i - 1);
 }
 
-int DiffDiag::GetLeftEntry(int i)
+Integer DiffDiag::GetLeftEntry(Integer i)
 {
 	// Wenn Diagonalen "unterhalb", dann ist die Diagonale 1 kürzer
 
@@ -63,16 +65,16 @@ int DiffDiag::GetLeftEntry(int i)
 	//	return GetBelow()->GetEntry( i-1 );
 }
 
-int DiffDiag::GetEntry(int j)
+Integer DiffDiag::GetEntry(Integer j)
 {
-	if(j < elements.size())return elements[j];
+	if(j < elements->size())return elements->at(j);
 
-	int x = elements[elements.size() - 1];
+	Integer x = elements->at(elements->size() - 1);
 
-	while(elements.size() <= j)
+	while(elements->size() <= j)
 	{
-		int lu = x;
-		int i = (int)elements.size();
+		Integer lu = x;
+		Integer i = elements->size();
 
 		//  \ \  \
 		//   \ \  \
@@ -94,35 +96,35 @@ int DiffDiag::GetEntry(int j)
 			// but does not always evaluate n
 			// this makes it O(|a|*D(a,b))
 
-			int l = GetLeftEntry(i);
+			Integer l = GetLeftEntry(i);
 			if(l < lu)
 			{
 				x = l + 1;
 			}
 			else
 			{
-				int u = GetUpperEntry(i);
+				Integer u = GetUpperEntry(i);
 				x = (lu < u ? lu : u) + 1;
 			}
 		}
 
 		dist->calc++;
-		elements.push_back(x);
+		elements->push_back(x);
 	}
 	return x;
 }
 
-Object* DiffDiag::GetObjU(int32 i)
+Object* DiffDiag::GetObjU(Integer i)
 {
 	return mU->at(i - 1);
 }
 
-Object* DiffDiag::GetObjV(int32 i)
+Object* DiffDiag::GetObjV(Integer i)
 {
 	return mV->at(std::abs(offset) + i - 1);
 }
 
-int DiffDiag::GetOffset()
+Integer DiffDiag::GetOffset()
 {
 	return offset;
 }

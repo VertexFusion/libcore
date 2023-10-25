@@ -87,9 +87,9 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
 		}
 		else
 		{
-			int me = diag->GetEntry(i);
-			int w = diag->GetLeftEntry(i);
-			int nw = diag->GetEntry(i - 1);
+			Integer me = diag->GetEntry(i);
+			Integer w = diag->GetLeftEntry(i);
+			Integer nw = diag->GetEntry(i - 1);
 
 			if(me == 1 + w)
 			{

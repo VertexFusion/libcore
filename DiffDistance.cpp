@@ -12,11 +12,21 @@ using namespace jm;
 
 DiffDistance::DiffDistance()
 {
+	m = 0;
+	n = 0;
 	diagonal = NULL;
 	distance = 0;
 	calc = 0;
+	u = new std::vector<Object*>();
+	v = new std::vector<Object*>();
 }
 
+DiffDistance::~DiffDistance()
+{
+	Clear();
+	delete u;
+	delete v;
+}
 
 void DiffDistance::Clear()
 {
@@ -25,26 +35,26 @@ void DiffDistance::Clear()
 		delete diagonal;
 		diagonal = NULL;
 	}
-	u.clear();
-	v.clear();
+	u->clear();
+	v->clear();
 	distance = 0;
 	calc = 0;
 }
 
 void DiffDistance::AddU(Object* obj)
 {
-	u.push_back(obj);
+	u->push_back(obj);
 }
 
 void DiffDistance::AddV(Object* obj)
 {
-	v.push_back(obj);
+	v->push_back(obj);
 }
 
 DiffBacktrace* DiffDistance::Solve()
 {
-	m = u.size();
-	n = v.size();
+	m = u->size();
+	n = v->size();
 
 
 	//Speed-Up: Durch Betrachtung der Diagonalen....
@@ -57,36 +67,36 @@ DiffBacktrace* DiffDistance::Solve()
 
 
 	// which is the diagonal containing the bottom R.H. element?
-	int lba = (int)(v.size() - u.size());
+	Integer lba = v->size() - u->size();
 
-	DiffDiag* main = new DiffDiag(this, &u, &v, 0);
+	DiffDiag* main = new DiffDiag(this, u, v, 0);
 
 
 	if(lba >= 0)
 	{
 		diagonal = main;
-		for(int i = 0; i < lba; i++)
+		for(Integer i = 0; i < lba; i++)
 			diagonal = diagonal->GetAbove();
 	}
 	else
 	{
 		diagonal = main->GetBelow();
-		for(int i = 0; i < ~lba; i++)
+		for(Integer i = 0; i < ~lba; i++)
 			diagonal = diagonal->GetAbove();
 	}
 
-	distance = diagonal->GetEntry((int)std::min(m, n));
+	distance = diagonal->GetEntry(Min(m, n));
 
 	Integer sz = m * n;
-	std::cout << jm::String::Format(Tr("Distance %i"), distance) << std::endl;
-	std::cout << jm::String::Format(Tr("Calculated %i/%i: %f\\%"), calc, sz.Int32(), (calc * 100.0 / sz.Dbl())) << std::endl;
+	std::cout << jm::String::Format(Tr("Distance %i"), distance.Int32()) << std::endl;
+	std::cout << jm::String::Format(Tr("Calculated %i/%i: %f\\%"), calc.Int32(), sz.Int32(), (calc * 100.0 / sz.Dbl()).Dbl()) << std::endl;
 
 	int i = (int) std::min(m, n);
 	return DiffBacktrace::Backtrace(diagonal, i);
 }
 
 
-uint32 DiffDistance::GetDistance()
+Integer DiffDistance::GetDistance() const
 {
 	return distance;
 }

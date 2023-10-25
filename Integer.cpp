@@ -187,6 +187,11 @@
 		return (int32) mValue; 
 	}
 
+	uint32 Integer::Uint32()const
+	{
+		return (uint32)mValue;
+	}
+
 	double Integer::Dbl()const
 	{
 		return (double)mValue;
@@ -318,6 +323,26 @@
 		return (int32)left <= right.mValue;
 	}
 
+	bool operator<=(Integer left, ulong right)
+	{
+		return left.mValue <= (slong)right;
+	}
+
+	bool operator<=(ulong left, Integer right)
+	{
+		return (slong)left <= right.mValue;
+	}
+
+	bool operator<=(Integer left, uint64 right)
+	{
+		return left.mValue <= (int64)right;
+	}
+
+	bool operator<=(uint64 left, Integer right)
+	{
+		return (int64)left <= right.mValue;
+	}
+
 	bool operator>(Integer left, Integer right)
 	{
 		return left.mValue > right.mValue;
@@ -386,6 +411,16 @@
 	bool operator!=(Integer left, Integer right)
 	{
 		return left.mValue != right.mValue;
+	}
+
+	bool operator!=(Integer left, int16 right)
+	{
+		return left.mValue != right;
+	}
+
+	bool operator!=(Integer left, uint16 right)
+	{
+		return left.mValue != right;
 	}
 
 	bool operator!=(Integer left, int32 right)
@@ -640,6 +675,11 @@
 		if(mValue > another.mValue)return 1;
 		if(mValue < another.mValue)return -1;
 		return 0;
+	}
+
+	double Double::Dbl()const
+	{
+		return mValue;
 	}
 
 	Double Double::ValueOf(const jm::String& string)

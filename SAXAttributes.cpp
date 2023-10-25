@@ -12,36 +12,38 @@ using namespace jm;
 
 SAXAttributes::SAXAttributes(): Object()
 {
-
+	mNames = new std::vector<String>();
+	mValues = new std::vector<String>();
 }
 
 SAXAttributes::~SAXAttributes()
 {
-
+	delete mNames;
+	delete mValues;
 }
 
 SAXAttributes::SAXAttributes(const SAXAttributes &other)
 {
-	mNames.clear();
-	mValues.clear();
+	mNames->clear();
+	mValues->clear();
 
-	for(uint32 a = 0; a < other.mNames.size(); a++)
+	for(uint32 a = 0; a < other.mNames->size(); a++)
 	{
-		this->mNames.push_back(other.mNames[a]);
-		this->mValues.push_back(other.mValues[a]);
+		mNames->push_back(other.mNames->at(a));
+		mValues->push_back(other.mValues->at(a));
 	}
 }
 
 SAXAttributes &SAXAttributes::operator=(const SAXAttributes &other)
 {
 	if(this == &other) return *this;
-	this->mNames.clear();
-	this->mValues.clear();
+	mNames->clear();
+	mValues->clear();
 
-	for(uint32 a = 0; a < other.mNames.size(); a++)
+	for(uint32 a = 0; a < other.mNames->size(); a++)
 	{
-		this->mNames.push_back(other.mNames[a]);
-		this->mValues.push_back(other.mValues[a]);
+		mNames->push_back(other.mNames->at(a));
+		mValues->push_back(other.mValues->at(a));
 	}
 
 	return *this;
@@ -51,15 +53,15 @@ SAXAttributes &SAXAttributes::operator=(const SAXAttributes &other)
 void SAXAttributes::AddAttribute(String uri, String localname, String qName, String value)
 {
 	//	std::cout << "Add Attrib: " << localname << " " << value << std::endl;
-	mNames.push_back(localname);
-	mValues.push_back(value);
+	mNames->push_back(localname);
+	mValues->push_back(value);
 }
 
 int32 SAXAttributes::GetIndex(String qName) const
 {
-	for(uint32 a = 0; a < mNames.size(); a++)
+	for(uint32 a = 0; a < mNames->size(); a++)
 	{
-		if(mNames[a].Equals(qName))return a;
+		if(mNames->at(a).Equals(qName))return a;
 	}
 
 	return -1;
@@ -72,17 +74,17 @@ int32 SAXAttributes::GetIndex(String uri, String localName) const
 
 uint32 SAXAttributes::GetLength() const
 {
-	return (uint32)mNames.size();
+	return (uint32)mNames->size();
 }
 
 String SAXAttributes::GetLocalName(uint32 index) const
 {
-	return mNames[index];
+	return mNames->at(index);
 }
 
 String SAXAttributes::GetQName(uint32 index) const
 {
-	return mNames[index];
+	return mNames->at(index);
 }
 
 String SAXAttributes::GetType(uint32 /*index*/) const
@@ -107,13 +109,13 @@ String SAXAttributes::GetURI(uint32 /*index*/) const
 
 String SAXAttributes::GetValue(uint32 index) const
 {
-	return mValues[index];
+	return mValues->at(index);
 }
 
 String SAXAttributes::GetValue(const String &qname) const
 {
 	int32 index = GetIndex(qname);
-	if(index > -1)return mValues[index];
+	if(index > -1)return mValues->at(index);
 	return kEmptyString;
 }
 
@@ -143,6 +145,6 @@ bool SAXAttributes::HasValue(const String &qname) const
 String SAXAttributes::GetValue(String uri, String localName) const
 {
 	int32 index = GetIndex(uri, localName);
-	if(index > -1)return mValues[index];
+	if(index > -1)return mValues->at(index);
 	return kEmptyString;
 }
