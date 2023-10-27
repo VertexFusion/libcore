@@ -157,6 +157,15 @@ const Vertex2 jm::operator*(double const &d, Vertex2 const &v)
 	return r;
 }
 
+const Vertex2 jm::operator*(const Integer& i, const Vertex2& v)
+{
+	Vertex2 r;
+	r.x = i.Dbl() * v.x;
+	r.y = i.Dbl() * v.y;
+	return r;
+}
+
+
 bool jm::operator!=(Vertex2 const &v1, Vertex2 const &v2)
 {
 	return IsNotEqual(v1.x, v2.x) || IsNotEqual(v1.y, v2.y) ;

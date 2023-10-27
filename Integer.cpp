@@ -187,6 +187,16 @@
 		return (int32) mValue; 
 	}
 
+	uint8 Integer::Uint8()const
+	{
+		return (uint8)mValue;
+	}
+
+	uint16 Integer::Uint16()const
+	{
+		return (uint16)mValue;
+	}
+
 	uint32 Integer::Uint32()const
 	{
 		return (uint32)mValue;
@@ -331,6 +341,16 @@
 	bool operator<=(ulong left, Integer right)
 	{
 		return (slong)left <= right.mValue;
+	}
+
+	bool operator<=(Integer left, int64 right)
+	{
+		return left.mValue <= right;
+	}
+
+	bool operator<=(int64 left, Integer right)
+	{
+		return left <= right.mValue;
 	}
 
 	bool operator<=(Integer left, uint64 right)

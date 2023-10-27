@@ -20,32 +20,29 @@ DiffInfo::DiffInfo(const DiffInfo &another)
 	mOperation = another.mOperation;
 }
 
-/*
-void DiffInfo::Print( int obj1, int obj2, String label )
+void DiffInfo::Print(DiffOperation operation,
+	Integer obj1,
+	Integer obj2,
+	const String& label)
 {
-	switch( operation )
+	switch (operation)
 	{
-		case doAdd:
-		case doDelete:
-			std::cout << "  " << label << ": " << obj1 << std::endl;
-			break;
+	case kDiffAdd:
+	case kDiffDelete:
+		std::cout << "  " << label << ": " << obj1 << std::endl;
+		break;
 
-		case doModified:
-			if( obj1 != obj2 )
-			{
-				std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << std::endl;
-			}
-			break;
+	case kDiffModified:
+		if (obj1!=obj2)
+		{
+			std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " << (obj2 - obj1) << std::endl;
+		}
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
 }
-
-void DiffInfo::Print( uint32 obj1, uint32 obj2, String label )
-{
-	Print( ( int )obj1, ( int ) obj2, label );
-}*/
 
 void DiffInfo::Print(DiffOperation operation,
                      double obj1,
