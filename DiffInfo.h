@@ -67,6 +67,9 @@ namespace jm
 				void Print(int obj1, int obj2,vxf::String label);
 				void Print(unsigned int obj1,unsigned int obj2,vxf::String label);*/
 			static void Print(DiffOperation operation,
+				Integer obj1, Integer obj2, const String& label);
+
+			static void Print(DiffOperation operation,
 			                  double obj1, double obj2, const String &label);
 			static void Print(DiffOperation operation,
 			                  const String &obj1, const String &obj2, const String &label);

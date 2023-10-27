@@ -162,6 +162,8 @@ namespace jm
 	DllExport
 	const Vertex2 operator*(const double &d, const Vertex2 &v);
 
+	DllExport
+		const Vertex2 operator*(const Integer& i, const Vertex2& v);
 
 	/*!
 	 \brief Implementierung des Operators -=

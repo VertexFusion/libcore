@@ -163,6 +163,8 @@ class DllExport Integer : public jm::Comparable<Integer>
 	int16 Int16()const;
 	int64 Int64()const;
 	int32 Int32()const;
+	uint8 Uint8()const;
+	uint16 Uint16()const;
 	uint32 Uint32()const;
 	double Dbl()const;
 
@@ -359,6 +361,12 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	DllExport
 	friend bool operator<=(ulong left, Integer right);
+
+	DllExport
+		friend bool operator<=(Integer left, int64 right);
+
+	DllExport
+		friend bool operator<=(int64 left, Integer right);
 
 	DllExport
 	friend bool operator<=(Integer left, uint64 right);
