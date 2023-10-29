@@ -161,6 +161,16 @@ namespace jm
 			void RegisterChange(Object* object, double* pointer);
 
 			/*!
+			 \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein double-Wert eines
+			 Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
+			 \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
+			 Redo-Stack zurück.
+			 \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
+			 wird. Diese Methode sichert automatisch den alten Wert.
+			 */
+			void RegisterChange(Object* object, Double* pointer);
+
+			/*!
 			 \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein bool-Wert eines
 			 Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
 			 \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den

@@ -85,7 +85,7 @@ namespace jm
 			 \param parent Das ShxFile-Objekt der "Vaterdatei".
 			 \param child Der Pfadname der "Kinddatei"
 			 */
-			File(File* parent,
+			File(const File &parent,
 			     String child);
 
 			/*!
@@ -355,20 +355,20 @@ namespace jm
 	 soll
 	 */
 	extern DllExport
-	File* ResourceDir(String bundleId);   //Unter MAC mit Bundle-ID...
+	File ResourceDir(const String &bundleId);   //Unter MAC mit Bundle-ID...
 
 	/*!
 	 Diese Methode gibt das Verzeichnis zurück, in dem ide aktuelle Anwendung ihre Einstellungen
 	 speichern.
 	 */
 	extern DllExport
-	File* PropertyDir();
+	File PropertyDir();
 
 	/*!
 	 Diese Methode gibt das Benutzer-Verzeichnis zurück.
 	 */
 	extern DllExport
-	File* UserDir();
+	File UserDir();
 
 }
 

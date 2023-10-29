@@ -68,13 +68,13 @@ namespace jm
 
 			URI(const String &uri);
 
-			URI(const String &scheme,
+			/*URI(const String& scheme,
 			    const String &userInformation,
 			    const String &host,
 			    const int port,
 			    const String &path,
 			    const String &query,
-			    const String &fragment);
+			    const String &fragment);*/
 
 
 	};
