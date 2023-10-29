@@ -180,7 +180,7 @@ void Diff::HandleEntityV(DiffDistance* dd, DwgEntity* e)
 			LinkedListIterator bi = b->GetEntityIterator();
 			while(bi.HasNext())HandleEntityV(&dd, static_cast<DwgEntity*>(bi.Next()));
 		}
-
+*/
 /*
 		//Vergleiche Entitäten
 		DwgEntity* ent = c1->GetFirstEntity();

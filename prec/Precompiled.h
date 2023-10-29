@@ -63,6 +63,7 @@
 #include <sys/time.h>
 #include <cstdarg>
 
+#include "core/MacInterface.h"
 #elif defined __linux__ //Linux
 #include <errno.h>
 #include <cstdlib>

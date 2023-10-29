@@ -78,7 +78,7 @@ void Exception::PrintStackTrace() const
 		//Schneide Index (o) ab
 		String line = symbollist[i];
 		line = line.Trim();
-		int pos = line.IndexOf(' ');
+		Integer pos = line.IndexOf(' ');
 		line = line.Substring(pos).Trim();
 
 		//Name der Binärdatei
@@ -143,7 +143,7 @@ String Exception::GetStrackTrace() const
 		//Schneide Index (o) ab
 		String line = symbollist[i];
 		line = line.Trim();
-		int pos = line.IndexOf(' ');
+		Integer pos = line.IndexOf(' ');
 		line = line.Substring(pos).Trim();
 
 		//Name der Binärdatei

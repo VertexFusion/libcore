@@ -388,11 +388,7 @@ bool File::MoveToTrash()
 {
 	#if defined(__APPLE__)//macOS
 
-	//\todo Funktionen sind deprecated. Was tun?
-	FSRef fsRef;
-	FSPathMakeRefWithOptions((uint8*)mCstr, kFSPathMakeRefDoNotFollowLeafSymlink, &fsRef, NULL);
-	OSStatus ret = FSMoveObjectToTrashSync(&fsRef, NULL, kFSFileOperationDefaultOptions);
-	return ret == 0;
+	return File_MoveToTrash(mCstr);
 
 	#elif defined(__linux__) //Linus
 
@@ -557,9 +553,7 @@ String File::GetExtension() const
 
 bool File::CreateNewFile()
 {
-#ifdef __APPLE__ //macOS und ios
-	Integer ret = fopen_s(&mHandle,mCstr, "wb");
-#elif defined __linux__ //Linux
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 	mHandle = fopen(mCstr, "wb");
 	Integer ret = mHandle!=NULL;
 #elif defined _WIN32 //Windows
@@ -574,22 +568,7 @@ void File::Open(FileMode mode)
 {
 	Integer ret = 0;
 
-#ifdef __APPLE__ //macOS und ios
-	switch(mode)
-	{
-		case kFmRead:
-			ret = fopen_s(&mHandle, mCstr, "rb");
-			break;
-
-		case kFmWrite:
-			ret = fopen_s(&mHandle, mCstr, "wb");
-			break;
-
-		case kFmReadWrite:
-			ret = fopen_s(&mHandle, mCstr, "rb+");
-			break;
-	}
-#elif defined __linux__ //Linux
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 	switch(mode)
 	{
 		case kFmRead:
@@ -795,7 +774,7 @@ File jm::ResourceDir(const String &bundleId)
 		CFRelease(cfstr);
 
 		System::Log(String::Format(Tr("NO BUNDLE-REF for %s"),&bundleId), kLogError);
-		return new File("/");
+		return File("/");
 	}
 
 	CFURLRef resourceDirURL = CFBundleCopyResourcesDirectoryURL(thisBundle);
@@ -849,7 +828,7 @@ File jm::ResourceDir(const String &bundleId)
 	#endif
 
 	//Rückgabe
-	return new File(filename);
+	return File(filename);
 
 	#elif defined __linux__ //Linux
 	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
@@ -868,7 +847,7 @@ File jm::PropertyDir()
 	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
 	char* home = getenv("HOME");
 	//IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
-	return new File(home, "Library");
+	return File(home, "Library");
 	#elif defined __linux__ //Linux
 	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
 	char* home = getenv("HOME");
@@ -901,7 +880,7 @@ File jm::UserDir()
 	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
 	char* home = getenv("HOME");
 	//IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
-	return new File(home);
+	return File(home);
 	#elif defined __linux__ //Linux
 	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
 	char* home = getenv("HOME");

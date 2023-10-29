@@ -96,14 +96,6 @@ namespace jm
 		void Ones();
 
 		/*!
-		 \brief Outputs the vector on the console
-		 \deprecated Do not use in future projects
-		 \todo Create stream operator instead "<<"
-		 */
-		void Print();
-
-
-		/*!
 		 \brief Returns the scalar product of one vector with another.
 
 		 <ul><li>If the scalar product is 0, then two vectors are perpendicular to each other.</li>
@@ -117,6 +109,9 @@ namespace jm
 		double DotProduct(const Vector &another) const;
 
 		Vector& operator=(const Vector &another);
+
+		DllExport
+		friend std::ostream &operator<< (std::ostream &out, const Vector &str);
 
 	};
 

@@ -47,8 +47,7 @@ namespace jm
 
 	/*!
 	 \brief This class represents an exception that can be "thrown" in case of unexpected errors.
-	 \deprected We want to do without it in the future because memory management does not work well
-	 with it.
+	 \warning Do not use in new implementations
 	 */
 	class DllExport Exception: public Object
 	{

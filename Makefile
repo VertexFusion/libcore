@@ -17,12 +17,13 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)
 
    C__ = clang
-   ZLIBFLAGS = -O3 -DHAVE_HIDDEN -mmacosx-version-min=10.12
+   ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
 
    CXX = clang++
-   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3  -mmacosx-version-min=10.12 -I$(PATH_SRC)
-   TESTFLAGS = -framework CoreFoundation -framework CoreServices
-   LFLAGS = -dynamiclib -current_version 1.3 $(TESTFLAGS)  -mmacosx-version-min=10.12
+   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11
+   OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -x objective-c++ -fobjc-arc -framework Foundation
+   TESTFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
+   LFLAGS = -dynamiclib -current_version 1.4 $(TESTFLAGS)
    LIB_NAME = libjameo.dylib
 
 endif
@@ -101,6 +102,10 @@ SOURCES =\
  $(PATH_CORE)/PaintingBackend.cpp\
  $(PATH_CORE)/Transform.cpp
 
+ifeq ($(UNAME_S),Darwin)
+ MMSOURCES=$(PATH_CORE)/MacBindings.mm
+endif
+
 ZLIB =\
  $(PATH_ZLIB)/adler32.c\
  $(PATH_ZLIB)/crc32.c\
@@ -118,7 +123,7 @@ ZLIB =\
  $(PATH_ZLIB)/gzread.c\
  $(PATH_ZLIB)/gzwrite.c
 
-OBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o)
+OBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(MMSOURCES:.mm=.o)
 
 # Liste der Testdateien
 TEST =\
@@ -136,7 +141,7 @@ TEST =\
  $(PATH_TEST)/core/UndoManagerTest.cpp
 
 
-TESTOBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(TEST:.cpp=.o)
+TESTOBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o)
 
 # Wo finde ich die Header-Dateien?
 INCLUDE = -Iinclude -I3rdparty -Iprec
@@ -145,12 +150,12 @@ INCLUDE = -Iinclude -I3rdparty -Iprec
 Debug: $(OBJECTS)
 	$(CXX) $(LFLAGS) -o $(LIB_NAME) $(OBJECTS)
 	mkdir -p $(PATH_BIN)
-	ar rcs libvxf.a $(OBJECTS)
+	ar rcs libjameo.a $(OBJECTS)
 	mv $(LIB_NAME) $(PATH_BIN)/$(LIB_NAME)
-	mv libvxf.a $(PATH_BIN)/libvxf.a
+	mv libjameo.a $(PATH_BIN)/libjameo.a
 
 test: $(TESTOBJECTS)
-	$(CXX) $(CFLAGS) $(INCLUDE) $(TESTFLAGS) -o test.app $(TESTOBJECTS)
+	$(CXX) $(CFLAGS) $(INCLUDE) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS)
 
 prec/Precompiled.pch: prec/Precompiled.h
 	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.h -o prec/Precompiled.pch
@@ -159,12 +164,14 @@ prec/Precompiled.pch: prec/Precompiled.h
 	mkdir -p $(PATH_BUILD)
 	$(C__) $(ZLIBFLAGS) -c $< -o $@
 
+%.o: %.mm
+	$(C__) $(OCFLAGS) $(INCLUDE) -c $< -o $@
+
 %.o: %.cpp prec/Precompiled.pch
 	$(CXX) $(CFLAGS) $(INCLUDE) -include-pch prec/Precompiled.pch -c $< -o $@
 
 clean:
 	rm -f $(TESTOBJECTS) prec/Precompiled.pch
 	rm -Rf $(PATH_BIN)/*
-
 
 # DO NOT DELETE

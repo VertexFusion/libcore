@@ -92,13 +92,6 @@ void jm::Vector::Ones()
 	for(uint32 a = 0; a < m; a++)data[a] = 1.0;
 }
 
-void jm::Vector::Print()
-{
-	std::cout << "[ ";
-	for(uint32 a = 0; a < m; a++)std::cout << data[a] << ' ' ;
-	std::cout << " ]";
-}
-
 double jm::Vector::DotProduct(const Vector &another) const
 {
 	double prod = 0.0;
@@ -109,6 +102,13 @@ double jm::Vector::DotProduct(const Vector &another) const
 	return prod;
 }
 
+std::ostream& jm::operator<< (std::ostream &out, const Vector &vec)
+{
+	out << "[ ";
+	for(Integer a = 0; a < vec.m; a++)out << vec.data[a] << ' ' ;
+	out << " ]";
+	return out;
+}
 
 jm::Vector& jm::Vector::operator=(const jm::Vector &another)
 {
