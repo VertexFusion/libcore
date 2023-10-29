@@ -32,10 +32,10 @@ File::File(String parent, String child): Stream(), Comparable<File>()
 	mHandle = NULL;
 }
 
-File::File(File* parent, String child): Stream(), Comparable<File>()
+File::File(const File& parent, String child): Stream(), Comparable<File>()
 {
 	if(child.Length() < 1)throw new Exception(Tr("Child is empty."));
-	mPathname = Resolve(parent->GetAbsolutePath(), Normalize(child));
+	mPathname = Resolve(parent.GetAbsolutePath(), Normalize(child));
 	SetCString();
 	mHandle = NULL;
 }
@@ -144,7 +144,7 @@ bool File::MakeDirectory()
 	return result == 0;
 
 	#elif defined _WIN32//Windows
-	int32 result = mkdir(mCstr);
+	int32 result = _mkdir(mCstr);
 	return result == 0;
 	#endif
 }
@@ -714,7 +714,7 @@ String jm::ExecDir()
 }
 
 
-File* jm::ResourceDir(String bundleId)
+File jm::ResourceDir(const String &bundleId)
 {
 	#ifdef __APPLE__
 
@@ -792,12 +792,12 @@ File* jm::ResourceDir(String bundleId)
 	#elif defined _WIN32 //Windows
 
 	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
-	return new File(ExecDir());
+	return File(ExecDir());
 
 	#endif
 }
 
-File* jm::PropertyDir()
+File jm::PropertyDir()
 {
 	#ifdef __APPLE__ //macOS und ios
 	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
@@ -830,7 +830,7 @@ File* jm::PropertyDir()
 
 }
 
-File* jm::UserDir()
+File jm::UserDir()
 {
 	#ifdef __APPLE__ //macOS und ios
 	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
@@ -853,10 +853,10 @@ File* jm::UserDir()
 		String ret = String((uint16*)path, textlength);
 
 		//Als PropertyDir wird zurzeit des Exec-Dir genommen
-		return new File(ret);
+		return File(ret);
 	}
 
-	return NULL;
+	return File();
 	#endif
 
 }

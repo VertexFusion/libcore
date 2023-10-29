@@ -69,7 +69,8 @@ void Test::TestEquals(uint64 actual, uint64 expected, String failmessage)
 
 	jm::gTotalErrorCount++;
 	jm::gErrorCount++;
-	LogMessage(failmessage + " '" + actual + "' '" + expected + "'");
+	String msg = failmessage << " '" << actual << "' '" << expected << "'";
+	LogMessage(msg);
 }
 
 void Test::TestEquals(void* actual, void* expected, String failmessage)
@@ -81,7 +82,8 @@ void Test::TestEquals(void* actual, void* expected, String failmessage)
 
 	jm::gTotalErrorCount++;
 	jm::gErrorCount++;
-	LogMessage(failmessage + " '" + (uint64)actual + "' '" + (uint64)expected + "'");
+	String msg = failmessage << " '" << (uint64)actual << "' '" << (uint64)expected << "'";
+	LogMessage(msg);
 }
 
 void Test::TestEquals(uint64 actual, int32 expected, String failmessage)

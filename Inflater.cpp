@@ -321,14 +321,14 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
 	//1. Bestimme gleichzeitig maxBits
 	std::vector<Inflater::HuffmanTree*> nodes;
 	int32 maxBits = 0;
-	for(uint32 a = 0; a < lengths->Length(); a++)
+	for(Integer a = 0; a < lengths->Length(); a++)
 	{
 		//Nur die Elemente einfügen, die existieren (also length>0)
 		if((*lengths)[a] != 0)
 		{
 			HuffmanTree* node = new HuffmanTree();
 			node->length = (*lengths)[a];
-			node->symbol = a;
+			node->symbol = a.Int16();
 			node->code = (*codes)[a];
 			nodes.push_back(node);
 
@@ -438,7 +438,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
 //Liest den nächsten Huffmanwert aus dem Strom ein. und Gibt den Code zurück
 uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
 {
-	int32 bits = 0;
+	int16 bits = 0;
 	uint16  ret = 0;
 
 	do
@@ -768,8 +768,8 @@ Inflater::HuffmanTree* Inflater::HuffmanTree::Find(uint16 _code, uint16 bits)
 
 	if(bits > this->length)
 	{
-		uint16 mask = 0x0001 << (bits - this->length - 1);
-		uint16 target = mask & _code;
+		uint16 msk = 0x0001 << (bits - this->length - 1);
+		uint16 target = msk & _code;
 		if(target == 0 && this->node0 != NULL)return this->node0->Find(_code, bits);
 		else if(target != 0 && this->node1 != NULL)return this->node1->Find(_code, bits);
 		else throw new Exception("Huffman Tree Error");

@@ -760,10 +760,10 @@ String String::ValueOf(double number,Integer precision,bool trunc)
 	int64 before = static_cast<int64>(number);
 	if (neg)before *= -1;
 
-	int64 factor = std::pow(10, precision.Int32());
+	double factor = std::pow(10, precision.Int32());
 
 	number = std::fmod(number, 1.0) * 10 * factor;
-	int64 after = labs(static_cast<int64>(number));
+	int64 after = Integer(static_cast<int64>(number)).Abs();
 
 	//Runden
 	int64 rnd = after % 10;
@@ -1217,7 +1217,7 @@ double jm::ConvertToDouble(String str)
 
 uint64 jm::HexToInt(const String &str)
 {
-	return HexToInt(str, 0, str.Length());
+	return HexToInt(str, 0, str.Length().Uint32());
 }
 
 uint64 jm::HexToInt(const String &str, uint32 begin, uint32 count)

@@ -99,8 +99,8 @@ void ZipOutputFile::Close()
 	jm::SerializeLEInt32(eof, 0, 0x06054b50);//Signature
 	jm::SerializeLEInt16(eof, 4, 0);//Number of Disks
 	jm::SerializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
-	jm::SerializeLEInt16(eof, 8,  mEntries.Length());//Number of Central directory records on this disk
-	jm::SerializeLEInt16(eof, 10, mEntries.Length());//Total Number of Central directory records
+	jm::SerializeLEInt16(eof, 8,  (int16)mEntries.Length());//Number of Central directory records on this disk
+	jm::SerializeLEInt16(eof, 10, (int16)mEntries.Length());//Total Number of Central directory records
 	jm::SerializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
 	jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
 	jm::SerializeLEInt16(eof, 20, 0);//Comment Length.

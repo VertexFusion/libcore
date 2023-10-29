@@ -16,7 +16,7 @@ URI::URI(const jm::String &uri)
 	mUri = uri;
 }
 
-URI::URI(const jm::String &scheme,
+/*URI::URI(const jm::String& scheme,
          const jm::String &userInformation,
          const jm::String &host,
          const int port,
@@ -25,4 +25,4 @@ URI::URI(const jm::String &scheme,
          const jm::String &fragment)
 {
 
-}
+}*/

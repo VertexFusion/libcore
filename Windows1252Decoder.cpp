@@ -69,119 +69,119 @@ char* Windows1252Decoder::Encode(const CharArray &string)
 		switch(string.buffer[a])
 		{
 			case 0x20AC:
-				cstring[a] = (int8)0x80;
+				cstring[a] = (uint8)0x80;
 				break;
 
 			case 0x201A:
-				cstring[a] = (int8)0x82;
+				cstring[a] = (uint8)0x82;
 				break;
 
 			case 0x0192:
-				cstring[a] = (int8)0x83;
+				cstring[a] = (uint8)0x83;
 				break;
 
 			case 0x201E:
-				cstring[a] = (int8)0x84;
+				cstring[a] = (uint8)0x84;
 				break;
 
 			case 0x2026:
-				cstring[a] = (int8)0x85;
+				cstring[a] = (uint8)0x85;
 				break;
 
 			case 0x2020:
-				cstring[a] = (int8)0x86;
+				cstring[a] = (uint8)0x86;
 				break;
 
 			case 0x2021:
-				cstring[a] = (int8)0x87;
+				cstring[a] = (uint8)0x87;
 				break;
 
 			case 0x20C6:
-				cstring[a] = (int8)0x88;
+				cstring[a] = (uint8)0x88;
 				break;
 
 			case 0x2030:
-				cstring[a] = (int8)0x89;
+				cstring[a] = (uint8)0x89;
 				break;
 
 			case 0x0160:
-				cstring[a] = (int8)0x8A;
+				cstring[a] = (uint8)0x8A;
 				break;
 
 			case 0x2039:
-				cstring[a] = (int8)0x8B;
+				cstring[a] = (uint8)0x8B;
 				break;
 
 			case 0x0152:
-				cstring[a] = (int8)0x8C;
+				cstring[a] = (uint8)0x8C;
 				break;
 
 			case 0x0000:
-				cstring[a] = (int8)0x8D;
+				cstring[a] = (uint8)0x8D;
 				break;
 
 			case 0x017D:
-				cstring[a] = (int8)0x8E;
+				cstring[a] = (uint8)0x8E;
 				break;
 
 			case 0x2018:
-				cstring[a] = (int8)0x91;
+				cstring[a] = (uint8)0x91;
 				break;
 
 			case 0x2019:
-				cstring[a] = (int8)0x92;
+				cstring[a] = (uint8)0x92;
 				break;
 
 			case 0x201C:
-				cstring[a] = (int8)0x93;
+				cstring[a] = (uint8)0x93;
 				break;
 
 			case 0x201D:
-				cstring[a] = (int8)0x94;
+				cstring[a] = (uint8)0x94;
 				break;
 
 			case 0x2022:
-				cstring[a] = (int8)0x95;
+				cstring[a] = (uint8)0x95;
 				break;
 
 			case 0x2013:
-				cstring[a] = (int8)0x96;
+				cstring[a] = (uint8)0x96;
 				break;
 
 			case 0x2014:
-				cstring[a] = (int8)0x97;
+				cstring[a] = (uint8)0x97;
 				break;
 
 			case 0x02DC:
-				cstring[a] = (int8)0x98;
+				cstring[a] = (uint8)0x98;
 				break;
 
 			case 0x2122:
-				cstring[a] = (int8)0x99;
+				cstring[a] = (uint8)0x99;
 				break;
 
 			case 0x0161:
-				cstring[a] = (int8)0x9A;
+				cstring[a] = (uint8)0x9A;
 				break;
 
 			case 0x203A:
-				cstring[a] = (int8)0x9B;
+				cstring[a] = (uint8)0x9B;
 				break;
 
 			case 0x0153:
-				cstring[a] = (int8)0x9C;
+				cstring[a] = (uint8)0x9C;
 				break;
 
 			case 0x017E:
-				cstring[a] = (int8)0x9E;
+				cstring[a] = (uint8)0x9E;
 				break;
 
 			case 0x0178:
-				cstring[a] = (int8)0x9F;
+				cstring[a] = (uint8)0x9F;
 				break;
 
 			default:
-				cstring[a] = (int8)string.buffer[a];
+				cstring[a] = (uint8)string.buffer[a];
 		}
 	}
 

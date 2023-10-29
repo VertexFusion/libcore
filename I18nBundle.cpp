@@ -18,18 +18,16 @@ I18nBundle::I18nBundle(const String &appID, const String &name, const String &la
 	mLanguage = language;
 
 	//Suche nach Propertyfile
-	File* resourceDir = ResourceDir(appID);
+	File resourceDir = ResourceDir(appID);
 	File* f;
 
 	if(subfolder.Length() > 0)
 	{
-		File* tmp = new File(resourceDir, subfolder);
-		delete resourceDir;
-		resourceDir = tmp;
+		resourceDir = File(resourceDir, subfolder);
 	}
 
-	if(resourceDir->Exists() == false)System::Log("Translation directory does not exist", kLogError);
-	System::Log("Translation directoy: " + resourceDir->GetAbsolutePath(), kLogDebug);
+	if(resourceDir.Exists() == false)System::Log("Translation directory does not exist", kLogError);
+	System::Log("Translation directoy: " + resourceDir.GetAbsolutePath(), kLogDebug);
 
 	//Suche nach dem Paket in gewünschter Sprache
 	f = new File(resourceDir, name + "_" + language + ".properties");
@@ -81,8 +79,6 @@ I18nBundle::I18nBundle(const String &appID, const String &name, const String &la
 	{
 		System::Log("Cannot find translation file for: " + appID + " " + name + " " + language, kLogError);
 	}
-
-	delete resourceDir;
 }
 
 I18nBundle::I18nBundle(const File &file, const String &language): Properties()

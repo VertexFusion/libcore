@@ -217,6 +217,11 @@ void UndoManager::RegisterChange(Object* object, double* pointer)
 	RegisterChange(new UndoChangeDouble(object, pointer));
 }
 
+void UndoManager::RegisterChange(Object* object, Double* pointer)
+{
+	RegisterChange(new UndoChangeDouble(object, (double*)pointer));
+}
+
 void UndoManager::RegisterChange(Object* object, bool* pointer)
 {
 	RegisterChange(new UndoChangeBool(object, pointer));
