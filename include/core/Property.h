@@ -72,12 +72,26 @@ namespace jm
 	{
 		public:
 
+			/*!
+			 \brief Default constructor
+			 */
 			Property();
 
+			/*!
+			 \brief Constructor with the property id
+			 */
 			Property(const String &id);
 
 			/*!
-			 \brief Konstruktor
+			 \brief Constructor with parameters
+			 \param id The id of the property
+			 \param group The group of the property
+			 \param name The name of the property
+			 \param hint A hint/help string of the property for the user
+			 \param editor Preffered editor widget for this property
+			 \param readOnly Status, if the property is read-only
+			 \param changeMode Mode of change infulence
+			 \param allowEmpty Status, if property can be empty
 			 */
 			Property(const String &id,
 			         const String &group,
@@ -89,73 +103,71 @@ namespace jm
 			         bool allowEmpty = true);
 
 			/*!
-			 \brief Status, ob die Eigenschaft veränderlich ist oder nicht
+			 \brief Status, if property is read-only.
 			 */
-			bool IsReadOnly() const;
+			Bool IsReadOnly() const;
 
 			/*!
-			 \brief Status, ob der Wert leer sein darf
+			 \brief Status, if property can be empty.
 			 */
-			bool AllowEmpty() const;
+			Bool AllowEmpty() const;
 
 			/*!
-			 \brief Status, wie eine Änderung der Eigenschaft sicht auf den Wert oder andere
-			 Werte ausübt.
+			 \brief Status, how the change of one property will effect other properties of the
+			 corresponding object.
 			 */
 			PropertyChangeMode GetChangeMode() const;
 
 			/*!
-			 \brief Status, ob die Eigenschaft auch die Werte anderer Felder beeinflussen kann
+			 \brief Short call for checking is. Same as: GetId().IsEqual()
+			 \param id The unique id of the property.
 			 */
-			bool IsChangingOtherValues() const;
+			Bool Is(const String &id)const;
 
 			/*!
-			 \brief Verkürzte Methode, um die ID zu überprüfen. Statt "GetId().IsEqual()"
-			 */
-			bool Is(const String &id)const;
-
-			/*!
-			 \brief Gibt die ID zurück
+			 \brief Returns the id of the property
 			 */
 			const String& GetID() const;
 
 			/*!
-			 \brief Gibt den Namen zurück
+			 \brief Returns the name of the property.
 			 */
 			const String& GetName() const;
 
 			/*!
-			 \brief Gibt den Namen zurück
+			 \brief Returns a help string for the property.
 			 */
 			const String& GetHint() const;
 
 			/*!
-			 \brief Gibt den Editor zurück
+			 \brief Returns an identifiert for the suggested edtior of this property.
 			 */
 			const String& GetEditor() const;
 
 			/*!
-			 \brief Gibt die Gruppe zurück
+			 \brief Returns the group this property can belong to.
 			 */
 			const String& GetGroup() const;
 
 			/*!
-			 \brief String festlegen
+			 \brief Set the name of an icon of this property.
+			 \param iconname The name of the icon.
 			 */
 			void SetIcon(const String &iconname);
 
 			/*!
-			 \brief Gibt den Namen zurück
+			 \brief Returns the icon name of this property.
 			 */
 			const String& GetIcon() const;
 
 			/*!
-			 \brief String festlegen
+			 \brief Set the string value of this property.
+			 \param value The string value.
 			 */
 			VxfErrorStatus SetStringValue(const String &value);
 
 			/*!
-			 \brief Gibt String zurück
+			 \brief Returns the string value of this property.
 			 */
 			const String& GetStringValue() const;
 
@@ -170,34 +182,37 @@ namespace jm
 			//dwg::Colour GetDwgColourValue() const;
 
 			/*!
-			 \brief Legt Integer fest
+			 \brief Set the Integer value of this Property
+			 \param value The Integer value
 			 */
-			VxfErrorStatus SetIntegerValue(int64 value);
+			VxfErrorStatus SetIntegerValue(Integer value);
 
 			/*!
-			 \brief Gibt integer zurück
+			 \brief Returns the Integer Value of this property.
 			 */
-			int64 GetIntegerValue() const;
+			Integer GetIntegerValue() const;
 
 			/*!
-			 \brief Legt Integer fest
+			 \brief Set the Bool value of this Property
+			 \param value The Bool value
 			 */
-			VxfErrorStatus SetBoolValue(bool value);
+			VxfErrorStatus SetBoolValue(Bool value);
 
 			/*!
-			 \brief Gibt integer zurück
+			 \brief Returns the Bool Value of this property.
 			 */
-			bool GetBoolValue() const;
+			Bool GetBoolValue() const;
 
 			/*!
-			 \brief Legt Double fest
+			 \brief Set the Double value of this Property
+			 \param value The Bool value
 			 */
-			VxfErrorStatus SetDoubleValue(double value);
+			VxfErrorStatus SetDoubleValue(Double value);
 
 			/*!
-			 \brief Gibt Double zurück
+			 \brief Returns the Dool Value of this property.
 			 */
-			double GetDoubleValue() const;
+			Double GetDoubleValue() const;
 
 			/*!
 			 \brief Returns the type of the last value which was set. It is assumed that this is the

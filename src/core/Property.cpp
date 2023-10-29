@@ -74,7 +74,7 @@ Property::Property(const String &id,
 	mType = kPropertyTypeString;
 }
 
-bool Property::Is(const String &id)const
+Bool Property::Is(const String &id)const
 {
 	return mId.Equals(id);
 }
@@ -124,12 +124,12 @@ const  String& Property::GetIcon() const
 	return mIcon;
 }
 
-bool Property::IsReadOnly() const
+Bool Property::IsReadOnly() const
 {
 	return mReadOnly;
 }
 
-bool Property::AllowEmpty() const
+Bool Property::AllowEmpty() const
 {
 	return mAllowEmpty;
 }
@@ -151,7 +151,7 @@ const String& Property::GetStringValue() const
 	return mTextValue;
 }
 
-VxfErrorStatus Property::SetIntegerValue(int64 value)
+VxfErrorStatus Property::SetIntegerValue(Integer value)
 {
 	mNumberValue.intValue = value;
 	mType = kPropertyTypeInteger;
@@ -170,31 +170,31 @@ dwg::Colour Property::GetDwgColourValue() const
 	return mDwgColourValue;
 }*/
 
-int64 Property::GetIntegerValue() const
+Integer Property::GetIntegerValue() const
 {
 	return mNumberValue.intValue;
 }
 
-VxfErrorStatus Property::SetDoubleValue(double value)
+VxfErrorStatus Property::SetDoubleValue(Double value)
 {
 	mNumberValue.doubleValue = value;
 	mType = kPropertyTypeDouble;
 	return eOK;
 }
 
-double Property::GetDoubleValue() const
+Double Property::GetDoubleValue() const
 {
 	return mNumberValue.doubleValue;
 }
 
-VxfErrorStatus Property::SetBoolValue(bool value)
+VxfErrorStatus Property::SetBoolValue(Bool value)
 {
 	mNumberValue.boolValue = value;
 	mType = kPropertyTypeBoolean;
 	return eOK;
 }
 
-bool Property::GetBoolValue() const
+Bool Property::GetBoolValue() const
 {
 	return mNumberValue.boolValue;
 }

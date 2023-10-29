@@ -140,37 +140,6 @@ void DiffInfo::PrintIC(DiffOperation operation,
 	}
 }
 
-/*
-void DiffInfo::Print(DiffOperation operation,
-                     const dwg::Colour &obj1,
-                     const dwg::Colour &obj2,
-                     const String &label)
-{
-	switch(operation)
-	{
-		case kDiffAdd:
-		case kDiffDelete:
-			std::cout << "  " << label << ": ";
-			obj1.Print();
-			std::cout << std::endl;
-			break;
-
-		case kDiffModified:
-			if(obj1 != obj2)
-			{
-				std::cout << "  " << label << ": ";
-				obj1.Print();
-				std::cout << " -> ";
-				obj2.Print();
-				std::cout << std::endl;
-			}
-			break;
-
-		default:
-			break;
-	}
-}*/
-
 void DiffInfo::Print(DiffOperation operation,
                      const Vertex2 &obj1,
                      const Vertex2 &obj2,
@@ -224,37 +193,6 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 /*
-void DiffInfo::Print(DiffOperation operation,
-                     const dwg::Handle& obj1,
-                     const dwg::Handle& obj2,
-                     const String& label)
-{
-	switch(operation)
-	{
-		case kDiffAdd:
-		case kDiffDelete:
-			std::cout << "  " << label << ": ";
-			std::cout << obj1.GetValue() << std::endl;
-			break;
-
-		case kDiffModified:
-			if(obj1 != obj2)
-			{
-				std::cout << "  " << label << ": ";
-				std::cout << obj1.GetValue() << " -> " << obj2.GetValue() << std::endl;
-			}
-			break;
-
-		default:
-			break;
-	}
-}*/
-
-/*
-void DiffInfo::Print( dxf::Handle obj1, dxf::Handle obj2, String label )
-{
-	Print( ( int )obj1.GetValue(), ( int )obj2.GetValue(), label );
-}
 
 void DiffInfo::Print( dxf::DwgAppId* obj1, dxf::DwgAppId* obj2 )
 {
