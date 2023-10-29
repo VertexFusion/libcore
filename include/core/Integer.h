@@ -124,8 +124,9 @@ class DllExport Integer : public jm::Comparable<Integer>
 		Integer(uint32 value);
 		Integer(int64 value);
 		Integer(uint64 value);
+		#ifdef ULONG
 		Integer(ulong value);
-
+		#endif
 		bool Equals(const Integer& another) const;
 
 		int32 CompareTo(const Integer& another) const override;

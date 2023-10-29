@@ -115,8 +115,6 @@ typedef short               int16;
 typedef unsigned short      uint16;
 typedef int                 int32;
 typedef unsigned int        uint32;
-typedef long                slong;
-typedef unsigned long       ulong;
 
 #ifndef indeterminate
 #define indeterminate -1
@@ -135,6 +133,9 @@ typedef unsigned long       ulong;
 #define DllExport
 typedef __int64_t           int64;
 typedef __uint64_t          uint64;
+typedef long                slong;
+typedef unsigned long       ulong;
+#define ULONG
 
 #elif defined __linux__
 
@@ -147,6 +148,9 @@ typedef __uint64_t          uint64;
 #define DllExport   __declspec( dllexport )
 typedef __int64           int64;
 typedef unsigned __int64  uint64;
+typedef long                slong;
+typedef unsigned long       ulong;
+#define ULONG
 
 #endif
 

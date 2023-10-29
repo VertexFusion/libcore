@@ -80,10 +80,12 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		mValue = (int32)value;
 	}
 
+#ifdef ULONG
 	Integer::Integer(ulong value): Comparable<Integer>()
 	{
 		mValue = (int32)value;
 	}
+#endif
 	bool Integer::Equals(const Integer &another) const
 	{
 		return mValue == another.mValue;
@@ -301,6 +303,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return (int32)left < right.mValue;
 	}
 
+#ifdef ULONG
 	bool operator<(Integer left, ulong right)
 	{
 		return left.mValue < (slong)right;
@@ -310,7 +313,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 	{
 		return (slong)left < right.mValue;
 	}
-
+#endif
 	bool operator<(Integer left, int64 right)
 	{
 		return left.mValue < right;
@@ -356,6 +359,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return (int32)left <= right.mValue;
 	}
 
+#ifdef ULONG
 	bool operator<=(Integer left, ulong right)
 	{
 		return left.mValue <= (slong)right;
@@ -365,6 +369,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 	{
 		return (slong)left <= right.mValue;
 	}
+#endif
 
 	bool operator<=(Integer left, int64 right)
 	{
@@ -623,6 +628,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return Integer(left * right.mValue);
 	}
 
+#ifdef ULONG
 	Integer operator*(Integer left, ulong right)
 	{
 		return Integer(left.mValue * right);
@@ -632,6 +638,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 	{
 		return Integer(left * right.mValue);
 	}
+#endif
 
 	Double operator*(Integer left, double right)
 	{

@@ -466,7 +466,7 @@ Array<File>* File::ListFiles()
 	while((dirp = readdir(dp)) != NULL)
 	{
 		String filename = String(dirp->d_name);
-		list->Set(cnt++, File(this, filename));
+		list->Set(cnt++, File(*this, filename));
 	}
 	closedir(dp);
 
@@ -557,7 +557,15 @@ String File::GetExtension() const
 
 bool File::CreateNewFile()
 {
+#ifdef __APPLE__ //macOS und ios
 	Integer ret = fopen_s(&mHandle,mCstr, "wb");
+#elif defined __linux__ //Linux
+	mHandle = fopen(mCstr, "wb");
+	Integer ret = mHandle!=NULL;
+#elif defined _WIN32 //Windows
+	Integer ret = fopen_s(&mHandle,mCstr, "wb");
+#endif
+
 	Close();
 	return ret==0;
 }
@@ -566,6 +574,7 @@ void File::Open(FileMode mode)
 {
 	Integer ret = 0;
 
+#ifdef __APPLE__ //macOS und ios
 	switch(mode)
 	{
 		case kFmRead:
@@ -580,6 +589,38 @@ void File::Open(FileMode mode)
 			ret = fopen_s(&mHandle, mCstr, "rb+");
 			break;
 	}
+#elif defined __linux__ //Linux
+	switch(mode)
+	{
+		case kFmRead:
+			mHandle = fopen(mCstr, "rb");
+			break;
+
+		case kFmWrite:
+			mHandle = fopen(mCstr, "wb");
+			break;
+
+		case kFmReadWrite:
+			mHandle = fopen(mCstr, "rb+");
+			break;
+	}
+	ret=mHandle!=NULL;
+#elif defined _WIN32 //Windows
+	switch(mode)
+	{
+		case kFmRead:
+			ret = fopen_s(&mHandle, mCstr, "rb");
+			break;
+
+		case kFmWrite:
+			ret = fopen_s(&mHandle, mCstr, "wb");
+			break;
+
+		case kFmReadWrite:
+			ret = fopen_s(&mHandle, mCstr, "rb+");
+			break;
+	}
+#endif
 
 	if(mHandle == NULL)
 	{
@@ -812,7 +853,7 @@ File jm::ResourceDir(const String &bundleId)
 
 	#elif defined __linux__ //Linux
 	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
-	return new File(ExecDir());
+	return File(ExecDir());
 	#elif defined _WIN32 //Windows
 
 	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
@@ -831,7 +872,7 @@ File jm::PropertyDir()
 	#elif defined __linux__ //Linux
 	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
 	char* home = getenv("HOME");
-	return new File(home, "." + ExecName());
+	return File(home, "." + ExecName());
 	#elif defined _WIN32 //Windows
 
 	return UserDir();
@@ -864,7 +905,7 @@ File jm::UserDir()
 	#elif defined __linux__ //Linux
 	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
 	char* home = getenv("HOME");
-	return new File(home);
+	return File(home);
 	#elif defined _WIN32 //Windows
 
 	uint16 path[MAX_PATH];
