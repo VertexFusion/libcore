@@ -20,4 +20,4 @@ jobs:
     - name: run test
       run: ./test.app
     - name: clean
-    - run: make clean
+      run: make clean
