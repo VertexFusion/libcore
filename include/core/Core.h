@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Core.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Header for core classes
 //
 // Author:      Uwe Runtemund (2012-today)
@@ -28,6 +28,8 @@
 //              OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// astyle -A1 -t3 -C -S -N -xg -U -Y -xw -p *
 
 #ifndef jm_Core_h
 #define jm_Core_h
@@ -74,13 +76,35 @@
 #include "XMLWriter.h"
 #include "ZipFile.h"
 
+
+/*! \mainpage Jameo Core Library
+
+Welcome to the Jameo Core Library Documentation.
+
+The Jameo Core Library is a cross-plattform C++ library under the MIT licence, which provide basic
+datatypes and concepts often used in our software.
+
+This includes the following basic data types or enhancements:
+
+- Additional basic datatypes: string, date, file, colour, ...
+- Basic linear algebra (vectors, matrices) and geometry functions
+- Undo- and redo-management for app integration
+- Simple XML in- and out
+- Mutex and Threads
+- Diff algorithm
+- Addition random stuff
+
+\author  Uwe Runtemund
+\copyright 2012-2023 Jameo Software, Germany. https://jameo.de
+
+Legal notes for this website: https://jameo.de/en/about/
+*/
+
+
 /*!
- \defgroup core Core
+ \defgroup diff Diff
 
- \brief Core classes provides basic functionality for every application.
-
- These classes are not CAD related. Typical classes are general math functions, string operations,
- different algorithms and so on.
+ \brief Collection of classes related to the diff algorithm.
  */
 
 #endif

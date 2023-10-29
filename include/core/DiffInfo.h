@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        DiffInfo.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Diff Algorithm
 //
 // Author:      Uwe Runtemund (2013-today)
@@ -33,6 +33,8 @@
 #define jm_DiffInfo
 
 #include "Object.h"
+#include "Vertex2.h"
+#include "Vertex3.h"
 #include "DiffTypes.h"
 
 namespace jm
@@ -41,7 +43,7 @@ namespace jm
 	/*!
 	 \brief This class provides command line information about what changes have taken place and
 	 writes them to the console.
-	 \ingroup core
+	 \ingroup diff
 	 */
 	class DllExport DiffInfo
 	{
@@ -71,18 +73,24 @@ namespace jm
 
 			static void Print(DiffOperation operation,
 			                  double obj1, double obj2, const String &label);
+
 			static void Print(DiffOperation operation,
 			                  const String &obj1, const String &obj2, const String &label);
+
 			static void PrintIC(DiffOperation operation,
 			                    const String& obj1, const String& obj2, const String& label);// Ignore Case
-			static void Print(DiffOperation operation,
-			                  const dwg::Colour &obj1, const dwg::Colour &obj2, const String &label);
+
+//			static void Print(DiffOperation operation,
+//			                  const dwg::Colour &obj1, const dwg::Colour &obj2, const String &label);
+
 			static void Print(DiffOperation operation,
 			                  const Vertex2 &obj1, const Vertex2 &obj2, const String &label);
+
 			static void Print(DiffOperation operation,
 			                  const Vertex3 &obj1, const Vertex3 &obj2, const String &label);
-			static void Print(DiffOperation operation,
-			                  const dwg::Handle& obj1, const dwg::Handle& obj2, const String& label);
+
+//			static void Print(DiffOperation operation,
+//			                  const dwg::Handle& obj1, const dwg::Handle& obj2, const String& label);
 			/*
 							//Objekte
 							void Print(dxf::DwgAppId* obj1, dxf::DwgAppId* obj2);
@@ -107,7 +115,7 @@ namespace jm
 							void Print(dxf::Point* obj1, dxf::Point* obj2);
 							void Print(dxf::Polyline* obj1, dxf::Polyline* obj2);
 							void Print(dxf::Scale* obj1, dxf::Scale* obj2);*/
-			void Print(dwg::Header* obj1, dwg::Header* obj2);
+//			void Print(dwg::Header* obj1, dwg::Header* obj2);
 			/*				void Print(dxf::Style* obj1, dxf::Style* obj2);
 							void Print(dxf::Text* obj1, dxf::Text* obj2);
 							void Print(dxf::DwgTrace* obj1, dxf::DwgTrace* obj2);

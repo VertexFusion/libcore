@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        I18nBundle.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Declaration of Translation helper class
 //
 // Author:      Uwe Runtemund (2013-today)

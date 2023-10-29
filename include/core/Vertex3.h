@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Vertex3.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     3D-Vector
 //
 // Author:      Uwe Runtemund (2012-today)

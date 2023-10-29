@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        AutoreleasePool.cpp
-// Library:     VertexFusion Library
-// Purpose:     Implementation für AutoreleasePool
+// Library:     Jameo Core Library
+// Purpose:     Implementation of AutoreleasePool
 //
 // Author:      Uwe Runtemund (2015-today)
 // Modified by:

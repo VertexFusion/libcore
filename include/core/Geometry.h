@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Geometry.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Usefull CAD and geometry functions
 //
 // Author:      Uwe Runtemund (2012-today)

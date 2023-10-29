@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jameo Software. All rights reserved.
 //
 
-#include "VertexFusion.h"
+#include "core/Core.h"
 #include "StringTokenizerTest.h"
 
 using namespace jm;

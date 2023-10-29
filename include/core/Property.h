@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Property.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Object for property handling in applications
 //
 // Author:      Uwe Runtemund (2016-today)
@@ -36,8 +36,6 @@
 
 #include "Types.h"
 #include "String.h"
-#include "dwg/DwgTypes.h"
-#include "dwg/DwgColour.h"
 
 namespace jm
 {
@@ -164,12 +162,12 @@ namespace jm
 			/*!
 			 \brief String festlegen
 			 */
-			VxfErrorStatus SetDwgColourValue(const dwg::Colour& value);
+			//VxfErrorStatus SetDwgColourValue(const dwg::Colour& value);
 
 			/*!
 			 \brief Gibt String zurück
 			 */
-			dwg::Colour GetDwgColourValue() const;
+			//dwg::Colour GetDwgColourValue() const;
 
 			/*!
 			 \brief Legt Integer fest
@@ -298,7 +296,7 @@ namespace jm
 			} mNumberValue;
 
 			String mTextValue;
-			dwg::Colour mDwgColourValue;
+			//dwg::Colour mDwgColourValue;
 
 
 	};

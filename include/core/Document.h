@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Document.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Document Interface
 //
 // Author:      Uwe Runtemund (2016-today)

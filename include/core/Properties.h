@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Properties.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Specialization of a hash table for storing and handling application properties
 //
 // Author:      Uwe Runtemund (2013-today)

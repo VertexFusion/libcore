@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        CharArray.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Handling arrays of characters
 //
 // Author:      Uwe Runtemund (2013-today)

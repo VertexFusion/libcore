@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Object.cpp
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Implementation of Object class
 //
 // Author:      Uwe Runtemund (2014-today)

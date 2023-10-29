@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Base64.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Base64 Encoding/Decoding
 //
 // Author:      Uwe Runtemund (2020-today)

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        AutoreleasePool.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Memory Management for objects
 //
 // Author:      Uwe Runtemund (2015-today)

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Exception.h
-// Library:     VertexFusion Library
-// Purpose:     Itrator Interface
+// Library:     Jameo Core Library
+// Purpose:     Iterator Interface
 //
 // Author:      Uwe Runtemund (2013-today)
 // Modified by:

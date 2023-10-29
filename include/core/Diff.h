@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Diff.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Diff Algorithm
 //
 // Author:      Uwe Runtemund (2013-today)
@@ -34,7 +34,6 @@
 
 #include "Object.h"
 #include "DiffBacktrace.h"
-#include "dwg/Dwg.h"
 
 namespace jm
 {
@@ -42,7 +41,7 @@ namespace jm
 
 	/*!
 	 \brief Diff makes the diff function generally available.
-	 \ingroup core
+	 \ingroup diff
 	 */
 	class DllExport Diff
 	{
@@ -55,11 +54,11 @@ namespace jm
 			 \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
 			 \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
 			 */
-			static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
+			/*static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
 
 			static void HandleEntityU(DiffDistance* dd, dwg::Entity* e);
 			static void HandleEntityV(DiffDistance* dd, dwg::Entity* e);
-
+			*/
 		private:
 			/*!
 			 \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten

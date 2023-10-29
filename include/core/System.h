@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        System.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     System Things
 //
 // Author:      Uwe Runtemund (2013-today)

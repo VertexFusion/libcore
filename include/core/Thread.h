@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Thread.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Thread Management
 //
 // Author:      Uwe Runtemund (2013-today)

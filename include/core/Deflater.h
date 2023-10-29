@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Deflater.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Deflate Algorithm
 //
 // Author:      Uwe Runtemund (2015-today)

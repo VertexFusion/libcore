@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jameo Software. All rights reserved.
 //
 
-#include "VertexFusion.h"
+#include "core/Core.h"
 #include "StringTest.h"
 
 using namespace jm;

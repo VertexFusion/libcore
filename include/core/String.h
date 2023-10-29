@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Strings.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Declaration of String class
 //
 // Author:      Uwe Runtemund (2012-today)

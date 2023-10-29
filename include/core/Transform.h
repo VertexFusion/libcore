@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Transform.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     CAD related utilities for coordinate system transformations
 //
 // Author:      Uwe Runtemund (2014-today)

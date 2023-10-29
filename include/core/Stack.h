@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Stack.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Collecting ojects on a stack "First in - Last Out"
 //
 // Author:      Uwe Runtemund (2015-today)

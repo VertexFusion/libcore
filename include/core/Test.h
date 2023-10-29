@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Test.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Declaration of Test class
 //
 // Author:      Uwe Runtemund (2012-today)
@@ -88,6 +88,13 @@ namespace jm
 			 gleich sind. Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben.
 			 */
 			void TestEquals(const double actual, const double expected, const String &failmessage);
+
+			/*!
+			 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.
+			 Wenn dies nicht der Fall ist, wird die (optionale) Fehlermeldung ausgegeben
+			 */
+			void TestEquals(Integer actual, Integer expected, String failmessage);
+			void TestEquals(Integer actual, int32 expected, String failmessage);
 
 			/*!
 			 \brief Diese Methode testet, ob die zwei Integer-Werte gleich sind.

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Vertex2.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     2D-Vector
 //
 // Author:      Uwe Runtemund (2013-today)

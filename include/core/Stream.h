@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Stream.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Declaration of Stream class
 //
 // Author:      Uwe Runtemund (2015-today)

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Math.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Usefull math functions
 //
 // Author:      Uwe Runtemund (2012-today)

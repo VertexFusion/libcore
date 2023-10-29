@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        SAXParser.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     XML Parsing tool
 //
 // Author:      Uwe Runtemund (2014-today)

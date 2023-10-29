@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        DiffBacktrace.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Diff Algorithm
 //
 // Author:      Uwe Runtemund (2013-today)
@@ -46,7 +46,7 @@ namespace jm
 
 	/*!
 	 \brief DiffBacktrace is used to indicate the "path of change".
-	 \ingroup core
+	 \ingroup diff
 	 */
 	class DllExport DiffBacktrace
 	{

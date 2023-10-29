@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        MeoryStream.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Helper classes for our stream object
 //
 // Author:      Uwe Runtemund (2015-today)

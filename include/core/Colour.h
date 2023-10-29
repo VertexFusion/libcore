@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Colour.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Colour models
 //
 // Author:      Uwe Runtemund (2017-today)

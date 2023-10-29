@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Object.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Declaration of Object class
 //
 // Author:      Uwe Runtemund (2014-today)

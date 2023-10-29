@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Types.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Common Type Definitions
 //
 // Author:      Uwe Runtemund (2012-today)

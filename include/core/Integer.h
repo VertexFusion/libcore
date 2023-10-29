@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Integer.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Integer class
 //
 // Author:      Uwe Runtemund (2013-today)

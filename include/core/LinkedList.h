@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        LinkedList.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Helper classes variable List
 //
 // Author:      Uwe Runtemund (2013-today)

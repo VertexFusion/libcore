@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        URI.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     URI
 //
 // Author:      Uwe Runtemund (2016-today)

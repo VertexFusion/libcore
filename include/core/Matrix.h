@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Matrix.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Matrix Class
 //
 // Author:      Uwe Runtemund (2012-today)
@@ -275,7 +275,6 @@ namespace jm
 	 */
 	DllExport
 	const Matrix operator*(const Matrix &A, const Matrix &B);
-
 
 	/*!
 	 \brief Implementierung des Operators d * M (Skalare multiplikation)

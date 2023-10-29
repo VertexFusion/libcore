@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        VertexFusion.h
-// Library:     VertexFusion Library
+// Name:        Array.h
+// Library:     Jameo Core Library
 // Purpose:     Declaration of dirrefent arrays types
 //
 // Author:      Uwe Runtemund (2013-today)

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Iterator.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Itrator Interface
 //
 // Author:      Uwe Runtemund (2013-today)

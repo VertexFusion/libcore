@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        DiffDistance.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Diff Algorithm
 //
 // Author:      Uwe Runtemund (2013-today)
@@ -50,7 +50,7 @@ namespace jm
 	 calculating a fully populated matrix is much too slow for the classical algorithm for large
 	 files.
 
-	 \ingroup core
+	 \ingroup diff
 	 */
 	class DllExport DiffDistance
 	{

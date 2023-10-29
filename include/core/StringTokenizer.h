@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        StringTokenizer.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     String tokenizer
 //
 // Author:      Uwe Runtemund (2013-today)

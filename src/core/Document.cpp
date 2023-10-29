@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Document.cpp
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Implementation of Document Interface
 //
 // Author:      Uwe Runtemund (2016-today)

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        XMLWriter.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Write XML-Files
 //
 // Author:      Uwe Runtemund (2020-today)

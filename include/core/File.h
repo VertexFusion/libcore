@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        File.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     File
 //
 // Author:      Uwe Runtemund (2013-today)

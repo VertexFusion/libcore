@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Date.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Date Operations
 //
 // Author:      Uwe Runtemund (2014-today)

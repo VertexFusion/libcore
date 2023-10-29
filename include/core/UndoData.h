@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        UndoData.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Undo/Redo Management
 //
 // Author:      Uwe Runtemund (2014-today)

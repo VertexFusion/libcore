@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        CRC.cpp
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     CRC
 //
 // Author:      Uwe Runtemund (2013-today)

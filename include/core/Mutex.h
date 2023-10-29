@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Mutex.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Helper classes for thread safety
 //
 // Author:      Uwe Runtemund (2012-today)
@@ -29,8 +29,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Synchronized_h
-#define jm_Synchronized_h
+#ifndef jm_Mutex_h
+#define jm_Mutex_h
 
 #include "Types.h"
 
@@ -43,34 +43,48 @@
 namespace jm
 {
 
-
-
 	/*!
 	 \brief Mutex class.
 	 */
 	class DllExport Mutex
 	{
 		public:
-			//the default constructor
+
+			/*!
+			 \brief The default constructor.
+			 */
 			Mutex();
 
-			//destructor
+			/*!
+			 \brief Destructor.
+			 */
 			~Mutex();
 
-			//lock
+			/*!
+			 \brief Lock the mutex object.
+			 */
 			void Lock();
 
-			//unlock
+			/*!
+			 \brief Unlock the mutex object.
+			 */
 			void Unlock();
 
-			//sleep
+			/*!
+			 \brief Sleep
+			 */
 			void Sleep();
 
-			//wake Up
+			/*!
+			 \brief Wake up.
+			 */
 			void WakeUp();
 
 		private:
-			#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+
+			#if defined(__APPLE__) || defined(__linux__)//macOS & Linux
+
+			//!pthread data types
 			pthread_mutex_t criticalSection;
 			pthread_mutexattr_t attr;
 			pthread_condattr_t attrc;
@@ -78,36 +92,10 @@ namespace jm
 
 			#elif defined _WIN32//Windows
 
-			//Unter Windows 7 und 10 liefert sizeof(CRITICAL_SECTION) 40 Bytes
+			//On Windows 7 und 10 sizeof(CRITICAL_SECTION) returns 40 Bytes, so he make hardcode here.
 			uint8 mCriticalSection[40];
 
 			#endif
-	};
-
-
-	//synchronization controller object
-	class DllExport Lock
-	{
-		public:
-			//the default constructor
-			Lock(Mutex &mutex);
-
-			//the destructor
-			~Lock();
-
-			//report the state of locking when used as a boolean
-			operator bool () const
-			{
-				return locked;
-			}
-
-			//unlock
-			void SetUnlock();
-
-		private:
-			Mutex &mutex;
-			bool locked;
-
 	};
 
 }

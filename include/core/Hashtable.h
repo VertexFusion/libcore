@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Hashtable.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Hashtable
 //
 // Author:      Uwe Runtemund (2013-today)

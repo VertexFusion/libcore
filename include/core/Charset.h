@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Charset.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Character Encodings
 //
 // Author:      Uwe Runtemund (2013-today)

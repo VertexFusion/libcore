@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        NURBS.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     NURBS
 //
 // Author:      Uwe Runtemund (2013-today)

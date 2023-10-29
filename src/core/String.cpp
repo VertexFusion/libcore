@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        String.cpp
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Implementation of String class
 //
 // Author:      Uwe Runtemund (2014-today)

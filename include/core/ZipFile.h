@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        ZipFile.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Read & Write ZIP-Files
 //
 // Author:      Uwe Runtemund (2017-today)

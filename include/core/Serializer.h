@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Serializer.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Serialize data type for streams
 //
 // Author:      Uwe Runtemund (2013-today)

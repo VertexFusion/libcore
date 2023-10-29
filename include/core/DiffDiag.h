@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        DiffDiag.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Diff Algorithm
 //
 // Author:      Uwe Runtemund (2013-today)
@@ -44,7 +44,7 @@ namespace jm
 
 	/*!
 	 \brief This class represents a diagonal in the diff algorithm.
-	 \ingroup core
+	 \ingroup diff
 	 */
 	class DllExport DiffDiag
 	{

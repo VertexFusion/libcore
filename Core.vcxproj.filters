@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="translations">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="test">
+      <UniqueIdentifier>{34765161-b2dd-42f6-b4de-04996bf96216}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="prec">
+      <UniqueIdentifier>{337f258f-cc78-4a35-a2f6-718d7dc97f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\core">
+      <UniqueIdentifier>{ab528600-5493-4c6d-9c75-cad5acd74f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zlib">
+      <UniqueIdentifier>{e43f6050-b6de-48a6-803c-a9446b56ad00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\core">
+      <UniqueIdentifier>{1b47a8e2-b277-437c-a1df-21ba257d9edb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="prec\Precompiled.h">
+      <Filter>prec</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Array.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\AutoreleasePool.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Base64.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\CharArray.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Charset.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Colour.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Core.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\CRC.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Date.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Deflater.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Diff.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\DiffBacktrace.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\DiffDiag.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\DiffDistance.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\DiffInfo.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\DiffTypes.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Document.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Exception.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\File.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Geometry.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Hashtable.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\I18nBundle.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Inflater.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Integer.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Iterator.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\LinkedList.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Math.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Matrix.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\MemoryStream.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Mutex.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Nurbs.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Object.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\PaintingBackend.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Properties.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Property.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SAXParser.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Serializer.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Stack.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Stream.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\String.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\StringTokenizer.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\System.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Test.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Thread.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Transform.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Types.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\UndoData.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\UndoManager.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\URI.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Vector.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Vertex2.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Vertex3.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\XMLWriter.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\ZipFile.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\DateTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\DeflateTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\GeometryTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\HashtableTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\LinkedListTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\MathTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\MatrixTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\StringTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\StringTokenizerTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\UndoManagerTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\core\VertexTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\core\AutoreleasePool.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Base64.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Character.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Charset.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\CharsetDecoder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Colour.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\CRC.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Date.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\DateFormatter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Deflater.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Diff.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\DiffBacktrace.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\DiffDiag.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\DiffDistance.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\DiffInfo.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Document.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Exception.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Extents.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\File.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Geometry.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Hashtable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\I18nBundle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Inflater.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Integer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Iterator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\LinkedList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\MacRomanDecoder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Math.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Matrix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\MemoryStream.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\NURBS.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\PaintingBackend.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Properties.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Property.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SAXAttributes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SAXParser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Serializer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Stream.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\String.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\StringTokenizer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Mutex.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\System.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\TestVector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Thread.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Transform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\UndoChange.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\UndoManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\UndoStep.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\URI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\UTF8Decoder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\UTF16Decoder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Vector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Vertex2.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Vertex3.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Windows1252Decoder.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\XMLWriter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\ZipFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\ZipOutputFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="prec\Precompiled.cpp">
+      <Filter>prec</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\adler32.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\compress.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\crc32.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\deflate.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\gzclose.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\gzlib.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\gzread.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\gzwrite.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\infback.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\inffast.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\inflate.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\inftrees.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\trees.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\uncompr.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\zlib\zutil.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\DateTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\DeflateTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\GeometryTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\HashtableTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\LinkedListTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\MathTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\MatrixTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\StringTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\StringTokenizerTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\UndoManagerTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\VertexTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="test\Main.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -26,26 +26,26 @@ void HashtableTest::DoTest()
 	ht->Put("test3",(void*) 3);
 	ht->Put("test4",(void*) 4);
 	ht->Put("test5",(void*) 5);
-	TestEquals((int)(long)(ht->Get("test1")),1, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test2")),2, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test3")),3, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test4")),4, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test5")),5, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test1")),1, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test2")),2, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test3")),3, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test4")),4, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test5")),5, "Hashtable fails");
 	ht->Put("test6",(void*) 6);
 	ht->Put("test7",(void*) 7);
 	ht->Put("test8",(void*) 8);
 	ht->Put("test9",(void*) 9);
 	ht->Put("testA",(void*) 10);
-	TestEquals((int)(long)(ht->Get("test1")),1, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test2")),2, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test3")),3, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test4")),4, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test5")),5, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test6")),6, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test7")),7, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test8")),8, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("test9")),9, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("testA")),10, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test1")),1, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test2")),2, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test3")),3, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test4")),4, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test5")),5, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test6")),6, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test7")),7, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test8")),8, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("test9")),9, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("testA")),10, "Hashtable fails");
 	delete ht;
 	
 	//Neuer Test
@@ -56,12 +56,12 @@ void HashtableTest::DoTest()
 	ht->Put("value6",(void*) 4);
 	ht->Put("value11",(void*) 5);
 	ht->Put("value15",(void*) 6);
-	TestEquals((int)(long)(ht->Get("value2")),1, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value3")),2, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value5")),3, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value6")),4, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value11")),5, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value15")),6, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value2")),1, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value3")),2, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value5")),3, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value6")),4, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value11")),5, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value15")),6, "Hashtable fails");
 	
 	//Clear
 	ht->Clear();
@@ -73,9 +73,9 @@ void HashtableTest::DoTest()
 	ht->Put("value3",(void*) 2);
 	ht->Put("value5",(void*) 3);
 	ht->Remove("value5");
-	TestEquals((int)(long)(ht->Get("value2")),1, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value3")),2, "Hashtable fails");
-	TestEquals((int)(long)(ht->Get("value5")),0, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value2")),1, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value3")),2, "Hashtable fails");
+	TestEquals(Integer((uint64)ht->Get("value5")),0, "Hashtable fails");
 	delete ht;
 
 }

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        PaintingBackend.h
-// Library:     VertexFusion Library
+// Library:     Jameo Core Library
 // Purpose:     Drawing Interface for draw CAD drawings to different targets (Backends)
 //
 // Author:      Uwe Runtemund (2017-today)
@@ -37,7 +37,7 @@
 
 #include "Transform.h"
 #include "Nurbs.h"
-#include "dwg/DwgLineType.h"
+//#include "dwg/DwgLineType.h"
 
 namespace jm
 {
@@ -236,7 +236,7 @@ namespace jm
 			 wenn eine durchgehende Linie gezeichnet wird.
 			 \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
 			 */
-			dwg::LineType* curLineType;
+			//dwg::LineType* curLineType;
 
 			/*!
 			 \brief Die aktuelle Skalierung des Linienmusters.
