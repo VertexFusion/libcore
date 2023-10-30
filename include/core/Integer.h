@@ -68,6 +68,8 @@ public:
 		
 		return *this;
 	};
+
+	static Bool ValueOf(const jm::String& value);
 	
 	bool IsTrue() const{return mValue==BoolTrue;};
 
@@ -124,7 +126,7 @@ class DllExport Integer : public jm::Comparable<Integer>
 		Integer(uint32 value);
 		Integer(int64 value);
 		Integer(uint64 value);
-		#ifdef ULONG
+		#ifdef WITHULONG
 		Integer(ulong value);
 		#endif
 		bool Equals(const Integer& another) const;
@@ -440,6 +442,9 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	DllExport
 	friend bool operator!=(Integer left, uint32 right);
+
+	DllExport
+	friend bool operator!=(uint32 left, Integer right);
 
 	private:
 

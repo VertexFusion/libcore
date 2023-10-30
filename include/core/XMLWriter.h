@@ -106,6 +106,8 @@ namespace jm
 			 */
 			void WriteAttribute(const String &name, uint32 content);
 
+			void WriteAttribute(const String& name, Integer content);
+
 			/*!
 			 \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
 			 \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben

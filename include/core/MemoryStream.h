@@ -55,7 +55,7 @@ namespace jm
 			 \param array Das Byte-Array auf dem die Streamoperationen angewendet werden sollen.
 			 \param length Die Länge des Byte-Arrays
 			 */
-			MemoryStream(uint8* array, uint32 length);
+			MemoryStream(uint8* array, Integer length);
 
 			/*!
 			\brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.

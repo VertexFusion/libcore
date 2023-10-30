@@ -242,7 +242,7 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
 	mEntries.Add(entry, NULL);
 }
 
-void ZipOutputFile::Write(uint8* data, uint32 offset, uint32 length)
+void ZipOutputFile::Write(uint8* data, Integer offset, Integer length)
 {
 	mTemp->Write(&data[offset], length);
 }

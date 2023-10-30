@@ -86,6 +86,8 @@ namespace jm
 	 */
 	DllExport
 	int16 SerializeLEInt16(uint8* buffer, uint32 offset, int16 value);
+
+	DllExport
 	int16 SerializeLEUInt16(uint8* buffer, uint32 offset, uint16 value);
 
 	/*!

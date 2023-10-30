@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-MemoryStream::MemoryStream(uint8* stream, uint32 length): Stream()
+MemoryStream::MemoryStream(uint8* stream, Integer length): Stream()
 {
 	mStream = stream;
 	mStreamlength = length;

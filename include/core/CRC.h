@@ -40,7 +40,7 @@ namespace jm
 	 checksums.
 	 \ingroup core
 	 */
-	class CRC
+	class DllExport CRC
 	{
 		public:
 

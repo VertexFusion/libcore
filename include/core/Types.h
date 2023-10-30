@@ -135,7 +135,7 @@ typedef __int64_t           int64;
 typedef __uint64_t          uint64;
 typedef long                slong;
 typedef unsigned long       ulong;
-#define ULONG
+#define WITHULONG
 
 #elif defined __linux__
 
@@ -150,7 +150,7 @@ typedef __int64           int64;
 typedef unsigned __int64  uint64;
 typedef long                slong;
 typedef unsigned long       ulong;
-#define ULONG
+#define WITHULONG
 
 #endif
 

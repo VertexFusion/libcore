@@ -34,6 +34,8 @@
 
 namespace jm
 {
+	struct Colour;
+
 	/*!
 	 \brief Enumeration of available colour modes for \c Colour
 	 \note Compile with -fshort-enums
@@ -286,21 +288,21 @@ namespace jm
 
 			uint8 mAlpha;
 
-			friend bool operator==(Colour const &c1, Colour const &c2);
-			friend bool operator!=(Colour const& c1, Colour const& c2);
-			friend const Colour operator-(Colour const &c1, Colour const &c2);
-			friend const Colour operator+(Colour const &c1, Colour const &c2);
-			friend Colour Blend(Colour background, Colour foreground, uint8 alpha);
-			friend Colour Interpolate(Colour colour1, Colour colour2, float percent);
+			DllExport friend bool operator==(Colour const &c1, Colour const &c2);
+			DllExport friend bool operator!=(Colour const& c1, Colour const& c2);
+			DllExport friend const Colour operator-(Colour const &c1, Colour const &c2);
+			DllExport friend const Colour operator+(Colour const &c1, Colour const &c2);
+			DllExport friend Colour Blend(Colour background, Colour foreground, uint8 alpha);
+			DllExport friend Colour Interpolate(Colour colour1, Colour colour2, float percent);
 	};
 
 	// Under windows we do not need that, under macOS it is required
 	#if defined __APPLE__ || defined __linux__
 	DllExport
-	Colour Blend(Colour background, Colour foreground, uint8 alpha);
+		Colour Blend(Colour background, Colour foreground, uint8 alpha);
 
 	DllExport
-	Colour Interpolate(Colour colour1, Colour colour2, float percent);
+		Colour Interpolate(Colour colour1, Colour colour2, float percent);
 
 	DllExport
 	bool operator==(Colour const& c1, Colour const& c2);

@@ -35,6 +35,13 @@ const uint16 gMask[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', '
 const int32 gArabic[] = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
 const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
 
+
+Bool Bool::ValueOf(const jm::String& value)
+{
+	return value.EqualsIgnoreCase("true");
+}
+
+
 	Integer::Integer(): Comparable<Integer>()
 	{
 		mValue = 0;
@@ -80,7 +87,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		mValue = (int32)value;
 	}
 
-#ifdef ULONG
+#ifdef WITHULONG
 	Integer::Integer(ulong value): Comparable<Integer>()
 	{
 		mValue = (int32)value;
@@ -303,7 +310,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return (int32)left < right.mValue;
 	}
 
-#ifdef ULONG
+#ifdef WITHULONG
 	bool operator<(Integer left, ulong right)
 	{
 		return left.mValue < (slong)right;
@@ -359,7 +366,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return (int32)left <= right.mValue;
 	}
 
-#ifdef ULONG
+#ifdef WITHULONG
 	bool operator<=(Integer left, ulong right)
 	{
 		return left.mValue <= (slong)right;
@@ -479,6 +486,11 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 	bool operator!=(Integer left, uint32 right)
 	{
 		return left.mValue != (int32)right;
+	}
+
+	bool operator!=(uint32 left, Integer right)
+	{
+		return (int32)left != right.mValue;
 	}
 
 	bool operator==(uint32 left, Integer right)
@@ -628,7 +640,7 @@ const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "C
 		return Integer(left * right.mValue);
 	}
 
-#ifdef ULONG
+#ifdef WITHULONG
 	Integer operator*(Integer left, ulong right)
 	{
 		return Integer(left.mValue * right);

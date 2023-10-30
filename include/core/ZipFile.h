@@ -203,7 +203,7 @@ namespace jm
 			/*!
 			\brief Gibt den Stream für das Schreiben der Daten zurück.
 			*/
-			void Write(uint8* data, uint32 offset, uint32 length);
+			void Write(uint8* data, Integer offset, Integer length);
 
 			/*!
 			\brief Schreibt den Inhalt der Datei in den Stream
