@@ -473,6 +473,7 @@ public:
 	Double(float value);
 	Double(double value);
 	Double(int32 value);
+	explicit Double(Integer value);
 
  // bool Equals(const Double& another) const;
 

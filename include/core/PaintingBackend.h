@@ -113,7 +113,7 @@ namespace jm
 			 \brief Diese Methode legt die Strichstärke fest, mit der die Objekte gezeichnet werden
 			 \param lineweight Die Strichstärke.
 			 */
-			virtual void SetLineWeight(double lineweight) = 0;
+			virtual void SetLineWeight(Double lineweight) = 0;
 
 			virtual double GetLineWeight() const = 0;
 
@@ -172,9 +172,9 @@ namespace jm
 			 */
 			void Arc(const Vertex3 &center,
 			         const Vertex3 &normal,
-			         double radius,
-			         double startAngle,
-			         double endAngle);
+				Double radius,
+				Double startAngle,
+				Double endAngle);
 
 			/*!
 			 \brief Diese Methode dient dazu, zum aktuellen Pfad das Grafikprimitiv Ellipsenbogen
@@ -188,8 +188,8 @@ namespace jm
 			void Elliptic(const Vertex3 &center,
 			              const Vertex3 &majorAxis,
 			              const Vertex3 &minorAxis,
-			              double startAngle,
-			              double endAngle);
+				Double startAngle,
+				Double endAngle);
 
 			/*!
 			 \brief Diese Methode zeichnet eine NURBS (Non-Uniform Rational Basis-Spline).
@@ -242,21 +242,21 @@ namespace jm
 			 \brief Die aktuelle Skalierung des Linienmusters.
 			 \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
 			 */
-			double curLineTypeScale;
+			Double curLineTypeScale;
 
 			/*!
 			 \brief Position im gesamten Pattern, an dem man gerade steht (vom Anfang des Pattern).
 			 IN PATTERNSKALIERUNG (also ohne curLineTypeScale)
 			 \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
 			 */
-			double linePatternOffset;
+			Double linePatternOffset;
 
 			/*!
 			 \brief Position im aktuellen Element, an dem man gerade steht (vom Anfang des Elements)
 			 IN PATTERNSKALIERUNG (also ohne curLineTypeScale)
 			 \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
 			 */
-			double linePatternSubOffset;
+			Double linePatternSubOffset;
 
 			/*!
 			 \brief 0-basierter Index des aktuellen Elementes

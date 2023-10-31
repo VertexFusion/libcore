@@ -114,6 +114,7 @@ namespace jm
 			 werden.
 			 */
 			void WriteAttribute(const String &name, float content);
+			void WriteAttribute(const String& name, Double content);
 
 			/*!
 			 \brief Diese Methode schließt das aktuell offene XML-Element. Wenn das Element keine
@@ -133,7 +134,7 @@ namespace jm
 			 \brief Schreibt Daten und kodiert sie mit dem BASE64-Algorithmus
 			 \param data Die uncodierten Daten
 			 */
-			void WriteBase64(uint8 *data, uint32 length);
+			void WriteBase64(uint8 *data, Integer length);
 
 
 		private:

@@ -177,7 +177,7 @@ jm::String XMLWriter::Encode(const jm::String &input)
 	return encoded;
 }
 
-void XMLWriter::WriteBase64(uint8* data, uint32 length)
+void XMLWriter::WriteBase64(uint8* data, Integer length)
 {
 	if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
 	{
@@ -225,6 +225,11 @@ void XMLWriter::WriteAttribute(const jm::String& name, Integer content)
 }
 
 void XMLWriter::WriteAttribute(const jm::String &name, float content)
+{
+	WriteAttribute(name, jm::String::ValueOf(content));
+}
+
+void XMLWriter::WriteAttribute(const jm::String& name, Double content)
 {
 	WriteAttribute(name, jm::String::ValueOf(content));
 }

@@ -732,6 +732,11 @@ Bool Bool::ValueOf(const jm::String& value)
 		mValue=value;
 	}
 
+	Double::Double(Integer value) : Comparable<Double>()
+	{
+		mValue = value.Dbl();
+	}
+
 	int32 Double::CompareTo(const Double& another) const
 	{
 		if(mValue > another.mValue)return 1;
