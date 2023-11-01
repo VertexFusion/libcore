@@ -19,6 +19,7 @@
 #include "core/DeflateTest.h"
 #include "core/UndoManagerTest.h"
 #include "core/DateTest.h"
+#include "core/EditableObjectTest.h"
 
 using namespace jm;
 
@@ -41,6 +42,8 @@ int main( int argc, const char* argv[] )
 	vec->AddTest( new DeflateTest() );
 	vec->AddTest( new UndoManagerTest() );
 	vec->AddTest( new DateTest() );
+	vec->AddTest(new DateTest());
+	vec->AddTest(new EditableObjectTest());
 
 	Integer result = vec->Execute();
 

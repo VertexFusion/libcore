@@ -62,6 +62,7 @@ SOURCES =\
  $(PATH_CORE)/DiffDiag.cpp\
  $(PATH_CORE)/DiffDistance.cpp\
  $(PATH_CORE)/DiffInfo.cpp\
+ $(PATH_CORE)/EditableObject.cpp\
  $(PATH_CORE)/Exception.cpp\
  $(PATH_CORE)/Extents.cpp\
  $(PATH_CORE)/File.cpp\
@@ -128,6 +129,7 @@ OBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(MMSOURCES:.mm=.o)
 # Liste der Testdateien
 TEST =\
  $(PATH_TEST)/Main.cpp\
+ $(PATH_TEST)/core/EditableObjectTest.cpp\
  $(PATH_TEST)/core/GeometryTest.cpp\
  $(PATH_TEST)/core/HashtableTest.cpp\
  $(PATH_TEST)/core/LinkedListTest.cpp\

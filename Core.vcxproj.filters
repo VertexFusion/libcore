@@ -228,6 +228,9 @@
     <ClInclude Include="test\core\VertexTest.h">
       <Filter>test\core</Filter>
     </ClInclude>
+    <ClInclude Include="test\core\EditableObjectTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\AutoreleasePool.cpp">
@@ -493,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="test\Main.cpp">
       <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\EditableObjectTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\EditableObject.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

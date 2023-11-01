@@ -36,9 +36,12 @@
 
 #include "Types.h"
 #include "String.h"
+#include "Integer.h"
 
 namespace jm
 {
+	class Document;
+
 	/*!
 	 \brief Status, to what extent changing the property has an influence on the status of other
 	 values of all properties.
@@ -67,6 +70,8 @@ namespace jm
 	/*!
 	 \brief This interface defines the possibility to edit properties of an object via a uniform
 	 interface. This is particularly useful for saving time when objects are to be edited in the GUI.
+
+	 \ingroup datamgr
 	 */
 	struct DllExport Property
 	{
@@ -317,51 +322,89 @@ namespace jm
 	};
 
 	/*!
-	 \brief Alle Objekte, die diese Schnittstelle ableiten, können über den Einheitlichen PropertyEditor bearbeitet werden.
+	 \brief Objects of this class have additional functions for comfortable user interaction. For
+	 example the undo- management is more easy usable, also the connection to the user interface can
+	 be done more automatic.
+
+	 \ingroup datamgr
 	 */
 	class DllExport EditableObject: public Object
 	{
 
 		public:
 
-
-			EditableObject(): Object()
-			{
-				mRegenerate = true;
-			};
+			/*!
+			 \brief Default constructor
+			 \param doc The document, this object belongs to
+			 */
+			EditableObject(Document* doc);
 
 			/*!
 			 \brief Legt fest, dass für dieses Objekt im nächsten Durchlauf die visuelle Repräsentation erneuert werden sollte.
 			 */
-			virtual void Regenerate()
-			{
-				mRegenerate = true;
-			}
+			virtual void Regenerate();
 
 			/*!
 			 \brief Diese Methode soll von der Regenerationsmethode aufgerufen werden nachdem die visuelle Repräsentation
 			 dieses Objektes aktualisiert wurde.
 			 */
-			virtual void RegenerationDone()
-			{
-				mRegenerate = false;
-			}
+			virtual void RegenerationDone();
 
 			/*!
 			 \brief Gibt den Regenerationsstatus zurück.
 			 */
-			virtual bool ShouldRegenerate() const
-			{
-				return mRegenerate;
-			}
+			virtual bool ShouldRegenerate() const;
+
+		protected:
+
+			/*!
+			 \brief The method set the \p value to the member the \p pointer references.
+
+			 The pointer must point to an member which is part of this or derived object. Here also the
+			 Undo-Manager is called for registering the change.
+
+			 \param pointer The pointer to the String member.
+			 \param value The new value for the member.
+			 */
+			VxfErrorStatus SetMember(String* pointer, const String& value);
+
+			/*!
+			 \brief The method set the \p value to the member the \p pointer references.
+
+			 The pointer must point to an member which is part of this or derived object. Here also the
+			 Undo-Manager is called for registering the change.
+
+			 With the range values, a specified range for the input can be defined.
+			 For example, if you set \p rangeMin to 0, this method only accept positive numbers.
+
+			 \param pointer The pointer to the Integer member.
+			 \param value The new value for the member.
+			 \param rangeMin Minium valid value. Default is INT64_MIN
+			 \param rangeMax Maximum valid value. Default is INT64_MAX
+			 */
+			VxfErrorStatus SetMember(Integer* pointer,
+				Integer value,
+				Integer rangeMin = INT64_MIN,
+				Integer rangeMax = INT64_MAX);
+
+			/*!
+			 \brief Begins an editing tansaction;
+			 */
+			VxfErrorStatus OpenTransaction();
+
+			/*!
+			 \brief Closes an transaction;
+
+			 */
+			VxfErrorStatus CloseTransaction();
 
 		private:
 
-			/*!
-			 \brief Status, ob im nächten Durchlauf die visuelle Repräsentation erneuert werden sollte
-			 */
-			bool mRegenerate;
+			//! \brief The document this object belongs to
+			Document* mDocument;
 
+			//! \brief Status if the visual representation of this object should be regenerated.
+			bool mRegenerate;
 	};
 
 }

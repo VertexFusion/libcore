@@ -88,7 +88,7 @@ This includes the following basic data types or enhancements:
 
 - Additional basic datatypes: string, date, file, colour, ...
 - Basic linear algebra (vectors, matrices) and geometry functions
-- Undo- and redo-management for app integration
+- \ref datamgr including Undo, Redo and Transactions
 - Simple XML in- and out
 - Mutex and Threads
 - Diff algorithm

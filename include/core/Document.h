@@ -206,7 +206,7 @@ namespace jm
 			File mFile;
 
 			/*!
-			 \brief Status on wehter the file is changed since last saving.
+			 \brief Status on wether the file is changed since last saving.
 			 */
 			bool mChanged;
 

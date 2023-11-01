@@ -34,37 +34,49 @@
 
 #include "UndoData.h"
 
+/*!
+ \defgroup datamgr Data Management
+
+ \brief A collection of classes to provide data management (Undo, Redo, Transactions).
+
+ Jameo Core library provides rich features for data management. In any modern software,
+ error-tolerant input by the user is expected. In particular, it is expected that incorrect input
+ can be undone or that data is checked for inconsistency when it is entered.
+
+ All these possibilities are implemented here in a programmer-friendly way.
+
+ */
+
 namespace jm
 {
 	class Document;
 	
 	/*!
-	 \brief Diese Klasse repräsentiert den Manager für Rückgängig-Operationen.
-	 Es werden Bearbeitungsschritte an einer Datei direkt in der Datei gespeichert.
-	 Dies ermöglicht unabhängig vom Bearbeitungsverfahren Bearbeitungsschritte an der Datei
-	 rückgängig zu machen.
+	 \brief This class represents the manager for undo operations.
 
-	 Allerdings sind Überlegungen notwendig, in welcher Form Bearbeitungsschritte atomisiert werden.
+	 Editing steps on a document are registered here, and the undo manager belongs to the
+	 corresponding document, so that each document owns its own undo manager. This makes it possible
+	 to undo editing steps on the document independently of the editing procedure.
 
-	 - Bei manueller Bearbeitung sollte jeder kleinteilige Bearbeitungsschritt rückgängig machbar
-	   sein.
-	 - Bei Skripten (JS und C++) ist es sinnvoll, das das gesamte Skript ein Rückgängigschritt ist.
+	However, it is necessary to consider by the developer the form in which processing steps are
+	atomised.
 
-	 Daher gibt es folgendes Verfahren:
+	 - In the case of manual editing, e.g. in a UI, each small editing step should be undoable.
+	 - With scripts (JS or C++), it may be useful for the entire script to be an undo step.
 
-	 Um den aktuellen Bearbeitungsschritt abzuschließen muss die Methode Next() ausgeführt werden.
-	 Der Programmierer muss das manuell machen. Ansonsten werden alle Änderungen in einem Schritt
-	 gespeichert.
+	 Therefore, there is the following procedure:
 
-	 Der Undomanager ist standardmäßig deaktiviert.
+	 To complete the current editing step, the method Close() must be called.
+	 The developer must do this manually. Otherwise, all changes are saved in one step.
 
+	 \ingroup datamgr
 	 */
 	class DllExport UndoManager: public Object
 	{
 		public:
 
 			/*!
-			 \brief Konstruktor
+			 \brief Konstructor
 			 */
 			UndoManager();
 
@@ -89,7 +101,12 @@ namespace jm
 			 \brief Gibt den Statis zurück, ob der Manager aktiv ist.
 			 \return wahr, wenn Änderungen verfolgt werden.
 			 */
-			bool IsActive();
+			bool IsActive() const;
+
+			/*!
+			 \brief Returns true, if a undo step is open.
+			 */
+			bool HasOpenUndoStep() const;
 
 			/*!
 			 \brief Diese Methode macht den letzten Bearbeitungsschritt an der Datei rückgängig. Und
@@ -252,6 +269,16 @@ namespace jm
 			 \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
 			 wird. Diese Methode sichert automatisch den alten Wert.
 			 */
+			void RegisterChange(Object* object, Integer* pointer);
+
+			/*!
+			 \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
+			 Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
+			 \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
+			 Redo-Stack zurück.
+			 \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
+			 wird. Diese Methode sichert automatisch den alten Wert.
+			 */
 			void RegisterChange(Object* object, int64* pointer);
 
 			/*!
@@ -356,16 +383,73 @@ namespace jm
 
 			void RegisterRetain(Object* object);
 
+			/*!
+			 \brief Begin a transaction.
+
+			 A transaction is used to change data on objects, which have a meaningfull relationship
+			 and always shall be consistent. So after changing data, you have to decide of commiting
+			 a transaction or rollback the data to previous state.
+
+			 Each time this method is called, the transaction level increments.
+			 */
+			void OpenTransaction();
+
+			/*!
+			 \brief Commit the content of the transaction to the current undo step.
+
+			 Each time this method is called, the transaction level decrements.
+
+			 If the transaction level is still > 0, nothing happens. Only if the level is back to 0
+			 the commit of changes happens, whether the transaction status value.
+			 */
+			void Commit();
+
+			/*!
+			 \brief Rollback all changes of the transaction.
+
+			 Each time this method is called, the transaction level decrements.
+
+			 If the transaction level is still > 0, nothing happens. Only if the level is back to 0
+			 the rollback of changes happens, whether the transaction status value.
+			 */
+			void Rollback();
+
+			/*!
+			 \brief Closes the transaction.
+
+			 Dependend on the value of the transaction status, this method decides to call Commit()
+			 or Rollback();
+
+			 If the transaction level is still > 0, nothing happens. Only if the level is back to 0
+			 the closing actions happens.
+			 */
+			VxfErrorStatus CloseTransaction();
+
+			/*!
+			 \brief Returns true, if a transaction is open.
+
+			 The transaction is open, if the transaction level is > 0.
+			 */
+			bool HasOpenTransaction() const;
+
+			/*!
+			 \brief This method registers the status of operations during a transaction. As long
+			 as status is eOK, nothing happens. If status is not eOk, we register a transaction error.
+			 */
+			void RegisterTransactionStatus(VxfErrorStatus status);
+
+			/*!
+			 \brief Returns the transaction status.
+			 */
+			VxfErrorStatus GetTransactionStatus() const;
+
+
 		private:
 
-			/*!
-			 \brief Das zugehörige Dokument
-			 */
+			//! \brief The document this manager belongs to.
 			jm::Document* mDocument;
 
-			/*!
-			 \brief Status, ob Änderungen an der Datei verfolgt werden sollen, oder nicht
-			 */
+			//! \brief Status, if changes shall be registered and logged.
 			bool mActive;
 
 			/*!
@@ -407,6 +491,14 @@ namespace jm
 			 */
 			uint32 mRedoCount;
 
+			//! If a transaction is used, this indicates the level of transaction
+			Integer mTransactionLevel;
+
+			//! If a transaction is active, this is the content of the transaction.
+			UndoStep* mTransaction;
+
+			//! The transaction status
+			VxfErrorStatus mTransactionStatus;
 	};
 
 }

@@ -179,6 +179,24 @@ void UndoChangeUInt32::Swap()
 }
 
 //
+// Integer
+//
+
+UndoChangeInteger::UndoChangeInteger(Object* object, Integer* ptr) : UndoChange(object)
+{
+	mPointer = ptr;
+	mValue = *ptr;
+}
+
+void UndoChangeInteger::Swap()
+{
+	Integer tmp = *mPointer;
+	*mPointer = mValue;
+	mValue = tmp;
+	UndoChange::Swap();
+}
+
+//
 // Int64
 //
 

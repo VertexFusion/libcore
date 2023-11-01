@@ -48,6 +48,8 @@ namespace jm
 	 \discussion Diese Klasse soll nicht von Object abgeleitet werden, das sie nur innerhalb des
 	 Undomanager referenziert werden soll. Externe Referenzierungen verstoßen eindeutig gegen das
 	 Konzept und sind zu unterlassen!
+
+	 \ingroup datamgr
 	 */
 	class DllExport UndoChange
 	{
@@ -189,6 +191,20 @@ namespace jm
 
 			uint32* mPointer;
 			uint32 mValue;
+
+	};
+
+	class DllExport UndoChangeInteger : public UndoChange
+	{
+	public:
+
+		UndoChangeInteger(Object* object, Integer* ptr);
+		void Swap();
+
+	private:
+
+		Integer* mPointer;
+		Integer mValue;
 
 	};
 
@@ -374,6 +390,8 @@ namespace jm
 	/*!
 	 \brief Dieses Objekt speichert einen Bearbeitungsschritt an der Datei.
 	 Die Undoliste ist eine doppelt verkettete Liste.
+
+	 \ingroup datamgr
 	 */
 	class DllExport UndoStep
 	{

@@ -48,6 +48,10 @@ UndoManager::UndoManager(): Object()
 	mRedoCount = 0;
 
 	mDocument = NULL;
+
+	mTransactionLevel = 0;
+	mTransaction = NULL;
+	mTransactionStatus = eOK;
 }
 
 UndoManager::~UndoManager()
@@ -66,9 +70,14 @@ void UndoManager::SetActive(bool status)
 	mActive = status;
 }
 
-bool UndoManager::IsActive()
+bool UndoManager::IsActive()const
 {
 	return mActive;
+}
+
+bool UndoManager::HasOpenUndoStep() const
+{
+	return mOpen;
 }
 
 bool UndoManager::Undo()
@@ -221,6 +230,11 @@ void UndoManager::RegisterChange(Object* object, uint32* pointer)
 	RegisterChange(new UndoChangeUInt32(object, pointer));
 }
 
+void UndoManager::RegisterChange(Object* object, Integer* pointer)
+{
+	RegisterChange(new UndoChangeInteger(object, pointer));
+}
+
 void UndoManager::RegisterChange(Object* object, int64* pointer)
 {
 	RegisterChange(new UndoChangeInt64(object, pointer));
@@ -276,20 +290,6 @@ void UndoManager::RegisterChange(Object* object, jm::Colour* pointer)
 	RegisterChange(new UndoChangeColour(object, pointer));
 }
 
-void UndoManager::RegisterChange(UndoChange* change)
-{
-	if(!mActive || mUndoing)
-	{
-		delete change;
-		return;
-	}
-
-	mCurrent->AddChange(change);
-
-	ClearRedoStack();
-	mOpen = true;
-}
-
 void UndoManager::RegisterChange(Object* object, Object** pointer)
 {
 	RegisterChange(new UndoChangeObjectRef(object, pointer));
@@ -313,4 +313,124 @@ void UndoManager::RegisterRelease(Object* object)
 void UndoManager::RegisterRetain(Object* object)
 {
     RegisterChange(new UndoObjectRelease(object,false));
+}
+
+
+void UndoManager::RegisterChange(UndoChange* change)
+{
+	if (!mActive || mUndoing)
+	{
+		delete change;
+		return;
+	}
+
+	if (mTransactionLevel > 0)
+	{
+		mTransaction->AddChange(change);
+	}
+	else
+	{
+		mCurrent->AddChange(change);
+
+		ClearRedoStack();
+		mOpen = true;
+	}
+}
+
+//
+// Transaction management
+//
+
+void UndoManager::OpenTransaction()
+{
+	if (mTransactionLevel == 0)
+	{
+		mTransactionStatus = eOK;
+		mTransaction = new UndoStep();
+	}
+
+	mTransactionLevel++;
+}
+
+VxfErrorStatus UndoManager::CloseTransaction()
+{
+	VxfErrorStatus status = GetTransactionStatus();
+
+	if (status == eOK)Commit();
+	else Rollback();
+
+	return status;
+}
+
+void UndoManager::Commit()
+{
+	if (mTransactionLevel == 0)return;
+
+	mTransactionLevel--;
+
+	if (mTransactionLevel == 0)
+	{
+		UndoStep* step = mTransaction;
+
+		// Move all steps to the change step
+		UndoChange* change = step->eldest;
+		while (change != NULL)
+		{
+			UndoChange* trans = change;
+			change = change->mNext;
+			trans->mPrev = NULL;
+			trans->mNext = NULL;
+			RegisterChange(trans);
+		}
+
+		// Set all to null, to prevent deletion in next step.
+		mTransaction->prev = NULL;
+		mTransaction->recent = NULL;
+		mTransaction->eldest = NULL;
+		mTransaction->count = 0;
+
+		delete mTransaction;
+		mTransaction = NULL;
+		mTransactionStatus = eOK;
+	}
+}
+
+void UndoManager::Rollback()
+{
+	if (mTransactionLevel == 0)return;
+
+	// The rollback
+	mTransactionLevel--;
+
+	if (mTransactionLevel == 0)
+	{
+		UndoStep* step = mTransaction;
+
+		// Undo all changes
+		UndoChange* change = step->recent;
+		while (change != NULL)
+		{
+			change->Swap();
+			change = change->mPrev;
+		}
+
+		delete mTransaction;
+		mTransaction = NULL;
+		mTransactionStatus = eOK;
+	}
+}
+
+bool UndoManager::HasOpenTransaction() const
+{
+	return mTransactionLevel > 0;
+}
+
+void UndoManager::RegisterTransactionStatus(VxfErrorStatus status)
+{
+	if (status != eOK)mTransactionStatus = status;
+}
+
+VxfErrorStatus UndoManager::GetTransactionStatus()const
+{
+	return mTransactionStatus;
 }
