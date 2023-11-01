@@ -30,6 +30,4 @@ jobs:
       
     - name: run test
       run: .\x64\Test\Core.exe
-      
-    - name: clean
-      run: del .\x64
+
