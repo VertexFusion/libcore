@@ -1,0 +1,25 @@
+name: CI Linux
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+    - name: make
+      run: make
+    - name: make test
+      run: make test
+    - name: run test
+      run: ./bin/coretest
+    - name: clean
+      run: make clean
