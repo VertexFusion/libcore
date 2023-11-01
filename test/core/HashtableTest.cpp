@@ -11,7 +11,7 @@
 
 using namespace jm;
 
-HashtableTest::HashtableTest(bool debug):Test(debug)
+HashtableTest::HashtableTest():Test()
 {
 	SetName("Test Hashtable");
 }

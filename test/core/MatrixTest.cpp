@@ -16,7 +16,7 @@
 
 using namespace jm;
 
-MatrixTest::MatrixTest(bool debug):Test(debug)
+MatrixTest::MatrixTest():Test()
 {
 	SetName("Test Matrix");
 }

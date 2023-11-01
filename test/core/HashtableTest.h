@@ -14,7 +14,7 @@
 class HashtableTest : public jm::Test
 {
 public:
-	HashtableTest(bool debug);
+	HashtableTest();
 	void DoTest();
 	
 };

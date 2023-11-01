@@ -14,7 +14,7 @@
 
 using namespace jm;
 
-MathTest::MathTest(bool debug):Test(debug)
+MathTest::MathTest():Test()
 {
 	SetName("Test Math");
 }

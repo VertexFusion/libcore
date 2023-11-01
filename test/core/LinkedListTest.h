@@ -14,7 +14,7 @@
 class LinkedListTest : public jm::Test
 {
 public:
-	LinkedListTest(bool debug);
+	LinkedListTest();
 	void DoTest();
 	
 	void DoTest1();

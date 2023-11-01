@@ -12,7 +12,7 @@
 
 using namespace jm;
 
-LinkedListTest::LinkedListTest(bool debug):Test(debug)
+LinkedListTest::LinkedListTest():Test()
 {
 	SetName("Test LinkedList");
 }

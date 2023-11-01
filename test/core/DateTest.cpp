@@ -11,7 +11,7 @@
 
 using namespace jm;
 
-DateTest::DateTest(bool debug):Test(debug)
+DateTest::DateTest():Test()
 {
 	SetName("Test Date");
 }

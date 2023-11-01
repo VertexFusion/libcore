@@ -48,7 +48,7 @@ struct timespec orwl_gettime(void) {
 using namespace jm;
 
 
-GeometryTest::GeometryTest(bool debug):Test(debug)
+GeometryTest::GeometryTest():Test()
 {
 	SetName("Test Geometry");
 }

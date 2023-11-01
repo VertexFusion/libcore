@@ -51,7 +51,7 @@ void TestVector::AddTest(Test* test)
 	tests.push_back(test);
 }
 
-void TestVector::Execute()
+Integer TestVector::Execute()
 {
 	jm::gTotalTestCount = 0;
 	jm::gTotalErrorCount = 0;
@@ -79,42 +79,36 @@ void TestVector::Execute()
 
 	clock_t et = clock();
 
-	std::cout<<jm::String::Format("Cycle finished! In total  %i tests, %i errors, duration %1.3f sec.",
+	std::cout<<std::endl<<kTxtYellow<<jm::String::Format("Cycle finished! In total %i tests, %i errors, duration %1.3f sec.",
 	        jm::gTotalTestCount,
 	        jm::gTotalErrorCount,
-	        (double)(et - bt) / CLOCKS_PER_SEC)<<std::endl;
+	        (double)(et - bt) / CLOCKS_PER_SEC)<<kTxtReset<<std::endl;
+
+	return gTotalErrorCount;
 }
 
 void TestVector::Testrun(Test* test)
 {
 	if(test == NULL)return;
 
-	LogMessage(test->GetName());
+	System::Log(jm::String::Format("Execute %s...",String::Ref(test->GetName())), kLogInformation);
 
-	//	try
-	//	{
+	try
+	{
 	test->DoTest();
-	/*	}
-		catch(String e)
-		{
-			test->TestUnexpectedException(e);
-		}
-		catch(jm::Exception* e)
-		{
-			test->TestUnexpectedException(e->GetErrorMessage());
-		}
-		catch(char* e)
-		{
-			test->TestUnexpectedException(e);
-		}
-		catch(void* e)
-		{
-			test->TestUnexpectedException("Unbekannter Fehler");
-		}*/
+	}
+	catch(jm::Exception* e)
+	{
+		e->PrintStackTrace();
 
-	std::cout<<jm::String::Format("Test finished! %i Tests, %i Errors.",
+		test->TestUnexpectedException(e->GetErrorMessage());
+
+		delete e;
+	}
+
+	System::Log(jm::String::Format("Test finished! %i Tests, %i Errors.",
 	        gTestCount,
-	        gErrorCount)<<std::endl;
+	        gErrorCount),kLogInformation);
 
 	gErrorCount = 0;
 	gTestCount = 0;

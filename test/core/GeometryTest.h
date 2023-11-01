@@ -20,7 +20,7 @@ private:
 	void ShootTangent(double startAngle, double endAngle, double delta);
 
 public:
-	GeometryTest(bool debug);
+	GeometryTest();
 	void DoTest();
 	
 };

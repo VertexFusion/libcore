@@ -25,7 +25,7 @@
 using namespace std;
 using namespace jm;
 
-VertexTest::VertexTest(bool debug):Test(debug)
+VertexTest::VertexTest():Test()
 {
 	SetName("Test Vertex");
 }

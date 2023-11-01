@@ -14,7 +14,7 @@
 class DateTest : public jm::Test
 {
 public:
-	DateTest(bool debug);
+	DateTest();
 	void DoTest();
 	
 };

@@ -42,7 +42,7 @@ void UndoManagerTest::TestRef(UndoTestObject* obj)
 }
 
 
-UndoManagerTest::UndoManagerTest(bool debug):Test(debug)
+UndoManagerTest::UndoManagerTest():Test()
 {
 	SetName("Test Undo Manager");
 }

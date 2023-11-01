@@ -5,7 +5,7 @@
 //  Created by Uwe Runtemund on 17.01.13.
 //  Copyright (c) 2013 Jameo Software. All rights reserved.
 //
-
+/*
 #include "core/Core.h"
 
 #include "core/GeometryTest.h"
@@ -27,28 +27,72 @@ int main( int argc, const char* argv[] )
 	System::Init();
 	System::Log( "Test Suite for VertexFusion " , jm::kLogInformation );
 
-	bool debug = false;
-
 	TestVector* vec = new TestVector(argc, argv);
 
 	//CORE
-	vec->AddTest( new StringTest( debug ) );
-	vec->AddTest( new StringTokenizerTest( debug ) );
-	vec->AddTest( new HashtableTest( debug ) );
-	vec->AddTest( new LinkedListTest( debug ) );
-	vec->AddTest( new MathTest( debug ) );
-	vec->AddTest( new VertexTest( debug ) );
-	vec->AddTest( new MatrixTest( debug ) );
-	vec->AddTest( new GeometryTest( debug ) );
-	vec->AddTest( new DeflateTest( debug ) );
-	vec->AddTest( new UndoManagerTest( debug ) );
-	vec->AddTest( new DateTest( debug ) );
+	vec->AddTest( new StringTest() );
+	vec->AddTest( new StringTokenizerTest() );
+	vec->AddTest( new HashtableTest() );
+	vec->AddTest( new LinkedListTest() );
+	vec->AddTest( new MathTest() );
+	vec->AddTest( new VertexTest() );
+	vec->AddTest( new MatrixTest() );
+	vec->AddTest( new GeometryTest() );
+	vec->AddTest( new DeflateTest() );
+	vec->AddTest( new UndoManagerTest() );
+	vec->AddTest( new DateTest() );
 
-	vec->Execute();
+	Integer result = vec->Execute();
 
 	delete vec;
 
-
 	System::Quit();
-	return 0;
+	return result.Int32();
+}
+*/
+
+#include "core/Core.h"
+
+// Example test class to show simple test anatomy.
+class ExampleTest : public jm::Test
+{
+public:
+
+	// Constructor
+	ExampleTest() :Test()
+	{
+		SetName("Example Test");
+	};
+
+	// Mandatory overriden test method. The heart of the test!
+	void DoTest() override
+	{
+		int32 a = 2;
+		int32 b = 5;
+		TestEquals(a, b, "a is not b");
+		a = 5;
+		TestEquals(a, b, "a is not b");
+	};
+};
+
+// Entry methof of test application
+int main(int argc, const char* argv[])
+{
+	// Init Jameo System
+	jm::System::Init();
+	jm::System::Log("Example Test Suite", jm::kLogInformation);
+
+	// Init test vector
+	jm::TestVector* vec = new jm::TestVector(argc, argv);
+	vec->AddTest(new ExampleTest());
+
+	// Execute test vector
+	int32 result = vec->Execute().Int32();
+
+	// Clean up
+	delete vec;
+	jm::System::Quit();
+
+	// Return the number of errors to help calling scripts
+	return result;
 }

@@ -11,7 +11,7 @@
 #include "core/Deflater.h"
 #include "core/Inflater.h"
 
-DeflateTest::DeflateTest(bool debug):Test(debug)
+DeflateTest::DeflateTest():Test()
 {
 	SetName("Test Deflate");
 }

@@ -93,6 +93,7 @@ This includes the following basic data types or enhancements:
 - Mutex and Threads
 - Diff algorithm
 - Addition random stuff
+- \ref test "Unit tests"
 
 \author  Uwe Runtemund
 \copyright 2012-2023 Jameo Software, Germany. https://jameo.de

@@ -11,7 +11,7 @@
 
 using namespace jm;
 
-StringTokenizerTest::StringTokenizerTest(bool debug):Test(debug)
+StringTokenizerTest::StringTokenizerTest():Test()
 {
 	SetName("Test StringTokenizer");
 }

@@ -432,33 +432,36 @@ namespace jm
 			static void SetConsoleCharset(Charset* cs);
 
 			//Operatoren
-			String &operator=(const String &another);
-			String &operator+=(const String &another);
+			String& operator=(const String &another);
+			String& operator+=(const String &another);
 
 			//Freunde
 			DllExport
-			friend std::ostream &operator<< (std::ostream &out, const String &str);
+			friend std::ostream& operator<< (std::ostream &out, const String& str);
 
 			DllExport
-			friend String &operator<< (String &out, const String &str);
+			friend String& operator<< (String &out, const String& str);
+
+			DllExport
+			friend String& operator<< (String& out, const Integer& i);
 
 			DllExport
 			friend String& operator<< (String& out, const uint64& i);
 
 			DllExport
-			friend String &operator<< (String &out, const int64 &i);
+			friend String& operator<< (String& out, const int64 &i);
 
 			DllExport
-			friend String &operator<< (String &out, const int32 &i);
+			friend String& operator<< (String& out, const int32 &i);
 
 			DllExport
-			friend String &operator<< (String &out, const uint32 &i);
+			friend String& operator<< (String& out, const uint32 &i);
 
 			DllExport
-			friend String &operator<< (String &out, const double &d);
+			friend String& operator<< (String& out, const double &d);
 
 			DllExport
-			friend String &operator<< (String &out, const char &c);
+			friend String& operator<< (String& out, const char &c);
 
 			DllExport
 			friend std::istream& operator>> (std::istream& in, String& str);

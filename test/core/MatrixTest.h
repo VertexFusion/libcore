@@ -14,7 +14,7 @@
 class MatrixTest : public jm::Test
 {
 public:
-	MatrixTest(bool debug);
+	MatrixTest();
 	void DoTest();
 	
 };

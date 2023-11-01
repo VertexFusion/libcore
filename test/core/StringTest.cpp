@@ -13,7 +13,7 @@ using namespace jm;
 using std::cout;
 using std::endl;
 
-StringTest::StringTest(bool debug):Test(debug)
+StringTest::StringTest():Test()
 {
 	SetName("Test String");
 }

@@ -15,7 +15,7 @@ class DeflateTest : public jm::Test
 {
 
 public:
-	DeflateTest(bool debug);
+	DeflateTest();
 	void DoTest();
 
 };

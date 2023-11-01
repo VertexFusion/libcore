@@ -14,8 +14,8 @@
 class StringTest : public jm::Test
 {
 public:
-	StringTest(bool debug);
-	void DoTest();
+	StringTest();
+	void DoTest() override;
 	
 };
 

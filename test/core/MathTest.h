@@ -15,7 +15,7 @@ class MathTest : public jm::Test
 {
 	
 public:
-	MathTest(bool debug);
+	MathTest();
 	void DoTest();
 	
 };

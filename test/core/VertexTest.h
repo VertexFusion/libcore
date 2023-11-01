@@ -14,9 +14,9 @@
 class VertexTest : public jm::Test
 {
 public:
-	VertexTest(bool debug);
+	VertexTest();
 	void DoTest();
 	
 };
 
-#endif /* defined(__tornado__VertexTest__) */
+#endif

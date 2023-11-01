@@ -1044,9 +1044,15 @@ namespace jm
 		return in;
 	}
 
-	String &operator << (String &out, const String &str)
+	String& operator << (String &out, const String &str)
 	{
 		out.Append(str);
+		return out;
+	}
+
+	String& operator << (String& out, const Integer& i)
+	{
+		out.Append(String::ValueOf(i));
 		return out;
 	}
 
