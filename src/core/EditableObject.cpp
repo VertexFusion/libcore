@@ -56,6 +56,8 @@ bool EditableObject::ShouldRegenerate() const
 
 VxfErrorStatus EditableObject::SetMember(String* pointer, const String& value)
 {
+	if (value.Equals(*pointer))return eNotChanged;
+
 	UndoManager* um = mDocument->GetUndoManager();
 	if (um != NULL)um->RegisterChange(this, pointer);
 	*pointer = value;
@@ -67,13 +69,37 @@ VxfErrorStatus EditableObject::SetMember(Integer* pointer,
 	Integer rangeMin,
 	Integer rangeMax)
 {
+	if (value == *pointer)return eNotChanged;
+
 	UndoManager* um = mDocument->GetUndoManager();
-	if (value<rangeMin || value>rangeMax)
+	if (! (value>=rangeMin && value<=rangeMax))
 	{
 		VxfErrorStatus status = eInvalidInput;
 		if (um != NULL)um->RegisterTransactionStatus(status);
 		return status;
 	}
+	if (um != NULL)um->RegisterChange(this, pointer);
+	*pointer = value;
+	return eOK;
+}
+
+VxfErrorStatus EditableObject::SetMember(Double* pointer, const Double value)
+{
+	if (value.IsNaN())return eInvalidInput;
+	if (value == *pointer)return eNotChanged;
+
+	UndoManager* um = mDocument->GetUndoManager();
+	if (um != NULL)um->RegisterChange(this, pointer);
+	*pointer = value;
+	return eOK;
+}
+
+VxfErrorStatus EditableObject::SetMember(double* pointer, double value)
+{
+	if (IsNaN(value))return eInvalidInput;
+	if (value == *pointer)return eNotChanged;
+
+	UndoManager* um = mDocument->GetUndoManager();
 	if (um != NULL)um->RegisterChange(this, pointer);
 	*pointer = value;
 	return eOK;

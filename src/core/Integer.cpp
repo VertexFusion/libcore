@@ -79,12 +79,12 @@ Bool Bool::ValueOf(const jm::String& value)
 
 	Integer::Integer(int64 value): Comparable<Integer>()
 	{
-		mValue = (int32)value;
+		mValue = value;
 	}
 
 	Integer::Integer(uint64 value): Comparable<Integer>()
 	{
-		mValue = (int32)value;
+		mValue = value;
 	}
 
 #ifdef WITHULONG
@@ -769,6 +769,12 @@ Bool Bool::ValueOf(const jm::String& value)
 	{
 		return Integer((int64)std::ceil(mValue));
 	}
+
+	bool Double::IsNaN() const
+	{
+		return jm::IsNaN(mValue);
+	}
+
 
 	Integer Double::Round() const
 	{

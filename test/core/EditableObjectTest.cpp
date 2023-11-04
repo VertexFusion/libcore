@@ -105,7 +105,7 @@ class Address : public EditableObject
 		{
 			OpenTransaction();
 			SetMember(&mStreetName,street);
-			SetMember(&mHouseNumber, housenumber,0,200);
+			SetMember(&mHouseNumber, housenumber,0);
 			return CloseTransaction();
 		}
 
@@ -207,6 +207,17 @@ void EditableObjectTest::DoTest()
 	um->Redo();
 	TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (22)");
 	TestEquals(adr->GetHouseNumber(), 51, "House number wrong (23)");
+
+	// Changing just the house number should not have any effect, though calling SetMember with
+	// the street will return eNotChanged, which should not have any effect on the transaction
+	status = adr->SetStreetAddress("Waldstraße", 7);
+	TestEquals(status, eOK, "VxfErrorStatus wrong (24)");
+	TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");
+	TestEquals(adr->GetHouseNumber(), 7, "House number wrong (26)");
+	TestFalse(um->HasOpenTransaction(), "Transaction is open (27)");
+	TestTrue(um->HasOpenUndoStep(), "Undo Step is closed (28)");
+	um->Close();
+	TestFalse(um->HasOpenUndoStep(), "Undo Step is open (28)");
 
 	delete book;
 }

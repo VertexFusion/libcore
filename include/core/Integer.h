@@ -490,6 +490,8 @@ Integer Floor() const;
 
 Integer Ceil() const;
 
+bool IsNaN() const;
+
 /*!
  \brief  Diese Funktion rundet eine Zahl kaufmännisch auf die Ganze Zahl
  \return Ganze Zahl.

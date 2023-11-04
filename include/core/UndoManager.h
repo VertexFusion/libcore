@@ -401,6 +401,9 @@ namespace jm
 
 			 If the transaction level is still > 0, nothing happens. Only if the level is back to 0
 			 the commit of changes happens, whether the transaction status value.
+
+			 \warning Usually you not need to call this method, because CloseTransaction() is doing
+			 the necessary stuff. Propably we change this method to private in the future.
 			 */
 			void Commit();
 
@@ -411,6 +414,9 @@ namespace jm
 
 			 If the transaction level is still > 0, nothing happens. Only if the level is back to 0
 			 the rollback of changes happens, whether the transaction status value.
+
+			 \warning Usually you not need to call this method, because CloseTransaction() is doing
+			 the necessary stuff. Propably we change this method to private in the future.
 			 */
 			void Rollback();
 

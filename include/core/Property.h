@@ -340,18 +340,19 @@ namespace jm
 			EditableObject(Document* doc);
 
 			/*!
-			 \brief Legt fest, dass für dieses Objekt im nächsten Durchlauf die visuelle Repräsentation erneuert werden sollte.
+			 \brief Determines that the visual representation should be renewed for this object in the
+			 next run.
 			 */
 			virtual void Regenerate();
 
 			/*!
-			 \brief Diese Methode soll von der Regenerationsmethode aufgerufen werden nachdem die visuelle Repräsentation
-			 dieses Objektes aktualisiert wurde.
+			 \brief This method should be called by the regeneration method after the visual
+			 representation of this object has been updated.
 			 */
 			virtual void RegenerationDone();
 
 			/*!
-			 \brief Gibt den Regenerationsstatus zurück.
+			 \brief Returns the regeneration status
 			 */
 			virtual bool ShouldRegenerate() const;
 
@@ -366,7 +367,7 @@ namespace jm
 			 \param pointer The pointer to the String member.
 			 \param value The new value for the member.
 			 */
-			VxfErrorStatus SetMember(String* pointer, const String& value);
+			virtual VxfErrorStatus SetMember(String* pointer, const String& value);
 
 			/*!
 			 \brief The method set the \p value to the member the \p pointer references.
@@ -382,10 +383,36 @@ namespace jm
 			 \param rangeMin Minium valid value. Default is INT64_MIN
 			 \param rangeMax Maximum valid value. Default is INT64_MAX
 			 */
-			VxfErrorStatus SetMember(Integer* pointer,
+			virtual VxfErrorStatus SetMember(Integer* pointer,
 				Integer value,
 				Integer rangeMin = INT64_MIN,
 				Integer rangeMax = INT64_MAX);
+
+			/*!
+			 \brief The method set the \p value to the member the \p pointer references.
+
+			 The pointer must point to an member which is part of this or derived object. Here also the
+			 Undo-Manager is called for registering the change.
+
+			 \param pointer The pointer to the Double member.
+			 \param value The new value for the member.
+			 \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
+			 and eOK if set successfully.
+			 */
+			virtual VxfErrorStatus SetMember(Double* pointer, const Double value);
+
+			/*!
+			 \brief The method set the \p value to the member the \p pointer references.
+
+			 The pointer must point to an member which is part of this or derived object. Here also the
+			 Undo-Manager is called for registering the change.
+
+			 \param pointer The pointer to the Double member.
+			 \param value The new value for the member.
+			 \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
+			 and eOK if set successfully.
+			 */
+			virtual VxfErrorStatus SetMember(double* pointer, double value);
 
 			/*!
 			 \brief Begins an editing tansaction;

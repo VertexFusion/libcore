@@ -62,14 +62,20 @@ namespace jm
 			 \param file Die Datei mit den Eigenschaften.
 			 @throws Exception, wenn die Datei nicht gefunden wurde, oder fehlerhaft ist.
 			 */
-			void Load(File* file);
+			void Load(File file);
 
 			/*!
 			 \brief Diese Methode schreibt die Properties in die Datei.
 			 \param file Name der Datei, in der die Eigenschaften gespeichert werden
 			 @throws Exception, wenn die Datei nicht geschrieben werden kann
 			 */
-			void Store(File* file);
+			void Store(File file);
+
+			/*!
+			 \brief This method check, if the property is present or not.
+			 \param key The key of the property of interest.
+			 */
+			bool HasProperty(const String &key)const;
 
 			/*!
 			 \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.

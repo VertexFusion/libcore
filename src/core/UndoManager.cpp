@@ -257,7 +257,7 @@ void UndoManager::RegisterChange(Object* object, double* pointer)
 
 void UndoManager::RegisterChange(Object* object, Double* pointer)
 {
-	RegisterChange(new UndoChangeDouble(object, (double*)pointer));
+	RegisterChange(new UndoChangeDouble2(object, pointer));
 }
 
 void UndoManager::RegisterChange(Object* object, bool* pointer)
@@ -427,7 +427,8 @@ bool UndoManager::HasOpenTransaction() const
 
 void UndoManager::RegisterTransactionStatus(VxfErrorStatus status)
 {
-	if (status != eOK)mTransactionStatus = status;
+	if (status != eOK &&
+		 status != eNotChanged)mTransactionStatus = status;
 }
 
 VxfErrorStatus UndoManager::GetTransactionStatus()const

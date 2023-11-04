@@ -51,13 +51,15 @@ Properties::~Properties()
 }
 
 
-void Properties::Load(File* file)
+void Properties::Load(File file)
 {
-	Integer l = file->Length();
+	if (!file.Exists())return;
+
+	Integer l = file.Length();
 	uint8* buffer = new uint8[l];
-	file->Open(kFmRead);
-	Integer check = file->ReadFully(buffer, l);
-	file->Close();
+	file.Open(kFmRead);
+	Integer check = file.ReadFully(buffer, l);
+	file.Close();
 	String data = String(buffer, l);
 	delete[] buffer;
 
@@ -111,16 +113,16 @@ void Properties::Load(File* file)
 
 }
 
-void Properties::Store(File* file)
+void Properties::Store(File file)
 {
 	try
 	{
-		if(file->Exists()==false)
+		if(file.Exists()==false)
 		{
-			jm::File dir = jm::File(file->GetParent());
+			jm::File dir = jm::File(file.GetParent());
 			if(dir.Exists()==false)dir.MakeDirectory();
 		}
-		file->Open(kFmWrite);
+		file.Open(kFmWrite);
 
 		Iterator* keys = Keys();
 
@@ -157,19 +159,24 @@ void Properties::Store(File* file)
 			int8* cstr = key.ToCString();
 			int32 cl = 0;
 			while(cstr[cl] != 0)cl++;
-			file->Write((uint8*)cstr, cl);
+			file.Write((uint8*)cstr, cl);
 			delete[] cstr;
 		}
 		delete keys;
 
-		file->Close();
+		file.Close();
 	}
 	catch(Exception* e)
 	{
 		e->PrintStackTrace();
-		System::Log("Cannot save property file: " + file->GetAbsolutePath(), kLogError);
+		System::Log("Cannot save property file: " + file.GetAbsolutePath(), kLogError);
 		delete e;
 	}
+}
+
+bool Properties::HasProperty(const String& key)const
+{
+	return Get(key) != NULL;
 }
 
 void Properties::SetProperty(const String &key, const String &value)

@@ -264,6 +264,20 @@ namespace jm
 
 	};
 
+	class DllExport UndoChangeDouble2 : public UndoChange
+	{
+	public:
+
+		UndoChangeDouble2(Object* object, Double* ptr);
+		void Swap();
+
+	private:
+
+		Double* mPointer;
+		Double mValue;
+
+	};
+
 	class DllExport UndoChangeString: public UndoChange
 	{
 		public:

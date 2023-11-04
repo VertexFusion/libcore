@@ -95,7 +95,7 @@ I18nBundle::I18nBundle(const String &appID, const String &name, const String &la
 
 	if(f != NULL)
 	{
-		Load(f);
+		Load(*f);
 		delete f;
 	}
 	else
@@ -114,7 +114,7 @@ I18nBundle::I18nBundle(const File &file, const String &language): Properties()
 		return;
 	}
 	File* f = new File(file);
-	Load(f);
+	Load(*f);
 	delete f;
 }
 
