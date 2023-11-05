@@ -7,67 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C62B909A2AEEFC550085300B /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B905E2AEEFC550085300B /* Test.cpp */; };
-		C62B909B2AEEFC550085300B /* DiffDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B905F2AEEFC550085300B /* DiffDistance.cpp */; };
-		C62B909C2AEEFC550085300B /* URI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90602AEEFC550085300B /* URI.cpp */; };
-		C62B909D2AEEFC550085300B /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90612AEEFC550085300B /* Matrix.cpp */; };
-		C62B909E2AEEFC550085300B /* CharsetDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90622AEEFC550085300B /* CharsetDecoder.cpp */; };
-		C62B909F2AEEFC550085300B /* Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90632AEEFC550085300B /* Mutex.cpp */; };
-		C62B90A02AEEFC550085300B /* Properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90642AEEFC550085300B /* Properties.cpp */; };
-		C62B90A12AEEFC550085300B /* Vertex3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90652AEEFC550085300B /* Vertex3.cpp */; };
-		C62B90A22AEEFC550085300B /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90662AEEFC550085300B /* Math.cpp */; };
-		C62B90A32AEEFC550085300B /* Serializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90672AEEFC550085300B /* Serializer.cpp */; };
-		C62B90A42AEEFC550085300B /* SAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90682AEEFC550085300B /* SAXParser.cpp */; };
-		C62B90A52AEEFC550085300B /* LinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90692AEEFC550085300B /* LinkedList.cpp */; };
-		C62B90A62AEEFC550085300B /* UndoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906A2AEEFC550085300B /* UndoManager.cpp */; };
-		C62B90A72AEEFC550085300B /* UndoStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906B2AEEFC550085300B /* UndoStep.cpp */; };
-		C62B90A82AEEFC550085300B /* UTF16Decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906C2AEEFC550085300B /* UTF16Decoder.cpp */; };
-		C62B90A92AEEFC550085300B /* DiffDiag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906D2AEEFC550085300B /* DiffDiag.cpp */; };
-		C62B90AA2AEEFC550085300B /* CRC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906E2AEEFC550085300B /* CRC.cpp */; };
-		C62B90AB2AEEFC550085300B /* XMLWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906F2AEEFC550085300B /* XMLWriter.cpp */; };
-		C62B90AC2AEEFC550085300B /* ZipFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90702AEEFC550085300B /* ZipFile.cpp */; };
-		C62B90AD2AEEFC550085300B /* DiffBacktrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90712AEEFC550085300B /* DiffBacktrace.cpp */; };
-		C62B90AE2AEEFC550085300B /* UndoChange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90722AEEFC550085300B /* UndoChange.cpp */; };
-		C62B90AF2AEEFC550085300B /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90732AEEFC550085300B /* Object.cpp */; };
-		C62B90B02AEEFC550085300B /* NURBS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90742AEEFC550085300B /* NURBS.cpp */; };
-		C62B90B12AEEFC550085300B /* MemoryStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90752AEEFC550085300B /* MemoryStream.cpp */; };
-		C62B90B22AEEFC550085300B /* Property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90762AEEFC550085300B /* Property.cpp */; };
-		C62B90B32AEEFC550085300B /* Windows1252Decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90772AEEFC550085300B /* Windows1252Decoder.cpp */; };
-		C62B90B42AEEFC550085300B /* UTF8Decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90782AEEFC550085300B /* UTF8Decoder.cpp */; };
-		C62B90B52AEEFC550085300B /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
-		C62B90B62AEEFC550085300B /* Inflater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907A2AEEFC550085300B /* Inflater.cpp */; };
-		C62B90B72AEEFC550085300B /* SAXAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907B2AEEFC550085300B /* SAXAttributes.cpp */; };
-		C62B90B82AEEFC550085300B /* I18nBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907C2AEEFC550085300B /* I18nBundle.cpp */; };
-		C62B90B92AEEFC550085300B /* AutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907D2AEEFC550085300B /* AutoreleasePool.cpp */; };
-		C62B90BA2AEEFC550085300B /* Vertex2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907E2AEEFC550085300B /* Vertex2.cpp */; };
-		C62B90BB2AEEFC550085300B /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
-		C62B90BC2AEEFC550085300B /* Hashtable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90802AEEFC550085300B /* Hashtable.cpp */; };
-		C62B90BD2AEEFC550085300B /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90812AEEFC550085300B /* Stream.cpp */; };
-		C62B90BE2AEEFC550085300B /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90822AEEFC550085300B /* Transform.cpp */; };
-		C62B90BF2AEEFC550085300B /* Extents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90832AEEFC550085300B /* Extents.cpp */; };
-		C62B90C02AEEFC550085300B /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90842AEEFC550085300B /* Vector.cpp */; };
-		C62B90C12AEEFC550085300B /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90852AEEFC550085300B /* Document.cpp */; };
-		C62B90C22AEEFC550085300B /* Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90862AEEFC550085300B /* Exception.cpp */; };
-		C62B90C32AEEFC550085300B /* PaintingBackend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90872AEEFC550085300B /* PaintingBackend.cpp */; };
-		C62B90C42AEEFC550085300B /* Integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90882AEEFC550085300B /* Integer.cpp */; };
-		C62B90C52AEEFC550085300B /* Iterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90892AEEFC550085300B /* Iterator.cpp */; };
-		C62B90C62AEEFC550085300B /* Deflater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908A2AEEFC550085300B /* Deflater.cpp */; };
-		C62B90C72AEEFC550085300B /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908B2AEEFC550085300B /* Character.cpp */; };
-		C62B90C82AEEFC550085300B /* System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908C2AEEFC550085300B /* System.cpp */; };
-		C62B90C92AEEFC550085300B /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908D2AEEFC550085300B /* Date.cpp */; };
-		C62B90CA2AEEFC550085300B /* Geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908E2AEEFC550085300B /* Geometry.cpp */; };
-		C62B90CB2AEEFC550085300B /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908F2AEEFC550085300B /* String.cpp */; };
-		C62B90CC2AEEFC550085300B /* Charset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90902AEEFC550085300B /* Charset.cpp */; };
-		C62B90CD2AEEFC550085300B /* StringTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90912AEEFC550085300B /* StringTokenizer.cpp */; };
-		C62B90CE2AEEFC550085300B /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90922AEEFC550085300B /* File.cpp */; };
-		C62B90CF2AEEFC550085300B /* Colour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90932AEEFC550085300B /* Colour.cpp */; };
-		C62B90D02AEEFC550085300B /* ZipOutputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90942AEEFC550085300B /* ZipOutputFile.cpp */; };
-		C62B90D12AEEFC550085300B /* MacRomanDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90952AEEFC550085300B /* MacRomanDecoder.cpp */; };
-		C62B90D22AEEFC550085300B /* Base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90962AEEFC550085300B /* Base64.cpp */; };
-		C62B90D32AEEFC550085300B /* Diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90972AEEFC550085300B /* Diff.cpp */; };
-		C62B90D42AEEFC550085300B /* DateFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90982AEEFC550085300B /* DateFormatter.cpp */; };
-		C62B90D52AEEFC550085300B /* TestVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90992AEEFC550085300B /* TestVector.cpp */; };
-		C62B91452AEEFC740085300B /* Precompiled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B91432AEEFC740085300B /* Precompiled.cpp */; };
 		C62B918E2AEF000F0085300B /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90452AEEFC2F0085300B /* Main.cpp */; };
 		C62B918F2AEF001D0085300B /* LinkedListTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90552AEEFC3C0085300B /* LinkedListTest.cpp */; };
 		C62B91902AEF001D0085300B /* GeometryTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90572AEEFC3C0085300B /* GeometryTest.cpp */; };
@@ -80,10 +19,7 @@
 		C62B91972AEF001D0085300B /* StringTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B904C2AEEFC3C0085300B /* StringTest.cpp */; };
 		C62B91982AEF001D0085300B /* StringTokenizerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B905B2AEEFC3C0085300B /* StringTokenizerTest.cpp */; };
 		C62B91992AEF001D0085300B /* HashtableTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90472AEEFC3C0085300B /* HashtableTest.cpp */; };
-		C62B91A42AEF0C970085300B /* MacBindings.mm in Sources */ = {isa = PBXBuildFile; fileRef = C62B919F2AEF03A30085300B /* MacBindings.mm */; };
 		C637FA9E2AF7E68A00002ADC /* de_DE.mo in Copy Translations */ = {isa = PBXBuildFile; fileRef = C637FA9A2AF7DC8800002ADC /* de_DE.mo */; };
-		C66387352AF65FBD00749CB0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919B2AEF006B0085300B /* CoreServices.framework */; };
-		C66387362AF65FD100749CB0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
 		C699222B2AF7AA660099AEC0 /* Diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90972AEEFC550085300B /* Diff.cpp */; };
 		C699222C2AF7AA660099AEC0 /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
@@ -206,7 +142,6 @@
 		C69922A42AF7AB6C0099AEC0 /* MacBindings.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A22AEF08500085300B /* MacBindings.h */; };
 		C69922A52AF7AB6C0099AEC0 /* MacInterface.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A32AEF09FF0085300B /* MacInterface.h */; };
 		C6F0F51D2AF63BED005BA06F /* EditableObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */; };
-		C6F0F5202AF63C18005BA06F /* EditableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,7 +235,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C62B90392AEEFBEB0085300B /* libCore.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCore.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C62B90452AEEFC2F0085300B /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = test/Main.cpp; sourceTree = "<group>"; };
 		C62B90472AEEFC3C0085300B /* HashtableTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HashtableTest.cpp; path = test/core/HashtableTest.cpp; sourceTree = "<group>"; };
 		C62B90482AEEFC3C0085300B /* UndoManagerTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UndoManagerTest.h; path = test/core/UndoManagerTest.h; sourceTree = "<group>"; };
@@ -455,15 +389,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C62B90372AEEFBEB0085300B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C66387362AF65FD100749CB0 /* libz.tbd in Frameworks */,
-				C66387352AF65FBD00749CB0 /* CoreServices.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C62B91482AEEFFFC0085300B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,7 +425,6 @@
 		C62B903A2AEEFBEB0085300B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C62B90392AEEFBEB0085300B /* libCore.dylib */,
 				C62B914B2AEEFFFC0085300B /* CoreTest */,
 				C69922212AF7AA2C0099AEC0 /* JameoCore.framework */,
 			);
@@ -724,34 +648,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		C62B90352AEEFBEB0085300B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		C62B90382AEEFBEB0085300B /* Core */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C62B903D2AEEFBEB0085300B /* Build configuration list for PBXNativeTarget "Core" */;
-			buildPhases = (
-				C62B90352AEEFBEB0085300B /* Headers */,
-				C62B90362AEEFBEB0085300B /* Sources */,
-				C62B90372AEEFBEB0085300B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Core;
-			productName = Core;
-			productReference = C62B90392AEEFBEB0085300B /* libCore.dylib */;
-			productType = "com.apple.product-type.library.static";
-		};
 		C62B914A2AEEFFFC0085300B /* CoreTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C62B914F2AEEFFFC0085300B /* Build configuration list for PBXNativeTarget "CoreTest" */;
@@ -796,9 +693,6 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					C62B90382AEEFBEB0085300B = {
-						CreatedOnToolsVersion = 15.0.1;
-					};
 					C62B914A2AEEFFFC0085300B = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
@@ -820,7 +714,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C62B90382AEEFBEB0085300B /* Core */,
 				C62B914A2AEEFFFC0085300B /* CoreTest */,
 				C69922202AF7AA2C0099AEC0 /* JameoCore */,
 			);
@@ -828,76 +721,6 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C62B90362AEEFBEB0085300B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C62B90C82AEEFC550085300B /* System.cpp in Sources */,
-				C62B90AA2AEEFC550085300B /* CRC.cpp in Sources */,
-				C62B90A32AEEFC550085300B /* Serializer.cpp in Sources */,
-				C62B90D12AEEFC550085300B /* MacRomanDecoder.cpp in Sources */,
-				C6F0F5202AF63C18005BA06F /* EditableObject.cpp in Sources */,
-				C62B909C2AEEFC550085300B /* URI.cpp in Sources */,
-				C62B90B92AEEFC550085300B /* AutoreleasePool.cpp in Sources */,
-				C62B909F2AEEFC550085300B /* Mutex.cpp in Sources */,
-				C62B90D32AEEFC550085300B /* Diff.cpp in Sources */,
-				C62B90C42AEEFC550085300B /* Integer.cpp in Sources */,
-				C62B90CD2AEEFC550085300B /* StringTokenizer.cpp in Sources */,
-				C62B90B52AEEFC550085300B /* DiffInfo.cpp in Sources */,
-				C62B90D42AEEFC550085300B /* DateFormatter.cpp in Sources */,
-				C62B90B72AEEFC550085300B /* SAXAttributes.cpp in Sources */,
-				C62B90BE2AEEFC550085300B /* Transform.cpp in Sources */,
-				C62B90A52AEEFC550085300B /* LinkedList.cpp in Sources */,
-				C62B90AF2AEEFC550085300B /* Object.cpp in Sources */,
-				C62B90AD2AEEFC550085300B /* DiffBacktrace.cpp in Sources */,
-				C62B90A62AEEFC550085300B /* UndoManager.cpp in Sources */,
-				C62B90C62AEEFC550085300B /* Deflater.cpp in Sources */,
-				C62B91A42AEF0C970085300B /* MacBindings.mm in Sources */,
-				C62B90BA2AEEFC550085300B /* Vertex2.cpp in Sources */,
-				C62B90CA2AEEFC550085300B /* Geometry.cpp in Sources */,
-				C62B90AC2AEEFC550085300B /* ZipFile.cpp in Sources */,
-				C62B90AB2AEEFC550085300B /* XMLWriter.cpp in Sources */,
-				C62B90D22AEEFC550085300B /* Base64.cpp in Sources */,
-				C62B909B2AEEFC550085300B /* DiffDistance.cpp in Sources */,
-				C62B91452AEEFC740085300B /* Precompiled.cpp in Sources */,
-				C62B90AE2AEEFC550085300B /* UndoChange.cpp in Sources */,
-				C62B90A02AEEFC550085300B /* Properties.cpp in Sources */,
-				C62B90B22AEEFC550085300B /* Property.cpp in Sources */,
-				C62B90C12AEEFC550085300B /* Document.cpp in Sources */,
-				C62B90B12AEEFC550085300B /* MemoryStream.cpp in Sources */,
-				C62B90CE2AEEFC550085300B /* File.cpp in Sources */,
-				C62B90BF2AEEFC550085300B /* Extents.cpp in Sources */,
-				C62B90C02AEEFC550085300B /* Vector.cpp in Sources */,
-				C62B90B32AEEFC550085300B /* Windows1252Decoder.cpp in Sources */,
-				C62B90C22AEEFC550085300B /* Exception.cpp in Sources */,
-				C62B90C52AEEFC550085300B /* Iterator.cpp in Sources */,
-				C62B90CF2AEEFC550085300B /* Colour.cpp in Sources */,
-				C62B909E2AEEFC550085300B /* CharsetDecoder.cpp in Sources */,
-				C62B90BC2AEEFC550085300B /* Hashtable.cpp in Sources */,
-				C62B90A42AEEFC550085300B /* SAXParser.cpp in Sources */,
-				C62B90BB2AEEFC550085300B /* Thread.cpp in Sources */,
-				C62B90B62AEEFC550085300B /* Inflater.cpp in Sources */,
-				C62B909A2AEEFC550085300B /* Test.cpp in Sources */,
-				C62B90CB2AEEFC550085300B /* String.cpp in Sources */,
-				C62B90CC2AEEFC550085300B /* Charset.cpp in Sources */,
-				C62B90BD2AEEFC550085300B /* Stream.cpp in Sources */,
-				C62B909D2AEEFC550085300B /* Matrix.cpp in Sources */,
-				C62B90A92AEEFC550085300B /* DiffDiag.cpp in Sources */,
-				C62B90C92AEEFC550085300B /* Date.cpp in Sources */,
-				C62B90B82AEEFC550085300B /* I18nBundle.cpp in Sources */,
-				C62B90A12AEEFC550085300B /* Vertex3.cpp in Sources */,
-				C62B90B02AEEFC550085300B /* NURBS.cpp in Sources */,
-				C62B90C32AEEFC550085300B /* PaintingBackend.cpp in Sources */,
-				C62B90C72AEEFC550085300B /* Character.cpp in Sources */,
-				C62B90A82AEEFC550085300B /* UTF16Decoder.cpp in Sources */,
-				C62B90B42AEEFC550085300B /* UTF8Decoder.cpp in Sources */,
-				C62B90D52AEEFC550085300B /* TestVector.cpp in Sources */,
-				C62B90A22AEEFC550085300B /* Math.cpp in Sources */,
-				C62B90D02AEEFC550085300B /* ZipOutputFile.cpp in Sources */,
-				C62B90A72AEEFC550085300B /* UndoStep.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C62B91472AEEFFFC0085300B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1125,32 +948,6 @@
 			};
 			name = Release;
 		};
-		C62B903E2AEEFBEB0085300B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = prec/Precompiled.h;
-				MACH_O_TYPE = mh_dylib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		C62B903F2AEEFBEB0085300B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = prec/Precompiled.h;
-				MACH_O_TYPE = mh_dylib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		C62B91502AEEFFFC0085300B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1192,8 +989,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.JameoCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TAPI_LANGUAGE = "c++";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1224,8 +1024,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.JameoCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TAPI_LANGUAGE = "c++";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1239,15 +1042,6 @@
 			buildConfigurations = (
 				C62B903B2AEEFBEB0085300B /* Debug */,
 				C62B903C2AEEFBEB0085300B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C62B903D2AEEFBEB0085300B /* Build configuration list for PBXNativeTarget "Core" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C62B903E2AEEFBEB0085300B /* Debug */,
-				C62B903F2AEEFBEB0085300B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

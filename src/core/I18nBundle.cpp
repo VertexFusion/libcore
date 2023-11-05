@@ -141,22 +141,28 @@ I18nBundle* I18nBundle::GetDefault()
 void I18nBundle::InitDefault()
 {
 	jm::String language= System::GetLanguage();
-	language=language.Replace('-', '_');
-
 	gDefaultTranslation = new I18nBundle(language);
 
+	// Append Data
+	gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore"));
+}
+
+jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId)
+{
+	String language= gDefaultTranslation->mLanguage;
+	language=language.Replace('-', '_');
+
 	// Resource of JameoCore.Framework Bundle (under macos)
-	File resDir=ResourceDir("de.jameo.JameoCore");
+	File resDir=ResourceDir(bundleId);
 	File translationDir=File(resDir,"translations");
 	File translationFile=File(translationDir,language+".mo");
 	
 	// Maybe without region?
-	if(translationFile.Exists()==false)
+	if(translationFile.Exists()==false && language.IndexOf('-')>0)
 	{
 		language=language.Substring(0, language.IndexOf('-'));
 		translationFile=File(translationDir,language+".mo");
 	}
-	
-	// Append Data
-	gDefaultTranslation->AppendMO(translationFile);
+
+	return translationFile;
 }

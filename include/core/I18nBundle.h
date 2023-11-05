@@ -72,6 +72,11 @@ namespace jm
 			 */
 			static void InitDefault();
 
+			/*!
+			 \brief Try to examine the language file for given bundle-id
+			 */
+			static jm::File GetTansFileByBundleId(const String &bundleId);
+
 		private:
 		
 			//! Language
