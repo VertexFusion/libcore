@@ -466,9 +466,9 @@ void UndoManagerTest::DoTest()
 	o=NULL;
 
 	//-1 Zähler für obj
-	//+1 Zähler für UndoManager
+	//(+1 Zähler für UndoManager) NEIN AKTUELL NICHT (2023-11-05) WAR 3
 	//= Zähler bleibt gleich
-	TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (c)");
+	TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (c)");
 
 	TestEquals(undo->GetUndoCount(),11,"Undostack not empty.(15)");
 	TestEquals(undo->GetRedoCount(),1,"Redostack not empty.(15)");

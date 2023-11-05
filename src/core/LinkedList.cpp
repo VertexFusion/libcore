@@ -101,16 +101,13 @@ void LinkedList::Clear(UndoManager* um)
 		while(listStart!=NULL)
 		{
 			LListElement* victim=listStart;
-			Remove(victim,um);
+			Remove(victim,um);//Here undo magic is done
 		}
-//		um->RegisterChange(mOwner, (Object**) &listEnd);
-//		um->RegisterChange(mOwner, (Object**) &listStart);
-//		um->RegisterChange(mOwner, &count);
 	}
 	else
 	{
 		Rewind();
-		while(HasNext())delete NextElement();
+		while(HasNext())NextElement()->Release();
 	}
 
 	listStart = NULL;
@@ -119,24 +116,23 @@ void LinkedList::Clear(UndoManager* um)
 	count = 0;
 }
 
-LListElement* LinkedList::Add(Object* data, UndoManager* um)
+void LinkedList::Add(Object* data, UndoManager* um)
 {
 	LListElement* item = new LListElement();
-	if(um != NULL)um->RegisterChange(mOwner, reinterpret_cast<Object**>(&(item->data)));
+	if(um != NULL)um->RegisterChange(item, reinterpret_cast<Object**>(&(item->data)));
 	item->data = data;
 	Add(item, um);
-	return item;
 }
 
 void LinkedList::Add(LListElement* item, UndoManager* um)
 {
 	if(um != NULL)
 	{
-		um->RegisterChange(mOwner, reinterpret_cast<Object**>(& (item->prev)));
-		if(listEnd != NULL)um->RegisterChange(mOwner, reinterpret_cast<Object**>(& (listEnd->next)));
-		if(listStart == NULL)um->RegisterChange(mOwner, reinterpret_cast<int64*>(&listStart));
-		um->RegisterChange(mOwner, reinterpret_cast<int64*>(&listEnd));
-		um->RegisterChange(mOwner, &count);
+		um->RegisterChange(item, reinterpret_cast<Object**>(& (item->prev)));
+		if(listEnd != NULL)um->RegisterChange(listEnd, reinterpret_cast<Object**>(& (listEnd->next)));
+		if(listStart == NULL)um->RegisterChange(this, reinterpret_cast<Object**>(&listStart));
+		um->RegisterChange(this, reinterpret_cast<Object**>(&listEnd));
+		um->RegisterChange(this, &count);
 	}
 
 	item->prev = listEnd;
@@ -174,7 +170,7 @@ void LinkedList::AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager
 	if(before != NULL)
 	{
 		LListElement* item = new LListElement();
-		if(um != NULL)um->RegisterChange(mOwner, (Object**) & (item->data));
+		if(um != NULL)um->RegisterChange(item, (Object**) & (item->data));
 		item->data = itemToAdd;
 
 		AddBefore(before, item, um);
@@ -183,20 +179,20 @@ void LinkedList::AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager
 
 void LinkedList::AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um)
 {
+	LListElement* addAfterThis = addBeforeThis->prev;
+
 	if(um != NULL)
 	{
-		um->RegisterChange(mOwner, (Object**)& (itemToAdd->prev));
-		um->RegisterChange(mOwner, (Object**)& (itemToAdd->next));
-		if(listStart == addBeforeThis)um->RegisterChange(mOwner, (Object**)&listStart);
-		um->RegisterChange(mOwner, (Object**)& (addBeforeThis->prev));
-		if(addBeforeThis->prev != NULL)um->RegisterChange(mOwner, (Object**)& (addBeforeThis->prev->next));
-		um->RegisterChange(mOwner, &count);
+		um->RegisterChange(itemToAdd, (Object**)& (itemToAdd->prev));
+		um->RegisterChange(itemToAdd, (Object**)& (itemToAdd->next));
+		if(listStart == addBeforeThis)um->RegisterChange(this, (Object**)&listStart);
+		um->RegisterChange(addBeforeThis, (Object**)& (addBeforeThis->prev));
+		if(addBeforeThis->prev != NULL)um->RegisterChange(addBeforeThis, (Object**)& (addAfterThis->next));
+		um->RegisterChange(this, &count);
 	}
 
 	//Listenanfang anpassen
 	if(listStart == addBeforeThis)listStart = itemToAdd;
-
-	LListElement* addAfterThis = addBeforeThis->prev;
 
 	//ItemToAdd anpassen
 	itemToAdd->prev = addAfterThis;
@@ -220,13 +216,13 @@ void LinkedList::Remove(LListElement* element, UndoManager* um)
 
 	if(um != NULL)
 	{
-		if(prev != NULL)um->RegisterChange(mOwner, (Object**) & (prev->next));
-		if(next != NULL)um->RegisterChange(mOwner, (Object**) & (next->prev));
-		if(listStart == element)um->RegisterChange(mOwner, (Object**) &listStart);
-		if(listEnd == element)um->RegisterChange(mOwner, (Object**) &listEnd);
-		um->RegisterChange(mOwner, reinterpret_cast<Object**>(&element->prev));
-		um->RegisterChange(mOwner, (Object**) & (element->next));
-		um->RegisterChange(mOwner, &count);
+		if(prev != NULL)um->RegisterChange(prev, (Object**) & (prev->next));
+		if(next != NULL)um->RegisterChange(next, (Object**) & (next->prev));
+		if(listStart == element)um->RegisterChange(this, (Object**) &listStart);
+		if(listEnd == element)um->RegisterChange(this, (Object**) &listEnd);
+		um->RegisterChange(element, reinterpret_cast<Object**>(&element->prev));
+		um->RegisterChange(element, (Object**) & (element->next));
+		um->RegisterChange(this, &count);
 		um->RegisterRelease(element);
 	}
 
@@ -288,8 +284,8 @@ void LinkedList::SwapData(Object* data1, Object* data2, UndoManager* um)
 	{
 		if(um != NULL)
 		{
-			if(um != NULL)um->RegisterChange(mOwner, (Object**) & (elem1->data));
-			if(um != NULL)um->RegisterChange(mOwner, (Object**) & (elem2->data));
+			if(um != NULL)um->RegisterChange(elem1, (Object**) & (elem1->data));
+			if(um != NULL)um->RegisterChange(elem2, (Object**) & (elem2->data));
 			elem1->data = data2;
 			elem2->data = data1;
 		}

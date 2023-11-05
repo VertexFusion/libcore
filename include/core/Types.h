@@ -124,8 +124,8 @@ typedef unsigned short      uint16;
 typedef int                 int32;
 typedef unsigned int        uint32;
 
-#ifndef indeterminate
-#define indeterminate -1
+#ifndef indet
+#define indet -1
 #endif
 
 #ifndef BoolFalse

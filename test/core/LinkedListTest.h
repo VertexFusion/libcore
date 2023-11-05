@@ -19,6 +19,7 @@ public:
 	
 	void DoTest1();
 	void DoTest2(bool active);
+	void DoTest3(bool active);
 };
 
 #endif /* defined(__tornado__LinkedListTest__) */

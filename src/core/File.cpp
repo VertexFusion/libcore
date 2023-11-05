@@ -450,7 +450,7 @@ Array<File>* File::ListFiles()
 	uint32 fileCount = 0;
 
 	//Zähle Einträge
-	while((dirp = readdir(dp)) != NULL)fileCount++;
+	while(readdir(dp) != NULL)fileCount++;
 
 	//Zum Anfang
 	rewinddir(dp);

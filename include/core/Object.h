@@ -82,7 +82,7 @@ namespace jm
 			/*!
 			 \brief Returns the value of the reference counter.
 			 */
-			uint32 GetReferenceCount() const;
+			int32 GetReferenceCount() const;
 
 			/*!
 			 \brief Comparison of objects.
@@ -111,7 +111,7 @@ namespace jm
 			/*!
 			 \brief Reference counter for reference counting.
 			 */
-			uint32 mRefCount;
+			int32 mRefCount;
 
 			/*!
 			 \brief The auto release pool for this object.

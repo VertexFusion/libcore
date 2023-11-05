@@ -219,9 +219,9 @@ bool String::EndsWith(const String &another) const
 Integer String::HashCode()
 {
 	if(mHash != 0)return mHash;
-	int32 hash = 0;
+	uint32 hash = 0;
 	for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a];
-	mHash = hash;
+	mHash = (int32) hash;
 	return mHash;
 }
 

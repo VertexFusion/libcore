@@ -53,12 +53,12 @@ class AddressBook :public Document
 			return eOK;// Needs to be overriden
 		}
 
-		bool SaveDocument()
+		bool SaveDocument() override
 		{
 			return true;// Needs to be overriden
 		};
 
-		bool LoadDocument()
+		bool LoadDocument() override
 		{
 			return true;// Needs to be overriden
 		};

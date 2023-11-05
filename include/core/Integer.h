@@ -75,7 +75,7 @@ public:
 
 	bool IsFalse() const{return mValue==BoolFalse;};
 
-	bool IsIndeterminate() const{return mValue==indeterminate;};
+	bool IsIndeterminate() const{return mValue==indet;};
 
 	//Implizit conversion
 	 operator bool() const { return IsTrue(); };
@@ -298,6 +298,9 @@ class DllExport Integer : public jm::Comparable<Integer>
 	
 	DllExport
 	friend Integer operator/(Integer left, int32 right);
+	
+	DllExport
+	friend Integer operator/(Integer left, uint32 right);
 
 	DllExport
 	friend Double operator/(Double left, Integer right);
@@ -366,10 +369,16 @@ class DllExport Integer : public jm::Comparable<Integer>
 	friend bool operator<=(ulong left, Integer right);
 
 	DllExport
-		friend bool operator<=(Integer left, int64 right);
+	friend bool operator<=(Integer left, slong right);
 
 	DllExport
-		friend bool operator<=(int64 left, Integer right);
+	friend bool operator<=(slong left, Integer right);
+
+	DllExport
+	friend bool operator<=(Integer left, int64 right);
+
+	DllExport
+	friend bool operator<=(int64 left, Integer right);
 
 	DllExport
 	friend bool operator<=(Integer left, uint64 right);

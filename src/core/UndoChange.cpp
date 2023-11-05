@@ -39,10 +39,16 @@ UndoChange::UndoChange(Object* object)
 	mNext = NULL;
 	mObject = object;
 	mObject->Retain();
+	objname=mObject->GetDisplayName();
 }
 
 UndoChange::~UndoChange()
 {
+	if(mObject->GetReferenceCount()==0)
+	{
+		std::cout<<objname;
+		std::cout << " ZOMBIE"<<std::endl;
+	}
 	mObject->Release();
 }
 
@@ -404,8 +410,8 @@ void UndoChangeObjectRef::Swap()
 
 	Object* tmpValue = *mPointer;
 
-	if(tmpValue!=NULL)tmpValue->Retain();
-    if(mValue!=NULL)mValue->Release();
+//	if(tmpValue!=NULL)tmpValue->Retain();
+ //   if(mValue!=NULL)mValue->Release();
 
 	*mPointer = mValue;
 	mValue = tmpValue;

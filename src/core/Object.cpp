@@ -50,7 +50,7 @@ void Object::Release()
 {
 	if(mPool == NULL)return;
 
-	uint32 count;
+	int32 count;
 	Mutex* mutex = mPool->GetMutex();
 
 	mutex->Lock();
@@ -83,7 +83,7 @@ Object* Object::Autorelease()
 	return this;
 }
 
-uint32 Object::GetReferenceCount() const
+int32 Object::GetReferenceCount() const
 {
 	return mRefCount;
 }

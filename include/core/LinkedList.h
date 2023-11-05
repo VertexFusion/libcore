@@ -49,6 +49,9 @@ namespace jm
 			Object* data;
 
 			LListElement();
+		
+		jm::String GetDisplayName() const override {return "jm::LListElement";};
+
 	};
 
 	class DllExport LinkedListIterator : public Iterator
@@ -108,13 +111,6 @@ namespace jm
 			 \brief Diese Methode gibt wahr zurück, wenn ein nächstes Element in der Liste vorhanden ist
 			 */
 			bool HasNext();
-
-			/*!
-			 \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-			 Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
-			 */
-			LListElement* NextElement();
-
 			/*!
 			 \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
 			 Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
@@ -135,15 +131,9 @@ namespace jm
 
 			void Clear(UndoManager* um);
 
-			LListElement* Add(Object* data, UndoManager* um);
-
-			void Add(LListElement* item, UndoManager* um);
+			/*LListElement**/void Add(Object* data, UndoManager* um);
 
 			void AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
-
-			void AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
-
-			void Remove(LListElement* element, UndoManager* um);
 
 			void Remove(const Object* data, UndoManager* um);
 
@@ -152,6 +142,8 @@ namespace jm
 			uint32 Length() const;
 
 			LinkedListIterator GetIterator() const;
+
+		jm::String GetDisplayName() const override {return "jm::LinkedList";};
 
 		private:
 
@@ -164,6 +156,18 @@ namespace jm
 			Object* mOwner;
 
 			friend class LinkedListIterator;
+
+		/*!
+			\brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
+			Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
+			*/
+		  LListElement* NextElement();
+
+		void Add(LListElement* item, UndoManager* um);
+
+		void AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
+
+		void Remove(LListElement* element, UndoManager* um);
 
 	};
 

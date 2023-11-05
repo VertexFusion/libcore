@@ -376,6 +376,17 @@ Bool Bool::ValueOf(const jm::String& value)
 	{
 		return (slong)left <= right.mValue;
 	}
+
+bool operator<=(Integer left, slong right)
+{
+	return left.mValue <= right;
+}
+
+bool operator<=(slong left, Integer right)
+{
+	return left <= right.mValue;
+}
+
 #endif
 
 	bool operator<=(Integer left, int64 right)
@@ -681,6 +692,11 @@ Bool Bool::ValueOf(const jm::String& value)
 	{
 		return Integer(left.mValue/right);
 	}
+
+Integer operator/(Integer left, uint32 right)
+{
+  return Integer(left.mValue/right);
+}
 
 	Integer Min(Integer left,Integer right)
 	{

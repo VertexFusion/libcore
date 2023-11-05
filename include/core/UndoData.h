@@ -88,6 +88,7 @@ namespace jm
 			 */
 			virtual void Swap();
 
+		jm::String objname;
 	};
 
 	/*!

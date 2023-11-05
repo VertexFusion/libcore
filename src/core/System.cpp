@@ -137,7 +137,7 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 
 		const int8* cstr = msg.ToCString();
 		syslog(LOG_ERR, "%s", cstr);
-		delete cstr;
+		delete[] cstr;
 		//	syslog (LOG_INFO, "A tree falls in a forest");
 
 		//	closelog ();

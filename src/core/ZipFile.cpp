@@ -91,7 +91,7 @@ void ZipFile::Open()
 	uint32 count = 0;
 	while(count < recordCount)
 	{
-		signature = jm::DeserializeLEInt32(dict, index);
+		//signature = jm::DeserializeLEInt32(dict, index);
 		uint32 compressedSize = jm::DeserializeLEUInt32(dict, index + 20);
 		uint32 uncompressedSize = jm::DeserializeLEUInt32(dict, index + 24);
 		uint32 fileNameLength = jm::DeserializeLEUInt16(dict, index + 28);
