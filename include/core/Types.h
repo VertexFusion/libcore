@@ -150,6 +150,7 @@ typedef unsigned long       ulong;
 #define DllExport
 typedef __int64_t           int64;
 typedef __uint64_t          uint64;
+typedef long                slong;
 
 #elif defined _WIN32
 
