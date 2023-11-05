@@ -81,6 +81,7 @@
 		C62B91982AEF001D0085300B /* StringTokenizerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B905B2AEEFC3C0085300B /* StringTokenizerTest.cpp */; };
 		C62B91992AEF001D0085300B /* HashtableTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90472AEEFC3C0085300B /* HashtableTest.cpp */; };
 		C62B91A42AEF0C970085300B /* MacBindings.mm in Sources */ = {isa = PBXBuildFile; fileRef = C62B919F2AEF03A30085300B /* MacBindings.mm */; };
+		C637FA9E2AF7E68A00002ADC /* de_DE.mo in Copy Translations */ = {isa = PBXBuildFile; fileRef = C637FA9A2AF7DC8800002ADC /* de_DE.mo */; };
 		C66387352AF65FBD00749CB0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919B2AEF006B0085300B /* CoreServices.framework */; };
 		C66387362AF65FD100749CB0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
@@ -219,6 +220,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C637FA9D2AF7E67700002ADC /* Copy Translations */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = translations;
+			dstSubfolderSpec = 7;
+			files = (
+				C637FA9E2AF7E68A00002ADC /* de_DE.mo in Copy Translations */,
+			);
+			name = "Copy Translations";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C699226D2AF7AB420099AEC0 /* Copy Headers */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,6 +446,8 @@
 		C62B919F2AEF03A30085300B /* MacBindings.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MacBindings.mm; path = src/core/MacBindings.mm; sourceTree = "<group>"; };
 		C62B91A22AEF08500085300B /* MacBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacBindings.h; path = include/core/MacBindings.h; sourceTree = SOURCE_ROOT; };
 		C62B91A32AEF09FF0085300B /* MacInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacInterface.h; path = include/core/MacInterface.h; sourceTree = SOURCE_ROOT; };
+		C637FA9A2AF7DC8800002ADC /* de_DE.mo */ = {isa = PBXFileReference; lastKnownFileType = file; name = de_DE.mo; path = translations/de_DE.mo; sourceTree = "<group>"; };
+		C637FA9B2AF7DC8800002ADC /* de_DE.po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = de_DE.po; path = translations/de_DE.po; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
@@ -477,6 +491,7 @@
 				C62B90402AEEFC0A0085300B /* include */,
 				C62B90422AEEFC150085300B /* src */,
 				C62B90412AEEFC110085300B /* prec */,
+				C637FA982AF7DA1800002ADC /* translations */,
 				C62B903A2AEEFBEB0085300B /* Products */,
 				C62B919A2AEF006B0085300B /* Frameworks */,
 			);
@@ -698,6 +713,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C637FA982AF7DA1800002ADC /* translations */ = {
+			isa = PBXGroup;
+			children = (
+				C637FA9A2AF7DC8800002ADC /* de_DE.mo */,
+				C637FA9B2AF7DC8800002ADC /* de_DE.po */,
+			);
+			name = translations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -751,8 +775,8 @@
 			buildPhases = (
 				C699221D2AF7AA2C0099AEC0 /* Sources */,
 				C699221E2AF7AA2C0099AEC0 /* Frameworks */,
-				C699221F2AF7AA2C0099AEC0 /* Resources */,
 				C699226D2AF7AB420099AEC0 /* Copy Headers */,
+				C637FA9D2AF7E67700002ADC /* Copy Translations */,
 			);
 			buildRules = (
 			);
@@ -802,16 +826,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		C699221F2AF7AA2C0099AEC0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C62B90362AEEFBEB0085300B /* Sources */ = {
@@ -1140,6 +1154,7 @@
 		C62B91502AEEFFFC0085300B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1147,6 +1162,7 @@
 		C62B91512AEEFFFC0085300B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

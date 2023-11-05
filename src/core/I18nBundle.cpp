@@ -35,87 +35,96 @@ using namespace jm;
 
 I18nBundle* gDefaultTranslation = NULL;
 
-
-I18nBundle::I18nBundle(const String &appID, const String &name, const String &language, String subfolder): Properties()
+I18nBundle::I18nBundle(const String &language)
 {
 	mLanguage = language;
-
-	//Suche nach Propertyfile
-	File resourceDir = ResourceDir(appID);
-	File* f;
-
-	if(subfolder.Length() > 0)
-	{
-		resourceDir = File(resourceDir, subfolder);
-	}
-
-	if(resourceDir.Exists() == false)System::Log("Translation directory does not exist", kLogError);
-	System::Log("Translation directoy: " + resourceDir.GetAbsolutePath(), kLogDebug);
-
-	//Suche nach dem Paket in gewünschter Sprache
-	f = new File(resourceDir, name + "_" + language + ".properties");
-	if(!f->Exists())
-	{
-		delete f;
-		f = NULL;
-	}
-
-	if(f == NULL)
-	{
-		//Nicht gefunden, suche nach dem Paket auf Englisch
-		f = new File(resourceDir, name + "_en.properties");
-		if(!f->Exists())
-		{
-			delete f;
-			f = NULL;
-		}
-	}
-
-	if(f == NULL)
-	{
-		//Nicht gefunden, suche nach dem Paket auf Deutsch
-		f = new File(resourceDir, name + "_de.properties");
-		if(!f->Exists())
-		{
-			delete f;
-			f = NULL;
-		}
-	}
-
-	if(f == NULL)
-	{
-		//Nicht gefunden, suche nach dem Paket ohne Sprachangabe
-		f = new File(resourceDir, name + ".properties");
-		if(!f->Exists())
-		{
-			delete f;
-			f = NULL;
-		}
-	}
-
-	if(f != NULL)
-	{
-		Load(*f);
-		delete f;
-	}
-	else
-	{
-		System::Log("Cannot find translation file for: " + appID + " " + name + " " + language, kLogError);
-	}
 }
 
-I18nBundle::I18nBundle(const File &file, const String &language): Properties()
-{
-	mLanguage = language;
 
+void I18nBundle::AppendMO(File file)
+{
 	if(!file.Exists())
 	{
-		System::Log("Bundle does not exist", kLogError);
+		String appID,name;
+		System::Log(jm::String::Format(Tr("Cannot find translation file: %s %s"),
+													 jm::String::Ref(file.GetPath()),
+													 jm::String::Ref(mLanguage)), kLogError);
+
 		return;
 	}
-	File* f = new File(file);
-	Load(*f);
-	delete f;
+	
+	// Read file from disk
+	Integer length=file.Length();
+	uint8* buffer = new uint8[length];
+	file.Open(kFmRead);
+	Integer check = file.ReadFully(buffer, length);
+	file.Close();
+	
+	if(check!=length)
+	{
+		System::Log(jm::String::Format(Tr("File not fully read: %s"),
+													 jm::String::Ref(file.GetPath())), kLogError);
+		delete[] buffer;
+		return;
+	}
+	 
+	// Process content
+	uint32 magic=jm::DeserializeLEUInt32(buffer, 0);
+	uint32 version=jm::DeserializeLEUInt32(buffer, 4);
+	uint32 stringCount=jm::DeserializeLEUInt32(buffer, 8);
+	uint32 origOffset=jm::DeserializeLEUInt32(buffer, 12);
+	uint32 transOffset=jm::DeserializeLEUInt32(buffer, 16);
+
+	if(magic!=0x950412de)
+	{
+		System::Log(jm::String::Format(Tr("File magic wrong: %s"),
+													 jm::String::Ref(file.GetPath())), kLogError);
+		delete[] buffer;
+		return;
+	}
+	if(version!=0)
+	{
+		System::Log(jm::String::Format(Tr("MO file version not supported: %s"),
+													 jm::String::Ref(file.GetPath())), kLogError);
+		delete[] buffer;
+		return;
+	}
+	
+	struct Record
+	{
+		uint32 origOffset=0;
+		uint32 origLength=0;
+		uint32 transOffset=0;
+		uint32 transLength=0;
+	};
+	
+	std::vector<Record>records;
+	
+	// Read the string records
+	uint32 offset=0;
+	for(uint32 a=0;a<stringCount;a++)
+	{
+		Record rec;
+		rec.origLength=jm::DeserializeLEUInt32(buffer, origOffset+offset);
+		rec.origOffset=jm::DeserializeLEUInt32(buffer, origOffset+offset+4);
+		rec.transLength=jm::DeserializeLEUInt32(buffer, transOffset+offset);
+		rec.transOffset=jm::DeserializeLEUInt32(buffer, transOffset+offset+4);
+
+		offset+=8;
+		
+		records.push_back(rec);
+	}
+	
+	// Process the records
+	for(uint32 a=0;a<stringCount;a++)
+	{
+		Record rec=records[a];
+		jm::String orig=jm::String(&buffer[rec.origOffset], rec.origLength);
+		jm::String trans=jm::String(&buffer[rec.transOffset], rec.transLength);
+		SetProperty(orig,trans);
+	}
+
+	delete[] buffer;
 }
 
 String I18nBundle::Translate(const String& key) const
@@ -129,7 +138,25 @@ I18nBundle* I18nBundle::GetDefault()
 	return gDefaultTranslation;
 }
 
-void I18nBundle::SetDefault(I18nBundle* bundle)
+void I18nBundle::InitDefault()
 {
-	gDefaultTranslation = bundle;
+	jm::String language= System::GetLanguage();
+	language=language.Replace('-', '_');
+
+	gDefaultTranslation = new I18nBundle(language);
+
+	// Resource of JameoCore.Framework Bundle (under macos)
+	File resDir=ResourceDir("de.jameo.JameoCore");
+	File translationDir=File(resDir,"translations");
+	File translationFile=File(translationDir,language+".mo");
+	
+	// Maybe without region?
+	if(translationFile.Exists()==false)
+	{
+		language=language.Substring(0, language.IndexOf('-'));
+		translationFile=File(translationDir,language+".mo");
+	}
+	
+	// Append Data
+	gDefaultTranslation->AppendMO(translationFile);
 }

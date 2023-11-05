@@ -53,8 +53,9 @@ namespace jm
 		public:
 
 			/*!
-			 \brief Diese Methode gibt die Sprache des Systems zurück, die aktuell eingestellt ist.
-			 Anhand dieser Variable kann das Programm entscheiden, welche Sprache es anzeigen soll
+			 \brief This method returns the language of the system that is currently set.
+			 The programme can use this variable to decide which language it should display.
+			 \return The string has the form "de-DE"
 			 */
 			static String GetLanguage();
 

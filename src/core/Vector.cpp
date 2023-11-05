@@ -129,7 +129,7 @@ jm::Vector& jm::Vector::operator=(const jm::Vector &another)
 
 const jm::Vector jm::operator+(const jm::Vector &v1, const jm::Vector &v2)
 {
-	if(v1.m != v2.m) throw "dimensions don't match";
+	if(v1.m != v2.m) throw new Exception("dimensions don't match");
 	jm::Vector v = jm::Vector(v1.m);
 
 	for(uint32 a = 0; a < v.m; a++)v.data[a] = v1.data[a] + v2.data[a];
@@ -139,9 +139,9 @@ const jm::Vector jm::operator+(const jm::Vector &v1, const jm::Vector &v2)
 
 const jm::Vector jm::operator-(const jm::Vector &v1, const jm::Vector &v2)
 {
-	if(v1.m != v2.m) throw "dimensions don't match";
+	if(v1.m != v2.m) throw new Exception("dimensions don't match");
 
-	if(v1.m != v2.m) throw "dimensions don't match";
+	if(v1.m != v2.m) throw new Exception("dimensions don't match");
 	Vector v = Vector(v1.m);
 
 	for(uint32 a = 0; a < v.m; a++)v.data[a] = v1.data[a] - v2.data[a];

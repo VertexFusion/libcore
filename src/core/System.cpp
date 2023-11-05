@@ -49,7 +49,7 @@ jm::String jm::System::GetLanguage()
 	String langCode = String(cstr);
 
 	CFRelease(langs);
-
+		
 	return langCode;
 
 	#elif defined __linux__//Linux
@@ -91,21 +91,21 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 	{
 		case kLogError:
 			msg << kTxtBold << kTxtRed;
-			if(logLevel>=mSystemLogLabel)msg << "FEHLER: ";
+			if(logLevel>=mSystemLogLabel)msg << Tr("ERROR: ");
 			gSystemError = message;
 			break;
 
 		case 	kLogWarning:
 			msg << kTxtBold << kTxtYellow;
-			if(logLevel>=mSystemLogLabel)msg << "WARNUNG: ";
+			if(logLevel>=mSystemLogLabel)msg << Tr("WARNING: ");
 			break;
 
 		case kLogInformation:
-			if(logLevel>=mSystemLogLabel)msg << "INFO: ";
+			if(logLevel>=mSystemLogLabel)msg << Tr("INFO: ");
 			break;
 
 		case kLogDebug:
-			if(logLevel>=mSystemLogLabel)msg << "DEBUG: ";
+			if(logLevel>=mSystemLogLabel)msg << Tr("DEBUG: ");
 			break;
 	}
 	msg << message;
@@ -322,10 +322,14 @@ jm::AutoreleasePool* jm::System::GetAutoreleasePool()
 
 void jm::System::Init()
 {
-	//Zu allererst
+	//First of all, the charsets
 	InitCharsets();
 
+	// Start Autorelease pool
 	if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
+	
+	// Load default translation
+	I18nBundle::InitDefault();	
 }
 
 void jm::System::Quit()

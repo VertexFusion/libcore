@@ -145,7 +145,9 @@ namespace jm
 			int8* Encode(const CharArray &string);
 
 			/*!
-			 \brief Diese Methode gibt das gewünschte Charset anhand des Namens zurück
+			 \brief This method returns the desired charset by name.
+			 \param name The name of the charset.
+			 \return The charset, or NULL, if the charset for name was not found.
 			 */
 			static Charset* ForName(const String &name);
 

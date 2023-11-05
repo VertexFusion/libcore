@@ -79,7 +79,7 @@ Integer TestVector::Execute()
 
 	clock_t et = clock();
 
-	std::cout<<std::endl<<kTxtYellow<<jm::String::Format("Cycle finished! In total %i tests, %i errors, duration %1.3f sec.",
+	std::cout<<std::endl<<kTxtYellow<<jm::String::Format(Tr("Cycle finished! In total %i tests, %i errors, duration %1.3f sec."),
 	        jm::gTotalTestCount,
 	        jm::gTotalErrorCount,
 	        (double)(et - bt) / CLOCKS_PER_SEC)<<kTxtReset<<std::endl;
@@ -91,7 +91,7 @@ void TestVector::Testrun(Test* test)
 {
 	if(test == NULL)return;
 
-	System::Log(jm::String::Format("Execute %s...",String::Ref(test->GetName())), kLogInformation);
+	System::Log(jm::String::Format(Tr("Execute %s..."),String::Ref(test->GetName())), kLogInformation);
 
 	try
 	{
@@ -106,7 +106,7 @@ void TestVector::Testrun(Test* test)
 		delete e;
 	}
 
-	System::Log(jm::String::Format("Test finished! %i Tests, %i Errors.",
+	System::Log(jm::String::Format(Tr("Test finished! %i Tests, %i Errors."),
 	        gTestCount,
 	        gErrorCount),kLogInformation);
 

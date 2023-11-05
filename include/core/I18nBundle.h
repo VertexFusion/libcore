@@ -50,27 +50,31 @@ namespace jm
 	{
 		public:
 
-			/*!
-			 \brief Konstruktor lädt die Ressourcen aus dem Ressourcenverzeichnis
-			 \param language Sprachkürzel "de" für Deutsch, "en" für Englisch usw.
-			 */
-			I18nBundle(const String &appID,
-			           const String &name,
-			           const String &language,
-			           String subfolder = kEmptyString);
+		/*!
+		 \brief Construktor
+		 \param language Language String in form: "de-DE"
+		 */
+		I18nBundle(const String &language);
 
-			I18nBundle(const File &file, const String &language);
+		/*!
+			\brief This method reads a *.mo file and adds the content to this bundle.
+			\param file The mo file.
+			*/
+		  void AppendMO(File file);
 
 			String Translate(const String& key) const;
 
 			static I18nBundle* GetDefault();
 
-			static void SetDefault(I18nBundle* bundle);
+			/*!
+			 \brief This method is called on start-up from jm::System to initialise the default
+			 language. The developer usually do not need to call this.
+			 */
+			static void InitDefault();
 
 		private:
-			/*!
-			 \brief Sprachkürzel
-			 */
+		
+			//! Language
 			String mLanguage;
 	};
 

@@ -460,7 +460,7 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
 						return;
 
 					case Date::AUGUST:
-						value.Append("August");
+						value.Append(Tr("August"));
 						return;
 
 					case Date::SEPTEMBER:

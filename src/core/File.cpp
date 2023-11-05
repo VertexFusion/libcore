@@ -534,6 +534,11 @@ const String& File::GetAbsolutePath() const
 	return mPathname;
 }
 
+String File::GetPath() const
+{
+	return mPathname;
+}
+
 String File::GetParent() const
 {
 	Integer idx = mPathname.LastIndexOf(DIR_SEP);
@@ -605,9 +610,9 @@ void File::Open(FileMode mode)
 	{
 		if(errno == EACCES)throw new Exception(String::Format(Tr("Permission denied! \"%s\""),
 																				&mPathname));
-		if(errno == ENOENT)throw new Exception(String::Format(Tr("File or directory not found! \"%s\""),
+		if(errno == ENOENT)throw new Exception(String::Format(Tr("File not found! \"%s\""),
 																				&mPathname));
-		if(errno == ETIMEDOUT)throw new Exception(String::Format(Tr("Connection timed out! \""),
+		if(errno == ETIMEDOUT)throw new Exception(String::Format(Tr("Connection timed out! \"%s\""),
 																					&mPathname));
 		if(errno == ENOTDIR)throw new Exception(String::Format(Tr("Not a directory \"%s\""),
 																				 &mPathname));
@@ -634,7 +639,7 @@ void File::Seek(Integer position)
 {
 	//Data type is long int in fseek
 	size_t res = fseek(mHandle, (long int)position, SEEK_SET);
-	if(res != 0)throw new Exception(Tr("Error while seeking file!"));
+	if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
 }
 
 void File::Move(Integer offset)
