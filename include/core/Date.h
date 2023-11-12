@@ -130,6 +130,13 @@ namespace jm
 			Date(uint16 year, uint16 month, uint16 day, uint16 hours, uint16 minutes, uint16 seconds, uint16 millis);
 
 			/*!
+			 \brief Constructor for a Date value given as a NSDate double value (typically on Mac)
+			 \param nsdate double value, representing the time in seconds relative to 00:00:00 UTC on
+			 1 January 2001.
+			 */
+			static Date FromNSDate(double nsdate);
+		
+			/*!
 			 \brief Destructor
 			 */
 			~Date();

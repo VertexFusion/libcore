@@ -79,6 +79,17 @@ Date::Date(uint16 year,
 	mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
 }
 
+Date Date::FromNSDate(double nsdate)
+{
+	Date d;
+	//Milliseconds sinnce 01.01.1970 00:00:00.000.
+	d.mTime=978307200000;
+	int64 date=nsdate*1000;//s in ms
+	d.mTime+=date;
+	
+	return d;
+}
+
 Date::~Date()
 {
 	mTime = 0;
