@@ -207,7 +207,7 @@ bool Thread::IsAlive()
 void Thread::SetName(const jm::String &name)
 {
 #if defined __APPLE__ || defined __linux__
-	uint8* cstr= name.ToCString();
+	int8* cstr= (int8*) name.ToCString();
 	pthread_setname_np(thread,cstr);
 	delete[] cstr;
 #elif defined _WIN32
