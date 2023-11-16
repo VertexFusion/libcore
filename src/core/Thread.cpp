@@ -208,7 +208,7 @@ void Thread::SetName(const jm::String &name)
 {
 #if defined __APPLE__ || defined __linux__
 	uint8* cstr= name.ToCString();
-	pthread_setname_np(cstr);
+	pthread_setname_np(thread,cstr);
 	delete[] cstr;
 #elif defined _WIN32
 	uint16* cstr = name.ToWString();
