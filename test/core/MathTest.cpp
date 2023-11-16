@@ -81,6 +81,18 @@ void MathTest::DoTest()
       TestTrue(IsGreaterEqual(testNotEqual1,value), "IsGreaterEqual() fails (3)");//Wert ist ganz klar größer
       TestFalse(IsGreaterEqual(testNotEqual2,value), "IsGreaterEqual() fails (4)");//Wert ist ganz klar kleiner
 
+		//Teste Interpolate
+		double begin = 2.0;
+		double end = 4.0;
+
+		TestEquals(Interpolate(begin, end, 0.0), 2.0, "Interpolate fails (1)");
+		TestEquals(Interpolate(begin, end, 0.5), 3.0, "Interpolate fails (2)");
+		TestEquals(Interpolate(begin, end, 1.0), 4.0,"Interpolate fails (3)");
+
+		TestEquals(Interpolate(10,20,begin, end, 2.0), 10.0, "Interpolate fails (4)");
+		TestEquals(Interpolate(10,20,begin, end, 3.0), 15.0, "Interpolate fails (5)");
+		TestEquals(Interpolate(10,20,begin, end, 4.0), 20.0, "Interpolate fails (6)");
+
    }
 }
 

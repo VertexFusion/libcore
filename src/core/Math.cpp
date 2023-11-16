@@ -184,6 +184,12 @@ double jm::Interpolate(double begin, double end, double percent)
 	return begin + percent * (end - begin);
 }
 
+double jm::Interpolate(double vbegin, double vend, double begin, double end, double position)
+{
+	double percent = (position - begin) / (end - begin);
+	return Interpolate(vbegin, vend, percent);
+}
+
 bool jm::PowerOf2(int32 x)
 {
 	return (x > 0) && ((x & (x - 1)) == 0);

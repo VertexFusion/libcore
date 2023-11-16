@@ -219,6 +219,9 @@ namespace jm
 	DllExport
 	double Interpolate(double begin, double end, double percent);
 
+	DllExport
+	double Interpolate(double vbegin, double vend, double begin, double end, double position);
+
 	/*!
 	 \brief Diese Methode prüft, ob die übergebene Zahl eine Potenz von 2 ist.
 	 \param x Die Zahl, die geprüft werden soll

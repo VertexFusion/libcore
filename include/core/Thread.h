@@ -160,6 +160,12 @@ namespace jm
 			*/
 			bool IsAlive();
 
+			/*!
+			 \brief Set the name of the thread.
+			 \note This method is intended for help debugging.
+			 */
+			void SetName(const String& name);
+
 	};
 
 }

@@ -203,6 +203,22 @@ bool Thread::IsAlive()
 	#endif
 }
 
+
+void Thread::SetName(const jm::String &name)
+{
+#if defined __APPLE__ || defined __linux__
+	uint8* cstr= name.ToCString();
+	pthread_setname_np(cstr);
+	delete[] cstr;
+#elif defined _WIN32
+	uint16* cstr = name.ToWString();
+	SetThreadDescription(mHandle,(PCWSTR)cstr);
+	delete[] cstr;
+#endif
+}
+
+
+
 bool Thread::IsMainThread()
 {
 	#ifdef __APPLE__

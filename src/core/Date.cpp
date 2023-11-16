@@ -84,7 +84,7 @@ Date Date::FromNSDate(double nsdate)
 	Date d;
 	//Milliseconds sinnce 01.01.1970 00:00:00.000.
 	d.mTime=978307200000;
-	int64 date=nsdate*1000;//s in ms
+	int64 date=static_cast<int64>(nsdate*1000.0);//s in ms
 	d.mTime+=date;
 	
 	return d;
