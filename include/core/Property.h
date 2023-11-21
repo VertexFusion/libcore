@@ -172,6 +172,13 @@ namespace jm
 			VxfErrorStatus SetStringValue(const String &value);
 
 			/*!
+			 \brief Set unit value.
+			 \param value The number.
+			 \param unit The unit.
+			 */
+			VxfErrorStatus SetUnitValue(double value,const String &unit);
+
+			/*!
 			 \brief Returns the string value of this property.
 			 */
 			const String& GetStringValue() const;

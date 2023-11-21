@@ -146,6 +146,15 @@ VxfErrorStatus Property::SetStringValue(const String &value)
 	return eOK;
 }
 
+VxfErrorStatus Property::SetUnitValue(double value,const String &unit)
+{
+	mTextValue=unit;
+	mNumberValue.doubleValue=value;
+	mType=kPropertyTypeValue;
+	return eOK;
+}
+
+
 const String& Property::GetStringValue() const
 {
 	return mTextValue;
@@ -244,14 +253,13 @@ bool jm::operator==(Property const &v1, Property const &v2)
 	}
 	else if(editor.Equals("value"))
 	{
-		//vvalue = WxStr2Jm(property->GetValue().GetString());
-		//if (vvalue.GetUnit().IsEmpty())vvalue.SetUnit(physics::Unit::Eval(WxStr2Jm(property->GetAttribute(wxPG_ATTR_UNITS))));
-		return v1.GetStringValue().Equals(v2.GetStringValue());
+		return v1.GetStringValue().Equals(v2.GetStringValue()) && jm::IsEqual(v1.GetDoubleValue(),
+																									 v2.GetDoubleValue());
 	}
-/*	else if (editor.Equals("dwgcolour"))
+	else if (editor.Equals("dwgcolour"))
 	{
-		return v1.mDwgColourValue == v2.mDwgColourValue;
-	}*/
+		return v1.GetIntegerValue() == v2.GetIntegerValue();
+	}
 	System::Log(Tr("Property not comparable"),kLogDebug);
 	return false;
 }
