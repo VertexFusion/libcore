@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Properties.cpp
+// Name:        Preferences.cpp
 // Library:     Jameo Core Library
 // Purpose:     Implementation of hashtable based property container
 //
@@ -33,12 +33,12 @@
 
 using namespace jm;
 
-Properties::Properties(): Hashtable()
+Preferences::Preferences(): Hashtable()
 {
 }
 
 
-Properties::~Properties()
+Preferences::~Preferences()
 {
 	Iterator* i = Keys();
 	while(i->HasNext())
@@ -51,7 +51,7 @@ Properties::~Properties()
 }
 
 
-void Properties::Load(File file)
+void Preferences::Load(File file)
 {
 	if (!file.Exists())return;
 
@@ -106,14 +106,14 @@ void Properties::Load(File file)
 				index++;
 			}
 
-			SetProperty(key, value);
+			SetPreference(key, value);
 		}
 	}
 	delete st;
 
 }
 
-void Properties::Store(File file)
+void Preferences::Store(File file)
 {
 	try
 	{
@@ -129,7 +129,7 @@ void Properties::Store(File file)
 		while(keys->HasNext())
 		{
 			String key = *static_cast<String*>(keys->Next());
-			String value = GetProperty(key);
+			String value = GetPreference(key);
 
 			//Ersetzungen
 			//Ersetze
@@ -174,12 +174,12 @@ void Properties::Store(File file)
 	}
 }
 
-bool Properties::HasProperty(const String& key)const
+bool Preferences::HasPreference(const String& key)const
 {
 	return Get(key) != NULL;
 }
 
-void Properties::SetProperty(const String &key, const String &value)
+void Preferences::SetPreference(const String &key, const String &value)
 {
 	String tmp = value;
 	tmp = tmp.ReplaceAll("\r\n", "\\n");
@@ -190,34 +190,34 @@ void Properties::SetProperty(const String &key, const String &value)
 	if(old != NULL)delete old;
 }
 
-void Properties::SetProperty(const String &key, int32 value)
+void Preferences::SetPreference(const String &key, int32 value)
 {
-	SetProperty(key, String::ValueOf(value));
+	SetPreference(key, String::ValueOf(value));
 }
 
 
-void Properties::SetProperty(const String &key, bool value)
+void Preferences::SetPreference(const String &key, bool value)
 {
-	SetProperty(key, static_cast<String>(value ? "true" : "false"));
+	SetPreference(key, static_cast<String>(value ? "true" : "false"));
 }
 
-String Properties::GetProperty(const String &key) const
+String Preferences::GetPreference(const String &key) const
 {
 	String* result = (String*)Get(key);
 	if(result == NULL)return kEmptyString;
 	return *result;
 }
 
-String Properties::GetProperty(const String &key, String const &defaultValue) const
+String Preferences::GetPreference(const String &key, String const &defaultValue) const
 {
 	String* result = static_cast<String*>(Get(key));
 	if(result == NULL)return defaultValue;
 	return *result;
 }
 
-int32 Properties::GetPropertyInt(const String &key, int32 defaultValue) const
+int32 Preferences::GetPreferenceInt(const String &key, int32 defaultValue) const
 {
-	String result = GetProperty(key);
+	String result = GetPreference(key);
 
 	if(result.Length() == 0)return defaultValue;
 
@@ -234,9 +234,9 @@ int32 Properties::GetPropertyInt(const String &key, int32 defaultValue) const
 	return value;
 }
 
-bool Properties::GetPropertyBool(const String &key, bool defaultValue) const
+bool Preferences::GetPreferenceBool(const String &key, bool defaultValue) const
 {
-	String result = GetProperty(key);
+	String result = GetPreference(key);
 
 	if(result.Length() == 0)return defaultValue;
 

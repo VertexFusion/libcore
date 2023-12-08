@@ -121,7 +121,7 @@ void I18nBundle::AppendMO(File file)
 		Record rec=records[a];
 		jm::String orig=jm::String(&buffer[rec.origOffset], rec.origLength);
 		jm::String trans=jm::String(&buffer[rec.transOffset], rec.transLength);
-		SetProperty(orig,trans);
+		SetPreference(orig,trans);
 	}
 
 	delete[] buffer;
@@ -129,7 +129,7 @@ void I18nBundle::AppendMO(File file)
 
 String I18nBundle::Translate(const String& key) const
 {
-	return GetProperty(key, key);
+	return GetPreference(key, key);
 }
 
 

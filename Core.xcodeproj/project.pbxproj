@@ -51,7 +51,7 @@
 		C69922462AF7AA660099AEC0 /* SAXAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907B2AEEFC550085300B /* SAXAttributes.cpp */; };
 		C69922472AF7AA660099AEC0 /* Deflater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908A2AEEFC550085300B /* Deflater.cpp */; };
 		C69922482AF7AA660099AEC0 /* MacBindings.mm in Sources */ = {isa = PBXBuildFile; fileRef = C62B919F2AEF03A30085300B /* MacBindings.mm */; };
-		C69922492AF7AA660099AEC0 /* Properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90642AEEFC550085300B /* Properties.cpp */; };
+		C69922492AF7AA660099AEC0 /* Preferences.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90642AEEFC550085300B /* Preferences.cpp */; };
 		C699224A2AF7AA660099AEC0 /* PaintingBackend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90872AEEFC550085300B /* PaintingBackend.cpp */; };
 		C699224B2AF7AA660099AEC0 /* DiffDiag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906D2AEEFC550085300B /* DiffDiag.cpp */; };
 		C699224C2AF7AA660099AEC0 /* Windows1252Decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90772AEEFC550085300B /* Windows1252Decoder.cpp */; };
@@ -118,7 +118,7 @@
 		C699228C2AF7AB6C0099AEC0 /* Nurbs.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F72AEEFC6A0085300B /* Nurbs.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C699228D2AF7AB6C0099AEC0 /* Object.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90E92AEEFC6A0085300B /* Object.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C699228E2AF7AB6C0099AEC0 /* PaintingBackend.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90EC2AEEFC6A0085300B /* PaintingBackend.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C699228F2AF7AB6C0099AEC0 /* Properties.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F32AEEFC6A0085300B /* Properties.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C699228F2AF7AB6C0099AEC0 /* Preferences.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F32AEEFC6A0085300B /* Preferences.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922902AF7AB6C0099AEC0 /* Property.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F02AEEFC6A0085300B /* Property.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922912AF7AB6C0099AEC0 /* SAXParser.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91012AEEFC6A0085300B /* SAXParser.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922922AF7AB6C0099AEC0 /* Serializer.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90EE2AEEFC6A0085300B /* Serializer.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -205,7 +205,7 @@
 				C699228C2AF7AB6C0099AEC0 /* Nurbs.h in Copy Headers */,
 				C699228D2AF7AB6C0099AEC0 /* Object.h in Copy Headers */,
 				C699228E2AF7AB6C0099AEC0 /* PaintingBackend.h in Copy Headers */,
-				C699228F2AF7AB6C0099AEC0 /* Properties.h in Copy Headers */,
+				C699228F2AF7AB6C0099AEC0 /* Preferences.h in Copy Headers */,
 				C69922902AF7AB6C0099AEC0 /* Property.h in Copy Headers */,
 				C69922912AF7AB6C0099AEC0 /* SAXParser.h in Copy Headers */,
 				C69922922AF7AB6C0099AEC0 /* Serializer.h in Copy Headers */,
@@ -264,7 +264,7 @@
 		C62B90612AEEFC550085300B /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = src/core/Matrix.cpp; sourceTree = "<group>"; };
 		C62B90622AEEFC550085300B /* CharsetDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CharsetDecoder.cpp; path = src/core/CharsetDecoder.cpp; sourceTree = "<group>"; };
 		C62B90632AEEFC550085300B /* Mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mutex.cpp; path = src/core/Mutex.cpp; sourceTree = "<group>"; };
-		C62B90642AEEFC550085300B /* Properties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Properties.cpp; path = src/core/Properties.cpp; sourceTree = "<group>"; };
+		C62B90642AEEFC550085300B /* Preferences.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Preferences.cpp; path = src/core/Preferences.cpp; sourceTree = "<group>"; };
 		C62B90652AEEFC550085300B /* Vertex3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vertex3.cpp; path = src/core/Vertex3.cpp; sourceTree = "<group>"; };
 		C62B90662AEEFC550085300B /* Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Math.cpp; path = src/core/Math.cpp; sourceTree = "<group>"; };
 		C62B90672AEEFC550085300B /* Serializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Serializer.cpp; path = src/core/Serializer.cpp; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 		C62B90F02AEEFC6A0085300B /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Property.h; path = include/core/Property.h; sourceTree = SOURCE_ROOT; };
 		C62B90F12AEEFC6A0085300B /* Charset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Charset.h; path = include/core/Charset.h; sourceTree = SOURCE_ROOT; };
 		C62B90F22AEEFC6A0085300B /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Transform.h; path = include/core/Transform.h; sourceTree = SOURCE_ROOT; };
-		C62B90F32AEEFC6A0085300B /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Properties.h; path = include/core/Properties.h; sourceTree = SOURCE_ROOT; };
+		C62B90F32AEEFC6A0085300B /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = include/core/Preferences.h; sourceTree = SOURCE_ROOT; };
 		C62B90F42AEEFC6A0085300B /* Integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Integer.h; path = include/core/Integer.h; sourceTree = SOURCE_ROOT; };
 		C62B90F52AEEFC6A0085300B /* ZipFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipFile.h; path = include/core/ZipFile.h; sourceTree = SOURCE_ROOT; };
 		C62B90F62AEEFC6A0085300B /* String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = String.h; path = include/core/String.h; sourceTree = SOURCE_ROOT; };
@@ -534,7 +534,7 @@
 				C62B90742AEEFC550085300B /* NURBS.cpp */,
 				C62B90732AEEFC550085300B /* Object.cpp */,
 				C62B90872AEEFC550085300B /* PaintingBackend.cpp */,
-				C62B90642AEEFC550085300B /* Properties.cpp */,
+				C62B90642AEEFC550085300B /* Preferences.cpp */,
 				C62B90762AEEFC550085300B /* Property.cpp */,
 				C62B907B2AEEFC550085300B /* SAXAttributes.cpp */,
 				C62B90682AEEFC550085300B /* SAXParser.cpp */,
@@ -601,7 +601,7 @@
 				C62B90F72AEEFC6A0085300B /* Nurbs.h */,
 				C62B90E92AEEFC6A0085300B /* Object.h */,
 				C62B90EC2AEEFC6A0085300B /* PaintingBackend.h */,
-				C62B90F32AEEFC6A0085300B /* Properties.h */,
+				C62B90F32AEEFC6A0085300B /* Preferences.h */,
 				C62B90F02AEEFC6A0085300B /* Property.h */,
 				C62B91012AEEFC6A0085300B /* SAXParser.h */,
 				C62B90EE2AEEFC6A0085300B /* Serializer.h */,
@@ -772,7 +772,7 @@
 				C699223E2AF7AA660099AEC0 /* Geometry.cpp in Sources */,
 				C69922442AF7AA660099AEC0 /* UndoChange.cpp in Sources */,
 				C699224A2AF7AA660099AEC0 /* PaintingBackend.cpp in Sources */,
-				C69922492AF7AA660099AEC0 /* Properties.cpp in Sources */,
+				C69922492AF7AA660099AEC0 /* Preferences.cpp in Sources */,
 				C699225F2AF7AA660099AEC0 /* I18nBundle.cpp in Sources */,
 				C69922382AF7AA660099AEC0 /* AutoreleasePool.cpp in Sources */,
 				C69922322AF7AA660099AEC0 /* ZipOutputFile.cpp in Sources */,

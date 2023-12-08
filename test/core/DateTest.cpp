@@ -99,7 +99,7 @@ void DateTest::DoTest()
 	TestEquals(d.ToString(), "1979-08-24T00:00:00.000Z", "jm::Date::ToString() fails [7]");
 	TestEquals(df1.Format(d), "24.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [7]");
 
-	//\todo Diese Funktion testen
+	#warning TODO Diese Funktion testen
 	d=Date();
 	std::cout<<d.ToString()<<std::endl;
 }

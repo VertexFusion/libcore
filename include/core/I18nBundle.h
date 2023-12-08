@@ -32,7 +32,7 @@
 #ifndef jm_I18nBundle_h
 #define jm_I18nBundle_h
 
-#include "Properties.h"
+#include "Preferences.h"
 
 /*!
 \brief Quick macro for translation
@@ -46,7 +46,7 @@ namespace jm
 	 language for the user.
 	 \ingroup core
 	 */
-	class DllExport I18nBundle: public Properties
+	class DllExport I18nBundle: public Preferences
 	{
 		public:
 

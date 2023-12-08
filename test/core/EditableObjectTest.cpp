@@ -48,7 +48,7 @@ class AddressBook :public Document
 
 		};
 
-		VxfErrorStatus InitNewDocument(Properties* props) override
+		VxfErrorStatus InitNewDocument(Preferences* props) override
 		{
 			return eOK;// Needs to be overriden
 		}

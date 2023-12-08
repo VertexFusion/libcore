@@ -36,7 +36,7 @@
 #include "UndoManager.h"
 #include "File.h"
 #include "Iterator.h"
-#include "Properties.h"
+#include "Preferences.h"
 
 namespace jm
 {
@@ -168,7 +168,7 @@ namespace jm
 
 			 \param props Settings, which pass programme settings to the file, if applicable.
 			 */
-			virtual VxfErrorStatus InitNewDocument(Properties* props) = 0;
+			virtual VxfErrorStatus InitNewDocument(Preferences* props) = 0;
 
 			/*!
 			 \brief Determines that the visual representation should be renewed for this document in

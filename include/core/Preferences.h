@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Properties.h
+// Name:        Preferences.h
 // Library:     Jameo Core Library
 // Purpose:     Specialization of a hash table for storing and handling application properties
 //
@@ -29,8 +29,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Properties_h
-#define jm_Properties_h
+#ifndef jm_Preferences_h
+#define jm_Preferences_h
 
 #include "Hashtable.h"
 
@@ -40,22 +40,22 @@ namespace jm
 	class File;
 
 	/*!
-	 \brief Die Klasse Properties abstrahiert das Lesen und Schreiben von Eigenschaften in einer Properties-Datei.
+	 \brief Die Klasse Preferences abstrahiert das Lesen und Schreiben von Eigenschaften in einer Preferences-Datei.
 	 Die Datei sollte die Endung .properties haben
 	 */
-	class DllExport Properties: public Hashtable
+	class DllExport Preferences: public Hashtable
 	{
 		public:
 
 			/*!
 			\brief Konstruktor
 			*/
-			Properties();
+			Preferences();
 
 			/*!
 			\brief Destructor Löscht alle Einträge in der Hashtabelle
 			*/
-			virtual ~Properties();
+			virtual ~Preferences();
 
 			/*!
 			 \brief Diese Methode liest die Daten aus der Datei ein
@@ -65,7 +65,7 @@ namespace jm
 			void Load(File file);
 
 			/*!
-			 \brief Diese Methode schreibt die Properties in die Datei.
+			 \brief Diese Methode schreibt die Preferences in die Datei.
 			 \param file Name der Datei, in der die Eigenschaften gespeichert werden
 			 @throws Exception, wenn die Datei nicht geschrieben werden kann
 			 */
@@ -75,55 +75,55 @@ namespace jm
 			 \brief This method check, if the property is present or not.
 			 \param key The key of the property of interest.
 			 */
-			bool HasProperty(const String &key)const;
+			bool HasPreference(const String &key)const;
 
 			/*!
 			 \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
 			 \param key Der Property-Schlüssel
 			 \param value Der Wert
 			 */
-			void SetProperty(const String &key, const String &value);
+			void SetPreference(const String &key, const String &value);
 
 			/*!
 			 \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
 			 \param key Der Property-Schlüssel
 			 \param value Der Wert
 			 */
-			void SetProperty(const String &key, int32 value);
+			void SetPreference(const String &key, int32 value);
 
 			/*!
 			 \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
 			 \param key Der Property-Schlüssel
 			 \param value Der Wert
 			 */
-			void SetProperty(const String &key, bool value);
+			void SetPreference(const String &key, bool value);
 
 			/*!
 			 \brief Gibt die gewünschte Eigenschaft zurück
 			 \param key Die Eigenschaft
 			 */
-			String GetProperty(const String &key) const;
-
-			/*!
-			 \brief Gibt die gewünschte Eigenschaft zurück
-			 \param key Die Eigenschaft
-			 \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-			 */
-			String GetProperty(const String &key, const String &defaultValue) const;
+			String GetPreference(const String &key) const;
 
 			/*!
 			 \brief Gibt die gewünschte Eigenschaft zurück
 			 \param key Die Eigenschaft
 			 \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
 			 */
-			int32 GetPropertyInt(const String &key, int32 defaultValue) const;
+			String GetPreference(const String &key, const String &defaultValue) const;
 
 			/*!
 			 \brief Gibt die gewünschte Eigenschaft zurück
 			 \param key Die Eigenschaft
 			 \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
 			 */
-			bool GetPropertyBool(const String &key, bool defaultValue) const;
+			int32 GetPreferenceInt(const String &key, int32 defaultValue) const;
+
+			/*!
+			 \brief Gibt die gewünschte Eigenschaft zurück
+			 \param key Die Eigenschaft
+			 \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
+			 */
+			bool GetPreferenceBool(const String &key, bool defaultValue) const;
 	};
 
 }
