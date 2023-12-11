@@ -84,7 +84,7 @@ SOURCES =\
  $(PATH_CORE)/Windows1252Decoder.cpp\
  $(PATH_CORE)/Serializer.cpp\
  $(PATH_CORE)/Thread.cpp\
- $(PATH_CORE)/Properties.cpp\
+ $(PATH_CORE)/Preferences.cpp\
  $(PATH_CORE)/I18nBundle.cpp\
  $(PATH_CORE)/Inflater.cpp\
  $(PATH_CORE)/Iterator.cpp\
