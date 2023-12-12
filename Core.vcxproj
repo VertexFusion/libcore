@@ -107,6 +107,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>include;3rdparty;prec;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\bin\$(Configuration);$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\bin\Build\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -237,7 +240,7 @@
     <ClInclude Include="include\core\Nurbs.h" />
     <ClInclude Include="include\core\Object.h" />
     <ClInclude Include="include\core\PaintingBackend.h" />
-    <ClInclude Include="include\core\Properties.h" />
+    <ClInclude Include="include\core\Preferences.h" />
     <ClInclude Include="include\core\Property.h" />
     <ClInclude Include="include\core\SAXParser.h" />
     <ClInclude Include="include\core\Serializer.h" />
@@ -271,6 +274,7 @@
     </ClInclude>
     <ClInclude Include="test\core\EditableObjectTest.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="test\core\GeometryTest.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -478,7 +482,7 @@
     <ClCompile Include="src\core\NURBS.cpp" />
     <ClCompile Include="src\core\Object.cpp" />
     <ClCompile Include="src\core\PaintingBackend.cpp" />
-    <ClCompile Include="src\core\Properties.cpp" />
+    <ClCompile Include="src\core\Preferences.cpp" />
     <ClCompile Include="src\core\Property.cpp" />
     <ClCompile Include="src\core\SAXAttributes.cpp" />
     <ClCompile Include="src\core\SAXParser.cpp" />
@@ -520,6 +524,7 @@
     <ClCompile Include="test\core\EditableObjectTest.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="test\core\GeometryTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -578,6 +583,7 @@
     <ClCompile Include="test\Main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

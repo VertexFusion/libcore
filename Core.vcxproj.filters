@@ -132,7 +132,7 @@
     <ClInclude Include="include\core\PaintingBackend.h">
       <Filter>include\core</Filter>
     </ClInclude>
-    <ClInclude Include="include\core\Properties.h">
+    <ClInclude Include="include\core\Preferences.h">
       <Filter>include\core</Filter>
     </ClInclude>
     <ClInclude Include="include\core\Property.h">
@@ -332,7 +332,7 @@
     <ClCompile Include="src\core\PaintingBackend.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\Properties.cpp">
+    <ClCompile Include="src\core\Preferences.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\core\Property.cpp">
