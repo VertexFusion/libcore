@@ -56,10 +56,19 @@ jm::String jm::System::GetLanguage()
 
 	//const char* = setlocale(LC_ALL, NULL);
 
-	return "de";
+	return "de-DE";
 	#elif defined _WIN32//Windows
 
-	return "de";
+	LANGID langid = GetUserDefaultUILanguage();
+
+	switch (langid)
+	{
+		case 1031:
+			return "de-DE";
+
+		default:
+			return "en";
+	}
 
 	#endif
 

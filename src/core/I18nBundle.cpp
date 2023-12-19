@@ -144,25 +144,46 @@ void I18nBundle::InitDefault()
 	gDefaultTranslation = new I18nBundle(language);
 
 	// Append Data
-	gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore"));
+	gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore",gDefaultTranslation->mLanguage));
 }
 
-jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId)
+jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String& lang)
 {
-	String language= gDefaultTranslation->mLanguage;
+	String language= lang;
+
+	if(language.Length()==0)language= System::GetLanguage();
+
 	language=language.Replace('-', '_');
 
-	// Resource of JameoCore.Framework Bundle (under macos)
+	// Resource of translations
 	File resDir=ResourceDir(bundleId);
 	File translationDir=File(resDir,"translations");
-	File translationFile=File(translationDir,language+".mo");
-	
-	// Maybe without region?
-	if(translationFile.Exists()==false && language.IndexOf('-')>0)
+
+	// Bundle-id + language
+	File translationFile=File(translationDir,bundleId + "." + language + ".mo");
+
+	// Maybe without bundle id ?
+	if (translationFile.Exists() == false)
 	{
-		language=language.Substring(0, language.IndexOf('-'));
-		translationFile=File(translationDir,language+".mo");
+		translationFile = File(translationDir, language + ".mo");
 	}
+	else return translationFile;
+
+	// Maybe without region?
+	if(translationFile.Exists()==false && language.IndexOf('_')>0)
+	{
+		language=language.Substring(0, language.IndexOf('_'));
+		translationFile=File(translationDir, bundleId + "." + language+".mo");
+	}
+	else return translationFile;
+
+	// Maybe without region and without bundle id?
+	if (translationFile.Exists() == false && language.IndexOf('_') > 0)
+	{
+		language = language.Substring(0, language.IndexOf('_'));
+		translationFile = File(translationDir, language + ".mo");
+	}
+	else return translationFile;
 
 	return translationFile;
 }

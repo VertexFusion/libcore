@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2023-11-05 16:31+0100\n"
-"PO-Revision-Date: 2023-11-05 16:31+0100\n"
+"Project-Id-Version: LibCore\n"
+"POT-Creation-Date: 2023-12-18 20:21+0100\n"
+"PO-Revision-Date: 2023-12-18 20:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: Tr\n"
@@ -107,23 +107,23 @@ msgstr "Datei-Magic falsch: %s"
 msgid "MO file version not supported: %s"
 msgstr "MO Dateiversion nicht unterstützt: %s"
 
-#: core/Property.cpp:255
+#: core/Property.cpp:263
 msgid "Property not comparable"
 msgstr "Eigenschaft nicht vergleichbar"
 
-#: core/System.cpp:94
+#: core/System.cpp:103
 msgid "ERROR: "
 msgstr "FEHLER: "
 
-#: core/System.cpp:100
+#: core/System.cpp:109
 msgid "WARNING: "
 msgstr "WARNUNG: "
 
-#: core/System.cpp:104
+#: core/System.cpp:113
 msgid "INFO: "
 msgstr "INFO: "
 
-#: core/System.cpp:108
+#: core/System.cpp:117
 msgid "DEBUG: "
 msgstr "DEBUG: "
 
