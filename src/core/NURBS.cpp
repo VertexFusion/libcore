@@ -141,3 +141,12 @@ uint32 Nurbs::GetControlPointCount()
 	return mControlCount;
 }
 
+uint32 Nurbs::GetKnotCount()const
+{
+	return mKnotCount;
+}
+
+double Nurbs::GetKnot(uint32 index)const
+{
+	return mKnots[index];
+}

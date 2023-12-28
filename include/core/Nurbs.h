@@ -108,6 +108,16 @@ namespace jm
 			 */
 			uint32 GetControlPointCount();
 
+			/*!
+			 \brief Returns the knot count
+			 */
+			uint32 GetKnotCount()const;
+
+			/*!
+			 \brief returns a knot
+			 */
+			double GetKnot(uint32 index)const;
+
 		private:
 
 			/*!
@@ -125,14 +135,10 @@ namespace jm
 			 */
 			uint32 mControlCount;
 
-			/*!
-			 \brief Der Knotenvektor
-			 */
+			//! Knot vector
 			double* mKnots;
 
-			/*!
-			 \brief Anzahl der Knoten
-			 */
+			//! Knot count.
 			uint32 mKnotCount;
 
 			/*!
