@@ -43,6 +43,20 @@ SAXParser::~SAXParser()
 
 }
 
+void SAXParser::Parse(File &file)
+{
+	if(!file.Exists())return;
+	if(!file.CanRead())return;
+	Integer length=file.Length();
+	uint8* buffer = new uint8[length];
+	file.Open(jm::kFmRead);
+	file.ReadFully(buffer, length);
+	file.Close();
+	jm::String content = jm::String((int8*)buffer);
+	delete[] buffer;
+	Parse(content);
+}
+
 void SAXParser::Parse(const String &xml)
 {
 	String token;

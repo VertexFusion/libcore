@@ -653,4 +653,49 @@ Vertex2 jm::AngleBisector(const Vertex2 &direction1, const Vertex2 &direction2)
 	return direction1.Normalized() + direction2.Normalized();
 }
 
+jm::VxfErrorStatus jm::CircleParameterBy3Points(Vertex2 &centre, double &radius,
+														  const Vertex2 &p1,
+														  const Vertex2 &p2,
+														  const Vertex3 &p3)
+{
+	// Algorithm:
+	// Given: 3 points <x1,y1>, <x2,y2>, <x3,y3>
+	// Searched: Centre point <x,y>
+	//
+	//        | x^2+y^2   x  y   1 |
+	// Solve: | x1^2+y1^2 x1 y1  1 |
+	//     A= | x2^2+y2^2 x2 y2  1 | = 0
+	//        | x3^2+y3^2 x3 y3  1 |
+	//
+	// e.g.: x = 0,5 * M12 / M11
+	//       y = 0,5 * M13 / M11
 
+	// Calculate M12 (Minor of A), minor M12 is det of A without row 1 and col 2
+	Matrix M11 = Matrix(Vertex3(p1.x,p1.y,1.0),
+							  Vertex3(p2.x,p2.y,1.0),
+							  Vertex3(p3.x,p3.y,1.0),true);
+
+	Matrix M12 = Matrix(Vertex3(p1.x*p1.x+p1.y*p1.y,p1.y,1.0),
+							  Vertex3(p2.x*p2.x+p2.y*p2.y,p2.y,1.0),
+							  Vertex3(p3.x*p3.x+p3.y*p3.y,p3.y,1.0),true);
+
+	Matrix M13 = Matrix(Vertex3(p1.x*p1.x+p1.y*p1.y,p1.x,1.0),
+							  Vertex3(p2.x*p2.x+p2.y*p2.y,p2.x,1.0),
+							  Vertex3(p3.x*p3.x+p3.y*p3.y,p3.x,1.0),true);
+	double m11,m12,m13;
+	VxfErrorStatus status = M11.Det(m11);
+	if(status!=eOK)return status;
+	status = M12.Det(m12);
+	if(status!=eOK)return status;
+	status = M13.Det(m13);
+	if(status!=eOK)return status;
+	
+	double x = 0.5*m12/m11;
+	double y = -0.5*m13/m11;
+	
+	centre.x=x;
+	centre.y=y;
+	radius=(p1-centre).Abs();
+	
+	return eOK;
+}

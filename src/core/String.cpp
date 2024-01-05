@@ -216,12 +216,12 @@ bool String::EndsWith(const String &another) const
 	return true;
 }
 
-Integer String::HashCode()
+Integer String::HashCode() const
 {
 	if(mHash != 0)return mHash;
 	uint32 hash = 0;
 	for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a];
-	mHash = (int32) hash;
+	const_cast<String*>(this)->mHash = (int32) hash;
 	return mHash;
 }
 

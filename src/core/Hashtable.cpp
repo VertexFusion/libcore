@@ -85,7 +85,7 @@ void* Hashtable::Put(String key, void* value)
 	return NULL;
 }
 
-void* Hashtable::Get(String key) const
+void* Hashtable::Get(const String &key) const
 {
 	Integer hash = key.HashCode();
 

@@ -108,8 +108,11 @@ namespace jm
 			bool IsOrthogonal(const Vertex2 &another) const;
 
 			/*!
-			 \brief Gibt den Winkel von einem zum anderen Winkel zurück.
-			 \return Winkel im Bogenmaß zwischen 0 und pi (0 - 180°)
+			 \brief Returns the signed angle between this vector and another vector.
+			 \note Note this methode uses as positive direction the clockwise direction with right
+			 x-axis as 0° like in SVG.
+			 \param another The vector we want to know the angle to.
+			 \return Angle in radians.
 			 */
 			double AngleTo(const Vertex2 &another) const;
 

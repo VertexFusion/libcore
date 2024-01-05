@@ -170,6 +170,8 @@ namespace jm
 			 \brief Destructor
 			 */
 			virtual ~SAXParser();
+		
+			void Parse(File &file);
 
 			/*!
 			 \brief Diese Methode parst die übergebene Zeichenkette, welche XML sein soll

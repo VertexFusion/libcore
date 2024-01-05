@@ -76,7 +76,7 @@ namespace jm
 			 \return Den Pointer auf das Objekt, welches gesucht wird, oder NULL, wenn das Objekt nicht
 			 in der Hashtabelle vorhanden ist.
 			 */
-			void* Get(String key) const;
+			void* Get(const String &key) const;
 
 			/*!
 			 \brief Diese Methode entfernt das Objekt, welches zu dem gesuchten Key zugeordnet ist.

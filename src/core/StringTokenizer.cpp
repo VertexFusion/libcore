@@ -96,7 +96,7 @@ String StringTokenizer::NextToken()
 	mPosition = (mNewStart > -1) ? mNewStart : FindDelimEnd(mPosition);
 	mNewStart = -1;
 
-	if(mPosition >= mStr.Length())throw new Exception("No such element.");
+	if(mPosition >= mStr.Length())throw new Exception(Tr("No such element."));
 
 	if(mRetDelim && IsDelimiter(mPosition))
 	{

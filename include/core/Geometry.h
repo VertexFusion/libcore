@@ -423,6 +423,14 @@ namespace jm
 	DllExport
 	Vertex2 AngleBisector(const Vertex2 &direction1,
 	                      const Vertex2 &direction2);
+	
+	/*!
+	 \brief Calculates the circle parameters centre point and radius given by the 3 points.
+	 */
+	jm::VxfErrorStatus CircleParameterBy3Points(Vertex2 &centre, double &radius,
+															  const Vertex2 &p1,
+															  const Vertex2 &p2,
+															  const Vertex3 &p3);
 
 }
 
