@@ -51,6 +51,25 @@ double Transform::Trans(const double &value) const
 	return (p2 - p1).Abs();
 }
 
+Double Transform::TransAngle(const Double& angle) const
+{
+	jm::Vertex3 center = jm::Vertex3(0,0,0);
+	jm::Vertex3 x = jm::Vertex3(1.0, 0, 0);
+	jm::Vertex3 direction = x;
+	direction.RotateZ(angle);
+
+	// Change angles
+	// TODO: NOT SHURE IF THIS IS COMPLIANT IF ROTATION IS NOT PARALLEL TO Z AXIS
+	direction = Trans(direction);
+	center = Trans(center);
+
+	direction -= center;
+
+	Double newrotation = direction.AngleTo(x);
+
+	return newrotation;
+}
+
 void Transform::InitMoving(const jm::Vertex3 &distance)
 {
 	//Transformationsmatrix:

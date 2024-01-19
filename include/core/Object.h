@@ -106,10 +106,16 @@ namespace jm
 			 */
 			virtual void PrintDiffInfo(DiffOperation operation, Object* other) const;
 
+			// Methods for flagging the object
+			void SetHighBit(bool status);
+			bool GetHighBit()const;
+
 		private:
 
 			/*!
 			 \brief Reference counter for reference counting.
+
+			 \note the highes bit is a modified flag for undo management
 			 */
 			int32 mRefCount;
 

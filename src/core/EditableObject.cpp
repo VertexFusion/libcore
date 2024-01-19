@@ -105,6 +105,16 @@ VxfErrorStatus EditableObject::SetMember(double* pointer, double value)
 	return eOK;
 }
 
+VxfErrorStatus EditableObject::SetMember(bool* pointer, bool value)
+{
+	if (value == *pointer)return eNotChanged;
+
+	UndoManager* um = mDocument->GetUndoManager();
+	if (um != NULL)um->RegisterChange(this, pointer);
+	*pointer = value;
+	return eOK;
+}
+
 
 VxfErrorStatus EditableObject::OpenTransaction()
 {

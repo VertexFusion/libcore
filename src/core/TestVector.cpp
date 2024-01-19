@@ -79,10 +79,17 @@ Integer TestVector::Execute()
 
 	clock_t et = clock();
 
-	std::cout<<std::endl<<kTxtYellow<<jm::String::Format(Tr("Cycle finished! In total %i tests, %i errors, duration %1.3f sec."),
-	        jm::gTotalTestCount,
-	        jm::gTotalErrorCount,
-	        (double)(et - bt) / CLOCKS_PER_SEC)<<kTxtReset<<std::endl;
+	std::cout << std::endl << Tr("Cycle finished! In total:")<<std::endl;
+	std::cout << jm::String::Format(Tr("Tests:    %i"), jm::gTotalTestCount) << std::endl;
+
+	std::cout <<
+		((jm::gTotalErrorCount > 0) ? kTxtRed : kTxtGreen)
+		<< jm::String::Format(Tr("Errors:   %i"),jm::gTotalErrorCount)
+		<< kTxtReset<< std::endl;
+
+	std::cout <<
+		jm::String::Format(Tr("Duration: %1.3f sec"), (double)(et - bt) / CLOCKS_PER_SEC)
+		<< std::endl;
 
 	return gTotalErrorCount;
 }

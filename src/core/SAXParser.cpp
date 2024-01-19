@@ -144,7 +144,7 @@ void SAXParser::Parse(const String &xml)
 				c = xml.CharAt(pos);
 				escape.Append(c);
 			}
-			while(c != ';' && pos < length);
+			while(c != ';' && pos < length-1);
 
 			if(escape.Equals("lt;"))token.Append('<');
 			else if(escape.Equals("gt;"))token.Append('>');

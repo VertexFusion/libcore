@@ -55,7 +55,7 @@ void Object::Release()
 
 	mutex->Lock();
 	mRefCount--;
-	count = mRefCount;
+	count = GetReferenceCount();
 	mutex->Unlock();
 
 	if(count == 0)
@@ -85,7 +85,7 @@ Object* Object::Autorelease()
 
 int32 Object::GetReferenceCount() const
 {
-	return mRefCount;
+	return mRefCount&0x7FFFFFFF;
 }
 
 bool Object::Equals(const Object*) const
@@ -101,4 +101,14 @@ String Object::GetDisplayName() const
 void Object::PrintDiffInfo(DiffOperation, Object*) const
 {
 	// Nothing to do here. Placeholder method.
+}
+
+void Object::SetHighBit(bool status)
+{
+	mRefCount = GetReferenceCount() | (status ? 0x80000000:0x00000000);
+}
+
+bool Object::GetHighBit()const
+{
+	return (mRefCount&0x80000000) != 0;
 }

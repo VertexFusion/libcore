@@ -78,6 +78,11 @@ namespace jm
 			 */
 
 			/*!
+			 \brief Closes the undo step. This method should be called by applications
+			 */
+			virtual void CloseUndoStep();
+
+			/*!
 			 \brief Returns the undo manager if it exists.
 			 */
 			UndoManager* GetUndoManager();

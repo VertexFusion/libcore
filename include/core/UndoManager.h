@@ -130,8 +130,10 @@ namespace jm
 			   werden.
 			 - Nur wenn Änderungen vorhanden sind, wird der Schritt abgeschlossen.
 			 */
+	private:
 			void Close();
-
+			friend class Document;
+	public:
 			/*!
 			 \brief Diese Methode löscht den Undo-Stack und den Redo-Stack manuell
 			 */
@@ -449,6 +451,7 @@ namespace jm
 			 */
 			VxfErrorStatus GetTransactionStatus() const;
 
+			UndoStep* GetOpenStep();
 
 		private:
 

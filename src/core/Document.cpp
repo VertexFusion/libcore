@@ -54,6 +54,10 @@ Document::~Document()
 	}
 }
 
+void Document::CloseUndoStep()
+{
+	if (mUndoManager != NULL)mUndoManager->Close();
+}
 
 UndoManager* Document::GetUndoManager()
 {

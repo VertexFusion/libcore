@@ -146,7 +146,7 @@ bool UndoManager::Redo()
 
 void UndoManager::Close()
 {
-	//Nur Abschließen, wenn Änderungen vorhanden sind.
+	// Only close, if changes are present
 	if(mCurrent->count == 0)return;
 
 	mCurrent->prev = mUndoStack;
@@ -434,4 +434,9 @@ void UndoManager::RegisterTransactionStatus(VxfErrorStatus status)
 VxfErrorStatus UndoManager::GetTransactionStatus()const
 {
 	return mTransactionStatus;
+}
+
+UndoStep* UndoManager::GetOpenStep()
+{
+	return mCurrent;
 }

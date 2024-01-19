@@ -342,7 +342,7 @@ namespace jm
 
 	\ingroup test
 	*/
-	class TestVector
+	class DllExport TestVector
 	{
 		public:
 

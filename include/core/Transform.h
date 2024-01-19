@@ -95,6 +95,12 @@ namespace jm
 		double Trans(const double &value) const;
 
 		/*!
+		 \brief Transform a rotation angle about the Z-Axis of LCS as usually neede by arcs or texts .
+		 \brief angle Rotation angle in rad
+		 */
+		Double TransAngle(const Double& angle) const;
+
+		/*!
 		 \brief Initialisiert diese Transformation als Verschiebung
 		 */
 		void InitMoving(const Vertex3 &distance);

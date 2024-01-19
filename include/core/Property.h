@@ -421,6 +421,8 @@ namespace jm
 			 */
 			virtual VxfErrorStatus SetMember(double* pointer, double value);
 
+			virtual VxfErrorStatus SetMember(bool* pointer, bool value);
+
 			/*!
 			 \brief Begins an editing tansaction;
 			 */
