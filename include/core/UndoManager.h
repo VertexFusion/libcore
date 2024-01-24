@@ -130,7 +130,7 @@ namespace jm
 			   werden.
 			 - Nur wenn Änderungen vorhanden sind, wird der Schritt abgeschlossen.
 			 */
-	private:
+	//private:
 			void Close();
 			friend class Document;
 	public:

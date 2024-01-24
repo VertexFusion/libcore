@@ -695,6 +695,185 @@ int32 File::CompareTo(const File &other) const
 	return mPathname.CompareTo(other.mPathname);
 }
 
+Array<String> File::GetTags()const
+{
+#ifdef __APPLE__ //macOS
+
+	// Create necessary system related objects
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
+																	cfstr,
+																	kCFURLPOSIXPathStyle,
+																	IsDirectory());
+
+	// Query tags
+	CFArrayRef labels=NULL;
+	Boolean result = CFURLCopyResourcePropertyForKey(urlref,
+																	 kCFURLTagNamesKey,
+																	 &labels,
+																	 NULL);
+	
+	// Clean unnecessary stuff
+	CFRelease(cfstr);
+	CFRelease(urlref);
+
+	if(result==true && labels != NULL)
+	{
+		// Extract the labels to our array
+		Integer count = (uint32) CFArrayGetCount(labels);
+		Array<String> labelarray=Array<String>(count);
+		for(Integer index=0;index<count;index++)
+		{
+			CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(labels,index);
+			char path[1024];
+			CFStringGetCString(str, path, sizeof(path), kCFStringEncodingUTF8);
+			labelarray[index]=String(path);
+			CFRelease(str);
+		}
+
+		// Clean up
+		CFRelease(labels);
+
+		return labelarray;
+	}
+#endif
+	
+	// Return empty if no tags found array
+	return Array<String>(0);
+}
+
+VxfErrorStatus File::AddTag(const String &tag)
+{
+#ifdef __APPLE__ //macOS
+	Array<String> oldtags = GetTags();
+	
+	//Check is tag is present, if yes, just return
+	for(uint32 index=0;index<oldtags.Length();index++)
+	{
+		if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
+	}
+	
+	//Create new array and append tag
+	Integer newsize=oldtags.Length()+1;
+	CFStringRef* strs = new CFStringRef[newsize];
+	for(Integer index=0;index<newsize-1;index++)
+	{
+		int8* cstr = oldtags[index].ToCString();
+		CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
+		delete[] cstr;
+		strs[index]=cfstr;
+	}
+	
+	int8* cstr = tag.ToCString();
+	CFStringRef ntag = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
+	delete[] cstr;
+	strs[newsize-1]=ntag;
+
+	CFArrayRef newtags = CFArrayCreate(NULL,(const void**)strs, newsize, &kCFTypeArrayCallBacks);
+
+	//
+	//
+	//
+	
+	// Create necessary system related objects
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
+																	cfstr,
+																	kCFURLPOSIXPathStyle,
+																	IsDirectory());
+
+	// Query tags
+	Boolean result = CFURLSetResourcePropertyForKey(urlref,
+																	kCFURLTagNamesKey,
+																	newtags,
+																	NULL);
+	
+	// Clean unnecessary stuff
+	
+	for(Integer index=0;index<newsize;index++)
+	{
+		CFRelease(strs[index]);
+	}
+	
+	CFRelease(cfstr);
+	CFRelease(urlref);
+	CFRelease(newtags);
+	
+	if(result==true)return eOK;
+	else return eNo;
+
+#endif
+}
+
+VxfErrorStatus File::RemoveTag(const String &tag)
+{
+#ifdef __APPLE__ //macOS
+	Array<String> oldtags = GetTags();
+	
+	//Check is tag is present, if not, just return
+	bool found=false;
+	for(uint32 index=0;index<oldtags.Length();index++)
+	{
+		if(oldtags[index].EqualsIgnoreCase(tag))
+		{
+			found=true;
+			break;
+		}
+	}
+	if(!found)return eOK;
+	
+	//Create new array and remove tag
+	Integer newsize=oldtags.Length()-1;
+	CFStringRef* strs = new CFStringRef[newsize];
+	Integer cnt=0;
+	for(Integer index=0;index<newsize+1;index++)
+	{
+		if(oldtags[index].EqualsIgnoreCase(tag)==false)
+		{
+			int8* cstr = oldtags[index].ToCString();
+			CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
+			delete[] cstr;
+			strs[cnt]=cfstr;
+			cnt++;
+		}
+	}
+	
+	CFArrayRef newtags = CFArrayCreate(NULL,(const void**)strs, newsize, &kCFTypeArrayCallBacks);
+
+	//
+	//
+	//
+	
+	// Create necessary system related objects
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
+																	cfstr,
+																	kCFURLPOSIXPathStyle,
+																	IsDirectory());
+
+	// Query tags
+	Boolean result = CFURLSetResourcePropertyForKey(urlref,
+																	kCFURLTagNamesKey,
+																	newtags,
+																	NULL);
+	
+	// Clean unnecessary stuff
+	
+	for(Integer index=0;index<newsize;index++)
+	{
+		CFRelease(strs[index]);
+	}
+	
+	CFRelease(cfstr);
+	CFRelease(urlref);
+	CFRelease(newtags);
+	
+	if(result==true)return eOK;
+	else return eNo;
+
+#endif
+}
+
 
 String jm::ExecPath()
 {
