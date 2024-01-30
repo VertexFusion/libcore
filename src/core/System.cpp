@@ -44,9 +44,7 @@ jm::String jm::System::GetLanguage()
 	CFArrayRef langs = CFLocaleCopyPreferredLanguages();
 	CFStringRef cflangCode = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
 
-	int8 cstr[16];
-	CFStringGetCString(cflangCode, cstr, sizeof(cstr), kCFStringEncodingUTF8);
-	String langCode = String(cstr);
+	String langCode = String::FromCFString(cflangCode);
 
 	CFRelease(langs);
 		

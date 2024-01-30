@@ -32,6 +32,10 @@
 #ifndef jm_String_h
 #define jm_String_h
 
+#ifdef __APPLE__
+#include <CoreServices/CoreServices.h>
+#endif
+
 #include "Object.h"
 #include "CharArray.h"
 #include "Integer.h"
@@ -123,6 +127,18 @@ namespace jm
 			 */
 			~String();
 
+#ifdef __APPLE__
+
+			/*! \brief Converts from CFString
+			 \note Only visible on mac
+			*/
+			static String FromCFString(CFStringRef cfstring);
+
+		/*! \brief Converts to CFString
+			\note Only visible on mac
+		  */
+		  CFStringRef ToCFString()const;
+#endif
 			/*!
 			 \brief Diese Methode gibt die Länge der Zeichenkette zurück.
 			 */

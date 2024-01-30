@@ -53,7 +53,6 @@
 #include <unistd.h>
 #include <mach-o/dyld.h>
 #include "CoreFoundation/CFBundle.h"
-#include <CoreServices/CoreServices.h> //Für movetotrash in ShxFile
 #include <sys/time.h>
 #include <execinfo.h>
 #include <cxxabi.h>

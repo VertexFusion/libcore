@@ -721,21 +721,24 @@ Array<String> File::GetTags()const
 	{
 		// Extract the labels to our array
 		Integer count = (uint32) CFArrayGetCount(labels);
-		Array<String> labelarray=Array<String>(count);
-		for(Integer index=0;index<count;index++)
+		if(count>0)
 		{
-			CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(labels,index);
-			char path[1024];
-			CFStringGetCString(str, path, sizeof(path), kCFStringEncodingUTF8);
-			labelarray[index]=String(path);
-			CFRelease(str);
+			Array<String> labelarray=Array<String>(count);
+			for(Integer index=0;index<count;index++)
+			{
+				CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(labels,index);
+				labelarray[index]=String::FromCFString(str);
+			}
+
+			// Clean up
+			CFRelease(labels);
+
+			return labelarray;
 		}
-
-		// Clean up
-		CFRelease(labels);
-
-		return labelarray;
 	}
+	
+	if(labels!=NULL)CFRelease(labels);
+
 #endif
 	
 	// Return empty if no tags found array
@@ -748,7 +751,7 @@ VxfErrorStatus File::AddTag(const String &tag)
 	Array<String> oldtags = GetTags();
 	
 	//Check is tag is present, if yes, just return
-	for(uint32 index=0;index<oldtags.Length();index++)
+	for(Integer index=0;index<oldtags.Length();index++)
 	{
 		if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
 	}
@@ -758,16 +761,10 @@ VxfErrorStatus File::AddTag(const String &tag)
 	CFStringRef* strs = new CFStringRef[newsize];
 	for(Integer index=0;index<newsize-1;index++)
 	{
-		int8* cstr = oldtags[index].ToCString();
-		CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
-		delete[] cstr;
-		strs[index]=cfstr;
+		strs[index]=oldtags[index].ToCFString();;
 	}
 	
-	int8* cstr = tag.ToCString();
-	CFStringRef ntag = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
-	delete[] cstr;
-	strs[newsize-1]=ntag;
+	strs[newsize-1]=tag.ToCFString();
 
 	CFArrayRef newtags = CFArrayCreate(NULL,(const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
@@ -812,7 +809,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 	
 	//Check is tag is present, if not, just return
 	bool found=false;
-	for(uint32 index=0;index<oldtags.Length();index++)
+	for(Integer index=0;index<oldtags.Length();index++)
 	{
 		if(oldtags[index].EqualsIgnoreCase(tag))
 		{
@@ -830,9 +827,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 	{
 		if(oldtags[index].EqualsIgnoreCase(tag)==false)
 		{
-			int8* cstr = oldtags[index].ToCString();
-			CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, cstr, kCFStringEncodingUTF8);
-			delete[] cstr;
+			CFStringRef cfstr = oldtags[index].ToCFString();
 			strs[cnt]=cfstr;
 			cnt++;
 		}
@@ -947,9 +942,8 @@ File jm::ResourceDir(const String &bundleId)
 	#ifdef __APPLE__
 
 	//CFString aus Bundle-ID erzeugen
-	const char* cstring = bundleId.ToCString();
-	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, cstring, kCFStringEncodingUTF8);
-
+	CFStringRef cfstr = bundleId.ToCFString();
+	
 	//Erzeuge Referenzen auf das Bundle, die BundleURL und die Ressourcen-URL
 	CFBundleRef thisBundle = CFBundleGetBundleWithIdentifier(cfstr);
 	if(thisBundle == NULL)
@@ -971,8 +965,7 @@ File jm::ResourceDir(const String &bundleId)
 	//Kovertiere Bundle-URL in String
 	char path[1024];
 	CFStringRef sr = CFURLCopyPath(resourceDirURL);
-	CFStringGetCString(sr, path, sizeof(path), kCFStringEncodingUTF8);
-	String filename = String(path);
+	String filename = String::FromCFString(sr);
 
 	//Aufräumen
 	CFRelease(cfstr);
@@ -991,15 +984,12 @@ File jm::ResourceDir(const String &bundleId)
 	//Achtung URL kann kodiert sein. Für Leerzeichen ist das z.B. %20
 
 	//Kovertiere Bundle-URL in String
-	char path[1024];
 	CFStringRef sr1 = CFURLCopyPath(bundleURL);
-	CFStringGetCString(sr1, path, sizeof(path), kCFStringEncodingUTF8);
-	String filename = URLDecode(String(path));
+	String filename = URLDecode(String::FromCFString(sr1));
 
 	//Hänge Ressourcen-URL an
 	CFStringRef sr2 = CFURLCopyPath(resourceDirURL);
-	CFStringGetCString(sr2, path, sizeof(path), kCFStringEncodingUTF8);
-	filename.Append(URLDecode(String(path)));
+	filename.Append(URLDecode(String::FromCFString(sr2)));
 
 	//Aufräumen
 	CFRelease(cfstr);
@@ -1007,7 +997,6 @@ File jm::ResourceDir(const String &bundleId)
 	CFRelease(resourceDirURL);
 	CFRelease(sr1);
 	CFRelease(sr2);
-	delete cstring;
 
 	#endif
 

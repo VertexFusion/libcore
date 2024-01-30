@@ -166,6 +166,38 @@ void String::CheckCapacity(Integer more)
 	mValue = tmp;
 }
 
+String String::FromCFString(CFStringRef cfstring)
+{
+	// NULL string?
+	if (cfstring==NULL)return kEmptyString;
+
+	// Empty string?
+	CFIndex length = CFStringGetLength(cfstring);
+	if (length == 0) return kEmptyString;
+
+	// C-String
+	char* cstr=NULL;
+	CFStringGetCStringPtr(cfstring,kCFStringEncodingUTF8);
+	if(cstr!=NULL)return String(cstr);
+	
+	// Fallback
+	cstr=new char[length*2];//Hope, that not all characters are greater than 4 bytes representation
+	CFStringGetCString(cfstring, cstr, length*2, kCFStringEncodingUTF8);
+	String result=String(cstr);
+	delete[] cstr;
+	
+	return result;
+}
+
+CFStringRef String::ToCFString()const
+{
+	const char* cstring = ToCString();
+	CFStringRef cfstring = CFStringCreateWithCString(kCFAllocatorDefault, cstring, kCFStringEncodingUTF8);
+	delete[] cstring;
+	return cfstring;
+}
+
+
 Integer String::Length() const
 {
 	return mStrLength;
