@@ -83,13 +83,13 @@ CharArray UTF16Decoder::Decode(const int8* cstring)
 	return ret;
 }
 
-char* UTF16Decoder::Encode(const CharArray &string)
+ByteArray UTF16Decoder::Encode(const CharArray &string)
 {
 	//Länge bleibt gleich..
 
-	int8* cstring = new int8[1 + 2 * string.length];
-	cstring[2 * string.length] = 0;
-	uint32 idx = 0;
+	ByteArray cstring = ByteArray(2 * string.length,0);
+
+	Integer idx = 0;
 	for(uint32 a = 0; a < string.length; a++)
 	{
 		uint16 character = string.buffer[a];

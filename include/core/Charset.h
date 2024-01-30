@@ -70,7 +70,7 @@ namespace jm
 			 \param string der Unicodecodierte String, der umgewandelt werden sollt.
 			 \return Einen C-String, dessen Kodierung durch diesen Dekoder bestimmt ist.
 			 */
-			virtual int8* Encode(const CharArray &string) = 0;
+			virtual ByteArray Encode(const CharArray &string) = 0;
 
 	};
 
@@ -142,7 +142,7 @@ namespace jm
 			 Verwendung dieses Zeichensatzes.
 			 \param string Der String, welcher umgewandlet werden soll.
 			 */
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string);
 
 			/*!
 			 \brief This method returns the desired charset by name.
@@ -216,7 +216,7 @@ namespace jm
 		public:
 			RawDecoder();
 			CharArray Decode(const int8* cString);
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string) override;
 	};
 
 	/*!
@@ -228,7 +228,7 @@ namespace jm
 		public:
 			UTF8Decoder();
 			CharArray Decode(const int8* cString);
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string) override;
 	};
 
 
@@ -243,7 +243,7 @@ namespace jm
 		public:
 			UTF16Decoder(bool isBE);
 			CharArray Decode(const int8* cString);
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string) override;
 	};
 
 	/*!
@@ -259,7 +259,7 @@ namespace jm
 			Windows1252Decoder();
 			~Windows1252Decoder();
 			CharArray Decode(const int8* cString);
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string) override;
 	};
 
 	/*!
@@ -275,7 +275,7 @@ namespace jm
 			MacRomanDecoder();
 			~MacRomanDecoder();
 			CharArray Decode(const int8* cString);
-			int8* Encode(const CharArray &string);
+			ByteArray Encode(const CharArray &string) override;
 
 			uint16 DecodeCharacter(uint8 macencode);
 			uint8 EncodeCharacter(uint16 unicode);

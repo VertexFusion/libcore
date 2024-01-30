@@ -64,10 +64,9 @@ CharArray RawDecoder::Decode(const int8* cstring)
 	return array;
 }
 
-int8* RawDecoder::Encode(const CharArray &string)
+ByteArray RawDecoder::Encode(const CharArray &string)
 {
-	int8* cstring = new int8[string.length + 1];
-	cstring[string.length] = 0;
+	ByteArray cstring = ByteArray(string.length,0);
 
 	for(uint32 a = 0; a < string.length; a++)
 	{

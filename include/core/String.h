@@ -37,12 +37,14 @@
 #endif
 
 #include "Object.h"
+#include "ByteArray.h"
 #include "CharArray.h"
 #include "Integer.h"
 
 namespace jm
 {
 	class Charset;
+	class ByteArray;
 
 	/*!
 	 \brief \c string implements our generic string because \c std::string is inadequate and
@@ -73,6 +75,7 @@ namespace jm
 			 gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
 			 */
 			String(const int8* cstring);
+			String(const ByteArray& buffer);
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette.
@@ -81,6 +84,7 @@ namespace jm
 			 \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
 			 */
 			String(const int8* cstring, Charset* charset);
+			String(const ByteArray &buffer, Charset* charset);
 
 			/*!
 			 \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
@@ -149,7 +153,7 @@ namespace jm
 			 C-String aus der Zeichenkette.
 			 \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
 			 */
-			int8* ToCString() const;
+			ByteArray ToCString()const;
 
 			/*!
 			 \brief Diese Methode erzeugt unter Berücksichtigung der Unicode-Kodierung einen
@@ -165,7 +169,7 @@ namespace jm
 			 soll.
 			 \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
 			 */
-			char* ToCString(Charset* charset)const;
+			ByteArray ToCString(Charset* charset)const;
 
 			/*!
 			 \brief Diese Methode löscht den Inhalt der Zeichenkette. GGf. wird Speicher Freigegeben.

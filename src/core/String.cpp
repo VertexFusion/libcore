@@ -125,10 +125,37 @@ String::String(const int8* cstring): Object(), Comparable<String>()
 	}
 }
 
+String::String(const ByteArray &buffer) : Object(), Comparable<String>()
+{
+	mHash = 0;
+	if (buffer.Size()>0)
+	{
+		// Intentionally not used Charset::GetDefault, since this leads to problems with global
+		// strings. (Initialization sequence not predictable)
+		UTF8Decoder dec = UTF8Decoder();
+		CharArray array = dec.Decode(buffer.ConstData());
+		Copy(array);
+	}
+	else
+	{
+		mHash = 0;
+		mStrLength = 0;
+		mArrLength = 16;
+		mValue = new uint16[mArrLength];
+	}
+}
+
 String::String(const int8* cstring, Charset* charset): Object(), Comparable<String>()
 {
 	mHash = 0;
 	CharArray array = charset->Decode(cstring);
+	Copy(array);
+}
+
+String::String(const ByteArray &buffer, Charset* charset) : Object(), Comparable<String>()
+{
+	mHash = 0;
+	CharArray array = charset->Decode(buffer.ConstData());
 	Copy(array);
 }
 
@@ -166,6 +193,8 @@ void String::CheckCapacity(Integer more)
 	mValue = tmp;
 }
 
+#ifdef __APPLE__
+
 String String::FromCFString(CFStringRef cfstring)
 {
 	// NULL string?
@@ -197,23 +226,25 @@ CFStringRef String::ToCFString()const
 	return cfstring;
 }
 
+#endif
 
 Integer String::Length() const
 {
 	return mStrLength;
 }
 
-int8* String::ToCString() const
+ByteArray String::ToCString() const
 {
 	return ToCString(Charset::GetDefault());
 }
 
-int8* String::ToCString(Charset* charset) const
+ByteArray String::ToCString(Charset* charset) const
 {
 	CharArray array = CharArray(mStrLength);
 	memcpy(array.buffer, mValue, mStrLength * 2);
 	return charset->Encode(array);
 }
+
 
 uint16* String::ToWString() const
 {
@@ -1062,9 +1093,8 @@ namespace jm
 		//\todo Charset am Besten global setzen und holen. So ist es ineffizient
 		if(gConsoleCharset == NULL)gConsoleCharset = Charset::ForName("Windows-1252");
 		String s = str;
-		char* cstr = s.ToCString(gConsoleCharset);
-		out << cstr;
-		delete[] cstr;
+		ByteArray cstr = s.ToCString(gConsoleCharset);
+		out << cstr.ConstData();
 		return out;
 	}
 
@@ -1235,12 +1265,11 @@ uint8 jm::Digits(int64 number)
 
 double jm::StrToDouble(String str)
 {
-	int8* cstr = str.ToCString();
+	ByteArray cstr = str.ToCString();
 	std::stringstream ss;
 	double d = 0;
-	ss << cstr;
+	ss << cstr.ConstData();
 	ss >> d;
-	delete[] cstr;
 	return d;
 }
 

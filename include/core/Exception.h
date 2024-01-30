@@ -44,7 +44,6 @@
 
 namespace jm
 {
-
 	/*!
 	 \brief This class represents an exception that can be "thrown" in case of unexpected errors.
 	 \warning Do not use in new implementations

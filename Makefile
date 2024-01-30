@@ -49,6 +49,7 @@ endif
 
 SOURCES =\
  $(PATH_CORE)/AutoreleasePool.cpp\
+ $(PATH_CORE)/ByteArray.cpp\
  $(PATH_CORE)/Character.cpp\
  $(PATH_CORE)/Charset.cpp\
  $(PATH_CORE)/CharsetDecoder.cpp\

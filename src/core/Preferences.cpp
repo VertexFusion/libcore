@@ -156,11 +156,8 @@ void Preferences::Store(File file)
 			key.Append('=');
 			key.Append(value);
 			key.Append(String::LineSeparator());
-			int8* cstr = key.ToCString();
-			int32 cl = 0;
-			while(cstr[cl] != 0)cl++;
-			file.Write((uint8*)cstr, cl);
-			delete[] cstr;
+			ByteArray cstr = key.ToCString();
+			file.Write((uint8*)cstr.ConstData(),cstr.Size());
 		}
 		delete keys;
 

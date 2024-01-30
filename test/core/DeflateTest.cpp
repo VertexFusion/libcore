@@ -47,7 +47,7 @@ void DeflateTest::DoTest()
 	"Wasser fließe\n"
 	"Und mit reichem, vollem Schwalle\n"
 	"Zu dem Bade sich ergieße.";
-	uint8* uncompressed=(uint8*)test.ToCString();
+	jm::ByteArray uncompressed=test.ToCString();
 	uint32 uncompressedLength=0;
 	while(uncompressed[uncompressedLength]!=0)uncompressedLength++;
 
@@ -58,7 +58,7 @@ void DeflateTest::DoTest()
 	uint32 compressedLength=0;
 	jm::Deflater deflater = jm::Deflater();
 	deflater.Reset();
-	deflater.SetInput(uncompressed, uncompressedLength);
+	deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
 	deflater.Deflate(compressed, compressedLength);
 
 	std::cout << "Compressed Length: " << compressedLength << std::endl;
@@ -83,7 +83,6 @@ void DeflateTest::DoTest()
 		TestEquals(uncompressed[a],restored[a],"Datenfehler in Kompression / Dekompression.");
 	}
 
-	delete[] uncompressed;
 	delete[] compressed;
 	delete[] restored;
 
@@ -640,9 +639,8 @@ void DeflateTest::DoTest()
 	"BT /Helvetica 10 Tf 311.811 53.8583 Td (Schrift: Symbol) Tj ET"
  "0 g BT /Helvetica 10 Tf 297.6378 34.0158 Td (1\\0577) Tj ET";
 
-	uncompressed=(uint8*)test.ToCString();
-	uncompressedLength=0;
-	while(uncompressed[uncompressedLength]!=0)uncompressedLength++;
+	uncompressed=test.ToCString();
+	uncompressedLength=uncompressed.Size();
 
 	std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
@@ -650,7 +648,7 @@ void DeflateTest::DoTest()
 	compressed=NULL;
 	compressedLength=0;
 	deflater.Reset();
-	deflater.SetInput(uncompressed, uncompressedLength);
+	deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
 	deflater.Deflate(compressed, compressedLength);
 
 	std::cout << "Compressed Length: " << compressedLength << std::endl;
@@ -674,7 +672,6 @@ void DeflateTest::DoTest()
 		TestEquals(uncompressed[a],restored[a],"Datenfehler in Kompression / Dekompression.");
 	}
 
-	delete[] uncompressed;
 	delete[] compressed;
 	delete[] restored;
 
@@ -682,9 +679,8 @@ void DeflateTest::DoTest()
 	// Teste langen codeblock mit 0
 	//
 
-	uncompressed=new uint8[1000000];
+	uncompressed=jm::ByteArray(1000000,0);
 	uncompressedLength=1000000;
-	for(uint32 a=0;a<uncompressedLength;a++)uncompressed[a]=0;
 
 	std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
@@ -692,7 +688,7 @@ void DeflateTest::DoTest()
 	compressed=NULL;
 	compressedLength=0;
 	deflater.Reset();
-	deflater.SetInput(uncompressed, uncompressedLength);
+	deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
 	deflater.Deflate(compressed, compressedLength);
 
 	std::cout << "Compressed Length: " << compressedLength << std::endl;
@@ -716,8 +712,6 @@ void DeflateTest::DoTest()
 		TestEquals(uncompressed[a],restored[a],"Datenfehler in Kompression / Dekompression.");
 	}
 
-	delete[] uncompressed;
 	delete[] compressed;
 	delete[] restored;
-
 }

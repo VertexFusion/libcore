@@ -75,16 +75,9 @@ void ZipOutputFile::Close()
 	{
 		ZipEntry* entry = (ZipEntry*)mEntries.Next();
 
-
-		int8* cname = entry->mName.ToCString();
-		int8* cextra = entry->mExtra.ToCString();
-		int8* ccomment = entry->mComment.ToCString();
-		uint16 lenName = 0;
-		uint16 lenExtra = 0;
-		uint16 lenComment = 0;
-		while(cname[lenName] != 0)lenName++;
-		while(cextra[lenExtra] != 0)lenExtra++;
-		while(ccomment[lenComment] != 0)lenComment++;
+		ByteArray cname = entry->mName.ToCString();
+		ByteArray cextra = entry->mExtra.ToCString();
+		ByteArray ccomment = entry->mComment.ToCString();
 
 		uint8 cdfh[46];
 		jm::SerializeLEInt32(cdfh, 0, 0x02014b50);//Signature
@@ -97,22 +90,19 @@ void ZipOutputFile::Close()
 		jm::SerializeLEInt32(cdfh, 16, entry->mCRC);//CRC
 		jm::SerializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
 		jm::SerializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
-		jm::SerializeLEInt16(cdfh, 28, lenName);//ShxFile name Length
-		jm::SerializeLEInt16(cdfh, 30, lenExtra);//Extra field length
-		jm::SerializeLEInt16(cdfh, 32, lenComment);//Comment field length
+		jm::SerializeLEInt16(cdfh, 28, cname.Size());//ShxFile name Length
+		jm::SerializeLEInt16(cdfh, 30, cextra.Size());//Extra field length
+		jm::SerializeLEInt16(cdfh, 32, ccomment.Size());//Comment field length
 		jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
 		jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
 		jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
 		jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to lcoal ShxFile Header
 
 		mFile->Write(cdfh, 46);
-		if(lenName > 0)mFile->Write((uint8*)cname, lenName);
-		if(lenExtra > 0)mFile->Write((uint8*)cextra, lenExtra);
-		if(lenComment > 0)mFile->Write((uint8*)ccomment, lenComment);
+		if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());
+		if(cextra.Size() > 0)mFile->Write((uint8*)cextra.ConstData(), cextra.Size());
+		if(ccomment.Size() > 0)mFile->Write((uint8*)ccomment.ConstData(), ccomment.Size());
 
-		delete[]cname;
-		delete[]cextra;
-		delete[]ccomment;
 	}
 
 	uint32 end = static_cast<uint32>(mFile->GetPosition());
@@ -122,8 +112,8 @@ void ZipOutputFile::Close()
 	jm::SerializeLEInt32(eof, 0, 0x06054b50);//Signature
 	jm::SerializeLEInt16(eof, 4, 0);//Number of Disks
 	jm::SerializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
-	jm::SerializeLEInt16(eof, 8,  (int16)mEntries.Length());//Number of Central directory records on this disk
-	jm::SerializeLEInt16(eof, 10, (int16)mEntries.Length());//Total Number of Central directory records
+	jm::SerializeLEInt16(eof, 8,  (int16)mEntries.Size());//Number of Central directory records on this disk
+	jm::SerializeLEInt16(eof, 10, (int16)mEntries.Size());//Total Number of Central directory records
 	jm::SerializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
 	jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
 	jm::SerializeLEInt16(eof, 20, 0);//Comment Length.
@@ -205,12 +195,8 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
 {
 	entry->mHeaderOffset = static_cast<uint32>(mFile->GetPosition());
 
-	int8* cname = entry->mName.ToCString();
-	int8* cextra = entry->mExtra.ToCString();
-	uint16 lenName = 0;
-	uint16 lenExtra = 0;
-	while(cname[lenName] != 0)lenName++;
-	while(cextra[lenExtra] != 0)lenExtra++;
+	ByteArray cname = entry->mName.ToCString();
+	ByteArray cextra = entry->mExtra.ToCString();
 
 	//Schreibe Local FileHeader
 	uint8 lfh[30];
@@ -223,15 +209,12 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
 	jm::SerializeLEInt32(lfh, 14, 0);//CRC
 	jm::SerializeLEInt32(lfh, 18, 0);//Compressed Size
 	jm::SerializeLEInt32(lfh, 22, 0);//Uncompressed Size
-	jm::SerializeLEInt16(lfh, 26, lenName);//ShxFile name Length
-	jm::SerializeLEInt16(lfh, 28, lenExtra);//Extra field length
+	jm::SerializeLEInt16(lfh, 26, cname.Size());//ShxFile name Length
+	jm::SerializeLEInt16(lfh, 28, cextra.Size());//Extra field length
 
 	mFile->Write(lfh, 30);
-	if(lenName > 0)mFile->Write((uint8*)cname, lenName);
-	if(lenExtra > 0)mFile->Write((uint8*)cextra, lenExtra);
-
-	delete[]cname;
-	delete[]cextra;
+	if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());
+	if(cextra.Size() > 0)mFile->Write((uint8*)cextra.ConstData(), cextra.Size());
 
 	entry->mDataOffset = static_cast<uint32>(mFile->GetPosition());
 

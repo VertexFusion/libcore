@@ -310,9 +310,8 @@ void* jm::System::FindSymbol(void* library, const String &name)
 
 	#elif defined _WIN32//Windows
 
-	const int8* cstring = name.ToCString();
-	void* ptr = GetProcAddress((HMODULE) library, cstring);
-	delete[] cstring;
+	ByteArray cstring = name.ToCString();
+	void* ptr = GetProcAddress((HMODULE) library, cstring.ConstData());
 
 	return ptr;
 

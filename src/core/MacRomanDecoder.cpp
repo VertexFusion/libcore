@@ -626,13 +626,12 @@ CharArray MacRomanDecoder::Decode(const int8* cstring)
 	return array;
 }
 
-int8* MacRomanDecoder::Encode(const CharArray &string)
+ByteArray MacRomanDecoder::Encode(const CharArray &string)
 {
 	//Die Anzahl der kodierten Bytes bleibt gleich
-	int8* cstring = new int8[string.length + 1];
-	cstring[string.length] = 0;
+	ByteArray cstring = ByteArray(string.length,0);
 
-	for(uint32 a = 0; a < string.length; a++)
+	for(Integer a = 0; a < string.length; a++)
 	{
 		cstring[a] = EncodeCharacter(string.buffer[a]);
 	}

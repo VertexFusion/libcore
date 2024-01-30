@@ -39,6 +39,7 @@
 
 #include "Array.h"
 #include "Base64.h"
+#include "ByteArray.h"
 #include "CharArray.h"
 #include "Charset.h"
 #include "Colour.h"

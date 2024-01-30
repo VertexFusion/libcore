@@ -86,7 +86,7 @@ namespace jm
 			void* Remove(String key);
 
 			/*!
-			 \brief Diese Methode gibt die Anzahl der Einträge in der Hashtabelle zurück
+			 \brief Returns the number of entries in this hash table.
 			 */
 			Integer Size() const;
 

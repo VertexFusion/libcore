@@ -139,7 +139,10 @@ namespace jm
 
 			void SwapData(Object* data1, Object* data2, UndoManager* um);
 
-			uint32 Length() const;
+			/*!
+			 \brief Returns the number of entries in this list.
+			 */
+			uint32 Size() const;
 
 			LinkedListIterator GetIterator() const;
 

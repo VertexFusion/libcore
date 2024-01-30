@@ -261,7 +261,7 @@ void LinkedList::Remove(const Object* data, UndoManager* um)
 	}
 }
 
-uint32 LinkedList::Length() const
+uint32 LinkedList::Size() const
 {
 	return count;
 }

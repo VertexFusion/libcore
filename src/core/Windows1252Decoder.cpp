@@ -80,12 +80,11 @@ CharArray Windows1252Decoder::Decode(const int8* cstring)
 	return array;
 }
 
-char* Windows1252Decoder::Encode(const CharArray &string)
+ByteArray Windows1252Decoder::Encode(const CharArray &string)
 {
-	int8* cstring = new int8[string.length + 1];
-	cstring[string.length] = 0;
+	ByteArray cstring = ByteArray(string.length,0);
 
-	for(uint32 a = 0; a < string.length; a++)
+	for(Integer a = 0; a < string.length; a++)
 	{
 		switch(string.buffer[a])
 		{

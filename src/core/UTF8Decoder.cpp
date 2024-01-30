@@ -146,7 +146,7 @@ CharArray UTF8Decoder::Decode(const int8* cstring)
 	return ret;
 }
 
-char* UTF8Decoder::Encode(const CharArray &string)
+ByteArray UTF8Decoder::Encode(const CharArray &string)
 {
 	uint32 cntC = 0;
 	for(uint32 a = 0; a < string.length; a++)
@@ -166,10 +166,9 @@ char* UTF8Decoder::Encode(const CharArray &string)
 		}
 	}
 
-	int8* cstring = new int8[cntC + 1];
-	cstring[cntC] = 0;
+	ByteArray cstring = ByteArray(cntC,0);
 	cntC = 0;
-	for(uint32 a = 0; a < string.length; a++)
+	for(Integer a = 0; a < string.length; a++)
 	{
 		uint16 character = string.buffer[a];
 		if(character < 0x80)   //1 Zeichen

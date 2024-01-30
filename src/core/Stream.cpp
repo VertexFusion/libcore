@@ -40,11 +40,8 @@ Stream::Stream(): Object()
 
 Integer Stream::Write(const String &string)
 {
-	int8* cstr = string.ToCString();
-	Integer length = 0;
-	while(cstr[length] != 0)length++;
-	Integer ret = Write((uint8*)cstr, length);
-	delete[] cstr;
+	ByteArray cstr = string.ToCString();
+	Integer ret = Write(cstr);
 	return ret;
 }
 

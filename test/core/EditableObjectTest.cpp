@@ -137,7 +137,7 @@ void AddressBook::AddAddress(Address* adr)
 
 Integer AddressBook::GetAddressCount() const
 {
-	return mEntries.Length();
+	return mEntries.Size();
 }
 
 

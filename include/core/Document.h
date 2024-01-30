@@ -194,25 +194,17 @@ namespace jm
 
 		private:
 
-			/*!
-			\brief Status whether the visual representation should be renewed in the next run.
-			*/
+			//! Status whether the visual representation should be renewed in the next run.
 			bool mRegenerate;
 
-			/*!
-			 \brief An undo manager, if it exists. Otherwise NULL.
-			 */
+			//! An undo manager, if it exists. Otherwise NULL.
 			UndoManager* mUndoManager;
 
-			/*!
-			 \brief The file path where the file is stored.
-			 \todo Change to URI???
-			 */
+			//! The file path where the file is stored.
+			//! TODO: Change to URI???
 			File mFile;
 
-			/*!
-			 \brief Status on wether the file is changed since last saving.
-			 */
+			//! Status on wether the file is changed since last saving.
 			bool mChanged;
 
 

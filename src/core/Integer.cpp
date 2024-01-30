@@ -767,12 +767,11 @@ Integer operator/(Integer left, uint32 right)
 
 	Double Double::ValueOf(const jm::String& string)
 	{
-		int8* cstr = string.ToCString();
+		jm::ByteArray cstr = string.ToCString();
 		std::stringstream ss;
 		double d = 0;
-		ss << cstr;
+		ss << cstr.ConstData();
 		ss >> d;
-		delete[] cstr;
 		return d;
 	}
 

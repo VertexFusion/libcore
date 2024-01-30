@@ -84,6 +84,7 @@ namespace jm
 			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
 			*/
 			Integer ReadFully(uint8* buffer, Integer length) override;
+			Integer ReadFully(ByteArray& buffer) override;
 
 			/*!
 			\brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)

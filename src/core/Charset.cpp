@@ -151,7 +151,7 @@ CharArray Charset::Decode(const int8* cString)
 	return mDecoder->Decode(cString);
 }
 
-int8* Charset::Encode(const CharArray &string)
+ByteArray Charset::Encode(const CharArray &string)
 {
 	return mDecoder->Encode(string);
 }

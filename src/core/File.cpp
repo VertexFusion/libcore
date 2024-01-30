@@ -36,7 +36,7 @@ using namespace jm;
 
 File::File(): Stream(), Comparable<File>()
 {
-	mCstr = NULL;
+	mCstr = ByteArray();
 	mHandle = NULL;
 }
 
@@ -75,22 +75,15 @@ File::File(const File &other): Stream(), Comparable<File>()
 
 File::~File()
 {
-	if(mCstr != NULL)
-	{
-		delete[] mCstr;
-		mCstr = NULL;
-	}
 }
 
 File& File::operator=(const File &another)
 {
 	if(this != &another)
 	{
-		if(mCstr != NULL)delete[] mCstr;
+		mCstr = another.mCstr;
 		mPathname = another.mPathname;
 		mHandle = another.mHandle;
-		if(mPathname.Length() > 0)SetCString();
-		else mCstr = NULL;
 	}
 
 	return *this;
@@ -168,7 +161,7 @@ bool File::MakeDirectory()
 	return result == 0;
 
 	#elif defined _WIN32//Windows
-	int32 result = _mkdir(mCstr);
+	int32 result = _mkdir(mCstr.ConstData());
 	return result == 0;
 	#endif
 }
@@ -184,7 +177,7 @@ bool File::Exists() const
 	if (mCstr == NULL)return false;
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	return result == 0;
 
 	#endif
@@ -200,7 +193,7 @@ bool File::CanRead() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if(filestat.st_mode & _S_IREAD) return true;
 	return false;
@@ -219,7 +212,7 @@ bool File::CanWrite() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if(filestat.st_mode & _S_IWRITE) return true;
 	return false;
@@ -240,7 +233,7 @@ bool File::IsDirectory() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if(filestat.st_mode & _S_IFDIR) return true;
 	return false;
@@ -263,7 +256,7 @@ bool File::IsFile() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if(filestat.st_mode & _S_IFREG) return true;
 	return false;
@@ -282,7 +275,7 @@ bool File::IsHidden() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if((filestat.st_mode & _S_IFREG) == 0) return true;
 	return false;
@@ -329,7 +322,7 @@ bool File::IsPipe() const
 	#elif defined _WIN32//Windows
 
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 	if(result != 0)return false;  //Existiert nicht
 	if(filestat.st_mode & _S_IFIFO) return true;
 	return false;
@@ -367,7 +360,7 @@ Date File::LastModified() const
 	#elif defined _WIN32//Windows
 
 	struct stat st;
-	stat(mCstr, &st);
+	stat(mCstr.ConstData(), &st);
 
 	//Umrechnen
 	const time_t ct = st.st_mtime;//time_t ist die Zeit in Sekunden
@@ -380,7 +373,7 @@ Date File::LastModified() const
 
 bool File::Delete()
 {
-	if(remove(mCstr) == 0)return true;
+	if(remove(mCstr.ConstData()) == 0)return true;
 	else return false;
 }
 
@@ -411,21 +404,19 @@ bool File::RenameTo(const String &newPath)
 	#elif defined __linux__ //Linux
 	int8* newname = newPath.ToCString();
 	#elif defined _WIN32 //Windows
-	int8* newname = newPath.ToCString(Charset::ForName("Windows-1252"));
+	ByteArray newname = newPath.ToCString(Charset::ForName("Windows-1252"));
 	#endif
 
 
-	result = rename(mCstr, newname);
+	result = rename(mCstr.ConstData(), newname.ConstData());
 
 	if(result == 0)
 	{
-		delete[] mCstr;
 		mCstr = newname;
 		return true;
 	}
 	else
 	{
-		delete[] newname;
 		return false;
 	}
 }
@@ -519,7 +510,7 @@ Array<File>* File::ListFiles()
 Integer File::Length() const
 {
 	struct stat filestat;
-	int32 result = stat(mCstr, &filestat);
+	int32 result = stat(mCstr.ConstData(), &filestat);
 
 	//Wenn sie nicht existiert, dann kann ich sie nicht lesen.
 	if(result != 0)throw new Exception(jm::String::Format(Tr("File \"%s\" does not exist."),
@@ -562,7 +553,7 @@ bool File::CreateNewFile()
 	mHandle = fopen(mCstr, "wb");
 	Integer ret = mHandle!=NULL;
 #elif defined _WIN32 //Windows
-	Integer ret = fopen_s(&mHandle,mCstr, "wb");
+	Integer ret = fopen_s(&mHandle,mCstr.ConstData(), "wb");
 #endif
 
 	Close();
@@ -593,15 +584,15 @@ void File::Open(FileMode mode)
 	switch(mode)
 	{
 		case kFmRead:
-			ret = fopen_s(&mHandle, mCstr, "rb");
+			ret = fopen_s(&mHandle, mCstr.ConstData(), "rb");
 			break;
 
 		case kFmWrite:
-			ret = fopen_s(&mHandle, mCstr, "wb");
+			ret = fopen_s(&mHandle, mCstr.ConstData(), "wb");
 			break;
 
 		case kFmReadWrite:
-			ret = fopen_s(&mHandle, mCstr, "rb+");
+			ret = fopen_s(&mHandle, mCstr.ConstData(), "rb+");
 			break;
 	}
 #endif
@@ -673,6 +664,11 @@ Integer File::ReadFully(uint8* buffer, Integer length)
 	};
 
 	return read;
+}
+
+Integer File::ReadFully(ByteArray& buffer)
+{
+	return ReadFully((uint8*)buffer.Data(), buffer.Size());
 }
 
 Integer File::Write(uint8* buffer, Integer length)
@@ -800,6 +796,7 @@ VxfErrorStatus File::AddTag(const String &tag)
 	else return eNo;
 
 #endif
+	return eNotImplemented;
 }
 
 VxfErrorStatus File::RemoveTag(const String &tag)
@@ -867,6 +864,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 	else return eNo;
 
 #endif
+	return eNotImplemented;
 }
 
 

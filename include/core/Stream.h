@@ -96,8 +96,11 @@ namespace jm
 			 \brief Liest maximal length bytes in das Array
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF).
+			 \deprecated 
 			 */
 			virtual Integer ReadFully(uint8* buffer, Integer length) = 0;
+
+			virtual Integer ReadFully(ByteArray &buffer) = 0;
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
@@ -121,6 +124,7 @@ namespace jm
 			 \brief Schreibt einen Buffer in die Ausgabedatei
 			 */
 			virtual Integer Write(uint8* buffer, Integer length) = 0;
+			inline Integer Write(const int8* buffer, Integer length) { return Write((uint8*)buffer, length); };
 
 			/*!
 			 \brief Schreibt einen String in die Ausgabedatei. Kodierung ist die Standardkodierung

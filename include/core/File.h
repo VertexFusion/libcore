@@ -34,6 +34,7 @@
 
 #include "String.h"
 #include "Array.h"
+#include "ByteArray.h"
 #include "Object.h"
 #include "Stream.h"
 #include "Date.h"
@@ -256,8 +257,10 @@ namespace jm
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF)
 			 */
-			Integer ReadFully(unsigned char* buffer,
-				Integer length) override;
+			Integer ReadFully(unsigned char* buffer,Integer length) override;
+			Integer ReadFully(ByteArray& buffer) override;
+
+
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
@@ -316,7 +319,7 @@ namespace jm
 			/*!
 			 \brief Die C-String Repräsentation des Pfadnamen. Wird bei Bedarf angelegt und gehalten
 			 */
-			int8* mCstr;
+			ByteArray mCstr;
 
 			/*!
 			 \brief Filehandle im Betriebssystem

@@ -210,6 +210,7 @@
     <ClInclude Include="include\core\Array.h" />
     <ClInclude Include="include\core\AutoreleasePool.h" />
     <ClInclude Include="include\core\Base64.h" />
+    <ClInclude Include="include\core\ByteArray.h" />
     <ClInclude Include="include\core\CharArray.h" />
     <ClInclude Include="include\core\Charset.h" />
     <ClInclude Include="include\core\Colour.h" />
@@ -450,6 +451,7 @@
     </ClCompile>
     <ClCompile Include="src\core\AutoreleasePool.cpp" />
     <ClCompile Include="src\core\Base64.cpp" />
+    <ClCompile Include="src\core\ByteArray.cpp" />
     <ClCompile Include="src\core\Character.cpp" />
     <ClCompile Include="src\core\Charset.cpp" />
     <ClCompile Include="src\core\CharsetDecoder.cpp" />

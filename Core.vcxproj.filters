@@ -231,6 +231,9 @@
     <ClInclude Include="test\core\EditableObjectTest.h">
       <Filter>test\core</Filter>
     </ClInclude>
+    <ClInclude Include="include\core\ByteArray.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\AutoreleasePool.cpp">
@@ -501,6 +504,9 @@
       <Filter>test\core</Filter>
     </ClCompile>
     <ClCompile Include="src\core\EditableObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\ByteArray.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

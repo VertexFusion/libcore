@@ -35,6 +35,7 @@
 
 #include "Types.h"
 #include "String.h"
+#include "Integer.h"
 #include "Exception.h"
 
 namespace jm
@@ -419,141 +420,6 @@ namespace jm
 			float* mData;
 
 	};
-
-
-
-	/*!
-	 ByteArray
-	 */
-	class ByteArray : public Object
-	{
-		public:
-
-			ByteArray() : Object()
-			{
-				mLength = 0;
-				mData = new uint8[0];
-			};
-
-			ByteArray(uint32 length) : Object()
-			{
-				mLength = length;
-				mData = new uint8[length];
-			};
-
-			ByteArray(const ByteArray& other) : Object()
-			{
-				mLength = other.mLength;
-				mData = new uint8[mLength];
-				for(uint32 a = 0; a < mLength; a++)
-				{
-					mData[a] = other.mData[a];
-				}
-			}
-
-			ByteArray(std::initializer_list<uint8> list) : Object()
-			{
-				mLength = (uint32)list.size();
-				mData = new uint8[mLength];
-				std::initializer_list<uint8>::iterator it;
-				uint32 cnt = 0;
-				for(it = list.begin(); it != list.end(); ++it)
-				{
-					mData[cnt++] = *it;
-				}
-			}
-
-			virtual ~ByteArray()
-			{
-				mLength = 0;
-				if(mData != NULL)delete[] mData;
-			};
-
-			inline uint32 Length() const
-			{
-				return mLength;
-			};
-
-			inline void Sort()
-			{
-				if(mLength < 1)return;
-
-				uint32 n = mLength;
-				do
-				{
-					uint32 newn = 1;
-					for(uint32 i = 0; i < n - 1; ++i)
-					{
-						uint32 j = i + 1;
-						uint8 a1 = mData[i];
-						uint8 a2 = mData[j];
-						if(a1 > a2)
-						{
-							//Vertausche
-							uint8 tmp = mData[i];
-							mData[i] = mData[j];
-							mData[j] = tmp;
-
-							newn = i + 1;
-						}
-					}
-					n = newn;
-				}
-				while(n > 1);
-			}
-
-			inline uint8 Get(uint32 index) const
-			{
-				//if (index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				return mData[index];
-			};
-
-			inline void Set(uint32 index, uint8 item)
-			{
-				//if (index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				mData[index] = item;
-			};
-
-			inline uint8& operator[](const uint32 index) const
-			{
-				//if (index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				return mData[index];
-			}
-
-			ByteArray& operator=(const ByteArray& another)
-			{
-				if(this != &another)
-				{
-					delete[] mData;
-
-					mLength = another.mLength;
-					mData = new uint8[mLength];
-					for(uint32 a = 0; a < mLength; a++)
-					{
-						mData[a] = another.mData[a];
-					}
-				}
-
-				return *this;
-			}
-
-		private:
-
-			/*!
-			 The length of array
-			 */
-			uint32 mLength;
-
-			/*!
-			 \brief The array itself.
-			 */
-			uint8* mData;
-
-	};
-
 }
 
 #endif

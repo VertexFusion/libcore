@@ -150,7 +150,7 @@ LinkedListIterator ZipFile::GetEntryIterator()
 
 uint32 ZipFile::GetEntryCount() const
 {
-	return mEntries.Length();
+	return mEntries.Size();
 }
 
 jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
