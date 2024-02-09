@@ -281,8 +281,7 @@ namespace jm
 			/*!
 			 \brief Schreibt einen Buffer in die Ausgabedatei
 			 */
-			Integer Write(uint8* buffer,
-				Integer length) override;
+			Integer Write(uint8* buffer,Integer length) override;
 
 			/*!
 			 \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander
