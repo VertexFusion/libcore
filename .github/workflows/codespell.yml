@@ -23,5 +23,5 @@ jobs:
 
       - name: Run codespell
         run: |
-          CODESPELL=$HOME/.local/bin/codespell src/*
+          codespell src/ include/
 
