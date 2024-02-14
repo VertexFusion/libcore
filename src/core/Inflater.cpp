@@ -69,7 +69,7 @@ Inflater::~Inflater()
 {
 }
 
-void Inflater::SetInput(uint8* buffer, uint32 length)
+void Inflater::SetInput(uint8* buffer, Integer length)
 {
 	mCompBytes = buffer;
 	mCompLength = length;
@@ -86,7 +86,7 @@ bool Inflater::Finished()
 	return mEof;
 }
 
-void Inflater::Inflate(uint8* &buffer, uint32 &length)
+void Inflater::Inflate(uint8* &buffer, Integer &length)
 {
 	mUncompIndex = 0;
 
@@ -145,17 +145,17 @@ void Inflater::Reset()
 	mEof = false;
 }
 
-int32 Inflater::GetRemaining()
+Integer Inflater::GetRemaining()
 {
 	return mCompLength - mCompIndex;
 }
 
-int32 Inflater::GetTotalIn()
+Integer Inflater::GetTotalIn()
 {
 	return mTotalIn;
 }
 
-int32 Inflater::GetTotalOut()
+Integer Inflater::GetTotalOut()
 {
 	return mTotalOut;
 }
@@ -235,8 +235,8 @@ void Inflater::CheckCapacity()
 	if(mUncompIndex < mUncompLength)return;
 
 	//Vergrößere
-	double ratio = mCompIndex / (double)mCompLength;
-	uint32 newLength = mUncompLength + max(4096, (int32)(mUncompLength / ratio));
+	double ratio = mCompIndex.Int64() / (double)mCompLength.Int64();
+	Integer newLength = mUncompLength + max(4096, (int32)(mUncompLength.Int64() / ratio));
 	uint8* tmp = new uint8[newLength];
 	if(tmp == NULL)throw new Exception("Cannot allocate memory!");
 	memcpy(tmp, mUncompBytes, mUncompIndex);
@@ -315,9 +315,9 @@ void Inflater::HandleCompressedFixHuffman()
 			//stream, and copy length bytes from this
 			//position to the output stream.
 
-			int32 src = mUncompIndex - distance;
+			Integer src = (mUncompIndex - distance)&32767;
 			if(src < 0)throw new Exception("Distance in fix hufmann refer before output stream beginning.");
-			for(int32 a = 0; a < length; a++)
+			for(Integer a = 0; a < length; a++)
 			{
 				WriteUncompressed(mUncompBytes[src + a]);
 			}
@@ -681,7 +681,7 @@ void Inflater::HandleCompressedDynamicHuffman()
 			//stream, and copy length bytes from this
 			//position to the output stream.
 
-			int32 src = mUncompIndex - distance;
+			Integer src = mUncompIndex - distance;
 			if(src < 0)throw new Exception("Distance in fix hufmann refer before output stream beginning.");
 			for(int32 a = 0; a < length; a++)
 			{

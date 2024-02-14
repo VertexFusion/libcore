@@ -284,8 +284,8 @@ void LinkedList::SwapData(Object* data1, Object* data2, UndoManager* um)
 	{
 		if(um != NULL)
 		{
-			if(um != NULL)um->RegisterChange(elem1, (Object**) & (elem1->data));
-			if(um != NULL)um->RegisterChange(elem2, (Object**) & (elem2->data));
+			um->RegisterChange(elem1, (Object**) & (elem1->data));
+			um->RegisterChange(elem2, (Object**) & (elem2->data));
 			elem1->data = data2;
 			elem2->data = data1;
 		}

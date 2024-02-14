@@ -67,7 +67,6 @@ void Exception::PrintStackTrace() const
 	cerr << endl;
 
 	char* buffer = new char[1024];
-	size_t size = 1024;
 
 	for(uint32 i = 1; i < addrlen; i++)
 	{
@@ -97,11 +96,10 @@ void Exception::PrintStackTrace() const
 		line = line.Substring(pos).Trim();
 
 		int status;
-		size = 1024;
-		int8* cstr = function.ToCString();
-		abi::__cxa_demangle(cstr, buffer, &size, &status);
+		size_t size = 1024;
+		ByteArray cstr = function.ToCString();
+		abi::__cxa_demangle(cstr.ConstData(), buffer, &size, &status);
 		function = String(buffer, (int)size, Charset::ForName("RAW"));
-		delete[] cstr;
 
 		cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << endl;
 		#elif defined __linux__//Linux
@@ -132,7 +130,6 @@ String Exception::GetStrackTrace() const
 	ret << '\r' << '\n';
 
 	char* buffer = new char[1024];
-	size_t size = 1024;
 
 	for(uint32 i = 1; i < addrlen; i++)
 	{
@@ -162,11 +159,10 @@ String Exception::GetStrackTrace() const
 		line = line.Substring(pos).Trim();
 
 		int status;
-		size = 1024;
-		int8* cstr = function.ToCString();
-		abi::__cxa_demangle(cstr, buffer, &size, &status);
+		size_t size = 1024;
+		ByteArray cstr = function.ToCString();
+		abi::__cxa_demangle(cstr.ConstData(), buffer, &size, &status);
 		function = String(buffer, (int)size, Charset::ForName("RAW"));
-		delete[] cstr;
 
 		ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r' << '\n';
 		#elif defined __linux__//Linux

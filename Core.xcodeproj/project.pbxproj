@@ -20,6 +20,7 @@
 		C62B91982AEF001D0085300B /* StringTokenizerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B905B2AEEFC3C0085300B /* StringTokenizerTest.cpp */; };
 		C62B91992AEF001D0085300B /* HashtableTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90472AEEFC3C0085300B /* HashtableTest.cpp */; };
 		C637FA9E2AF7E68A00002ADC /* de_DE.mo in Copy Translations */ = {isa = PBXBuildFile; fileRef = C637FA9A2AF7DC8800002ADC /* de_DE.mo */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C64DDBFE2B768F01008ED3A4 /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
 		C699222B2AF7AA660099AEC0 /* Diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90972AEEFC550085300B /* Diff.cpp */; };
 		C699222C2AF7AA660099AEC0 /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
@@ -382,6 +383,7 @@
 		C62B91A32AEF09FF0085300B /* MacInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacInterface.h; path = include/core/MacInterface.h; sourceTree = SOURCE_ROOT; };
 		C637FA9A2AF7DC8800002ADC /* de_DE.mo */ = {isa = PBXFileReference; lastKnownFileType = file; name = de_DE.mo; path = translations/de_DE.mo; sourceTree = "<group>"; };
 		C637FA9B2AF7DC8800002ADC /* de_DE.po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = de_DE.po; path = translations/de_DE.po; sourceTree = "<group>"; };
+		C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ByteArray.cpp; path = src/core/ByteArray.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 		C62B905D2AEEFC4B0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */,
 				C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */,
 				C62B907D2AEEFC550085300B /* AutoreleasePool.cpp */,
 				C62B90962AEEFC550085300B /* Base64.cpp */,
@@ -776,6 +779,7 @@
 				C699225F2AF7AA660099AEC0 /* I18nBundle.cpp in Sources */,
 				C69922382AF7AA660099AEC0 /* AutoreleasePool.cpp in Sources */,
 				C69922322AF7AA660099AEC0 /* ZipOutputFile.cpp in Sources */,
+				C64DDBFE2B768F01008ED3A4 /* ByteArray.cpp in Sources */,
 				C699225B2AF7AA660099AEC0 /* Exception.cpp in Sources */,
 				C699224F2AF7AA660099AEC0 /* LinkedList.cpp in Sources */,
 				C69922472AF7AA660099AEC0 /* Deflater.cpp in Sources */,

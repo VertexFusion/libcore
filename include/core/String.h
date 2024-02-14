@@ -33,7 +33,7 @@
 #define jm_String_h
 
 #ifdef __APPLE__
-#include <CoreServices/CoreServices.h>
+#include <CoreFoundation/CFString.h>
 #endif
 
 #include "Object.h"

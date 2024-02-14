@@ -56,12 +56,11 @@ void Preferences::Load(File file)
 	if (!file.Exists())return;
 
 	Integer l = file.Length();
-	uint8* buffer = new uint8[l];
+	ByteArray buffer = ByteArray(l,0);
 	file.Open(kFmRead);
-	Integer check = file.ReadFully(buffer, l);
+	Integer check = file.Stream::ReadFully(buffer);
 	file.Close();
-	String data = String(buffer, l);
-	delete[] buffer;
+	String data = String(buffer);
 
 	if(check != l)throw new Exception("Property file uncomplete loaded.");
 

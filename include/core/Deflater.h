@@ -71,7 +71,7 @@ namespace jm
 			 \param length Die Länge der Daten
 			 */
 			void SetInput(uint8* buffer,
-			              uint32 length);
+							  Integer length);
 
 			/*!
 			 \brief Diese Methode komprimiert die Daten in den Puffer
@@ -81,7 +81,7 @@ namespace jm
 			 \param length Die Länge des Puffers
 			 */
 			void Deflate(uint8* &buffer,
-			             uint32 &length);
+							 Integer &length);
 
 			/*!
 			 \brief Setzt den Komprimierer zurück, damit ein neues Objekt komprimiert werden kann
@@ -91,23 +91,23 @@ namespace jm
 			/*!
 			 \brief Gibt die Gesamtanzahl der Bytes des unkomprimierten Inputs zurück
 			 */
-			int32 GetTotalIn();
+			Integer GetTotalIn();
 
 			/*!
 			 \brief Gibt die Gesamtanzahl der Bytes des komprimierten Outputs zurück
 			 */
-			int32 GetTotalOut();
+			Integer GetTotalOut();
 
 		private:
 
 			//Aktueller Block
 			uint8* mUncompBytes;
-			uint32 mUncompLength;
-			uint32 mUncompIndex;
+			Integer mUncompLength;
+			Integer mUncompIndex;
 
 			//Zählvariablen für verarbeitete Bytes
-			uint32 mTotalIn;
-			uint32 mTotalOut;
+			Integer mTotalIn;
+			Integer mTotalOut;
 
 	};
 

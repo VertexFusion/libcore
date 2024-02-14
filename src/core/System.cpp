@@ -142,9 +142,8 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 
 		//	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 
-		const int8* cstr = msg.ToCString();
-		syslog(LOG_ERR, "%s", cstr);
-		delete[] cstr;
+		ByteArray cstr = msg.ToCString();
+		syslog(LOG_ERR, "%s", cstr.ConstData());
 		//	syslog (LOG_INFO, "A tree falls in a forest");
 
 		//	closelog ();
@@ -244,10 +243,9 @@ void* jm::System::LoadDynamicLibrary(jm::File* file)
 {
 	#ifdef __APPLE__ //macOS und iOS
 
-	char* cstr = file->GetAbsolutePath().ToCString();
-	void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY ist default
-	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-	delete cstr;
+	ByteArray cstr = file->GetAbsolutePath().ToCString();
+	void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY ist default
+	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
 	return libptr;
 
 	#elif defined __linux__//Linux
@@ -294,10 +292,9 @@ void* jm::System::FindSymbol(void* library, const String &name)
 {
 	#ifdef __APPLE__ //macOS und iOS
 
-	char* cstr = name.ToCString();
-	void* symptr = dlsym(library, cstr);
-	if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-	delete cstr;
+	ByteArray cstr = name.ToCString();
+	void* symptr = dlsym(library, cstr.ConstData());
+	if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
 	return symptr;
 
 	#elif defined __linux__//Linux

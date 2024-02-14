@@ -48,12 +48,11 @@ void SAXParser::Parse(File &file)
 	if(!file.Exists())return;
 	if(!file.CanRead())return;
 	Integer length=file.Length();
-	uint8* buffer = new uint8[length];
+	ByteArray buffer = ByteArray(length,0);
 	file.Open(jm::kFmRead);
-	file.ReadFully(buffer, length);
+	file.Stream::ReadFully(buffer);
 	file.Close();
-	jm::String content = jm::String((int8*)buffer);
-	delete[] buffer;
+	jm::String content = jm::String(buffer);
 	Parse(content);
 }
 
@@ -236,7 +235,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 				inValue = true;
 				opener = c;
 			}
-			else if(inValue == true && opener == c)
+			else if(opener == c)// inValue is alway "true" here
 			{
 				inValue = false;
 

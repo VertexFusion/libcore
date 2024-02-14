@@ -55,18 +55,18 @@ void I18nBundle::AppendMO(File file)
 	
 	// Read file from disk
 	Integer length=file.Length();
-	uint8* buffer = new uint8[length];
+	ByteArray buf = ByteArray(length,0);
 	file.Open(kFmRead);
-	Integer check = file.ReadFully(buffer, length);
+	Integer check = file.Stream::ReadFully(buf);
 	file.Close();
 	
 	if(check!=length)
 	{
 		System::Log(jm::String::Format(Tr("File not fully read: %s"),
 													 jm::String::Ref(file.GetPath())), kLogError);
-		delete[] buffer;
 		return;
 	}
+	uint8* buffer=(uint8*)buf.ConstData();
 	 
 	// Process content
 	uint32 magic=jm::DeserializeLEUInt32(buffer, 0);
@@ -79,14 +79,12 @@ void I18nBundle::AppendMO(File file)
 	{
 		System::Log(jm::String::Format(Tr("File magic wrong: %s"),
 													 jm::String::Ref(file.GetPath())), kLogError);
-		delete[] buffer;
 		return;
 	}
 	if(version!=0)
 	{
 		System::Log(jm::String::Format(Tr("MO file version not supported: %s"),
 													 jm::String::Ref(file.GetPath())), kLogError);
-		delete[] buffer;
 		return;
 	}
 	
@@ -123,8 +121,6 @@ void I18nBundle::AppendMO(File file)
 		jm::String trans=jm::String(&buffer[rec.transOffset], rec.transLength);
 		SetPreference(orig,trans);
 	}
-
-	delete[] buffer;
 }
 
 String I18nBundle::Translate(const String& key) const

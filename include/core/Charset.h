@@ -215,7 +215,7 @@ namespace jm
 	{
 		public:
 			RawDecoder();
-			CharArray Decode(const int8* cString);
+			CharArray Decode(const int8* cString)override;
 			ByteArray Encode(const CharArray &string) override;
 	};
 
@@ -227,7 +227,7 @@ namespace jm
 	{
 		public:
 			UTF8Decoder();
-			CharArray Decode(const int8* cString);
+			CharArray Decode(const int8* cString)override;
 			ByteArray Encode(const CharArray &string) override;
 	};
 
@@ -242,7 +242,7 @@ namespace jm
 			bool be;
 		public:
 			UTF16Decoder(bool isBE);
-			CharArray Decode(const int8* cString);
+			CharArray Decode(const int8* cString)override;
 			ByteArray Encode(const CharArray &string) override;
 	};
 
@@ -258,7 +258,7 @@ namespace jm
 		public:
 			Windows1252Decoder();
 			~Windows1252Decoder();
-			CharArray Decode(const int8* cString);
+			CharArray Decode(const int8* cString)override;
 			ByteArray Encode(const CharArray &string) override;
 	};
 
@@ -274,7 +274,7 @@ namespace jm
 		public:
 			MacRomanDecoder();
 			~MacRomanDecoder();
-			CharArray Decode(const int8* cString);
+			CharArray Decode(const int8* cString)override;
 			ByteArray Encode(const CharArray &string) override;
 
 			uint16 DecodeCharacter(uint8 macencode);

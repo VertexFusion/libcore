@@ -257,8 +257,7 @@ namespace jm
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF)
 			 */
-			Integer ReadFully(unsigned char* buffer,Integer length) override;
-			Integer ReadFully(ByteArray& buffer) override;
+			Integer ReadFully(ByteArray& buffer, Integer length) override;
 
 
 

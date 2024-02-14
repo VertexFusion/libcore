@@ -108,10 +108,9 @@ int64 Date::TimeWithinDay(int64 t) const
 int64 Date::DaysInYear(int64 y) const
 {
 	if(y % 4 != 0)return 365;
-	if((y % 4 == 0) && (y % 100 != 0))return 366;
-	if((y % 100 == 0) && (y % 400 != 0))return 365;
-	if(y % 400 == 0)return 366;
-	return 365;
+	if(y % 100 != 0)return 366;
+	if(y % 400 != 0)return 365;
+	return 366;
 }
 
 int64 Date::DayFromYear(int64 y) const

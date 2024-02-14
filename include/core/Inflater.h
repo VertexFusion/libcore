@@ -63,17 +63,17 @@ namespace jm
 
 			//Aktueller Block
 			uint8* mCompBytes;
-			uint32 mCompLength;
-			uint32 mCompIndex;
+			Integer mCompLength;
+			Integer mCompIndex;
 
 			//Aktueller Block
 			uint8* mUncompBytes;
-			uint32 mUncompLength;
-			uint32 mUncompIndex;
+			Integer mUncompLength;
+			Integer mUncompIndex;
 
 			//Zählvariablen für verarbeitete Bytes
-			uint32 mTotalIn;
-			uint32 mTotalOut;
+			Integer mTotalIn;
+			Integer mTotalOut;
 
 			int32 mBit;//index auf das aktuelle Bit im aktuellen byte.
 
@@ -176,7 +176,7 @@ namespace jm
 			 \param buffer Die komprimierten Daten
 			 \param length Die Länge der Daten
 			 */
-			void SetInput(uint8* buffer, uint32 length);
+			void SetInput(uint8* buffer, Integer length);
 
 			/*!
 			 \brief Gibt "wahr" zurück, wenn das Ende des Inputblocks erreicht ist, aber das Ende des Eingabestroms
@@ -195,7 +195,7 @@ namespace jm
 			 \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
 			 \param length Die Länge des Puffers
 			 */
-			void Inflate(uint8* &buffer, uint32 &length);
+			void Inflate(uint8* &buffer, Integer &length);
 
 			/*!
 			 \brief Setzt den Dekomprimierer zurück, damit ein neues Objekt dekomprimiert werden kann
@@ -205,17 +205,17 @@ namespace jm
 			/*!
 			 \brief Gibt die Anzahl der "übrig gebliebenen" Bytes im Inputpuffer zurück
 			 */
-			int32 GetRemaining();
+			Integer GetRemaining();
 
 			/*!
 			 \brief Gibt die Gesamtanzahl der Bytes des komprimierten Inputs zurück
 			 */
-			int32 GetTotalIn();
+			Integer GetTotalIn();
 
 			/*!
 			 \brief Gibt die Gesamtanzahl der Bytes des dekomprimierten Outputs zurück
 			 */
-			int32 GetTotalOut();
+			Integer GetTotalOut();
 
 	};
 

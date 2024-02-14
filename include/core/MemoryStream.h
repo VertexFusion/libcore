@@ -83,8 +83,7 @@ namespace jm
 			\brief Liest maximal length bytes in das Array
 			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
 			*/
-			Integer ReadFully(uint8* buffer, Integer length) override;
-			Integer ReadFully(ByteArray& buffer) override;
+			Integer ReadFully(ByteArray& buffer, Integer length) override;
 
 			/*!
 			\brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)

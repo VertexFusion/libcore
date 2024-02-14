@@ -129,20 +129,20 @@ void ZipOutputFile::CloseEntry()
 
 	entry->mUncompressedSize = static_cast<uint32>(mTemp->GetPosition());
 	mTemp->Seek(0);
-	uint8* buffer = new uint8[entry->mUncompressedSize];
-	mTemp->ReadFully(buffer, entry->mUncompressedSize);
+	ByteArray buffer = ByteArray(entry->mUncompressedSize,0);
+	mTemp->Stream::ReadFully(buffer);
 	mTemp->Close();
 	mTemp->Delete();
 	delete mTemp;
 	mTemp = NULL;
 
 	//CRC berechnen
-	entry->mCRC = CRC32((int8*)buffer, entry->mUncompressedSize);
+	entry->mCRC = CRC32(buffer.ConstData(), entry->mUncompressedSize);
 
 	//Schreibe unkomprimiert
 	entry->mCompressedSize = entry->mUncompressedSize;
 
-	mFile->Write(buffer, entry->mUncompressedSize);
+	mFile->Write((uint8*)buffer.ConstData(), entry->mUncompressedSize);
 	uint32 pos = static_cast<uint32>(mFile->GetPosition());
 
 	//Aktualisiere Header
@@ -162,8 +162,8 @@ void ZipOutputFile::WriteAndClose(jm::File* file)
 
 	entry->mUncompressedSize = static_cast<uint32>(file->Length());
 	file->Open(kFmRead);
-	uint8* buffer = new uint8[entry->mUncompressedSize];
-	file->ReadFully(buffer, entry->mUncompressedSize);
+	ByteArray buffer = ByteArray(entry->mUncompressedSize,0);
+	file->Stream::ReadFully(buffer);
 	file->Close();
 
 	mTemp->Close();
@@ -172,12 +172,12 @@ void ZipOutputFile::WriteAndClose(jm::File* file)
 	mTemp = NULL;
 
 	//CRC berechnen
-	entry->mCRC = CRC32((int8*)buffer, entry->mUncompressedSize);
+	entry->mCRC = CRC32(buffer.ConstData(), entry->mUncompressedSize);
 
 	//Schreibe unkomprimiert
 	entry->mCompressedSize = entry->mUncompressedSize;
 
-	mFile->Write(buffer, entry->mUncompressedSize);
+	mFile->Write((uint8*)buffer.ConstData(), entry->mUncompressedSize);
 	uint32 pos = static_cast<uint32>(mFile->GetPosition());
 
 	//Aktualisiere Header

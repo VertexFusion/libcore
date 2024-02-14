@@ -220,9 +220,10 @@ String String::FromCFString(CFStringRef cfstring)
 
 CFStringRef String::ToCFString()const
 {
-	const char* cstring = ToCString();
-	CFStringRef cfstring = CFStringCreateWithCString(kCFAllocatorDefault, cstring, kCFStringEncodingUTF8);
-	delete[] cstring;
+	ByteArray cstring = ToCString();
+	CFStringRef cfstring = CFStringCreateWithCString(kCFAllocatorDefault,
+																	 cstring.ConstData(),
+																	 kCFStringEncodingUTF8);
 	return cfstring;
 }
 

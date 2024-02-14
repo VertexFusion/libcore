@@ -98,9 +98,10 @@ namespace jm
 			 (EOF).
 			 \deprecated 
 			 */
-			virtual Integer ReadFully(uint8* buffer, Integer length) = 0;
+			//virtual Integer ReadFully(uint8* buffer, Integer length) = 0;
 
-			virtual Integer ReadFully(ByteArray &buffer) = 0;
+			virtual Integer ReadFully(ByteArray &buffer, Integer length) = 0;
+			Integer ReadFully(ByteArray &buffer){return ReadFully(buffer,buffer.Size());};
 
 			/*!
 			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang

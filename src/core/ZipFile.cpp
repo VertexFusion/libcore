@@ -59,13 +59,13 @@ void ZipFile::Open()
 	//sein dürfen und die Datenlänge der komprimierten Daten nicht am Anfang gespeichert werden muss.
 
 	uint32 signature;
-	uint8 eocd[22];
+	ByteArray eocd=ByteArray(22,0);
 	bool found = false;
 	do
 	{
 		mFile->Seek(seek);
-		mFile->ReadFully(eocd, 22);
-		signature = jm::DeserializeLEInt32(eocd, 0);
+		mFile->Stream::ReadFully(eocd);
+		signature = jm::DeserializeLEInt32((uint8*)eocd.ConstData(), 0);
 		seek--;
 
 		if(signature == 0x06054b50)
@@ -78,13 +78,13 @@ void ZipFile::Open()
 
 	if(!found)throw new jm::Exception("ZIP-File is invalid.");
 
-	uint16 recordCount = jm::DeserializeLEUInt16(eocd, 10);
-	uint32 dictSize = jm::DeserializeLEUInt32(eocd, 12);
-	uint32 dictOffset = jm::DeserializeLEUInt32(eocd, 16);
+	uint16 recordCount = jm::DeserializeLEUInt16((uint8*)eocd.ConstData(), 10);
+	uint32 dictSize = jm::DeserializeLEUInt32((uint8*)eocd.ConstData(), 12);
+	uint32 dictOffset = jm::DeserializeLEUInt32((uint8*)eocd.ConstData(), 16);
 
-	uint8* dict = new uint8[dictSize];
+	ByteArray dict = ByteArray(dictSize,0);
 	mFile->Seek(dictOffset);
-	mFile->ReadFully(dict, dictSize);
+	mFile->Stream::ReadFully(dict);
 
 
 	uint32 index = 0;
@@ -92,12 +92,12 @@ void ZipFile::Open()
 	while(count < recordCount)
 	{
 		//signature = jm::DeserializeLEInt32(dict, index);
-		uint32 compressedSize = jm::DeserializeLEUInt32(dict, index + 20);
-		uint32 uncompressedSize = jm::DeserializeLEUInt32(dict, index + 24);
-		uint32 fileNameLength = jm::DeserializeLEUInt16(dict, index + 28);
-		uint32 extraFieldLength = jm::DeserializeLEUInt16(dict, index + 30);
-		uint32 commentLength = jm::DeserializeLEUInt16(dict, index + 32);
-		uint32 offset = jm::DeserializeLEUInt32(dict, index + 42);
+		uint32 compressedSize = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 20);
+		uint32 uncompressedSize = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 24);
+		uint32 fileNameLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 28);
+		uint32 extraFieldLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 30);
+		uint32 commentLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 32);
+		uint32 offset = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 42);
 
 		jm::String name = jm::String(&dict[index + 46], fileNameLength);
 		jm::String extra = jm::String(&dict[index + 46 + fileNameLength], extraFieldLength);
@@ -155,38 +155,36 @@ uint32 ZipFile::GetEntryCount() const
 
 jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
 {
-	uint8* input = new uint8[entry->mCompressedSize];
+	ByteArray input = ByteArray(entry->mCompressedSize,0);
 	uint8* buffer = new uint8[entry->mUncompressedSize];
 
 	//Local Header
-	uint8 localHeader[30];
+	ByteArray localHeader = ByteArray(30,0);
 	mFile->Seek(entry->mHeaderOffset);
-	mFile->ReadFully(localHeader, 30);
-	uint32 signature = jm::DeserializeLEUInt32(localHeader, 0);
+	mFile->Stream::ReadFully(localHeader);
+	uint32 signature = jm::DeserializeLEUInt32((uint8*)localHeader.ConstData(), 0);
 
 	if(signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
 
-	uint16 cm = jm::DeserializeLEUInt16(localHeader, 8);
-	uint32 fl = jm::DeserializeLEUInt16(localHeader, 26);
-	uint32 el = jm::DeserializeLEUInt16(localHeader, 28);
+	uint16 cm = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 8);
+	uint32 fl = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 26);
+	uint32 el = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 28);
 
 
 	mFile->Seek(entry->mHeaderOffset + 30 + fl + el);
-	mFile->ReadFully(input, entry->mCompressedSize);
+	mFile->Stream::ReadFully(input);
 
 	if(cm == 0) //Daten unkomprimiert
 	{
-		memcpy(buffer, input, entry->mCompressedSize);
+		memcpy(buffer, input.ConstData(), entry->mCompressedSize);
 	}
 	if(cm == 8) //Deflate
 	{
 		Inflater inf = Inflater(true);
-		uint32 control;
-		inf.SetInput(input, entry->mCompressedSize);
+		Integer control;
+		inf.SetInput((uint8*)input.ConstData(), entry->mCompressedSize);
 		inf.Inflate(buffer, control);
 	}
-
-	delete[]input;
 
 	return new MemoryStream(buffer, entry->mUncompressedSize);
 }

@@ -48,14 +48,14 @@ void DeflateTest::DoTest()
 	"Und mit reichem, vollem Schwalle\n"
 	"Zu dem Bade sich ergieße.";
 	jm::ByteArray uncompressed=test.ToCString();
-	uint32 uncompressedLength=0;
+	Integer uncompressedLength=0;
 	while(uncompressed[uncompressedLength]!=0)uncompressedLength++;
 
 	std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
 	//Komprimieren
 	uint8* compressed=NULL;
-	uint32 compressedLength=0;
+	Integer compressedLength=0;
 	jm::Deflater deflater = jm::Deflater();
 	deflater.Reset();
 	deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
@@ -65,7 +65,7 @@ void DeflateTest::DoTest()
 
 	//Dekomprimieren
 	uint8* restored=NULL;
-	uint32 restoredLength=0;
+	Integer restoredLength=0;
 	jm::Inflater inflater = jm::Inflater();
 	inflater.Reset();
 	inflater.SetInput(compressed, compressedLength);
@@ -76,9 +76,9 @@ void DeflateTest::DoTest()
 	//Vergleiche uncompressed und restored...
 	TestEquals((int64)uncompressedLength,(int64)restoredLength,"Länge der Daten unterschiedlich.");
 
-	uint32 l=std::min(uncompressedLength,restoredLength);
+	Integer l=std::min(uncompressedLength,restoredLength);
 
-	for(uint32 a=0;a<l;a++)
+	for(Integer a=0;a<l;a++)
 	{
 		TestEquals(uncompressed[a],restored[a],"Datenfehler in Kompression / Dekompression.");
 	}

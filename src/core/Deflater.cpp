@@ -42,14 +42,14 @@ Deflater::~Deflater()
 {
 }
 
-void Deflater::SetInput(uint8* buffer, uint32 length)
+void Deflater::SetInput(uint8* buffer, Integer length)
 {
 	mUncompBytes = buffer;
 	mUncompLength = length;
 	mUncompIndex = 0;
 }
 
-void Deflater::Deflate(uint8* &buffer, uint32 &length)
+void Deflater::Deflate(uint8* &buffer, Integer &length)
 {
 	mUncompIndex = 0;
 
@@ -60,7 +60,7 @@ void Deflater::Deflate(uint8* &buffer, uint32 &length)
 	defstream.zfree = Z_NULL;
 	defstream.opaque = Z_NULL;
 	// setup "a" as the input and "b" as the compressed output
-	defstream.avail_in = mUncompLength; // size of input, string + terminator
+	defstream.avail_in = (uInt) mUncompLength; // size of input, string + terminator
 	defstream.next_in = (Bytef *)mUncompBytes; // input char array
 	defstream.avail_out = (uInt)mUncompLength; // size of output
 	defstream.next_out = (Bytef *)buffer; // output char array
@@ -82,12 +82,12 @@ void Deflater::Reset()
 	mTotalOut = 0;
 }
 
-int32 Deflater::GetTotalIn()
+Integer Deflater::GetTotalIn()
 {
 	return mTotalIn;
 }
 
-int32 Deflater::GetTotalOut()
+Integer Deflater::GetTotalOut()
 {
 	return mTotalOut;
 }

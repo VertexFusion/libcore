@@ -67,14 +67,9 @@ Integer MemoryStream::Read(uint8* buffer, Integer length)
 	return available;
 }
 
-Integer MemoryStream::ReadFully(uint8* buffer, Integer length)
+Integer MemoryStream::ReadFully(ByteArray &buffer, Integer length)
 {
-	return Read(buffer, length);
-}
-
-Integer MemoryStream::ReadFully(ByteArray &buffer)
-{
-	return Read((uint8*)buffer.Data(), buffer.Size());
+	return Read((uint8*)buffer.Data(), length);
 }
 
 void MemoryStream::Seek(Integer newPosition)

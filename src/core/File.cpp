@@ -157,7 +157,7 @@ bool File::MakeDirectory()
 {
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
-	int32 result = mkdir(mCstr,S_IRWXU|S_IRGRP|S_IROTH);
+	int32 result = mkdir(mCstr.ConstData(),S_IRWXU|S_IRGRP|S_IROTH);
 	return result == 0;
 
 	#elif defined _WIN32//Windows
@@ -171,7 +171,7 @@ bool File::Exists() const
 
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
-	return access(mCstr, F_OK) == 0;
+	return access(mCstr.ConstData(), F_OK) == 0;
 
 	#elif defined _WIN32//Windows
 	if (mCstr == NULL)return false;
@@ -188,7 +188,7 @@ bool File::CanRead() const
 
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
-	return access(mCstr, R_OK) == 0;
+	return access(mCstr.ConstData(), R_OK) == 0;
 
 	#elif defined _WIN32//Windows
 
@@ -207,7 +207,7 @@ bool File::CanWrite() const
 
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
-	return access(mCstr, W_OK) == 0;
+	return access(mCstr.ConstData(), W_OK) == 0;
 
 	#elif defined _WIN32//Windows
 
@@ -226,7 +226,7 @@ bool File::IsDirectory() const
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
 	struct stat st;
-	lstat(mCstr, &st);
+	lstat(mCstr.ConstData(), &st);
 	bool ret = S_ISDIR(st.st_mode);
 	return ret;
 
@@ -248,7 +248,7 @@ bool File::IsFile() const
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
 	struct stat st;
-	lstat(mCstr, &st);
+	lstat(mCstr.ConstData(), &st);
 	bool ret = S_ISREG(st.st_mode);
 	return ret;
 
@@ -290,7 +290,7 @@ bool File::IsLink() const
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
 	struct stat st;
-	lstat(mCstr, &st);
+	lstat(mCstr.ConstData(), &st);
 	bool ret = S_ISLNK(st.st_mode);
 	return ret;
 
@@ -314,7 +314,7 @@ bool File::IsPipe() const
 	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
 
 	struct stat st;
-	lstat(mCstr, &st);
+	lstat(mCstr.ConstData(), &st);
 	bool ret = S_ISFIFO(st.st_mode);
 	return ret;
 
@@ -336,7 +336,7 @@ Date File::LastModified() const
 	#if defined(__APPLE__) //macOS
 
 	struct stat st;
-	lstat(mCstr, &st);
+	lstat(mCstr.ConstData(), &st);
 
 	//Umrechnen
 	timespec tm = st.st_mtimespec;
@@ -381,7 +381,7 @@ bool File::MoveToTrash()
 {
 	#if defined(__APPLE__)//macOS
 
-	return File_MoveToTrash(mCstr);
+	return File_MoveToTrash(mCstr.ConstData());
 
 	#elif defined(__linux__) //Linus
 
@@ -400,7 +400,7 @@ bool File::RenameTo(const String &newPath)
 
 
 	#ifdef __APPLE__ //macOS
-	int8* newname = newPath.ToCString();
+	ByteArray newname = newPath.ToCString();
 	#elif defined __linux__ //Linux
 	int8* newname = newPath.ToCString();
 	#elif defined _WIN32 //Windows
@@ -431,7 +431,7 @@ Array<File>* File::ListFiles()
 
 	DIR* dp;
 	struct dirent* dirp;
-	dp = opendir(mCstr);
+	dp = opendir(mCstr.ConstData());
 
 	if(dp == NULL)
 	{
@@ -550,7 +550,7 @@ String File::GetExtension() const
 bool File::CreateNewFile()
 {
 #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
-	mHandle = fopen(mCstr, "wb");
+	mHandle = fopen(mCstr.ConstData(), "wb");
 	Integer ret = mHandle!=NULL;
 #elif defined _WIN32 //Windows
 	Integer ret = fopen_s(&mHandle,mCstr.ConstData(), "wb");
@@ -568,15 +568,15 @@ void File::Open(FileMode mode)
 	switch(mode)
 	{
 		case kFmRead:
-			mHandle = fopen(mCstr, "rb");
+			mHandle = fopen(mCstr.ConstData(), "rb");
 			break;
 
 		case kFmWrite:
-			mHandle = fopen(mCstr, "wb");
+			mHandle = fopen(mCstr.ConstData(), "wb");
 			break;
 
 		case kFmReadWrite:
-			mHandle = fopen(mCstr, "rb+");
+			mHandle = fopen(mCstr.ConstData(), "rb+");
 			break;
 	}
 	ret=mHandle!=NULL;
@@ -651,24 +651,20 @@ Integer File::Read(uint8* buffer, Integer length)
 	return (uint32)fread(buffer, 1, length, mHandle);
 }
 
-Integer File::ReadFully(uint8* buffer, Integer length)
+Integer File::ReadFully(ByteArray& buffer, Integer length)
 {
 	Integer rest = length;
 	Integer read = 0;
 	Integer step;
+	uint8* buf=(uint8*)buffer.Data();
 
-	while((rest > 0) && ((step = Read(&buffer[read], rest)) > 0))
+	while((rest > 0) && ((step = Read(&buf[read], rest)) > 0))
 	{
 		read += step;
 		rest -= step;
 	};
 
-	return read;
-}
-
-Integer File::ReadFully(ByteArray& buffer)
-{
-	return ReadFully((uint8*)buffer.Data(), buffer.Size());
+	return read;	
 }
 
 Integer File::Write(uint8* buffer, Integer length)
@@ -684,7 +680,7 @@ int32 File::CompareTo(const File &other) const
 	if(d1 != d2)
 	{
 		if(d1)return -1;
-		if(d2)return 1;
+		return 1;
 	}
 
 	//Dann Name
@@ -696,7 +692,9 @@ Array<String> File::GetTags()const
 #ifdef __APPLE__ //macOS
 
 	// Create necessary system related objects
-	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
+																 mCstr.ConstData(),
+																 kCFStringEncodingUTF8);
 	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
 																	cfstr,
 																	kCFURLPOSIXPathStyle,
@@ -769,7 +767,9 @@ VxfErrorStatus File::AddTag(const String &tag)
 	//
 	
 	// Create necessary system related objects
-	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
+																 mCstr.ConstData(),
+																 kCFStringEncodingUTF8);
 	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
 																	cfstr,
 																	kCFURLPOSIXPathStyle,
@@ -837,7 +837,9 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 	//
 	
 	// Create necessary system related objects
-	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault, mCstr, kCFStringEncodingUTF8);
+	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
+																 mCstr.ConstData(),
+																 kCFStringEncodingUTF8);
 	CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
 																	cfstr,
 																	kCFURLPOSIXPathStyle,
@@ -961,7 +963,6 @@ File jm::ResourceDir(const String &bundleId)
 	//Unter IOS ist das Resourcedir gleichzeitig der Rootordner der App...
 
 	//Kovertiere Bundle-URL in String
-	char path[1024];
 	CFStringRef sr = CFURLCopyPath(resourceDirURL);
 	String filename = String::FromCFString(sr);
 

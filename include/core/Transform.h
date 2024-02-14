@@ -96,7 +96,7 @@ namespace jm
 
 		/*!
 		 \brief Transform a rotation angle about the Z-Axis of LCS as usually neede by arcs or texts .
-		 \brief angle Rotation angle in rad
+		 \param angle Rotation angle in rad
 		 */
 		Double TransAngle(const Double& angle) const;
 
