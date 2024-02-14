@@ -9,6 +9,19 @@ on:
 
 jobs:
   analyze:
+    runs-on: ubuntu-latest
     name: Codespell
     uses: codespell-project/actions-codespell@v2.0
-            
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install codespell
+        run: |
+          pip3 install --no-warn-script-location codespell==1.17.1
+
+      - name: Run codespell
+        run: |
+          CODESPELL=$HOME/.local/bin/codespell ./misc/scripts/spellcheck
+
