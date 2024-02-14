@@ -59,32 +59,35 @@ void SAXParser::Parse(File &file)
 void SAXParser::Parse(const String &xml)
 {
 	String token;
-	token.CheckCapacity(xml.Length());//Sorge dafür, dass Token groß genug ist und nicht bei Binärdaten dauernd vergrößert werden muss..
+	
+	// Make sure that the token is large enough and does not have to be constantly enlarged for
+	// binary data.
+	token.CheckCapacity(xml.Length());
 
 	StartDocument();
 
-	Integer length = xml.Length(); //Länge dex XML-Codes
-	Integer pos = 0; //Position des Zeigers
+	Integer length = xml.Length(); // Length of XML-Code
+	Integer pos = 0; // Position of pointer
 
-	Bool inTag = false; //Status, ob man in einem Tag ist
-	Bool inValue = false; //Status, ob man in einem Value ist.
-	uint16 opener = '\"'; //Zeichen, welches ein Tagwert begrenzt. entweder ' oder "
+	Bool inTag = false;   // Status, if tag is open
+	Bool inValue = false; // Status, if value is open
+	uint16 opener = '\"'; // Character for begin and end of tag. ' or "
 	uint16 c;
 
 	while(pos < length)
 	{
 		c = xml.CharAt(pos);
 
-		if(c == '<' && inTag == false && inValue == false) //Tag-Anfang gefunden.
+		if(c == '<' && inTag == false && inValue == false) // Found beginning of a tag.
 		{
 			inTag = true;
-			//Gibt Characters aus: \todo IgnorableWhitespaces muss hier noch berücksichtigt werden.
+			// Outputs characters: TODO: IgnorableWhitespaces muss hier noch berücksichtigt werden.
 			if(token.Length() > 0)
 			{
 				String beginWhitespaces;
 				String endWhiteSpaces;
 
-				//Whitespaces am Anfang abtrennen
+				// Cut whitespaces at the beginning
 				Integer sub = 0;
 				while(sub < token.Length() && CharacterIsWhitespace(token.CharAt(sub)))
 				{
@@ -93,13 +96,13 @@ void SAXParser::Parse(const String &xml)
 				}
 				if(beginWhitespaces.Length() > 0)
 				{
-					//Direkte Zuweisung würde Länge von Token ändern. Daher dieser Umweg
+					// Direct assignment would change the length of tokens. Hence this detour
 					String tmp = token.Substring(beginWhitespaces.Length());
 					token.Zero();
 					token.Append(tmp);
 				}
 
-				//Whitespaces am Ende abtrennen
+				// Cut off whitespaces at the end
 				sub = token.Length() - 1;
 				while(sub >= 0 && sub < token.Length() && CharacterIsWhitespace(token.CharAt(sub)))
 				{
@@ -108,7 +111,7 @@ void SAXParser::Parse(const String &xml)
 				}
 				if(endWhiteSpaces.Length() > 0)
 				{
-					//Direkte Zuweisung würde Länge von Token ändern. Daher dieser Umweg
+					// Direct assignment would change the length of tokens. Hence this detour
 					String tmp = token.Substring(0, token.Length() - endWhiteSpaces.Length());
 					token.Zero();
 					token.Append(tmp);
@@ -126,7 +129,7 @@ void SAXParser::Parse(const String &xml)
 					endWhiteSpaces.DeleteCharAt(0);
 				}
 
-				//Parsing-Methoden aufrufen
+				// Call parsing methods
 				if(beginWhitespaces.Length() > 0)IgnorableWhiteSpaces(beginWhitespaces);
 				if(token.Length() > 0)Characters(token);
 				if(endWhiteSpaces.Length() > 0)IgnorableWhiteSpaces(endWhiteSpaces);
@@ -186,17 +189,17 @@ void SAXParser::ParseTagString(const String &xmlline)
 {
 	String line = xmlline;
 
-	line.Append(' ');//Whitespace am Ende erleichtert das Parsen, weil Code gespart wird.
+	line.Append(' ');// Whitespace at the end makes parsing easier because code is saved.
 
-	Integer pos = 0; //Position des Zeigers
-	Integer length = line.Length(); //Länge
-	bool inValue = false; //Status, ob man in einem Value ist.
+	Integer pos = 0; //Position of pointer
+	Integer length = line.Length(); // Length
+	bool inValue = false; // Status, if in value
 	uint16 c;
 	uint16 opener = 0;
 	Integer tagType = 0; //0: Open, 1: Close 2: Open/Close
-	Integer step = 0; // 0:Tagname, 1: Attributname, 2:Attributwert
+	Integer step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
 
-	//Prüfe auf / am Ende
+	// Check for '/' at the end
 	pos = line.Length() - 1;
 	while(CharacterIsWhitespace(line.CharAt(pos)))pos--;
 	if(line.CharAt(pos) == '/')
@@ -205,11 +208,11 @@ void SAXParser::ParseTagString(const String &xmlline)
 	}
 
 
-	//Überspringe Whitespaces am Anfang
+	// Skip whitespaces at beginning
 	pos = 0;
 	while(CharacterIsWhitespace(line.CharAt(pos)))pos++;
 
-	//Prüfe auf / am Anfang
+	// Check for '/' at beginning.
 	if(line.CharAt(pos) == '/')
 	{
 		tagType = 1;
@@ -217,10 +220,10 @@ void SAXParser::ParseTagString(const String &xmlline)
 	}
 
 
-	String token;//Aktuelles Token
-	String tname;//Name des Tags
-	String aname;//Name des Attributs
-	String avalue;//Wert des Attributs
+	String token;// Current token
+	String tname;// Name of tag
+	String aname;// Name of attribute
+	String avalue;// Value of attribute
 
 	SAXAttributes attribs;
 
@@ -235,7 +238,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 				inValue = true;
 				opener = c;
 			}
-			else if(opener == c)// inValue is alway "true" here
+			else if(opener == c)// inValue is always "true" here
 			{
 				inValue = false;
 
@@ -267,7 +270,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 		}
 		else if((CharacterIsWhitespace(c) || c == '=' || c == '/') && !inValue)
 		{
-			//Verarbeite Token
+			// Process Token
 			if(token.Length() > 0)
 			{
 				if(step == 0)
@@ -288,7 +291,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 		pos++;
 	}
 
-	//Verarbeite im Parser
+	// VProcess in the parser
 	String qualifiedName = tname;
 	String localName = qualifiedName.Substring(qualifiedName.LastIndexOf(':') + 1);
 	switch(tagType)

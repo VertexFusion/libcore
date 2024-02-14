@@ -36,7 +36,7 @@ using namespace jm;
 Hashtable::Hashtable(): Object()
 {
 	mArrLength = 7;
-	mData = new HashtableEntry*[mArrLength];//Array mit den Daten
+	mData = new HashtableEntry*[mArrLength]; // Array for data
 	for(Integer a = 0; a < mArrLength; a++)mData[a] = NULL;
 	mDataLength = 0;
 	mLoadfactor = 0.75f;
@@ -53,7 +53,7 @@ Hashtable::~Hashtable()
 
 void* Hashtable::Put(String key, void* value)
 {
-	// Stelle sicher, dass kein Eintrag bereits in der Hashtabelle vorhanden ist.
+	// Make sure that no entry already exists in the hash table.
 	Integer hash = key.HashCode();
 	Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 	for(HashtableEntry* e = mData[index] ; e != NULL ; e = e->next)
@@ -66,14 +66,14 @@ void* Hashtable::Put(String key, void* value)
 		}
 	}
 
-	//Tabelle verößern, wenn Schwellwert erreicht wird.
+	// Increase table when threshold value is reached.
 	if(mDataLength >= mThreshold)
 	{
 		Rehash();
 		index = (hash & 0x7FFFFFFF) % mArrLength;
 	}
 
-	// Neuen Eintrag anlegen.
+	// Create new entry.
 	HashtableEntry* e = mData[index] ;
 	HashtableEntry* n = new HashtableEntry();
 	n->hash = hash;
@@ -112,7 +112,7 @@ void* Hashtable::Remove(String key)
 	{
 		if((e->hash == hash) && e->key.Equals(key))
 		{
-			//Lösche Element in der Verkettenliste
+			// Delete element in the linked list
 			if(prev != NULL)
 			{
 				prev->next = e->next;
@@ -123,7 +123,7 @@ void* Hashtable::Remove(String key)
 			}
 			mDataLength--;
 
-			//Wert zurückgeben
+			// Return value
 			void* oldValue = e->value;
 			delete e;
 			return oldValue;
@@ -132,7 +132,7 @@ void* Hashtable::Remove(String key)
 		e = e->next;
 	}
 
-	//Nichts gefunden
+	// Nothing found
 	return NULL;
 }
 
@@ -202,7 +202,7 @@ Iterator* Hashtable::Values()
 
 
 /*
- HASHTABLITERATOR
+ HashtableIterator
 */
 
 Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, Bool _retKey): Iterator()

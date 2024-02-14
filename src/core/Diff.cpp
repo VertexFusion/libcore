@@ -216,7 +216,7 @@ void Diff::HandleEntityV(DiffDistance* dd, DwgEntity* e)
 	{
 		e->PrintStackTrace();
 		delete e;
-		std::cout << Tr("An Error occured during DIFF.") << std::endl;
+		std::cout << Tr("An Error occurred during DIFF.") << std::endl;
 	}
 
 	return distance;

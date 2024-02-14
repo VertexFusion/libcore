@@ -205,12 +205,11 @@ String String::FromCFString(CFStringRef cfstring)
 	if (length == 0) return kEmptyString;
 
 	// C-String
-	char* cstr=NULL;
-	CFStringGetCStringPtr(cfstring,kCFStringEncodingUTF8);
-	if(cstr!=NULL)return String(cstr);
+	const char* ccstr=CFStringGetCStringPtr(cfstring,kCFStringEncodingUTF8);
+	if(ccstr!=NULL)return String(ccstr);
 	
 	// Fallback
-	cstr=new char[length*2];//Hope, that not all characters are greater than 4 bytes representation
+	char* cstr=new char[length*2];//Hope, that not all characters are greater than 4 bytes representation
 	CFStringGetCString(cfstring, cstr, length*2, kCFStringEncodingUTF8);
 	String result=String(cstr);
 	delete[] cstr;

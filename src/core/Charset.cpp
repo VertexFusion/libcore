@@ -33,9 +33,6 @@
 
 using namespace jm;
 
-//Unter Mac auf Jedenfall
-using std::min;
-
 uint16 Charset::gCharsetCount = 7;
 Charset* Charset::gCharsets[7] = { new Charset(new UTF8Decoder()),
 	         new Charset("Windows-1252", new Windows1252Decoder()),
@@ -179,7 +176,7 @@ String Charset::Guess(uint8* stream, uint32 length)
 	#endif
 
 	//
-	// Wenn UTF-Marker gesetzt sind, ist es einfach.
+	// If UTF markers are set, it's easy.
 	//
 
 
@@ -193,11 +190,12 @@ String Charset::Guess(uint8* stream, uint32 length)
 	else if(stream[0] == 0xEF && stream[1] == 0xBB && stream[2] == 0xBF)return "UTF-8";
 
 	//
-	// Untersuche auf UTF-16
+	// Check for UTF-16
 	//
 
-	// Es kann sein, das eine UTF16-Kodierung ohne Marker vorliegt. Die Wahrscheinlichkeit dafür ist hoch, wenn bei "europäischem" Text jedes zweite Byte 0 ist
-	uint16 frame = (uint16) min(4096, static_cast<int32>(length));
+	// It is possible that a UTF16 encoding without markers is present. The probability of this is
+	// high if every second byte of "European" text is 0.
+	uint16 frame = (uint16) std::min(4096, static_cast<int32>(length));
 	float count1 = 0;
 	float count2 = 0;
 	for(uint16 a = 0; a < frame; a++)
@@ -208,16 +206,16 @@ String Charset::Guess(uint8* stream, uint32 length)
 		}
 	}
 
-	if(count1 / (0.5f * frame) > 0.9)//Gleichbedeutend mit 00 XX 00 XX 00 XX ...
+	if(count1 / (0.5f * frame) > 0.9)// Equivalent to 00 XX 00 XX 00 XX ...
 	{
 		return "UTF-16BE";
 	}
-	else if(count2 / (0.5 * frame) > 0.9)//Gleichbedeutend mit XX 00 XX 00 XX 00 XX 00 ...
+	else if(count2 / (0.5 * frame) > 0.9)// Equivalent to XX 00 XX 00 XX 00 XX 00 ...
 	{
 		return "UTF-16LE";
 	}
 
-	//Undefinierte Zeichen in Windows-1252
+	// Undefined characters in Windows-1252
 	if(encoding.Equals("Windows-1252"))
 	{
 		for(uint32 a = 0; a < length; a++)
@@ -229,7 +227,7 @@ String Charset::Guess(uint8* stream, uint32 length)
 				case 0x8F:
 				case 0x90:
 				case 0x9D:
-					//Obige Zeichen gibt es in Windows-1252 nicht! Nimm MacRoman an.
+					// The above characters do not exist in Windows-1252! Use MacRoman.
 					encoding = "MacRoman";
 					break;
 
@@ -240,7 +238,7 @@ String Charset::Guess(uint8* stream, uint32 length)
 		}
 	}
 
-	//Nimm ASCII an, wenn kein Byte größer als 0x7F ist
+	// Assume ASCII if no byte is greater than 0x7F
 	bool isASCII = true;
 	for(uint32 a = 0; a < length; a++)
 	{
@@ -252,8 +250,8 @@ String Charset::Guess(uint8* stream, uint32 length)
 	}
 	if(isASCII)return "ASCII";
 
-	//\todo Mache eine Statistische Auswertung, Oder Wörterbuch von Nicht-ASCII-Charaktern
-	//Vergleiche: http://stackoverflow.com/questions/4198804/how-to-reliably-guess-the-encoding-between-macroman-cp1252-latin1-utf-8-and
+	// TODO: Make a statistical analysis, or dictionary of non-ASCII characters
+	// See also: http://stackoverflow.com/questions/4198804/how-to-reliably-guess-the-encoding-between-macroman-cp1252-latin1-utf-8-and
 
 	return encoding;
 }
@@ -266,8 +264,8 @@ Charset* Charset::GetDefault()
 
 void jm::InitCharsets()
 {
-	//Braucht nichts getan zu werden. Charsets werden beim Laden automatisch initialisiert
-	//Allerdings ist die Reihenfolge nicht klar....
+	// Nothing needs to be done. Charsets are initialized automatically when loading.
+	// However, the order is not clear....
 }
 
 void jm::QuitCharsets()

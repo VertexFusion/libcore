@@ -58,7 +58,7 @@ bool jm::CharacterIsDigit(uint16 input)
 
 uint16 jm::CharacterToLowerCase(uint16 input)
 {
-	//Kodierung ist Unicode
+	// Encoding is unicode
 
 	switch(input)
 	{
@@ -131,7 +131,7 @@ uint16 jm::CharacterToLowerCase(uint16 input)
 
 uint16 jm::CharacterToUpperCase(uint16 input)
 {
-	//Kodierung ist Unicode
+	// Encoding is unicode
 
 	switch(input)
 	{
