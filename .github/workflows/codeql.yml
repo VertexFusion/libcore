@@ -54,7 +54,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
         with:
-          submodules:yes
+          submodules: true
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
