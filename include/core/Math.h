@@ -199,7 +199,7 @@ namespace jm
 	 \brief ermittelt zufällig, ob die bestimmte Wahrscheinlichkeit erfüllt ist
 	 */
 	DllExport
-	bool Propability(double percent);
+	bool Probability(double percent);
 
 	/*!
 	 \brief Diese Methode interpoliert den Zahlenwert zwischen begin und end.

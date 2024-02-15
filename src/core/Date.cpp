@@ -38,7 +38,6 @@ using namespace jm;
 Date::Date():Comparable<Date>()
 {
 	#ifdef __APPLE__
-	//Unter macOS
 	struct timeval tp;
 	gettimeofday(&tp, NULL);
 	mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
@@ -64,7 +63,7 @@ Date::Date(int64 milliseconds): Comparable<Date>()
 
 Date::Date(uint16 year, uint16 month, uint16 day): Comparable<Date>()
 {
-	//\todo Ist month bei makeday 0 oder 1-basiert?
+	//\todo Is month in makeday 0 or 1-based?
 	mTime = UTC(MakeDate(MakeDay(year, month - 1, day), 0));
 }
 
@@ -82,7 +81,7 @@ Date::Date(uint16 year,
 Date Date::FromNSDate(double nsdate)
 {
 	Date d;
-	//Milliseconds sinnce 01.01.1970 00:00:00.000.
+	//Milliseconds since 01.01.1970 00:00:00.000.
 	d.mTime=978307200000;
 	int64 date=static_cast<int64>(nsdate*1000.0);//s in ms
 	d.mTime+=date;

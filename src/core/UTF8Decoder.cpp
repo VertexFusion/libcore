@@ -88,7 +88,7 @@ CharArray UTF8Decoder::Decode(const int8* cstring)
 		}
 		else
 		{
-			//Eigentlich ein Encoding-Fehler, aber wir nehmen dann das Zeichen als einzelnen Buchstaben
+			// In fact an encoding error, but we then take the byte as a single character
 			strLength++;
 			cntC++;
 		}

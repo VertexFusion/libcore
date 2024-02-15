@@ -81,3 +81,4 @@ bool Extents::IsValid()const
 {
 	return mPtMin.x < 1E89;
 }
+

@@ -96,7 +96,7 @@ void ZipOutputFile::Close()
 		jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
 		jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
 		jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
-		jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to lcoal ShxFile Header
+		jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
 
 		mFile->Write(cdfh, 46);
 		if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());

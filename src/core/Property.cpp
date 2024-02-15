@@ -224,7 +224,7 @@ bool Property::IsValueEquals(const Property &other)const
 
 bool jm::operator==(Property const &v1, Property const &v2)
 {
-	// Actially we do not check mType, because if  values are equal, but type different
+	// Actually we do not check mType, because if values are equal, but type different
 	// (like for compoboxes), they are supposed to be equal anyway.
 
 	if(v1.mId.Equals(v2.mId) == false)return false;

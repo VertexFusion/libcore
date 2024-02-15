@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Geometry.cpp
 // Library:     Jameo Core Library
-// Purpose:     Usefull CAD and geometry functions
+// Purpose:     Useful CAD and geometry functions
 //
 // Author:      Uwe Runtemund (2012-today)
 // Modified by:
@@ -49,8 +49,8 @@ Vertex3 jm::IntersectionPointLineAndPlane(const Vertex3 &planePosition,
 		return Vertex3(NAN, NAN, NAN);
 	}
 
-	// Warum war das hier? Darf denn der Ebenennormalenvektor nicht senkrecht auf dem Richtungsvektor
-	// stehen? Was ist, wenn die Linie in der Ebene liegt?
+	// Why was that here? Must the plane normal vector not be perpendicular to the direction vector?
+	// stehen? What if the line lies in the plane?
 	if(normal.IsOrthogonal(direction))
 	{
 		return Vertex3(NAN, NAN, NAN);

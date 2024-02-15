@@ -62,7 +62,7 @@ void Preferences::Load(File file)
 	file.Close();
 	String data = String(buffer);
 
-	if(check != l)throw new Exception("Property file uncomplete loaded.");
+	if(check != l)throw new Exception("Property file incomplete loaded.");
 
 	StringTokenizer* st = new StringTokenizer(data, "\r\n", false);
 

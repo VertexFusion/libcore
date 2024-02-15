@@ -92,27 +92,27 @@ File& File::operator=(const File &another)
 
 void File::SetCString()
 {
-
-	#ifdef __APPLE__ //macOS
-	//Unter 10.10 werden Umlaute korrekt übernommen...
+#ifdef __APPLE__ //macOS
+	// Under 10.10 umlauts are transferred correctly...
 	mCstr = mPathname.ToCString(Charset::ForName("UTF-8"));
-	#elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
 	mCstr = mPathname.ToCString(Charset::ForName("UTF-8"));
-	#elif defined _WIN32 //Windows
-	mCstr = mPathname.ToCString(Charset::ForName("Windows-1252"));     //Muss unter Windows Windows-1252 sein bei fopen
-	#endif
+#elif defined _WIN32 //Windows
+	// Must be under Windows Windows-1252 for fopen
+	mCstr = mPathname.ToCString(Charset::ForName("Windows-1252"));
+#endif
 }
 
 String File::Resolve(String parent, String child)
 {
-	//Parent und child sind normalisiert.
+	// Parent and child are normalized
 	String sep;
 	sep.Append(DIR_SEP);
 
-	//Unter UNIX:
+	// under UNIX:
 	if(parent.Length() < 1 && child.Length() < 1)return sep;
 
-	//Wenn child mit Trenner beginnt
+	// If child begins with separator
 	if(child.CharAt(0) == DIR_SEP)
 	{
 		if(parent.Equals(sep))return child;
@@ -135,7 +135,7 @@ String File::Normalize(const String &path)
 	{
 		uint16 character = pathname.CharAt(a);
 
-		//Entferne doppelte Pfadtrenner
+		// Remove duplicate separator
 		if(prev == DIR_SEP && character == DIR_SEP)
 		{
 			pathname.DeleteCharAt(a);
@@ -145,17 +145,15 @@ String File::Normalize(const String &path)
 		prev = character;
 	}
 
-	//Wenn letzter Buchstabe Pfadtrenner ist und Dateiname länger als 1
+	// If last character is path separator and file name is longer than 1
 	if(prev == DIR_SEP && pathname.Length() > 1)pathname.DeleteCharAt(pathname.Length() - 1);
-	//_pathname = URLDecode( _pathname ); //ACHTUNG, dies ist wegen iOS und Leerzeichen eingefügt worden, es ist zu prüfen, ob das allgemeingültig sein muss
-	//Unter Windows definitiv NEIN
-	//Unter macOS definitiv NEIN
+
 	return pathname;
 }
 
 bool File::MakeDirectory()
 {
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	int32 result = mkdir(mCstr.ConstData(),S_IRWXU|S_IRGRP|S_IROTH);
 	return result == 0;
@@ -169,7 +167,7 @@ bool File::MakeDirectory()
 bool File::Exists() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	return access(mCstr.ConstData(), F_OK) == 0;
 
@@ -186,7 +184,7 @@ bool File::Exists() const
 bool File::CanRead() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	return access(mCstr.ConstData(), R_OK) == 0;
 
@@ -205,7 +203,7 @@ bool File::CanRead() const
 bool File::CanWrite() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	return access(mCstr.ConstData(), W_OK) == 0;
 
@@ -223,7 +221,7 @@ bool File::CanWrite() const
 
 bool File::IsDirectory() const
 {
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	struct stat st;
 	lstat(mCstr.ConstData(), &st);
@@ -245,7 +243,7 @@ bool File::IsDirectory() const
 bool File::IsFile() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	struct stat st;
 	lstat(mCstr.ConstData(), &st);
@@ -268,7 +266,7 @@ bool File::IsFile() const
 bool File::IsHidden() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	return GetName().CharAt(0) == '.';
 
@@ -287,7 +285,7 @@ bool File::IsHidden() const
 bool File::IsLink() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	struct stat st;
 	lstat(mCstr.ConstData(), &st);
@@ -311,7 +309,7 @@ bool File::IsLink() const
 bool File::IsPipe() const
 {
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 	struct stat st;
 	lstat(mCstr.ConstData(), &st);
@@ -362,8 +360,8 @@ Date File::LastModified() const
 	struct stat st;
 	stat(mCstr.ConstData(), &st);
 
-	//Umrechnen
-	const time_t ct = st.st_mtime;//time_t ist die Zeit in Sekunden
+	// Convert
+	const time_t ct = st.st_mtime;//time_t is the time in seconds
 	int64 epoch = (int64)ct;
 	return Date(epoch * 1000LL);
 	#endif
@@ -426,7 +424,7 @@ Array<File>* File::ListFiles()
 {
 	if(!IsDirectory())return NULL;//throw new Exception("ShxFile \"" + GetAbsolutePath() + "\" is not a directory.");
 
-	#if defined(__APPLE__) || defined(__linux__) //macOS und Linux sind gleich (POSIX?!)
+	#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 
 	DIR* dp;
@@ -477,7 +475,7 @@ Array<File>* File::ListFiles()
 		std::vector<String> files;
 		do
 		{
-			//cFilename ist der nackte Dateiname ohne Pfad.
+			// cFilename is the raw file name without path.
 			uint16* wstr2 = (uint16*)data.cFileName;
 			uint32 len = 0;
 			while(wstr2[len] != 0)len++;
@@ -486,11 +484,12 @@ Array<File>* File::ListFiles()
 		while(FindNextFile(hFind, &data));
 		FindClose(hFind);
 
-		//Array füllen
+		// Fill array
 		Array<File>* list = new Array<File>((uint32)files.size());
 		for(uint32 a = 0; a < files.size(); a++)
 		{
-			//In Files ist nur der Dateiname gespeichert. Pfadname muss also davor, damit es klappt...
+			// Only the file name is stored in Files.
+			// The path name must therefore precede it for it to work...
 			list->Set(a, File(mPathname, files[a]));
 		}
 
@@ -512,7 +511,7 @@ Integer File::Length() const
 	struct stat filestat;
 	int32 result = stat(mCstr.ConstData(), &filestat);
 
-	//Wenn sie nicht existiert, dann kann ich sie nicht lesen.
+	// If it doesn't exist, then I can't read it.
 	if(result != 0)throw new Exception(jm::String::Format(Tr("File \"%s\" does not exist."),
 																			&GetAbsolutePath()));
 
@@ -958,21 +957,21 @@ File jm::ResourceDir(const String &bundleId)
 	CFURLRef resourceDirURL = CFBundleCopyResourcesDirectoryURL(thisBundle);
 
 
-	#if TARGET_OS_IPHONE == 1 // iOS ggf. -DTARGET_OS_IPHONE als Kompileroption ergänzen
+	#if TARGET_OS_IPHONE == 1 // iOS add -DTARGET_OS_IPHONE as compiler option if necessary
 
-	//Unter IOS ist das Resourcedir gleichzeitig der Rootordner der App...
+	// On iOS, the resource folder is also the root folder of the app...
 
-	//Kovertiere Bundle-URL in String
+	// Convert bundle URL to string
 	CFStringRef sr = CFURLCopyPath(resourceDirURL);
 	String filename = String::FromCFString(sr);
 
-	//Aufräumen
+	// Clean up
 	CFRelease(cfstr);
 	CFRelease(sr);
 	CFRelease(resourceDirURL);
 	delete cstring;
 
-	//Rückgabe
+	// Return
 	return new File(filename);
 
 
@@ -980,17 +979,17 @@ File jm::ResourceDir(const String &bundleId)
 
 	CFURLRef bundleURL = CFBundleCopyBundleURL(thisBundle);
 
-	//Achtung URL kann kodiert sein. Für Leerzeichen ist das z.B. %20
+	// Attention URL can be coded. For spaces, this is e.g. %20
 
-	//Kovertiere Bundle-URL in String
+	// Convert bundle URL to string
 	CFStringRef sr1 = CFURLCopyPath(bundleURL);
 	String filename = URLDecode(String::FromCFString(sr1));
 
-	//Hänge Ressourcen-URL an
+	// Attach resource URL
 	CFStringRef sr2 = CFURLCopyPath(resourceDirURL);
 	filename.Append(URLDecode(String::FromCFString(sr2)));
 
-	//Aufräumen
+	// Clean up
 	CFRelease(cfstr);
 	CFRelease(bundleURL);
 	CFRelease(resourceDirURL);
@@ -999,15 +998,15 @@ File jm::ResourceDir(const String &bundleId)
 
 	#endif
 
-	//Rückgabe
+	// Return
 	return File(filename);
 
 	#elif defined __linux__ //Linux
-	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
+	// The Exec-Dir is currently used as the resource directory
 	return File(ExecDir());
 	#elif defined _WIN32 //Windows
 
-	//Als Resourcedirectory wird zurzeit des Exec-Dir genommen
+	// The Exec-Dir is currently used as the resource directory
 	return File(ExecDir());
 
 	#endif
@@ -1016,12 +1015,13 @@ File jm::ResourceDir(const String &bundleId)
 File jm::PropertyDir()
 {
 	#ifdef __APPLE__ //macOS und ios
-	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
+	// Method is designed for IOS so far, but also works under macOS, but still needs to be tested.
 	char* home = getenv("HOME");
 	//IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
 	return File(home, "Library");
 	#elif defined __linux__ //Linux
-	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
+	// A subdirectory around the home folder with the application name is provided as the property
+	// directory
 	char* home = getenv("HOME");
 	return File(home, "." + ExecName());
 	#elif defined _WIN32 //Windows
@@ -1036,7 +1036,7 @@ File jm::PropertyDir()
 
 			String ret = String((uint16*)path, textlength);
 
-			//Als PropertyDir wird zurzeit des Exec-Dir genommen
+			// The Exec-Dir is currently used as the PropertyDir
 			return new ShxFile(ret);
 		}
 
@@ -1048,13 +1048,14 @@ File jm::PropertyDir()
 
 File jm::UserDir()
 {
-	#ifdef __APPLE__ //macOS und ios
-	//Methode ist auf IOS ausgelegt bisher, funkioniert aber auch unter macOS, muss abernoch geprüft werden.
+	#ifdef __APPLE__ //macOS and ios
+	// Method is designed for IOS so far, but also works under macOS, but still needs to be tested.
 	char* home = getenv("HOME");
 	//IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
 	return File(home);
 	#elif defined __linux__ //Linux
-	//Als Propertydirectory wird ein Unterverzeichnis um Homeordner mit dem Applicationnamen vorgesehen
+	// A subdirectory around the home folder with the application name is provided as the property
+	// directory
 	char* home = getenv("HOME");
 	return File(home);
 	#elif defined _WIN32 //Windows
@@ -1068,7 +1069,7 @@ File jm::UserDir()
 
 		String ret = String((uint16*)path, textlength);
 
-		//Als PropertyDir wird zurzeit des Exec-Dir genommen
+		// The Exec-Dir is currently used as the PropertyDir
 		return File(ret);
 	}
 

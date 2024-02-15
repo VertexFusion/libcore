@@ -130,11 +130,11 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 	}
 
 	
-	//Ausgabe auf Console
+	// Output to console
 	if(logLevel > kLogDebug)std::cout << msg << std::endl;
 
-	//Ausgabe ins Logfile
-	#ifdef __APPLE__ //macOS und iOS
+	// Output to log file
+	#ifdef __APPLE__ //macOS and iOS
 
 	if(logLevel == kLogError)
 	{
@@ -184,7 +184,8 @@ jm::String jm::System::GetUserID()
 
 	uint16 user_name[UNLEN + 1];
 	DWORD user_name_size = sizeof(user_name);
-	GetUserName((LPWSTR)user_name, &user_name_size);  //Explizite Typumwandlung unter VC++ 2010 eingefügt.
+	// Explicit type conversion under VC++ 2010 added.
+	GetUserName((LPWSTR)user_name, &user_name_size);
 	return String(user_name, user_name_size);
 
 	#endif
@@ -206,15 +207,17 @@ jm::String jm::System::GetUserFullName()
 	uint16 user_name[UNLEN + 1];
 	DWORD user_name_size = sizeof(user_name);
 
-	//Diese Abfrage funktioniert bei Domänen-Accounts, aber nicht bei lokalen Benutzern. Dann wird ein Fehler zurückgegeben
-	int ret = GetUserNameEx(NameDisplay, (LPWSTR)user_name, &user_name_size); //Explizite Typumwandlung unter VC++ 2010 eingefügt.
+	// This query works for domain accounts, but not for local users. An error is then returned.
+	// Explicit type conversion under VC++ 2010 added.
+	int ret = GetUserNameEx(NameDisplay, (LPWSTR)user_name, &user_name_size);
 	if(ret != 0)return String(user_name, user_name_size);
 
-	//Name konnte nicht ermittelt werden. Hole ihn anders
-	ret = GetUserNameEx(NameSamCompatible, (LPWSTR)user_name, &user_name_size);//Explizite Typumwandlung unter VC++ 2010 eingefügt.
+	// Name could not be determined. Get it differently.
+	// Explicit type conversion under VC++ 2010 added.
+	ret = GetUserNameEx(NameSamCompatible, (LPWSTR)user_name, &user_name_size);
 	if(ret == 0)return "<ERROR while searching username>";
 
-	//Name hat die Form "Uwe-PC\Uwe"
+	// Name has form "Uwe-PC\Uwe"
 	String str = String(user_name, user_name_size);
 	return str.Substring(str.IndexOf('\\') + 1);
 
@@ -223,7 +226,7 @@ jm::String jm::System::GetUserFullName()
 }
 
 /*
-Windows spezifisch:
+Windows specific:
 
 char *orig = "Hello, World!";
 cout << orig << " (char *)" << endl;
@@ -241,22 +244,22 @@ wcout << wcstring << endl;
 
 void* jm::System::LoadDynamicLibrary(jm::File* file)
 {
-	#ifdef __APPLE__ //macOS und iOS
+	#ifdef __APPLE__ //macOS and iOS
 
 	ByteArray cstr = file->GetAbsolutePath().ToCString();
-	void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY ist default
+	void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
 	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
 	return libptr;
 
 	#elif defined __linux__//Linux
 
 	char* cstr = file->GetAbsolutePath().ToCString();
-	void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY ist default
+	void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY is default
 	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
 	delete cstr;
 	return libptr;
 
-	#elif defined _WIN32//Windows
+	#elif defined _WIN32// Windows
 
 	uint16* wstr = file->GetAbsolutePath().ToWString();
 	HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
@@ -290,7 +293,7 @@ void jm::System::UnloadDynamicLibrary(void* library)
 
 void* jm::System::FindSymbol(void* library, const String &name)
 {
-	#ifdef __APPLE__ //macOS und iOS
+	#ifdef __APPLE__ //macOS and iOS
 
 	ByteArray cstr = name.ToCString();
 	void* symptr = dlsym(library, cstr.ConstData());
@@ -315,7 +318,7 @@ void* jm::System::FindSymbol(void* library, const String &name)
 	#endif
 }
 
-//Globaler AutoreleasePool...
+// Global AutoreleasePool...
 jm::AutoreleasePool* mainthreadPool = NULL;
 
 jm::AutoreleasePool* jm::System::GetAutoreleasePool()
@@ -325,7 +328,7 @@ jm::AutoreleasePool* jm::System::GetAutoreleasePool()
 
 void jm::System::Init()
 {
-	//First of all, the charsets
+	// First of all, the charsets
 	InitCharsets();
 
 	// Start Autorelease pool
@@ -339,7 +342,7 @@ void jm::System::Quit()
 {
 	if(mainthreadPool != NULL)delete mainthreadPool;
 
-	//Zu allerletzt
+	// Finally
 	QuitCharsets();
 }
 

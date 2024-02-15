@@ -50,13 +50,14 @@ void ZipFile::Open()
 
 	mFile->Open(kFmRead);
 
-	//Wenn die Datei leer ist, dann sind wir fertig
+	// If the file is empty, then we are done
 	if(length == 0)return;
 
-	//Wir lesen zuerst die Datei am Ende ein, wo das Verzeichnis mit den Einträgen steht.
-	//Idiotischer Weise muss man das Ende suchen, weil der letzte Eintrag eine variable Länge hat.
-	//Außerdem kann man die Datei nicht einfach vom Anfang an lesen, weil Einträge unvollständig
-	//sein dürfen und die Datenlänge der komprimierten Daten nicht am Anfang gespeichert werden muss.
+	// We first read the file at the end, where the directory with the entries is located.
+	// It's idiotic that you have to search for the end because the last entry has a variable length.
+	// In addition, the file cannot simply be read from the beginning, because entries may be
+	// incomplete and the data length of the compressed data does not have to be saved at the
+	// beginning.
 
 	uint32 signature;
 	ByteArray eocd=ByteArray(22,0);
@@ -174,7 +175,7 @@ jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
 	mFile->Seek(entry->mHeaderOffset + 30 + fl + el);
 	mFile->Stream::ReadFully(input);
 
-	if(cm == 0) //Daten unkomprimiert
+	if(cm == 0) //Daten uncompressed
 	{
 		memcpy(buffer, input.ConstData(), entry->mCompressedSize);
 	}

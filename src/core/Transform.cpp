@@ -59,7 +59,7 @@ Double Transform::TransAngle(const Double& angle) const
 	direction.RotateZ(angle);
 
 	// Change angles
-	// TODO: NOT SHURE IF THIS IS COMPLIANT IF ROTATION IS NOT PARALLEL TO Z AXIS
+	// TODO: NOT SURE IF THIS IS COMPLIANT IF ROTATION IS NOT PARALLEL TO Z AXIS
 	direction = Trans(direction);
 	center = Trans(center);
 
@@ -188,12 +188,13 @@ void Transform::InitMirroring(const jm::Vertex3 &planePoint,
 	// Koordinatenform der Ebene
 	// a*x + b*y + c*z = d
 
-	// Normalenform der Ebene
-	// (x - p) * n = 0 (p: Ortsvektor der Ebene, n: Normalenvektor der Ebene, x:Beliebiger Wekter
+	// Normal form of the plane
+	// (x - p) * n = 0
+	// p: Location vector of the plane, n: Normal vector of the plane, x:Arbitrary vector
 	//
 	// a = n1, b=n2, c=n3, d=p1*n1+p2*n2+p3*n3
 
-	//Für eine Ebene mit d=0 ist die Spiegelmatrix wie folgt definiert:
+	// For a plane with d=0, the mirror matrix is defined as follows:
 	//
 	//     | 1-2a^2  -2ab   -2ac  |
 	// A = | -2ab   1-2b^2  -2bc  |

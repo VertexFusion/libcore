@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-// Unter macOS 10.9 Namespace ergänzt
+// Under macOS 10.9 namespaces added
 int32 jm::gErrorCount;
 int32 jm::gTestCount;
 int32 jm::gTotalErrorCount;

@@ -327,7 +327,7 @@ uint8 MacRomanDecoder::EncodeCharacter(uint16 unicode)
 			return 0x7D;
 		case '~':
 			return 0x7E;
-		//0x7f ist DEL (unsichtbar)
+		//0x7f is DEL (invisible)
 		case 0x00C4:
 			return 0x80; //Adieresis (Ä)
 		case 0x00C5:

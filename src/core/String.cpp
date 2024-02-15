@@ -937,7 +937,7 @@ String String::Format(const String format, ...)
 
 		//Formatierungsstring bearbeiten
 		//Formatierung allgemein: %[argument_index$][flags][width][.precision]conversion
-		// Der Index ist 1-basiert
+		// The index is 1-based
 		if(c=='%' &&
 			cnt < format.Length()-1 &&
 			( cnt==0 || (cnt>0 && format.CharAt(cnt-1)!='\\')) )
@@ -1090,7 +1090,7 @@ namespace jm
 
 	ostream &operator << (ostream &out, const String &str)
 	{
-		//\todo Charset am Besten global setzen und holen. So ist es ineffizient
+		//\todo It is best to set and get the charset globally. It's inefficient that way
 		if(gConsoleCharset == NULL)gConsoleCharset = Charset::ForName("Windows-1252");
 		String s = str;
 		ByteArray cstr = s.ToCString(gConsoleCharset);

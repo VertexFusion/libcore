@@ -86,7 +86,7 @@ void Colour::ToRGB()
 	switch(mMode)
 	{
 		case kColourModeRGB:
-			//Keine Umwandlung notwendig.
+			// No conversion necessary.
 			break;
 
 		case kColourModeGrey:
@@ -101,7 +101,7 @@ void Colour::ToRGB()
 
 		case kColourModeCMYK:
 		{
-			//Beschreibung nach PDF 1.6-Reference 6.2.4 (S.454)
+			// Description acc. to PDF 1.6-Reference 6.2.4 (S.454)
 			mMode = kColourModeRGB;
 			uint16 c = col.cmyk.cyan;
 			uint16 m = col.cmyk.magenta;
@@ -132,12 +132,12 @@ void Colour::ToGreyScale()
 		}
 
 		case kColourModeGrey:
-			//Keine Umwandlung notwendig.
+			// No conversion necessary.
 			break;
 
 		case kColourModeCMYK:
 		{
-			//Der "Umweg" über RGB ist nach momentanen Stand der einfachste.
+			// The "detour" via RGB is currently the simplest.
 			ToRGB();
 			ToGreyScale();
 			break;

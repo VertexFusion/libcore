@@ -296,7 +296,7 @@
 		C62B90802AEEFC550085300B /* Hashtable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hashtable.cpp; path = src/core/Hashtable.cpp; sourceTree = "<group>"; };
 		C62B90812AEEFC550085300B /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stream.cpp; path = src/core/Stream.cpp; sourceTree = "<group>"; };
 		C62B90822AEEFC550085300B /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform.cpp; path = src/core/Transform.cpp; sourceTree = "<group>"; };
-		C62B90832AEEFC550085300B /* Extents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Extents.cpp; path = src/core/Extents.cpp; sourceTree = "<group>"; };
+		C62B90832AEEFC550085300B /* Extents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = Extents.cpp; path = src/core/Extents.cpp; sourceTree = "<group>"; };
 		C62B90842AEEFC550085300B /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector.cpp; path = src/core/Vector.cpp; sourceTree = "<group>"; };
 		C62B90852AEEFC550085300B /* Document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Document.cpp; path = src/core/Document.cpp; sourceTree = "<group>"; };
 		C62B90862AEEFC550085300B /* Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Exception.cpp; path = src/core/Exception.cpp; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 		C62B908C2AEEFC550085300B /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = System.cpp; path = src/core/System.cpp; sourceTree = "<group>"; };
 		C62B908D2AEEFC550085300B /* Date.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Date.cpp; path = src/core/Date.cpp; sourceTree = "<group>"; };
 		C62B908E2AEEFC550085300B /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = src/core/Geometry.cpp; sourceTree = "<group>"; };
-		C62B908F2AEEFC550085300B /* String.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = String.cpp; path = src/core/String.cpp; sourceTree = "<group>"; };
+		C62B908F2AEEFC550085300B /* String.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = String.cpp; path = src/core/String.cpp; sourceTree = "<group>"; };
 		C62B90902AEEFC550085300B /* Charset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Charset.cpp; path = src/core/Charset.cpp; sourceTree = "<group>"; };
 		C62B90912AEEFC550085300B /* StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringTokenizer.cpp; path = src/core/StringTokenizer.cpp; sourceTree = "<group>"; };
 		C62B90922AEEFC550085300B /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = src/core/File.cpp; sourceTree = "<group>"; };
@@ -957,6 +957,7 @@
 		C62B91502AEEFFFC0085300B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -965,6 +966,7 @@
 		C62B91512AEEFFFC0085300B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -975,6 +977,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1010,6 +1013,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

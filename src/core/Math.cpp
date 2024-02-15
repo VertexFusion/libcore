@@ -167,7 +167,7 @@ int32 jm::Random(int32 lower, int32 upper)
 	return z + lower;
 }
 
-bool jm::Propability(double percent)
+bool jm::Probability(double percent)
 {
 	int32 value = Random(0, 10000);
 	int32 threshold = (int32)(percent * 10000);

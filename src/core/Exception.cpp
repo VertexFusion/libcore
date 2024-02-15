@@ -38,7 +38,9 @@ Exception::Exception(String _message): Object()
 		symbollist[a] = String(symbols[a]);
 	}
 
-	free(symbols);//Free ist nach Doku (Netzfund) der korrekte Weg für das Freigeben. delete / delete[] ist falsch.
+	// Free is acc. to the docs (web find) the correct way to free the memory. delete / delete[] is
+	// wrong.
+	free(symbols);
 
 	#elif defined _WIN32//Windows
 	//Keine Threadbib
@@ -85,12 +87,12 @@ void Exception::PrintStackTrace() const
 		String binaryName = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();
 
-		//Adresse
+		// Address
 		pos = line.IndexOf(' ');
 		String address = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();
 
-		//Funktion
+		// Function
 		pos = line.IndexOf(' ');
 		String function = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();
@@ -148,12 +150,12 @@ String Exception::GetStrackTrace() const
 		String binaryName = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();
 
-		//Adresse
+		// Address
 		pos = line.IndexOf(' ');
 		String address = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();
 
-		//Funktion
+		// Function
 		pos = line.IndexOf(' ');
 		String function = line.Substring(0, pos);
 		line = line.Substring(pos).Trim();

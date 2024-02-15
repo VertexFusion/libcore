@@ -142,7 +142,7 @@ Matrix::~Matrix()
 
 void Matrix::Set(uint32 row, uint32 col, double value)
 {
-	//Es wird spaltenweise gespeichert
+	// It is saved column by column
 	data[row + col * m] = value;
 }
 
@@ -210,7 +210,7 @@ VxfErrorStatus Matrix::Det(double &det) const
 			// | 1 5  9 13 | = | b f j n | = | 21 22 23 24 |
 			// | 2 6 10 14 |   | c g k o |   | 31 32 33 34 |
 			// | 3 7 11 15 |   | d h l p |   | 41 42 43 44 |
-			//Bestimme die Inverse der Matix
+			// Determine the inverse of the matrix
 			double a11 = data[0];
 			double a21 = data[1];
 			double a31 = data[2];
@@ -246,14 +246,14 @@ VxfErrorStatus Matrix::Det(double &det) const
 			return eError;
 		}
 	}
-	else return eError;// throw new Exception("Cannot calculate determinante of non quadratic matrices.");
+	else return eError;
 }
 
 
 
 VxfErrorStatus Matrix::Inverse()
 {
-	//Siehe http://de.wikipedia.org/wiki/Inverse
+	// See http://de.wikipedia.org/wiki/Inverse
 	// http://www.cg.info.hiroshima-cu.ac.jp/~miyazaki/knowledge/teche23.html
 
 	if(m == n)
@@ -295,7 +295,7 @@ VxfErrorStatus Matrix::Inverse()
 			// | 0 3 6 |   | a b c |
 			// | 1 4 7 | = | d e f |
 			// | 2 5 8 |   | g h i |
-			//Bestimme die Inverse der Matix
+			// Determine the inverse of the matrix
 			double a = data[0];
 			double b = data[3];
 			double c = data[6];
@@ -328,7 +328,7 @@ VxfErrorStatus Matrix::Inverse()
 			// | 1 5  9 13 | = | b f j n | = | 21 22 23 24 |
 			// | 2 6 10 14 |   | c g k o |   | 31 32 33 34 |
 			// | 3 7 11 15 |   | d h l p |   | 41 42 43 44 |
-			//Bestimme die Inverse der Matix
+			// Determine the inverse of the matrix
 			double a11 = data[0];
 			double a21 = data[1];
 			double a31 = data[2];
@@ -365,9 +365,9 @@ VxfErrorStatus Matrix::Inverse()
 
 			return eOK;
 		}
-		else return eError;// throw new Exception("No algorithm for calculating inverse of higher sizes...");
+		else return eError;
 	}
-	else return eError; // throw new Exception("Cannot calculate inverse of non quadratic matrices.");
+	else return eError;
 }
 
 void Matrix::Transpose()
@@ -437,7 +437,7 @@ double Matrix::Norm(MatrixNorm nm) const
 	double sum;
 	switch(nm)
 	{
-		//Spaltensummennorm
+		// Column sum norm
 		case kMatrixNorm1:
 			for(uint32 col = 0; col < n; col++)
 			{
@@ -450,7 +450,7 @@ double Matrix::Norm(MatrixNorm nm) const
 			}
 			break;
 
-		//Zeilensummennorm
+		// Row sum norm
 		case kMatrixNormInf:
 			for(uint32 row = 0; row < m; row++)
 			{
@@ -464,7 +464,7 @@ double Matrix::Norm(MatrixNorm nm) const
 			break;
 
 		default:
-			return 0;// throw new Exception("Norm nicht implementiert");
+			return 0;
 	}
 
 	return norm;
@@ -632,7 +632,8 @@ const Vertex3 jm::operator*(Matrix const &A, Vertex3 const &b)
 
 const Matrix jm::operator*(Matrix const &A, Matrix const &B)
 {
-	//Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
+	// The number of columns in the left-hand matrix must match the number of rows in the right-hand
+	// matrix
 	if(A.n != B.m) throw "Die Matrizen passen nicht zusammen! A: ";   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
 	Matrix R = Matrix(A.m, B.n);
@@ -642,13 +643,13 @@ const Matrix jm::operator*(Matrix const &A, Matrix const &B)
 	// | 1 4 7 | * | 1 4 7 |
 	// | 2 5 8 |   | 2 5 8 |
 
-	for(uint32 i = 0; i < A.m; i++)   // i: Zeilen der Linken
+	for(uint32 i = 0; i < A.m; i++)   // i: Left Rows
 	{
-		for(uint32 j = 0; j < B.n; j++)   //j: Spalten der Rechten
+		for(uint32 j = 0; j < B.n; j++)   //j: RIght columns
 		{
 			uint32 rIndex = i + j * A.m;
 
-			for(uint32 k = 0; k < A.n; k++)   // k: Spalten der Linken = Zeilen der Rechten
+			for(uint32 k = 0; k < A.n; k++)   // k: Left Cols = Right Cols
 			{
 				uint32 aIndex = i + k * A.m;
 				uint32 bIndex = k + j * B.m;
@@ -839,7 +840,7 @@ const Vector jm::operator*(Matrix const& A, Vector const& b)
 	// | 0 3 6 |   | x |
 	// | 1 4 7 | * | y |
 	// | 2 5 8 |   | z |
-	if(A.n != b.m) throw("Matrix muss gleiche Spaltenzahl wie Vektor Zeilenzahl haben");
+	if(A.n != b.m) throw("Matrix must have the same number of columns as vector number of rows");
 
 	Vector ret = Vector(A.m);
 
