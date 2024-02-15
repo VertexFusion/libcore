@@ -135,7 +135,7 @@ namespace jm
 			 1 January 2001.
 			 */
 			static Date FromNSDate(double nsdate);
-		
+
 			/*!
 			 \brief Destructor
 			 */

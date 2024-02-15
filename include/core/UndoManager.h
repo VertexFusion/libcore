@@ -50,7 +50,7 @@
 namespace jm
 {
 	class Document;
-	
+
 	/*!
 	 \brief This class represents the manager for undo operations.
 

@@ -663,7 +663,7 @@ Integer File::ReadFully(ByteArray& buffer, Integer length)
 		rest -= step;
 	};
 
-	return read;	
+	return read;
 }
 
 Integer File::Write(uint8* buffer, Integer length)
@@ -705,7 +705,7 @@ Array<String> File::GetTags()const
 																	 kCFURLTagNamesKey,
 																	 &labels,
 																	 NULL);
-	
+
 	// Clean unnecessary stuff
 	CFRelease(cfstr);
 	CFRelease(urlref);
@@ -729,11 +729,11 @@ Array<String> File::GetTags()const
 			return labelarray;
 		}
 	}
-	
+
 	if(labels!=NULL)CFRelease(labels);
 
 #endif
-	
+
 	// Return empty if no tags found array
 	return Array<String>(0);
 }
@@ -742,13 +742,13 @@ VxfErrorStatus File::AddTag(const String &tag)
 {
 #ifdef __APPLE__ //macOS
 	Array<String> oldtags = GetTags();
-	
+
 	//Check is tag is present, if yes, just return
 	for(Integer index=0;index<oldtags.Length();index++)
 	{
 		if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
 	}
-	
+
 	//Create new array and append tag
 	Integer newsize=oldtags.Length()+1;
 	CFStringRef* strs = new CFStringRef[newsize];
@@ -756,7 +756,7 @@ VxfErrorStatus File::AddTag(const String &tag)
 	{
 		strs[index]=oldtags[index].ToCFString();;
 	}
-	
+
 	strs[newsize-1]=tag.ToCFString();
 
 	CFArrayRef newtags = CFArrayCreate(NULL,(const void**)strs, newsize, &kCFTypeArrayCallBacks);
@@ -764,7 +764,7 @@ VxfErrorStatus File::AddTag(const String &tag)
 	//
 	//
 	//
-	
+
 	// Create necessary system related objects
 	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
 																 mCstr.ConstData(),
@@ -779,18 +779,18 @@ VxfErrorStatus File::AddTag(const String &tag)
 																	kCFURLTagNamesKey,
 																	newtags,
 																	NULL);
-	
+
 	// Clean unnecessary stuff
-	
+
 	for(Integer index=0;index<newsize;index++)
 	{
 		CFRelease(strs[index]);
 	}
-	
+
 	CFRelease(cfstr);
 	CFRelease(urlref);
 	CFRelease(newtags);
-	
+
 	if(result==true)return eOK;
 	else return eNo;
 
@@ -802,7 +802,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 {
 #ifdef __APPLE__ //macOS
 	Array<String> oldtags = GetTags();
-	
+
 	//Check is tag is present, if not, just return
 	bool found=false;
 	for(Integer index=0;index<oldtags.Length();index++)
@@ -814,7 +814,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 		}
 	}
 	if(!found)return eOK;
-	
+
 	//Create new array and remove tag
 	Integer newsize=oldtags.Length()-1;
 	CFStringRef* strs = new CFStringRef[newsize];
@@ -828,13 +828,13 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 			cnt++;
 		}
 	}
-	
+
 	CFArrayRef newtags = CFArrayCreate(NULL,(const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
 	//
 	//
 	//
-	
+
 	// Create necessary system related objects
 	CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
 																 mCstr.ConstData(),
@@ -849,18 +849,18 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 																	kCFURLTagNamesKey,
 																	newtags,
 																	NULL);
-	
+
 	// Clean unnecessary stuff
-	
+
 	for(Integer index=0;index<newsize;index++)
 	{
 		CFRelease(strs[index]);
 	}
-	
+
 	CFRelease(cfstr);
 	CFRelease(urlref);
 	CFRelease(newtags);
-	
+
 	if(result==true)return eOK;
 	else return eNo;
 
@@ -942,7 +942,7 @@ File jm::ResourceDir(const String &bundleId)
 
 	//CFString aus Bundle-ID erzeugen
 	CFStringRef cfstr = bundleId.ToCFString();
-	
+
 	//Erzeuge Referenzen auf das Bundle, die BundleURL und die Ressourcen-URL
 	CFBundleRef thisBundle = CFBundleGetBundleWithIdentifier(cfstr);
 	if(thisBundle == NULL)

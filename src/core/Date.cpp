@@ -85,7 +85,7 @@ Date Date::FromNSDate(double nsdate)
 	d.mTime=978307200000;
 	int64 date=static_cast<int64>(nsdate*1000.0);//s in ms
 	d.mTime+=date;
-	
+
 	return d;
 }
 

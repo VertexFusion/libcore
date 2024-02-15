@@ -49,13 +49,13 @@ namespace jm
 	/*!
 	 \brief \c string implements our generic string because \c std::string is inadequate and
 	 inconvenient. The internal character encoding is Unicode (UTF-8).
-	 
+
 	 For the conversion from std::string to jm::String the following call can be used:
 	 \code{.cpp}
 	 std::string msg = "Hello World!";
 	 jm::String str = jm::String(msg.c_str());
 	 \endcode
-	 
+
 	  \ingroup core
 	 */
 	class DllExport String: public Object, public Comparable<String>

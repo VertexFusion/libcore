@@ -71,7 +71,7 @@ namespace jm
 			 \param y Y-Komponente des Vektors
 			 */
 			Vertex2(Double x, Double y);
-		
+
 			Vertex2(const Vertex3 &v3);
 
 			/*!

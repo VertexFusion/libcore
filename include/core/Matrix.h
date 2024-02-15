@@ -182,21 +182,21 @@ namespace jm
 
 			/*!
 			 \brief Calculates the determinant of a matrix.
-			 
+
 			 This method is currently limited to a maximum of 4x4 matrices.
 			 */
 			VxfErrorStatus Det(double &det) const;
 
 			/*!
 			 \brief Inverts this matrix.
-			 
+
 			 This method is currently limited to a maximum of 4x4 matrices.
 			 */
 			VxfErrorStatus Inverse();
 
 			/*!
 			 \brief This method returns the reference to the data array.
-			 
+
 			 Only needed for efficient access for OpenGL.
 			 */
 			const double* GetRef() const;
@@ -206,15 +206,15 @@ namespace jm
 			 matrix norm.
 			 */
 			double Norm(MatrixNorm norm) const;
-		
+
 			/*!
 			 \brief Returns the sum of the diagonal elements.
 			 */
 			double Trace() const;
-		
+
 			/*!
 			 \brief Returns the Eigen Values of the matrix.
-			 
+
 			 Currentrly this is restricted to matrices of maximum 3x3.
 			 */
 			Vector Eigen() const;

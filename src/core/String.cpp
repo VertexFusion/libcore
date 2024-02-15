@@ -207,13 +207,13 @@ String String::FromCFString(CFStringRef cfstring)
 	// C-String
 	const char* ccstr=CFStringGetCStringPtr(cfstring,kCFStringEncodingUTF8);
 	if(ccstr!=NULL)return String(ccstr);
-	
+
 	// Fallback
 	char* cstr=new char[length*2];//Hope, that not all characters are greater than 4 bytes representation
 	CFStringGetCString(cfstring, cstr, length*2, kCFStringEncodingUTF8);
 	String result=String(cstr);
 	delete[] cstr;
-	
+
 	return result;
 }
 
@@ -929,7 +929,6 @@ String String::Format(const String format, ...)
 	va_list args;
 	va_start(args,format);
 
-	
 	for(Integer cnt=0;cnt<format.Length();cnt++)
 	{
 
@@ -959,7 +958,7 @@ String String::Format(const String format, ...)
 			uint16 cmd = format.CharAt(cnt+count);
 			Integer flg1=0;
 			Integer dec = 5;
-				
+
 			//Integer parameter
 			if(cmd=='i')
 			{

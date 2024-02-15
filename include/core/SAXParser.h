@@ -170,7 +170,7 @@ namespace jm
 			 \brief Destructor
 			 */
 			virtual ~SAXParser();
-		
+
 			void Parse(File &file);
 
 			/*!

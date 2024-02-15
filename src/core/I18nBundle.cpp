@@ -40,7 +40,6 @@ I18nBundle::I18nBundle(const String &language)
 	mLanguage = language;
 }
 
-
 void I18nBundle::AppendMO(File file)
 {
 	if(!file.Exists())
@@ -52,14 +51,14 @@ void I18nBundle::AppendMO(File file)
 
 		return;
 	}
-	
+
 	// Read file from disk
 	Integer length=file.Length();
 	ByteArray buf = ByteArray(length,0);
 	file.Open(kFmRead);
 	Integer check = file.Stream::ReadFully(buf);
 	file.Close();
-	
+
 	if(check!=length)
 	{
 		System::Log(jm::String::Format(Tr("File not fully read: %s"),
@@ -67,7 +66,7 @@ void I18nBundle::AppendMO(File file)
 		return;
 	}
 	uint8* buffer=(uint8*)buf.ConstData();
-	 
+
 	// Process content
 	uint32 magic=jm::DeserializeLEUInt32(buffer, 0);
 	uint32 version=jm::DeserializeLEUInt32(buffer, 4);
@@ -87,7 +86,7 @@ void I18nBundle::AppendMO(File file)
 													 jm::String::Ref(file.GetPath())), kLogError);
 		return;
 	}
-	
+
 	struct Record
 	{
 		uint32 origOffset=0;
@@ -95,9 +94,9 @@ void I18nBundle::AppendMO(File file)
 		uint32 transOffset=0;
 		uint32 transLength=0;
 	};
-	
+
 	std::vector<Record>records;
-	
+
 	// Read the string records
 	uint32 offset=0;
 	for(uint32 a=0;a<stringCount;a++)
@@ -109,10 +108,10 @@ void I18nBundle::AppendMO(File file)
 		rec.transOffset=jm::DeserializeLEUInt32(buffer, transOffset+offset+4);
 
 		offset+=8;
-		
+
 		records.push_back(rec);
 	}
-	
+
 	// Process the records
 	for(uint32 a=0;a<stringCount;a++)
 	{

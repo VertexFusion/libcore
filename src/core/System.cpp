@@ -47,7 +47,7 @@ jm::String jm::System::GetLanguage()
 	String langCode = String::FromCFString(cflangCode);
 
 	CFRelease(langs);
-		
+
 	return langCode;
 
 	#elif defined __linux__//Linux
@@ -116,20 +116,20 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 			break;
 	}
 	msg << message;
-	
+
 	switch(logLevel)
 	{
 		case kLogError:
 		case kLogWarning:
 			msg << kTxtReset;
 			break;
-			
+
 		default:
 			// Do nothing here.
 			break;
 	}
 
-	
+
 	// Output to console
 	if(logLevel > kLogDebug)std::cout << msg << std::endl;
 
@@ -333,9 +333,9 @@ void jm::System::Init()
 
 	// Start Autorelease pool
 	if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
-	
+
 	// Load default translation
-	I18nBundle::InitDefault();	
+	I18nBundle::InitDefault();
 }
 
 void jm::System::Quit()

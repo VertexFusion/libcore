@@ -39,16 +39,16 @@ class Double;
 struct DllExport Bool
 {
 private:
-	
+
 	int8 mValue;
-	
+
 public:
-	
+
 	Bool()
 	{
 		mValue=false;
 	};
-	 
+
 	 Bool(int8 value)
 	 {
 		 mValue=value;
@@ -58,19 +58,19 @@ public:
 	{
 		mValue=value.mValue;
 	};
-	
+
 	Bool &operator=(const Bool &another)
 	{
 		if(this != &another)
 		{
 			mValue=another.mValue;
 		}
-		
+
 		return *this;
 	};
 
 	static Bool ValueOf(const jm::String& value);
-	
+
 	bool IsTrue() const{return mValue==BoolTrue;};
 
 	bool IsFalse() const{return mValue==BoolFalse;};
@@ -88,7 +88,7 @@ public:
 	{
 		return v1.mValue==v2.mValue;
 	};
-	 
+
 	 DllExport
 	 friend bool operator==(Bool v1, bool v2)
 	 {
@@ -199,7 +199,7 @@ class DllExport Integer : public jm::Comparable<Integer>
 		\brief Implementation of the assignment operator.
 		*/
 	  Integer& operator=(const Integer& another);
-	
+
 		Integer &operator+=(const Integer &another);
 
 	Integer &operator-=(const Integer &another);
@@ -241,16 +241,16 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	DllExport
 	friend Integer operator-(Integer left, Integer right);
-	
+
 	DllExport
 	friend Integer operator-(Integer left, int32 right);
-	
+
 	DllExport
 	friend Integer operator-(int32 left, Integer right);
-	
+
 	DllExport
 	friend Integer operator-(Integer left, uint32 right);
-	
+
 	DllExport
 	friend Integer operator-(uint32 left, Integer right);
 
@@ -295,10 +295,10 @@ class DllExport Integer : public jm::Comparable<Integer>
 
 	DllExport
 	friend Integer operator/(Integer left, Integer right);
-	
+
 	DllExport
 	friend Integer operator/(Integer left, int32 right);
-	
+
 	DllExport
 	friend Integer operator/(Integer left, uint32 right);
 

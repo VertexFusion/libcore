@@ -59,7 +59,7 @@ void SAXParser::Parse(File &file)
 void SAXParser::Parse(const String &xml)
 {
 	String token;
-	
+
 	// Make sure that the token is large enough and does not have to be constantly enlarged for
 	// binary data.
 	token.CheckCapacity(xml.Length());

@@ -286,19 +286,19 @@ namespace jm
 			 \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander
 			 */
 			int32 CompareTo(const File &other) const override;
-		
+
 			/*!
 			 \brief Returns the tags of the file.
-			 
+
 			 In mac os these tags are presented by the Finder.
 			 */
 			Array<String> GetTags()const;
-		
+
 			/*!
 			 \brief Adds a tag to the file. If the tag already exists, nothing happens.
 			 */
 			VxfErrorStatus AddTag(const String &tag);
-		
+
 			/*!
 			 \brief Remove a tag from the file. If the tag not exists, nothing happens.
 			 */

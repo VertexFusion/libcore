@@ -118,7 +118,7 @@ namespace jm
 			 saved, this value is set to false. In the undo machanism, this value is set automatically
 			 and only needs to be changed manually if you do not use the undo mechanism.
 
-			 \param status status if whether the file hase been changed (\c true) or not (\ false) 
+			 \param status status if whether the file hase been changed (\c true) or not (\ false)
 			 */
 			void SetDocumentChanged(bool status);
 

@@ -78,7 +78,7 @@ namespace jm
 			static jm::File GetTansFileByBundleId(const String &bundleId,const String &language);
 
 		private:
-		
+
 			//! Language
 			String mLanguage;
 	};

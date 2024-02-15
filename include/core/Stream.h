@@ -96,10 +96,7 @@ namespace jm
 			 \brief Liest maximal length bytes in das Array
 			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
 			 (EOF).
-			 \deprecated 
 			 */
-			//virtual Integer ReadFully(uint8* buffer, Integer length) = 0;
-
 			virtual Integer ReadFully(ByteArray &buffer, Integer length) = 0;
 			Integer ReadFully(ByteArray &buffer){return ReadFully(buffer,buffer.Size());};
 

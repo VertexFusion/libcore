@@ -502,7 +502,7 @@ uint32 Matrix::CountNonZeroElements() const
 double Matrix::Trace() const
 {
 	double sum=0.0;
-	
+
 	// Just do ensure, that we make no error even if the matrix is not square.
 	uint32 cnt = std::min(m, n);
 
@@ -510,16 +510,16 @@ double Matrix::Trace() const
 	{
 		sum+=data[i * (m + 1)];
 	}
-	
+
 	return sum;
 }
 
 Vector Matrix::Eigen() const
 {
 	if(m!=n)throw new Exception("Matrix must be square");
-	
+
 	// See: https://en.wikipedia.org/wiki/Eigenvalue_algorithm
-	
+
 	if(m==1)
 	{
 		Vector v = Vector(1);
@@ -529,12 +529,12 @@ Vector Matrix::Eigen() const
 	if(m==2)
 	{
 		Vector v = Vector(2);
-		
+
 		double trA=Trace();
 		double detA;
 		Det(detA);
 		double gapA = sqrt(trA*trA-4*detA);
-		
+
 		v.data[0]=(trA-gapA)/2.0;
 		v.data[1]=(trA+gapA)/2.0;
 
@@ -544,9 +544,9 @@ Vector Matrix::Eigen() const
 	{
 		// Note: Matrix must be symmetric
 		Vector v = Vector(3);
-		
+
 		double p1=pow(Get(0,1), 2.0)+pow(Get(0,2),2.0)+pow(Get(1,2),2.0);
-		
+
 		if(p1==0.0)
 		{
 			v.data[0]=Get(0,0);
@@ -558,35 +558,35 @@ Vector Matrix::Eigen() const
 			double q=Trace()/3.0;
 			double p2 = pow(Get(0,0)-q,2.0)+pow(Get(1,1)-q,2.0)+pow(Get(2,2)-q,2.0) +2.0*p1;
 			double p = sqrt(p2/6.0);
-			
+
 			Matrix A=*this;
 			Matrix I(3,3);
 			I.Diag(1.0);
-			
+
 			Matrix B = (1.0/p) * (A-q*I);
-			
+
 			double detB;
 			B.Det(detB);
-			
+
 			double r=detB/2.0;
-			
+
 			double phi;
-			
+
 			if( r <= -1.0)phi=M_PI/3.0;
 			else if (r >= 1.0)phi=0.0;
 			else phi = acos(r)/3.0;
-			
+
 			double eig1=q + 2.0 * p * cos(phi);
 			double eig3=q + 2.0 * p * cos(phi+(M_2PI/3.0));
 			double eig2=3.0 * q - eig1 - eig3;
-			
+
 			v.data[0]=eig1;
 			v.data[1]=eig2;
 			v.data[2]=eig3;
 		}
 		return v;
 	}
-	
+
 	throw new Exception("Matrix is greater than 3x3");
 }
 

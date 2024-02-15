@@ -88,17 +88,15 @@ namespace jm
 			 \note Beim Starten ist \c Init() aufzurufen
 			 */
 			static void Quit();
-		
+
 			/*!
 			 \brief Turns logging of timestamp on or of.
-			 
 			 \param status If \c true the timestamp will be logged. Otherwise false.
 			 */
 			static void LogEnableDate(bool status);
-		
+
 			/*!
 			 \brief Set the minimum level where the level label will be logged.
-			 
 			 \param logLevel The minimum level.
 			 */
 			static void LogEnableLabel(LogLevel logLevel);

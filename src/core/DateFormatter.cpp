@@ -485,25 +485,25 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
 		case kDayInYear:
 			value.Append(String::ValueOf(date.GetDayOfYear() + 1));
 			return;
-			
+
 		case kWeekInYear:
 			break;
-			
+
 		case kDayOfWeekInMonth:
 			break;
-			
+
 		case kAmPmMarker:
 			break;
-			
+
 		case kHourInDay1:
 			break;
-			
+
 		case kHourInAmPm0:
 			break;
-			
+
 		case kHourInAmPm1:
 			break;
-			
+
 		case kTimezone:
 			break;
 	}

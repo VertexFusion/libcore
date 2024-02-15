@@ -130,7 +130,7 @@ Bool Bool::ValueOf(const jm::String& value)
 	jm::String Integer::ToHexString()
 	{
 		jm::String ret;
-		
+
 		Integer number=mValue;
 
 		//Prüfe auf 0
@@ -182,7 +182,7 @@ Bool Bool::ValueOf(const jm::String& value)
 	jm::String Integer::ToLatinAlphabetString()
 	{
 		jm::String output;
-		
+
 		Integer number=mValue;
 
 		while(number > 0)
@@ -216,7 +216,7 @@ Bool Bool::ValueOf(const jm::String& value)
 
 	int32 Integer::Int32()const
 	{
-		return (int32) mValue; 
+		return (int32) mValue;
 	}
 
 	uint8 Integer::Uint8()const

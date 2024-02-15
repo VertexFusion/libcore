@@ -50,7 +50,7 @@ Vertex3 jm::IntersectionPointLineAndPlane(const Vertex3 &planePosition,
 	}
 
 	// Why was that here? Must the plane normal vector not be perpendicular to the direction vector?
-	// stehen? What if the line lies in the plane?
+	// What if the line lies in the plane?
 	if(normal.IsOrthogonal(direction))
 	{
 		return Vertex3(NAN, NAN, NAN);
@@ -689,13 +689,13 @@ jm::VxfErrorStatus jm::CircleParameterBy3Points(Vertex2 &centre, double &radius,
 	if(status!=eOK)return status;
 	status = M13.Det(m13);
 	if(status!=eOK)return status;
-	
+
 	double x = 0.5*m12/m11;
 	double y = -0.5*m13/m11;
-	
+
 	centre.x=x;
 	centre.y=y;
 	radius=(p1-centre).Abs();
-	
+
 	return eOK;
 }
