@@ -34,24 +34,24 @@
 
 namespace jm
 {
-	/*!
-	 \brief DWG files use many CRC (cyclic redundancy check) checksum algorithms to verify the
-	 integrity of the file. This method provides the appropriate methods to calculate and check the
-	 checksums.
-	 \ingroup core
-	 */
-	class DllExport CRC
-	{
-		public:
+   /*!
+    \brief DWG files use many CRC (cyclic redundancy check) checksum algorithms to verify the
+    integrity of the file. This method provides the appropriate methods to calculate and check the
+    checksums.
+    \ingroup core
+    */
+   class DllExport CRC
+   {
+      public:
 
-			/*!
-			 \brief Calculate checksum.
-			 \param initial Start value for CRC calculation
-			 \param buffer Pointer to the first byte in the buffer to check.
-			 \param length Length to check
-			 */
-			static uint16 CRC8(uint16 initial, uint8* buffer, uint32 length);
-	};
+         /*!
+          \brief Calculate checksum.
+          \param initial Start value for CRC calculation
+          \param buffer Pointer to the first byte in the buffer to check.
+          \param length Length to check
+          */
+         static uint16 CRC8(uint16 initial, uint8* buffer, uint32 length);
+   };
 
 
 }

@@ -37,73 +37,73 @@
 
 namespace jm
 {
-	/*!
-	 \brief This class provides the memory pool component to release objects at regular intervals
-	 that the programmer has designated for delayed release by Object::Autorelease().
-	 \ingroup core
-	 */
-	class DllExport AutoreleasePool: public Object
-	{
+   /*!
+    \brief This class provides the memory pool component to release objects at regular intervals
+    that the programmer has designated for delayed release by Object::Autorelease().
+    \ingroup core
+    */
+   class DllExport AutoreleasePool: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Constructor
-			 */
-			AutoreleasePool();
+         /*!
+          \brief Constructor
+          */
+         AutoreleasePool();
 
-			/*!
-			 \brief Destructor
-			 */
-			~AutoreleasePool();
+         /*!
+          \brief Destructor
+          */
+         ~AutoreleasePool();
 
-			/*!
-			 \brief Sends a Release() to all objects accumulated in the AutoreleasePool.
-			 */
-			void Drain();
+         /*!
+          \brief Sends a Release() to all objects accumulated in the AutoreleasePool.
+          */
+         void Drain();
 
-			/*!
-			 \brief Returns the pointer to the mutex object.
-			 */
-			Mutex* GetMutex();
+         /*!
+          \brief Returns the pointer to the mutex object.
+          */
+         Mutex* GetMutex();
 
-		private:
+      private:
 
-			/*!
-			 \brief Struct for the entries of the pool. The pool is a linked list.
-			 */
-			struct PoolEntry
-			{
-				Object* object;
-				PoolEntry* next;
-			};
+         /*!
+          \brief Struct for the entries of the pool. The pool is a linked list.
+          */
+         struct PoolEntry
+         {
+            Object* object;
+            PoolEntry* next;
+         };
 
-			/*!
-			 \brief First element in the pool.
-			 */
-			PoolEntry* mPool;
+         /*!
+          \brief First element in the pool.
+          */
+         PoolEntry* mPool;
 
-			/*!
-			 \brief Top pool element to realise FIFO.
-			 */
-			PoolEntry* mTop;
+         /*!
+          \brief Top pool element to realise FIFO.
+          */
+         PoolEntry* mTop;
 
-			/*!
-			 \brief Mutex for reference counter manipulation
-			 */
-			Mutex mMutex;
+         /*!
+          \brief Mutex for reference counter manipulation
+          */
+         Mutex mMutex;
 
-			/*!
-			 \brief Adds an object. Called in Object::Autorelease().
-			 */
-			void AddObject(Object* object);
+         /*!
+          \brief Adds an object. Called in Object::Autorelease().
+          */
+         void AddObject(Object* object);
 
-			/*!
-			 \brief Allow Object::Autorelease() access to AddObject().
-			 */
-			friend Object* Object::Autorelease();
+         /*!
+          \brief Allow Object::Autorelease() access to AddObject().
+          */
+         friend Object* Object::Autorelease();
 
-	};
+   };
 }
 
 

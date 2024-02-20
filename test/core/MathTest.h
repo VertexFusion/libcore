@@ -13,11 +13,11 @@
 
 class MathTest : public jm::Test
 {
-	
-public:
-	MathTest();
-	void DoTest();
-	
+
+   public:
+      MathTest();
+      void DoTest();
+
 };
 
 #endif /* defined(__tornado__MathTest__) */

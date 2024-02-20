@@ -37,153 +37,153 @@
 namespace jm
 {
 
-	/*!
-	 \brief Diese Klasse stellt einen Stack-Container zur Verfügung,
-	 der Datenelemente nach dem Prinzip "Last in - First out" verarbeitet
-	 */
-	template <class T>
-	class Stack
-	{
-		private:
-			struct StackElement
-			{
-				StackElement* prev;
-				T data;
+   /*!
+    \brief Diese Klasse stellt einen Stack-Container zur Verfügung,
+    der Datenelemente nach dem Prinzip "Last in - First out" verarbeitet
+    */
+   template <class T>
+   class Stack
+   {
+      private:
+         struct StackElement
+         {
+            StackElement* prev;
+            T data;
 
-				StackElement()
-				{
-					prev = NULL;
-				}
-			};
+            StackElement()
+            {
+               prev = NULL;
+            }
+         };
 
-			//Das oberste Element auf dem Stack
-			StackElement* top;
+         //Das oberste Element auf dem Stack
+         StackElement* top;
 
-			//Die Anzahl der Elemente auf dem Stack
-			uint32 count;
+         //Die Anzahl der Elemente auf dem Stack
+         uint32 count;
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstruktor für den Haufen. Hier werden alle Variablen initialisiert
-			 */
-			Stack()
-			{
-				top = NULL;
-				count = 0;
-			};
+         /*!
+          \brief Konstruktor für den Haufen. Hier werden alle Variablen initialisiert
+          */
+         Stack()
+         {
+            top = NULL;
+            count = 0;
+         };
 
-			/*!
-			 \brief Destructor für den Haufen. Hier werden alle Variabeln gelöscht
-			 */
-			~Stack()
-			{
-				Clear();
-			}
+         /*!
+          \brief Destructor für den Haufen. Hier werden alle Variabeln gelöscht
+          */
+         ~Stack()
+         {
+            Clear();
+         }
 
-			/*!
-			 \brief Diese Methode gibt wahr zurück, wenn der Stack nicht leer ist.
-			 */
-			inline bool HasElements()
-			{
-				return top != NULL;
-			};
+         /*!
+          \brief Diese Methode gibt wahr zurück, wenn der Stack nicht leer ist.
+          */
+         inline bool HasElements()
+         {
+            return top != NULL;
+         };
 
-			/*!
-			 \brief Holt das oberste Element vom Stack und gibt es zurück
-			 */
-			inline T Pop()
-			{
-				StackElement* pop = top;
-				T ret = pop->data;
-				top = pop->prev;
-				delete pop;
-				count--;
-				return ret;
-			};
+         /*!
+          \brief Holt das oberste Element vom Stack und gibt es zurück
+          */
+         inline T Pop()
+         {
+            StackElement* pop = top;
+            T ret = pop->data;
+            top = pop->prev;
+            delete pop;
+            count--;
+            return ret;
+         };
 
-			/*!
-			 \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
-			 */
-			inline T& Top() const
-			{
-				return top->data;
-			};
+         /*!
+          \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
+          */
+         inline T& Top() const
+         {
+            return top->data;
+         };
 
-			/*!
-			 \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
-			 */
-			inline T* TopRef()
-			{
-				return &top->data;
-			};
+         /*!
+          \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
+          */
+         inline T* TopRef()
+         {
+            return &top->data;
+         };
 
-			/*!
-			 \brief Gibt das zweitoberste Element vom Stack zurück, ohne es vom Stack zu löschen
-			 */
-			inline T Top2()
-			{
-				return top->prev->data;
-			};
+         /*!
+          \brief Gibt das zweitoberste Element vom Stack zurück, ohne es vom Stack zu löschen
+          */
+         inline T Top2()
+         {
+            return top->prev->data;
+         };
 
-			/*!
-			 \brief Gibt das drittoberste Element vom Stack zurück, ohne es vom Stack zu löschen
-			 */
-			inline T Top3()
-			{
-				return top->prev->prev->data;
-			};
+         /*!
+          \brief Gibt das drittoberste Element vom Stack zurück, ohne es vom Stack zu löschen
+          */
+         inline T Top3()
+         {
+            return top->prev->prev->data;
+         };
 
-			/*!
-			 \brief Fügt ein Element auf dem Stack hinzu.
-			 */
-			inline void Push(T data)
-			{
-				StackElement* item = new StackElement();
-				item->data = data;
-				item->prev = top;
-				top = item;
-				count++;
-			}
+         /*!
+          \brief Fügt ein Element auf dem Stack hinzu.
+          */
+         inline void Push(T data)
+         {
+            StackElement* item = new StackElement();
+            item->data = data;
+            item->prev = top;
+            top = item;
+            count++;
+         }
 
-			/*!
-			 \brief Löscht alle Elemente auf dem Stack
-			 */
-			inline void Clear()
-			{
-				while(HasElements())Pop();
-			};
+         /*!
+          \brief Löscht alle Elemente auf dem Stack
+          */
+         inline void Clear()
+         {
+            while(HasElements())Pop();
+         };
 
-			/*!
-			 \brief Gibt die Anzahl der Elemente auf dem Stack zurück
-			 */
-			inline uint32 Size()
-			{
-				return count;
-			}
+         /*!
+          \brief Gibt die Anzahl der Elemente auf dem Stack zurück
+          */
+         inline uint32 Size()
+         {
+            return count;
+         }
 
-			/*!
-			 \brief Kehr die Reihenfolge des Stacks um. Das unterste Element ist nun das oberste
-			 */
-			inline void Reverse()
-			{
-				StackElement* pop = NULL;
-				StackElement* push = NULL;
+         /*!
+          \brief Kehr die Reihenfolge des Stacks um. Das unterste Element ist nun das oberste
+          */
+         inline void Reverse()
+         {
+            StackElement* pop = NULL;
+            StackElement* push = NULL;
 
-				while(top != NULL)
-				{
-					//Pop
-					pop = top;
-					top = pop->prev;
+            while(top != NULL)
+            {
+               //Pop
+               pop = top;
+               top = pop->prev;
 
-					//Push
-					pop->prev = push;
-					push = pop;
-				}
+               //Push
+               pop->prev = push;
+               push = pop;
+            }
 
-				top = push;
-			}
-	};
+            top = push;
+         }
+   };
 
 }
 

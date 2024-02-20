@@ -36,35 +36,35 @@
 namespace jm
 {
 
-	/*!
-	 \brief Implementation of the BASE64 algorithm.
-	 \ingroup core
-	 */
-	class DllExport Base64
-	{
-		public:
+   /*!
+    \brief Implementation of the BASE64 algorithm.
+    \ingroup core
+    */
+   class DllExport Base64
+   {
+      public:
 
-			/*!
-			 \brief Encodes the data stream with the BASE64 algorithm.
-			 \param data The data to be encoded.
-			 \param length The length of the input buffer. After exiting the method, the length of the
-			 output buffer is returned here.
-			 \return The output buffer. The caller of the method takes over the array and has to clean
-			 it up by himself.
-			 */
-			static uint8* Encode(const uint8* data, Integer &length);
+         /*!
+          \brief Encodes the data stream with the BASE64 algorithm.
+          \param data The data to be encoded.
+          \param length The length of the input buffer. After exiting the method, the length of the
+          output buffer is returned here.
+          \return The output buffer. The caller of the method takes over the array and has to clean
+          it up by himself.
+          */
+         static uint8* Encode(const uint8* data, Integer &length);
 
-			/*!
-			 \brief Decodes the data stream with the BASE64 algorithm.
-			 \param data The data to be decoded.
-			 \param length The length of the input buffer. After exiting the method, the length of the
-			 output buffer is returned here.
-			 \return The output buffer. The caller of the method takes over the array and has to clean
-			 it up by himself.
-			 */
-			static uint8* Decode(const uint8* data, uint32 &length);
+         /*!
+          \brief Decodes the data stream with the BASE64 algorithm.
+          \param data The data to be decoded.
+          \param length The length of the input buffer. After exiting the method, the length of the
+          output buffer is returned here.
+          \return The output buffer. The caller of the method takes over the array and has to clean
+          it up by himself.
+          */
+         static uint8* Decode(const uint8* data, uint32 &length);
 
-	};
+   };
 
 }
 

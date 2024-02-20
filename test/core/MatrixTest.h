@@ -13,10 +13,10 @@
 
 class MatrixTest : public jm::Test
 {
-public:
-	MatrixTest();
-	void DoTest();
-	
+   public:
+      MatrixTest();
+      void DoTest();
+
 };
 
 #endif /* defined(__jameo__MatrixTest__) */

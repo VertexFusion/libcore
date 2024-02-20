@@ -37,47 +37,123 @@
 
 namespace jm
 {
-	/*!
-	 \brief This data type represents a Unicode character array. It is deliberately used in
-	 distinction to the character string and serves as a supporting class when encoding and
-	 decoding character strings.
-	 \ingroup core
-	 */
-	struct CharArray
-	{
-		/*!
-		 \brief The length of the array.
-		 */
-		Integer length;
+   /*!
+    \brief This datatype presents a 16 bit unicode character.
+    */
+   class Char
+   {
+      public:
 
-		/*!
-		 \brief The array itself.
-		 */
-		uint16* buffer;
+      Char(){mChar=0;};
 
-		/*!
-		 \brief Constructor. Everything remains 0 or NULL.
-		 */
-		CharArray();
+     /* explicit */ Char(uint16 character){mChar=character;};
 
-		/*!
-		 \brief Constructor create an unitialized array.
-		 \param length The length of the array
-		 */
-		CharArray(Integer length);
+      uint16 Unicode() const {return mChar;};
 
-		/*!
-		 \brief Copy constructor
-		 */
-		CharArray(const CharArray &another);
+      //! \brief Returns the character as lower case (if possible).
+      Char ToLowerCase() const;
 
-		/*!
-		 \brief Destructor
-		 */
-		virtual ~CharArray();
+      //! \brief Returns the character as upper case (if possible).
+      Char ToUpperCase() const;
 
-		CharArray &operator=(const CharArray &another);
-	};
+      //! \brief Returns true, if the character is a white space
+      bool IsWhitespace() const;
+
+      //! \brief Returns true, if the character is a digit (0-9)
+      bool IsDigit() const;
+
+      //! \brief Returns true, if the character is upper case
+      bool IsUpperCase() const;
+
+      //! \brief Returns true, if the character is lower case
+      bool IsLowerCase() const;
+
+      //! \brief Returns the digit value (0-9) or -1 if the character is no digit
+      int32 DigitValue()const;
+
+      /*!
+       \brief Implementation of ==
+       */
+      DllExport
+      friend bool operator==(Char ch1, Char ch2){ return ch1.mChar==ch2.mChar;};
+
+      /*!
+       \brief Implementation of !=
+       */
+      DllExport
+      friend bool operator!=(Char ch1, Char ch2){ return ch1.mChar!=ch2.mChar;};
+
+      /*!
+       \brief Implementation of <
+       */
+      DllExport
+      friend bool operator<(Char ch1, Char ch2){ return ch1.mChar<ch2.mChar;};
+
+      /*!
+       \brief Implementation of <=
+       */
+      DllExport
+      friend bool operator<=(Char ch1, Char ch2){ return ch1.mChar<=ch2.mChar;};
+
+      /*!
+       \brief Implementation of >
+       */
+      DllExport
+      friend bool operator>(Char ch1, Char ch2){ return ch1.mChar>ch2.mChar;};
+
+      /*!
+       \brief Implementation of >=
+       */
+      DllExport
+      friend bool operator>=(Char ch1, Char ch2){ return ch1.mChar>=ch2.mChar;};
+
+      private:
+
+      //! The character
+      uint16 mChar;
+   };
+
+   /*!
+    \brief This data type represents a Unicode character array. It is deliberately used in
+    distinction to the character string and serves as a supporting class when encoding and
+    decoding character strings.
+    \ingroup core
+    */
+   struct CharArray
+   {
+      /*!
+       \brief The length of the array.
+       */
+      Integer length;
+
+      /*!
+       \brief The array itself.
+       */
+      Char* buffer;
+
+      /*!
+       \brief Constructor. Everything remains 0 or NULL.
+       */
+      CharArray();
+
+      /*!
+       \brief Constructor create an unitialized array.
+       \param length The length of the array
+       */
+      CharArray(Integer length);
+
+      /*!
+       \brief Copy constructor
+       */
+      CharArray(const CharArray &another);
+
+      /*!
+       \brief Destructor
+       */
+      virtual ~CharArray();
+
+      CharArray &operator=(const CharArray &another);
+   };
 
 
 }

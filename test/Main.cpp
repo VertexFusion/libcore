@@ -23,32 +23,32 @@
 
 using namespace jm;
 
-int main( int argc, const char* argv[] )
+int main(int argc, const char* argv[])
 {
-	System::Init();
-	System::Log( "Test Suite for VertexFusion " , jm::kLogInformation );
+   System::Init();
+   System::Log("Test Suite for VertexFusion ", jm::kLogInformation);
 
-	TestVector* vec = new TestVector(argc, argv);
+   TestVector* vec = new TestVector(argc, argv);
 
-	//CORE
-	vec->AddTest( new StringTest() );
-	vec->AddTest( new StringTokenizerTest() );
-	vec->AddTest( new HashtableTest() );
-	vec->AddTest( new LinkedListTest() );
-	vec->AddTest( new MathTest() );
-	vec->AddTest( new VertexTest() );
-	vec->AddTest( new MatrixTest() );
-	vec->AddTest( new GeometryTest() );
-	vec->AddTest( new DeflateTest() );
-	vec->AddTest( new UndoManagerTest() );
-	vec->AddTest( new DateTest() );
-	vec->AddTest(new DateTest());
-	vec->AddTest(new EditableObjectTest());
+   //CORE
+   vec->AddTest(new StringTest());
+   vec->AddTest(new StringTokenizerTest());
+   vec->AddTest(new HashtableTest());
+   vec->AddTest(new LinkedListTest());
+   vec->AddTest(new MathTest());
+   vec->AddTest(new VertexTest());
+   vec->AddTest(new MatrixTest());
+   vec->AddTest(new GeometryTest());
+   vec->AddTest(new DeflateTest());
+   vec->AddTest(new UndoManagerTest());
+   vec->AddTest(new DateTest());
+   vec->AddTest(new DateTest());
+   vec->AddTest(new EditableObjectTest());
 
-	Integer result = vec->Execute();
+   Integer result = vec->Execute();
 
-	delete vec;
+   delete vec;
 
-	System::Quit();
-	return result.Int32();
+   System::Quit();
+   return result.Int32();
 }

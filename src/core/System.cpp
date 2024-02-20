@@ -34,194 +34,194 @@
 jm::Mutex gSystemMutex;
 jm::String gSystemError;
 
-bool gSystemLogDate=true;
-jm::LogLevel mSystemLogLabel=jm::kLogDebug;
+bool gSystemLogDate = true;
+jm::LogLevel mSystemLogLabel = jm::kLogDebug;
 
 jm::String jm::System::GetLanguage()
 {
-	#ifdef __APPLE__ //macOS und iOS
+   #ifdef __APPLE__ //macOS und iOS
 
-	CFArrayRef langs = CFLocaleCopyPreferredLanguages();
-	CFStringRef cflangCode = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
+   CFArrayRef langs = CFLocaleCopyPreferredLanguages();
+   CFStringRef cflangCode = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
 
-	String langCode = String::FromCFString(cflangCode);
+   String langCode = String::FromCFString(cflangCode);
 
-	CFRelease(langs);
+   CFRelease(langs);
 
-	return langCode;
+   return langCode;
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	//const char* = setlocale(LC_ALL, NULL);
+   //const char* = setlocale(LC_ALL, NULL);
 
-	return "de-DE";
-	#elif defined _WIN32//Windows
+   return "de-DE";
+   #elif defined _WIN32//Windows
 
-	LANGID langid = GetUserDefaultUILanguage();
+   LANGID langid = GetUserDefaultUILanguage();
 
-	switch (langid)
-	{
-		case 1031:
-			return "de-DE";
+   switch(langid)
+   {
+      case 1031:
+         return "de-DE";
 
-		default:
-			return "en";
-	}
+      default:
+         return "en";
+   }
 
-	#endif
+   #endif
 
 }
 
 void jm::System::LogEnableDate(bool status)
 {
-	gSystemMutex.Lock();
-	gSystemLogDate=status;
-	gSystemMutex.Unlock();
+   gSystemMutex.Lock();
+   gSystemLogDate = status;
+   gSystemMutex.Unlock();
 }
 
 void jm::System::LogEnableLabel(jm::LogLevel logLevel)
 {
-	gSystemMutex.Lock();
-	mSystemLogLabel=logLevel;
-	gSystemMutex.Unlock();
+   gSystemMutex.Lock();
+   mSystemLogLabel = logLevel;
+   gSystemMutex.Unlock();
 }
 
 
 void jm::System::Log(const String &message, LogLevel logLevel)
 {
-	gSystemMutex.Lock();
+   gSystemMutex.Lock();
 
-	jm::String msg;
-	if(gSystemLogDate)msg <<'[' << jm::Date().ToString() << "] ";
+   jm::String msg;
+   if(gSystemLogDate)msg << '[' << jm::Date().ToString() << "] ";
 
-	switch(logLevel)
-	{
-		case kLogError:
-			msg << kTxtBold << kTxtRed;
-			if(logLevel>=mSystemLogLabel)msg << Tr("ERROR: ");
-			gSystemError = message;
-			break;
+   switch(logLevel)
+   {
+      case kLogError:
+         msg << kTxtBold << kTxtRed;
+         if(logLevel >= mSystemLogLabel)msg << Tr("ERROR: ");
+         gSystemError = message;
+         break;
 
-		case 	kLogWarning:
-			msg << kTxtBold << kTxtYellow;
-			if(logLevel>=mSystemLogLabel)msg << Tr("WARNING: ");
-			break;
+      case 	kLogWarning:
+         msg << kTxtBold << kTxtYellow;
+         if(logLevel >= mSystemLogLabel)msg << Tr("WARNING: ");
+         break;
 
-		case kLogInformation:
-			if(logLevel>=mSystemLogLabel)msg << Tr("INFO: ");
-			break;
+      case kLogInformation:
+         if(logLevel >= mSystemLogLabel)msg << Tr("INFO: ");
+         break;
 
-		case kLogDebug:
-			if(logLevel>=mSystemLogLabel)msg << Tr("DEBUG: ");
-			break;
-	}
-	msg << message;
+      case kLogDebug:
+         if(logLevel >= mSystemLogLabel)msg << Tr("DEBUG: ");
+         break;
+   }
+   msg << message;
 
-	switch(logLevel)
-	{
-		case kLogError:
-		case kLogWarning:
-			msg << kTxtReset;
-			break;
+   switch(logLevel)
+   {
+      case kLogError:
+      case kLogWarning:
+         msg << kTxtReset;
+         break;
 
-		default:
-			// Do nothing here.
-			break;
-	}
-
-
-	// Output to console
-	if(logLevel > kLogDebug)std::cout << msg << std::endl;
-
-	// Output to log file
-	#ifdef __APPLE__ //macOS and iOS
-
-	if(logLevel == kLogError)
-	{
-		//	setlogmask (LOG_UPTO (LOG_NOTICE));
-
-		//	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
-
-		ByteArray cstr = msg.ToCString();
-		syslog(LOG_ERR, "%s", cstr.ConstData());
-		//	syslog (LOG_INFO, "A tree falls in a forest");
-
-		//	closelog ();
-	}
-
-	#elif defined __linux__//Linux
+      default:
+         // Do nothing here.
+         break;
+   }
 
 
-	#elif defined _WIN32//Windows
+   // Output to console
+   if(logLevel > kLogDebug)std::cout << msg << std::endl;
 
-	if(logLevel == kLogError)
-	{
-		gSystemError = message;
-	}
+   // Output to log file
+   #ifdef __APPLE__ //macOS and iOS
 
-	#endif
+   if(logLevel == kLogError)
+   {
+      //	setlogmask (LOG_UPTO (LOG_NOTICE));
 
-	gSystemMutex.Unlock();
+      //	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+
+      ByteArray cstr = msg.ToCString();
+      syslog(LOG_ERR, "%s", cstr.ConstData());
+      //	syslog (LOG_INFO, "A tree falls in a forest");
+
+      //	closelog ();
+   }
+
+   #elif defined __linux__//Linux
+
+
+   #elif defined _WIN32//Windows
+
+   if(logLevel == kLogError)
+   {
+      gSystemError = message;
+   }
+
+   #endif
+
+   gSystemMutex.Unlock();
 }
 
 const jm::String& jm::System::GetLastErrorMessage()
 {
-	return gSystemError;
+   return gSystemError;
 }
 
 
 jm::String jm::System::GetUserID()
 {
-	#ifdef __APPLE__ //macOS und iOS
+   #ifdef __APPLE__ //macOS und iOS
 
-	return String(getenv("USER"));
+   return String(getenv("USER"));
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	return String(getenv("USER"));
+   return String(getenv("USER"));
 
-	#elif defined _WIN32//Windows
+   #elif defined _WIN32//Windows
 
-	uint16 user_name[UNLEN + 1];
-	DWORD user_name_size = sizeof(user_name);
-	// Explicit type conversion under VC++ 2010 added.
-	GetUserName((LPWSTR)user_name, &user_name_size);
-	return String(user_name, user_name_size);
+   uint16 user_name[UNLEN + 1];
+   DWORD user_name_size = sizeof(user_name);
+   // Explicit type conversion under VC++ 2010 added.
+   GetUserName((LPWSTR)user_name, &user_name_size);
+   return String(user_name, user_name_size);
 
-	#endif
+   #endif
 }
 
 
 jm::String jm::System::GetUserFullName()
 {
-	#ifdef __APPLE__ //macOS und iOS
+   #ifdef __APPLE__ //macOS und iOS
 
-	return "Not implemented";//String(getenv("USER"));
+   return "Not implemented";//String(getenv("USER"));
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	return "Not implemented";
+   return "Not implemented";
 
-	#elif defined _WIN32//Windows
+   #elif defined _WIN32//Windows
 
-	uint16 user_name[UNLEN + 1];
-	DWORD user_name_size = sizeof(user_name);
+   uint16 user_name[UNLEN + 1];
+   DWORD user_name_size = sizeof(user_name);
 
-	// This query works for domain accounts, but not for local users. An error is then returned.
-	// Explicit type conversion under VC++ 2010 added.
-	int ret = GetUserNameEx(NameDisplay, (LPWSTR)user_name, &user_name_size);
-	if(ret != 0)return String(user_name, user_name_size);
+   // This query works for domain accounts, but not for local users. An error is then returned.
+   // Explicit type conversion under VC++ 2010 added.
+   int ret = GetUserNameEx(NameDisplay, (LPWSTR)user_name, &user_name_size);
+   if(ret != 0)return String(user_name, user_name_size);
 
-	// Name could not be determined. Get it differently.
-	// Explicit type conversion under VC++ 2010 added.
-	ret = GetUserNameEx(NameSamCompatible, (LPWSTR)user_name, &user_name_size);
-	if(ret == 0)return "<ERROR while searching username>";
+   // Name could not be determined. Get it differently.
+   // Explicit type conversion under VC++ 2010 added.
+   ret = GetUserNameEx(NameSamCompatible, (LPWSTR)user_name, &user_name_size);
+   if(ret == 0)return "<ERROR while searching username>";
 
-	// Name has form "Uwe-PC\Uwe"
-	String str = String(user_name, user_name_size);
-	return str.Substring(str.IndexOf('\\') + 1);
+   // Name has form "Uwe-PC\Uwe"
+   String str = String(user_name, user_name_size);
+   return str.Substring(str.IndexOf('\\') + 1);
 
-	#endif
+   #endif
 
 }
 
@@ -244,78 +244,78 @@ wcout << wcstring << endl;
 
 void* jm::System::LoadDynamicLibrary(jm::File* file)
 {
-	#ifdef __APPLE__ //macOS and iOS
+   #ifdef __APPLE__ //macOS and iOS
 
-	ByteArray cstr = file->GetAbsolutePath().ToCString();
-	void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
-	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
-	return libptr;
+   ByteArray cstr = file->GetAbsolutePath().ToCString();
+   void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   return libptr;
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	char* cstr = file->GetAbsolutePath().ToCString();
-	void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY is default
-	if(libptr == NULL) std::cout << "Loading dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-	delete cstr;
-	return libptr;
+   char* cstr = file->GetAbsolutePath().ToCString();
+   void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY is default
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
+   delete cstr;
+   return libptr;
 
-	#elif defined _WIN32// Windows
+   #elif defined _WIN32// Windows
 
-	uint16* wstr = file->GetAbsolutePath().ToWString();
-	HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
-	delete[] wstr;
-	if(libptr == NULL) std::cout << "Loading dynamic library " << file->GetAbsolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;
-	return libptr;
+   uint16* wstr = file->GetAbsolutePath().ToWString();
+   HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
+   delete[] wstr;
+   if(libptr == NULL) std::cout << "Loading dynamic library " << file->GetAbsolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;
+   return libptr;
 
-	#endif
+   #endif
 }
 
 void jm::System::UnloadDynamicLibrary(void* library)
 {
-	#ifdef __APPLE__ //macOS und iOS
+   #ifdef __APPLE__ //macOS und iOS
 
-	int res = dlclose(library);
-	if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
+   int res = dlclose(library);
+   if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	int res = dlclose(library);
-	if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
+   int res = dlclose(library);
+   if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
 
-	#elif defined _WIN32//Windows
+   #elif defined _WIN32//Windows
 
-	bool res = (bool)FreeLibrary((HMODULE) library);
-	if(res == false) Log("Closing dynamic library failed!", kLogError);
+   bool res = (bool)FreeLibrary((HMODULE) library);
+   if(res == false) Log("Closing dynamic library failed!", kLogError);
 
-	#endif
+   #endif
 }
 
 
 void* jm::System::FindSymbol(void* library, const String &name)
 {
-	#ifdef __APPLE__ //macOS and iOS
+   #ifdef __APPLE__ //macOS and iOS
 
-	ByteArray cstr = name.ToCString();
-	void* symptr = dlsym(library, cstr.ConstData());
-	if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
-	return symptr;
+   ByteArray cstr = name.ToCString();
+   void* symptr = dlsym(library, cstr.ConstData());
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   return symptr;
 
-	#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-	char* cstr = name.ToCString();
-	void* symptr = dlsym(library, cstr);
-	if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-	delete cstr;
-	return symptr;
+   char* cstr = name.ToCString();
+   void* symptr = dlsym(library, cstr);
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
+   delete cstr;
+   return symptr;
 
-	#elif defined _WIN32//Windows
+   #elif defined _WIN32//Windows
 
-	ByteArray cstring = name.ToCString();
-	void* ptr = GetProcAddress((HMODULE) library, cstring.ConstData());
+   ByteArray cstring = name.ToCString();
+   void* ptr = GetProcAddress((HMODULE) library, cstring.ConstData());
 
-	return ptr;
+   return ptr;
 
-	#endif
+   #endif
 }
 
 // Global AutoreleasePool...
@@ -323,26 +323,26 @@ jm::AutoreleasePool* mainthreadPool = NULL;
 
 jm::AutoreleasePool* jm::System::GetAutoreleasePool()
 {
-	return mainthreadPool;
+   return mainthreadPool;
 }
 
 void jm::System::Init()
 {
-	// First of all, the charsets
-	InitCharsets();
+   // First of all, the charsets
+   InitCharsets();
 
-	// Start Autorelease pool
-	if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
+   // Start Autorelease pool
+   if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
 
-	// Load default translation
-	I18nBundle::InitDefault();
+   // Load default translation
+   I18nBundle::InitDefault();
 }
 
 void jm::System::Quit()
 {
-	if(mainthreadPool != NULL)delete mainthreadPool;
+   if(mainthreadPool != NULL)delete mainthreadPool;
 
-	// Finally
-	QuitCharsets();
+   // Finally
+   QuitCharsets();
 }
 

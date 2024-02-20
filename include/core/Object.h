@@ -37,94 +37,94 @@
 
 namespace jm
 {
-	class AutoreleasePool;
-	class String;
+   class AutoreleasePool;
+   class String;
 
-	/*!
-	 \brief Most objects are derived from this class. This makes it possible to simplify the API, as
-	 object pointers can passed and not just void*.
-	 */
-	class DllExport Object
-	{
+   /*!
+    \brief Most objects are derived from this class. This makes it possible to simplify the API, as
+    object pointers can passed and not just void*.
+    */
+   class DllExport Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Constructor.
-			 */
-			Object();
+         /*!
+          \brief Constructor.
+          */
+         Object();
 
-			/*!
-			 \brief Destructor.
-			 */
-			virtual ~Object();
+         /*!
+          \brief Destructor.
+          */
+         virtual ~Object();
 
-			/*!
-			 \brief Decreases the reference counter and releases the object immediately when the
-			 reference counter becomes 0.
-			 */
-			void Release();
+         /*!
+          \brief Decreases the reference counter and releases the object immediately when the
+          reference counter becomes 0.
+          */
+         void Release();
 
-			/*!
-			 \brief Increases the reference counter of this object by 1.
-			 \note An object is automatically released when the reference counter becomes 0.
-			 \return Reference to this object.
-			 */
-			Object* Retain();
+         /*!
+          \brief Increases the reference counter of this object by 1.
+          \note An object is automatically released when the reference counter becomes 0.
+          \return Reference to this object.
+          */
+         Object* Retain();
 
-			/*!
-			 \brief Same function as Release(), but releases the object with a delay if the reference
-			 counter is 0. AutoreleasePool::Drain() must be called in the to release the object.
-			 \return Reference to this object.
-			 */
-			Object* Autorelease();
+         /*!
+          \brief Same function as Release(), but releases the object with a delay if the reference
+          counter is 0. AutoreleasePool::Drain() must be called in the to release the object.
+          \return Reference to this object.
+          */
+         Object* Autorelease();
 
-			/*!
-			 \brief Returns the value of the reference counter.
-			 */
-			int32 GetReferenceCount() const;
+         /*!
+          \brief Returns the value of the reference counter.
+          */
+         int32 GetReferenceCount() const;
 
-			/*!
-			 \brief Comparison of objects.
-			 \param other The object to compare with.
-			 */
-			virtual bool Equals(const Object* other) const;
+         /*!
+          \brief Comparison of objects.
+          \param other The object to compare with.
+          */
+         virtual bool Equals(const Object* other) const;
 
-			/*!
-			 \brief Returns the display name of the object intended to present to a user.
+         /*!
+          \brief Returns the display name of the object intended to present to a user.
 
-			 This method should be implemented by objects that want to present the name of the object
-			 to the user of an application. For example the diff-algorithm uses this or also the dwg
-			 objects.
-			 */
-			virtual String GetDisplayName() const;
+          This method should be implemented by objects that want to present the name of the object
+          to the user of an application. For example the diff-algorithm uses this or also the dwg
+          objects.
+          */
+         virtual String GetDisplayName() const;
 
-			/*!
-			 \brief Output method for outputting the diff results for the diff algorithm.
-			 \param operation The calculated diff operation.
-			 \param other The object to compare with.
-			 */
-			virtual void PrintDiffInfo(DiffOperation operation, Object* other) const;
+         /*!
+          \brief Output method for outputting the diff results for the diff algorithm.
+          \param operation The calculated diff operation.
+          \param other The object to compare with.
+          */
+         virtual void PrintDiffInfo(DiffOperation operation, Object* other) const;
 
-			// Methods for flagging the object
-			void SetHighBit(bool status);
-			bool GetHighBit()const;
+         // Methods for flagging the object
+         void SetHighBit(bool status);
+         bool GetHighBit()const;
 
-		private:
+      private:
 
-			/*!
-			 \brief Reference counter for reference counting.
+         /*!
+          \brief Reference counter for reference counting.
 
-			 \note the highes bit is a modified flag for undo management
-			 */
-			int32 mRefCount;
+          \note the highes bit is a modified flag for undo management
+          */
+         int32 mRefCount;
 
-			/*!
-			 \brief The auto release pool for this object.
-			 */
-			AutoreleasePool* mPool;
+         /*!
+          \brief The auto release pool for this object.
+          */
+         AutoreleasePool* mPool;
 
-	};
+   };
 }
 
 #endif

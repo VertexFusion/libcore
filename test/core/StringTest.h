@@ -13,10 +13,10 @@
 
 class StringTest : public jm::Test
 {
-public:
-	StringTest();
-	void DoTest() override;
-	
+   public:
+      StringTest();
+      void DoTest() override;
+
 };
 
-#endif 
+#endif

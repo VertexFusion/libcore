@@ -39,203 +39,203 @@
 
 namespace jm
 {
-	/*!
-	 \brief Diese Klasse repräsentiert die Attribute, die in dem SAX-Parser verwendet werden
-	 */
-	class DllExport SAXAttributes: public Object
-	{
+   /*!
+    \brief Diese Klasse repräsentiert die Attribute, die in dem SAX-Parser verwendet werden
+    */
+   class DllExport SAXAttributes: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 */
-			SAXAttributes();
+         /*!
+          \brief Konstruktor
+          */
+         SAXAttributes();
 
-			/*!
-			 \brief Destructor
-			 */
-			virtual ~SAXAttributes();
+         /*!
+          \brief Destructor
+          */
+         virtual ~SAXAttributes();
 
-			/*!
-			 \brief Copykonstruktor
-			 */
-			SAXAttributes(const SAXAttributes &other);
+         /*!
+          \brief Copykonstruktor
+          */
+         SAXAttributes(const SAXAttributes &other);
 
-			/*!
-			 \brief Zuweisungsoperator
-			 */
-			SAXAttributes &operator=(const SAXAttributes &another);
+         /*!
+          \brief Zuweisungsoperator
+          */
+         SAXAttributes &operator=(const SAXAttributes &another);
 
-			/*!
-			 \brief Diese Methode braucht der Parser, um die Attributliste mit Inhalt zu füllen
-			 */
-			void AddAttribute(String uri, String localname, String qName, String value);
+         /*!
+          \brief Diese Methode braucht der Parser, um die Attributliste mit Inhalt zu füllen
+          */
+         void AddAttribute(String uri, String localname, String qName, String value);
 
-			/*!
-			 \brief Sucht nach dem Index eines Attributes
-			 */
-			int32 GetIndex(String qName) const;
+         /*!
+          \brief Sucht nach dem Index eines Attributes
+          */
+         int32 GetIndex(String qName) const;
 
-			/*!
-			 \brief Sicht nach dem Index eines Attributes
-			 */
-			int32 GetIndex(String uri, String localName) const;
+         /*!
+          \brief Sicht nach dem Index eines Attributes
+          */
+         int32 GetIndex(String uri, String localName) const;
 
-			/*!
-			 \brief Gibt die Anzahl der Attribute zurück
-			 */
-			uint32 GetLength() const;
+         /*!
+          \brief Gibt die Anzahl der Attribute zurück
+          */
+         uint32 GetLength() const;
 
-			/*!
-			 \brief Gibt den LocalName eines Attributes zurück
-			 */
-			String GetLocalName(uint32 index) const;
+         /*!
+          \brief Gibt den LocalName eines Attributes zurück
+          */
+         String GetLocalName(uint32 index) const;
 
-			/*!
-			 \brief Gibt den qualifiedName zurück
-			 */
-			String GetQName(uint32 index) const;
+         /*!
+          \brief Gibt den qualifiedName zurück
+          */
+         String GetQName(uint32 index) const;
 
-			/*!
-			 \brief Gibt den Attribut-Type zurück
-			 \discussion The attribute type is one of the strings "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
-			 */
-			String GetType(uint32 index) const;
+         /*!
+          \brief Gibt den Attribut-Type zurück
+          \discussion The attribute type is one of the strings "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
+          */
+         String GetType(uint32 index) const;
 
-			/*!
-			 \brief Gibt den Attribut-Type zurück
-			 */
-			String GetType(String qname) const;
+         /*!
+          \brief Gibt den Attribut-Type zurück
+          */
+         String GetType(String qname) const;
 
-			/*!
-			 \brief Gibt den Attribut-Type zurück
-			 */
-			String GetType(String uri, String localName) const;
+         /*!
+          \brief Gibt den Attribut-Type zurück
+          */
+         String GetType(String uri, String localName) const;
 
-			/*!
-			 \brief Gibt URI zurück
-			 */
-			String GetURI(uint32 index) const;
+         /*!
+          \brief Gibt URI zurück
+          */
+         String GetURI(uint32 index) const;
 
-			/*!
-			 \brief Gibt den Wert zurück
-			 */
-			String GetValue(uint32 index) const;
+         /*!
+          \brief Gibt den Wert zurück
+          */
+         String GetValue(uint32 index) const;
 
-			/*!
-			 \brief Gibt den Wert zurück
-			 */
-			String GetValue(const String &qname) const;
+         /*!
+          \brief Gibt den Wert zurück
+          */
+         String GetValue(const String &qname) const;
 
-			int32 GetIntValue(const String &qname)const;
-			float GetFloatValue(const String &qname)const;
-			bool GetBoolValue(const String &qname)const;
+         int32 GetIntValue(const String &qname)const;
+         float GetFloatValue(const String &qname)const;
+         bool GetBoolValue(const String &qname)const;
 
-			/*!
-			 \brief Prüft, ob das Attribut enthalten ist
-			 */
-			bool HasValue(const String &qname) const;
+         /*!
+          \brief Prüft, ob das Attribut enthalten ist
+          */
+         bool HasValue(const String &qname) const;
 
-			/*!
-			 \brief Gibt den Wert zurück
-			 */
-			String GetValue(String uri, String localName) const;
+         /*!
+          \brief Gibt den Wert zurück
+          */
+         String GetValue(String uri, String localName) const;
 
-		private:
+      private:
 
-			std::vector<String>* mNames;
-			std::vector<String>* mValues;
+         std::vector<String>* mNames;
+         std::vector<String>* mValues;
 
-	};
-
-
-
-	/*!
-	 \brief Diese Klasse repräsentiert einen XML/HTML-Parser nach dem SAX-Prinzip (Simple API for XML).
-	 Der Vorteil liegt in der Seriellen Verarbeitung der Tags.
-	 Diese Abstrakte Vaterklasse muss von den Parsern abgeleitet werden. und einige Methode implementieren.
-	 */
-	class DllExport SAXParser: public Object
-	{
-
-		public:
-
-			/*!
-			 \brief Konstruktor
-			 */
-			SAXParser();
-
-			/*!
-			 \brief Destructor
-			 */
-			virtual ~SAXParser();
-
-			void Parse(File &file);
-
-			/*!
-			 \brief Diese Methode parst die übergebene Zeichenkette, welche XML sein soll
-			 \param xml Der XML-Code
-			 */
-			void Parse(const String &xml);
-
-			/*!
-			 \brief Diese Methode wird vom Parser aufgerufen, wenn er Buchstaben entdeckt hat.
-			 */
-			virtual void Characters(const String &characters);
-
-			/*!
-			 \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende des Dokumentes erreicht wurde.
-			 */
-			virtual void EndDocument();
-
-			/*!
-			 \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende eines Elementes erreicht wurde.
-			 */
-			virtual void EndElement(const String &uri, const String &localName, const String &qName);
-
-			/*!
-			 \brief End the scope of a prefix-URI mapping.
-			 */
-			virtual void EndPrefixMapping(const String &prefix);
-
-			/*!
-			 \brief Diese Methode wird vom Parser aufgerufen, wenn ignorierbare Leerzeichen gefunden wurden
-			 */
-			virtual void IgnorableWhiteSpaces(const String &characters);
-
-			/*!
-			 \brief Receive notification of a processing instruction.
-			 */
-			virtual void ProcessingInstruction(const String &target, const String &data);
-
-			/*!
-			 \brief Receive notification of a skipped entity.
-			 */
-			virtual void SkippedEntity(const String &name);
-
-			/*!
-			 \brief Diese Methode wird am Anfang des Dokuemntes aufgerufen
-			 */
-			virtual void StartDocument();
-
-			/*!
-			 \brief Diese Methode wird beim Beginn eines Elementes aufgerufen.
-			 */
-			virtual void StartElement(const String &uri,
-			                          const String &localName,
-			                          const String &qName,
-			                          const SAXAttributes &attributes);
+   };
 
 
-		private:
 
-			/*!
-			 \brief Diese Helfermethode parst den Tagstring... Das ist der gesamte Teil zwischen < und >
-			 */
-			void ParseTagString(const String &token);
+   /*!
+    \brief Diese Klasse repräsentiert einen XML/HTML-Parser nach dem SAX-Prinzip (Simple API for XML).
+    Der Vorteil liegt in der Seriellen Verarbeitung der Tags.
+    Diese Abstrakte Vaterklasse muss von den Parsern abgeleitet werden. und einige Methode implementieren.
+    */
+   class DllExport SAXParser: public Object
+   {
 
-	};
+      public:
+
+         /*!
+          \brief Konstruktor
+          */
+         SAXParser();
+
+         /*!
+          \brief Destructor
+          */
+         virtual ~SAXParser();
+
+         void Parse(File &file);
+
+         /*!
+          \brief Diese Methode parst die übergebene Zeichenkette, welche XML sein soll
+          \param xml Der XML-Code
+          */
+         void Parse(const String &xml);
+
+         /*!
+          \brief Diese Methode wird vom Parser aufgerufen, wenn er Buchstaben entdeckt hat.
+          */
+         virtual void Characters(const String &characters);
+
+         /*!
+          \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende des Dokumentes erreicht wurde.
+          */
+         virtual void EndDocument();
+
+         /*!
+          \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende eines Elementes erreicht wurde.
+          */
+         virtual void EndElement(const String &uri, const String &localName, const String &qName);
+
+         /*!
+          \brief End the scope of a prefix-URI mapping.
+          */
+         virtual void EndPrefixMapping(const String &prefix);
+
+         /*!
+          \brief Diese Methode wird vom Parser aufgerufen, wenn ignorierbare Leerzeichen gefunden wurden
+          */
+         virtual void IgnorableWhiteSpaces(const String &characters);
+
+         /*!
+          \brief Receive notification of a processing instruction.
+          */
+         virtual void ProcessingInstruction(const String &target, const String &data);
+
+         /*!
+          \brief Receive notification of a skipped entity.
+          */
+         virtual void SkippedEntity(const String &name);
+
+         /*!
+          \brief Diese Methode wird am Anfang des Dokuemntes aufgerufen
+          */
+         virtual void StartDocument();
+
+         /*!
+          \brief Diese Methode wird beim Beginn eines Elementes aufgerufen.
+          */
+         virtual void StartElement(const String &uri,
+                                   const String &localName,
+                                   const String &qName,
+                                   const SAXAttributes &attributes);
+
+
+      private:
+
+         /*!
+          \brief Diese Helfermethode parst den Tagstring... Das ist der gesamte Teil zwischen < und >
+          */
+         void ParseTagString(const String &token);
+
+   };
 
 }
 

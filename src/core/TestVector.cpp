@@ -35,88 +35,88 @@ using namespace jm;
 
 TestVector::TestVector(int argc, const char * argv[])
 {
-	if(argc >= 2)
-	{
-		arg = argv[1];
-	}
+   if(argc >= 2)
+   {
+      arg = argv[1];
+   }
 }
 
 TestVector::~TestVector()
 {
-	for(uint32 a = 0; a < tests.size(); a++)delete tests[a];
+   for(uint32 a = 0; a < tests.size(); a++)delete tests[a];
 }
 
 void TestVector::AddTest(Test* test)
 {
-	tests.push_back(test);
+   tests.push_back(test);
 }
 
 Integer TestVector::Execute()
 {
-	jm::gTotalTestCount = 0;
-	jm::gTotalErrorCount = 0;
+   jm::gTotalTestCount = 0;
+   jm::gTotalErrorCount = 0;
 
-	clock_t bt = clock();
+   clock_t bt = clock();
 
-	Integer single = -1;
+   Integer single = -1;
 
-	if(arg.Length() > 0)
-	{
-		try
-		{
-			single = Integer::ValueOf(arg);
-		}
-		catch(jm::Exception* e)
-		{
-			delete e;
-		}
-	}
+   if(arg.Length() > 0)
+   {
+      try
+      {
+         single = Integer::ValueOf(arg);
+      }
+      catch(jm::Exception* e)
+      {
+         delete e;
+      }
+   }
 
-	for(Integer a = 0; a < tests.size(); a++)
-	{
-		if(single < 0 || single == a)Testrun(tests[a]);
-	}
+   for(Integer a = 0; a < tests.size(); a++)
+   {
+      if(single < 0 || single == a)Testrun(tests[a]);
+   }
 
-	clock_t et = clock();
+   clock_t et = clock();
 
-	std::cout << std::endl << Tr("Cycle finished! In total:")<<std::endl;
-	std::cout << jm::String::Format(Tr("Tests:    %i"), jm::gTotalTestCount) << std::endl;
+   std::cout << std::endl << Tr("Cycle finished! In total:") << std::endl;
+   std::cout << jm::String::Format(Tr("Tests:    %i"), jm::gTotalTestCount) << std::endl;
 
-	std::cout <<
-		((jm::gTotalErrorCount > 0) ? kTxtRed : kTxtGreen)
-		<< jm::String::Format(Tr("Errors:   %i"),jm::gTotalErrorCount)
-		<< kTxtReset<< std::endl;
+   std::cout <<
+             ((jm::gTotalErrorCount > 0) ? kTxtRed : kTxtGreen)
+             << jm::String::Format(Tr("Errors:   %i"), jm::gTotalErrorCount)
+             << kTxtReset << std::endl;
 
-	std::cout <<
-		jm::String::Format(Tr("Duration: %1.3f sec"), (double)(et - bt) / CLOCKS_PER_SEC)
-		<< std::endl;
+   std::cout <<
+             jm::String::Format(Tr("Duration: %1.3f sec"), (double)(et - bt) / CLOCKS_PER_SEC)
+             << std::endl;
 
-	return gTotalErrorCount;
+   return gTotalErrorCount;
 }
 
 void TestVector::Testrun(Test* test)
 {
-	if(test == NULL)return;
+   if(test == NULL)return;
 
-	System::Log(jm::String::Format(Tr("Execute %s..."),String::Ref(test->GetName())), kLogInformation);
+   System::Log(jm::String::Format(Tr("Execute %s..."), String::Ref(test->GetName())), kLogInformation);
 
-	try
-	{
-	test->DoTest();
-	}
-	catch(jm::Exception* e)
-	{
-		e->PrintStackTrace();
+   try
+   {
+      test->DoTest();
+   }
+   catch(jm::Exception* e)
+   {
+      e->PrintStackTrace();
 
-		test->TestUnexpectedException(e->GetErrorMessage());
+      test->TestUnexpectedException(e->GetErrorMessage());
 
-		delete e;
-	}
+      delete e;
+   }
 
-	System::Log(jm::String::Format(Tr("Test finished! %i Tests, %i Errors."),
-	        gTestCount,
-	        gErrorCount),kLogInformation);
+   System::Log(jm::String::Format(Tr("Test finished! %i Tests, %i Errors."),
+                                  gTestCount,
+                                  gErrorCount), kLogInformation);
 
-	gErrorCount = 0;
-	gTestCount = 0;
+   gErrorCount = 0;
+   gTestCount = 0;
 }

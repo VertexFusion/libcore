@@ -50,28 +50,28 @@ RawDecoder::RawDecoder(): CharsetDecoder()
 
 CharArray RawDecoder::Decode(const int8* cstring)
 {
-	//Länge bestimmen
-	uint32 length = 0;
-	while(cstring[length] != 0)length++;
+   //Länge bestimmen
+   uint32 length = 0;
+   while(cstring[length] != 0)length++;
 
-	CharArray array = CharArray(length);
+   CharArray array = CharArray(length);
 
-	for(uint32 a = 0; a < length; a++)
-	{
-		array.buffer[a] = cstring[a];
-	}
+   for(uint32 a = 0; a < length; a++)
+   {
+      array.buffer[a] = Char(cstring[a]);
+   }
 
-	return array;
+   return array;
 }
 
 ByteArray RawDecoder::Encode(const CharArray &string)
 {
-	ByteArray cstring = ByteArray(string.length,0);
+   ByteArray cstring = ByteArray(string.length, 0);
 
-	for(uint32 a = 0; a < string.length; a++)
-	{
-		cstring[a] = (char)string.buffer[a];
-	}
+   for(uint32 a = 0; a < string.length; a++)
+   {
+      cstring[a] = (uint8)string.buffer[a].Unicode();
+   }
 
-	return cstring;
+   return cstring;
 }

@@ -41,47 +41,47 @@
 
 namespace jm
 {
-	/*!
-	 \brief This class provides a central resource to translate an application into the local
-	 language for the user.
-	 \ingroup core
-	 */
-	class DllExport I18nBundle: public Preferences
-	{
-		public:
+   /*!
+    \brief This class provides a central resource to translate an application into the local
+    language for the user.
+    \ingroup core
+    */
+   class DllExport I18nBundle: public Preferences
+   {
+      public:
 
-		/*!
-		 \brief Construktor
-		 \param language Language String in form: "de-DE"
-		 */
-		I18nBundle(const String &language);
+         /*!
+          \brief Construktor
+          \param language Language String in form: "de-DE"
+          */
+         I18nBundle(const String &language);
 
-		/*!
-			\brief This method reads a *.mo file and adds the content to this bundle.
-			\param file The mo file.
-			*/
-		  void AppendMO(File file);
+         /*!
+         	\brief This method reads a *.mo file and adds the content to this bundle.
+         	\param file The mo file.
+         	*/
+         void AppendMO(File file);
 
-			String Translate(const String& key) const;
+         String Translate(const String& key) const;
 
-			static I18nBundle* GetDefault();
+         static I18nBundle* GetDefault();
 
-			/*!
-			 \brief This method is called on start-up from jm::System to initialise the default
-			 language. The developer usually do not need to call this.
-			 */
-			static void InitDefault();
+         /*!
+          \brief This method is called on start-up from jm::System to initialise the default
+          language. The developer usually do not need to call this.
+          */
+         static void InitDefault();
 
-			/*!
-			 \brief Try to examine the language file for given bundle-id
-			 */
-			static jm::File GetTansFileByBundleId(const String &bundleId,const String &language);
+         /*!
+          \brief Try to examine the language file for given bundle-id
+          */
+         static jm::File GetTansFileByBundleId(const String &bundleId, const String &language);
 
-		private:
+      private:
 
-			//! Language
-			String mLanguage;
-	};
+         //! Language
+         String mLanguage;
+   };
 
 }
 

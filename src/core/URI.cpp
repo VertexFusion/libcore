@@ -36,7 +36,7 @@ using namespace jm;
 
 URI::URI(const jm::String &uri)
 {
-	mUri = uri;
+   mUri = uri;
 }
 
 /*URI::URI(const jm::String& scheme,

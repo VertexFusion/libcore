@@ -36,38 +36,38 @@ using namespace jm;
 
 UndoStep::UndoStep()
 {
-	prev = NULL;
-	recent = NULL;
-	eldest = NULL;
-	count = 0;
+   prev = NULL;
+   recent = NULL;
+   eldest = NULL;
+   count = 0;
 }
 
 UndoStep::~UndoStep()
 {
-	UndoChange* change = recent;
+   UndoChange* change = recent;
 
-	while(change != NULL)
-	{
-		UndoChange* victim = change;
-		change = change->mPrev;
-		delete victim;
-	}
+   while(change != NULL)
+   {
+      UndoChange* victim = change;
+      change = change->mPrev;
+      delete victim;
+   }
 
-	prev = NULL;
-	recent = NULL;
-	eldest = NULL;
-	count = 0;
+   prev = NULL;
+   recent = NULL;
+   eldest = NULL;
+   count = 0;
 }
 
 void UndoStep::AddChange(UndoChange* change)
 {
-	//Verkette
-	change->mPrev = recent;
-	if(recent != NULL)recent->mNext = change;
-	recent = change;
+   //Verkette
+   change->mPrev = recent;
+   if(recent != NULL)recent->mNext = change;
+   recent = change;
 
-	//Setze eldest, wenn er noch nicht gesetzt wurde
-	if(eldest == NULL)eldest = recent;
+   //Setze eldest, wenn er noch nicht gesetzt wurde
+   if(eldest == NULL)eldest = recent;
 
-	count++;
+   count++;
 }

@@ -42,417 +42,417 @@ namespace jm
 {
 
 
-	/*!
-	 \brief Dieses Element einer Verketteten liste speichert in einem Undo-Step die Veränderungden
-	 an der Datei.
-	 \discussion Diese Klasse soll nicht von Object abgeleitet werden, das sie nur innerhalb des
-	 Undomanager referenziert werden soll. Externe Referenzierungen verstoßen eindeutig gegen das
-	 Konzept und sind zu unterlassen!
+   /*!
+    \brief Dieses Element einer Verketteten liste speichert in einem Undo-Step die Veränderungden
+    an der Datei.
+    \discussion Diese Klasse soll nicht von Object abgeleitet werden, das sie nur innerhalb des
+    Undomanager referenziert werden soll. Externe Referenzierungen verstoßen eindeutig gegen das
+    Konzept und sind zu unterlassen!
 
-	 \ingroup datamgr
-	 */
-	class DllExport UndoChange
-	{
-		public:
+    \ingroup datamgr
+    */
+   class DllExport UndoChange
+   {
+      public:
 
-			/*!
-			 \brief Das nächste Element in der Liste
-			 */
-			UndoChange* mNext;
+         /*!
+          \brief Das nächste Element in der Liste
+          */
+         UndoChange* mNext;
 
-			/*!
-			 \brief Das nächste Element in der Liste
-			 */
-			UndoChange* mPrev;
+         /*!
+          \brief Das nächste Element in der Liste
+          */
+         UndoChange* mPrev;
 
-			/*!
-			 \brief Das Objekt, in dem die Änderung stattfindet
-			 */
-			Object* mObject;
+         /*!
+          \brief Das Objekt, in dem die Änderung stattfindet
+          */
+         Object* mObject;
 
-			/*!
-			 \brief Konstruktir
-			 */
-			UndoChange(Object* object);
+         /*!
+          \brief Konstruktir
+          */
+         UndoChange(Object* object);
 
-			/*!
-			 \brief Destructor
-			 */
-			virtual ~UndoChange();
+         /*!
+          \brief Destructor
+          */
+         virtual ~UndoChange();
 
-			/*!
-			 \brief Diese Methode macht einen Rückgängig-Schritt und wandelt es in einen Redo-Schritt
-			 oder umgekehrt.
-			 \discussion Es werden der gespeicherte Wert (hier) mit dem gespeicherten Wert auf dem der
-			 Pointer zeigt vertauscht. Außerdem wird ein Regenerate() in EditableObjects ausgelöst.
-			 */
-			virtual void Swap();
+         /*!
+          \brief Diese Methode macht einen Rückgängig-Schritt und wandelt es in einen Redo-Schritt
+          oder umgekehrt.
+          \discussion Es werden der gespeicherte Wert (hier) mit dem gespeicherten Wert auf dem der
+          Pointer zeigt vertauscht. Außerdem wird ein Regenerate() in EditableObjects ausgelöst.
+          */
+         virtual void Swap();
 
-		jm::String objname;
-	};
+         jm::String objname;
+   };
 
-	/*!
-	 \brief Diese Klasse kapselt den Schritt, wenn ein bool-Wert verändert werden soll.
-	 */
-	class DllExport UndoChangeBool: public UndoChange
-	{
-		public:
+   /*!
+    \brief Diese Klasse kapselt den Schritt, wenn ein bool-Wert verändert werden soll.
+    */
+   class DllExport UndoChangeBool: public UndoChange
+   {
+      public:
 
-			UndoChangeBool(Object* object, bool *ptr);
-			void Swap();
+         UndoChangeBool(Object* object, bool *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			bool* mPointer;
-			bool mValue;
+         bool* mPointer;
+         bool mValue;
 
-	};
+   };
 
-	/*!
-	 \brief Diese Klasse kapselt den Schritt, wenn ein int8-Wert verändert werden soll.
-	 */
-	class DllExport UndoChangeInt8: public UndoChange
-	{
-		public:
+   /*!
+    \brief Diese Klasse kapselt den Schritt, wenn ein int8-Wert verändert werden soll.
+    */
+   class DllExport UndoChangeInt8: public UndoChange
+   {
+      public:
 
-			UndoChangeInt8(Object* object, int8 *ptr);
-			void Swap();
+         UndoChangeInt8(Object* object, int8 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			int8* mPointer;
-			int8 mValue;
+         int8* mPointer;
+         int8 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeUInt8: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeUInt8: public UndoChange
+   {
+      public:
 
-			UndoChangeUInt8(Object* object, uint8 *ptr);
-			void Swap();
+         UndoChangeUInt8(Object* object, uint8 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			uint8* mPointer;
-			uint8 mValue;
+         uint8* mPointer;
+         uint8 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeInt16: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeInt16: public UndoChange
+   {
+      public:
 
-			UndoChangeInt16(Object* object, int16 *ptr);
-			void Swap();
+         UndoChangeInt16(Object* object, int16 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			int16* mPointer;
-			int16 mValue;
+         int16* mPointer;
+         int16 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeUInt16: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeUInt16: public UndoChange
+   {
+      public:
 
-			UndoChangeUInt16(Object* object, uint16 *ptr);
-			void Swap();
+         UndoChangeUInt16(Object* object, uint16 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			uint16* mPointer;
-			uint16 mValue;
+         uint16* mPointer;
+         uint16 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeInt32: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeInt32: public UndoChange
+   {
+      public:
 
-			UndoChangeInt32(Object* object, int32 *ptr);
-			void Swap();
+         UndoChangeInt32(Object* object, int32 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			int32* mPointer;
-			int32 mValue;
+         int32* mPointer;
+         int32 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeUInt32: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeUInt32: public UndoChange
+   {
+      public:
 
-			UndoChangeUInt32(Object* object, uint32 *ptr);
-			void Swap();
+         UndoChangeUInt32(Object* object, uint32 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			uint32* mPointer;
-			uint32 mValue;
+         uint32* mPointer;
+         uint32 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeInteger : public UndoChange
-	{
-	public:
+   class DllExport UndoChangeInteger : public UndoChange
+   {
+      public:
 
-		UndoChangeInteger(Object* object, Integer* ptr);
-		void Swap();
+         UndoChangeInteger(Object* object, Integer* ptr);
+         void Swap();
 
-	private:
+      private:
 
-		Integer* mPointer;
-		Integer mValue;
+         Integer* mPointer;
+         Integer mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeInt64: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeInt64: public UndoChange
+   {
+      public:
 
-			UndoChangeInt64(Object* object, int64 *ptr);
-			void Swap();
+         UndoChangeInt64(Object* object, int64 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			int64* mPointer;
-			int64 mValue;
+         int64* mPointer;
+         int64 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeUInt64: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeUInt64: public UndoChange
+   {
+      public:
 
-			UndoChangeUInt64(Object* object, uint64 *ptr);
-			void Swap();
+         UndoChangeUInt64(Object* object, uint64 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			uint64* mPointer;
-			uint64 mValue;
+         uint64* mPointer;
+         uint64 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeFloat: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeFloat: public UndoChange
+   {
+      public:
 
-			UndoChangeFloat(Object* object, float *ptr);
-			void Swap();
+         UndoChangeFloat(Object* object, float *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			float* mPointer;
-			float mValue;
+         float* mPointer;
+         float mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeDouble: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeDouble: public UndoChange
+   {
+      public:
 
-			UndoChangeDouble(Object* object, double *ptr);
-			void Swap();
+         UndoChangeDouble(Object* object, double *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			double* mPointer;
-			double mValue;
+         double* mPointer;
+         double mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeDouble2 : public UndoChange
-	{
-	public:
+   class DllExport UndoChangeDouble2 : public UndoChange
+   {
+      public:
 
-		UndoChangeDouble2(Object* object, Double* ptr);
-		void Swap();
+         UndoChangeDouble2(Object* object, Double* ptr);
+         void Swap();
 
-	private:
+      private:
 
-		Double* mPointer;
-		Double mValue;
+         Double* mPointer;
+         Double mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeString: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeString: public UndoChange
+   {
+      public:
 
-			UndoChangeString(Object* object, String *ptr);
-			void Swap();
+         UndoChangeString(Object* object, String *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			String* mPointer;
-			String mValue;
+         String* mPointer;
+         String mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeVertex2 : public UndoChange
-	{
-		public:
+   class DllExport UndoChangeVertex2 : public UndoChange
+   {
+      public:
 
-			UndoChangeVertex2(Object* object, Vertex2* ptr);
-			void Swap();
+         UndoChangeVertex2(Object* object, Vertex2* ptr);
+         void Swap();
 
-		private:
+      private:
 
-			Vertex2* mPointer;
-			Vertex2 mValue;
+         Vertex2* mPointer;
+         Vertex2 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeVertex3: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeVertex3: public UndoChange
+   {
+      public:
 
-			UndoChangeVertex3(Object* object, Vertex3 *ptr);
-			void Swap();
+         UndoChangeVertex3(Object* object, Vertex3 *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			Vertex3* mPointer;
-			Vertex3 mValue;
+         Vertex3* mPointer;
+         Vertex3 mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeDate: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeDate: public UndoChange
+   {
+      public:
 
-			UndoChangeDate(Object* object, Date *ptr);
-			void Swap();
+         UndoChangeDate(Object* object, Date *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			Date* mPointer;
-			Date mValue;
+         Date* mPointer;
+         Date mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeColour: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeColour: public UndoChange
+   {
+      public:
 
-			UndoChangeColour(Object* object, Colour *ptr);
-			void Swap();
+         UndoChangeColour(Object* object, Colour *ptr);
+         void Swap();
 
-		private:
+      private:
 
-			Colour* mPointer;
-			Colour mValue;
+         Colour* mPointer;
+         Colour mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeObjectRef: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeObjectRef: public UndoChange
+   {
+      public:
 
-			UndoChangeObjectRef(Object* object, Object **ptr);
-			~UndoChangeObjectRef();
-			void Swap();
+         UndoChangeObjectRef(Object* object, Object **ptr);
+         ~UndoChangeObjectRef();
+         void Swap();
 
-		private:
+      private:
 
-			Object** mPointer;
-			Object* mValue;
+         Object** mPointer;
+         Object* mValue;
 
-	};
+   };
 
-	class DllExport UndoChangeBuffer: public UndoChange
-	{
-		public:
+   class DllExport UndoChangeBuffer: public UndoChange
+   {
+      public:
 
-			UndoChangeBuffer(Object* object, uint8 **ptr, uint64 length);
-			void Swap();
+         UndoChangeBuffer(Object* object, uint8 **ptr, uint64 length);
+         void Swap();
 
-		private:
+      private:
 
-			uint8** mPointer;
-			uint8* mValue;
-			uint64 mLength;
-	};
+         uint8** mPointer;
+         uint8* mValue;
+         uint64 mLength;
+   };
 
-	class DllExport UndoRegenerationMarker: public UndoChange
-	{
-		public:
+   class DllExport UndoRegenerationMarker: public UndoChange
+   {
+      public:
 
-			UndoRegenerationMarker(EditableObject* object);
-			void Swap();
+         UndoRegenerationMarker(EditableObject* object);
+         void Swap();
 
-		private:
+      private:
 
-			Colour* mPointer;
+         Colour* mPointer;
 
-	};
+   };
 
-	class DllExport UndoObjectRelease: public UndoChange
-	{
-		public:
-			UndoObjectRelease(Object* object, bool release);
-			virtual ~UndoObjectRelease();
-			void Swap();
-        private:
-            bool mReleased;
-            Object* mObject;
-	};
+   class DllExport UndoObjectRelease: public UndoChange
+   {
+      public:
+         UndoObjectRelease(Object* object, bool release);
+         virtual ~UndoObjectRelease();
+         void Swap();
+      private:
+         bool mReleased;
+         Object* mObject;
+   };
 
-	/*!
-	 \brief Dieses Objekt speichert einen Bearbeitungsschritt an der Datei.
-	 Die Undoliste ist eine doppelt verkettete Liste.
+   /*!
+    \brief Dieses Objekt speichert einen Bearbeitungsschritt an der Datei.
+    Die Undoliste ist eine doppelt verkettete Liste.
 
-	 \ingroup datamgr
-	 */
-	class DllExport UndoStep
-	{
+    \ingroup datamgr
+    */
+   class DllExport UndoStep
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Der vorherige Schritt, der ausgeführt wurde.
-			 Wenn auf "Rückgängig" geklickt wird, wird auf diesen Schritt gesprungen
-			 */
-			UndoStep* prev;
+         /*!
+          \brief Der vorherige Schritt, der ausgeführt wurde.
+          Wenn auf "Rückgängig" geklickt wird, wird auf diesen Schritt gesprungen
+          */
+         UndoStep* prev;
 
-			/*!
-			 \brief Die Liste mit den Änderungen an der Datei.
-			 Hier die letzte Änderung in diesem Schritt
-			 */
-			UndoChange* recent;
+         /*!
+          \brief Die Liste mit den Änderungen an der Datei.
+          Hier die letzte Änderung in diesem Schritt
+          */
+         UndoChange* recent;
 
-			/*!
-			 \brief Die Liste mit den Änderungen an der Datei.
-			 Hier die älteste Änderung in diesem Schritt
-			 */
-			UndoChange* eldest;
+         /*!
+          \brief Die Liste mit den Änderungen an der Datei.
+          Hier die älteste Änderung in diesem Schritt
+          */
+         UndoChange* eldest;
 
-			/*!
-			 \brief Die Anzahl der Änderungen
-			 */
-			uint32 count;
+         /*!
+          \brief Die Anzahl der Änderungen
+          */
+         uint32 count;
 
-			/*!
-			 \brief Konstruktor
-			 */
-			UndoStep();
+         /*!
+          \brief Konstruktor
+          */
+         UndoStep();
 
-			/*!
-			 \brief Destructor
-			 */
-			~UndoStep();
+         /*!
+          \brief Destructor
+          */
+         ~UndoStep();
 
-			/*!
-			 \brief Fügt eine Änderung hinzu.
-			 \param change Die Änderung, die hinzugefügt wird.
-			 */
-			void AddChange(UndoChange* change);
+         /*!
+          \brief Fügt eine Änderung hinzu.
+          \param change Die Änderung, die hinzugefügt wird.
+          */
+         void AddChange(UndoChange* change);
 
-	};
+   };
 
 }
 

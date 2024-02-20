@@ -36,156 +36,156 @@
 
 namespace jm
 {
-	class Vertex3;
+   class Vertex3;
 
-	/*!
-	 \brief A two dimensional vector. Owns special functions for 3D space.
-	 */
-	class DllExport Vertex2
-	{
-		public:
+   /*!
+    \brief A two dimensional vector. Owns special functions for 3D space.
+    */
+   class DllExport Vertex2
+   {
+      public:
 
-			/*!
-			 \brief X component of vector.
-				 \note We need fast acces to this value and other protection measures are not necessary.
-				 So we leave it public.
-			 */
-			Double x;
+         /*!
+          \brief X component of vector.
+         	 \note We need fast acces to this value and other protection measures are not necessary.
+         	 So we leave it public.
+          */
+         Double x;
 
-			/*!
-			 \brief Y component of vector.
-				 \note We need fast acces to this value and other protection measures are not necessary.
-				 So we leave it public.
-			 */
-			Double y;
-
-
-			/*!
-			 \brief Konstruktor erzeugt Nullvektor.
-			 */
-			Vertex2();
-
-			/*!
-			 \brief Konstruktor erzeugt beliebigen Vektor
-			 \param x X-Komponente des Vektors
-			 \param y Y-Komponente des Vektors
-			 */
-			Vertex2(Double x, Double y);
-
-			Vertex2(const Vertex3 &v3);
-
-			/*!
-			 \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
-			 */
-			double Abs() const;
-
-			/*!
-			 \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die Länge 1.
-			 */
-			void Normalize();
-			Vertex2 Normalized()const;
-
-			/*!
-			 \brief Gibt das Kreuzprodukt aus diesem Vektor multipliziert mit einem anderen zurück.
-			 */
-			double CrossProduct(const Vertex2 &another) const;
-
-			/*!
-			 \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück
-			 */
-			double DotProduct(const Vertex2 &another) const;
-
-			/*!
-			 \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
-			   Also ob beide Vektoren parallel sind.
-			 */
-			bool IsCollinear(const Vertex2 &another) const;
-
-			/*!
-			 \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
-			 Also ob sie senktrecht aufeinander stehen
-			 */
-			bool IsOrthogonal(const Vertex2 &another) const;
-
-			/*!
-			 \brief Returns the signed angle between this vector and another vector.
-			 \note Note this methode uses as positive direction the clockwise direction with right
-			 x-axis as 0° like in SVG.
-			 \param another The vector we want to know the angle to.
-			 \return Angle in radians.
-			 */
-			double AngleTo(const Vertex2 &another) const;
-
-			/*!
-			 \brief Diese Methode berechnet, ob dieser Vector "rechts" also im Uhrzeigersinn neben dem anderen Vector liegt
-			 */
-			bool IsRightTo(const Vertex2 &another) const;
-
-			/*!
-			 \brief Diese Methode berechnet, ob dieser Vector "links" also geden den Uhrzeigersinn neben dem anderem Vector liegt
-			 */
-			bool IsLeftTo(const Vertex2 &another) const;
-
-			/*!
-			 \brief Diese Methode gibt wahr zurück, wennd er Vektor definiert ist, also beie Zahlen nicht
-			 NAN sind.
-			 */
-			bool IsValid() const;
-
-			/*!
-			 \brief Diese Methode rotiert den Vektor um die Z-Achse mit dem angegebenen Winkel.
-			 \param angle Der Rotationswinkel im mathematisch positivem Sinn im Bogenmaß.
-			 */
-			Vertex2& Rotate(double angle);
-
-			Vertex2 &operator+=(const Vertex2 &another);
-
-			Vertex2 &operator-=(const Vertex2 &another);
-
-			DllExport
-			friend std::ostream& operator<< (std::ostream& out, const Vertex2 & vertex);
-	};
+         /*!
+          \brief Y component of vector.
+         	 \note We need fast acces to this value and other protection measures are not necessary.
+         	 So we leave it public.
+          */
+         Double y;
 
 
-	/*!
-	 \brief Implementierung des Operators +
-	 */
-	DllExport
-	const Vertex2 operator+(const Vertex2 &v1, const Vertex2 &v2);
+         /*!
+          \brief Konstruktor erzeugt Nullvektor.
+          */
+         Vertex2();
 
-	/*!
-	 \brief Implementierung des Operators -
-	 */
-	DllExport
-	const Vertex2 operator-(const Vertex2 &v1, const Vertex2 &v2);
+         /*!
+          \brief Konstruktor erzeugt beliebigen Vektor
+          \param x X-Komponente des Vektors
+          \param y Y-Komponente des Vektors
+          */
+         Vertex2(Double x, Double y);
 
-	/*!
-	 \brief Implementierung des Operators *
-	 */
-	DllExport
-	const Vertex2 operator*(const double &d, const Vertex2 &v);
+         Vertex2(const Vertex3 &v3);
 
-	DllExport
-		const Vertex2 operator*(const Integer& i, const Vertex2& v);
+         /*!
+          \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
+          */
+         double Abs() const;
 
-	/*!
-	 \brief Implementierung des Operators -=
-	 */
-	DllExport
-	bool operator!=(Vertex2 const &v1, Vertex2 const &v2);
+         /*!
+          \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die Länge 1.
+          */
+         void Normalize();
+         Vertex2 Normalized()const;
 
-	/*!
-	 \brief Diese Methode löst ein lineares Gleichungssystem mit zwei Unbekannten:
-	  r.x = x * a.x + y * b.x
-	  r.y = x * a.y + y * b.y
-	 Das System wird nach x und y augelöst und gelöst.
-	 Matrixschreibweise:
-		  a   b                 r
-		| a.x b.x | * | x | = | r.x |
-		| a.y b.y |   | y |   | r.y |
-	 */
-	DllExport
-	Vertex2 SolveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r);
+         /*!
+          \brief Gibt das Kreuzprodukt aus diesem Vektor multipliziert mit einem anderen zurück.
+          */
+         double CrossProduct(const Vertex2 &another) const;
+
+         /*!
+          \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück
+          */
+         double DotProduct(const Vertex2 &another) const;
+
+         /*!
+          \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
+            Also ob beide Vektoren parallel sind.
+          */
+         bool IsCollinear(const Vertex2 &another) const;
+
+         /*!
+          \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
+          Also ob sie senktrecht aufeinander stehen
+          */
+         bool IsOrthogonal(const Vertex2 &another) const;
+
+         /*!
+          \brief Returns the signed angle between this vector and another vector.
+          \note Note this methode uses as positive direction the clockwise direction with right
+          x-axis as 0° like in SVG.
+          \param another The vector we want to know the angle to.
+          \return Angle in radians.
+          */
+         double AngleTo(const Vertex2 &another) const;
+
+         /*!
+          \brief Diese Methode berechnet, ob dieser Vector "rechts" also im Uhrzeigersinn neben dem anderen Vector liegt
+          */
+         bool IsRightTo(const Vertex2 &another) const;
+
+         /*!
+          \brief Diese Methode berechnet, ob dieser Vector "links" also geden den Uhrzeigersinn neben dem anderem Vector liegt
+          */
+         bool IsLeftTo(const Vertex2 &another) const;
+
+         /*!
+          \brief Diese Methode gibt wahr zurück, wennd er Vektor definiert ist, also beie Zahlen nicht
+          NAN sind.
+          */
+         bool IsValid() const;
+
+         /*!
+          \brief Diese Methode rotiert den Vektor um die Z-Achse mit dem angegebenen Winkel.
+          \param angle Der Rotationswinkel im mathematisch positivem Sinn im Bogenmaß.
+          */
+         Vertex2& Rotate(double angle);
+
+         Vertex2 &operator+=(const Vertex2 &another);
+
+         Vertex2 &operator-=(const Vertex2 &another);
+
+         DllExport
+         friend std::ostream& operator<< (std::ostream& out, const Vertex2 & vertex);
+   };
+
+
+   /*!
+    \brief Implementierung des Operators +
+    */
+   DllExport
+   const Vertex2 operator+(const Vertex2 &v1, const Vertex2 &v2);
+
+   /*!
+    \brief Implementierung des Operators -
+    */
+   DllExport
+   const Vertex2 operator-(const Vertex2 &v1, const Vertex2 &v2);
+
+   /*!
+    \brief Implementierung des Operators *
+    */
+   DllExport
+   const Vertex2 operator*(const double &d, const Vertex2 &v);
+
+   DllExport
+   const Vertex2 operator*(const Integer& i, const Vertex2& v);
+
+   /*!
+    \brief Implementierung des Operators -=
+    */
+   DllExport
+   bool operator!=(Vertex2 const &v1, Vertex2 const &v2);
+
+   /*!
+    \brief Diese Methode löst ein lineares Gleichungssystem mit zwei Unbekannten:
+     r.x = x * a.x + y * b.x
+     r.y = x * a.y + y * b.y
+    Das System wird nach x und y augelöst und gelöst.
+    Matrixschreibweise:
+   	  a   b                 r
+   	| a.x b.x | * | x | = | r.x |
+   	| a.y b.y |   | y |   | r.y |
+    */
+   DllExport
+   Vertex2 SolveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r);
 }
 
 #endif

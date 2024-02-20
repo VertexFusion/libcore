@@ -34,18 +34,18 @@
 
 namespace jm
 {
-	/*!
-	 \brief Enumeration for the operations available in the diff algorithm.
-	 \ingroup diff
-	 */
-	enum DiffOperation
-	{
-		kDiffAdd,      /*!< An element was added. */
-		kDiffDelete,   /*!< An element was deleted. */
-		kDiffModified, /*!< An element was modified. */
-		kDiffEqual,    /*!< An element was not changed (is equal). */
-		kDiffStart     /*!< Start of data / end for back trace. */
-	};
+   /*!
+    \brief Enumeration for the operations available in the diff algorithm.
+    \ingroup diff
+    */
+   enum DiffOperation
+   {
+      kDiffAdd,      /*!< An element was added. */
+      kDiffDelete,   /*!< An element was deleted. */
+      kDiffModified, /*!< An element was modified. */
+      kDiffEqual,    /*!< An element was not changed (is equal). */
+      kDiffStart     /*!< Start of data / end for back trace. */
+   };
 }
 
 #endif

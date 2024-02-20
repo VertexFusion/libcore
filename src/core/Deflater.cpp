@@ -44,50 +44,50 @@ Deflater::~Deflater()
 
 void Deflater::SetInput(uint8* buffer, Integer length)
 {
-	mUncompBytes = buffer;
-	mUncompLength = length;
-	mUncompIndex = 0;
+   mUncompBytes = buffer;
+   mUncompLength = length;
+   mUncompIndex = 0;
 }
 
 void Deflater::Deflate(uint8* &buffer, Integer &length)
 {
-	mUncompIndex = 0;
+   mUncompIndex = 0;
 
-	buffer = new uint8[mUncompLength];
+   buffer = new uint8[mUncompLength];
 
-	z_stream defstream;
-	defstream.zalloc = Z_NULL;
-	defstream.zfree = Z_NULL;
-	defstream.opaque = Z_NULL;
-	// setup "a" as the input and "b" as the compressed output
-	defstream.avail_in = (uInt) mUncompLength; // size of input, string + terminator
-	defstream.next_in = (Bytef *)mUncompBytes; // input char array
-	defstream.avail_out = (uInt)mUncompLength; // size of output
-	defstream.next_out = (Bytef *)buffer; // output char array
+   z_stream defstream;
+   defstream.zalloc = Z_NULL;
+   defstream.zfree = Z_NULL;
+   defstream.opaque = Z_NULL;
+   // setup "a" as the input and "b" as the compressed output
+   defstream.avail_in = (uInt) mUncompLength; // size of input, string + terminator
+   defstream.next_in = (Bytef *)mUncompBytes; // input char array
+   defstream.avail_out = (uInt)mUncompLength; // size of output
+   defstream.next_out = (Bytef *)buffer; // output char array
 
-	// the actual compression work.
-	deflateInit(&defstream, Z_BEST_COMPRESSION);
-	deflate(&defstream, Z_FINISH);
-	deflateEnd(&defstream);
+   // the actual compression work.
+   deflateInit(&defstream, Z_BEST_COMPRESSION);
+   deflate(&defstream, Z_FINISH);
+   deflateEnd(&defstream);
 
-	length = (uint32)defstream.total_out;
+   length = (uint32)defstream.total_out;
 }
 
 void Deflater::Reset()
 {
-	mUncompBytes = NULL;
-	mUncompLength = 0;
-	mUncompIndex = 0;
-	mTotalIn = 0;
-	mTotalOut = 0;
+   mUncompBytes = NULL;
+   mUncompLength = 0;
+   mUncompIndex = 0;
+   mTotalIn = 0;
+   mTotalOut = 0;
 }
 
 Integer Deflater::GetTotalIn()
 {
-	return mTotalIn;
+   return mTotalIn;
 }
 
 Integer Deflater::GetTotalOut()
 {
-	return mTotalOut;
+   return mTotalOut;
 }

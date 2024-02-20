@@ -13,10 +13,10 @@
 
 class DateTest : public jm::Test
 {
-public:
-	DateTest();
-	void DoTest();
-	
+   public:
+      DateTest();
+      void DoTest();
+
 };
 
 #endif /* DateTest_h */

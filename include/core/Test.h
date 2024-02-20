@@ -110,295 +110,295 @@ Cycle finished! In total 2 tests, 1 errors, duration 0,000 sec.
 namespace jm
 {
 
-	/*!
-	 \brief This base class represents a test object. It is used to implement unit tests for any
-	 code. Typically a set of tests is collected in one derived test class.
-	 \ingroup test
-	 */
-	class DllExport Test: public Object
-	{
+   /*!
+    \brief This base class represents a test object. It is used to implement unit tests for any
+    code. Typically a set of tests is collected in one derived test class.
+    \ingroup test
+    */
+   class DllExport Test: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstructor
-			 */
-			Test();
+         /*!
+          \brief Konstructor
+          */
+         Test();
 
-			/*!
-			 \brief Destructor
-			 */
-			virtual ~Test();
+         /*!
+          \brief Destructor
+          */
+         virtual ~Test();
 
-			/*!
-			 \brief Returns the name of the test.
-			 */
-			const String& GetName() const;
+         /*!
+          \brief Returns the name of the test.
+          */
+         const String& GetName() const;
 
-			/*!
-			 \brief Set the name of the text.
-			 \param name The name.
-			 */
-			void SetName(const String& name);
+         /*!
+          \brief Set the name of the text.
+          \param name The name.
+          */
+         void SetName(const String& name);
 
-			/*!
-			 \brief This is the main test method, which must be implemented by every derived test
-			 class.
-			 */
-			virtual void DoTest() = 0;
+         /*!
+          \brief This is the main test method, which must be implemented by every derived test
+          class.
+          */
+         virtual void DoTest() = 0;
 
-			/*!
-			 \brief This method shall be called in the catch clause of an jm::Exception.
-			*/
-			void TestUnexpectedException(const String& failmessage);
+         /*!
+          \brief This method shall be called in the catch clause of an jm::Exception.
+         */
+         void TestUnexpectedException(const String& failmessage);
 
-		protected:
+      protected:
 
-			/*!
-			 \brief Set the error message of this test.
-			 \param error The error message.
-			 */
-			void SetErrorCode(const String& error);
+         /*!
+          \brief Set the error message of this test.
+          \param error The error message.
+          */
+         void SetErrorCode(const String& error);
 
-			/*!
-			 \brief Returns the (last) error message.
-			 */
-			const String& GetErrorCode() const;
+         /*!
+          \brief Returns the (last) error message.
+          */
+         const String& GetErrorCode() const;
 
-			/*!
-			 \brief Call this method, if you made a test by yourself and this test failed.
-			 */
-			void TestFail(const String& message);
+         /*!
+          \brief Call this method, if you made a test by yourself and this test failed.
+          */
+         void TestFail(const String& message);
 
-			/*!
-			 \brief This method tests, if double \p actual is equal to \p expected under consideration
-			 of \c RESABS.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(const double actual, const double expected, const String& failmessage);
+         /*!
+          \brief This method tests, if double \p actual is equal to \p expected under consideration
+          of \c RESABS.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(const double actual, const double expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if Integer \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(Integer actual, Integer expected, const String& failmessage);
+         /*!
+          \brief This method tests, if Integer \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(Integer actual, Integer expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if Integer \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(Integer actual, int32 expected, const String& failmessage);
-
-
-			/*!
-			 \brief This method tests, if uint64 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(uint64 actual, uint64 expected, const String& failmessage);
-
-			/*!
-			 \brief This method tests, if void* \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(void* actual, void* expected, const String& failmessage);
-
-			/*!
-			 \brief This method tests, if int64 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(int64 actual, int64 expected, const String& failmessage);
+         /*!
+          \brief This method tests, if Integer \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(Integer actual, int32 expected, const String& failmessage);
 
 
-			/*!
-			 \brief This method tests, if uint64 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(uint64 actual, int32 expected, const String& failmessage);
+         /*!
+          \brief This method tests, if uint64 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(uint64 actual, uint64 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if uint64 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(uint64 actual, uint32 expected, const String& failmessage);
+         /*!
+          \brief This method tests, if void* \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(void* actual, void* expected, const String& failmessage);
 
-
-			/*!
-			 \brief This method tests, if int32 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(int32 actual, int32 expected, const String& failmessage);
-
-			/*!
-			 \brief This method tests, if uint32 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(uint32 actual, uint32 expected, const String& failmessage);
-
-			/*!
-			 \brief This method tests, if uint32 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(uint32 actual, int32 expected, const String& failmessage);
+         /*!
+          \brief This method tests, if int64 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(int64 actual, int64 expected, const String& failmessage);
 
 
-			/*!
-			 \brief This method tests, if int32 \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(int32 actual, uint32 expected, const String& failmessage);
+         /*!
+          \brief This method tests, if uint64 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(uint64 actual, int32 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if String \p actual is equal to \p expected.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEquals(const String& actual,
-				const String& expected,
-				const String& failmessage);
+         /*!
+          \brief This method tests, if uint64 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(uint64 actual, uint32 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if String \p actual is equal to \p expected ignoring cases.
-			 \param actual The test value
-			 \param expected The expected value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestEqualsIgnoreCase(const String& actual,
-				const String& expected,
-				const String& failmessage);
 
-			/*!
-			 \brief This method tests, if \p actual is \c NULL.
-			 \param actual The test value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestNull(void* actual, const String& failmessage);
+         /*!
+          \brief This method tests, if int32 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(int32 actual, int32 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if \p actual is not \c NULL.
-			 \param actual The test value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestNotNull(void* actual, const String& failmessage);
+         /*!
+          \brief This method tests, if uint32 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(uint32 actual, uint32 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if \p actual is \c true.
-			 \param actual The test value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestTrue(bool actual, const String& failmessage);
+         /*!
+          \brief This method tests, if uint32 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(uint32 actual, int32 expected, const String& failmessage);
 
-			/*!
-			 \brief This method tests, if \p actual is \c false.
-			 \param actual The test value
-			 \param failmessage The log message in case of failed test.
-			 */
-			void TestFalse(bool actual, const String& failmessage);
 
-		private:
+         /*!
+          \brief This method tests, if int32 \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(int32 actual, uint32 expected, const String& failmessage);
 
-			//! The name of the test.
-			String mName;
+         /*!
+          \brief This method tests, if String \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEquals(const String& actual,
+                         const String& expected,
+                         const String& failmessage);
 
-			//! The error message
-			String mError;
-	};
+         /*!
+          \brief This method tests, if String \p actual is equal to \p expected ignoring cases.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestEqualsIgnoreCase(const String& actual,
+                                   const String& expected,
+                                   const String& failmessage);
 
-	/*!
-	\brief A TestVector is a collection of several tests and will execute them all and return
-	the number of errors on execution.
+         /*!
+          \brief This method tests, if \p actual is \c NULL.
+          \param actual The test value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestNull(void* actual, const String& failmessage);
 
-	This class needs the parameter \p argc and \argv which are typically provides vom the entry
-	method int main() on every operating system.
+         /*!
+          \brief This method tests, if \p actual is not \c NULL.
+          \param actual The test value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestNotNull(void* actual, const String& failmessage);
 
-	When passing arguments to the executable from the command line, the argument shall be the
-	0 based index of a single test which will be executed. If no argument is provided, all tests
-	will be done. With this possibility you can focus on a single test when developing and testing
-	test classes by passing the number to the executable.
+         /*!
+          \brief This method tests, if \p actual is \c true.
+          \param actual The test value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestTrue(bool actual, const String& failmessage);
 
-	\ingroup test
-	*/
-	class DllExport TestVector
-	{
-		public:
+         /*!
+          \brief This method tests, if \p actual is \c false.
+          \param actual The test value
+          \param failmessage The log message in case of failed test.
+          */
+         void TestFalse(bool actual, const String& failmessage);
 
-			/*!
-			 \brief Constructor
-			 \param argc 1st parameter from int main()
-			 \param argv 2nd parameter from int maint()
-			 */
-			TestVector(int argc, const char* argv[]);
+      private:
 
-			/*!
-			 \brief Destructor
-			*/
-			~TestVector();
+         //! The name of the test.
+         String mName;
 
-			/*!
-			 \brief Addds \p test to the test vector.
-			 \param test The test to be added.
-			 */
-			void AddTest(Test* test);
+         //! The error message
+         String mError;
+   };
 
-			/*!
-			 \brief Executes the test vector.
-			 \return The number or errors. 0, if everything is ok.
-			 */
-			Integer Execute();
+   /*!
+   \brief A TestVector is a collection of several tests and will execute them all and return
+   the number of errors on execution.
 
-	private:
+   This class needs the parameter \p argc and \argv which are typically provides vom the entry
+   method int main() on every operating system.
 
-		//! \brief The 1st argument from command line (after executable name).
-		String arg;
+   When passing arguments to the executable from the command line, the argument shall be the
+   0 based index of a single test which will be executed. If no argument is provided, all tests
+   will be done. With this possibility you can focus on a single test when developing and testing
+   test classes by passing the number to the executable.
 
-		//! \brief  The tests to be done.
-		std::vector<Test*> tests;
+   \ingroup test
+   */
+   class DllExport TestVector
+   {
+      public:
 
-		//! \brief  Helper method for single test run.
-		//! \param test Test to run.
-		void Testrun(Test* test);
+         /*!
+          \brief Constructor
+          \param argc 1st parameter from int main()
+          \param argv 2nd parameter from int maint()
+          */
+         TestVector(int argc, const char* argv[]);
 
-	};
+         /*!
+          \brief Destructor
+         */
+         ~TestVector();
 
-	//! \brief  global error count during single test run.
-	//! \ingroup test
-	extern "C" int32 gErrorCount;
+         /*!
+          \brief Addds \p test to the test vector.
+          \param test The test to be added.
+          */
+         void AddTest(Test* test);
 
-	//! \brief  global test count during single test run.
-	//! \ingroup test
-	extern "C" int32 gTestCount;
+         /*!
+          \brief Executes the test vector.
+          \return The number or errors. 0, if everything is ok.
+          */
+         Integer Execute();
 
-	//! \brief  global error count over all done tests.
-	//! \ingroup test
-	extern "C" int32 gTotalErrorCount;
+      private:
 
-	//! \brief  global test count overall done tests.
-	//! \ingroup test
-	extern "C" int32 gTotalTestCount;
+         //! \brief The 1st argument from command line (after executable name).
+         String arg;
+
+         //! \brief  The tests to be done.
+         std::vector<Test*> tests;
+
+         //! \brief  Helper method for single test run.
+         //! \param test Test to run.
+         void Testrun(Test* test);
+
+   };
+
+   //! \brief  global error count during single test run.
+   //! \ingroup test
+   extern "C" int32 gErrorCount;
+
+   //! \brief  global test count during single test run.
+   //! \ingroup test
+   extern "C" int32 gTestCount;
+
+   //! \brief  global error count over all done tests.
+   //! \ingroup test
+   extern "C" int32 gTotalErrorCount;
+
+   //! \brief  global test count overall done tests.
+   //! \ingroup test
+   extern "C" int32 gTotalTestCount;
 
 }
 #endif

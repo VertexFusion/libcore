@@ -307,7 +307,7 @@
 		C62B908B2AEEFC550085300B /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Character.cpp; path = src/core/Character.cpp; sourceTree = "<group>"; };
 		C62B908C2AEEFC550085300B /* System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = System.cpp; path = src/core/System.cpp; sourceTree = "<group>"; };
 		C62B908D2AEEFC550085300B /* Date.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Date.cpp; path = src/core/Date.cpp; sourceTree = "<group>"; };
-		C62B908E2AEEFC550085300B /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Geometry.cpp; path = src/core/Geometry.cpp; sourceTree = "<group>"; };
+		C62B908E2AEEFC550085300B /* Geometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = Geometry.cpp; path = src/core/Geometry.cpp; sourceTree = "<group>"; };
 		C62B908F2AEEFC550085300B /* String.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = String.cpp; path = src/core/String.cpp; sourceTree = "<group>"; };
 		C62B90902AEEFC550085300B /* Charset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Charset.cpp; path = src/core/Charset.cpp; sourceTree = "<group>"; };
 		C62B90912AEEFC550085300B /* StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringTokenizer.cpp; path = src/core/StringTokenizer.cpp; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		C62B90DB2AEEFC690085300B /* Diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Diff.h; path = include/core/Diff.h; sourceTree = SOURCE_ROOT; };
 		C62B90DC2AEEFC690085300B /* Vertex3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vertex3.h; path = include/core/Vertex3.h; sourceTree = SOURCE_ROOT; };
 		C62B90DD2AEEFC6A0085300B /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = include/core/Base64.h; sourceTree = SOURCE_ROOT; };
-		C62B90DE2AEEFC6A0085300B /* DiffDiag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiffDiag.h; path = include/core/DiffDiag.h; sourceTree = SOURCE_ROOT; };
+		C62B90DE2AEEFC6A0085300B /* DiffDiag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = DiffDiag.h; path = include/core/DiffDiag.h; sourceTree = SOURCE_ROOT; };
 		C62B90DF2AEEFC6A0085300B /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Document.h; path = include/core/Document.h; sourceTree = SOURCE_ROOT; };
 		C62B90E02AEEFC6A0085300B /* DiffDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiffDistance.h; path = include/core/DiffDistance.h; sourceTree = SOURCE_ROOT; };
 		C62B90E12AEEFC6A0085300B /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = System.h; path = include/core/System.h; sourceTree = SOURCE_ROOT; };

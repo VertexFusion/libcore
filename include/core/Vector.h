@@ -37,101 +37,101 @@
 namespace jm
 {
 
-	/*!
-	 \brief An n-dimensional vector.
-	 \ingroup core
-	 */
-	struct DllExport Vector
-	{
-		/*!
-		 \brief This variable stores the number of rows in the vector.
-		 */
-		uint32 m;
+   /*!
+    \brief An n-dimensional vector.
+    \ingroup core
+    */
+   struct DllExport Vector
+   {
+      /*!
+       \brief This variable stores the number of rows in the vector.
+       */
+      uint32 m;
 
-		/*!
-		 \brief This field stores the data of the vector. The length must always be m.
-		 */
-		double* data;
+      /*!
+       \brief This field stores the data of the vector. The length must always be m.
+       */
+      double* data;
 
-		/*!
-		 \brief Constructor creates empty vector (m=0)
-		 */
-		Vector();
+      /*!
+       \brief Constructor creates empty vector (m=0)
+       */
+      Vector();
 
-		/*!
-		 \brief Copy constructor
-		 */
-		Vector(const Vector &another);
+      /*!
+       \brief Copy constructor
+       */
+      Vector(const Vector &another);
 
-		/*!
-		 \brief Constructor creates an n-dimensional vector.
-		 \param rows Number of rows (dimensions) in the vector.
-		 */
-		Vector(uint32 rows);
+      /*!
+       \brief Constructor creates an n-dimensional vector.
+       \param rows Number of rows (dimensions) in the vector.
+       */
+      Vector(uint32 rows);
 
-		/*!
-		 \brief Destructor
-		 */
-		~Vector();
+      /*!
+       \brief Destructor
+       */
+      ~Vector();
 
-		/*!
-		 \brief This method returns the absolute value of the vector.
-		 */
-		double Abs() const;
+      /*!
+       \brief This method returns the absolute value of the vector.
+       */
+      double Abs() const;
 
-		/*!
-		 \brief This method normalises the vector. The length of the vector is set to 1. The direction
-		 remains the same.
-		 */
-		void Normalize();
+      /*!
+       \brief This method normalises the vector. The length of the vector is set to 1. The direction
+       remains the same.
+       */
+      void Normalize();
 
-		/*!
-		 \brief This method zeroes all entries of the vector.
-		 */
-		void Zeros();
+      /*!
+       \brief This method zeroes all entries of the vector.
+       */
+      void Zeros();
 
-		/*!
-		 \brief This method sets all entries of the vector to 1.0.
-		 */
-		void Ones();
+      /*!
+       \brief This method sets all entries of the vector to 1.0.
+       */
+      void Ones();
 
-		/*!
-		 \brief Returns the scalar product of one vector with another.
+      /*!
+       \brief Returns the scalar product of one vector with another.
 
-		 <ul><li>If the scalar product is 0, then two vectors are perpendicular to each other.</li>
-		 <li>If the scalar conduct > 0, then the included angle is acute.</li>
-		 <li>If the scalar conduct < 0, then the included angle is obtuse.</li>
-		 <li>For normalised vectors, the scalar product corresponds to the projection of one vector
-		 onto the other.</li>
-		 </ul>
-		 \param another The vector with which the scalar product "this × other" is formed.
-		 */
-		double DotProduct(const Vector &another) const;
+       <ul><li>If the scalar product is 0, then two vectors are perpendicular to each other.</li>
+       <li>If the scalar conduct > 0, then the included angle is acute.</li>
+       <li>If the scalar conduct < 0, then the included angle is obtuse.</li>
+       <li>For normalised vectors, the scalar product corresponds to the projection of one vector
+       onto the other.</li>
+       </ul>
+       \param another The vector with which the scalar product "this × other" is formed.
+       */
+      double DotProduct(const Vector &another) const;
 
-		Vector& operator=(const Vector &another);
+      Vector& operator=(const Vector &another);
 
-		DllExport
-		friend std::ostream &operator<< (std::ostream &out, const Vector &str);
+      DllExport
+      friend std::ostream &operator<< (std::ostream &out, const Vector &str);
 
-	};
+   };
 
-	/*!
-	 \brief Implementation of the operator +
-	 */
-	DllExport
-	const Vector operator+(const Vector &v1, const Vector &v2);
+   /*!
+    \brief Implementation of the operator +
+    */
+   DllExport
+   const Vector operator+(const Vector &v1, const Vector &v2);
 
-	/*!
-	 \brief Implementation of the operator -
-	 */
-	DllExport
-	const Vector operator-(const Vector &v1, const Vector &v2);
+   /*!
+    \brief Implementation of the operator -
+    */
+   DllExport
+   const Vector operator-(const Vector &v1, const Vector &v2);
 
-	/*!
-	 \brief Implementation of the operator *
-	 */
-	DllExport
-	const Vector operator*(const double &d, const Vector &v);
+   /*!
+    \brief Implementation of the operator *
+    */
+   DllExport
+   const Vector operator*(const double &d, const Vector &v);
 
 }
 

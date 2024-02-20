@@ -35,190 +35,191 @@ using namespace jm;
 
 ByteArray::ByteArray() : Object()
 {
-	mArrSize = 0;
-	mRawSize = 0;
-	mData = NULL;
+   mArrSize = 0;
+   mRawSize = 0;
+   mData = NULL;
 };
 
 ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
 {
-	if (buffer == NULL)
-	{
-		mArrSize = 0;
-		mRawSize = 0;
-		mData = NULL;
-		return;
-	}
+   if(buffer == NULL)
+   {
+      mArrSize = 0;
+      mRawSize = 0;
+      mData = NULL;
+      return;
+   }
 
-	if (size < 0)
-	{
-		mArrSize = 0;
-		while (buffer[mArrSize] != 0)
-		{
-			mArrSize++;
-		}
-	}
-	else mArrSize = size;
+   if(size < 0)
+   {
+      mArrSize = 0;
+      while(buffer[mArrSize] != 0)
+      {
+         mArrSize++;
+      }
+   }
+   else mArrSize = size;
 
-	mRawSize = mArrSize + 1;
-	mData = new uint8[mRawSize];
-	mData[mArrSize] = 0;
+   mRawSize = mArrSize + 1;
+   mData = new uint8[mRawSize];
+   mData[mArrSize] = 0;
 
-	memcpy(mData, buffer, mArrSize);
+   memcpy(mData, buffer, mArrSize);
 }
 
 
 ByteArray::ByteArray(Integer length, uint8 ch) : Object()
 {
-	mArrSize = length;
-	mRawSize = mArrSize + 1;
-	mData = new uint8[mRawSize];
-	mData[mArrSize] = 0;
-	Fill(ch);
+   mArrSize = length;
+   mRawSize = mArrSize + 1;
+   mData = new uint8[mRawSize];
+   mData[mArrSize] = 0;
+   Fill(ch);
 };
 
 ByteArray::ByteArray(const ByteArray& other) : Object()
 {
-	mArrSize = other.mArrSize;
-	mRawSize = other.mRawSize;
-	mData = new uint8[mRawSize];
-	for (Integer index = 0; index < mRawSize; index++)
-	{
-		mData[index] = other.mData[index];
-	}
+   mArrSize = other.mArrSize;
+   mRawSize = other.mRawSize;
+   mData = new uint8[mRawSize];
+   for(Integer index = 0; index < mRawSize; index++)
+   {
+      mData[index] = other.mData[index];
+   }
 }
 
 ByteArray::ByteArray(std::initializer_list<uint8> list) : Object()
 {
-	mArrSize = list.size();
-	mRawSize = mArrSize + 1;
-	mData = new uint8[mRawSize];
-	std::initializer_list<uint8>::iterator it;
-	Integer cnt = 0;
-	for (it = list.begin(); it != list.end(); ++it)
-	{
-		mData[cnt++] = *it;
-	}
-	mData[mArrSize] = 0;
+   mArrSize = list.size();
+   mRawSize = mArrSize + 1;
+   mData = new uint8[mRawSize];
+   std::initializer_list<uint8>::iterator it;
+   Integer cnt = 0;
+   for(it = list.begin(); it != list.end(); ++it)
+   {
+      mData[cnt++] = *it;
+   }
+   mData[mArrSize] = 0;
 }
 
 ByteArray::~ByteArray()
 {
-	mArrSize = 0;
-	mRawSize = 0;
-	if (mData != NULL)delete[] mData;
+   mArrSize = 0;
+   mRawSize = 0;
+   if(mData != NULL)delete[] mData;
 };
 
 Integer ByteArray::Size() const
 {
-	return mArrSize;
+   return mArrSize;
 };
 
 bool ByteArray::IsNull() const
 {
-	return mData == NULL;
+   return mData == NULL;
 }
 
 bool ByteArray::IsEmpty() const
 {
-	return mArrSize == 0;
+   return mArrSize == 0;
 }
 
 int8* ByteArray::Data()
 {
-	return reinterpret_cast<int8*>(mData);
+   return reinterpret_cast<int8*>(mData);
 }
 
 const int8* ByteArray::ConstData() const
 {
-	return reinterpret_cast<const int8*>(mData);
+   return reinterpret_cast<const int8*>(mData);
 }
 
 
 void ByteArray::Sort()
 {
-	if (mArrSize < 1)return;
+   if(mArrSize < 1)return;
 
-	Integer n = mArrSize;
-	do
-	{
-		Integer newn = 1;
-		for (Integer i = 0; i < n - 1; ++i)
-		{
-			Integer j = i + 1;
-			uint8 a1 = mData[i];
-			uint8 a2 = mData[j];
-			if (a1 > a2)
-			{
-				//Vertausche
-				uint8 tmp = mData[i];
-				mData[i] = mData[j];
-				mData[j] = tmp;
+   Integer n = mArrSize;
+   do
+   {
+      Integer newn = 1;
+      for(Integer i = 0; i < n - 1; ++i)
+      {
+         Integer j = i + 1;
+         uint8 a1 = mData[i];
+         uint8 a2 = mData[j];
+         if(a1 > a2)
+         {
+            //Vertausche
+            uint8 tmp = mData[i];
+            mData[i] = mData[j];
+            mData[j] = tmp;
 
-				newn = i + 1;
-			}
-		}
-		n = newn;
-	} while (n > 1);
+            newn = i + 1;
+         }
+      }
+      n = newn;
+   }
+   while(n > 1);
 }
 
 void ByteArray::Fill(uint8 ch)
 {
-	for (Integer index = 0; index < mArrSize; index++)mData[index] = ch;
+   for(Integer index = 0; index < mArrSize; index++)mData[index] = ch;
 }
 
 
 uint8 ByteArray::Get(Integer index) const
 {
-	//if (index >= mLength)
-	//	throw new Exception("Array index out of bounds.");
-	return mData[index];
+   //if (index >= mLength)
+   //	throw new Exception("Array index out of bounds.");
+   return mData[index];
 };
 
 void ByteArray::Set(Integer index, uint8 item)
 {
-	//if (index >= mLength)
-	//	throw new Exception("Array index out of bounds.");
-	mData[index] = item;
+   //if (index >= mLength)
+   //	throw new Exception("Array index out of bounds.");
+   mData[index] = item;
 };
 
 uint8& jm::ByteArray::operator[](const Integer index) const
 {
-	//if (index >= mLength)
-	//	throw new Exception("Array index out of bounds.");
-	return mData[index];
+   //if (index >= mLength)
+   //	throw new Exception("Array index out of bounds.");
+   return mData[index];
 }
 
 ByteArray& jm::ByteArray::operator=(const ByteArray& another)
 {
-	if (this != &another)
-	{
-		delete[] mData;
+   if(this != &another)
+   {
+      delete[] mData;
 
-		mArrSize = another.mArrSize;
-		mRawSize = another.mRawSize;
-		mData = new uint8[mRawSize];
-		for (Integer a = 0; a < mRawSize; a++)
-		{
-			mData[a] = another.mData[a];
-		}
-	}
+      mArrSize = another.mArrSize;
+      mRawSize = another.mRawSize;
+      mData = new uint8[mRawSize];
+      for(Integer a = 0; a < mRawSize; a++)
+      {
+         mData[a] = another.mData[a];
+      }
+   }
 
-	return *this;
+   return *this;
 }
 
 namespace jm
 {
-	bool operator==(const ByteArray& a1, const ByteArray& a2)
-	{
-		if (a1.Size() != a2.Size())return false;
+   bool operator==(const ByteArray& a1, const ByteArray& a2)
+   {
+      if(a1.Size() != a2.Size())return false;
 
-		for (Integer index = 0; index < a1.Size(); index++)
-		{
-			if (a1[index] != a2[index])return false;
-		}
+      for(Integer index = 0; index < a1.Size(); index++)
+      {
+         if(a1[index] != a2[index])return false;
+      }
 
-		return true;
-	}
+      return true;
+   }
 
 }

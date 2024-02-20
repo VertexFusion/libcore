@@ -20,12 +20,12 @@ using namespace jm;
 
 PaintingBackend::PaintingBackend(): Object()
 {
-	transformstack= new std::vector<Transform>();
-	buffer = new std::vector<BufferElement>();
+   transformstack = new std::vector<Transform>();
+   buffer = new std::vector<BufferElement>();
 }
 
 PaintingBackend::~PaintingBackend()
 {
-	delete transformstack;
-	delete buffer;
+   delete transformstack;
+   delete buffer;
 }

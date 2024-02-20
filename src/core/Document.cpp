@@ -35,92 +35,92 @@ using namespace jm;
 
 Document::Document(): Object()
 {
-	mUndoManager = NULL;
-	mChanged = false;
-	mRegenerate = false;
-	SetUndoManager(true);
+   mUndoManager = NULL;
+   mChanged = false;
+   mRegenerate = false;
+   SetUndoManager(true);
 }
 
 Document::~Document()
 {
-	if(mFile.IsOpen())mFile.Close();
+   if(mFile.IsOpen())mFile.Close();
 
 
-	// We own the undo manage. We delete it.
-	if(mUndoManager != NULL)
-	{
-		delete mUndoManager;
-		mUndoManager = NULL;
-	}
+   // We own the undo manage. We delete it.
+   if(mUndoManager != NULL)
+   {
+      delete mUndoManager;
+      mUndoManager = NULL;
+   }
 }
 
 void Document::CloseUndoStep()
 {
-	if (mUndoManager != NULL)mUndoManager->Close();
+   if(mUndoManager != NULL)mUndoManager->Close();
 }
 
 UndoManager* Document::GetUndoManager()
 {
-	return mUndoManager;
+   return mUndoManager;
 }
 
 void Document::SetUndoManager(bool status)
 {
-	if(status)
-	{
-		if(mUndoManager == NULL)
-		{
-			mUndoManager = new UndoManager();
-			mUndoManager->SetDocument(this);
-			mUndoManager->SetActive(true);
-		}
-	}
-	else
-	{
-		if(mUndoManager != NULL)
-		{
-			mUndoManager->Release();
-			mUndoManager = NULL;
-		}
-	}
+   if(status)
+   {
+      if(mUndoManager == NULL)
+      {
+         mUndoManager = new UndoManager();
+         mUndoManager->SetDocument(this);
+         mUndoManager->SetActive(true);
+      }
+   }
+   else
+   {
+      if(mUndoManager != NULL)
+      {
+         mUndoManager->Release();
+         mUndoManager = NULL;
+      }
+   }
 }
 
 bool Document::HasUndoManager() const
 {
-	return mUndoManager != NULL;
+   return mUndoManager != NULL;
 }
 
 bool Document::IsDocumentChanged() const
 {
-	return mChanged;
+   return mChanged;
 }
 
 void Document::SetDocumentChanged(bool status)
 {
-	mChanged = status;
+   mChanged = status;
 }
 
 void Document::SetFile(const File &file)
 {
-	mFile = file;
+   mFile = file;
 }
 
 File* Document::GetFile()
 {
-	return &mFile;
+   return &mFile;
 }
 
 void Document::Regenerate()
 {
-	mRegenerate = true;
+   mRegenerate = true;
 }
 
 void Document::RegenerationDone()
 {
-	mRegenerate = false;
+   mRegenerate = false;
 }
 
 bool Document::ShouldRegenerate() const
 {
-	return mRegenerate;
+   return mRegenerate;
 }

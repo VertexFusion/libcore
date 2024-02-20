@@ -38,97 +38,97 @@
 namespace jm
 {
 
-	//Vorabdeklaration
-	class DiffBacktrace;
-	class DiffDiag;
+   //Vorabdeklaration
+   class DiffBacktrace;
+   class DiffDiag;
 
-	/*!
-	 \brief This class calculates the Levenshtein distance between individual entities.
+   /*!
+    \brief This class calculates the Levenshtein distance between individual entities.
 
-	 For the distance calculation, the only decisive factor is whether the two objects are identical
-	 or not. The "O(|A|(1+DAB)) Levenshtein distance algorithm with lazy evaluation" is used because
-	 calculating a fully populated matrix is much too slow for the classical algorithm for large
-	 files.
+    For the distance calculation, the only decisive factor is whether the two objects are identical
+    or not. The "O(|A|(1+DAB)) Levenshtein distance algorithm with lazy evaluation" is used because
+    calculating a fully populated matrix is much too slow for the classical algorithm for large
+    files.
 
-	 \ingroup diff
-	 */
-	class DllExport DiffDistance
-	{
-		public:
+    \ingroup diff
+    */
+   class DllExport DiffDistance
+   {
+      public:
 
-			/*!
-			 \brief Anzahl der berechneten Schritte für statistische Auswertung.
-			 */
-			Integer calc;
+         /*!
+          \brief Anzahl der berechneten Schritte für statistische Auswertung.
+          */
+         Integer calc;
 
-			/*!
-			 \brief Konstructor
-			 */
-			DiffDistance();
+         /*!
+          \brief Konstructor
+          */
+         DiffDistance();
 
-			/*!
-			 \brief Destructor
-			 */
-			~DiffDistance();
+         /*!
+          \brief Destructor
+          */
+         ~DiffDistance();
 
-			/*!
-			 \brief Räum auf, um neue Berechnung machen zu können
-			 */
-			void Clear();
+         /*!
+          \brief Räum auf, um neue Berechnung machen zu können
+          */
+         void Clear();
 
-			/*!
-			 \brief Fügt ein Element in den U-Vektor hinzu
-			 */
-			void AddU(Object* obj);
+         /*!
+          \brief Fügt ein Element in den U-Vektor hinzu
+          */
+         void AddU(Object* obj);
 
-			/*!
-			 \brief Fügt ein Element in den V-Vektor hinzu
-			 */
-			void AddV(Object* obj);
+         /*!
+          \brief Fügt ein Element in den V-Vektor hinzu
+          */
+         void AddV(Object* obj);
 
-			/*!
-			 \brief Diese Methode berechnet die Levenshtein-Distanz
-			 */
-			DiffBacktrace* Solve();
+         /*!
+          \brief Diese Methode berechnet die Levenshtein-Distanz
+          */
+         DiffBacktrace* Solve();
 
-			/*!
-			 \brief Gibt die Levenshtein-Distanz zurück
-			 */
-			Integer GetDistance() const;
+         /*!
+          \brief Gibt die Levenshtein-Distanz zurück
+          */
+         Integer GetDistance() const;
 
-		private:
+      private:
 
-			/*!
-			 \brief Levenshtein-Distanz. Wenn 0, dann sind die Objekte gleicht.
-			 */
-			Integer distance;
+         /*!
+          \brief Levenshtein-Distanz. Wenn 0, dann sind die Objekte gleicht.
+          */
+         Integer distance;
 
-			/*!
-			 \brief Berechnete Diagonale
-			 */
-			DiffDiag* diagonal;
+         /*!
+          \brief Berechnete Diagonale
+          */
+         DiffDiag* diagonal;
 
-			/*!
-			 \brief Anzahl der Zeilen
-			 */
-			Integer m;
+         /*!
+          \brief Anzahl der Zeilen
+          */
+         Integer m;
 
-			/*!
-			 \brief Anzahl der Spalten
-			 */
-			Integer n;
+         /*!
+          \brief Anzahl der Spalten
+          */
+         Integer n;
 
-			/*!
-			 \brief Vergleichsvektor 1
-			 */
-			std::vector<Object*>* u;
+         /*!
+          \brief Vergleichsvektor 1
+          */
+         std::vector<Object*>* u;
 
-			/*!
-			 \brief Vergleichsvektor 2
-			 */
-			std::vector<Object*>* v;
+         /*!
+          \brief Vergleichsvektor 2
+          */
+         std::vector<Object*>* v;
 
-	};
+   };
 
 }
 

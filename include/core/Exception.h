@@ -44,69 +44,69 @@
 
 namespace jm
 {
-	/*!
-	 \brief This class represents an exception that can be "thrown" in case of unexpected errors.
-	 \warning Do not use in new implementations
-	 */
-	class DllExport Exception: public Object
-	{
-		private:
+   /*!
+    \brief This class represents an exception that can be "thrown" in case of unexpected errors.
+    \warning Do not use in new implementations
+    */
+   class DllExport Exception: public Object
+   {
+      private:
 
-			/*!
-			 @internal
-			 \brief Die Fehlermeldung, die dem Anwender angezeigt werden soll.
-			 */
-			String message;
+         /*!
+          @internal
+          \brief Die Fehlermeldung, die dem Anwender angezeigt werden soll.
+          */
+         String message;
 
-			/*!
-			 @internal
-			 \brief Die Thread-ID
-			 */
-			#ifdef __APPLE__ //macOS
-			pthread_t tid;
-			#elif defined __linux__//Linux
-			pthread_t tid;
-			#elif defined _WIN32//Windows
-			//Keine Threadbib
-			#endif
-
-
-			// retrieve current stack addresses
-			uint32 addrlen;
-
-			String* symbollist;
+         /*!
+          @internal
+          \brief Die Thread-ID
+          */
+         #ifdef __APPLE__ //macOS
+         pthread_t tid;
+         #elif defined __linux__//Linux
+         pthread_t tid;
+         #elif defined _WIN32//Windows
+         //Keine Threadbib
+         #endif
 
 
-		public:
+         // retrieve current stack addresses
+         uint32 addrlen;
 
-			/*!
-			 \brief Konstruktor
-			 \param message Die Fehlermeldung, die dem Anwender angezeigt werden soll.
-			 */
-			Exception(const String message);
+         String* symbollist;
 
-			/*!
-			 \brief Destructor
-			 */
-			~Exception();
 
-			/*!
-			 \brief Gibt die Fehlermeldung zurück.
-			 \return Die Fehlermeldung
-			 */
-			String GetErrorMessage() const;
+      public:
 
-			/*!
-			 \brief Schreibt den Stacktrace in den Fehlerstream
-			 */
-			void PrintStackTrace() const;
+         /*!
+          \brief Konstruktor
+          \param message Die Fehlermeldung, die dem Anwender angezeigt werden soll.
+          */
+         Exception(const String message);
 
-			/*!
-			 \brief Gibt den Stacktrace als String zurück
-			 */
-			String GetStrackTrace() const;
+         /*!
+          \brief Destructor
+          */
+         ~Exception();
 
-	};
+         /*!
+          \brief Gibt die Fehlermeldung zurück.
+          \return Die Fehlermeldung
+          */
+         String GetErrorMessage() const;
+
+         /*!
+          \brief Schreibt den Stacktrace in den Fehlerstream
+          */
+         void PrintStackTrace() const;
+
+         /*!
+          \brief Gibt den Stacktrace als String zurück
+          */
+         String GetStrackTrace() const;
+
+   };
 
 
 }

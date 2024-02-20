@@ -36,9 +36,9 @@
 
 class EditableObjectTest : public jm::Test
 {
-public:
-	EditableObjectTest();
-	void DoTest() override;
+   public:
+      EditableObjectTest();
+      void DoTest() override;
 
 };
 

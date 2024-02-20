@@ -34,219 +34,219 @@
 
 int16 jm::SerializeBEInt16(uint8* buffer, uint32 offset, int16 value)
 {
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset] = (uint8)value;
-	return 2;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset] = (uint8)value;
+   return 2;
 }
 
 int16 jm::SerializeBEInt24(uint8* buffer, uint32 offset, int32 value)
 {
-	buffer[offset + 2] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset] = (uint8)value;
-	return 3;
+   buffer[offset + 2] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset] = (uint8)value;
+   return 3;
 }
 
 int16 jm::SerializeBEInt32(uint8* buffer, uint32 offset, int32 value)
 {
-	buffer[offset + 3] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 2] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset] = (uint8)value;
-	return 4;
+   buffer[offset + 3] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 2] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset] = (uint8)value;
+   return 4;
 }
 
 int16 jm::SerializeBEInt64(uint8* buffer, uint32 offset, int64 value)
 {
-	buffer[offset + 7] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 6] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 5] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 4] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 3] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 2] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset] = (uint8)value;
-	return 8;
+   buffer[offset + 7] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 6] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 5] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 4] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 3] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 2] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset] = (uint8)value;
+   return 8;
 }
 
 int16 jm::SerializeLEInt16(uint8* buffer, uint32 offset, int16 value)
 {
-	buffer[offset] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	return 2;
+   buffer[offset] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   return 2;
 }
 
 int16 jm::SerializeLEUInt16(uint8* buffer, uint32 offset, uint16 value)
 {
-	buffer[offset] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	return 2;
+   buffer[offset] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   return 2;
 }
 
 int16 jm::SerializeLEInt24(uint8* buffer, uint32 offset, int32 value)
 {
-	buffer[offset] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 2] = (uint8)value;
-	return 3;
+   buffer[offset] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 2] = (uint8)value;
+   return 3;
 }
 
 int16 jm::SerializeLEInt32(uint8* buffer, uint32 offset, int32 value)
 {
-	buffer[offset] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 2] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 3] = (uint8)value;
-	return 4;
+   buffer[offset] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 2] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 3] = (uint8)value;
+   return 4;
 }
 
 int16 jm::SerializeLEInt64(uint8* buffer, uint32 offset, int64 value)
 {
-	buffer[offset] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 1] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 2] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 3] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 4] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 5] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 6] = (uint8)value;
-	value >>= 8;
-	buffer[offset + 7] = (uint8)value;
-	return 8;
+   buffer[offset] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 1] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 2] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 3] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 4] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 5] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 6] = (uint8)value;
+   value >>= 8;
+   buffer[offset + 7] = (uint8)value;
+   return 8;
 }
 
 uint16 jm::DeserializeBEUInt16(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset] << 8 | buffer[offset + 1]);
+   return (buffer[offset] << 8 | buffer[offset + 1]);
 }
 
 int16 jm::DeserializeBEInt16(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset] << 8 | buffer[offset + 1]);
+   return (buffer[offset] << 8 | buffer[offset + 1]);
 }
 
 uint32 jm::DeserializeBEUInt32(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset] << 24 | buffer[offset + 1] << 16 | buffer[offset + 2] << 8 | buffer[offset + 3]);
+   return (buffer[offset] << 24 | buffer[offset + 1] << 16 | buffer[offset + 2] << 8 | buffer[offset + 3]);
 }
 
 int64 jm::DeserializeBEInt64(uint8* buffer, uint32 offset)
 {
-	int64 p1 = DeserializeBEUInt32(buffer, offset);
-	int64 p2 = DeserializeBEUInt32(buffer, offset + 4);
-	return (p1 << 32 | p2);
+   int64 p1 = DeserializeBEUInt32(buffer, offset);
+   int64 p2 = DeserializeBEUInt32(buffer, offset + 4);
+   return (p1 << 32 | p2);
 }
 
 uint16 jm::DeserializeLEUInt16(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset + 1] << 8 | buffer[offset]);
+   return (buffer[offset + 1] << 8 | buffer[offset]);
 }
 
 int16 jm::DeserializeLEInt16(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset + 1] << 8 | buffer[offset]);
+   return (buffer[offset + 1] << 8 | buffer[offset]);
 }
 
 uint32 jm::DeserializeLEUInt32(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
+   return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
 }
 
 int32 jm::DeserializeLEInt32(uint8* buffer, uint32 offset)
 {
-	return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
+   return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
 }
 
 int64 jm::DeserializeLEInt64(uint8* buffer, uint32 offset)
 {
-	int64 p1 = DeserializeLEUInt32(buffer, offset + 4);
-	int64 p2 = DeserializeLEUInt32(buffer, offset);
-	return (p1 << 32 | p2);
+   int64 p1 = DeserializeLEUInt32(buffer, offset + 4);
+   int64 p2 = DeserializeLEUInt32(buffer, offset);
+   return (p1 << 32 | p2);
 }
 
 int16 jm::SerializeLEDouble(uint8* buffer, uint32 offset, double value)
 {
-	union conv
-	{
-		uint64 ival;
-		double dval;
-	};
+   union conv
+   {
+      uint64 ival;
+      double dval;
+   };
 
-	conv c;
-	c.dval = value;
+   conv c;
+   c.dval = value;
 
-	buffer[offset] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 1] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 2] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 3] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 4] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 5] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 6] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 7] = (uint8)c.ival;
+   buffer[offset] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 1] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 2] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 3] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 4] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 5] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 6] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 7] = (uint8)c.ival;
 
-	return 8;
+   return 8;
 }
 
 int16 jm::SerializeLEFloat(uint8* buffer, uint32 offset, float value)
 {
-	union conv
-	{
-		uint64 ival;
-		float fval;
-	};
+   union conv
+   {
+      uint64 ival;
+      float fval;
+   };
 
-	conv c;
-	c.fval = value;
+   conv c;
+   c.fval = value;
 
-	buffer[offset] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 1] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 2] = (uint8)c.ival;
-	c.ival >>= 8;
-	buffer[offset + 3] = (uint8)c.ival;
+   buffer[offset] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 1] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 2] = (uint8)c.ival;
+   c.ival >>= 8;
+   buffer[offset + 3] = (uint8)c.ival;
 
-	return 4;
+   return 4;
 }
 
 double jm::DeserializeLEDouble(uint8* buffer, uint32 offset)
 {
-	return *(double*)&buffer[offset];
+   return *(double*)&buffer[offset];
 }
 
 float jm::DeserializeLEFloat(uint8* buffer, uint32 offset)
 {
-	return *(float*)&buffer[offset];
+   return *(float*)&buffer[offset];
 }

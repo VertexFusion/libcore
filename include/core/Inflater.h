@@ -37,187 +37,187 @@
 namespace jm
 {
 
-	/*!
-	 \brief Decompression class for DEFLATE-compressed data.
-	 Basis are RFC 1950 and RFC 1951.
-	 \ingroup core
-	 */
-	class DllExport Inflater: public Object
-	{
-		private:
+   /*!
+    \brief Decompression class for DEFLATE-compressed data.
+    Basis are RFC 1950 and RFC 1951.
+    \ingroup core
+    */
+   class DllExport Inflater: public Object
+   {
+      private:
 
-			//Der Baum wird analog zu RFC 1951 aufgebaut.
-			//
-			struct HuffmanTree
-			{
-				HuffmanTree* node0;
-				HuffmanTree* node1;
-				uint16 symbol;
-				uint16 length;
-				uint16 code;
-				uint16 tmp;
-				HuffmanTree();
-				~HuffmanTree();
-				HuffmanTree* Find(uint16 code, uint16 bits);
-			};
+         //Der Baum wird analog zu RFC 1951 aufgebaut.
+         //
+         struct HuffmanTree
+         {
+            HuffmanTree* node0;
+            HuffmanTree* node1;
+            uint16 symbol;
+            uint16 length;
+            uint16 code;
+            uint16 tmp;
+            HuffmanTree();
+            ~HuffmanTree();
+            HuffmanTree* Find(uint16 code, uint16 bits);
+         };
 
-			//Aktueller Block
-			uint8* mCompBytes;
-			Integer mCompLength;
-			Integer mCompIndex;
+         //Aktueller Block
+         uint8* mCompBytes;
+         Integer mCompLength;
+         Integer mCompIndex;
 
-			//Aktueller Block
-			uint8* mUncompBytes;
-			Integer mUncompLength;
-			Integer mUncompIndex;
+         //Aktueller Block
+         uint8* mUncompBytes;
+         Integer mUncompLength;
+         Integer mUncompIndex;
 
-			//Zählvariablen für verarbeitete Bytes
-			Integer mTotalIn;
-			Integer mTotalOut;
+         //Zählvariablen für verarbeitete Bytes
+         Integer mTotalIn;
+         Integer mTotalOut;
 
-			int32 mBit;//index auf das aktuelle Bit im aktuellen byte.
+         int32 mBit;//index auf das aktuelle Bit im aktuellen byte.
 
-			//Status, ob der letzte Block eingelesen wurde
-			bool mLastBlock;
+         //Status, ob der letzte Block eingelesen wurde
+         bool mLastBlock;
 
-			//Status, ob Ende des Streams erreicht wurde
-			bool mEof;
+         //Status, ob Ende des Streams erreicht wurde
+         bool mEof;
 
-			//Status, ob zlib-Header und CRC weggelassen wird
-			bool mWrap;
+         //Status, ob zlib-Header und CRC weggelassen wird
+         bool mWrap;
 
-			//Größte Bitanzahl im Aktuellen Hufmann tree
-			uint16 MAX_BITS;
+         //Größte Bitanzahl im Aktuellen Hufmann tree
+         uint16 MAX_BITS;
 
-			/*!
-			 \brief Liest nächstes Bit ein aus dem Eingabestrom ein.
-			 */
-			uint8 NextBit();
+         /*!
+          \brief Liest nächstes Bit ein aus dem Eingabestrom ein.
+          */
+         uint8 NextBit();
 
-			/*!
-			 \brief Überspringt alle Bits bis zum Ende des aktuellen Bytes im Eingabestrom und springt zum Anfang des nächsten Bytes.
-			 Steht man bereits an einem Byteanfang, passiert nichts.
-			 */
-			void SkipByteBits();
+         /*!
+          \brief Überspringt alle Bits bis zum Ende des aktuellen Bytes im Eingabestrom und springt zum Anfang des nächsten Bytes.
+          Steht man bereits an einem Byteanfang, passiert nichts.
+          */
+         void SkipByteBits();
 
-			/*!
-			 \brief Gibt das nächste "ausgerichtete" Byte zurück. Man muss am Byteanfang stehen.
-			 @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
-			 */
-			uint8 NextAlignedUInt8();
+         /*!
+          \brief Gibt das nächste "ausgerichtete" Byte zurück. Man muss am Byteanfang stehen.
+          @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
+          */
+         uint8 NextAlignedUInt8();
 
-			/*!
-			 \brief Liest ein UINT16 nach LE ein. Man muss am Byteanfang stehen.
-			 @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
-			 */
-			uint16 NextAlignedUInt16();
+         /*!
+          \brief Liest ein UINT16 nach LE ein. Man muss am Byteanfang stehen.
+          @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
+          */
+         uint16 NextAlignedUInt16();
 
-			/*!
-			 \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert.
-			 Das MSB (Most significant bit) wird als erstes eingelesen.
-			 \param bits Die Anzahl der Bits
-			 */
-			uint16 NextUIntX(uint8 bits);
+         /*!
+          \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert.
+          Das MSB (Most significant bit) wird als erstes eingelesen.
+          \param bits Die Anzahl der Bits
+          */
+         uint16 NextUIntX(uint8 bits);
 
-			/*!
-			 \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert
-			 Das LSB (Least significant bit) wird als erstes eingelesen.
-			 \param bits Die Anzahl der Bits
-			 */
-			uint16 NextUIntXR(uint8 bits);
+         /*!
+          \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert
+          Das LSB (Least significant bit) wird als erstes eingelesen.
+          \param bits Die Anzahl der Bits
+          */
+         uint16 NextUIntXR(uint8 bits);
 
-			HuffmanTree* CreateTree(Array<uint16>* lengths, Array<uint16>* codes);
+         HuffmanTree* CreateTree(Array<uint16>* lengths, Array<uint16>* codes);
 
-			uint16 DecodeHuffmanSymbol(Inflater::HuffmanTree* tree);
+         uint16 DecodeHuffmanSymbol(Inflater::HuffmanTree* tree);
 
-			Array<uint16>* GetHuffmanCodes(Array<uint16>* codelengths);
+         Array<uint16>* GetHuffmanCodes(Array<uint16>* codelengths);
 
-			//Schreibt das Byte in den die Ausgabe
-			void WriteUncompressed(uint8 byte);
+         //Schreibt das Byte in den die Ausgabe
+         void WriteUncompressed(uint8 byte);
 
-			/*!
-			 \brief Diese Methode wird für die "BTYPE=01" Kodierung "Fixed Huffman Codes" gebraucht.
-			 Sie liest den nächsten "Fixed Huffman Code" ein und dekodiert ihn zu dem gewünschten Zahlenwert.
-			 */
-			uint16 NextFixedHuffmanCode();
+         /*!
+          \brief Diese Methode wird für die "BTYPE=01" Kodierung "Fixed Huffman Codes" gebraucht.
+          Sie liest den nächsten "Fixed Huffman Code" ein und dekodiert ihn zu dem gewünschten Zahlenwert.
+          */
+         uint16 NextFixedHuffmanCode();
 
-			void HandleUncompressedBlock();
+         void HandleUncompressedBlock();
 
-			void HandleCompressedFixHuffman();
+         void HandleCompressedFixHuffman();
 
-			void HandleCompressedDynamicHuffman();
+         void HandleCompressedDynamicHuffman();
 
-			void ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count);
+         void ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count);
 
-			void Inflate();
+         void Inflate();
 
-			void CheckCapacity();
+         void CheckCapacity();
 
 
-		public:
-			/*!
-			 \brief Konstruktor
-			 */
-			Inflater();
+      public:
+         /*!
+          \brief Konstruktor
+          */
+         Inflater();
 
-			/*!
-			 \brief Konstruktor
-			 \param wrap Status, ob zlib-Header und CRC weggelassen wird
-			 */
-			Inflater(bool wrap);
+         /*!
+          \brief Konstruktor
+          \param wrap Status, ob zlib-Header und CRC weggelassen wird
+          */
+         Inflater(bool wrap);
 
-			/*!
-			 \brief Destructor
-			 */
-			~Inflater();
+         /*!
+          \brief Destructor
+          */
+         ~Inflater();
 
-			/*!
-			 \brief Übergibt einen Block an Bytes zum Dekomprimieren an diese Klasse.
-			 \param buffer Die komprimierten Daten
-			 \param length Die Länge der Daten
-			 */
-			void SetInput(uint8* buffer, Integer length);
+         /*!
+          \brief Übergibt einen Block an Bytes zum Dekomprimieren an diese Klasse.
+          \param buffer Die komprimierten Daten
+          \param length Die Länge der Daten
+          */
+         void SetInput(uint8* buffer, Integer length);
 
-			/*!
-			 \brief Gibt "wahr" zurück, wenn das Ende des Inputblocks erreicht ist, aber das Ende des Eingabestroms
-			 noch nicht erreicht wurde
-			 */
-			bool NeedsInput();
+         /*!
+          \brief Gibt "wahr" zurück, wenn das Ende des Inputblocks erreicht ist, aber das Ende des Eingabestroms
+          noch nicht erreicht wurde
+          */
+         bool NeedsInput();
 
-			/*!
-			 \brief Gibt "wahr" zurück, wenn das Ende des Eingabestroms erreicht wurde.
-			 */
-			bool Finished();
+         /*!
+          \brief Gibt "wahr" zurück, wenn das Ende des Eingabestroms erreicht wurde.
+          */
+         bool Finished();
 
-			/*!
-			 \brief Diese Methode dekomprimiert die Daten in den Puffer
-			 \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert. Der Aufrufer muss das Array hinterher selbst aufräumen.
-			 \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
-			 \param length Die Länge des Puffers
-			 */
-			void Inflate(uint8* &buffer, Integer &length);
+         /*!
+          \brief Diese Methode dekomprimiert die Daten in den Puffer
+          \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert. Der Aufrufer muss das Array hinterher selbst aufräumen.
+          \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
+          \param length Die Länge des Puffers
+          */
+         void Inflate(uint8* &buffer, Integer &length);
 
-			/*!
-			 \brief Setzt den Dekomprimierer zurück, damit ein neues Objekt dekomprimiert werden kann
-			 */
-			void Reset();
+         /*!
+          \brief Setzt den Dekomprimierer zurück, damit ein neues Objekt dekomprimiert werden kann
+          */
+         void Reset();
 
-			/*!
-			 \brief Gibt die Anzahl der "übrig gebliebenen" Bytes im Inputpuffer zurück
-			 */
-			Integer GetRemaining();
+         /*!
+          \brief Gibt die Anzahl der "übrig gebliebenen" Bytes im Inputpuffer zurück
+          */
+         Integer GetRemaining();
 
-			/*!
-			 \brief Gibt die Gesamtanzahl der Bytes des komprimierten Inputs zurück
-			 */
-			Integer GetTotalIn();
+         /*!
+          \brief Gibt die Gesamtanzahl der Bytes des komprimierten Inputs zurück
+          */
+         Integer GetTotalIn();
 
-			/*!
-			 \brief Gibt die Gesamtanzahl der Bytes des dekomprimierten Outputs zurück
-			 */
-			Integer GetTotalOut();
+         /*!
+          \brief Gibt die Gesamtanzahl der Bytes des dekomprimierten Outputs zurück
+          */
+         Integer GetTotalOut();
 
-	};
+   };
 
 }
 #endif

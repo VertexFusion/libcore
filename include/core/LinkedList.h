@@ -38,141 +38,147 @@
 
 namespace jm
 {
-	class LinkedList;
+   class LinkedList;
 
-	class LListElement : public Object
-	{
+   class LListElement : public Object
+   {
 
-		public:
-			LListElement* next;
-			LListElement* prev;
-			Object* data;
+      public:
+         LListElement* next;
+         LListElement* prev;
+         Object* data;
 
-			LListElement();
+         LListElement();
 
-		jm::String GetDisplayName() const override {return "jm::LListElement";};
+         jm::String GetDisplayName() const override
+         {
+            return "jm::LListElement";
+         };
 
-	};
+   };
 
-	class DllExport LinkedListIterator : public Iterator
-	{
+   class DllExport LinkedListIterator : public Iterator
+   {
 
-		public:
+      public:
 
-			LinkedListIterator(const LinkedList* list);
+         LinkedListIterator(const LinkedList* list);
 
-			LinkedListIterator(const LinkedListIterator &other);
+         LinkedListIterator(const LinkedListIterator &other);
 
-			bool HasNext();
+         bool HasNext();
 
-			Object* Next();
+         Object* Next();
 
-			Object* Seek();//Gibt das nächste Objekt zurück, ohne den Iterator zu bewegenn
+         Object* Seek();//Gibt das nächste Objekt zurück, ohne den Iterator zu bewegenn
 
-			~LinkedListIterator();
+         ~LinkedListIterator();
 
-			LinkedListIterator &operator=(const LinkedListIterator &other);
+         LinkedListIterator &operator=(const LinkedListIterator &other);
 
-		private:
+      private:
 
-			LListElement* listStart;
-			LListElement* listEnd;
-			LListElement* current;
+         LListElement* listStart;
+         LListElement* listEnd;
+         LListElement* current;
 
-			uint32 count;
+         uint32 count;
 
-	};
+   };
 
-	/*!
-	 \brief This class provides a linked list including undo management.
-	 \ingroup core
-	 */
-	class DllExport LinkedList: public Object
-	{
-		public:
+   /*!
+    \brief This class provides a linked list including undo management.
+    \ingroup core
+    */
+   class DllExport LinkedList: public Object
+   {
+      public:
 
-			/*!
-			 \brief Konstruktor für die Verkettete Liste. Hier werden alle Variablen initialisiert.
-			 \param owner Der Besitzer der Liste. Bestenfalls ein Editable-Objekt. Dieses erhält
-			 ggf. Regenerate-Events bei Undo-Schritten.
-			 */
-			LinkedList(Object* owner);
+         /*!
+          \brief Konstruktor für die Verkettete Liste. Hier werden alle Variablen initialisiert.
+          \param owner Der Besitzer der Liste. Bestenfalls ein Editable-Objekt. Dieses erhält
+          ggf. Regenerate-Events bei Undo-Schritten.
+          */
+         LinkedList(Object* owner);
 
-			/*!
-			 \brief Destructor für die verkettete Liste. Hier werden alle Variabeln gelöscht
-			 \warning If you use the LinkedList together with UndoManager, you must call
-			 LinkedList::Clear() with the UndoManager object to erase the objects gracefully.
-			 Alternatively you can call UndoManager::ClearStacks() to get the same effect.
-			 Otherwise memory errors occur.
-			 */
-			~LinkedList();
+         /*!
+          \brief Destructor für die verkettete Liste. Hier werden alle Variabeln gelöscht
+          \warning If you use the LinkedList together with UndoManager, you must call
+          LinkedList::Clear() with the UndoManager object to erase the objects gracefully.
+          Alternatively you can call UndoManager::ClearStacks() to get the same effect.
+          Otherwise memory errors occur.
+          */
+         ~LinkedList();
 
-			/*!
-			 \brief Diese Methode gibt wahr zurück, wenn ein nächstes Element in der Liste vorhanden ist
-			 */
-			bool HasNext();
-			/*!
-			 \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-			 Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
-			 */
-			Object* Next();
+         /*!
+          \brief Diese Methode gibt wahr zurück, wenn ein nächstes Element in der Liste vorhanden ist
+          */
+         bool HasNext();
+         /*!
+          \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
+          Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
+          */
+         Object* Next();
 
-			/*!
-			 \brief Gibt das erste Element der Liste zurück
-			 */
-			Object* First();
+         /*!
+          \brief Gibt das erste Element der Liste zurück
+          */
+         Object* First();
 
-			/*!
-			 \brief Gibt das letzte Element der Liste zurück
-			 */
-			Object* Last();
+         /*!
+          \brief Gibt das letzte Element der Liste zurück
+          */
+         Object* Last();
 
-			void Rewind();
+         void Rewind();
 
-			void Clear(UndoManager* um);
+         void Clear(UndoManager* um);
 
-			/*LListElement**/void Add(Object* data, UndoManager* um);
+         /*LListElement**/void Add(Object* data, UndoManager* um);
 
-			void AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
+         void AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
 
-			void Remove(const Object* data, UndoManager* um);
+         void Remove(const Object* data, UndoManager* um);
 
-			void SwapData(Object* data1, Object* data2, UndoManager* um);
+         void SwapData(Object* data1, Object* data2, UndoManager* um);
 
-			/*!
-			 \brief Returns the number of entries in this list.
-			 */
-			uint32 Size() const;
+         /*!
+          \brief Returns the number of entries in this list.
+          */
+         uint32 Size() const;
 
-			LinkedListIterator GetIterator() const;
+         LinkedListIterator GetIterator() const;
 
-		jm::String GetDisplayName() const override {return "jm::LinkedList";};
+         jm::String GetDisplayName() const override
+         {
+            return "jm::LinkedList";
+         };
 
-		private:
+      private:
 
-			LListElement* listStart;
-			LListElement* listEnd;
-			LListElement* current;
+         LListElement* listStart;
+         LListElement* listEnd;
+         LListElement* current;
 
-			uint32 count;
+         uint32 count;
 
-			Object* mOwner;
+         Object* mOwner;
 
-			friend class LinkedListIterator;
+         friend class LinkedListIterator;
 
-		/*!
-			\brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-			Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
-			*/
-		  LListElement* NextElement();
+         /*!
+         	\brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
+         	Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
+         	*/
+         LListElement* NextElement();
 
-		void Add(LListElement* item, UndoManager* um);
+         void Add(LListElement* item, UndoManager* um);
 
-		void AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
+         void AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
 
-		void Remove(LListElement* element, UndoManager* um);
+         void Remove(LListElement* element, UndoManager* um);
 
-	};
+   };
 
 
 

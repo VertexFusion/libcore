@@ -43,60 +43,60 @@
 namespace jm
 {
 
-	/*!
-	 \brief Mutex class.
-	 */
-	class DllExport Mutex
-	{
-		public:
+   /*!
+    \brief Mutex class.
+    */
+   class DllExport Mutex
+   {
+      public:
 
-			/*!
-			 \brief The default constructor.
-			 */
-			Mutex();
+         /*!
+          \brief The default constructor.
+          */
+         Mutex();
 
-			/*!
-			 \brief Destructor.
-			 */
-			~Mutex();
+         /*!
+          \brief Destructor.
+          */
+         ~Mutex();
 
-			/*!
-			 \brief Lock the mutex object.
-			 */
-			void Lock();
+         /*!
+          \brief Lock the mutex object.
+          */
+         void Lock();
 
-			/*!
-			 \brief Unlock the mutex object.
-			 */
-			void Unlock();
+         /*!
+          \brief Unlock the mutex object.
+          */
+         void Unlock();
 
-			/*!
-			 \brief Sleep
-			 */
-			void Sleep();
+         /*!
+          \brief Sleep
+          */
+         void Sleep();
 
-			/*!
-			 \brief Wake up.
-			 */
-			void WakeUp();
+         /*!
+          \brief Wake up.
+          */
+         void WakeUp();
 
-		private:
+      private:
 
-			#if defined(__APPLE__) || defined(__linux__)//macOS & Linux
+         #if defined(__APPLE__) || defined(__linux__)//macOS & Linux
 
-			//!pthread data types
-			pthread_mutex_t criticalSection;
-			pthread_mutexattr_t attr;
-			pthread_condattr_t attrc;
-			pthread_cond_t cond;
+         //!pthread data types
+         pthread_mutex_t criticalSection;
+         pthread_mutexattr_t attr;
+         pthread_condattr_t attrc;
+         pthread_cond_t cond;
 
-			#elif defined _WIN32//Windows
+         #elif defined _WIN32//Windows
 
-			//On Windows 7 und 10 sizeof(CRITICAL_SECTION) returns 40 Bytes, so he make hardcode here.
-			uint8 mCriticalSection[40];
+         //On Windows 7 und 10 sizeof(CRITICAL_SECTION) returns 40 Bytes, so he make hardcode here.
+         uint8 mCriticalSection[40];
 
-			#endif
-	};
+         #endif
+   };
 
 }
 

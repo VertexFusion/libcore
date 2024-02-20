@@ -38,78 +38,78 @@
 namespace jm
 {
 
-	/*!
-	 \brief Compression class for DEFLATE-compressed data.
-	 The basis is RFC 1950 and RFC 1951.
-	 As of 2017-01-14, the own implementation was exchanged in favour of zlib.
-	 \ingroup core
-	 */
-	class DllExport Deflater: public Object
-	{
+   /*!
+    \brief Compression class for DEFLATE-compressed data.
+    The basis is RFC 1950 and RFC 1951.
+    As of 2017-01-14, the own implementation was exchanged in favour of zlib.
+    \ingroup core
+    */
+   class DllExport Deflater: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 */
-			Deflater();
+         /*!
+          \brief Konstruktor
+          */
+         Deflater();
 
-			/*!
-			 \brief Konstruktor
-			 \param wrap Status, ob zlib-Header und CRC weggelassen wird
-			 */
-			//Deflater( bool wrap );
+         /*!
+          \brief Konstruktor
+          \param wrap Status, ob zlib-Header und CRC weggelassen wird
+          */
+         //Deflater( bool wrap );
 
-			/*!
-			 \brief Destructor
-			 */
-			~Deflater();
+         /*!
+          \brief Destructor
+          */
+         ~Deflater();
 
-			/*!
-			 \brief Übergibt einen Block an Bytes zum Kompriemieren an diese Klasse.
-			 \param buffer Die unkomprimierten Daten
-			 \param length Die Länge der Daten
-			 */
-			void SetInput(uint8* buffer,
-							  Integer length);
+         /*!
+          \brief Übergibt einen Block an Bytes zum Kompriemieren an diese Klasse.
+          \param buffer Die unkomprimierten Daten
+          \param length Die Länge der Daten
+          */
+         void SetInput(uint8* buffer,
+                       Integer length);
 
-			/*!
-			 \brief Diese Methode komprimiert die Daten in den Puffer
-			 \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert.
-			 Der Aufrufer muss das Array hinterher selbst aufräumen.
-			 \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
-			 \param length Die Länge des Puffers
-			 */
-			void Deflate(uint8* &buffer,
-							 Integer &length);
+         /*!
+          \brief Diese Methode komprimiert die Daten in den Puffer
+          \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert.
+          Der Aufrufer muss das Array hinterher selbst aufräumen.
+          \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
+          \param length Die Länge des Puffers
+          */
+         void Deflate(uint8* &buffer,
+                      Integer &length);
 
-			/*!
-			 \brief Setzt den Komprimierer zurück, damit ein neues Objekt komprimiert werden kann
-			 */
-			void Reset();
+         /*!
+          \brief Setzt den Komprimierer zurück, damit ein neues Objekt komprimiert werden kann
+          */
+         void Reset();
 
-			/*!
-			 \brief Gibt die Gesamtanzahl der Bytes des unkomprimierten Inputs zurück
-			 */
-			Integer GetTotalIn();
+         /*!
+          \brief Gibt die Gesamtanzahl der Bytes des unkomprimierten Inputs zurück
+          */
+         Integer GetTotalIn();
 
-			/*!
-			 \brief Gibt die Gesamtanzahl der Bytes des komprimierten Outputs zurück
-			 */
-			Integer GetTotalOut();
+         /*!
+          \brief Gibt die Gesamtanzahl der Bytes des komprimierten Outputs zurück
+          */
+         Integer GetTotalOut();
 
-		private:
+      private:
 
-			//Aktueller Block
-			uint8* mUncompBytes;
-			Integer mUncompLength;
-			Integer mUncompIndex;
+         //Aktueller Block
+         uint8* mUncompBytes;
+         Integer mUncompLength;
+         Integer mUncompIndex;
 
-			//Zählvariablen für verarbeitete Bytes
-			Integer mTotalIn;
-			Integer mTotalOut;
+         //Zählvariablen für verarbeitete Bytes
+         Integer mTotalIn;
+         Integer mTotalOut;
 
-	};
+   };
 
 }
 

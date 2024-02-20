@@ -36,51 +36,51 @@ using namespace jm;
 
 AutoreleasePool::AutoreleasePool(): Object()
 {
-	//1st Entry is a dummy to avoid if-queries with AddObject
-	mPool = new PoolEntry();
-	mPool->object = NULL;
-	mPool->next = NULL;
+   //1st Entry is a dummy to avoid if-queries with AddObject
+   mPool = new PoolEntry();
+   mPool->object = NULL;
+   mPool->next = NULL;
 
-	mTop = mPool;
+   mTop = mPool;
 }
 
 AutoreleasePool::~AutoreleasePool()
 {
-	// Cleanup Autorelease
-	Drain();
+   // Cleanup Autorelease
+   Drain();
 
-	// Delete dummy
-	delete mPool;
+   // Delete dummy
+   delete mPool;
 }
 
 void AutoreleasePool::Drain()
 {
-	PoolEntry* pool = mPool->next;
+   PoolEntry* pool = mPool->next;
 
-	while(pool != NULL)
-	{
-		//Release objects
-		pool->object->Release();
+   while(pool != NULL)
+   {
+      //Release objects
+      pool->object->Release();
 
-		PoolEntry* next = pool->next;
-		delete pool;
-		pool = next;
-	}
+      PoolEntry* next = pool->next;
+      delete pool;
+      pool = next;
+   }
 
-	mTop = mPool;
-	mPool->next = NULL;
+   mTop = mPool;
+   mPool->next = NULL;
 }
 
 void AutoreleasePool::AddObject(Object* object)
 {
-	PoolEntry* entry = new PoolEntry();
-	entry->object = object;
-	entry->next = NULL;
-	mTop->next = entry;
-	mTop = entry;
+   PoolEntry* entry = new PoolEntry();
+   entry->object = object;
+   entry->next = NULL;
+   mTop->next = entry;
+   mTop = entry;
 }
 
 Mutex* AutoreleasePool::GetMutex()
 {
-	return &mMutex;
+   return &mMutex;
 }

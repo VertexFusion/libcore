@@ -38,135 +38,135 @@
 namespace jm
 {
 
-	/*!
-	 \brief Diese Klasse \c XMLWriter stellt Methoden zur Verfügung, um XML-Daten zu schreiben.
-	 */
-	class DllExport XMLWriter: public Object
-	{
-		public:
+   /*!
+    \brief Diese Klasse \c XMLWriter stellt Methoden zur Verfügung, um XML-Daten zu schreiben.
+    */
+   class DllExport XMLWriter: public Object
+   {
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 \param output Der \c Stream, in dem die XML-Daten geschrieben werden sollen.
-			 */
-			XMLWriter(Stream* output);
+         /*!
+          \brief Konstruktor
+          \param output Der \c Stream, in dem die XML-Daten geschrieben werden sollen.
+          */
+         XMLWriter(Stream* output);
 
-			virtual ~XMLWriter();
+         virtual ~XMLWriter();
 
-			/*!
-			 \brief Diese Methode muss am Anfang aufgerufen werden. Hier wird der Stream geöffnet,
-			 falls das noch nicht geschehen ist.
-			 \return true Wenn alles in Ordnung ist.
-			 */
-			bool StartDocument();
+         /*!
+          \brief Diese Methode muss am Anfang aufgerufen werden. Hier wird der Stream geöffnet,
+          falls das noch nicht geschehen ist.
+          \return true Wenn alles in Ordnung ist.
+          */
+         bool StartDocument();
 
-			/*!
-			 \brief Diese Methode muss am Ende aufgerufen werden. Hier wird der Stream geschlossen
-			 \return true Wenn alles in Ordnung ist.
-			 */
-			bool EndDocument();
+         /*!
+          \brief Diese Methode muss am Ende aufgerufen werden. Hier wird der Stream geschlossen
+          \return true Wenn alles in Ordnung ist.
+          */
+         bool EndDocument();
 
-			/*!
-			 \brief Einzug erhöhen
-			 \discussion In XML sind Whitespaces zum Teil relevant. Wo sie relevant sind und wo nicht,
-			 ist vom Dokument abhängig.  Diese Methode führt einen Einzug aus und erhöht ihn.
-			 */
-			void StartIndent();
-			/*!
-			 \brief Einzug erniedrigen
-			 \discussion In XML sind Whitespaces zum Teil relevant. Wo sie relevant sind und wo nicht,
-			 ist vom Dokument abhängig. Diese Methode führt einen Einzug aus und erhöht ihn.
-			 */
-			void EndIndent();
-
-
-			/*!
-			 \brief Diese Methode öffnet ein neues XML-Element
-			 */
-			void StartElement(const String &name);
-
-			/*!
-			 \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
-			 \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
-			 werden.
-			 */
-			void WriteAttribute(const String &name, const String &content);
-
-			/*!
-			 \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
-			 \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
-			 werden.
-			 */
-			void WriteAttribute(const String &name, int32 content);
-
-			/*!
-			 \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
-			 \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
-			 werden.
-			 */
-			void WriteAttribute(const String &name, uint32 content);
-
-			void WriteAttribute(const String& name, Integer content);
-
-			/*!
-			 \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
-			 \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
-			 werden.
-			 */
-			void WriteAttribute(const String &name, float content);
-			void WriteAttribute(const String& name, Double content);
-
-			/*!
-			 \brief Diese Methode schließt das aktuell offene XML-Element. Wenn das Element keine
-			 Inhalte hat, wird ein <.../>-Element geschrieben
-			 */
-			void EndElement();
-
-			/*!
-			 \brief Schreibt Daten.
-			 \param cdata Die Buchstaben
-			 \param xmlencode Wenn wahr (Standard), dann werden bestimmte Zeichen (z.B. & -> &amp;)
-			 "xml"-kodiert.
-			 */
-			void WriteCDATA(const String &cdata, bool xmlencode = true);
-
-			/*!
-			 \brief Schreibt Daten und kodiert sie mit dem BASE64-Algorithmus
-			 \param data Die uncodierten Daten
-			 */
-			void WriteBase64(uint8 *data, Integer length);
+         /*!
+          \brief Einzug erhöhen
+          \discussion In XML sind Whitespaces zum Teil relevant. Wo sie relevant sind und wo nicht,
+          ist vom Dokument abhängig.  Diese Methode führt einen Einzug aus und erhöht ihn.
+          */
+         void StartIndent();
+         /*!
+          \brief Einzug erniedrigen
+          \discussion In XML sind Whitespaces zum Teil relevant. Wo sie relevant sind und wo nicht,
+          ist vom Dokument abhängig. Diese Methode führt einen Einzug aus und erhöht ihn.
+          */
+         void EndIndent();
 
 
-		private:
+         /*!
+          \brief Diese Methode öffnet ein neues XML-Element
+          */
+         void StartElement(const String &name);
 
-			Stream* mOutput;
+         /*!
+          \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
+          \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
+          werden.
+          */
+         void WriteAttribute(const String &name, const String &content);
 
-			int32 mIndent;
+         /*!
+          \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
+          \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
+          werden.
+          */
+         void WriteAttribute(const String &name, int32 content);
 
-			bool mLastIndent;
+         /*!
+          \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
+          \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
+          werden.
+          */
+         void WriteAttribute(const String &name, uint32 content);
 
-			struct ElementInfo
-			{
-				String name;
-				bool indent;
-				bool hasContent;
-				bool hasCharacters;
+         void WriteAttribute(const String& name, Integer content);
 
-				ElementInfo()
-				{
-					indent = false;
-					hasContent = false;
-					hasCharacters = false;
-				}
+         /*!
+          \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
+          \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
+          werden.
+          */
+         void WriteAttribute(const String &name, float content);
+         void WriteAttribute(const String& name, Double content);
 
-			};
+         /*!
+          \brief Diese Methode schließt das aktuell offene XML-Element. Wenn das Element keine
+          Inhalte hat, wird ein <.../>-Element geschrieben
+          */
+         void EndElement();
 
-			Stack<ElementInfo>* mOpenElements;
+         /*!
+          \brief Schreibt Daten.
+          \param cdata Die Buchstaben
+          \param xmlencode Wenn wahr (Standard), dann werden bestimmte Zeichen (z.B. & -> &amp;)
+          "xml"-kodiert.
+          */
+         void WriteCDATA(const String &cdata, bool xmlencode = true);
 
-			String Encode(const String &input);
+         /*!
+          \brief Schreibt Daten und kodiert sie mit dem BASE64-Algorithmus
+          \param data Die uncodierten Daten
+          */
+         void WriteBase64(uint8 *data, Integer length);
 
-			void WriteIndent();
-	};
+
+      private:
+
+         Stream* mOutput;
+
+         int32 mIndent;
+
+         bool mLastIndent;
+
+         struct ElementInfo
+         {
+            String name;
+            bool indent;
+            bool hasContent;
+            bool hasCharacters;
+
+            ElementInfo()
+            {
+               indent = false;
+               hasContent = false;
+               hasCharacters = false;
+            }
+
+         };
+
+         Stack<ElementInfo>* mOpenElements;
+
+         String Encode(const String &input);
+
+         void WriteIndent();
+   };
 
 }
 

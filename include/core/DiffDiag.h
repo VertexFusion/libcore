@@ -40,73 +40,75 @@
 namespace jm
 {
 
-	class DiffDistance;
+   class DiffDistance;
 
-	/*!
-	 \brief This class represents a diagonal in the diff algorithm.
-	 \ingroup diff
-	 */
-	class DllExport DiffDiag
-	{
+   /*!
+    \brief This class represents a diagonal in the diff algorithm.
+    \ingroup diff
+    */
+   class DllExport DiffDiag
+   {
 
-		public:
+      public:
 
-			DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, Integer offset);
+         DiffDiag(DiffDistance* dist,
+                  std::vector<Object*>* u,
+                  std::vector<Object*>* v,
+                  Integer offset);
 
-			~DiffDiag();
+         ~DiffDiag();
 
-			DiffDiag* GetAbove();
-			DiffDiag* GetBelow();
+         DiffDiag* GetAbove();
+         DiffDiag* GetBelow();
 
-			Integer GetUpperEntry(Integer i);
-			Integer GetLeftEntry(Integer i);
+         Integer GetUpperEntry(Integer i);
+         Integer GetLeftEntry(Integer i);
 
-			Integer GetEntry(Integer j);
+         Integer GetEntry(Integer j);
 
-			Object* GetObjU(Integer i);
-			Object* GetObjV(Integer i);
+         Object* GetObjU(Integer i);
+         Object* GetObjV(Integer i);
 
-			Integer GetOffset();
+         Integer GetOffset();
 
 
-		private:
+      private:
 
-			/*!
-			 \brief speichert den Offset der Diagonale.
-			 Diagonalen beginnen bei u[0] , v[abs(offset)]
-			 Diagonalen unterhalb der Mittleren haben negative offsets.
-			 */
-			Integer offset;
+         /*!
+          \brief speichert den Offset der Diagonale.
+          Diagonalen beginnen bei u[0] , v[abs(offset)]
+          Diagonalen unterhalb der Mittleren haben negative offsets.
+          */
+         Integer offset;
 
-			/*!
-			 \brief Zeiger auf Vergleichsvektor 1
-			 */
-			std::vector<Object*>* mU;
+         /*!
+          \brief Zeiger auf Vergleichsvektor 1
+          */
+         std::vector<Object*>* mU;
 
-			/*!
-			 \brief Zeiger auf Vergleichsvektor 2
-			 */
-			std::vector<Object*>* mV;
+         /*!
+          \brief Zeiger auf Vergleichsvektor 2
+          */
+         std::vector<Object*>* mV;
 
-			/*!
-			 \brief Verkettete Liste
-			 */
-			DiffDiag* below;
-			DiffDiag* above;
+         /*!
+          \brief Verkettete Liste
+          */
+         DiffDiag* below;
+         DiffDiag* above;
 
-			/*!
-			 \brief Vektor mit den Diagonalelementen
-			 */
-			std::vector<Integer>* elements;
+         /*!
+          \brief Vektor mit den Diagonalelementen
+          */
+         std::vector<Integer>* elements;
 
-			/*!
-			 \brief Zeiger auf Diff-Distance, um Anzahl der berechneten Werte zu ermitteln.
-			 */
-			DiffDistance* dist;
+         /*!
+          \brief Zeiger auf Diff-Distance, um Anzahl der berechneten Werte zu ermitteln.
+          */
+         DiffDistance* dist;
 
-	};
+   };
 
 }
-
 
 #endif

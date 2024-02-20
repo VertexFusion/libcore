@@ -37,102 +37,102 @@
 namespace jm
 {
 
-	/*!
-	\brief The MemoryStream class represents a byte stream access to a byte array.
-	*/
-	class DllExport MemoryStream : public Stream
-	{
+   /*!
+   \brief The MemoryStream class represents a byte stream access to a byte array.
+   */
+   class DllExport MemoryStream : public Stream
+   {
 
-		public:
+      public:
 
-			/*!
-			 */
-			Integer mWritelength;
+         /*!
+          */
+         Integer mWritelength;
 
 
-			/*!
-			 \brief Konstruktor.
-			 \param array Das Byte-Array auf dem die Streamoperationen angewendet werden sollen.
-			 \param length Die Länge des Byte-Arrays
-			 */
-			MemoryStream(uint8* array, Integer length);
+         /*!
+          \brief Konstruktor.
+          \param array Das Byte-Array auf dem die Streamoperationen angewendet werden sollen.
+          \param length Die Länge des Byte-Arrays
+          */
+         MemoryStream(uint8* array, Integer length);
 
-			/*!
-			\brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
-			\param mode Der Modus zum öffnen.
-			*/
-			void Open(FileMode mode) override;
+         /*!
+         \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
+         \param mode Der Modus zum öffnen.
+         */
+         void Open(FileMode mode) override;
 
-			/*!
-			 \brief Status, ob die Datei geöffnet ist
-			 */
-			bool IsOpen() override;
+         /*!
+          \brief Status, ob die Datei geöffnet ist
+          */
+         bool IsOpen() override;
 
-			/*!
-			\brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen frei.
-			*/
-			void Close() override;
+         /*!
+         \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen frei.
+         */
+         void Close() override;
 
-			/*!
-			\brief Liest maximal length bytes in das Array
-			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
-			*/
-			Integer Read(uint8* buffer, Integer length) override;
+         /*!
+         \brief Liest maximal length bytes in das Array
+         \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
+         */
+         Integer Read(uint8* buffer, Integer length) override;
 
-			/*!
-			\brief Liest maximal length bytes in das Array
-			\return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
-			*/
-			Integer ReadFully(ByteArray& buffer, Integer length) override;
+         /*!
+         \brief Liest maximal length bytes in das Array
+         \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
+         */
+         Integer ReadFully(ByteArray& buffer, Integer length) override;
 
-			/*!
-			\brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)
-			*/
-			void Seek(Integer position) override;
+         /*!
+         \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)
+         */
+         void Seek(Integer position) override;
 
-			/*!
-			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
-			 */
-			void Move(Integer offset) override;
+         /*!
+          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
+          */
+         void Move(Integer offset) override;
 
-			/*!
-			\brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
-			*/
-			Integer GetPosition() override;
+         /*!
+         \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
+         */
+         Integer GetPosition() override;
 
-			/*!
-			\brief Schreibt einen Buffer in die Ausgabedatei
-			*/
-			Integer Write(uint8* buffer, Integer length) override;
+         /*!
+         \brief Schreibt einen Buffer in die Ausgabedatei
+         */
+         Integer Write(uint8* buffer, Integer length) override;
 
-			/*!
-			 \brief Gibt die Länge des Streams zurück
-			 */
-			Integer Length();
+         /*!
+          \brief Gibt die Länge des Streams zurück
+          */
+         Integer Length();
 
-			/*!
-			 \brief Gibt den Puffer zurück
-			 */
-			uint8* GetBuffer();
+         /*!
+          \brief Gibt den Puffer zurück
+          */
+         uint8* GetBuffer();
 
-		private:
+      private:
 
-			/*!
-			 \brief Das Byte-Array, welches als Quelle oder Ziel dient.
-			 */
-			uint8* mStream;
+         /*!
+          \brief Das Byte-Array, welches als Quelle oder Ziel dient.
+          */
+         uint8* mStream;
 
-			/*!
-			 \brief Die Länge des Arrays.
-			 */
-			Integer mStreamlength;
+         /*!
+          \brief Die Länge des Arrays.
+          */
+         Integer mStreamlength;
 
-			/*!
-			 \brief Die aktuelle Zeigerposition in dem Array.
-			 */
-			Integer mPosition;
+         /*!
+          \brief Die aktuelle Zeigerposition in dem Array.
+          */
+         Integer mPosition;
 
-	};
+   };
 
 
 

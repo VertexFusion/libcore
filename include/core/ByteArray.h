@@ -39,96 +39,96 @@
 namespace jm
 {
 
-	/*!
-	 \brief Represents a byte array and provide convinient metods for accessing the data.
-	 The Byte array is always \0 terminated.
-	 */
-	class DllExport ByteArray : public Object
-	{
-	public:
+   /*!
+    \brief Represents a byte array and provide convinient metods for accessing the data.
+    The Byte array is always \0 terminated.
+    */
+   class DllExport ByteArray : public Object
+   {
+      public:
 
-		/*!
-		 \brief Default Constructor.
-		*/
-		ByteArray();
+         /*!
+          \brief Default Constructor.
+         */
+         ByteArray();
 
-		/*!
-		 \brief Create a byte array. If size is < 0, a 0 terminated string is assumed.
-		 We make a copy of buffer.
-		 If buffer is NULL a NULL array is created.
-		 */
-		ByteArray(const int8* buffer, Integer size = -1);
+         /*!
+          \brief Create a byte array. If size is < 0, a 0 terminated string is assumed.
+          We make a copy of buffer.
+          If buffer is NULL a NULL array is created.
+          */
+         ByteArray(const int8* buffer, Integer size = -1);
 
-		/*!
-		 \brief Creates a byte array of size and fills every byte with ch.
-		*/
-		ByteArray(Integer size, uint8 ch);
+         /*!
+          \brief Creates a byte array of size and fills every byte with ch.
+         */
+         ByteArray(Integer size, uint8 ch);
 
-		ByteArray(const ByteArray& other);
+         ByteArray(const ByteArray& other);
 
-		ByteArray(std::initializer_list<uint8> list);
+         ByteArray(std::initializer_list<uint8> list);
 
-		virtual ~ByteArray();
+         virtual ~ByteArray();
 
-		/*!
-		 \brief Returns the pointer to the data. With the pointer it is possible to modify the
-		 data. The data is always \0-terminated. The number of bytes can be assumed as Size()+1,
-		 including the \0-terminator.
-		 */
-		int8* Data();
+         /*!
+          \brief Returns the pointer to the data. With the pointer it is possible to modify the
+          data. The data is always \0-terminated. The number of bytes can be assumed as Size()+1,
+          including the \0-terminator.
+          */
+         int8* Data();
 
-		/*!
-		 \brief Returns a const pointer to the data.
-		 */
-		const int8* ConstData() const;
+         /*!
+          \brief Returns a const pointer to the data.
+          */
+         const int8* ConstData() const;
 
-		/*!
-		 \brief Returns the size of the array.
-		 */
-		Integer Size() const;
+         /*!
+          \brief Returns the size of the array.
+          */
+         Integer Size() const;
 
-		/*!
-		 \brief Returns true, if the array is NULL.
-		 */
-		bool IsNull() const;
+         /*!
+          \brief Returns true, if the array is NULL.
+          */
+         bool IsNull() const;
 
-		/*!
-		 \brief Returns true, if the size of the array is 0.
-		 */
-		bool IsEmpty() const;
+         /*!
+          \brief Returns true, if the size of the array is 0.
+          */
+         bool IsEmpty() const;
 
-		/*!
-		 \brief Sort the bytes in the array in ascending order.
-		 */
-		void Sort();
+         /*!
+          \brief Sort the bytes in the array in ascending order.
+          */
+         void Sort();
 
-		/*!
-		 \brief Set every byte in the array to ch.
-		 */
-		void Fill(uint8 ch);
+         /*!
+          \brief Set every byte in the array to ch.
+          */
+         void Fill(uint8 ch);
 
-		uint8 Get(Integer index) const;
+         uint8 Get(Integer index) const;
 
-		void Set(Integer index, uint8 item);
+         void Set(Integer index, uint8 item);
 
-		uint8& operator[](const Integer index) const;
+         uint8& operator[](const Integer index) const;
 
-		ByteArray& operator=(const ByteArray& another);
+         ByteArray& operator=(const ByteArray& another);
 
-		friend bool operator==(const ByteArray& a1, const ByteArray& a2);
+         friend bool operator==(const ByteArray& a1, const ByteArray& a2);
 
-	private:
+      private:
 
-		//! The size of array. Can be less than the size of mData.
-		Integer mArrSize;
+         //! The size of array. Can be less than the size of mData.
+         Integer mArrSize;
 
-		//! The size of the mData array.
-		Integer  mRawSize;
+         //! The size of the mData array.
+         Integer  mRawSize;
 
-		//! The array itself.
-		uint8* mData;
+         //! The array itself.
+         uint8* mData;
 
-	};
+   };
 
 }
 #endif

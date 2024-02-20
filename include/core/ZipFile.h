@@ -38,197 +38,197 @@
 namespace jm
 {
 
-	class DllExport ZipEntry: public Object
-	{
-		public:
+   class DllExport ZipEntry: public Object
+   {
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 */
-			ZipEntry(const String &name);
+         /*!
+          \brief Konstruktor
+          */
+         ZipEntry(const String &name);
 
-			/*!
-			 \brief Gibt den Namen des Eintrages zurück
-			 */
-			String GetName()const;
+         /*!
+          \brief Gibt den Namen des Eintrages zurück
+          */
+         String GetName()const;
 
-			/*!
-			 \brief Legt die Größe des unkomprimierten Eintrages fest
-			 */
-			void SetUncompressedSize(uint32 size);
+         /*!
+          \brief Legt die Größe des unkomprimierten Eintrages fest
+          */
+         void SetUncompressedSize(uint32 size);
 
-			/*!
-			 \brief Gibt die Größe des unkomprimierten Eintrages zurück
-			 */
-			uint32 GetUncompressedSize()const;
+         /*!
+          \brief Gibt die Größe des unkomprimierten Eintrages zurück
+          */
+         uint32 GetUncompressedSize()const;
 
-			/*!
-			 \brief Gibt den Status zurück, ob der Eintrag ein Verzeichnis ist. Ein Verzeichnis
-			 ist dadurch definiert, dass das letzte Zeichen im Namen ein "/" ist.
-			 */
-			bool IsDirectory()const;
+         /*!
+          \brief Gibt den Status zurück, ob der Eintrag ein Verzeichnis ist. Ein Verzeichnis
+          ist dadurch definiert, dass das letzte Zeichen im Namen ein "/" ist.
+          */
+         bool IsDirectory()const;
 
-		private:
+      private:
 
-			/*! \brief Der Name */
-			String mName;
+         /*! \brief Der Name */
+         String mName;
 
-			/*! \brief Extrafeld */
-			String mExtra;
+         /*! \brief Extrafeld */
+         String mExtra;
 
-			/*! \brief Kommentar */
-			String mComment;
+         /*! \brief Kommentar */
+         String mComment;
 
-			/*! \brief Die unkomprimierte Größe */
-			uint32 mUncompressedSize;
+         /*! \brief Die unkomprimierte Größe */
+         uint32 mUncompressedSize;
 
-			/*! \brief Die komprimierte Größe */
-			uint32 mCompressedSize;
+         /*! \brief Die komprimierte Größe */
+         uint32 mCompressedSize;
 
-			/*! \brief Offset des Local Headers */
-			uint32 mHeaderOffset;
+         /*! \brief Offset des Local Headers */
+         uint32 mHeaderOffset;
 
-			/*! \brief Prüfsumme */
-			uint32 mCRC;
+         /*! \brief Prüfsumme */
+         uint32 mCRC;
 
-			/*! \brieg 0-basierter Offset in Datei */
-			uint32 mDataOffset;
+         /*! \brieg 0-basierter Offset in Datei */
+         uint32 mDataOffset;
 
-			friend class ZipFile;
-			friend class ZipOutputFile;
-	};
+         friend class ZipFile;
+         friend class ZipOutputFile;
+   };
 
-	/*!
-	 \brief Diese Klasse repräsentiert eine ZIP-Datei zum Einlesen der Zip-Daten.
-	 */
-	class DllExport ZipFile: public Object
-	{
+   /*!
+    \brief Diese Klasse repräsentiert eine ZIP-Datei zum Einlesen der Zip-Daten.
+    */
+   class DllExport ZipFile: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 */
-			ZipFile(File* file);
+         /*!
+          \brief Konstruktor
+          */
+         ZipFile(File* file);
 
-			/*!
-			 \brief Öffnet die Datei zum Lesen
-			 */
-			void Open();
+         /*!
+          \brief Öffnet die Datei zum Lesen
+          */
+         void Open();
 
-			/*!
-			 \brief Schließt die Datei
-			 */
-			void Close();
+         /*!
+          \brief Schließt die Datei
+          */
+         void Close();
 
-			/*!
-			 \brief Gibt den Kommentar der ZIP-Datei zurück, oder leeren String, wenn kein Kommentar
-			 existiert.
-			 */
-			String GetComment();
+         /*!
+          \brief Gibt den Kommentar der ZIP-Datei zurück, oder leeren String, wenn kein Kommentar
+          existiert.
+          */
+         String GetComment();
 
-			/*!
-			 \brief Gibt den Zip-Eintrag zurück, wenn er existiert, oder NULL, wenn er nicht
-			 existiert.
-			 */
-			ZipEntry* GetEntry(const String &name);
+         /*!
+          \brief Gibt den Zip-Eintrag zurück, wenn er existiert, oder NULL, wenn er nicht
+          existiert.
+          */
+         ZipEntry* GetEntry(const String &name);
 
-			/*!
-			 \brief Gibt einen Iterator über die Zipeinträge zurück
-			 */
-			LinkedListIterator GetEntryIterator();
+         /*!
+          \brief Gibt einen Iterator über die Zipeinträge zurück
+          */
+         LinkedListIterator GetEntryIterator();
 
-			/*!
-			 \brief Gibt die Anzahl der Zipeinträge zurück.
-			 */
-			uint32 GetEntryCount() const;
+         /*!
+          \brief Gibt die Anzahl der Zipeinträge zurück.
+          */
+         uint32 GetEntryCount() const;
 
-			/*!
-			 \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer
-			 dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur
-			 geeignet die Daten einer ZIP-Datei zu lesen. In den Stream kann nicht geschrieben werden.
-			 */
-			Stream* GetStream(const ZipEntry* entry);
+         /*!
+          \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer
+          dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur
+          geeignet die Daten einer ZIP-Datei zu lesen. In den Stream kann nicht geschrieben werden.
+          */
+         Stream* GetStream(const ZipEntry* entry);
 
-		private:
+      private:
 
-			/*!
-			 \brief Die Datei.
-			 */
-			File* mFile;
+         /*!
+          \brief Die Datei.
+          */
+         File* mFile;
 
-			/*!
-			 \brief Die Einträge
-			 */
-			LinkedList mEntries;
+         /*!
+          \brief Die Einträge
+          */
+         LinkedList mEntries;
 
-	};
-
-
-	/*!
-	\brief Diese Klasse repräsentiert eine ZIP-Datei zum Schreiben der Zip-Daten.
-	*/
-	class DllExport ZipOutputFile: public Object
-	{
-
-		public:
-
-			/*!
-			\brief Konstruktor
-			*/
-			ZipOutputFile(File* file);
-
-			/*!
-			\brief Öffnet die Datei zum Schreiben
-			*/
-			void Open();
-
-			/*!
-			\brief Schließt die Datei
-			*/
-			void Close();
-
-			/*!
-			\brief Schließt den aktuellen Eintrag und bereitet die Datei auf das Schreiben des nächsten
-			Eintrages vor
-			*/
-			void CloseEntry();
-
-			/*!
-			\brief Beginnt mit dem Schreiben eines neuen ZIP-Eintrags. Der Stream wartet nun an
-			korrekter Position auf Daten
-			*/
-			void PutNextEntry(ZipEntry* entry);
-
-			/*!
-			\brief Gibt den Stream für das Schreiben der Daten zurück.
-			*/
-			void Write(uint8* data, Integer offset, Integer length);
-
-			/*!
-			\brief Schreibt den Inhalt der Datei in den Stream
-			*/
-			void WriteAndClose(File* file);
+   };
 
 
-		private:
+   /*!
+   \brief Diese Klasse repräsentiert eine ZIP-Datei zum Schreiben der Zip-Daten.
+   */
+   class DllExport ZipOutputFile: public Object
+   {
 
-			/*!
-			\brief Die ZIP-Datei.
-			*/
-			File* mFile;
+      public:
 
-			/*!
-			\brief Temporäre Datei für UNkomprimierte Daten
-			*/
-			File* mTemp;
+         /*!
+         \brief Konstruktor
+         */
+         ZipOutputFile(File* file);
 
-			/*!
-				 \brief Die Einträge
-				 */
-			LinkedList mEntries;
+         /*!
+         \brief Öffnet die Datei zum Schreiben
+         */
+         void Open();
 
-	};
+         /*!
+         \brief Schließt die Datei
+         */
+         void Close();
+
+         /*!
+         \brief Schließt den aktuellen Eintrag und bereitet die Datei auf das Schreiben des nächsten
+         Eintrages vor
+         */
+         void CloseEntry();
+
+         /*!
+         \brief Beginnt mit dem Schreiben eines neuen ZIP-Eintrags. Der Stream wartet nun an
+         korrekter Position auf Daten
+         */
+         void PutNextEntry(ZipEntry* entry);
+
+         /*!
+         \brief Gibt den Stream für das Schreiben der Daten zurück.
+         */
+         void Write(uint8* data, Integer offset, Integer length);
+
+         /*!
+         \brief Schreibt den Inhalt der Datei in den Stream
+         */
+         void WriteAndClose(File* file);
+
+
+      private:
+
+         /*!
+         \brief Die ZIP-Datei.
+         */
+         File* mFile;
+
+         /*!
+         \brief Temporäre Datei für UNkomprimierte Daten
+         */
+         File* mTemp;
+
+         /*!
+         	 \brief Die Einträge
+         	 */
+         LinkedList mEntries;
+
+   };
 
 }
 

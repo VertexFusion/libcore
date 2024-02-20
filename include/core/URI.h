@@ -37,47 +37,47 @@
 namespace jm
 {
 
-	/*!
-	 \brief Repräsentation einer URI (Uniform Resource Identifier).
-	 Eine URI hat folgenden Aufbau:
+   /*!
+    \brief Repräsentation einer URI (Uniform Resource Identifier).
+    Eine URI hat folgenden Aufbau:
 
-	                     hierarchical part
-	         ┌───────────────────┴─────────────────────┐
-								authority               path
-	         ┌───────────────┴───────────────┐┌───┴────┐
-	   abc://username:password@example.com:123/path/data?key=value#fragid1
-	   └┬┘   └───────┬───────┘ └────┬────┘ └┬┘           └───┬───┘ └──┬──┘
-	 scheme  user information     host     port            query   fragment
+                        hierarchical part
+            ┌───────────────────┴─────────────────────┐
+   							authority               path
+            ┌───────────────┴───────────────┐┌───┴────┐
+      abc://username:password@example.com:123/path/data?key=value#fragid1
+      └┬┘   └───────┬───────┘ └────┬────┘ └┬┘           └───┬───┘ └──┬──┘
+    scheme  user information     host     port            query   fragment
 
-	   urn:example:mammal:monotreme:echidna
-		└┬┘ └──────────────┬───────────────┘
-	 scheme              path
+      urn:example:mammal:monotreme:echidna
+   	└┬┘ └──────────────┬───────────────┘
+    scheme              path
 
-	 */
-	class URI : public Object
-	{
+    */
+   class URI : public Object
+   {
 
-		private:
+      private:
 
-			/*!
-			 \brief Die URI in ihrer vollständigen Darstellung
-			 */
-			String mUri;
+         /*!
+          \brief Die URI in ihrer vollständigen Darstellung
+          */
+         String mUri;
 
-		public:
+      public:
 
-			URI(const String &uri);
+         URI(const String &uri);
 
-			/*URI(const String& scheme,
-			    const String &userInformation,
-			    const String &host,
-			    const int port,
-			    const String &path,
-			    const String &query,
-			    const String &fragment);*/
+         /*URI(const String& scheme,
+             const String &userInformation,
+             const String &host,
+             const int port,
+             const String &path,
+             const String &query,
+             const String &fragment);*/
 
 
-	};
+   };
 
 }
 

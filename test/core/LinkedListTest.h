@@ -13,13 +13,13 @@
 
 class LinkedListTest : public jm::Test
 {
-public:
-	LinkedListTest();
-	void DoTest();
-	
-	void DoTest1();
-	void DoTest2(bool active);
-	void DoTest3(bool active);
+   public:
+      LinkedListTest();
+      void DoTest();
+
+      void DoTest1();
+      void DoTest2(bool active);
+      void DoTest3(bool active);
 };
 
 #endif /* defined(__tornado__LinkedListTest__) */

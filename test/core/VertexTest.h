@@ -13,10 +13,10 @@
 
 class VertexTest : public jm::Test
 {
-public:
-	VertexTest();
-	void DoTest();
-	
+   public:
+      VertexTest();
+      void DoTest();
+
 };
 
 #endif

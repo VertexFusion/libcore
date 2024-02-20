@@ -37,148 +37,148 @@ I18nBundle* gDefaultTranslation = NULL;
 
 I18nBundle::I18nBundle(const String &language)
 {
-	mLanguage = language;
+   mLanguage = language;
 }
 
 void I18nBundle::AppendMO(File file)
 {
-	if(!file.Exists())
-	{
-		String appID,name;
-		System::Log(jm::String::Format(Tr("Cannot find translation file: %s %s"),
-													 jm::String::Ref(file.GetPath()),
-													 jm::String::Ref(mLanguage)), kLogError);
+   if(!file.Exists())
+   {
+      String appID, name;
+      System::Log(jm::String::Format(Tr("Cannot find translation file: %s %s"),
+                                     jm::String::Ref(file.GetPath()),
+                                     jm::String::Ref(mLanguage)), kLogError);
 
-		return;
-	}
+      return;
+   }
 
-	// Read file from disk
-	Integer length=file.Length();
-	ByteArray buf = ByteArray(length,0);
-	file.Open(kFmRead);
-	Integer check = file.Stream::ReadFully(buf);
-	file.Close();
+   // Read file from disk
+   Integer length = file.Length();
+   ByteArray buf = ByteArray(length, 0);
+   file.Open(kFmRead);
+   Integer check = file.Stream::ReadFully(buf);
+   file.Close();
 
-	if(check!=length)
-	{
-		System::Log(jm::String::Format(Tr("File not fully read: %s"),
-													 jm::String::Ref(file.GetPath())), kLogError);
-		return;
-	}
-	uint8* buffer=(uint8*)buf.ConstData();
+   if(check != length)
+   {
+      System::Log(jm::String::Format(Tr("File not fully read: %s"),
+                                     jm::String::Ref(file.GetPath())), kLogError);
+      return;
+   }
+   uint8* buffer = (uint8*)buf.ConstData();
 
-	// Process content
-	uint32 magic=jm::DeserializeLEUInt32(buffer, 0);
-	uint32 version=jm::DeserializeLEUInt32(buffer, 4);
-	uint32 stringCount=jm::DeserializeLEUInt32(buffer, 8);
-	uint32 origOffset=jm::DeserializeLEUInt32(buffer, 12);
-	uint32 transOffset=jm::DeserializeLEUInt32(buffer, 16);
+   // Process content
+   uint32 magic = jm::DeserializeLEUInt32(buffer, 0);
+   uint32 version = jm::DeserializeLEUInt32(buffer, 4);
+   uint32 stringCount = jm::DeserializeLEUInt32(buffer, 8);
+   uint32 origOffset = jm::DeserializeLEUInt32(buffer, 12);
+   uint32 transOffset = jm::DeserializeLEUInt32(buffer, 16);
 
-	if(magic!=0x950412de)
-	{
-		System::Log(jm::String::Format(Tr("File magic wrong: %s"),
-													 jm::String::Ref(file.GetPath())), kLogError);
-		return;
-	}
-	if(version!=0)
-	{
-		System::Log(jm::String::Format(Tr("MO file version not supported: %s"),
-													 jm::String::Ref(file.GetPath())), kLogError);
-		return;
-	}
+   if(magic != 0x950412de)
+   {
+      System::Log(jm::String::Format(Tr("File magic wrong: %s"),
+                                     jm::String::Ref(file.GetPath())), kLogError);
+      return;
+   }
+   if(version != 0)
+   {
+      System::Log(jm::String::Format(Tr("MO file version not supported: %s"),
+                                     jm::String::Ref(file.GetPath())), kLogError);
+      return;
+   }
 
-	struct Record
-	{
-		uint32 origOffset=0;
-		uint32 origLength=0;
-		uint32 transOffset=0;
-		uint32 transLength=0;
-	};
+   struct Record
+   {
+      uint32 origOffset = 0;
+      uint32 origLength = 0;
+      uint32 transOffset = 0;
+      uint32 transLength = 0;
+   };
 
-	std::vector<Record>records;
+   std::vector<Record>records;
 
-	// Read the string records
-	uint32 offset=0;
-	for(uint32 a=0;a<stringCount;a++)
-	{
-		Record rec;
-		rec.origLength=jm::DeserializeLEUInt32(buffer, origOffset+offset);
-		rec.origOffset=jm::DeserializeLEUInt32(buffer, origOffset+offset+4);
-		rec.transLength=jm::DeserializeLEUInt32(buffer, transOffset+offset);
-		rec.transOffset=jm::DeserializeLEUInt32(buffer, transOffset+offset+4);
+   // Read the string records
+   uint32 offset = 0;
+   for(uint32 a = 0; a < stringCount; a++)
+   {
+      Record rec;
+      rec.origLength = jm::DeserializeLEUInt32(buffer, origOffset + offset);
+      rec.origOffset = jm::DeserializeLEUInt32(buffer, origOffset + offset + 4);
+      rec.transLength = jm::DeserializeLEUInt32(buffer, transOffset + offset);
+      rec.transOffset = jm::DeserializeLEUInt32(buffer, transOffset + offset + 4);
 
-		offset+=8;
+      offset += 8;
 
-		records.push_back(rec);
-	}
+      records.push_back(rec);
+   }
 
-	// Process the records
-	for(uint32 a=0;a<stringCount;a++)
-	{
-		Record rec=records[a];
-		jm::String orig=jm::String(&buffer[rec.origOffset], rec.origLength);
-		jm::String trans=jm::String(&buffer[rec.transOffset], rec.transLength);
-		SetPreference(orig,trans);
-	}
+   // Process the records
+   for(uint32 a = 0; a < stringCount; a++)
+   {
+      Record rec = records[a];
+      jm::String orig = jm::String(&buffer[rec.origOffset], rec.origLength);
+      jm::String trans = jm::String(&buffer[rec.transOffset], rec.transLength);
+      SetPreference(orig, trans);
+   }
 }
 
 String I18nBundle::Translate(const String& key) const
 {
-	return GetPreference(key, key);
+   return GetPreference(key, key);
 }
 
 
 I18nBundle* I18nBundle::GetDefault()
 {
-	return gDefaultTranslation;
+   return gDefaultTranslation;
 }
 
 void I18nBundle::InitDefault()
 {
-	jm::String language= System::GetLanguage();
-	gDefaultTranslation = new I18nBundle(language);
+   jm::String language = System::GetLanguage();
+   gDefaultTranslation = new I18nBundle(language);
 
-	// Append Data
-	gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore",gDefaultTranslation->mLanguage));
+   // Append Data
+   gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore", gDefaultTranslation->mLanguage));
 }
 
 jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String& lang)
 {
-	String language= lang;
+   String language = lang;
 
-	if(language.Length()==0)language= System::GetLanguage();
+   if(language.Length() == 0)language = System::GetLanguage();
 
-	language=language.Replace('-', '_');
+   language = language.Replace('-', '_');
 
-	// Resource of translations
-	File resDir=ResourceDir(bundleId);
-	File translationDir=File(resDir,"translations");
+   // Resource of translations
+   File resDir = ResourceDir(bundleId);
+   File translationDir = File(resDir, "translations");
 
-	// Bundle-id + language
-	File translationFile=File(translationDir,bundleId + "." + language + ".mo");
+   // Bundle-id + language
+   File translationFile = File(translationDir, bundleId + "." + language + ".mo");
 
-	// Maybe without bundle id ?
-	if (translationFile.Exists() == false)
-	{
-		translationFile = File(translationDir, language + ".mo");
-	}
-	else return translationFile;
+   // Maybe without bundle id ?
+   if(translationFile.Exists() == false)
+   {
+      translationFile = File(translationDir, language + ".mo");
+   }
+   else return translationFile;
 
-	// Maybe without region?
-	if(translationFile.Exists()==false && language.IndexOf('_')>0)
-	{
-		language=language.Substring(0, language.IndexOf('_'));
-		translationFile=File(translationDir, bundleId + "." + language+".mo");
-	}
-	else return translationFile;
+   // Maybe without region?
+   if(translationFile.Exists() == false && language.IndexOf('_') > 0)
+   {
+      language = language.Substring(0, language.IndexOf('_'));
+      translationFile = File(translationDir, bundleId + "." + language + ".mo");
+   }
+   else return translationFile;
 
-	// Maybe without region and without bundle id?
-	if (translationFile.Exists() == false && language.IndexOf('_') > 0)
-	{
-		language = language.Substring(0, language.IndexOf('_'));
-		translationFile = File(translationDir, language + ".mo");
-	}
-	else return translationFile;
+   // Maybe without region and without bundle id?
+   if(translationFile.Exists() == false && language.IndexOf('_') > 0)
+   {
+      language = language.Substring(0, language.IndexOf('_'));
+      translationFile = File(translationDir, language + ".mo");
+   }
+   else return translationFile;
 
-	return translationFile;
+   return translationFile;
 }

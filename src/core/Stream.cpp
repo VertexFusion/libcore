@@ -40,8 +40,8 @@ Stream::Stream(): Object()
 
 Integer Stream::Write(const String &string)
 {
-	ByteArray cstr = string.ToCString();
-	Integer ret = Write(cstr.ConstData(),cstr.Size());
-	return ret;
+   ByteArray cstr = string.ToCString();
+   Integer ret = Write(cstr.ConstData(), cstr.Size());
+   return ret;
 }
 

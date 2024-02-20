@@ -40,386 +40,386 @@
 
 namespace jm
 {
-	/*!
-	 \brief The array class serves as a template for handling arrays as easily as variables.
-	  At the same time, array size control takes place.
-	  \ingroup core
-	 */
-	template <class T>
-	class Array: public Object
-	{
-		public:
+   /*!
+    \brief The array class serves as a template for handling arrays as easily as variables.
+     At the same time, array size control takes place.
+     \ingroup core
+    */
+   template <class T>
+   class Array: public Object
+   {
+      public:
 
-			Array(): Object()
-			{
-				mLength = 0;
-				mData = new T[0];
-			};
+         Array(): Object()
+         {
+            mLength = 0;
+            mData = new T[0];
+         };
 
-			Array(Integer length): Object()
-			{
-				mLength = length;
-				mData = new T[length];
-			};
+         Array(Integer length): Object()
+         {
+            mLength = length;
+            mData = new T[length];
+         };
 
-			Array(const Array &other): Object()
-			{
-				mLength = other.mLength;
-				mData = new T[mLength];
-				for(Integer a = 0; a < mLength; a++)
-				{
-					mData[a] = other.mData[a];
-				}
-			}
+         Array(const Array &other): Object()
+         {
+            mLength = other.mLength;
+            mData = new T[mLength];
+            for(Integer a = 0; a < mLength; a++)
+            {
+               mData[a] = other.mData[a];
+            }
+         }
 
-			virtual ~Array()
-			{
-				mLength = 0;
-				if(mData != NULL)delete[] mData;
-			};
+         virtual ~Array()
+         {
+            mLength = 0;
+            if(mData != NULL)delete[] mData;
+         };
 
-			inline Integer Length() const
-			{
-				return mLength;
-			};
+         inline Integer Length() const
+         {
+            return mLength;
+         };
 
-			inline void Sort()
-			{
-				if(mLength < 1)return;
-				if(dynamic_cast<Comparable<T>*>(&mData[0]) == NULL)return;
+         inline void Sort()
+         {
+            if(mLength < 1)return;
+            if(dynamic_cast<Comparable<T>*>(&mData[0]) == NULL)return;
 
-				Integer n = mLength;
-				do
-				{
-					Integer newn = 1;
-					for(Integer i = 0; i < n - 1; ++i)
-					{
-						Integer j = i + 1;
-						Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
-						Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
-						if(a1->CompareTo(*(T*)a2) > 0)
-						{
-							//Vertausche
-							T tmp = mData[i];
-							mData[i] = mData[j];
-							mData[j] = tmp;
+            Integer n = mLength;
+            do
+            {
+               Integer newn = 1;
+               for(Integer i = 0; i < n - 1; ++i)
+               {
+                  Integer j = i + 1;
+                  Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
+                  Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
+                  if(a1->CompareTo(*(T *)a2) > 0)
+                  {
+                     //Vertausche
+                     T tmp = mData[i];
+                     mData[i] = mData[j];
+                     mData[j] = tmp;
 
-							newn = i + 1;
-						}
-					}
-					n = newn;
-				}
-				while(n > 1);
-			}
+                     newn = i + 1;
+                  }
+               }
+               n = newn;
+            }
+            while(n > 1);
+         }
 
-			inline T Get(Integer index) const
-			{
-				if(index < 0 || index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				return mData[index];
-			};
+         inline T Get(Integer index) const
+         {
+            if(index < 0 || index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            return mData[index];
+         };
 
-			inline void Set(Integer index, T item)
-			{
-				if(index < 0 || index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				mData[index] = item;
-			};
+         inline void Set(Integer index, T item)
+         {
+            if(index < 0 || index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            mData[index] = item;
+         };
 
-			inline T &operator[](const Integer index) const
-			{
-				if(index < 0 || index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				return mData[index];
-			}
+         inline T &operator[](const Integer index) const
+         {
+            if(index < 0 || index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            return mData[index];
+         }
 
-			Array& operator=(const Array &another)
-			{
-				if(this != &another)
-				{
-					delete[] mData;
+         Array& operator=(const Array &another)
+         {
+            if(this != &another)
+            {
+               delete[] mData;
 
-					mLength = another.mLength;
-					mData = new T[mLength];
-					for(Integer a = 0; a < mLength; a++)
-					{
-						mData[a] = another.mData[a];
-					}
-				}
+               mLength = another.mLength;
+               mData = new T[mLength];
+               for(Integer a = 0; a < mLength; a++)
+               {
+                  mData[a] = another.mData[a];
+               }
+            }
 
-				return *this;
-			}
+            return *this;
+         }
 
-		private:
+      private:
 
-			/*!
-			 The length of the array.
-			 */
-			Integer mLength;
+         /*!
+          The length of the array.
+          */
+         Integer mLength;
 
-			/*!
-			 \brief The data array itself.
-			 */
-			T* mData;
+         /*!
+          \brief The data array itself.
+          */
+         T* mData;
 
-	};
-
-
-	/*!
-	Specialization for pointer arrays.
-	*/
-	template <class T>
-	class Array<T*> : public Object
-	{
-		public:
-
-			Array() : Object()
-			{
-				mLength = 0;
-				mData = new T*[0];
-			};
-
-			Array(uint32 length) : Object()
-			{
-				mLength = length;
-				mData = new T*[length];
-			};
-
-			Array(const Array& other) : Object()
-			{
-				mLength = other.mLength;
-				mData = new T*[mLength];
-				for(uint32 a = 0; a < mLength; a++)
-				{
-					mData[a] = other.mData[a];
-				}
-			}
-
-			virtual ~Array()
-			{
-				mLength = 0;
-				if(mData != NULL)delete[] mData;
-			};
-
-			inline uint32 Length() const
-			{
-				return mLength;
-			};
-
-			inline void Sort()
-			{
-				if(mLength < 1)return;
-				if(mData[0] == NULL)return;
-
-				uint32 n = mLength;
-				do
-				{
-					uint32 newn = 1;
-					for(uint32 i = 0; i < n - 1; ++i)
-					{
-						uint32 j = i + 1;
-						const Comparable<T>* a1 = static_cast<Comparable<T>*>(mData[i]);
-						const T& a2 = *mData[j];
-						if(a1->CompareTo(a2) > 0)
-						{
-							// Swap
-							T* tmp = mData[i];
-							mData[i] = mData[j];
-							mData[j] = tmp;
-
-							newn = i + 1;
-						}
-					}
-					n = newn;
-				}
-				while(n > 1);
-			}
-
-			inline T* Get(uint32 index) const
-			{
-				if(index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				return mData[index];
-			};
-
-			inline void Set(uint32 index, T* item)
-			{
-				if(index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				mData[index] = item;
-			};
-
-			inline T*& operator[](const uint32 index) const
-			{
-				if(index >= mLength)
-					throw new Exception("Array index out of bounds.");
-				return mData[index];
-			}
+   };
 
 
-			Array& operator=(const Array& another)
-			{
-				if(this != &another)
-				{
-					delete[] mData;
+   /*!
+   Specialization for pointer arrays.
+   */
+   template <class T>
+   class Array<T*> : public Object
+   {
+      public:
 
-					mLength = another.mLength;
-					mData = new T[mLength];
-					for(uint32 a = 0; a < mLength; a++)
-					{
-						mData[a] = another.mData[a];
-					}
-				}
+         Array() : Object()
+         {
+            mLength = 0;
+            mData = new T*[0];
+         };
 
-				return *this;
-			}
+         Array(uint32 length) : Object()
+         {
+            mLength = length;
+            mData = new T*[length];
+         };
 
-		private:
+         Array(const Array& other) : Object()
+         {
+            mLength = other.mLength;
+            mData = new T*[mLength];
+            for(uint32 a = 0; a < mLength; a++)
+            {
+               mData[a] = other.mData[a];
+            }
+         }
 
-			/*!
-			 Die Länge des Arrays
-			 */
-			uint32 mLength;
+         virtual ~Array()
+         {
+            mLength = 0;
+            if(mData != NULL)delete[] mData;
+         };
 
-			/*!
-			 \brief Das Array mit den Daten
-			 */
-			T** mData;
+         inline uint32 Length() const
+         {
+            return mLength;
+         };
 
-	};
+         inline void Sort()
+         {
+            if(mLength < 1)return;
+            if(mData[0] == NULL)return;
+
+            uint32 n = mLength;
+            do
+            {
+               uint32 newn = 1;
+               for(uint32 i = 0; i < n - 1; ++i)
+               {
+                  uint32 j = i + 1;
+                  const Comparable<T>* a1 = static_cast<Comparable<T>*>(mData[i]);
+                  const T& a2 = *mData[j];
+                  if(a1->CompareTo(a2) > 0)
+                  {
+                     // Swap
+                     T* tmp = mData[i];
+                     mData[i] = mData[j];
+                     mData[j] = tmp;
+
+                     newn = i + 1;
+                  }
+               }
+               n = newn;
+            }
+            while(n > 1);
+         }
+
+         inline T* Get(uint32 index) const
+         {
+            if(index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            return mData[index];
+         };
+
+         inline void Set(uint32 index, T* item)
+         {
+            if(index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            mData[index] = item;
+         };
+
+         inline T*& operator[](const uint32 index) const
+         {
+            if(index >= mLength)
+               throw new Exception("Array index out of bounds.");
+            return mData[index];
+         }
 
 
-	/*!
-	 FloatArray
-	 */
-	class FloatArray: public Object
-	{
-		public:
+         Array& operator=(const Array& another)
+         {
+            if(this != &another)
+            {
+               delete[] mData;
 
-			FloatArray(): Object()
-			{
-				mLength = 0;
-				mData = new float[0];
-			};
+               mLength = another.mLength;
+               mData = new T[mLength];
+               for(uint32 a = 0; a < mLength; a++)
+               {
+                  mData[a] = another.mData[a];
+               }
+            }
 
-			FloatArray(uint32 length): Object()
-			{
-				mLength = length;
-				mData = new float[length];
-			};
+            return *this;
+         }
 
-			FloatArray(const FloatArray &other): Object()
-			{
-				mLength = other.mLength;
-				mData = new float[mLength];
-				for(uint32 a = 0; a < mLength; a++)
-				{
-					mData[a] = other.mData[a];
-				}
-			}
+      private:
 
-			FloatArray(std::initializer_list<float> list): Object()
-			{
-				mLength = (uint32)list.size();
-				mData = new float[mLength];
-				std::initializer_list<float>::iterator it;
-				uint32 cnt = 0;
-				for(it = list.begin(); it != list.end(); ++it)
-				{
-					mData[cnt++] = *it;
-				}
-			}
+         /*!
+          Die Länge des Arrays
+          */
+         uint32 mLength;
 
-			virtual ~FloatArray()
-			{
-				mLength = 0;
-				if(mData != NULL)delete[] mData;
-			};
+         /*!
+          \brief Das Array mit den Daten
+          */
+         T** mData;
 
-			inline uint32 Length() const
-			{
-				return mLength;
-			};
+   };
 
-			inline void Sort()
-			{
-				if(mLength < 1)return;
 
-				uint32 n = mLength;
-				do
-				{
-					uint32 newn = 1;
-					for(uint32 i = 0; i < n - 1; ++i)
-					{
-						uint32 j = i + 1;
-						float a1 = mData[i];
-						float a2 = mData[j];
-						if(a1 > a2)
-						{
-							//Vertausche
-							float tmp = mData[i];
-							mData[i] = mData[j];
-							mData[j] = tmp;
+   /*!
+    FloatArray
+    */
+   class FloatArray: public Object
+   {
+      public:
 
-							newn = i + 1;
-						}
-					}
-					n = newn;
-				}
-				while(n > 1);
-			}
+         FloatArray(): Object()
+         {
+            mLength = 0;
+            mData = new float[0];
+         };
 
-			inline float Get(uint32 index) const
-			{
-				//if(index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				return mData[index];
-			};
+         FloatArray(uint32 length): Object()
+         {
+            mLength = length;
+            mData = new float[length];
+         };
 
-			inline void Set(uint32 index, float item)
-			{
-				//if(index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				mData[index] = item;
-			};
+         FloatArray(const FloatArray &other): Object()
+         {
+            mLength = other.mLength;
+            mData = new float[mLength];
+            for(uint32 a = 0; a < mLength; a++)
+            {
+               mData[a] = other.mData[a];
+            }
+         }
 
-			inline float &operator[](const uint32 index) const
-			{
-				//if(index >= mLength)
-				//	throw new Exception("Array index out of bounds.");
-				return mData[index];
-			}
+         FloatArray(std::initializer_list<float> list): Object()
+         {
+            mLength = (uint32)list.size();
+            mData = new float[mLength];
+            std::initializer_list<float>::iterator it;
+            uint32 cnt = 0;
+            for(it = list.begin(); it != list.end(); ++it)
+            {
+               mData[cnt++] = *it;
+            }
+         }
 
-			FloatArray& operator=(const FloatArray &another)
-			{
-				if(this != &another)
-				{
-					delete[] mData;
+         virtual ~FloatArray()
+         {
+            mLength = 0;
+            if(mData != NULL)delete[] mData;
+         };
 
-					mLength = another.mLength;
-					mData = new float[mLength];
-					for(uint32 a = 0; a < mLength; a++)
-					{
-						mData[a] = another.mData[a];
-					}
-				}
+         inline uint32 Length() const
+         {
+            return mLength;
+         };
 
-				return *this;
-			}
+         inline void Sort()
+         {
+            if(mLength < 1)return;
 
-		private:
+            uint32 n = mLength;
+            do
+            {
+               uint32 newn = 1;
+               for(uint32 i = 0; i < n - 1; ++i)
+               {
+                  uint32 j = i + 1;
+                  float a1 = mData[i];
+                  float a2 = mData[j];
+                  if(a1 > a2)
+                  {
+                     //Vertausche
+                     float tmp = mData[i];
+                     mData[i] = mData[j];
+                     mData[j] = tmp;
 
-			/*!
-			 The length of the array
-			 */
-			uint32 mLength;
+                     newn = i + 1;
+                  }
+               }
+               n = newn;
+            }
+            while(n > 1);
+         }
 
-			/*!
-			 \brief The array itself
-			 */
-			float* mData;
+         inline float Get(uint32 index) const
+         {
+            //if(index >= mLength)
+            //	throw new Exception("Array index out of bounds.");
+            return mData[index];
+         };
 
-	};
+         inline void Set(uint32 index, float item)
+         {
+            //if(index >= mLength)
+            //	throw new Exception("Array index out of bounds.");
+            mData[index] = item;
+         };
+
+         inline float &operator[](const uint32 index) const
+         {
+            //if(index >= mLength)
+            //	throw new Exception("Array index out of bounds.");
+            return mData[index];
+         }
+
+         FloatArray& operator=(const FloatArray &another)
+         {
+            if(this != &another)
+            {
+               delete[] mData;
+
+               mLength = another.mLength;
+               mData = new float[mLength];
+               for(uint32 a = 0; a < mLength; a++)
+               {
+                  mData[a] = another.mData[a];
+               }
+            }
+
+            return *this;
+         }
+
+      private:
+
+         /*!
+          The length of the array
+          */
+         uint32 mLength;
+
+         /*!
+          \brief The array itself
+          */
+         float* mData;
+
+   };
 }
 
 #endif

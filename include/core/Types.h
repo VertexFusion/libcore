@@ -166,72 +166,72 @@ typedef unsigned long       ulong;
 
 namespace jm
 {
-	/*!
-	\brief This enumeration list all errors posted by this library.
-	\note Do no use numbers of this enum for storing persistent data. Numbers are changing.
-	*/
-	enum VxfErrorStatus
-	{
-		// for usage as boolean replacement
-		eNo = 0,       /*!< Same meansing as a bool \c false */
-		eOK = 1,       /*!< All ok. Operation finished as excepted. */
-		eYes = 1,      /*!< Same meaning as a bool "true" (same as eOK) */
+   /*!
+   \brief This enumeration list all errors posted by this library.
+   \note Do no use numbers of this enum for storing persistent data. Numbers are changing.
+   */
+   enum VxfErrorStatus
+   {
+      // for usage as boolean replacement
+      eNo = 0,       /*!< Same meansing as a bool \c false */
+      eOK = 1,       /*!< All ok. Operation finished as excepted. */
+      eYes = 1,      /*!< Same meaning as a bool "true" (same as eOK) */
 
-		// General Errors
-		eError,					/*!< Operation not done. Unspecified error occured. */
-		eNotAllowed,			/*! < Operation not allowed. */
-		eNotImplemented,		/*!< Operation not done. Not implemented. */
-		eNullPointer,			/*!< Operation not done. Null pointer found. */
-		eIndexOutOfBounds,	/*!< Operation not done. Array overflow underflow and similar */
+      // General Errors
+      eError,					/*!< Operation not done. Unspecified error occured. */
+      eNotAllowed,			/*! < Operation not allowed. */
+      eNotImplemented,		/*!< Operation not done. Not implemented. */
+      eNullPointer,			/*!< Operation not done. Null pointer found. */
+      eIndexOutOfBounds,	/*!< Operation not done. Array overflow underflow and similar */
 
-		// DWG related
-		eNullHandle,			/*!< Operation not done. Null handle found. */
-		eDuplicatHandle,		/*!< Operation not done. Duplicate handle found. */
-		eOwnerMismatch,		/*!< Operation not done. Owner of object points to invalid owner. */
+      // DWG related
+      eNullHandle,			/*!< Operation not done. Null handle found. */
+      eDuplicatHandle,		/*!< Operation not done. Duplicate handle found. */
+      eOwnerMismatch,		/*!< Operation not done. Owner of object points to invalid owner. */
 
-		eDuplicateKey,			/*!< Operation not done. Duplicate key found. E.g. becaue you try to
+      eDuplicateKey,			/*!< Operation not done. Duplicate key found. E.g. becaue you try to
 									     name a new DwgLayer with a name, a layer already exists. */
-		eInvalidKey,			/*!< Operation not done. Key has invalid value. E.g. because you try to
+      eInvalidKey,			/*!< Operation not done. Key has invalid value. E.g. because you try to
 										  use a group code in a DwgXRecord for a specific datatype, but the
 										  code is mapped to another data type, or you try to name a colour
 										  although the colour name is not defined in a colour book. */
-		eInvalidInput,			/*!< Operation not done. Input is invalid. */
-		eNotFound,				/*!< Operation not done. The entry you are looking for was not found. */
-		eNotChanged,			/*!< Operation not done. Value not changed. Often not really an error,
+      eInvalidInput,			/*!< Operation not done. Input is invalid. */
+      eNotFound,				/*!< Operation not done. The entry you are looking for was not found. */
+      eNotChanged,			/*!< Operation not done. Value not changed. Often not really an error,
 										  but a notice. */
 
-		eOnLockedLayer,		/*!< Operation not done. The entity is on a locked layer. */
-		eUndefinedBlock,		/*!< Operation not done. The requested block is undefined. */
-		eUndefinedLineType,	/*!< Operation not done. The requested DwgLineType is undefined. */
-		eUndefinedLayer,		/*!< Operation not done. The requested DwgLayer is undefined. */
-		eWrongObjectType,		/*!< Operation not done. The provided object has not the expected object
+      eOnLockedLayer,		/*!< Operation not done. The entity is on a locked layer. */
+      eUndefinedBlock,		/*!< Operation not done. The requested block is undefined. */
+      eUndefinedLineType,	/*!< Operation not done. The requested DwgLineType is undefined. */
+      eUndefinedLayer,		/*!< Operation not done. The requested DwgLayer is undefined. */
+      eWrongObjectType,		/*!< Operation not done. The provided object has not the expected object
 									     type. */
 
-		// Structure related
-		eNoElementsForTransformationProvided,
-		eTargetNodeForCopyOperationNotFound,
-		eTargetBeamForCopyOperationNotFound,
-		eInvalidVectorInput,
-		eInvalidAngleInput,
-		eInvalidFactorInput
+      // Structure related
+      eNoElementsForTransformationProvided,
+      eTargetNodeForCopyOperationNotFound,
+      eTargetBeamForCopyOperationNotFound,
+      eInvalidVectorInput,
+      eInvalidAngleInput,
+      eInvalidFactorInput
 
-	};
+   };
 
 
-	/*!
-	\brief This class is intended to be used for comparisons.
-	*/
-	template <class T>
-	class Comparable
-	{
-		public:
+   /*!
+   \brief This class is intended to be used for comparisons.
+   */
+   template <class T>
+   class Comparable
+   {
+      public:
 
-			Comparable() {};
+         Comparable() {};
 
-			virtual ~Comparable() {};
+         virtual ~Comparable() {};
 
-			virtual int32 CompareTo(const T &other) const = 0;
-	};
+         virtual int32 CompareTo(const T &other) const = 0;
+   };
 
 }
 

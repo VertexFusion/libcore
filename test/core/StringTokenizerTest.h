@@ -13,10 +13,10 @@
 
 class StringTokenizerTest : public jm::Test
 {
-public:
-	StringTokenizerTest();
-	void DoTest();
-	
+   public:
+      StringTokenizerTest();
+      void DoTest();
+
 };
 
 #endif /* defined(__jameo__StringTokenizerTest__) */

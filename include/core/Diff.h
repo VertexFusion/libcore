@@ -39,38 +39,38 @@ namespace jm
 {
 
 
-	/*!
-	 \brief Diff makes the diff function generally available.
-	 \ingroup diff
-	 */
-	class DllExport Diff
-	{
+   /*!
+    \brief Diff makes the diff function generally available.
+    \ingroup diff
+    */
+   class DllExport Diff
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Führt die DIFF-Operation an den übergebenen Dateien aus.
-			 \param f1 Die erste (linke) Datei, die zum Vergleich genommen wird.
-			 \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
-			 \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
-			 */
-			/*static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
+         /*!
+          \brief Führt die DIFF-Operation an den übergebenen Dateien aus.
+          \param f1 Die erste (linke) Datei, die zum Vergleich genommen wird.
+          \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
+          \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
+          */
+         /*static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
 
-			static void HandleEntityU(DiffDistance* dd, dwg::Entity* e);
-			static void HandleEntityV(DiffDistance* dd, dwg::Entity* e);
-			*/
-		private:
-			/*!
-			 \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
-			 */
-			static void HandleObjectU(DiffDistance* dd, Object* e);
+         static void HandleEntityU(DiffDistance* dd, dwg::Entity* e);
+         static void HandleEntityV(DiffDistance* dd, dwg::Entity* e);
+         */
+      private:
+         /*!
+          \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+          */
+         static void HandleObjectU(DiffDistance* dd, Object* e);
 
-			/*!
-			 \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
-			 */
-			static void HandleObjectV(DiffDistance* dd, Object* e);
+         /*!
+          \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+          */
+         static void HandleObjectV(DiffDistance* dd, Object* e);
 
-	};
+   };
 
 }
 

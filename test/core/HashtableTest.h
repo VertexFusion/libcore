@@ -13,10 +13,10 @@
 
 class HashtableTest : public jm::Test
 {
-public:
-	HashtableTest();
-	void DoTest();
-	
+   public:
+      HashtableTest();
+      void DoTest();
+
 };
 
 #endif /* defined(__tornado__HashtableTest__) */

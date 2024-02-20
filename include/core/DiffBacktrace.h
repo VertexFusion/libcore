@@ -39,84 +39,84 @@
 namespace jm
 {
 
-	//Vorabdeklaration
-	class DiffDistance;
-	class DiffDiag;
+   //Vorabdeklaration
+   class DiffDistance;
+   class DiffDiag;
 
 
-	/*!
-	 \brief DiffBacktrace is used to indicate the "path of change".
-	 \ingroup diff
-	 */
-	class DllExport DiffBacktrace
-	{
-		public:
+   /*!
+    \brief DiffBacktrace is used to indicate the "path of change".
+    \ingroup diff
+    */
+   class DllExport DiffBacktrace
+   {
+      public:
 
-			/*!
-			 \brief Standardkonstruktor
-			 */
-			DiffBacktrace();
+         /*!
+          \brief Standardkonstruktor
+          */
+         DiffBacktrace();
 
-			/*!
-			 \brief Copykonstruktor
-			 */
-			DiffBacktrace(const DiffBacktrace &another);
+         /*!
+          \brief Copykonstruktor
+          */
+         DiffBacktrace(const DiffBacktrace &another);
 
-			/*!
-			 \brief Destructor
-			 */
-			~DiffBacktrace();
+         /*!
+          \brief Destructor
+          */
+         ~DiffBacktrace();
 
-			/*!
-			 \brief Schreibt das Ergebnis von Diff in den Standardausgabestrom, wenn etwas unterschiedlich ist
-			 */
-			void Print();
+         /*!
+          \brief Schreibt das Ergebnis von Diff in den Standardausgabestrom, wenn etwas unterschiedlich ist
+          */
+         void Print();
 
-			/*!
-			 \brief Diese Methode führt das Backtracing durch, um den Pfad der Veränderungen zu bekommen.
-			 \param dd Zeiger auf die Diagonale, aus der das Betrachtete Element stammt.
-			 \param i 0-basierter Index auf das Element in der Diagonalen.
-			 */
-			static DiffBacktrace* Backtrace(DiffDiag* dd, uint32 i);
+         /*!
+          \brief Diese Methode führt das Backtracing durch, um den Pfad der Veränderungen zu bekommen.
+          \param dd Zeiger auf die Diagonale, aus der das Betrachtete Element stammt.
+          \param i 0-basierter Index auf das Element in der Diagonalen.
+          */
+         static DiffBacktrace* Backtrace(DiffDiag* dd, uint32 i);
 
-			/*!
-			 \brief Gibt die Diff-Operation zurück.
-			 */
-			DiffOperation GetOperation();
+         /*!
+          \brief Gibt die Diff-Operation zurück.
+          */
+         DiffOperation GetOperation();
 
-		private:
+      private:
 
-			/*!
-			 \brief Die Länge des Pfades, der zurückgegangen wird
-			 */
-			unsigned int size;
+         /*!
+          \brief Die Länge des Pfades, der zurückgegangen wird
+          */
+         unsigned int size;
 
-			/*!
-			 \brief Operation, die in diesem Schritt gemacht wurde
-			 */
-			DiffOperation operation;
+         /*!
+          \brief Operation, die in diesem Schritt gemacht wurde
+          */
+         DiffOperation operation;
 
-			/*!
-			 \brief Zeiger auf das "linke" Objekt, wenn vorhanden
-			 */
-			Object* obj1;
+         /*!
+          \brief Zeiger auf das "linke" Objekt, wenn vorhanden
+          */
+         Object* obj1;
 
-			/*!
-			 \brief Zeiger auf das "rechte" Objekt, wenn vorhanden
-			 */
-			Object* obj2;
+         /*!
+          \brief Zeiger auf das "rechte" Objekt, wenn vorhanden
+          */
+         Object* obj2;
 
-			/*!
-			 \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
-			 */
-			DiffBacktrace* prev;
+         /*!
+          \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
+          */
+         DiffBacktrace* prev;
 
-			/*!
-			 \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
-			 */
-			DiffBacktrace* next;
+         /*!
+          \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
+          */
+         DiffBacktrace* next;
 
-	};
+   };
 
 }
 

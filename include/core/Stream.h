@@ -39,98 +39,104 @@
 namespace jm
 {
 
-	/*!
-	 \brief Mode for opening streams and files.
-	 */
-	enum FileMode
-	{
-		kFmRead,      /*!< Open for reading only. Corresponds to \c rb */
-		kFmWrite,     /*!< Open for writing only. Corresponds to \c wb */
-		kFmReadWrite  /*!< Open for reading and writing. Corresponds to \c rb+ */
-	};
+   /*!
+    \brief Mode for opening streams and files.
+    */
+   enum FileMode
+   {
+      kFmRead,      /*!< Open for reading only. Corresponds to \c rb */
+      kFmWrite,     /*!< Open for writing only. Corresponds to \c wb */
+      kFmReadWrite  /*!< Open for reading and writing. Corresponds to \c rb+ */
+   };
 
-	/*!
-	 \brief Die Stream-Klasse ist eine Abstraktionsklasse, um Datenströme über eine einheitliche
-	 Schnittstelle bearbeiten zu können. Der Stream selbst kann dabei eine Datei, ein Byte-Array,
-	 eine Neztwerkschnittstelle, oder irgendetwas anderes sein.
-	 */
-	class DllExport Stream: public Object
-	{
+   /*!
+    \brief Die Stream-Klasse ist eine Abstraktionsklasse, um Datenströme über eine einheitliche
+    Schnittstelle bearbeiten zu können. Der Stream selbst kann dabei eine Datei, ein Byte-Array,
+    eine Neztwerkschnittstelle, oder irgendetwas anderes sein.
+    */
+   class DllExport Stream: public Object
+   {
 
-		public:
+      public:
 
-			/*!
-			 \brief Konstruktor
-			 */
-			Stream();
+         /*!
+          \brief Konstruktor
+          */
+         Stream();
 
-			/*!
-			 \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
-			 \param mode Der Modus zum öffnen.
-			 */
-			virtual void Open(FileMode mode) = 0;
+         /*!
+          \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
+          \param mode Der Modus zum öffnen.
+          */
+         virtual void Open(FileMode mode) = 0;
 
-			/*!
-			 \brief Status, ob die Datei geöffnet ist
-			 */
-			virtual bool IsOpen() = 0;
+         /*!
+          \brief Status, ob die Datei geöffnet ist
+          */
+         virtual bool IsOpen() = 0;
 
-			/*!
-			 \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen
-			 frei.
-			 */
-			virtual void Close() = 0;
+         /*!
+          \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen
+          frei.
+          */
+         virtual void Close() = 0;
 
-			/*!
-			 \brief Liest maximal length bytes in das Array.
-			 \details Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
-			 noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
-			 zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man ReadFully()
-			 aufrufen.
-			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-			 (EOF).
-			 */
-			virtual Integer Read(uint8* buffer, Integer length) = 0;
+         /*!
+          \brief Liest maximal length bytes in das Array.
+          \details Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
+          noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
+          zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man ReadFully()
+          aufrufen.
+          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
+          (EOF).
+          */
+         virtual Integer Read(uint8* buffer, Integer length) = 0;
 
-			/*!
-			 \brief Liest maximal length bytes in das Array
-			 \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-			 (EOF).
-			 */
-			virtual Integer ReadFully(ByteArray &buffer, Integer length) = 0;
-			Integer ReadFully(ByteArray &buffer){return ReadFully(buffer,buffer.Size());};
+         /*!
+          \brief Liest maximal length bytes in das Array
+          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
+          (EOF).
+          */
+         virtual Integer ReadFully(ByteArray &buffer, Integer length) = 0;
+         Integer ReadFully(ByteArray &buffer)
+         {
+            return ReadFully(buffer, buffer.Size());
+         };
 
-			/*!
-			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
-			 (0-basierter Index).
-			 \note Nicht jeder Stream unterstützt diese Methode.
-			 */
-			virtual void Seek(Integer position) = 0;
+         /*!
+          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
+          (0-basierter Index).
+          \note Nicht jeder Stream unterstützt diese Methode.
+          */
+         virtual void Seek(Integer position) = 0;
 
-			/*!
-			 \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
-			 */
-			virtual void Move(Integer offset) = 0;
+         /*!
+          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
+          */
+         virtual void Move(Integer offset) = 0;
 
-			/*!
-			 \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
-			 Nicht jeder Stream unterstützt diese Methode.
-			 */
-			virtual Integer GetPosition() = 0;
+         /*!
+          \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
+          Nicht jeder Stream unterstützt diese Methode.
+          */
+         virtual Integer GetPosition() = 0;
 
-			/*!
-			 \brief Schreibt einen Buffer in die Ausgabedatei
-			 */
-			virtual Integer Write(uint8* buffer, Integer length) = 0;
-			inline Integer Write(const int8* buffer, Integer length) { return Write((uint8*)buffer, length); };
+         /*!
+          \brief Schreibt einen Buffer in die Ausgabedatei
+          */
+         virtual Integer Write(uint8* buffer, Integer length) = 0;
+         inline Integer Write(const int8* buffer, Integer length)
+         {
+            return Write((uint8*)buffer, length);
+         };
 
-			/*!
-			 \brief Schreibt einen String in die Ausgabedatei. Kodierung ist die Standardkodierung
-			 (also UTF-8).
-			 NICHT ALS C_STRING
-			 */
-			Integer Write(const String &string);
+         /*!
+          \brief Schreibt einen String in die Ausgabedatei. Kodierung ist die Standardkodierung
+          (also UTF-8).
+          NICHT ALS C_STRING
+          */
+         Integer Write(const String &string);
 
-	};
+   };
 }
 #endif
