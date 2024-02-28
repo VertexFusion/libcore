@@ -39,16 +39,18 @@ TestVector::TestVector(int argc, const char * argv[])
    {
       arg = argv[1];
    }
+   tests = new std::vector<Test*>();
 }
 
 TestVector::~TestVector()
 {
-   for(uint32 a = 0; a < tests.size(); a++)delete tests[a];
+   for(uint32 a = 0; a < tests->size(); a++)delete tests->at(a);
+   delete tests;
 }
 
 void TestVector::AddTest(Test* test)
 {
-   tests.push_back(test);
+   tests->push_back(test);
 }
 
 Integer TestVector::Execute()
@@ -72,9 +74,9 @@ Integer TestVector::Execute()
       }
    }
 
-   for(Integer a = 0; a < tests.size(); a++)
+   for(Integer a = 0; a < tests->size(); a++)
    {
-      if(single < 0 || single == a)Testrun(tests[a]);
+      if(single < 0 || single == a)Testrun(tests->at(a));
    }
 
    clock_t et = clock();

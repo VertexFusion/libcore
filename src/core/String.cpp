@@ -775,9 +775,9 @@ String String::ValueOf(int64 number)
    // Solve the individual digits... Attention: the last digit comes first
    while(number > 0)
    {
-      int64 digit = number % 10;
+      Integer digit = number % 10;
       number = number / 10;
-      ret.Append(Char(digit + '0'));
+      ret.Append(Char(digit.Int16() + '0'));
    }
    if(neg)ret.Append('-');
 
@@ -807,9 +807,9 @@ String String::ValueOf(uint64 number)
    // Solve the individual digits... Attention: the last digit comes first
    while(number > 0)
    {
-      int64 digit = number % 10;
+      Integer digit = number % 10;
       number = number / 10;
-      ret.Append(Char(digit + '0'));
+      ret.Append(Char(digit.Int16() + '0'));
    }
 
    // Reverse digits

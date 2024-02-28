@@ -376,7 +376,7 @@ namespace jm
          String arg;
 
          //! \brief  The tests to be done.
-         std::vector<Test*> tests;
+         std::vector<Test*>* tests;
 
          //! \brief  Helper method for single test run.
          //! \param test Test to run.

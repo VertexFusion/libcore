@@ -90,9 +90,9 @@ void ZipOutputFile::Close()
       jm::SerializeLEInt32(cdfh, 16, entry->mCRC);//CRC
       jm::SerializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
       jm::SerializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
-      jm::SerializeLEInt16(cdfh, 28, cname.Size());//ShxFile name Length
-      jm::SerializeLEInt16(cdfh, 30, cextra.Size());//Extra field length
-      jm::SerializeLEInt16(cdfh, 32, ccomment.Size());//Comment field length
+      jm::SerializeLEInt16(cdfh, 28, cname.Size().Int16());//ShxFile name Length
+      jm::SerializeLEInt16(cdfh, 30, cextra.Size().Int16());//Extra field length
+      jm::SerializeLEInt16(cdfh, 32, ccomment.Size().Int16());//Comment field length
       jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
       jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
       jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
@@ -204,13 +204,13 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
    jm::SerializeLEInt16(lfh, 4, 0);//Minimum Version needed. Auf 0 gesetzt
    jm::SerializeLEInt16(lfh, 6, 0);//General Purpose Bit Flag. Auf 0 gesetzt
    jm::SerializeLEInt16(lfh, 8, 0);//Compression Method
-   jm::SerializeLEInt16(lfh, 10, 0);//ShxFile last modification time
-   jm::SerializeLEInt16(lfh, 12, 0);//ShxFile last modification date
+   jm::SerializeLEInt16(lfh, 10, 0);//File last modification time
+   jm::SerializeLEInt16(lfh, 12, 0);//File last modification date
    jm::SerializeLEInt32(lfh, 14, 0);//CRC
    jm::SerializeLEInt32(lfh, 18, 0);//Compressed Size
    jm::SerializeLEInt32(lfh, 22, 0);//Uncompressed Size
-   jm::SerializeLEInt16(lfh, 26, cname.Size());//ShxFile name Length
-   jm::SerializeLEInt16(lfh, 28, cextra.Size());//Extra field length
+   jm::SerializeLEInt16(lfh, 26, cname.Size().Int16());//File name Length
+   jm::SerializeLEInt16(lfh, 28, cextra.Size().Int16());//Extra field length
 
    mFile->Write(lfh, 30);
    if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());
