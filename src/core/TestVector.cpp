@@ -82,15 +82,15 @@ Integer TestVector::Execute()
    clock_t et = clock();
 
    std::cout << std::endl << Tr("Cycle finished! In total:") << std::endl;
-   std::cout << jm::String::Format(Tr("Tests:    %i"), jm::gTotalTestCount) << std::endl;
+   std::cout << Tr("Tests:    %1").Arg(jm::gTotalTestCount) << std::endl;
 
    std::cout <<
              ((jm::gTotalErrorCount > 0) ? kTxtRed : kTxtGreen)
-             << jm::String::Format(Tr("Errors:   %i"), jm::gTotalErrorCount)
+             << Tr("Errors:   %1").Arg(jm::gTotalErrorCount)
              << kTxtReset << std::endl;
 
    std::cout <<
-             jm::String::Format(Tr("Duration: %1.3f sec"), (double)(et - bt) / CLOCKS_PER_SEC)
+             Tr("Duration: %1 sec").Arg(Double((double)(et - bt) / CLOCKS_PER_SEC),1,3)
              << std::endl;
 
    return gTotalErrorCount;
@@ -100,7 +100,7 @@ void TestVector::Testrun(Test* test)
 {
    if(test == NULL)return;
 
-   System::Log(jm::String::Format(Tr("Execute %s..."), String::Ref(test->GetName())), kLogInformation);
+   System::Log(Tr("Execute %1...").Arg(test->GetName()), kLogInformation);
 
    try
    {
@@ -115,9 +115,10 @@ void TestVector::Testrun(Test* test)
       delete e;
    }
 
-   System::Log(jm::String::Format(Tr("Test finished! %i Tests, %i Errors."),
-                                  gTestCount,
-                                  gErrorCount), kLogInformation);
+   System::Log(Tr("Test finished! %1 Tests, %2 Errors.")
+               .Arg(gTestCount)
+               .Arg(gErrorCount),
+               kLogInformation);
 
    gErrorCount = 0;
    gTestCount = 0;

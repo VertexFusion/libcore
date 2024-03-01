@@ -121,4 +121,49 @@ void StringTest::DoTest()
    str2="ALLES OK.ÄÖÜ";
    TestEquals(str1.ToUpperCase(),str2, "String.ToUpperCase() fails.");
    TestEquals(str2.ToLowerCase(),str1, "String.ToLowerCase() fails.");
+
+   // Test Arg Integer
+   Integer i=25;
+   str1=String("The number is %1!").Arg(i);
+   str2=String("The number is 25!");
+   TestEquals(str1,str2, "String.Arg(Integer) fails. (1)");
+
+   str1=String("[%1]").Arg(i,8);
+   str2=String("[      25]");
+   TestEquals(str1,str2, "String.Arg(Integer) fails. (2)");
+
+   str1=String("[%1]").Arg(i,-8);
+   str2=String("[25      ]");
+   TestEquals(str1,str2, "String.Arg(Integer) fails. (3)");
+
+   // Test Arg Double
+   Double d=24.6666;
+   str1=String("The number is %1!").Arg(d);
+   str2=String("The number is 24,6666!");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (1)");
+
+   str1=String("[%1]").Arg(d,8);
+   str2=String("[ 24,6666]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (2)");
+
+   str1=String("[%1]").Arg(d,-8);
+   str2=String("[24,6666 ]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (3)");
+
+   str1=String("[%1]").Arg(d,8,2);
+   str2=String("[   24,67]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (4)");
+
+   str1=String("[%1]").Arg(d,-8,2);
+   str2=String("[24,67   ]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (5)");
+
+   str1=String("[%1]").Arg(d,8,3,'.');
+   str2=String("[..24,667]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (6)");
+
+   str1=String("[%1]").Arg(d,-8,3,'.');
+   str2=String("[24,667..]");
+   TestEquals(str1,str2, "String.Arg(Double) fails. (7)");
+
 }

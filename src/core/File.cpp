@@ -512,8 +512,7 @@ Integer File::Length() const
    int32 result = stat(mCstr.ConstData(), &filestat);
 
    // If it doesn't exist, then I can't read it.
-   if(result != 0)throw new Exception(jm::String::Format(Tr("File \"%s\" does not exist."),
-                                         &GetAbsolutePath()));
+   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").Arg(GetAbsolutePath()));
 
    return Integer((uint64)filestat.st_size);
 }
@@ -598,17 +597,11 @@ void File::Open(FileMode mode)
 
    if(mHandle == NULL)
    {
-      if(errno == EACCES)throw new Exception(String::Format(Tr("Permission denied! \"%s\""),
-                                                &mPathname));
-      if(errno == ENOENT)throw new Exception(String::Format(Tr("File not found! \"%s\""),
-                                                &mPathname));
-      if(errno == ETIMEDOUT)throw new Exception(String::Format(Tr("Connection timed out! \"%s\""),
-               &mPathname));
-      if(errno == ENOTDIR)throw new Exception(String::Format(Tr("Not a directory \"%s\""),
-                                                 &mPathname));
-      throw new Exception(String::Format(Tr("Cannot open file! \"%s\" Errno: %i"),
-                                         &mPathname,
-                                         errno));
+      if(errno == EACCES)throw new Exception(Tr("Permission denied! \"%1\"").Arg(mPathname));
+      if(errno == ENOENT)throw new Exception(Tr("File not found! \"%1\"").Arg(mPathname));
+      if(errno == ETIMEDOUT)throw new Exception(Tr("Connection timed out! \"%1\"").Arg(mPathname));
+      if(errno == ENOTDIR)throw new Exception(Tr("Not a directory \"%1\"").Arg(mPathname));
+      throw new Exception(Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno)));
    }
 }
 
@@ -950,7 +943,7 @@ File jm::ResourceDir(const String &bundleId)
       //Aufräumen
       CFRelease(cfstr);
 
-      System::Log(String::Format(Tr("NO BUNDLE-REF for %s"), &bundleId), kLogError);
+      System::Log(Tr("NO BUNDLE-REF for %1").Arg(bundleId), kLogError);
       return File("/");
    }
 

@@ -45,9 +45,10 @@ void I18nBundle::AppendMO(File file)
    if(!file.Exists())
    {
       String appID, name;
-      System::Log(jm::String::Format(Tr("Cannot find translation file: %s %s"),
-                                     jm::String::Ref(file.GetPath()),
-                                     jm::String::Ref(mLanguage)), kLogError);
+      System::Log(Tr("Cannot find translation file: %1 %2")
+                  .Arg(file.GetPath())
+                  .Arg(mLanguage),
+                  kLogError);
 
       return;
    }
@@ -61,8 +62,7 @@ void I18nBundle::AppendMO(File file)
 
    if(check != length)
    {
-      System::Log(jm::String::Format(Tr("File not fully read: %s"),
-                                     jm::String::Ref(file.GetPath())), kLogError);
+      System::Log(Tr("File not fully read: %1").Arg(file.GetPath()), kLogError);
       return;
    }
    uint8* buffer = (uint8*)buf.ConstData();
@@ -76,14 +76,12 @@ void I18nBundle::AppendMO(File file)
 
    if(magic != 0x950412de)
    {
-      System::Log(jm::String::Format(Tr("File magic wrong: %s"),
-                                     jm::String::Ref(file.GetPath())), kLogError);
+      System::Log(Tr("File magic wrong: %1").Arg(file.GetPath()), kLogError);
       return;
    }
    if(version != 0)
    {
-      System::Log(jm::String::Format(Tr("MO file version not supported: %s"),
-                                     jm::String::Ref(file.GetPath())), kLogError);
+      System::Log(Tr("MO file version not supported: %1").Arg(file.GetPath()), kLogError);
       return;
    }
 

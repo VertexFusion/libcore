@@ -111,8 +111,8 @@ Vertex2& Vertex2::Rotate(double angle)
 
 Vertex2::Vertex2()
 {
-   x = 0;
-   y = 0;
+   x = 0.0;
+   y = 0.0;
 }
 
 Vertex2::Vertex2(Double xx, Double yy)

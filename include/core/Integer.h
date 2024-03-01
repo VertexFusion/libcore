@@ -138,6 +138,7 @@ class DllExport Integer : public jm::Comparable<Integer>
       Integer(uint32 value);
       Integer(int64 value);
       Integer(uint64 value);
+      Integer(slong value);
       #ifdef WITHULONG
       Integer(ulong value);
       #endif
@@ -215,6 +216,8 @@ class DllExport Integer : public jm::Comparable<Integer>
       Integer &operator+=(const Integer &another);
 
       Integer &operator-=(const Integer &another);
+
+      Integer &operator*=(const Integer &another);
 
       Integer operator<<(const Integer& shift);
 
@@ -493,7 +496,8 @@ class DllExport Double : public jm::Comparable<Double>
 
       Double(float value);
       Double(double value);
-      Double(int32 value);
+      explicit Double(int32 value);
+      explicit Double(uint32 value);
       explicit Double(Integer value);
 
       // bool Equals(const Double& another) const;

@@ -34,10 +34,10 @@
 using namespace jm;
 
 // Under macOS 10.9 namespaces added
-int32 jm::gErrorCount;
-int32 jm::gTestCount;
-int32 jm::gTotalErrorCount;
-int32 jm::gTotalTestCount;
+Integer jm::gErrorCount;
+Integer jm::gTestCount;
+Integer jm::gTotalErrorCount;
+Integer jm::gTotalTestCount;
 
 Test::Test()
 {}

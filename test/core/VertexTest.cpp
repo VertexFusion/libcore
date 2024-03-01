@@ -35,31 +35,31 @@ void VertexTest::DoTest()
 
 
    //180°
-   Vertex2 v = Vertex2(1, 0);
+   Vertex2 v = Vertex2(1.0, 0.0);
    v.Rotate(DegToRad(180));
    TestEquals(v.x, -1.0, "Vertex2.Rotate 180° (x) fails");
    TestEquals(v.y, 0.0, "Vertex2.Rotate 180° (y) fails");
 
    //90°
-   v = Vertex2(1, 0);
+   v = Vertex2(1.0, 0.0);
    v.Rotate(DegToRad(90));
    TestEquals(v.x, 0.0, "Vertex2.Rotate 90° (x) fails");
    TestEquals(v.y, 1.0, "Vertex2.Rotate 90° (y) fails");
 
    //-90°
-   v = Vertex2(1, 0);
+   v = Vertex2(1.0, 0.0);
    v.Rotate(DegToRad(-90));
    TestEquals(v.x, 0.0, "Vertex2.Rotate -90° (x) fails");
    TestEquals(v.y, -1.0, "Vertex2.Rotate -90° (y) fails");
 
    //-360°
-   v = Vertex2(1, 0);
+   v = Vertex2(1.0, 0.0);
    v.Rotate(DegToRad(360));
    TestEquals(v.x, 1.0, "Vertex2.Rotate 360° (x) fails");
    TestEquals(v.y, 0.0, "Vertex2.Rotate 360° (y) fails");
 
    //60°
-   v = Vertex2(1, 0);
+   v = Vertex2(1.0, 0.0);
    v.Rotate(DegToRad(60));
    TestEquals(v.x, 1.0 / 2.0, "Vertex2.Rotate 60° (x) fails");
    TestEquals(v.y, sqrt(3.0) / 2.0, "Vertex2.Rotate 60° (y) fails");

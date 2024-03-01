@@ -87,12 +87,18 @@ Integer::Integer(uint64 value): Comparable<Integer>()
    mValue = value;
 }
 
+Integer::Integer(slong value): Comparable<Integer>()
+{
+   mValue = value;
+}
+
 #ifdef WITHULONG
 Integer::Integer(ulong value): Comparable<Integer>()
 {
    mValue = (int32)value;
 }
 #endif
+
 bool Integer::Equals(const Integer &another) const
 {
    return mValue == another.mValue;
@@ -526,6 +532,12 @@ Integer& Integer::operator-=(const Integer &another)
    return *this;
 }
 
+Integer& Integer::operator*=(const Integer &another)
+{
+   mValue *= another.mValue;
+   return *this;
+}
+
 Integer Integer::operator<<(const Integer& shift)
 {
    return Integer(mValue << shift.mValue);
@@ -744,6 +756,11 @@ Double::Double(double value): Comparable<Double>()
 }
 
 Double::Double(int32 value): Comparable<Double>()
+{
+   mValue = value;
+}
+
+Double::Double(uint32 value): Comparable<Double>()
 {
    mValue = value;
 }

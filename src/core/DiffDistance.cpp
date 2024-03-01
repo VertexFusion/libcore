@@ -112,8 +112,12 @@ DiffBacktrace* DiffDistance::Solve()
    distance = diagonal->GetEntry(Min(m, n));
 
    Integer sz = m * n;
-   std::cout << jm::String::Format(Tr("Distance %i"), distance.Int32()) << std::endl;
-   std::cout << jm::String::Format(Tr("Calculated %i/%i: %f\\%"), calc.Int32(), sz.Int32(), (calc * 100.0 / sz.Dbl()).Dbl()) << std::endl;
+   std::cout << Tr("Distance %1").Arg(distance) << std::endl;
+   std::cout << Tr("Calculated %1/%2: %3%")
+      .Arg(calc)
+      .Arg(sz)
+      .Arg(calc * 100.0 / sz.Dbl())
+   << std::endl;
 
    int i = (int) std::min(m, n);
    return DiffBacktrace::Backtrace(diagonal, i);

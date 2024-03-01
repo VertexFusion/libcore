@@ -386,19 +386,19 @@ namespace jm
 
    //! \brief  global error count during single test run.
    //! \ingroup test
-   extern "C" int32 gErrorCount;
+   extern "C" Integer gErrorCount;
 
    //! \brief  global test count during single test run.
    //! \ingroup test
-   extern "C" int32 gTestCount;
+   extern "C" Integer gTestCount;
 
    //! \brief  global error count over all done tests.
    //! \ingroup test
-   extern "C" int32 gTotalErrorCount;
+   extern "C" Integer gTotalErrorCount;
 
    //! \brief  global test count overall done tests.
    //! \ingroup test
-   extern "C" int32 gTotalTestCount;
+   extern "C" Integer gTotalTestCount;
 
 }
 #endif

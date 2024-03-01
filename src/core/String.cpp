@@ -34,8 +34,6 @@
 using namespace std;
 using namespace jm;
 
-Hashtable gStrings;
-
 String::String(): Object(), Comparable<String>()
 {
    mHash = 0;
@@ -755,6 +753,118 @@ String String::Substring(Integer beginIndex) const
    return Substring(beginIndex, mStrLength);
 }
 
+bool String::ArgIndicies(Integer &first, Integer &second)
+{
+   if(IndexOf(Char('%'))<0)return false;
+
+   Integer lowest=100;
+
+   for(Integer index=0;index<mStrLength-1;index++)
+   {
+      if(CharAt(index)==Char('%') && CharAt(index+1).IsDigit())
+      {
+         Integer number=CharAt(index+1).DigitValue();
+         if(index+2<mStrLength&&CharAt(index+2).IsDigit())
+         {
+            number*=10;
+            number+=CharAt(index+2).DigitValue();
+         }
+         if(number<lowest)
+         {
+            first=index;
+            second=index+2;
+            if(number>9)second++;
+            lowest=number;
+         }
+      }
+   }
+
+   return true;
+}
+
+
+String String::Arg(Integer value,
+                   Integer fieldWidth,
+                   Char fillchar)
+{
+   Integer first,second;
+   Bool found = ArgIndicies(first, second);
+   if(!found)return *this;
+
+   String result=Substring(0,first);
+
+   String s = String::ValueOf(value);
+
+   // Leading space if fieldWidth > 0
+   if(fieldWidth > 0)
+   {
+      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+   }
+
+   result<<s;
+
+   // Trailing space if flg1 < 0
+   if(fieldWidth < 0)
+   {
+      fieldWidth = abs(fieldWidth);
+      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+   }
+
+   result<<Substring(second);
+
+   return result;
+}
+
+String String::Arg(const String &value)
+{
+   Integer first,second;
+   Bool found = ArgIndicies(first, second);
+   if(!found)return *this;
+
+   String result=Substring(0,first);
+   result<<value;
+   result<<Substring(second);
+
+   return result;
+}
+
+String String::Arg(Double value,
+                   Integer fieldWidth,
+                   Integer precision,
+                   Char fillchar)
+{
+   Integer first,second;
+   Bool found = ArgIndicies(first, second);
+   if(!found)return *this;
+
+   String result=Substring(0,first);
+
+   bool cutzero = precision<0;
+   if(cutzero)precision=10;
+
+   String s = String::ValueOf(value, precision, cutzero);
+
+   // Leading space if fieldWidth > 0
+   if(fieldWidth > 0)
+   {
+      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+   }
+
+   result << s;
+
+   // Trailing space if flg1 < 0
+   if(fieldWidth < 0)
+   {
+      fieldWidth = abs(fieldWidth);
+      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+   }
+
+
+   result<<Substring(second);
+
+   return result;
+}
+
 String String::ValueOf(int64 number)
 {
    String ret;
@@ -892,49 +1002,6 @@ String String::LineSeparator()
    return "\r\n";
    #endif
 }
-
-
-/*
- int i;
-
-
- // Step through the list.
- for( i = 0; szTypes[i] != '\0'; ++i ) {
- union Printable_t {
- int     i;
- float   f;
- char    c;
- char   *s;
- } Printable;
-
- switch( szTypes[i] ) {   // Type to expect.
- case 'i':
- Printable.i = va_arg( vl, int );
- printf_s( "%i\n", Printable.i );
- break;
-
- case 'f':
- Printable.f = va_arg( vl, double );
- printf_s( "%f\n", Printable.f );
- break;
-
- case 'c':
- Printable.c = va_arg( vl, char );
- printf_s( "%c\n", Printable.c );
- break;
-
- case 's':
- Printable.s = va_arg( vl, char * );
- printf_s( "%s\n", Printable.s );
- break;
-
- default:
- break;
- }
- }
- va_end( vl );
-
- */
 
 String String::Format(const String format, ...)
 {
@@ -1091,17 +1158,6 @@ String String::Format(const String format, ...)
    return result;
 }
 
-const String* String::Ref(const String &str)
-{
-   const String* ref = (const String*)gStrings.Get(str);
-   if(ref == NULL)
-   {
-      ref = new String(str);
-      gStrings.Put(str, (void*)ref);
-   }
-   return ref;
-}
-
 Charset* gConsoleCharset = NULL;
 
 void jm::String::SetConsoleCharset(Charset* cs)
@@ -1174,6 +1230,12 @@ namespace jm
    }
 
    String &operator << (String &out, const char &i)
+   {
+      out.Append(i);
+      return out;
+   }
+
+   String &operator << (String &out, const Char &i)
    {
       out.Append(i);
       return out;

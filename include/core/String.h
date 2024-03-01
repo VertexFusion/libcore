@@ -64,7 +64,7 @@ namespace jm
       public:
 
          /*!
-          \brief Dieser Konstruktor erzeugt eine leere Zeichenkette.
+          \brief Constructor for empty string.
           */
          String();
 
@@ -467,6 +467,29 @@ namespace jm
           */
          void Insert(Integer index, const String &string);
 
+         /*!
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a string representation of the number
+          */
+      String Arg(Integer valueInteger,
+                 Integer fieldwidth=0,
+                 Char fillchar=Char(' '));
+
+         /*!
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a string representation of the number
+          */
+         String Arg(const String &value);
+
+         /*!
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a string representation of the number
+          */
+         String Arg(Double value,
+                    Integer fieldwidth=0,
+                    Integer precision=-1,
+                    Char fillchar=Char(' '));
+
          static void SetConsoleCharset(Charset* cs);
 
          //Operatoren
@@ -500,6 +523,9 @@ namespace jm
 
          DllExport
          friend String& operator<< (String& out, const char &c);
+
+         DllExport
+         friend String& operator<< (String& out, const Char &c);
 
          DllExport
          friend std::istream& operator>> (std::istream& in, String& str);
@@ -585,11 +611,9 @@ namespace jm
           //\param format format string
           //\param ... variable arguments
          \warning jm::Strings must be passed by pointer, because clang does not accept non-POD-Types
+          \deprecated Is old, use Arg()
           */
          static String Format(const String format, ...);
-
-         //! Provides Refs for Format
-         static const String* Ref(const String &str);
 
          /*!
           \brief Gibt OS-Abhängigen Zeilentrenner zurück
@@ -634,6 +658,9 @@ namespace jm
           \param array Das CharArray, welches in diese Zeichenkette kopiert werden soll.
           */
          void Copy(const CharArray &array);
+
+         //! Helper method for Arg.
+         bool ArgIndicies(Integer &first, Integer &second);
 
    };
 
