@@ -81,9 +81,10 @@ File& File::operator=(const File &another)
 {
    if(this != &another)
    {
-      mCstr = another.mCstr;
       mPathname = another.mPathname;
       mHandle = another.mHandle;
+      if (mPathname.Length() > 0)SetCString();
+      else mCstr = NULL;
    }
 
    return *this;

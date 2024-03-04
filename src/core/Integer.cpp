@@ -316,6 +316,26 @@ bool operator<(uint32 left, Integer right)
    return (int32)left < right.mValue;
 }
 
+bool operator<(Integer left, int16 right)
+{
+   return left.mValue < right;
+}
+
+bool operator<(int16 left, Integer right)
+{
+   return left < right.mValue;
+}
+
+bool operator<(Integer left, uint16 right)
+{
+   return left.mValue < (int32)right;
+}
+
+bool operator<(uint16 left, Integer right)
+{
+   return (int32)left < right.mValue;
+}
+
 #ifdef WITHULONG
 bool operator<(Integer left, ulong right)
 {
@@ -624,6 +644,26 @@ Integer operator-(Integer left, uint32 right)
 }
 
 Integer operator-(uint32 left, Integer right)
+{
+   return Integer(left - right.mValue);
+}
+
+Integer operator-(Integer left, int16 right)
+{
+   return Integer(left.mValue - right);
+}
+
+Integer operator-(int16 left, Integer right)
+{
+   return Integer(left - right.mValue);
+}
+
+Integer operator-(Integer left, uint16 right)
+{
+   return Integer(left.mValue - right);
+}
+
+Integer operator-(uint16 left, Integer right)
 {
    return Integer(left - right.mValue);
 }

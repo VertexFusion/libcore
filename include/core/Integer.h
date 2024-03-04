@@ -270,6 +270,18 @@ class DllExport Integer : public jm::Comparable<Integer>
       friend Integer operator-(uint32 left, Integer right);
 
       DllExport
+      friend Integer operator-(Integer left, int16 right);
+
+      DllExport
+      friend Integer operator-(int16 left, Integer right);
+
+      DllExport
+      friend Integer operator-(Integer left, uint16 right);
+
+      DllExport
+      friend Integer operator-(uint16 left, Integer right);
+
+      DllExport
       friend Integer operator*(Integer left, Integer right);
 
       DllExport
@@ -337,6 +349,18 @@ class DllExport Integer : public jm::Comparable<Integer>
 
       DllExport
       friend bool operator<(uint32 left, Integer right);
+
+      DllExport
+      friend bool operator<(Integer left, int16 right);
+
+      DllExport
+      friend bool operator<(int16 left, Integer right);
+
+      DllExport
+      friend bool operator<(Integer left, uint16 right);
+
+      DllExport
+      friend bool operator<(uint16 left, Integer right);
 
       DllExport
       friend bool operator<(Integer left, ulong right);
