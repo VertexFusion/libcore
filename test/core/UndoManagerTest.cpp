@@ -12,7 +12,7 @@
 using namespace jm;
 
 //Referenzwerte
-jm::String str = "";
+jm::String str = jm::kEmptyString;
 int8 b1 = 0;
 uint8 b2 = 0;
 int16 s1 = 0;
@@ -78,7 +78,7 @@ void UndoManagerTest::DoTest()
 
    //Einfügen Rückgängig machen
    TestTrue(undo->Undo(), "Undo nicht ausgeführt (3)");
-   str = "";
+   str = jm::kEmptyString;
 
    TestEquals(obj->GetReferenceCount(), 2, "Referenzzähler muss 2 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 0, "Undostack not empty.(3)");

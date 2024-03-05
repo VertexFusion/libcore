@@ -20,7 +20,7 @@ void StringTokenizerTest::DoTest()
 {
 
    //0 Token
-   StringTokenizer* st = new StringTokenizer("", " ", false);
+   StringTokenizer* st = new StringTokenizer(jm::kEmptyString, " ", false);
    TestFalse(st->HasMoreTokens(), "StringTokenizer HasMoreTokens fails (1)");
    delete st;
 

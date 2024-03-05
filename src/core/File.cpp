@@ -887,7 +887,7 @@ String jm::ExecPath()
    }
    else
    {
-      return "";
+      return jm::kEmptyString;
    }
    #elif defined _WIN32 //Windows
 

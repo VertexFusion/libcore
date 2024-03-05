@@ -246,7 +246,7 @@ void SAXParser::ParseTagString(const String &xmlline)
             {
                avalue = token;
                step--;
-               attribs.AddAttribute("", aname, aname, avalue);
+               attribs.AddAttribute(jm::kEmptyString, aname, aname, avalue);
                token.Clear();
             }
          }
@@ -297,16 +297,16 @@ void SAXParser::ParseTagString(const String &xmlline)
    switch(tagType)
    {
       case 0:
-         StartElement("", localName, qualifiedName, attribs);
+         StartElement(jm::kEmptyString, localName, qualifiedName, attribs);
          break;
 
       case 1:
-         EndElement("", localName, qualifiedName);
+         EndElement(jm::kEmptyString, localName, qualifiedName);
          break;
 
       case 2:
-         StartElement("", localName, qualifiedName, attribs);
-         EndElement("", localName, qualifiedName);
+         StartElement(jm::kEmptyString, localName, qualifiedName, attribs);
+         EndElement(jm::kEmptyString, localName, qualifiedName);
          break;
 
    }

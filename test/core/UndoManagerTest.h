@@ -32,7 +32,7 @@ class UndoTestObject: public jm::Object
 
       UndoTestObject(): jm::Object()
       {
-         str = "";
+         str = jm::kEmptyString;
          b1 = 0;
          b2 = 0;
          s1 = 0;

@@ -69,7 +69,7 @@ void StringTest::DoTest()
    //Teste Trim
    str1 = "   123   ";
    str2 = "123";
-   str3 = "";
+   str3 = jm::kEmptyString;
    str4 = "    ";
    str5 = "     1";
    str6 = "1";
