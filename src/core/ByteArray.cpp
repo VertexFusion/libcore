@@ -183,6 +183,17 @@ void ByteArray::Set(Integer index, uint8 item)
    mData[index] = item;
 };
 
+void ByteArray::Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length)
+{
+   Integer range=Min(length, mArrSize-tgtOffset);
+
+   for(Integer a=0;a<range;a++)
+   {
+      mData[a] = buffer.mData[a];
+   }
+}
+
+
 uint8& jm::ByteArray::operator[](const Integer index) const
 {
    //if (index >= mLength)

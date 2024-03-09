@@ -167,7 +167,17 @@ uint16 jm::DeserializeLEUInt16(uint8* buffer, uint32 offset)
    return (buffer[offset + 1] << 8 | buffer[offset]);
 }
 
+uint16 jm::DeserializeLEUInt16(const jm::ByteArray &buffer, uint32 offset)
+{
+   return (buffer[offset + 1] << 8 | buffer[offset]);
+}
+
 int16 jm::DeserializeLEInt16(uint8* buffer, uint32 offset)
+{
+   return (buffer[offset + 1] << 8 | buffer[offset]);
+}
+
+int16 jm::DeserializeLEInt16(const jm::ByteArray &buffer, Integer offset)
 {
    return (buffer[offset + 1] << 8 | buffer[offset]);
 }
@@ -177,12 +187,29 @@ uint32 jm::DeserializeLEUInt32(uint8* buffer, uint32 offset)
    return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
 }
 
+uint32 jm::DeserializeLEUInt32(const jm::ByteArray &buffer, Integer offset)
+{
+   return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
+}
+
 int32 jm::DeserializeLEInt32(uint8* buffer, uint32 offset)
 {
    return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
 }
 
+int32 jm::DeserializeLEInt32(const jm::ByteArray &buffer, Integer offset)
+{
+   return (buffer[offset + 3] << 24 | buffer[offset + 2] << 16 | buffer[offset + 1] << 8 | buffer[offset]);
+}
+
 int64 jm::DeserializeLEInt64(uint8* buffer, uint32 offset)
+{
+   int64 p1 = DeserializeLEUInt32(buffer, offset + 4);
+   int64 p2 = DeserializeLEUInt32(buffer, offset);
+   return (p1 << 32 | p2);
+}
+
+Integer jm::DeserializeLEInt64(const jm::ByteArray &buffer, Integer offset)
 {
    int64 p1 = DeserializeLEUInt32(buffer, offset + 4);
    int64 p2 = DeserializeLEUInt32(buffer, offset);
@@ -242,6 +269,11 @@ int16 jm::SerializeLEFloat(uint8* buffer, uint32 offset, float value)
 }
 
 double jm::DeserializeLEDouble(uint8* buffer, uint32 offset)
+{
+   return *(double*)&buffer[offset];
+}
+
+double jm::DeserializeLEDouble(const jm::ByteArray& buffer, Integer offset)
 {
    return *(double*)&buffer[offset];
 }

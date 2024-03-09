@@ -111,6 +111,11 @@ namespace jm
 
          void Set(Integer index, uint8 item);
 
+         /*!
+          \brief Replaces the content of this array with the content of the other array
+          */
+         void Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length);
+
          uint8& operator[](const Integer index) const;
 
          ByteArray& operator=(const ByteArray& another);
