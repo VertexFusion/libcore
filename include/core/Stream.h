@@ -65,6 +65,11 @@ namespace jm
          Stream();
 
          /*!
+          \brief Gibt die Länge des Streams zurück
+          */
+         virtual Integer Length() const = 0;
+
+         /*!
           \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
           \param mode Der Modus zum öffnen.
           */

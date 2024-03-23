@@ -108,7 +108,7 @@ namespace jm
          /*!
           \brief Gibt die Länge des Streams zurück
           */
-         Integer Length();
+         Integer Length() const override;
 
          /*!
           \brief Gibt den Puffer zurück

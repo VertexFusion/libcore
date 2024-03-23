@@ -217,7 +217,7 @@ namespace jm
          /*!
           \brief Gibt die Größe der Datei in Bytes zurück
           */
-         Integer Length() const;
+         Integer Length() const override;
 
          /*!
           \brief Gibt das Datum der letzten Änderung zurück

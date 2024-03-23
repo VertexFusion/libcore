@@ -97,7 +97,7 @@ Integer MemoryStream::Write(uint8* buffer, Integer length)
    return available;
 }
 
-Integer MemoryStream::Length()
+Integer MemoryStream::Length() const
 {
    return mStreamlength;
 }
