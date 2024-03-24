@@ -1,6 +1,11 @@
 # Object Files
 *.o
 *.obj
+*.pch
 
 # Operating System Files
 .DS_Store
+
+# Other
+bin/
+build/

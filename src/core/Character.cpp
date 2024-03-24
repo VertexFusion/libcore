@@ -56,6 +56,17 @@ bool jm::Char::IsDigit()const
    return false;
 }
 
+bool jm::Char::IsLetter() const
+{
+   // See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+   if(mChar >= 'a' && mChar <= 'z')return true;
+   if(mChar >= 'A' && mChar <= 'Z')return true;
+   if(mChar >= 0xC0 && mChar <= 0xD6)return true;//Unicode U+00C0-U+00D6
+   if(mChar >= 0xD8 && mChar <= 0xF6)return true;//Unicode U+00D8-U+00F6
+   if(mChar >= 0xF8 && mChar <= 0xFF)return true;//Unicode U+00F8-U+00FF
+   return false;
+}
+
 int32 jm::Char::DigitValue()const
 {
    if(mChar >= '0' && mChar <= '9') return mChar-'0';

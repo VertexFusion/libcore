@@ -62,6 +62,9 @@ namespace jm
       //! \brief Returns true, if the character is a digit (0-9)
       bool IsDigit() const;
 
+      //! \brief Returns true, if the character is a letter
+      bool IsLetter() const;
+
       //! \brief Returns true, if the character is upper case
       bool IsUpperCase() const;
 
