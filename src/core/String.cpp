@@ -574,6 +574,18 @@ void String::DeleteCharRangeAt(Integer index, Integer length)
    mHash = 0;
 }
 
+Integer String::Count(Char character)const
+{
+   Integer count = 0;
+
+   for (Integer index = 0; index < mStrLength; index++)
+   {
+      if (mValue[index] == character)count++;
+   }
+
+   return count;
+}
+
 
 void String::Clear()
 {

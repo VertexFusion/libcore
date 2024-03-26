@@ -172,6 +172,11 @@ namespace jm
          ByteArray ToCString(Charset* charset)const;
 
          /*!
+          \brief Count the occurences of the character in the string
+          */
+         Integer Count(Char character)const;
+
+         /*!
           \brief Diese Methode löscht den Inhalt der Zeichenkette. GGf. wird Speicher Freigegeben.
           */
          void Clear();
