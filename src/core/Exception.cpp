@@ -9,8 +9,6 @@
 #include "Precompiled.h"
 
 using namespace jm;
-using std::cerr;
-using std::endl;
 
 Exception::Exception(String _message): Object()
 {
