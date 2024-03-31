@@ -212,7 +212,7 @@ namespace jm
          /*!
           \brief Methode macht eine Liste mit Allen Dateien im dem Verzeichnis.
           */
-         Array<File>* ListFiles();
+         Array<File>* ListFiles()const;
 
          /*!
           \brief Gibt die Größe der Datei in Bytes zurück

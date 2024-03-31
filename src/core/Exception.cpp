@@ -62,9 +62,9 @@ void Exception::PrintStackTrace() const
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
 
    //1. Zeile
-   cerr << "Exception in thread \"" << tid  << "\"";
-   if(message.Length() > 0)cerr << " : " << message;
-   cerr << endl;
+   std::cerr << "Exception in thread \"" << tid  << "\"";
+   if(message.Length() > 0)std::cerr << " : " << message;
+   std::cerr << std::endl;
 
    char* buffer = new char[1024];
 
@@ -101,7 +101,7 @@ void Exception::PrintStackTrace() const
       abi::__cxa_demangle(cstr.ConstData(), buffer, &size, &status);
       function = String(buffer, (int)size, Charset::ForName("RAW"));
 
-      cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << endl;
+      std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << std::endl;
       #elif defined __linux__//Linux
       String line = symbollist[i];
       cerr << "\ta" << line << endl;

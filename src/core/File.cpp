@@ -421,7 +421,7 @@ bool File::RenameTo(const String &newPath)
 }
 
 
-Array<File>* File::ListFiles()
+Array<File>* File::ListFiles()const
 {
    if(!IsDirectory())return NULL;//throw new Exception("ShxFile \"" + GetAbsolutePath() + "\" is not a directory.");
 
