@@ -44,6 +44,10 @@ void StringTest::DoTest()
    TestFalse(str1.Equals(str3), "String.Equals fails");
    TestFalse(str1.Equals(str4), "String.Equals fails");
    TestFalse(str4.Equals(str1), "String.Equals fails");
+   TestTrue(str1==str2, "String.Equals fails");
+   TestTrue(str1!=str3, "String.Equals fails");
+   TestFalse(str1==str4, "String.Equals fails");
+   TestFalse(str4==str1, "String.Equals fails");
 
    //EqualsIgnoreCase
    TestTrue(str1.EqualsIgnoreCase(str3), "String.EqualsIgnoreCase fails");

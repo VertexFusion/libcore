@@ -503,6 +503,12 @@ namespace jm
 
          //Freunde
          DllExport
+         friend bool operator==(String const &v1, String const &v2);
+
+         DllExport
+         friend bool operator!=(String const &v1, String const &v2);
+
+         DllExport
          friend std::ostream& operator<< (std::ostream &out, const String& str);
 
          DllExport

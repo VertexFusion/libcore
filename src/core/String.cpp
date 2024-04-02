@@ -1177,9 +1177,19 @@ void jm::String::SetConsoleCharset(Charset* cs)
    gConsoleCharset = cs;
 }
 
+bool jm::operator!=(String const &v1, String const &v2)
+{
+   return !v1.Equals(v2);
+}
+
+
+bool jm::operator==(String const &v1, String const &v2)
+{
+   return v1.Equals(v2);
+}
+
 namespace jm
 {
-
 
    ostream &operator << (ostream &out, const String &str)
    {
