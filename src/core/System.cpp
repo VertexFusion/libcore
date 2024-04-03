@@ -326,7 +326,7 @@ jm::AutoreleasePool* jm::System::GetAutoreleasePool()
    return mainthreadPool;
 }
 
-void jm::System::Init()
+void jm::System::Init(const jm::String &bundleId)
 {
    // First of all, the charsets
    InitCharsets();
@@ -335,7 +335,7 @@ void jm::System::Init()
    if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
 
    // Load default translation
-   I18nBundle::InitDefault();
+   I18nBundle::InitDefault(bundleId);
 }
 
 void jm::System::Quit()

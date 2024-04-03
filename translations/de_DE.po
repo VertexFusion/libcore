@@ -84,8 +84,8 @@ msgstr "Kann den Ausführungspfad nicht bestimmen"
 
 #: core/File.cpp:781
 #, c-format
-msgid "NO BUNDLE-REF for %s"
-msgstr "Keine Bundle-Ref für %s"
+msgid "BundleRef for %1 not found. Cannot determine resource directory."
+msgstr "BundleRef für %1 nicht gefunen. Kann Ressourcenverzeicnis nicht finden."
 
 #: core/I18nBundle.cpp:49
 #, c-format

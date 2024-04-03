@@ -131,13 +131,13 @@ I18nBundle* I18nBundle::GetDefault()
    return gDefaultTranslation;
 }
 
-void I18nBundle::InitDefault()
+void I18nBundle::InitDefault(const jm::String &bundleId)
 {
    jm::String language = System::GetLanguage();
    gDefaultTranslation = new I18nBundle(language);
 
    // Append Data
-   gDefaultTranslation->AppendMO(GetTansFileByBundleId("de.jameo.JameoCore", gDefaultTranslation->mLanguage));
+   gDefaultTranslation->AppendMO(GetTansFileByBundleId(bundleId, gDefaultTranslation->mLanguage));
 }
 
 jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String& lang)

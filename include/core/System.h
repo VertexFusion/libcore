@@ -79,7 +79,7 @@ namespace jm
           Objekte eingerichtet werden
           \note Beim Beenden ist \c Init() aufzurufen
           */
-         static void Init();
+         static void Init(const jm::String &bundleId);
 
          /*!
           \brief Diese Methode räumt statische Systemobjekte auf. Nach dieser Methode muss das
