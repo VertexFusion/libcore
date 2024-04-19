@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibCore\n"
-"POT-Creation-Date: 2023-12-18 20:21+0100\n"
-"PO-Revision-Date: 2023-12-18 20:21+0100\n"
+"POT-Creation-Date: 2024-04-18 15:58+0200\n"
+"PO-Revision-Date: 2024-04-18 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: Tr\n"
@@ -20,13 +20,12 @@ msgid "August"
 msgstr "August"
 
 #: core/DiffDistance.cpp:115
-#, c-format
-msgid "Distance %i"
-msgstr "Abstand %i"
+msgid "Distance %1"
+msgstr "Abstand %1"
 
 #: core/DiffDistance.cpp:116
-msgid "Calculated %i/%i: %f\\%"
-msgstr "Berechnet %i/%i: %f\\%"
+msgid "Calculated %1/%2: %3%"
+msgstr "Berechnet %1/%2: %3\\%"
 
 #: core/File.cpp:45
 msgid "Pathname is empty."
@@ -36,111 +35,117 @@ msgstr "Der Pfadname ist leer."
 msgid "Child is empty."
 msgstr "Kind ist leer."
 
-#: core/File.cpp:447 core/File.cpp:512
+#: core/File.cpp:437 core/File.cpp:503
 msgid "Cannot open directory"
 msgstr "Kann Verzeichnis nicht öffnen"
 
-#: core/File.cpp:525
-#, c-format
-msgid "File \"%s\" does not exist."
-msgstr "Datei „%s“ existiert nicht."
+#: core/File.cpp:516
+msgid "File \"%1\" does not exist."
+msgstr "Datei „%1“ existiert nicht."
 
-#: core/File.cpp:611
-#, c-format
-msgid "Permission denied! \"%s\""
-msgstr "Zugriff verweigert! „%s“"
+#: core/File.cpp:601
+msgid "Permission denied! \"%1\""
+msgstr "Zugriff verweigert! „%1“"
 
-#: core/File.cpp:613
-#, c-format
-msgid "File not found! \"%s\""
-msgstr "Datei nicht gefunden! „%s“"
+#: core/File.cpp:602
+msgid "File not found! \"%1\""
+msgstr "Datei nicht gefunden! „%1“"
 
-#: core/File.cpp:615
-#, c-format
-msgid "Connection timed out! \"%s\""
-msgstr "Verbindungszeit ist abgelaufen! „“%s"
+#: core/File.cpp:603
+msgid "Connection timed out! \"%1\""
+msgstr "Verbindungszeit ist abgelaufen! „%1“"
 
-#: core/File.cpp:617
-#, c-format
-msgid "Not a directory \"%s\""
-msgstr "Ist kein Verzeichnis „%s“"
+#: core/File.cpp:604
+msgid "Not a directory \"%1\""
+msgstr "Ist kein Verzeichnis „%1“"
 
-#: core/File.cpp:619
-#, c-format
-msgid "Cannot open file! \"%s\" Errno: %i"
-msgstr "Kann die Datei nicht öffnen! „%s“ Fehlernr.: %i"
+#: core/File.cpp:605
+msgid "Cannot open file! \"%1\" Errno: %2"
+msgstr "Kann die Datei nicht öffnen! „%1“ Fehlernr.: %2"
 
-#: core/File.cpp:634
+#: core/File.cpp:618
 msgid "Error while closing file!"
 msgstr "Fehler während des Schließens der Datei!"
 
-#: core/File.cpp:642 core/File.cpp:649
+#: core/File.cpp:626 core/File.cpp:633
 msgid "Error while moving file reading pointer!"
 msgstr "Fehler während der Bewegung des Dateilesezeigers!"
 
-#: core/File.cpp:708 core/File.cpp:745
+#: core/File.cpp:875 core/File.cpp:912
 msgid "Cannot determinate executable Path"
 msgstr "Kann den Ausführungspfad nicht bestimmen"
 
-#: core/File.cpp:781
-#, c-format
+#: core/File.cpp:947
 msgid "BundleRef for %1 not found. Cannot determine resource directory."
 msgstr "BundleRef für %1 nicht gefunen. Kann Ressourcenverzeicnis nicht finden."
 
-#: core/I18nBundle.cpp:49
-#, c-format
-msgid "Cannot find translation file: %s %s"
-msgstr "Kann die Übersetzungsdatei nicht finden: %s %s"
+#: core/I18nBundle.cpp:48
+msgid "Cannot find translation file: %1 %2"
+msgstr "Kann die Übersetzungsdatei nicht finden: %1 %2"
 
 #: core/I18nBundle.cpp:65
-#, c-format
-msgid "File not fully read: %s"
-msgstr "Datei nicht vollständig gelesen: %s"
+msgid "File not fully read: %1"
+msgstr "Datei nicht vollständig gelesen: %1"
 
-#: core/I18nBundle.cpp:80
-#, c-format
-msgid "File magic wrong: %s"
-msgstr "Datei-Magic falsch: %s"
+#: core/I18nBundle.cpp:79
+msgid "File magic wrong: %1"
+msgstr "Datei-Magic falsch: %1"
 
-#: core/I18nBundle.cpp:87
-#, c-format
-msgid "MO file version not supported: %s"
-msgstr "MO Dateiversion nicht unterstützt: %s"
+#: core/I18nBundle.cpp:84
+msgid "MO file version not supported: %1"
+msgstr "MO Dateiversion nicht unterstützt: %1"
 
 #: core/Property.cpp:263
 msgid "Property not comparable"
 msgstr "Eigenschaft nicht vergleichbar"
 
-#: core/System.cpp:103
+#: core/StringTokenizer.cpp:99
+msgid "No such element."
+msgstr "Kein solches Element."
+
+#: core/System.cpp:101
 msgid "ERROR: "
 msgstr "FEHLER: "
 
-#: core/System.cpp:109
+#: core/System.cpp:107
 msgid "WARNING: "
 msgstr "WARNUNG: "
 
-#: core/System.cpp:113
+#: core/System.cpp:111
 msgid "INFO: "
 msgstr "INFO: "
 
-#: core/System.cpp:117
+#: core/System.cpp:115
 msgid "DEBUG: "
 msgstr "DEBUG: "
 
-#: core/TestVector.cpp:82
-#, c-format
-msgid "Cycle finished! In total %i tests, %i errors, duration %1.3f sec."
-msgstr "Durchlauf beendet! Insgesamt %i Tests, %i Fehler, Dauer %1.3f sek."
+#: core/TestVector.cpp:84
+msgid "Cycle finished! In total:"
+msgstr "Durchlauf beendet! Gesamt:"
 
-#: core/TestVector.cpp:94
-#, c-format
-msgid "Execute %s..."
-msgstr "Führe aus: %s…"
+#: core/TestVector.cpp:85
+msgid "Tests:    %1"
+msgstr "Tests:    %1"
 
-#: core/TestVector.cpp:109
+#: core/TestVector.cpp:89
+msgid "Errors:   %1"
+msgstr "Fehler:   %1"
+
+#: core/TestVector.cpp:93
+msgid "Duration: %1 sec"
+msgstr "Dauer: %1 s"
+
+#: core/TestVector.cpp:103
+msgid "Execute %1..."
+msgstr "Führe aus: %1…"
+
+#: core/TestVector.cpp:118
+msgid "Test finished! %1 Tests, %2 Errors."
+msgstr "Test abgeschlossen! %1 Tests, %2 Fehler."
+
 #, c-format
-msgid "Test finished! %i Tests, %i Errors."
-msgstr "Test abgeschlossen! %i Tests, %i Fehler."
+#~ msgid "Cycle finished! In total %i tests, %i errors, duration %1.3f sec."
+#~ msgstr "Durchlauf beendet! Insgesamt %i Tests, %i Fehler, Dauer %1.3f sek."
 
 #~ msgid "Error while seeking file!"
 #~ msgstr "Fehler während"

@@ -111,11 +111,11 @@ void I18nBundle::AppendMO(File file)
    }
 
    // Process the records
-   for(uint32 a = 0; a < stringCount; a++)
+   for(Integer index = 0; index < stringCount; index++)
    {
-      Record rec = records[a];
-      jm::String orig = jm::String(&buffer[rec.origOffset], rec.origLength);
-      jm::String trans = jm::String(&buffer[rec.transOffset], rec.transLength);
+      const Record rec = records[index];
+      const jm::String orig = jm::String(&buffer[rec.origOffset], rec.origLength);
+      const jm::String trans = jm::String(&buffer[rec.transOffset], rec.transLength);
       SetPreference(orig, trans);
    }
 }

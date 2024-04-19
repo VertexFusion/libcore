@@ -634,7 +634,7 @@ const Matrix jm::operator*(Matrix const &A, Matrix const &B)
 {
    // The number of columns in the left-hand matrix must match the number of rows in the right-hand
    // matrix
-   if(A.n != B.m) throw "Die Matrizen passen nicht zusammen! A: ";   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
@@ -664,7 +664,7 @@ const Matrix jm::operator*(Matrix const &A, Matrix const &B)
 const Matrix jm::operator+(Matrix const &A, Matrix const &B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
-   if(A.n != B.m) throw "Die Matrizen passen nicht zusammen! A: ";   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
@@ -688,7 +688,7 @@ const Matrix jm::operator+(Matrix const &A, Matrix const &B)
 const Matrix jm::operator-(Matrix const &A, Matrix const &B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
-   if(A.n != B.m) throw "Die Matrizen passen nicht zusammen! A: ";   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
