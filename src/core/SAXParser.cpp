@@ -292,8 +292,8 @@ void SAXParser::ParseTagString(const String &xmlline)
    }
 
    // VProcess in the parser
-   String qualifiedName = tname;
-   String localName = qualifiedName.Substring(qualifiedName.LastIndexOf(':') + 1);
+   const String qualifiedName = tname;
+   const String localName = qualifiedName.Substring(qualifiedName.LastIndexOf(':') + 1);
    switch(tagType)
    {
       case 0:

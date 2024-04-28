@@ -75,7 +75,8 @@ namespace jm
          /*!
           \brief Try to examine the language file for given bundle-id
           */
-         static jm::File GetTansFileByBundleId(const String &bundleId, const String &language);
+         static jm::File GetTansFileByBundleId(const String &filename,
+                                               const String &language);
 
       private:
 

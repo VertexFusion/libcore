@@ -75,6 +75,11 @@ namespace jm
          static String GetUserFullName();
 
          /*!
+          \brief Returns the bundleId which was provided on Init()
+          */
+         static const String& GetBundleId();
+
+         /*!
           \brief Diese Methode muss als erstes aufgerufen werden, damit wichtige statische
           Objekte eingerichtet werden
           \note Beim Beenden ist \c Init() aufzurufen

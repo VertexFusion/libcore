@@ -137,10 +137,12 @@ void I18nBundle::InitDefault(const jm::String &bundleId)
    gDefaultTranslation = new I18nBundle(language);
 
    // Append Data
-   gDefaultTranslation->AppendMO(GetTansFileByBundleId(bundleId, gDefaultTranslation->mLanguage));
+   gDefaultTranslation->AppendMO(GetTansFileByBundleId(jm::kEmptyString,
+                                                       gDefaultTranslation->mLanguage));
 }
 
-jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String& lang)
+jm::File I18nBundle::GetTansFileByBundleId(const String &filename,
+                                           const String& lang)
 {
    String language = lang;
 
@@ -149,11 +151,11 @@ jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String&
    language = language.Replace('-', '_');
 
    // Resource of translations
-   File resDir = ResourceDir(bundleId);
-   File translationDir = File(resDir, "translations");
+   const File resDir = ResourceDir(jm::System::GetBundleId());
+   const File translationDir = File(resDir, "translations");
 
    // Bundle-id + language
-   File translationFile = File(translationDir, bundleId + "." + language + ".mo");
+   File translationFile = File(translationDir, filename + "." + language + ".mo");
 
    // Maybe without bundle id ?
    if(translationFile.Exists() == false)
@@ -166,7 +168,7 @@ jm::File I18nBundle::GetTansFileByBundleId(const String &bundleId, const String&
    if(translationFile.Exists() == false && language.IndexOf('_') > 0)
    {
       language = language.Substring(0, language.IndexOf('_'));
-      translationFile = File(translationDir, bundleId + "." + language + ".mo");
+      translationFile = File(translationDir, filename + "." + language + ".mo");
    }
    else return translationFile;
 

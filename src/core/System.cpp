@@ -320,16 +320,24 @@ void* jm::System::FindSymbol(void* library, const String &name)
 
 // Global AutoreleasePool...
 jm::AutoreleasePool* mainthreadPool = NULL;
+jm::String gBundleId;
 
 jm::AutoreleasePool* jm::System::GetAutoreleasePool()
 {
    return mainthreadPool;
 }
 
+const jm::String& jm::System::GetBundleId()
+{
+   return gBundleId;
+}
+
 void jm::System::Init(const jm::String &bundleId)
 {
    // First of all, the charsets
    InitCharsets();
+
+   gBundleId=bundleId;
 
    // Start Autorelease pool
    if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
