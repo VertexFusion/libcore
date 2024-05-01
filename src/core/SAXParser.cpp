@@ -97,7 +97,7 @@ void SAXParser::Parse(const String &xml)
             if(beginWhitespaces.Length() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               String tmp = token.Substring(beginWhitespaces.Length());
+               const String tmp = token.Substring(beginWhitespaces.Length());
                token.Zero();
                token.Append(tmp);
             }
@@ -112,7 +112,7 @@ void SAXParser::Parse(const String &xml)
             if(endWhiteSpaces.Length() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               String tmp = token.Substring(0, token.Length() - endWhiteSpaces.Length());
+               const String tmp = token.Substring(0, token.Length() - endWhiteSpaces.Length());
                token.Zero();
                token.Append(tmp);
             }

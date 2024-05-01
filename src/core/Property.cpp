@@ -154,7 +154,6 @@ VxfErrorStatus Property::SetUnitValue(double value, const String &unit)
    return eOK;
 }
 
-
 const String& Property::GetStringValue() const
 {
    return mTextValue;
