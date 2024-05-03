@@ -1355,24 +1355,7 @@ namespace jm
 
 }
 
-uint8 jm::Digits(int64 number)
-{
-   uint8 i = 1;
-   if(number < 0)
-   {
-      number *= -1;
-      i++;
-   }
-
-   while(number > 9)
-   {
-      number = number / 10;
-      i++;
-   }
-   return i;
-}
-
-double jm::StrToDouble(String str)
+double jm::StrToDouble(const String &str)
 {
    ByteArray cstr = str.ToCString();
    std::stringstream ss;
@@ -1391,46 +1374,6 @@ double jm::ConvertToDouble(String str)
    return StrToDouble(str);
 }
 
-uint64 jm::HexToInt(const String &str)
-{
-   return HexToInt(str, 0, str.Length().Uint32());
-}
-
-uint64 jm::HexToInt(const String &str, uint32 begin, uint32 count)
-{
-   uint64 r = 0;
-
-   uint32 cnt = begin;
-   uint32 sz = begin + count;
-
-   while(cnt < sz)
-   {
-      Char c = str.CharAt(cnt);
-      cnt++;
-
-      uint64 i = 0;
-
-      if(c.IsDigit())
-      {
-         i = c.DigitValue();
-      }
-      else if(c >= 'a' && c <= 'f')
-      {
-         i = c.Unicode() - 'a' + 10;
-      }
-      else if(c >= 'A' && c <= 'F')
-      {
-         i = c.Unicode() - 'A' + 10;
-      }
-
-      r <<= 4;
-      r |= i;
-
-   }
-
-   return r;
-}
-
 String jm::URLDecode(const String &str)
 {
    //
@@ -1447,7 +1390,7 @@ String jm::URLDecode(const String &str)
       switch(str.CharAt(a).Unicode())
       {
          case '%':
-            c = (int8)jm::HexToInt(str.Substring(a + 1, a + 3));
+            c = Integer::FromHex(str.Substring(a + 1, a + 3)).Int8();
             a += 2;
             buffer[pos++] = c;
             break;

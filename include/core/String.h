@@ -676,21 +676,12 @@ namespace jm
    };
 
    /*!
-    \brief Methode gibt aus, wieviele Stellen die Zahl besitzt
-    \param number Die Integer-Zahl, die untersucht werden soll.
-    \return Die Anzahl der Stellen. 1 für Zahlen zwischen 0 und 9, zwei für Zahlen zwischen 10 und
-    99 usw.
-    */
-   extern DllExport
-   uint8 Digits(int64 number);
-
-   /*!
     \brief Methode wandelt einen String in einen Float-Wert um.
     \param str Die Zeichenkette, z.B. "1.23", die in eine Gleitkommazahl umgewandelt werden soll.
     \return Die gewünschte Gleitkommazahl.
     */
    extern DllExport
-   double StrToDouble(String str);
+   double StrToDouble(const String &str);
 
    /*!
     \brief Methode wandelt einen String in einen Float-Wert um.
@@ -702,18 +693,7 @@ namespace jm
    extern DllExport
    double ConvertToDouble(String str);
 
-   /*!
-    \brief Methode wandelt einen hexadezimalen String-Wert in eine Integer-Zahl um.
-    \param str Eine Zeichenkette, die eine hexadezimal codierte Zahl darstellt. Z.B. "FF" für 255.
-    \return Gibt die gewünschte Zahl als Integer-Wert zurück.
-    */
-   extern DllExport
-   uint64 HexToInt(const String &str);
-
-   extern DllExport
-   uint64 HexToInt(const String &str, uint32 begin, uint32 count);
-
-   extern DllExport
+    extern DllExport
    String URLDecode(const String &str);
 
    extern DllExport

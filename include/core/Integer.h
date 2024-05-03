@@ -147,12 +147,34 @@ class DllExport Integer : public jm::Comparable<Integer>
       int32 CompareTo(const Integer& another) const override;
 
       /*!
+       \brief Returns the number of digits, this number has.
+       \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
+       */
+      uint8 Digits() const;
+
+      /*!
        \brief Methode wandelt einen String in einen Integer-Wert um.
        \param string Die Zeichenkette, z.B. "1", die in eine Gleitkommazahl umgewandelt werden
        soll.
        \return Die gewünschte Integer-Zahl.
        */
       static Integer ValueOf(const jm::String& string);
+
+      /*!
+       \brief Method converts a hexadecimal string value into an integer number.
+       \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
+       \return Returns the desired number as an integer value.
+       */
+      static Integer FromHex(const jm::String& str);
+
+      /*!
+       \brief Method converts a hexadecimal string value into an integer number.
+       \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
+       \param begin start index of hex string
+       \param size Size of hex string 
+       \return Returns the desired number as an integer value.
+       */
+      static Integer FromHex(const jm::String& str, uint32 begin, uint32 size);
 
       /*!
        \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.

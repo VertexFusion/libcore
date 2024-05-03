@@ -111,6 +111,25 @@ int32 Integer::CompareTo(const Integer &another) const
    return 0;
 }
 
+
+uint8 Integer::Digits()const
+{
+   Integer number = mValue;
+   uint8 i = 1;
+   if (number < 0)
+   {
+      number *= -1;
+      i++;
+   }
+
+   while (number > 9)
+   {
+      number = number / 10;
+      i++;
+   }
+   return i;
+}
+
 Integer Integer::ValueOf(const jm::String &string)
 {
    int32 val = 0;
@@ -132,6 +151,48 @@ Integer Integer::ValueOf(const jm::String &string)
    if(neg)val *= -1;
    return val;
 }
+
+
+Integer Integer::FromHex(const jm::String& str)
+{
+   return FromHex(str, 0, str.Length().Uint32());
+}
+
+Integer Integer::FromHex(const jm::String& str, uint32 begin, uint32 size)
+{
+   uint64 r = 0;
+
+   uint32 cnt = begin;
+   uint32 sz = begin + size;
+
+   while (cnt < sz)
+   {
+      jm::Char c = str.CharAt(cnt);
+      cnt++;
+
+      uint64 i = 0;
+
+      if (c.IsDigit())
+      {
+         i = c.DigitValue();
+      }
+      else if (c >= 'a' && c <= 'f')
+      {
+         i = c.Unicode() - 'a' + 10;
+      }
+      else if (c >= 'A' && c <= 'F')
+      {
+         i = c.Unicode() - 'A' + 10;
+      }
+
+      r <<= 4;
+      r |= i;
+
+   }
+
+   return r;
+}
+
 
 jm::String Integer::ToHexString()
 {
