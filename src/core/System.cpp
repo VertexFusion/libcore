@@ -343,7 +343,7 @@ void jm::System::Init(const jm::String &bundleId)
    if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
 
    // Load default translation
-   I18nBundle::InitDefault(bundleId);
+   I18nBundle::InitDefault();
 }
 
 void jm::System::Quit()

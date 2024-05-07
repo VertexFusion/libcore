@@ -168,7 +168,7 @@ namespace jm
           obigen Werte zurückgegeben wurde.
           */
          static String Guess(uint8* stream,
-                             uint32 length);
+                             Integer length);
 
       private:
 

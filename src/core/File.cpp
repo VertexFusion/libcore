@@ -42,7 +42,6 @@ File::File(): Stream(), Comparable<File>()
 
 File::File(const String &pathname): Stream(), Comparable<File>()
 {
-   if(pathname.Length() < 1)throw new Exception(Tr("Pathname is empty."));
    mPathname = Normalize(pathname);
    SetCString();
    mHandle = NULL;

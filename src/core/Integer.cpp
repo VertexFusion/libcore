@@ -42,58 +42,63 @@ Bool Bool::ValueOf(const jm::String& value)
 }
 
 
-Integer::Integer(): Comparable<Integer>()
+Integer::Integer()
 {
    mValue = 0;
 }
 
-Integer::Integer(int8 value): Comparable<Integer>()
+Integer::Integer(const Integer &other)
+{
+   mValue=other.mValue;
+}
+
+Integer::Integer(int8 value)
 {
    mValue = value;
 }
 
-Integer::Integer(uint8 value): Comparable<Integer>()
+Integer::Integer(uint8 value)
 {
    mValue = value;
 }
 
-Integer::Integer(int16 value): Comparable<Integer>()
+Integer::Integer(int16 value)
 {
    mValue = value;
 }
 
-Integer::Integer(uint16 value): Comparable<Integer>()
+Integer::Integer(uint16 value)
 {
    mValue = value;
 }
 
-Integer::Integer(int32 value): Comparable<Integer>()
+Integer::Integer(int32 value)
 {
    mValue = value;
 }
 
-Integer::Integer(uint32 value): Comparable<Integer>()
+Integer::Integer(uint32 value)
 {
    mValue = value;
 }
 
-Integer::Integer(int64 value): Comparable<Integer>()
+Integer::Integer(int64 value)
 {
    mValue = value;
 }
 
-Integer::Integer(uint64 value): Comparable<Integer>()
+Integer::Integer(uint64 value)
 {
    mValue = value;
 }
 
-Integer::Integer(slong value): Comparable<Integer>()
+Integer::Integer(slong value)
 {
    mValue = value;
 }
 
 #ifdef WITHULONG
-Integer::Integer(ulong value): Comparable<Integer>()
+Integer::Integer(ulong value)
 {
    mValue = (int32)value;
 }
@@ -836,37 +841,37 @@ Integer Max(Integer left, Integer right)
 
 
 
-Double::Double(): Comparable<Double>()
+Double::Double()
 {
    mValue = 0.0;
 }
 
-Double::Double(const Double &value): Comparable<Double>()
+Double::Double(const Double &value)
 {
    mValue = value.mValue;
 }
 
-Double::Double(float value): Comparable<Double>()
+Double::Double(float value)
 {
    mValue = value;
 }
 
-Double::Double(double value): Comparable<Double>()
+Double::Double(double value)
 {
    mValue = value;
 }
 
-Double::Double(int32 value): Comparable<Double>()
+Double::Double(int32 value)
 {
    mValue = value;
 }
 
-Double::Double(uint32 value): Comparable<Double>()
+Double::Double(uint32 value)
 {
    mValue = value;
 }
 
-Double::Double(Integer value) : Comparable<Double>()
+Double::Double(Integer value)
 {
    mValue = value.Dbl();
 }

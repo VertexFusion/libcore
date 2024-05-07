@@ -189,7 +189,7 @@ void ByteArray::Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buf
 
    for(Integer a=0;a<range;a++)
    {
-      mData[a] = buffer.mData[a];
+      mData[a] = buffer.mData[srcOffset+a];
    }
 }
 

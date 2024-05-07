@@ -131,7 +131,7 @@ I18nBundle* I18nBundle::GetDefault()
    return gDefaultTranslation;
 }
 
-void I18nBundle::InitDefault(const jm::String &bundleId)
+void I18nBundle::InitDefault()
 {
    jm::String language = System::GetLanguage();
    gDefaultTranslation = new I18nBundle(language);

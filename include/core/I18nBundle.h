@@ -70,7 +70,7 @@ namespace jm
           \brief This method is called on start-up from jm::System to initialise the default
           language. The developer usually do not need to call this.
           */
-         static void InitDefault(const jm::String &bundleId);
+         static void InitDefault();
 
          /*!
           \brief Try to examine the language file for given bundle-id

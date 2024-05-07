@@ -162,7 +162,7 @@ Charset* Charset::ForName(const String &name)
    return NULL;
 }
 
-String Charset::Guess(uint8* stream, uint32 length)
+String Charset::Guess(uint8* stream, Integer length)
 {
 
    String encoding;
@@ -195,7 +195,7 @@ String Charset::Guess(uint8* stream, uint32 length)
 
    // It is possible that a UTF16 encoding without markers is present. The probability of this is
    // high if every second byte of "European" text is 0.
-   uint16 frame = (uint16) std::min(4096, static_cast<int32>(length));
+   uint16 frame = (uint16) std::min(4096, length.Int32());
    float count1 = 0;
    float count2 = 0;
    for(uint16 a = 0; a < frame; a++)

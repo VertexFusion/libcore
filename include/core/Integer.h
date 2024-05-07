@@ -124,12 +124,12 @@ struct DllExport Bool
  operations. We assume it as 64 bit value.
  \ingroup core
  */
-class DllExport Integer : public jm::Comparable<Integer>
+class DllExport Integer
 {
    public:
 
       Integer();
-
+      Integer(const Integer &other);
       Integer(uint8 value);
       Integer(int8 value);
       Integer(uint16 value);
@@ -144,7 +144,7 @@ class DllExport Integer : public jm::Comparable<Integer>
       #endif
       bool Equals(const Integer& another) const;
 
-      int32 CompareTo(const Integer& another) const override;
+      int32 CompareTo(const Integer& another) const;
 
       /*!
        \brief Returns the number of digits, this number has.
@@ -533,7 +533,7 @@ Integer Max(Integer left, Integer right);
 certain object operations.
 \ingroup core
 */
-class DllExport Double : public jm::Comparable<Double>
+class DllExport Double
 {
    public:
 
@@ -548,7 +548,7 @@ class DllExport Double : public jm::Comparable<Double>
 
       // bool Equals(const Double& another) const;
 
-      int32 CompareTo(const Double& another) const override;
+      int32 CompareTo(const Double& another) const;
 
       /*!
        \brief Methode wandelt einen String in einen Float-Wert um.
