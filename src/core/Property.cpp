@@ -229,6 +229,12 @@ bool jm::operator==(Property const &v1, Property const &v2)
    if(v1.mId.Equals(v2.mId) == false)return false;
    if(v1.mEditor.Equals(v2.mEditor) == false)return false;
 
+   if (v1.GetType() == kPropertyTypeValue)
+   {
+      return v1.GetStringValue()==v2.GetStringValue() &&
+         jm::IsEqual(v1.GetDoubleValue(),v2.GetDoubleValue());
+   }
+
    String editor = v1.mEditor;
    if(editor.Equals("textfield"))
    {

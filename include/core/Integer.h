@@ -38,10 +38,6 @@ class Double;
 
 struct DllExport Bool
 {
-   private:
-
-      int8 mValue;
-
    public:
 
       Bool()
@@ -107,6 +103,12 @@ struct DllExport Bool
          return v2 ? v1.IsTrue() : v1.IsFalse();
       };
 
+      DllExport
+         friend bool operator==(bool v1, Bool v2)
+      {
+         return v1 ? v2.IsTrue() : v2.IsFalse();
+      };
+
       /*!
        \brief Implementierung des Operators ==
        */
@@ -115,6 +117,11 @@ struct DllExport Bool
       {
          return v1.mValue != v2.mValue;
       };
+
+   private:
+
+      int8 mValue;
+
 
 };
 
