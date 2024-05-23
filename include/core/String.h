@@ -476,7 +476,7 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-      String Arg(Integer valueInteger,
+          String Arg(Integer valueInteger,
                  Integer fieldwidth=0,
                  Char fillchar=Char(' '));
 
@@ -484,16 +484,29 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-         String Arg(const String &value);
+      String Arg(const String &value,
+                 Integer fieldwidth=0,
+                 Char fillchar=Char(' '));
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
+          \param value The number value.
+          \param fieldwidth The (minimum) number of characters for the value. If fieldwidth is >0
+          the leading space is filled (right align). If fieldwidth is < 0 the trailing space is
+          filled (left align).
+          \param precision The number of digits after the descimal separator.
+          \param fillchar The character for filling the space, until fieldwidth chars are reached.
           */
          String Arg(Double value,
                     Integer fieldwidth=0,
                     Integer precision=-1,
                     Char fillchar=Char(' '));
+
+      String Arg(double value,
+                 Integer fieldwidth=0,
+                 Integer precision=-1,
+                 Char fillchar=Char(' ')){return Arg(Double(value),fieldwidth,precision,fillchar);};
 
          static void SetConsoleCharset(Charset* cs);
 
@@ -609,22 +622,6 @@ namespace jm
           \return "true" bei true und "false" bei false.
           */
          static String ValueOf(bool value);
-
-         /*!
-          \brief Formatting method for string.
-          Format parameter:
-          %s String value
-          %i Integer value
-
-          // %4s -> fill with leading spaces if string is less than 4 characters
-          // %-4s -> fill with trailing spaces if string is less than 4 characters
-
-          //\param format format string
-          //\param ... variable arguments
-         \warning jm::Strings must be passed by pointer, because clang does not accept non-POD-Types
-          \deprecated Is old, use Arg()
-          */
-         static String Format(const String format, ...);
 
          /*!
           \brief Gibt OS-Abhängigen Zeilentrenner zurück

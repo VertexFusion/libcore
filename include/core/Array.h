@@ -420,6 +420,148 @@ namespace jm
          float* mData;
 
    };
+
+   class DllExport StringList:public Object
+   {
+
+   public:
+
+      StringList():Object()
+      { 
+         mData=new String[8];
+         mLength=8;
+         mSize=0;
+      };
+
+      void Append(const jm::String &string)
+      {
+         CheckSize(1);
+         mData[mSize++]=string;
+      }
+
+      DllExport
+      friend StringList& operator<< (StringList &out, const String& str)
+      {
+         out.Append(str);
+         return out;
+      }
+
+      StringList(const StringList &other): Object()
+      {
+         mSize=other.mSize;
+         mLength = other.mLength;
+         mData = new String[mLength];
+         for(Integer a = 0; a < mSize; a++)
+         {
+            mData[a] = other.mData[a];
+         }
+      }
+
+      virtual ~StringList()
+      {
+         mLength = 0;
+         mSize=0;
+         if(mData != NULL)delete[] mData;
+      };
+
+      inline Integer Size() const
+      {
+         return mSize;
+      };
+
+      inline void Sort()
+      {
+         if(mLength < 1)return;
+
+         Integer n = mLength;
+         do
+         {
+            Integer newn = 1;
+            for(Integer i = 0; i < n - 1; ++i)
+            {
+               Integer j = i + 1;
+               String* a1 = &mData[i];
+               String* a2 = &mData[j];
+               if(a1->CompareTo(*a2) > 0)
+               {
+                  //Vertausche
+                  String tmp = mData[i];
+                  mData[i] = mData[j];
+                  mData[j] = tmp;
+
+                  newn = i + 1;
+               }
+            }
+            n = newn;
+         }
+         while(n > 1);
+      }
+
+      inline String Get(Integer index) const
+      {
+         if(index < 0 || index >= mSize)
+            throw new Exception("Array index out of bounds.");
+         return mData[index];
+      };
+
+      inline void Set(Integer index, String item)
+      {
+         if(index < 0 || index >= mSize)
+            throw new Exception("Array index out of bounds.");
+         mData[index] = item;
+      };
+
+      inline String &operator[](const Integer index) const
+      {
+         if(index < 0 || index >= mSize)
+            throw new Exception("Array index out of bounds.");
+         return mData[index];
+      }
+
+      StringList& operator=(const StringList &another)
+      {
+         if(this != &another)
+         {
+            delete[] mData;
+
+            mLength = another.mLength;
+            mSize=another.mSize;
+            mData = new String[mLength];
+            for(Integer a = 0; a < mSize; a++)
+            {
+               mData[a] = another.mData[a];
+            }
+         }
+
+         return *this;
+      }
+
+      void Clear()
+      {
+         mSize=0;
+      }
+
+   private:
+
+      //! The length of the array.
+      Integer mLength;
+
+      //! The data size (can be less then length
+      Integer mSize;
+
+      //! The data array itself.
+      String* mData;
+
+      void CheckSize(Integer size)
+      {
+         if(mSize+size<mLength)return;
+         while(mLength<mSize+size)mLength+=8;
+         String* tmp = new String[mLength];
+         for(Integer index=0;index<mSize;index++)tmp[index]=mData[index];
+         delete[] mData;
+         mData=tmp;
+      }
+   };
 }
 
 #endif

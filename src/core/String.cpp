@@ -827,18 +827,38 @@ String String::Arg(Integer value,
    return result;
 }
 
-String String::Arg(const String &value)
+String String::Arg(const String &value,
+           Integer fieldwidth,
+           Char fillchar)
 {
    Integer first,second;
    Bool found = ArgIndicies(first, second);
    if(!found)return *this;
 
    String result=Substring(0,first);
-   result<<value;
+
+   // Leading space if fieldWidth > 0
+   if(fieldwidth > 0)
+   {
+      for(Integer a = value.Length(); a < fieldwidth; a++)result << fillchar;
+   }
+
+   result << value;
+
+   // Trailing space if flg1 < 0
+   if(fieldwidth < 0)
+   {
+      fieldwidth = fieldwidth.Abs();
+      for(Integer a = value.Length(); a < fieldwidth; a++)result << fillchar;
+   }
+
+
    result<<Substring(second);
 
    return result;
+
 }
+
 
 String String::Arg(Double value,
                    Integer fieldWidth,
@@ -867,7 +887,7 @@ String String::Arg(Double value,
    // Trailing space if flg1 < 0
    if(fieldWidth < 0)
    {
-      fieldWidth = abs(fieldWidth);
+      fieldWidth = fieldWidth.Abs();
       for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
    }
 
@@ -1013,161 +1033,6 @@ String String::LineSeparator()
    #elif defined _WIN32//Windows
    return "\r\n";
    #endif
-}
-
-String String::Format(const String format, ...)
-{
-   // Count the number of used arguments in the string
-   uint32 count1 = 0;
-   for(uint32 a = 0; a < format.Length(); a++)
-   {
-      if(format.CharAt(a) == '%')
-      {
-         bool escape = (a > 0 && format.CharAt(a - 1) == '/') ? true : false;
-         if(!escape)count1++;
-      }
-   }
-
-   String result;
-
-
-   va_list args;
-   va_start(args, format);
-
-   for(Integer cnt = 0; cnt < format.Length(); cnt++)
-   {
-
-      Char c = format.CharAt(cnt);
-
-      //Formatierungsstring bearbeiten
-      //Formatierung allgemein: %[argument_index$][flags][width][.precision]conversion
-      // The index is 1-based
-      if(c == '%' &&
-            cnt < format.Length() - 1 &&
-            (cnt == 0 || (cnt > 0 && format.CharAt(cnt - 1) != '\\')))
-      {
-         // Count the length of flags
-         Integer count = 1;
-         while(cnt + count < format.Length())
-         {
-            Char ck = format.CharAt(cnt + count);
-
-            if(ck == 's' ||
-                  ck == 'f' ||
-                  ck == 'i')break;
-
-            count++;
-         }
-
-         // The format command
-         Char cmd = format.CharAt(cnt + count);
-         Integer flg1 = 0;
-         Integer dec = 5;
-
-         //Integer parameter
-         if(cmd == 'i')
-         {
-            int32 i = va_arg(args, int32);
-            String s = String::ValueOf(i);
-
-            if(count > 1)flg1 = Integer::ValueOf(format.Substring(cnt + 1, cnt + count));
-
-            // Leading space if flg1 > 0
-            if(flg1 > 0)
-            {
-               for(Integer a = s.Length(); a < flg1; a++)result << ' ';
-            }
-
-
-            result << s;
-
-            // Trailing space if flg1 < 0
-            if(flg1 < 0)
-            {
-               flg1 = abs(flg1);
-               for(Integer a = s.Length(); a < flg1; a++)result << ' ';
-            }
-
-         }
-         //double parameter
-         if(cmd == 'f')
-         {
-            double i = va_arg(args, double);
-
-            bool fillzero = false;
-
-            if(count > 1)
-            {
-               jm::String flag = format.Substring(cnt + 1, cnt + count);
-               if(flag.CharAt(0) == '0')
-               {
-                  fillzero = true;
-                  flag.DeleteCharAt(0);
-               }
-
-               Integer div = flag.IndexOf('.');
-               if(div > -1)
-               {
-                  flg1 = Integer::ValueOf(flag.Substring(0, div));
-                  dec = Integer::ValueOf(flag.Substring(div + 1));
-               }
-               else
-               {
-                  flg1 = Integer::ValueOf(flag);
-               }
-            }
-
-
-
-            String s = String::ValueOf(i, dec, false);
-
-            // Leading space if flg1 > 0
-            if(flg1 > 0)
-            {
-               for(Integer a = s.Length(); a < flg1; a++)result << ' ';
-            }
-
-
-            result << s;
-
-            // Trailing space if flg1 < 0
-            if(flg1 < 0)
-            {
-               flg1 = abs(flg1);
-               for(Integer a = s.Length(); a < flg1; a++)result << ' ';
-            }
-         }
-         //String
-         if(cmd == 's')
-         {
-            if(count > 1)flg1 = Integer::ValueOf(format.Substring(cnt + 1, cnt + count));
-
-            // Works with windows!
-            String* s = va_arg(args, String*);
-
-            // Leading space if flg1 > 0
-            if(flg1 > 0)
-            {
-               for(Integer a = s->Length(); a < flg1; a++)result << ' ';
-            }
-            result << *s;
-
-            // Trailing space if flg1 < 0
-            if(flg1 < 0)
-            {
-               flg1 = abs(flg1);
-               for(Integer a = s->Length(); a < flg1; a++)result << ' ';
-            }
-         }
-
-         cnt += count;
-      }
-      else result.Append(c);
-   }
-
-   va_end(args);
-
-   return result;
 }
 
 Charset* gConsoleCharset = NULL;
