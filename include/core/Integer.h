@@ -145,7 +145,7 @@ class DllExport Integer
       Integer(uint32 value);
       Integer(int64 value);
       Integer(uint64 value);
-      Integer(slong value);
+//      Integer(slong value); double under linux
       #ifdef WITHULONG
       Integer(ulong value);
       #endif

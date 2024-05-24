@@ -346,7 +346,7 @@ Date File::LastModified() const
    #elif defined(__linux__) //Linux
 
    struct stat st;
-   lstat(mCstr, &st);
+   lstat(mCstr.ConstData(), &st);
 
    //Umrechnen
    timespec tm = st.st_mtim;
@@ -400,7 +400,7 @@ bool File::RenameTo(const String &newPath)
    #ifdef __APPLE__ //macOS
    ByteArray newname = newPath.ToCString();
    #elif defined __linux__ //Linux
-   int8* newname = newPath.ToCString();
+   ByteArray newname = newPath.ToCString();
    #elif defined _WIN32 //Windows
    ByteArray newname = newPath.ToCString(Charset::ForName("Windows-1252"));
    #endif

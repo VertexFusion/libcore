@@ -209,9 +209,8 @@ void Thread::SetName(const jm::String &name)
    #if defined __APPLE__
    pthread_setname_np(name.ToCString().ConstData());
    #elif defined __linux__
-   int8* cstr = (int8*) name.ToCString();
-   pthread_setname_np(thread, cstr);
-   delete[] cstr;
+   ByteArray cstr = name.ToCString();
+   pthread_setname_np(thread, cstr.ConstData());
    #elif defined _WIN32
    uint16* cstr = name.ToWString();
    SetThreadDescription(mHandle, (PCWSTR)cstr);

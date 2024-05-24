@@ -253,10 +253,9 @@ void* jm::System::LoadDynamicLibrary(jm::File* file)
 
    #elif defined __linux__//Linux
 
-   char* cstr = file->GetAbsolutePath().ToCString();
-   void* libptr = dlopen(cstr, RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-   delete cstr;
+   ByteArray cstr = file->GetAbsolutePath().ToCString();
+   void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined _WIN32// Windows
@@ -302,10 +301,9 @@ void* jm::System::FindSymbol(void* library, const String &name)
 
    #elif defined __linux__//Linux
 
-   char* cstr = name.ToCString();
-   void* symptr = dlsym(library, cstr);
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr << " failed!" << std::endl << dlerror() << std::endl;
-   delete cstr;
+   ByteArray cstr = name.ToCString();
+   void* symptr = dlsym(library, cstr.ConstData());
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined _WIN32//Windows

@@ -92,10 +92,10 @@ Integer::Integer(uint64 value)
    mValue = value;
 }
 
-Integer::Integer(slong value)
-{
-   mValue = value;
-}
+//Integer::Integer(slong value)
+//{
+ //  mValue = value;
+//}
 
 #ifdef WITHULONG
 Integer::Integer(ulong value)

@@ -104,7 +104,7 @@ void Exception::PrintStackTrace() const
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << std::endl;
       #elif defined __linux__//Linux
       String line = symbollist[i];
-      cerr << "\ta" << line << endl;
+      std::cerr << "\ta" << line << std::endl;
       #elif defined _WIN32//Windows
       //Bisher nix
       #endif
