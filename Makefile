@@ -49,6 +49,7 @@ endif
 
 SOURCES =\
  $(PATH_CORE)/AutoreleasePool.cpp\
+ $(PATH_CORE)/Base64.cpp\
  $(PATH_CORE)/ByteArray.cpp\
  $(PATH_CORE)/Character.cpp\
  $(PATH_CORE)/Charset.cpp\
@@ -63,46 +64,51 @@ SOURCES =\
  $(PATH_CORE)/DiffDiag.cpp\
  $(PATH_CORE)/DiffDistance.cpp\
  $(PATH_CORE)/DiffInfo.cpp\
+ $(PATH_CORE)/Document.cpp\
  $(PATH_CORE)/EditableObject.cpp\
  $(PATH_CORE)/Exception.cpp\
  $(PATH_CORE)/Extents.cpp\
  $(PATH_CORE)/File.cpp\
+ $(PATH_CORE)/Geometry.cpp\
  $(PATH_CORE)/Hashtable.cpp\
+ $(PATH_CORE)/I18nBundle.cpp\
+ $(PATH_CORE)/Inflater.cpp\
+ $(PATH_CORE)/Integer.cpp\
+ $(PATH_CORE)/Iterator.cpp\
+ $(PATH_CORE)/LinkedList.cpp\
  $(PATH_CORE)/MacRomanDecoder.cpp\
  $(PATH_CORE)/Math.cpp\
  $(PATH_CORE)/Matrix.cpp\
+ $(PATH_CORE)/MemoryStream.cpp\
+ $(PATH_CORE)/Mutex.cpp\
+ $(PATH_CORE)/NURBS.cpp\
  $(PATH_CORE)/Object.cpp\
+ $(PATH_CORE)/PaintingBackend.cpp\
+ $(PATH_CORE)/Preferences.cpp\
+ $(PATH_CORE)/Property.cpp\
+ $(PATH_CORE)/SAXAttributes.cpp\
+ $(PATH_CORE)/SAXParser.cpp\
+ $(PATH_CORE)/Serializer.cpp\
+ $(PATH_CORE)/Stream.cpp\
  $(PATH_CORE)/String.cpp\
  $(PATH_CORE)/StringTokenizer.cpp\
- $(PATH_CORE)/Mutex.cpp\
  $(PATH_CORE)/System.cpp\
  $(PATH_CORE)/Test.cpp\
  $(PATH_CORE)/TestVector.cpp\
+ $(PATH_CORE)/Thread.cpp\
+ $(PATH_CORE)/Transform.cpp\
+ $(PATH_CORE)/UndoChange.cpp\
+ $(PATH_CORE)/UndoManager.cpp\
+ $(PATH_CORE)/UndoStep.cpp\
  $(PATH_CORE)/UTF8Decoder.cpp\
+ $(PATH_CORE)/UTF16Decoder.cpp\
  $(PATH_CORE)/Vector.cpp\
  $(PATH_CORE)/Vertex2.cpp\
  $(PATH_CORE)/Vertex3.cpp\
  $(PATH_CORE)/Windows1252Decoder.cpp\
- $(PATH_CORE)/Serializer.cpp\
- $(PATH_CORE)/Thread.cpp\
- $(PATH_CORE)/Preferences.cpp\
- $(PATH_CORE)/I18nBundle.cpp\
- $(PATH_CORE)/Inflater.cpp\
- $(PATH_CORE)/Iterator.cpp\
- $(PATH_CORE)/UTF16Decoder.cpp\
- $(PATH_CORE)/Stream.cpp\
- $(PATH_CORE)/MemoryStream.cpp\
- $(PATH_CORE)/Integer.cpp\
- $(PATH_CORE)/Document.cpp\
- $(PATH_CORE)/UndoChange.cpp\
- $(PATH_CORE)/UndoManager.cpp\
- $(PATH_CORE)/UndoStep.cpp\
- $(PATH_CORE)/Property.cpp\
- $(PATH_CORE)/LinkedList.cpp\
- $(PATH_CORE)/Geometry.cpp\
- $(PATH_CORE)/NURBS.cpp\
- $(PATH_CORE)/PaintingBackend.cpp\
- $(PATH_CORE)/Transform.cpp
+ $(PATH_CORE)/XMLWriter.cpp\
+ $(PATH_CORE)/ZipFile.cpp\
+ $(PATH_CORE)/ZipOutputFile.cpp
 
 ifeq ($(UNAME_S),Darwin)
  MMSOURCES=$(PATH_CORE)/MacBindings.mm

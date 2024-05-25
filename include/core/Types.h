@@ -87,6 +87,10 @@
 #define UINT64_MAX 18446744073709551615ULL
 #endif
 
+#ifndef INT32_MAX
+#define INT32_MAX 0x80000000
+#endif
+
 #ifndef INT64_MIN
 #define INT64_MIN 0x8000000000000000
 #endif
