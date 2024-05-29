@@ -386,9 +386,6 @@ namespace jm
          void Swap();
 
       private:
-
-         Colour* mPointer;
-
    };
 
    class DllExport UndoObjectRelease: public UndoChange

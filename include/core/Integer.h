@@ -79,7 +79,7 @@ struct DllExport Bool
 
       bool IsIndeterminate() const
       {
-         return mValue == indet;
+         return mValue < 0;
       };
 
       //Implizit conversion

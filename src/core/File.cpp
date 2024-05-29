@@ -727,6 +727,21 @@ Array<String> File::GetTags()const
 
    #endif
 
+   #ifdef __linux__
+   
+	const int sz=4096;
+	char buffer[sz];
+	int result = getxattr(mCstr.ConstData(),"user.xdg.tags",buffer,sz);
+
+	if(result>0)
+	{
+		// Data is store usually as comma(,) separated list.
+		// So we just need to replace ',' by '\n'.
+		ByteArray tagList = ByteArray(buffer,result);
+		//TODO: tagList.replace(',','\n');
+	}
+   #endif
+
    // Return empty if no tags found array
    return Array<String>(0);
 }
@@ -929,9 +944,9 @@ String jm::ExecDir()
 }
 
 
+   #ifdef __APPLE__
 File jm::ResourceDir(const String &bundleId)
 {
-   #ifdef __APPLE__
 
    //CFString aus Bundle-ID erzeugen
    CFStringRef cfstr = bundleId.ToCFString();
@@ -966,9 +981,11 @@ File jm::ResourceDir(const String &bundleId)
 
    // Return
    return new File(filename);
-
+}
 
    #else //macOS
+File jm::ResourceDir(const String &bundleId)
+{
 
    CFURLRef bundleURL = CFBundleCopyBundleURL(thisBundle);
 
@@ -989,21 +1006,24 @@ File jm::ResourceDir(const String &bundleId)
    CFRelease(sr1);
    CFRelease(sr2);
 
-   #endif
-
    // Return
    return File(filename);
+   }
+   #endif
 
    #elif defined __linux__ //Linux
+File jm::ResourceDir(const String &/*bundleId*/)
+{
    // The Exec-Dir is currently used as the resource directory
    return File(ExecDir());
-   #elif defined _WIN32 //Windows
-
-   // The Exec-Dir is currently used as the resource directory
-   return File(ExecDir());
-
-   #endif
 }
+   #elif defined _WIN32 //Windows
+File jm::ResourceDir(const String &/*bundleId*/)
+{
+   // The Exec-Dir is currently used as the resource directory
+   return File(ExecDir());
+}
+   #endif
 
 File jm::PropertyDir()
 {
