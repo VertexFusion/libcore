@@ -292,7 +292,7 @@ namespace jm
 
           In mac os these tags are presented by the Finder.
           */
-         Array<String> GetTags()const;
+         StringList GetTags()const;
 
          /*!
           \brief Adds a tag to the file. If the tag already exists, nothing happens.

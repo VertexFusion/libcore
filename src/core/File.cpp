@@ -679,7 +679,7 @@ int32 File::CompareTo(const File &other) const
    return mPathname.CompareTo(other.mPathname);
 }
 
-Array<String> File::GetTags()const
+StringList File::GetTags()const
 {
    #ifdef __APPLE__ //macOS
 
@@ -693,37 +693,37 @@ Array<String> File::GetTags()const
                      IsDirectory());
 
    // Query tags
-   CFArrayRef labels = NULL;
+   CFArrayRef tags = NULL;
    Boolean result = CFURLCopyResourcePropertyForKey(urlref,
                     kCFURLTagNamesKey,
-                    &labels,
+                    &tags,
                     NULL);
 
    // Clean unnecessary stuff
    CFRelease(cfstr);
    CFRelease(urlref);
 
-   if(result == true && labels != NULL)
+   if(result == true && tags != NULL)
    {
-      // Extract the labels to our array
-      Integer count = (uint32) CFArrayGetCount(labels);
+      // Extract the tags to our string list
+      StringList taglist;
+      Integer count = (uint32) CFArrayGetCount(tags);
       if(count > 0)
       {
-         Array<String> labelarray = Array<String>(count);
          for(Integer index = 0; index < count; index++)
          {
-            CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(labels, index);
-            labelarray[index] = String::FromCFString(str);
+            CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(tags, index);
+            taglist << String::FromCFString(str);
          }
 
          // Clean up
-         CFRelease(labels);
+         CFRelease(tags);
 
-         return labelarray;
+         return taglist;
       }
    }
 
-   if(labels != NULL)CFRelease(labels);
+   if(tags != NULL)CFRelease(tags);
 
    #endif
 
@@ -743,22 +743,22 @@ Array<String> File::GetTags()const
    #endif
 
    // Return empty if no tags found array
-   return Array<String>(0);
+   return StringList();
 }
 
 VxfErrorStatus File::AddTag(const String &tag)
 {
    #ifdef __APPLE__ //macOS
-   Array<String> oldtags = GetTags();
+   StringList oldtags = GetTags();
 
    //Check is tag is present, if yes, just return
-   for(Integer index = 0; index < oldtags.Length(); index++)
+   for(Integer index = 0; index < oldtags.Size(); index++)
    {
       if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
    }
 
    //Create new array and append tag
-   Integer newsize = oldtags.Length() + 1;
+   Integer newsize = oldtags.Size() + 1;
    CFStringRef* strs = new CFStringRef[newsize];
    for(Integer index = 0; index < newsize - 1; index++)
    {
@@ -809,11 +809,11 @@ VxfErrorStatus File::AddTag(const String &tag)
 VxfErrorStatus File::RemoveTag(const String &tag)
 {
    #ifdef __APPLE__ //macOS
-   Array<String> oldtags = GetTags();
+   StringList oldtags = GetTags();
 
    //Check is tag is present, if not, just return
    bool found = false;
-   for(Integer index = 0; index < oldtags.Length(); index++)
+   for(Integer index = 0; index < oldtags.Size(); index++)
    {
       if(oldtags[index].EqualsIgnoreCase(tag))
       {
@@ -824,7 +824,7 @@ VxfErrorStatus File::RemoveTag(const String &tag)
    if(!found)return eOK;
 
    //Create new array and remove tag
-   Integer newsize = oldtags.Length() - 1;
+   Integer newsize = oldtags.Size() - 1;
    CFStringRef* strs = new CFStringRef[newsize];
    Integer cnt = 0;
    for(Integer index = 0; index < newsize + 1; index++)
