@@ -984,8 +984,6 @@ File jm::ResourceDir(const String &bundleId)
 }
 
    #else //macOS
-File jm::ResourceDir(const String &bundleId)
-{
 
    CFURLRef bundleURL = CFBundleCopyBundleURL(thisBundle);
 

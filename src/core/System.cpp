@@ -317,12 +317,12 @@ void* jm::System::FindSymbol(void* library, const String &name)
 }
 
 // Global AutoreleasePool...
-jm::AutoreleasePool* mainthreadPool = NULL;
+jm::AutoreleasePool* gMainThreadPool = NULL;
 jm::String gBundleId;
 
 jm::AutoreleasePool* jm::System::GetAutoreleasePool()
 {
-   return mainthreadPool;
+   return gMainThreadPool;
 }
 
 const jm::String& jm::System::GetBundleId()
@@ -338,7 +338,7 @@ void jm::System::Init(const jm::String &bundleId)
    gBundleId=bundleId;
 
    // Start Autorelease pool
-   if(mainthreadPool == NULL)mainthreadPool = new AutoreleasePool();
+   if(gMainThreadPool == NULL)gMainThreadPool = new AutoreleasePool();
 
    // Load default translation
    I18nBundle::InitDefault();
@@ -346,7 +346,7 @@ void jm::System::Init(const jm::String &bundleId)
 
 void jm::System::Quit()
 {
-   if(mainthreadPool != NULL)delete mainthreadPool;
+   if(gMainThreadPool != NULL)delete gMainThreadPool;
 
    // Finally
    QuitCharsets();

@@ -291,7 +291,8 @@ namespace jm
          /*!
           \brief Diese Methode berechnet den Hashcode für diese Zeichenkette und gibt ihn zurück.
           */
-         Integer HashCode() const;
+         Integer HashCode();
+         Integer ConstHashCode() const;
 
          /*!
           \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Großbuchstaben durch

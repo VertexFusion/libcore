@@ -87,7 +87,7 @@ void* Hashtable::Put(String key, void* value)
 
 void* Hashtable::Get(const String &key) const
 {
-   Integer hash = key.HashCode();
+   Integer hash = key.ConstHashCode();
 
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
@@ -101,9 +101,9 @@ void* Hashtable::Get(const String &key) const
    return NULL;
 }
 
-void* Hashtable::Remove(String key)
+void* Hashtable::Remove(const String &key)
 {
-   Integer hash = key.HashCode();
+   Integer hash = key.ConstHashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 
    HashtableEntry* prev = NULL;

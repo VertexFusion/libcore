@@ -303,13 +303,21 @@ bool String::AtIsIgnoreCase(Integer position,const String &another)
    return true;
 }
 
-Integer String::HashCode() const
+Integer String::HashCode()
 {
    if(mHash != 0)return mHash;
    uint32 hash = 0;
    for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].Unicode();
-   const_cast<String*>(this)->mHash = (int32) hash;
-   return mHash;
+   mHash = (int32) hash;
+   return hash;
+}
+
+Integer String::ConstHashCode() const
+{
+   if(mHash != 0)return mHash;
+   uint32 hash = 0;
+   for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].Unicode();
+   return hash;
 }
 
 String String::ToLowerCase() const

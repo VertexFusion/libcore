@@ -83,7 +83,7 @@ namespace jm
           \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
           \return Den Pointer auf das Objekt, welches entfernt wurde.
           */
-         void* Remove(String key);
+         void* Remove(const String &key);
 
          /*!
           \brief Returns the number of entries in this hash table.
