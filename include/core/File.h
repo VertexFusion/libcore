@@ -63,34 +63,34 @@ namespace jm
       public:
 
          /*!
-          \brief Standardkonstruktor erzeugt Namenlose Datei
+          \brief Default constructor. The file has no name.
           */
          File();
 
          /*!
-          \brief Konstruktor
-          \param pathname Der Pfadname der Datei.
+          \brief Constructor
+          \param pathname Path to the file.
           */
          File(const String &pathname);
 
          /*!
-          \brief Konstruktor
-          \param parent Der Pfadname der "Vaterdatei".
-          \param child Der Pfadname der "Kinddatei"
+          \brief Constructor
+          \param parent Path of parent file.
+          \param child Path of child file.
           */
          File(String parent,
               String child);
 
          /*!
-          \brief Konstruktor
-          \param parent Das ShxFile-Objekt der "Vaterdatei".
-          \param child Der Pfadname der "Kinddatei"
+          \brief Constructor
+          \param parent File object of parent file
+          \param child Path of child file
           */
          File(const File &parent,
               String child);
 
          /*!
-          \brief Kopierkonstrutor
+          \brief Copy constructor
           */
          File(const File &other);
 
@@ -101,35 +101,35 @@ namespace jm
 
 
          /*!
-          \brief Diese Methode prüft, ob die Datei ausführbar ist.
+          \brief Checks if the file can be executed.
           */
          bool CanExecute() const;
 
          /*!
-          \brief Diese Methode prüft, ob die Datei lesbar ist.
+          \brief Checks if the file can be read.
           */
          bool CanRead() const;
 
          /*!
-          \brief Diese Methode prüft, ob die Datei beschreibar ist.
+          \brief Checks if the file can be written.
           */
          bool CanWrite() const;
 
          /*!
-          \brief Diese Methode erzeugt eine neue leere Datei, aber nur wenn die Datei nicht
-          existiert.
-          \return Gibt wahr zurück, wenn eine neue Datei angelegt wurde.
+          \brief Creates a new file, but only, if the file not exist. If the file exists,
+		  nothing happens.
+          \return true, if a new file was created. false otherwise.
           */
          bool CreateNewFile();
 
          /*!
-          \brief Diese Methode erzeugt ein Verzeichnis mit diesem Dateinamen.
-          \return gibt wahr zurück, wenn das Verzeichnis angelegt wurde,
+          \brief Create a new directory.
+          \return true, if a new directory was created. false otherwise.
           */
          bool MakeDirectory();
 
          /*!
-          \brief Diese Methode prüft, ob die Datei existiert
+          \brief Checks if the file exists.
           */
          bool Exists() const;
 

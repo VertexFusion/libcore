@@ -50,38 +50,11 @@ namespace jm
     */
    class DllExport Exception: public Object
    {
-      private:
-
-         /*!
-          @internal
-          \brief Die Fehlermeldung, die dem Anwender angezeigt werden soll.
-          */
-         String message;
-
-         /*!
-          @internal
-          \brief Die Thread-ID
-          */
-         #ifdef __APPLE__ //macOS
-         pthread_t tid;
-         #elif defined __linux__//Linux
-         pthread_t tid;
-         #elif defined _WIN32//Windows
-         //Keine Threadbib
-         #endif
-
-
-         // retrieve current stack addresses
-         uint32 addrlen;
-
-         String* symbollist;
-
-
       public:
 
          /*!
-          \brief Konstruktor
-          \param message Die Fehlermeldung, die dem Anwender angezeigt werden soll.
+          \brief Constructor
+          \param message The error message for the developer or user.
           */
          Exception(const String message);
 
@@ -91,20 +64,38 @@ namespace jm
          ~Exception();
 
          /*!
-          \brief Gibt die Fehlermeldung zurück.
-          \return Die Fehlermeldung
+          \brief Returns the error message.
           */
          String GetErrorMessage() const;
 
          /*!
-          \brief Schreibt den Stacktrace in den Fehlerstream
+          \brief Writes the stack trace into the std::cout
           */
          void PrintStackTrace() const;
 
          /*!
-          \brief Gibt den Stacktrace als String zurück
+          \brief Returns the stack trace of the exception. Useful to find the origin of the exception.
           */
          String GetStrackTrace() const;
+
+      private:
+
+         //! The error message.
+         String message;
+
+         //! The thread id
+         #ifdef __APPLE__ //macOS
+         pthread_t tid;
+         #elif defined __linux__//Linux
+         pthread_t tid;
+         #elif defined _WIN32//Windows
+         // In Windows a thread id does not exist.
+         #endif
+
+         // retrieve current stack addresses
+         uint32 addrlen;
+
+         String* symbollist;
 
    };
 
