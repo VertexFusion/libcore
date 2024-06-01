@@ -163,6 +163,10 @@ Debug: $(OBJECTS)
 	mv $(LIB_NAME) $(PATH_BIN)/$(LIB_NAME)
 	mv libjameo.a $(PATH_BIN)/libjameo.a
 
+install:
+	mkdir -p $(prefix)/usr/lib/jameo
+	cp $(PATH_BIN)/$(LIB_NAME) $(prefix)/usr/lib/jameo/$(LIB_NAME)
+
 test: $(TESTOBJECTS)
 	$(CXX) $(CFLAGS) $(INCLUDE) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS)
 

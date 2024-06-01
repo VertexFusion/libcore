@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: LibCore\n"
-"POT-Creation-Date: 2024-04-18 15:58+0200\n"
-"PO-Revision-Date: 2024-04-18 16:01+0200\n"
+"POT-Creation-Date: 2024-06-01 20:40+0200\n"
+"PO-Revision-Date: 2024-06-01 20:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: Tr\n"
@@ -27,55 +27,51 @@ msgstr "Abstand %1"
 msgid "Calculated %1/%2: %3%"
 msgstr "Berechnet %1/%2: %3\\%"
 
-#: core/File.cpp:45
-msgid "Pathname is empty."
-msgstr "Der Pfadname ist leer."
-
-#: core/File.cpp:53 core/File.cpp:61
+#: core/File.cpp:52 core/File.cpp:60
 msgid "Child is empty."
 msgstr "Kind ist leer."
 
-#: core/File.cpp:437 core/File.cpp:503
+#: core/File.cpp:436 core/File.cpp:502
 msgid "Cannot open directory"
 msgstr "Kann Verzeichnis nicht öffnen"
 
-#: core/File.cpp:516
+#: core/File.cpp:515
 msgid "File \"%1\" does not exist."
 msgstr "Datei „%1“ existiert nicht."
 
-#: core/File.cpp:601
+#: core/File.cpp:600
 msgid "Permission denied! \"%1\""
 msgstr "Zugriff verweigert! „%1“"
 
-#: core/File.cpp:602
+#: core/File.cpp:601
 msgid "File not found! \"%1\""
 msgstr "Datei nicht gefunden! „%1“"
 
-#: core/File.cpp:603
+#: core/File.cpp:602
 msgid "Connection timed out! \"%1\""
 msgstr "Verbindungszeit ist abgelaufen! „%1“"
 
-#: core/File.cpp:604
+#: core/File.cpp:603
 msgid "Not a directory \"%1\""
 msgstr "Ist kein Verzeichnis „%1“"
 
-#: core/File.cpp:605
+#: core/File.cpp:604
 msgid "Cannot open file! \"%1\" Errno: %2"
 msgstr "Kann die Datei nicht öffnen! „%1“ Fehlernr.: %2"
 
-#: core/File.cpp:618
+#: core/File.cpp:617
 msgid "Error while closing file!"
 msgstr "Fehler während des Schließens der Datei!"
 
-#: core/File.cpp:626 core/File.cpp:633
+#: core/File.cpp:625 core/File.cpp:632
 msgid "Error while moving file reading pointer!"
 msgstr "Fehler während der Bewegung des Dateilesezeigers!"
 
-#: core/File.cpp:875 core/File.cpp:912
+#: core/File.cpp:889 core/File.cpp:926
 msgid "Cannot determinate executable Path"
 msgstr "Kann den Ausführungspfad nicht bestimmen"
 
-#: core/File.cpp:947
+#: core/File.cpp:961
 msgid "BundleRef for %1 not found. Cannot determine resource directory."
 msgstr "BundleRef für %1 nicht gefunen. Kann Ressourcenverzeicnis nicht finden."
 
@@ -95,7 +91,7 @@ msgstr "Datei-Magic falsch: %1"
 msgid "MO file version not supported: %1"
 msgstr "MO Dateiversion nicht unterstützt: %1"
 
-#: core/Property.cpp:263
+#: core/Property.cpp:268
 msgid "Property not comparable"
 msgstr "Eigenschaft nicht vergleichbar"
 
@@ -142,6 +138,9 @@ msgstr "Führe aus: %1…"
 #: core/TestVector.cpp:118
 msgid "Test finished! %1 Tests, %2 Errors."
 msgstr "Test abgeschlossen! %1 Tests, %2 Fehler."
+
+#~ msgid "Pathname is empty."
+#~ msgstr "Der Pfadname ist leer."
 
 #, c-format
 #~ msgid "Cycle finished! In total %i tests, %i errors, duration %1.3f sec."

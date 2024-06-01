@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="LibCore" Version="11000" InternalType="Library">
+<CodeLite_Project Name="Core" Version="11000" InternalType="Library">
   <VirtualDirectory Name="prec">
     <File Name="prec/Precompiled.cpp"/>
     <File Name="prec/Precompiled.h"/>

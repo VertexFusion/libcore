@@ -1012,8 +1012,8 @@ File jm::ResourceDir(const String &bundleId)
    #elif defined __linux__ //Linux
 File jm::ResourceDir(const String &/*bundleId*/)
 {
-   // The Exec-Dir is currently used as the resource directory
-   return File(ExecDir());
+   // The resource directory is /usr/share/appname
+   return File("/usr/share/"+ExecName());
 }
    #elif defined _WIN32 //Windows
 File jm::ResourceDir(const String &/*bundleId*/)
