@@ -48,7 +48,7 @@ RawDecoder::RawDecoder(): CharsetDecoder()
 {
 }
 
-CharArray RawDecoder::Decode(const int8* cstring)
+CharArray RawDecoder::Decode(const char* cstring)
 {
    //Länge bestimmen
    uint32 length = 0;

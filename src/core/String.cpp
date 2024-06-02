@@ -59,10 +59,10 @@ String::String(const String &another): Object(), Comparable<String>()
    memcpy(mValue, another.mValue, sizeof(Char) * mStrLength);
 }
 
-String::String(const int8* buffer, Integer size): Object(), Comparable<String>()
+String::String(const char* buffer, Integer size): Object(), Comparable<String>()
 {
    mHash = 0;
-   int8* cstring = new int8[size + 1];
+   char* cstring = new char[size + 1];
    memcpy(cstring, buffer, size);
    cstring[size] = 0;
 
@@ -75,26 +75,10 @@ String::String(const int8* buffer, Integer size): Object(), Comparable<String>()
    delete[] cstring;
 }
 
-String::String(const uint8* buffer, Integer size): Object(), Comparable<String>()
+String::String(const char* buffer, Integer size, Charset* charset): Object(), Comparable<String>()
 {
    mHash = 0;
-   int8* cstring = new int8[size + 1];
-   memcpy(cstring, buffer, size);
-   cstring[size] = 0;
-
-   // Intentionally not used Charset::GetDefault, since this leads to problems with global strings.
-   // (Initialization sequence not predictable)
-   UTF8Decoder dec = UTF8Decoder();
-   CharArray array = dec.Decode(cstring);
-   Copy(array);
-
-   delete[] cstring;
-}
-
-String::String(const int8* buffer, Integer size, Charset* charset): Object(), Comparable<String>()
-{
-   mHash = 0;
-   int8* cstring = new int8[size + 2];
+   char* cstring = new char[size + 2];
    memcpy(cstring, buffer, size);
    cstring[size] = 0;
    cstring[size + 1] = 0; //For UTF16 required
@@ -103,7 +87,7 @@ String::String(const int8* buffer, Integer size, Charset* charset): Object(), Co
    delete[] cstring;
 }
 
-String::String(const int8* cstring): Object(), Comparable<String>()
+String::String(const char* cstring): Object(), Comparable<String>()
 {
    mHash = 0;
    if(cstring != NULL)
@@ -143,7 +127,7 @@ String::String(const ByteArray &buffer) : Object(), Comparable<String>()
    }
 }
 
-String::String(const int8* cstring, Charset* charset): Object(), Comparable<String>()
+String::String(const char* cstring, Charset* charset): Object(), Comparable<String>()
 {
    mHash = 0;
    CharArray array = charset->Decode(cstring);
@@ -989,7 +973,7 @@ String String::ValueOf(double number)
    std::stringstream ss;
    ss << std::setprecision(10) << number;
    std::string str = ss.str();
-   const int8* cstr = str.c_str();
+   const char* cstr = str.c_str();
    return String(cstr);
 }
 
@@ -1163,14 +1147,14 @@ namespace jm
       return ret;
    }
 
-   String operator+(const int8* &left, const String &right)
+   String operator+(const char* &left, const String &right)
    {
       String ret = left;
       ret.Append(right);
       return ret;
    }
 
-   String operator+(const String &left, const int8* &right)
+   String operator+(const String &left, const char* &right)
    {
       String ret = left;
       ret.Append(right);
@@ -1253,7 +1237,7 @@ String jm::URLDecode(const String &str)
    // A URL-encoded string contains only ASCII characters...
    //
 
-   int8* buffer = new int8[str.Length()];
+   ByteArray buffer = ByteArray(str.Length(),0);
    uint32 pos = 0;
 
    // Eliminate URL-Decoding
@@ -1277,9 +1261,8 @@ String jm::URLDecode(const String &str)
             break;
       }
    }
-
-   String ret = String(buffer, pos);
-   delete[] buffer;
+   buffer.Resize(pos);
+   String ret = String(buffer);
    return ret;
 }
 

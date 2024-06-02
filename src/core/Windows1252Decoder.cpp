@@ -64,7 +64,7 @@ Windows1252Decoder::~Windows1252Decoder()
    delete[] codepage;
 }
 
-CharArray Windows1252Decoder::Decode(const int8* cstring)
+CharArray Windows1252Decoder::Decode(const char* cstring)
 {
    //Länge bestimmen
    uint32 length = 0;

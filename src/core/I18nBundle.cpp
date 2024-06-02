@@ -114,8 +114,8 @@ void I18nBundle::AppendMO(File file)
    for(Integer index = 0; index < stringCount; index++)
    {
       const Record rec = records[index];
-      const jm::String orig = jm::String(&buffer[rec.origOffset], rec.origLength);
-      const jm::String trans = jm::String(&buffer[rec.transOffset], rec.transLength);
+      const jm::String orig = jm::String((char*)&buffer[rec.origOffset], rec.origLength);
+      const jm::String trans = jm::String((char*)&buffer[rec.transOffset], rec.transLength);
       SetPreference(orig, trans);
    }
 }

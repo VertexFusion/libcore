@@ -100,9 +100,9 @@ void ZipFile::Open()
       uint32 commentLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 32);
       uint32 offset = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 42);
 
-      jm::String name = jm::String(&dict[index + 46], fileNameLength);
-      jm::String extra = jm::String(&dict[index + 46 + fileNameLength], extraFieldLength);
-      jm::String comment = jm::String(&dict[index + 46 + fileNameLength + extraFieldLength], commentLength);
+      jm::String name = jm::String((char*)&dict[index + 46], fileNameLength);
+      jm::String extra = jm::String((char*)&dict[index + 46 + fileNameLength], extraFieldLength);
+      jm::String comment = jm::String((char*)&dict[index + 46 + fileNameLength + extraFieldLength], commentLength);
 
       ZipEntry* entry = new ZipEntry(name);
       entry->mExtra = extra;

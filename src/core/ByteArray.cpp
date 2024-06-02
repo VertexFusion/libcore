@@ -42,6 +42,16 @@ ByteArray::ByteArray() : Object()
 
 ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
 {
+   Init(buffer,size);
+}
+
+ByteArray::ByteArray(const uint8* buffer, Integer size) : Object()
+{
+   Init((const int8*)buffer,size);
+}
+
+void ByteArray::Init(const int8* buffer, Integer size)
+{
    if(buffer == NULL)
    {
       mArrSize = 0;
@@ -129,9 +139,9 @@ int8* ByteArray::Data()
    return reinterpret_cast<int8*>(mData);
 }
 
-const int8* ByteArray::ConstData() const
+const char* ByteArray::ConstData() const
 {
-   return reinterpret_cast<const int8*>(mData);
+   return reinterpret_cast<const char*>(mData);
 }
 
 
@@ -193,6 +203,28 @@ void ByteArray::Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buf
    }
 }
 
+void ByteArray::Resize(Integer newSize)
+{
+   if(newSize<=mRawSize-1)
+   {
+      mArrSize=newSize;
+      mData[mArrSize]=0;
+   }
+   else
+   {
+      uint8* tmp = new uint8[newSize+1];
+      for(Integer index=0;index<mArrSize;index++)
+      {
+         tmp[index] = mData[index];
+      }
+      for(Integer index=mArrSize;index<newSize;index++)
+      {
+         tmp[index] = 0;
+      }
+      mRawSize=newSize+1;
+      mArrSize=newSize;
+   }
+}
 
 uint8& jm::ByteArray::operator[](const Integer index) const
 {

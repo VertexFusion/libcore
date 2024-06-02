@@ -98,7 +98,7 @@ Charset::Charset(CharsetDecoder* decoder): Object()
    mDecoder = decoder;
 }
 
-Charset::Charset(const int8 *name, CharsetDecoder* decoder): Object()
+Charset::Charset(const char *name, CharsetDecoder* decoder): Object()
 {
    uint32 index = 0;
    while(name[index] != 0)mName.Append(name[index++]);
@@ -143,7 +143,7 @@ bool Charset::HasName(const String &name)
    return false;
 }
 
-CharArray Charset::Decode(const int8* cString)
+CharArray Charset::Decode(const char* cString)
 {
    return mDecoder->Decode(cString);
 }
@@ -162,7 +162,7 @@ Charset* Charset::ForName(const String &name)
    return NULL;
 }
 
-String Charset::Guess(uint8* stream, Integer length)
+String Charset::Guess(const char* stream, Integer length)
 {
 
    String encoding;

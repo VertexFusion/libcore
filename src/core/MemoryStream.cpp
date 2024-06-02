@@ -88,7 +88,7 @@ Integer MemoryStream::GetPosition()
    return mPosition;
 }
 
-Integer MemoryStream::Write(uint8* buffer, Integer length)
+Integer MemoryStream::Write(const uint8* buffer, Integer length)
 {
    Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    memcpy(&mStream[mPosition], buffer, length);

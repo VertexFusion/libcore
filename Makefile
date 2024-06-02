@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Linux)
    C__ =clang
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
-   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11
+   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11
    TESTFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
@@ -168,7 +168,7 @@ install:
 	cp $(PATH_BIN)/$(LIB_NAME) $(prefix)/usr/lib/jameo/$(LIB_NAME)
 
 test: $(TESTOBJECTS)
-	$(CXX) $(CFLAGS) $(INCLUDE) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS)
+	$(CXX) $(INCLUDE) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS)
 
 prec/Precompiled.pch: prec/Precompiled.h
 	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.h -o prec/Precompiled.pch

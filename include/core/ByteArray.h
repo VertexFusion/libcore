@@ -58,6 +58,7 @@ namespace jm
           If buffer is NULL a NULL array is created.
           */
          ByteArray(const int8* buffer, Integer size = -1);
+         ByteArray(const uint8* buffer, Integer size = -1);
 
          /*!
           \brief Creates a byte array of size and fills every byte with ch.
@@ -79,8 +80,9 @@ namespace jm
 
          /*!
           \brief Returns a const pointer to the data.
+          \note We use char (instead of int8 here, because char can be signe or unsigned, depending on operating system.)
           */
-         const int8* ConstData() const;
+         const char* ConstData() const;
 
          /*!
           \brief Returns the size of the array.
@@ -107,6 +109,13 @@ namespace jm
           */
          void Fill(uint8 ch);
 
+         /*!
+          \brief Resize the byte array. If the new size is bigger, it will increase the array. If the size is smaller,
+          the bytes beyond the new size are excluded, but the array will have the same size.
+         \param newSize The new size of the array. 
+          */
+         void Resize(Integer newSize);
+
          uint8 Get(Integer index) const;
 
          void Set(Integer index, uint8 item);
@@ -132,6 +141,9 @@ namespace jm
 
          //! The array itself.
          uint8* mData;
+
+         void Init(const int8* buffer, Integer size);
+
 
    };
 

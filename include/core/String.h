@@ -74,7 +74,7 @@ namespace jm
           \param cstring Ein C-String, der die Zeichenkette darstellt. Ein C-String ist dadurch
           gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
           */
-         String(const int8* cstring);
+         String(const char* cstring);
          String(const ByteArray& buffer);
 
          /*!
@@ -83,7 +83,7 @@ namespace jm
           gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
           \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
           */
-         String(const int8* cstring, Charset* charset);
+         String(const char* cstring, Charset* charset);
          String(const ByteArray &buffer, Charset* charset);
 
          /*!
@@ -93,16 +93,7 @@ namespace jm
           \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
           Zeichenkette übernommen werden.
           */
-         String(const int8* buffer, Integer size);
-
-         /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
-          (UTF-8).
-          \param buffer Ein Feld, das die Zeichenkette enthält.
-          \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
-          Zeichenkette übernommen werden.
-          */
-         String(const uint8* buffer, Integer size);
+         String(const char* buffer, Integer size);
 
          /*!
           \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist Unicode.
@@ -119,7 +110,7 @@ namespace jm
           Zeichenkette übernommen werden.
           \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
           */
-         String(const int8* buffer, Integer size, Charset* charset);
+         String(const char* buffer, Integer size, Charset* charset);
 
          /*!
           \brief Copy-Konstruktor
@@ -559,10 +550,10 @@ namespace jm
          friend String operator+(const String &left, const String &right);
 
          DllExport
-         friend String operator+(const int8* &left, const String &right);
+         friend String operator+(const char* &left, const String &right);
 
          DllExport
-         friend String operator+(const String &left, const int8* &right);
+         friend String operator+(const String &left, const char* &right);
 
          DllExport
          friend String operator+(int64 &left, const String &right);

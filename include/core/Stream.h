@@ -129,10 +129,10 @@ namespace jm
          /*!
           \brief Schreibt einen Buffer in die Ausgabedatei
           */
-         virtual Integer Write(uint8* buffer, Integer length) = 0;
+         virtual Integer Write(const uint8* buffer, Integer length) = 0;
          inline Integer Write(const int8* buffer, Integer length)
          {
-            return Write((uint8*)buffer, length);
+            return Write((const uint8*)buffer, length);
          };
 
          /*!

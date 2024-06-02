@@ -38,7 +38,7 @@ UTF16Decoder::UTF16Decoder(bool isBE): CharsetDecoder()
    be = isBE;
 }
 
-CharArray UTF16Decoder::Decode(const int8* cstring)
+CharArray UTF16Decoder::Decode(const char* cstring)
 {
    //Bestimme Länge
    uint32 strLength = 0;
@@ -47,17 +47,17 @@ CharArray UTF16Decoder::Decode(const int8* cstring)
    uint32 start = 0;
 
    //Prüfe auf Steuerzeichen am Anfang des cstring. Wenn vorhanden ignoriere
-   if((cstring[0]) == static_cast<int8>(0xFE) && cstring[1] == static_cast<int8>(0xFF))
+   if((cstring[0]) == 0xFE && cstring[1] == 0xFF)
    {
       cntC = 2;
       start = 2;
    }
-   else if(cstring[0] == static_cast<int8>(0xFF) && cstring[1] == static_cast<int8>(0xFE))
+   else if(cstring[0] == 0xFF && cstring[1] == 0xFE)
    {
       cntC = 2;
       start = 2;
    }
-   else if(cstring[0] == static_cast<int8>(0xEF) && cstring[1] == static_cast<int8>(0xBB) && cstring[2] == static_cast<int8>(0xBF))
+   else if(cstring[0] == 0xEF && cstring[1] == 0xBB && cstring[2] == 0xBF)
    {
       throw new Exception("UTF-8 Encoding detected.");
    }

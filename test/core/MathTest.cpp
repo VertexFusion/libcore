@@ -26,6 +26,18 @@ void MathTest::DoTest()
    std::cout << "float machine epsilon: " << FloatMaschineEpsilon() << std::endl;
    std::cout << "double machine epsilon: " << DoubleMaschineEpsilon() << std::endl;
 
+   // Test signed values
+   uint8 ui8 = 27;
+   TestTrue(ui8 == 27, "uint8 == 27 fails");
+   TestFalse(ui8 != 27, "uint8 != 27 fails");
+
+   int8 i8 = 19;
+   TestTrue(i8 == 19, "int8 == 19 fails");
+   TestFalse(i8 != 19, "int8 != 19 fails");
+   i8 = -19;
+   TestTrue(i8 == -19, "int8 == -19 fails");
+   TestFalse(i8 != -19, "int8 != -19 fails");
+
    for(uint32 a = 0; a < 5; a++)
    {
       double value = values[a];

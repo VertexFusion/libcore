@@ -62,7 +62,7 @@ namespace jm
           \param cString Der C-String, der umgewandelt werden soll.
           \return Das CharArray, welches die Unicode-codierte Repräsentation des C-Strings enthält.
           */
-         virtual CharArray Decode(const int8* cString) = 0;
+         virtual CharArray Decode(const char* cString) = 0;
 
          /*!
           \brief Diese Methode kodiert unter Verwendung der in dem Dekoder implementierten
@@ -95,7 +95,7 @@ namespace jm
           \param name Name des Zeichensatzes
           \param decoder Der Dekoder für diesen Zeichensatz
           */
-         Charset(const int8* name,
+         Charset(const char* name,
                  CharsetDecoder* decoder);
 
          /*!
@@ -135,7 +135,7 @@ namespace jm
           die Kodierung umgewandelt wurde.
           \param cString Der C-String, welcher umgewandelt werden soll.
           */
-         CharArray Decode(const int8* cString);
+         CharArray Decode(const char* cString);
 
          /*!
           \brief Diese Methode erzeugt aus einem String den entsprechenden C-String unter
@@ -167,7 +167,7 @@ namespace jm
           Es heißt aber nicht, dass automatisch Kein Zeichensatz erkannt wurde, wenn einer der
           obigen Werte zurückgegeben wurde.
           */
-         static String Guess(uint8* stream,
+         static String Guess(const char* stream,
                              Integer length);
 
       private:
@@ -215,7 +215,7 @@ namespace jm
    {
       public:
          RawDecoder();
-         CharArray Decode(const int8* cString)override;
+         CharArray Decode(const char* cString)override;
          ByteArray Encode(const CharArray &string) override;
    };
 
@@ -227,7 +227,7 @@ namespace jm
    {
       public:
          UTF8Decoder();
-         CharArray Decode(const int8* cString)override;
+         CharArray Decode(const char* cString)override;
          ByteArray Encode(const CharArray &string) override;
    };
 
@@ -242,7 +242,7 @@ namespace jm
          bool be;
       public:
          UTF16Decoder(bool isBE);
-         CharArray Decode(const int8* cString)override;
+         CharArray Decode(const char* cString)override;
          ByteArray Encode(const CharArray &string) override;
    };
 
@@ -258,7 +258,7 @@ namespace jm
       public:
          Windows1252Decoder();
          ~Windows1252Decoder();
-         CharArray Decode(const int8* cString)override;
+         CharArray Decode(const char* cString)override;
          ByteArray Encode(const CharArray &string) override;
    };
 
@@ -274,7 +274,7 @@ namespace jm
       public:
          MacRomanDecoder();
          ~MacRomanDecoder();
-         CharArray Decode(const int8* cString)override;
+         CharArray Decode(const char* cString)override;
          ByteArray Encode(const CharArray &string) override;
 
          Char DecodeCharacter(uint8 macencode);

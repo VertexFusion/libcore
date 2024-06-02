@@ -418,6 +418,11 @@ bool operator<(Integer left, int64 right)
    return left.mValue < right;
 }
 
+bool operator<(Integer left, float right)
+{
+   return left.mValue < right;
+}
+
 bool operator<(int64 left, Integer right)
 {
    return left < right.mValue;
@@ -732,6 +737,11 @@ Integer operator-(Integer left, uint16 right)
 Integer operator-(uint16 left, Integer right)
 {
    return Integer(left - right.mValue);
+}
+
+Integer operator-(Integer left, float right)
+{
+   return Integer(left.mValue - (int64)right);
 }
 
 Integer operator*(Integer left, Integer right)

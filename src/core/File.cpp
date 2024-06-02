@@ -68,7 +68,7 @@ File::File(const File &other): Stream(), Comparable<File>()
    mPathname = other.mPathname;
    mHandle = other.mHandle;
    if(mPathname.Length() > 0)SetCString();
-   else mCstr = NULL;
+   else mCstr = ByteArray();
 }
 
 
@@ -83,7 +83,7 @@ File& File::operator=(const File &another)
       mPathname = another.mPathname;
       mHandle = another.mHandle;
       if (mPathname.Length() > 0)SetCString();
-      else mCstr = NULL;
+      else mCstr = ByteArray();
    }
 
    return *this;
@@ -659,7 +659,7 @@ Integer File::ReadFully(ByteArray& buffer, Integer length)
    return read;
 }
 
-Integer File::Write(uint8* buffer, Integer length)
+Integer File::Write(const uint8* buffer, Integer length)
 {
    return fwrite(buffer, 1, length, mHandle);
 }
@@ -737,7 +737,7 @@ StringList File::GetTags()const
 	{
 		// Data is store usually as comma(,) separated list.
 		// So we just need to replace ',' by '\n'.
-		ByteArray tagList = ByteArray(buffer,result);
+		ByteArray tagList = ByteArray((int8*)buffer,result);
 		//TODO: tagList.replace(',','\n');
 	}
    #endif

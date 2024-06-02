@@ -610,7 +610,7 @@ uint8 MacRomanDecoder::EncodeCharacter(uint16 unicode)
 }
 
 
-CharArray MacRomanDecoder::Decode(const int8* cstring)
+CharArray MacRomanDecoder::Decode(const char* cstring)
 {
    //Länge bestimmen
    uint32 length = 0;

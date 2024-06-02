@@ -311,6 +311,9 @@ class DllExport Integer
       friend Integer operator-(uint16 left, Integer right);
 
       DllExport
+      friend Integer operator-(Integer left, float right);
+
+      DllExport
       friend Integer operator*(Integer left, Integer right);
 
       DllExport
@@ -411,6 +414,9 @@ class DllExport Integer
 
       DllExport
       friend bool operator<(Integer left, Double right);
+
+      DllExport
+      friend bool operator<(Integer left, float right);
 
       DllExport
       friend bool operator<(Double left, Integer right);
