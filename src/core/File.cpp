@@ -172,7 +172,7 @@ bool File::Exists() const
    return access(mCstr.ConstData(), F_OK) == 0;
 
    #elif defined _WIN32//Windows
-   if(mCstr == NULL)return false;
+   if(mCstr.Size() == 0)return false;
 
    struct stat filestat;
    int32 result = stat(mCstr.ConstData(), &filestat);

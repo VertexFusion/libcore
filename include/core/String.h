@@ -40,6 +40,7 @@
 #include "ByteArray.h"
 #include "CharArray.h"
 #include "Integer.h"
+#include "Double.h"
 
 namespace jm
 {
@@ -663,14 +664,6 @@ namespace jm
          bool ArgIndicies(Integer &first, Integer &second);
 
    };
-
-   /*!
-    \brief Methode wandelt einen String in einen Float-Wert um.
-    \param str Die Zeichenkette, z.B. "1.23", die in eine Gleitkommazahl umgewandelt werden soll.
-    \return Die gewünschte Gleitkommazahl.
-    */
-   extern DllExport
-   double StrToDouble(const String &str);
 
    /*!
     \brief Methode wandelt einen String in einen Float-Wert um.

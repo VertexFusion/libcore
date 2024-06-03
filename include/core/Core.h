@@ -52,6 +52,7 @@
 #include "DiffDistance.h"
 #include "DiffInfo.h"
 #include "Document.h"
+#include "Double.h"
 #include "Exception.h"
 #include "Geometry.h"
 #include "I18nBundle.h"

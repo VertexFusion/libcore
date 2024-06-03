@@ -1212,23 +1212,13 @@ namespace jm
 
 }
 
-double jm::StrToDouble(const String &str)
-{
-   ByteArray cstr = str.ToCString();
-   std::stringstream ss;
-   double d = 0;
-   ss << cstr.ConstData();
-   ss >> d;
-   return d;
-}
-
 double jm::ConvertToDouble(String str)
 {
    for(uint32 a = 0; a < str.Length(); a++)
    {
       if(str.CharAt(a) == ',') str.SetCharAt(a, '.');
    }
-   return StrToDouble(str);
+   return Double::ValueOf(str);
 }
 
 String jm::URLDecode(const String &str)

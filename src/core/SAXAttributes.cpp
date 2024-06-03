@@ -144,12 +144,12 @@ String SAXAttributes::GetValue(const String &qname) const
 
 int32 SAXAttributes::GetIntValue(const String &qname) const
 {
-   return (int32) Integer::ValueOf(GetValue(qname));
+   return Integer::ValueOf(GetValue(qname)).Int32();
 }
 
 float SAXAttributes::GetFloatValue(const String &qname) const
 {
-   return (float) StrToDouble(GetValue(qname));
+   return (float)Double::ValueOf(GetValue(qname));
 }
 
 bool SAXAttributes::GetBoolValue(const String &qname)const
