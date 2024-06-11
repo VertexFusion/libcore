@@ -61,7 +61,7 @@ namespace jm
          \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
          \param mode Der Modus zum öffnen.
          */
-         void Open(FileMode mode) override;
+         VxfErrorStatus Open(FileMode mode) override;
 
          /*!
           \brief Status, ob die Datei geöffnet ist
