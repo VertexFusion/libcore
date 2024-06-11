@@ -228,7 +228,7 @@ namespace jm
           \brief Öffnet die Datei um Lese- oder Schreiboperationen an ihr vorzunehmen
           \param mode Der Modus zum öffnen.
           */
-         void Open(FileMode mode) override;
+         VxfErrorStatus Open(FileMode mode) override;
 
          /*!
           \brief Status, ob die Datei geöffnet ist

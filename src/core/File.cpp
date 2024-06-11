@@ -558,7 +558,7 @@ bool File::CreateNewFile()
    return ret == 0;
 }
 
-void File::Open(FileMode mode)
+VxfErrorStatus File::Open(FileMode mode)
 {
    Integer ret = 0;
 
@@ -597,12 +597,13 @@ void File::Open(FileMode mode)
 
    if(mHandle == NULL)
    {
-      if(errno == EACCES)throw new Exception(Tr("Permission denied! \"%1\"").Arg(mPathname));
-      if(errno == ENOENT)throw new Exception(Tr("File not found! \"%1\"").Arg(mPathname));
-      if(errno == ETIMEDOUT)throw new Exception(Tr("Connection timed out! \"%1\"").Arg(mPathname));
-      if(errno == ENOTDIR)throw new Exception(Tr("Not a directory \"%1\"").Arg(mPathname));
+      if(errno == EACCES)return eNotAllowed;
+      if(errno == ENOENT)return  eNotFound;
+      if(errno == ETIMEDOUT)return eTimeout;
+      if(errno == ENOTDIR)return eNoDirectory;
       throw new Exception(Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno)));
    }
+   return eOK;
 }
 
 bool File::IsOpen()

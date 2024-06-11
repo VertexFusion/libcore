@@ -187,6 +187,11 @@ namespace jm
       eNotImplemented,		/*!< Operation not done. Not implemented. */
       eNullPointer,			/*!< Operation not done. Null pointer found. */
       eIndexOutOfBounds,	/*!< Operation not done. Array overflow underflow and similar */
+      eNotFound,				/*!< Operation not done. The entry you are looking for was not found. */
+      eTimeout,            /*!< Operation not done. A timepout occured. */
+
+      // File
+      eNoDirectory,
 
       // DWG related
       eNullHandle,			/*!< Operation not done. Null handle found. */
@@ -200,7 +205,6 @@ namespace jm
 										  code is mapped to another data type, or you try to name a colour
 										  although the colour name is not defined in a colour book. */
       eInvalidInput,			/*!< Operation not done. Input is invalid. */
-      eNotFound,				/*!< Operation not done. The entry you are looking for was not found. */
       eNotChanged,			/*!< Operation not done. Value not changed. Often not really an error,
 										  but a notice. */
 
