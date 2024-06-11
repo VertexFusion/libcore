@@ -56,7 +56,12 @@ void I18nBundle::AppendMO(File file)
    // Read file from disk
    Integer length = file.Length();
    ByteArray buf = ByteArray(length, 0);
-   file.Open(kFmRead);
+   VxfErrorStatus status = file.Open(kFmRead);
+   if (status != eOK)
+   {
+      System::Log(Tr("Cannot open file: %1").Arg(file.GetPath()), kLogError);
+      return;
+   }
    Integer check = file.Stream::ReadFully(buf);
    file.Close();
 
