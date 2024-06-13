@@ -140,7 +140,7 @@ namespace jm
       CharArray();
 
       /*!
-       \brief Constructor create an unitialized array.
+       \brief Constructor create an uninitialized array.
        \param length The length of the array
        */
       CharArray(Integer length);

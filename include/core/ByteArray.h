@@ -40,7 +40,7 @@ namespace jm
 {
 
    /*!
-    \brief Represents a byte array and provide convinient metods for accessing the data.
+    \brief Represents a byte array and provide convenient methods for accessing the data.
     The Byte array is always \0 terminated.
     */
    class DllExport ByteArray : public Object

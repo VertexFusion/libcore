@@ -182,13 +182,13 @@ namespace jm
       eYes = 1,      /*!< Same meaning as a bool "true" (same as eOK) */
 
       // General Errors
-      eError,					/*!< Operation not done. Unspecified error occured. */
+      eError,					/*!< Operation not done. Unspecified error occurred. */
       eNotAllowed,			/*! < Operation not allowed. */
       eNotImplemented,		/*!< Operation not done. Not implemented. */
       eNullPointer,			/*!< Operation not done. Null pointer found. */
       eIndexOutOfBounds,	/*!< Operation not done. Array overflow underflow and similar */
       eNotFound,				/*!< Operation not done. The entry you are looking for was not found. */
-      eTimeout,            /*!< Operation not done. A timepout occured. */
+      eTimeout,            /*!< Operation not done. A timepout occurred. */
 
       // File
       eNoDirectory,
@@ -198,7 +198,7 @@ namespace jm
       eDuplicatHandle,		/*!< Operation not done. Duplicate handle found. */
       eOwnerMismatch,		/*!< Operation not done. Owner of object points to invalid owner. */
 
-      eDuplicateKey,			/*!< Operation not done. Duplicate key found. E.g. becaue you try to
+      eDuplicateKey,			/*!< Operation not done. Duplicate key found. E.g. because you try to
 									     name a new DwgLayer with a name, a layer already exists. */
       eInvalidKey,			/*!< Operation not done. Key has invalid value. E.g. because you try to
 										  use a group code in a DwgXRecord for a specific datatype, but the

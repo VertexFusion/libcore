@@ -503,11 +503,11 @@ namespace jm
 
          static void SetConsoleCharset(Charset* cs);
 
-         //Operatoren
+         // Operators
          String& operator=(const String &another);
          String& operator+=(const String &another);
 
-         //Freunde
+         // Friends
          DllExport
          friend bool operator==(String const &v1, String const &v2);
 
@@ -579,14 +579,14 @@ namespace jm
 
          /*
           *
-          * STATISCHE METHODEN
+          * STATIC METHODS
           *
           */
 
          /*!
-            \brief Methode wandelt einen double-Wert in einen String um.
-            \param number Die double-Zahl, welche in einen String umgewandelt werden soll.
-            \return Einen String, der die übergebene Zahl darstellt. Z.B. "12.23" oder "24.0".
+            \brief Converts a double into a string.
+            \param number The double value.
+            \return A string representing the double value. eg. "12.23" or "24.0".
             */
          static String ValueOf(double number);
 
@@ -600,9 +600,9 @@ namespace jm
 
 
          /*!
-          \brief Methode wandelt einen Integer-Wert in einen String um.
-          \param number Die Integer-Zahl, welche in einen String umgewandelt werden soll.
-          \return Einen String, der die übergebene Zahl darstellt. Z.B. "12" oder "24".
+          \brief Converts a integer into a string.
+          \param number The value
+          \return A String representing the int value. eg. "12" or "24".
           */
          static String ValueOf(int64 number);
          static String ValueOf(uint64 number);
@@ -610,53 +610,43 @@ namespace jm
          static String ValueOf(uint32 number);
 
          /*!
-          \brief Methode wandelt einen boolean-Wert in einen String um.
-          \param value Der Wahrheitswert, der umgewandelt werden soll.
-          \return "true" bei true und "false" bei false.
+          \brief Converts a bool value into a string.
+          \param value The value.
+          \return "true" if true and "false" if false.
           */
          static String ValueOf(bool value);
 
          /*!
-          \brief Gibt OS-Abhängigen Zeilentrenner zurück
+          \brief Returns operation system dependent line separator.
           */
          static String LineSeparator();
 
          /*!
-          \brief Diese Methode prüft, ob der String die Kapazität hat um noch soviele Bytes
-          vergrößert zu werden.
-          Es wird das Array ggf. Vergrößert.
+          \brief This method checks, if the string has the capacity to hold more bytes.
+          If not, the array will be enlarged.
+          \param more The number of additional bytes.
           */
          void CheckCapacity(Integer more);
 
       private:
 
-         /*!
-          \brief Dieses Feld speichert den Inhalt der Zeichenkette, wobei die Länge des Feldes
-          deutlich größer als die Länge der Zeichenkette sein kann. Grundsätzlich werden die Zeichen
-          Unicodekodiert. Gültige Zeichen liegen in dem Bereich 0x0000 - 0xFFFF. Zur Zeit werden nur
-          die Zeichen in der 0.-Unicode-Ebene unterstützt.
-          */
+         //! This char array stores the content of the string. The length of the string can be
+         //! bigger than the string itself. In principle, the characters are unicode encoded.
+         //! Valid values are in the range of 0x0000 - 0xFFFF. 
          Char* mValue;
 
-         /*!
-          \brief Die tatsächliche Länge des Arrays
-          */
+         //! Length of array.
          Integer mArrLength;
 
-         /*!
-          \brief Die Länge der Zeichenkette
-          */
+         //! Length of string.
          Integer mStrLength;
 
-         /*!
-          \brief Der Hashwert für Hash-Operationen.
-          Wenn dieser Wert 0 ist, wurde er noch nicht initialisiert.
-          */
+         //! Stored hashvalue for operation. Is 0 if not initialized.
          int32 mHash;
 
          /*!
-          \brief Diese Methode kopiert den Inhalt des CharArrays in diese Zeichenkette.
-          \param array Das CharArray, welches in diese Zeichenkette kopiert werden soll.
+          \brief This method copies the content of CharArrays into this string.
+          \param array The source CharArray.
           */
          void Copy(const CharArray &array);
 
@@ -666,11 +656,12 @@ namespace jm
    };
 
    /*!
-    \brief Methode wandelt einen String in einen Float-Wert um.
-    \discussion Die Methode verhält sich analog zu strToDouble, allerdings werden
-    als Dezimaltrenner sowohl ein Punkt, als auch ein Komma akzeptiert.
-    \param str Die Zeichenkette, z.B. "1.23", die in eine Gleitkommazahl umgewandelt werden soll.
-    \return Die gewünschte Gleitkommazahl.
+    \brief Method converts a String into a double.
+    
+    This method is similar to Double::ValueFrom(), but as a decimal divider a point
+    or a comma is accepted.
+    \param str The string in form: "1.23".
+    \return The expected double number.
     */
    extern DllExport
    double ConvertToDouble(String str);
