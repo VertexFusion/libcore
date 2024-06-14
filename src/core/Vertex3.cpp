@@ -56,7 +56,9 @@ Vertex3::Vertex3(const Vertex2 xy, double z_)
 
 Vertex3 Vertex3::CrossProduct(const Vertex3 &another) const
 {
-   return Vertex3(y * another.z - z * another.y, z * another.x - x * another.z, x * another.y - y * another.x);
+   return Vertex3(y * another.z - z * another.y,
+                  z * another.x - x * another.z,
+                  x * another.y - y * another.x);
 }
 
 double Vertex3::DotProduct(const Vertex3 &another) const
@@ -140,12 +142,16 @@ void Vertex3::Rotate(double angle, const Vertex3 &axis)
 
 Vertex3 &Vertex3::Normalize()
 {
-   return *this = *this * (1.0 / Abs());
+   double abs = Abs();
+   if (jm::IsEqual(abs, 0.0))return *this;
+   return *this = *this * (1.0 / abs);
 }
 
 Vertex3 Vertex3::Normalized() const
 {
-   return *this * (1.0 / Abs());
+   double abs = Abs();
+   if (jm::IsEqual(abs, 0.0))return *this;
+   return *this * (1.0 / abs);
 }
 
 Vertex3 Vertex3::Scale(const Vertex3 &another)const

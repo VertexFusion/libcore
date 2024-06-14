@@ -166,14 +166,16 @@ namespace jm
          void Rotate(double angle, const Vertex3 &axis);
 
          /*!
-          \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die
-          Länge 1. Es wird die Referenz auf diesen Vektor zurückgegeben.
+          \brief  This method normalises the vector. A normalised vector has a length of 1 and the
+          reference to this vector is returned.
+          \note If this vector has the length (nearly) 0, it is returned unchanged.
           */
          Vertex3& Normalize();
 
          /*!
-          \brief Diese Methode gibt einen normalisierten Vektor zurück. Ein normalisierter Vektor
-          besitzt die Länge 1. Dieser Vector wird dabei nicht geändert
+          \brief This method returns a normalised vector. A normalised vector has a length of 1.
+          This vector is not changed in the process.
+          \note If this vector has the length (nearly) 0, it is returned unchanged.
          */
          Vertex3 Normalized() const;
 
