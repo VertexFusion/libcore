@@ -1093,6 +1093,9 @@ File jm::UserDir()
 File jm::CurrentDir()
 {
    #ifdef __APPLE__ //macOS and ios
+   char cwd[PATH_MAX];
+   getcwd(cwd, sizeof(cwd));
+   return File(cwd);
    #elif defined __linux__ //Linux
    char cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));

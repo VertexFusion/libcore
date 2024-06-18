@@ -86,6 +86,8 @@
 		C64322E92B9BB90900D75F5E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919B2AEF006B0085300B /* CoreServices.framework */; };
 		C64322EA2B9BB90E00D75F5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C64DDBFE2B768F01008ED3A4 /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */; };
+		C68CE9AD2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
+		C68CE9AE2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
 		C699222B2AF7AA660099AEC0 /* Diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90972AEEFC550085300B /* Diff.cpp */; };
 		C699222C2AF7AA660099AEC0 /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
@@ -451,6 +453,7 @@
 		C64321E22B9BB73800D75F5E /* libJameoCoreStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJameoCoreStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ByteArray.cpp; path = src/core/ByteArray.cpp; sourceTree = "<group>"; };
 		C651C3132B97D9C90043D289 /* ByteArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByteArray.h; path = include/core/ByteArray.h; sourceTree = "<group>"; };
+		C68CE9AC2C1B8F8400A2B981 /* Double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Double.cpp; path = src/core/Double.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
@@ -578,6 +581,7 @@
 		C62B905D2AEEFC4B0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C68CE9AC2C1B8F8400A2B981 /* Double.cpp */,
 				C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */,
 				C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */,
 				C62B907D2AEEFC550085300B /* AutoreleasePool.cpp */,
@@ -879,6 +883,7 @@
 				C64321F92B9BB75000D75F5E /* Extents.cpp in Sources */,
 				C64321FA2B9BB75000D75F5E /* File.cpp in Sources */,
 				C64321FB2B9BB75000D75F5E /* Geometry.cpp in Sources */,
+				C68CE9AE2C1B8F8400A2B981 /* Double.cpp in Sources */,
 				C64321FC2B9BB75000D75F5E /* Hashtable.cpp in Sources */,
 				C64321FD2B9BB75000D75F5E /* I18nBundle.cpp in Sources */,
 				C64321FE2B9BB75000D75F5E /* Inflater.cpp in Sources */,
@@ -949,6 +954,7 @@
 				C69922602AF7AA660099AEC0 /* StringTokenizer.cpp in Sources */,
 				C69922302AF7AA660099AEC0 /* Inflater.cpp in Sources */,
 				C69922572AF7AA660099AEC0 /* URI.cpp in Sources */,
+				C68CE9AD2C1B8F8400A2B981 /* Double.cpp in Sources */,
 				C69922312AF7AA660099AEC0 /* UndoManager.cpp in Sources */,
 				C69922562AF7AA660099AEC0 /* XMLWriter.cpp in Sources */,
 				C699223E2AF7AA660099AEC0 /* Geometry.cpp in Sources */,

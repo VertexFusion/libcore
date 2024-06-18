@@ -181,13 +181,17 @@ String Charset::Guess(const char* stream, Integer length)
 
 
    //UTF-16BE
-   if(stream[0] == 0xFE && stream[1] == 0xFF)return "UTF-16BE";
+   if(stream[0] == static_cast<char>(0xFE) &&
+      stream[1] == static_cast<char>(0xFF))return "UTF-16BE";
 
    //UTF-16LE
-   else if(stream[0] == 0xFF && stream[1] == 0xFE)return "UTF-16LE";
+   else if(stream[0] == static_cast<char>(0xFF) &&
+           stream[1] == static_cast<char>(0xFE))return "UTF-16LE";
 
    //UTF-8
-   else if(stream[0] == 0xEF && stream[1] == 0xBB && stream[2] == 0xBF)return "UTF-8";
+   else if(stream[0] == static_cast<char>(0xEF) &&
+           stream[1] == static_cast<char>(0xBB) &&
+           stream[2] == static_cast<char>(0xBF))return "UTF-8";
 
    //
    // Check for UTF-16

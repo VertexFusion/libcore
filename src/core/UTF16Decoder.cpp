@@ -47,17 +47,21 @@ CharArray UTF16Decoder::Decode(const char* cstring)
    uint32 start = 0;
 
    //Prüfe auf Steuerzeichen am Anfang des cstring. Wenn vorhanden ignoriere
-   if((cstring[0]) == 0xFE && cstring[1] == 0xFF)
+   if(cstring[0] == static_cast<char>(0xFE) &&
+      cstring[1] == static_cast<char>(0xFF))
    {
       cntC = 2;
       start = 2;
    }
-   else if(cstring[0] == 0xFF && cstring[1] == 0xFE)
+   else if(cstring[0] == static_cast<char>(0xFF) &&
+           cstring[1] == static_cast<char>(0xFE))
    {
       cntC = 2;
       start = 2;
    }
-   else if(cstring[0] == 0xEF && cstring[1] == 0xBB && cstring[2] == 0xBF)
+   else if(cstring[0] == static_cast<char>(0xEF) &&
+           cstring[1] == static_cast<char>(0xBB) &&
+           cstring[2] == static_cast<char>(0xBF))
    {
       throw new Exception("UTF-8 Encoding detected.");
    }
