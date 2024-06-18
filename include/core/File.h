@@ -388,6 +388,12 @@ namespace jm
    extern DllExport
    File UserDir();
 
+   /*!
+    \brief This method returns the current directory.
+    */
+   extern DllExport
+   File CurrentDir();
+
 }
 
 

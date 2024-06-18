@@ -120,8 +120,14 @@ void Preferences::Store(File file)
       {
          jm::File dir = jm::File(file.GetParent());
          if(dir.Exists() == false)dir.MakeDirectory();
+         file.CreateNewFile();
       }
-      file.Open(kFmWrite);
+      VxfErrorStatus status = file.Open(kFmWrite);
+      if(status!=eOK)
+      {
+         jm::System::Log(Tr("cannot store preferences in '%1'").Arg(file.GetAbsolutePath()),jm::kLogError);
+         return;
+      }
 
       Iterator* keys = Keys();
 

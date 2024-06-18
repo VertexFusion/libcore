@@ -560,8 +560,6 @@ bool File::CreateNewFile()
 
 VxfErrorStatus File::Open(FileMode mode)
 {
-   Integer ret = 0;
-
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    switch(mode)
    {
@@ -577,7 +575,6 @@ VxfErrorStatus File::Open(FileMode mode)
          mHandle = fopen(mCstr.ConstData(), "rb+");
          break;
    }
-   ret = mHandle != NULL;
    #elif defined _WIN32 //Windows
    switch(mode)
    {
@@ -597,11 +594,14 @@ VxfErrorStatus File::Open(FileMode mode)
 
    if(mHandle == NULL)
    {
+      String msg=Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno));
+      jm::System::Log(msg,jm::kLogError);
+      
       if(errno == EACCES)return eNotAllowed;
       if(errno == ENOENT)return  eNotFound;
       if(errno == ETIMEDOUT)return eTimeout;
       if(errno == ENOTDIR)return eNoDirectory;
-      throw new Exception(Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno)));
+      throw new Exception(msg);
    }
    return eOK;
 }
@@ -1088,5 +1088,16 @@ File jm::UserDir()
    return File();
    #endif
 
+}
+
+File jm::CurrentDir()
+{
+   #ifdef __APPLE__ //macOS and ios
+   #elif defined __linux__ //Linux
+   char cwd[PATH_MAX];
+   getcwd(cwd, sizeof(cwd));
+   return File(cwd);
+   #elif defined _WIN32 //Windows
+   #endif
 }
 
