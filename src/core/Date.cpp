@@ -367,7 +367,7 @@ bool Date::IsEmpty() const
    return mTime == EMPTY;
 }
 
-int64 Date::GetTime() const
+int64 Date::Time() const
 {
    return mTime;
 }
@@ -377,22 +377,22 @@ void Date::SetTime(int64 t)
    mTime = t;
 }
 
-int64 Date::GetYear() const
+int64 Date::Year() const
 {
    return YearFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCYear() const
+int64 Date::UTCYear() const
 {
    return YearFromTime(mTime);
 }
 
-int64 Date::GetMonth() const
+int64 Date::Month() const
 {
    return MonthFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCMonth() const
+int64 Date::UTCMonth() const
 {
    return MonthFromTime(mTime);
 }
@@ -466,7 +466,7 @@ String Date::ToString() const
 {
    char pre[] = "0000-00-00T00:00:00.000Z\0";
 
-   int year = GetUTCYear() % 10000;
+   int year = UTCYear() % 10000;
    pre[0] = static_cast<char>('0' + year / 1000);
    year = year % 1000;
    pre[1] = static_cast<char>('0' + year / 100);
@@ -474,7 +474,7 @@ String Date::ToString() const
    pre[2] = static_cast<char>('0' + year / 10);
    pre[3] = static_cast<char>('0' + year % 10);
 
-   int month = 1 + GetUTCMonth() % 100;
+   int month = 1 + UTCMonth() % 100;
    pre[5] = static_cast<char>('0' + month / 10);
    pre[6] = static_cast<char>('0' + month % 10);
 

@@ -149,7 +149,7 @@ namespace jm
          /*!
           \brief Gibt die Zeit in Millisekunden seit Mitternacht des 01.01.1970 in UTC zurück
           */
-         int64 GetTime() const;
+         int64 Time() const;
 
          /*!
           \brief Legt die Zeit in Millisekunden seit Mitternach des 01.01.1970 in UTC fest.
@@ -160,23 +160,23 @@ namespace jm
          /*!
           \brief Gibt das Jahr in lokaler Zeit zurück
           */
-         int64 GetYear() const;
+         int64 Year() const;
 
          /*!
           \brief Gibt das Jahr in UTC-Zeit zurück
           */
-         int64 GetUTCYear() const;
+         int64 UTCYear() const;
 
          /*!
           \brief Gibt den Monat in lokaler Zeit zurück.
           \note Die Zahl ist im Bereich 0-11
           */
-         int64 GetMonth() const;
+         int64 Month() const;
 
          /*!
           \brief Gibt den Monat in UTC-Zeit zurück
           */
-         int64 GetUTCMonth() const;
+         int64 UTCMonth() const;
 
          /*!
           \brief Gibt den Tag im Monat in lokaler Zeit zurück

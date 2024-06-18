@@ -201,11 +201,11 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
       case kYear:
          if(length == 2)
          {
-            int64 y = date.GetYear() % 100;
+            int64 y = date.Year() % 100;
             if(y < 10)value.Append('0');
             value.Append(String::ValueOf(y));
          }
-         else value.Append(String::ValueOf(date.GetYear()));
+         else value.Append(String::ValueOf(date.Year()));
          return;
 
       case kHourInDay0:
@@ -366,17 +366,17 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
       case kMonthInYear:
          if(length == 1)
          {
-            value.Append(String::ValueOf(date.GetMonth() + 1));
+            value.Append(String::ValueOf(date.Month() + 1));
          }
          else if(length == 2)
          {
-            int64 m = date.GetMonth() + 1;
+            int64 m = date.Month() + 1;
             if(m < 10)value.Append('0');
             value.Append(String::ValueOf(m));
          }
          else if(length == 3)
          {
-            switch(date.GetMonth())
+            switch(date.Month())
             {
                case Date::JANUARY:
                   value.Append("Jan");
@@ -429,7 +429,7 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          }
          else
          {
-            switch(date.GetMonth())
+            switch(date.Month())
             {
                case Date::JANUARY:
                   value.Append("Januar");
