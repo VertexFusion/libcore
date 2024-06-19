@@ -39,7 +39,7 @@ Extents::Extents()
    mPtMax = Vertex3(-1E90, -1E90, -1E90);
 }
 
-void Extents::Add(const Vertex2& pt)
+void Extents::add(const Vertex2& pt)
 {
    mPtMin.x = Min(mPtMin.x, pt.x);
    mPtMin.y = Min(mPtMin.y, pt.y);
@@ -48,7 +48,7 @@ void Extents::Add(const Vertex2& pt)
    mPtMax.y = Max(mPtMax.y, pt.y);
 }
 
-void Extents::Add(const Vertex3& pt)
+void Extents::add(const Vertex3& pt)
 {
    mPtMin.x = std::min(mPtMin.x, pt.x);
    mPtMin.y = std::min(mPtMin.y, pt.y);
@@ -59,25 +59,25 @@ void Extents::Add(const Vertex3& pt)
    mPtMax.z = std::max(mPtMax.z, pt.z);
 }
 
-void Extents::Add(const Extents& ext)
+void Extents::add(const Extents& ext)
 {
-   if(!ext.IsValid())return;
+   if(!ext.isValid())return;
 
-   Add(ext.mPtMin);
-   Add(ext.mPtMax);
+   add(ext.mPtMin);
+   add(ext.mPtMax);
 }
 
-Vertex3 Extents::GetMinPoint()const
+const Vertex3& Extents::minPoint()const
 {
    return mPtMin;
 }
 
-Vertex3 Extents::GetMaxPoint()const
+const Vertex3& Extents::maxPoint()const
 {
    return mPtMax;
 }
 
-bool Extents::IsValid()const
+bool Extents::isValid()const
 {
    return mPtMin.x < 1E89;
 }

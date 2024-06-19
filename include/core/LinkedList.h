@@ -50,7 +50,7 @@ namespace jm
 
          LListElement();
 
-         jm::String GetDisplayName() const override
+         jm::String displayName() const override
          {
             return "jm::LListElement";
          };
@@ -104,7 +104,7 @@ namespace jm
          /*!
           \brief Destructor für die verkettete Liste. Hier werden alle Variabeln gelöscht
           \warning If you use the LinkedList together with UndoManager, you must call
-          LinkedList::Clear() with the UndoManager object to erase the objects gracefully.
+          LinkedList::clear() with the UndoManager object to erase the objects gracefully.
           Alternatively you can call UndoManager::ClearStacks() to get the same effect.
           Otherwise memory errors occur.
           */
@@ -113,43 +113,43 @@ namespace jm
          /*!
           \brief Diese Methode gibt wahr zurück, wenn ein nächstes Element in der Liste vorhanden ist
           */
-         bool HasNext();
+         bool hasNext();
          /*!
           \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-          Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
+          Das nächste Element kann NULL sein, aber dann wird hasNext() falsch zurückgeben.
           */
-         Object* Next();
+         Object* next();
 
          /*!
           \brief Gibt das erste Element der Liste zurück
           */
-         Object* First();
+         Object* first() const;
 
          /*!
           \brief Gibt das letzte Element der Liste zurück
           */
-         Object* Last();
+         Object* last() const;
 
-         void Rewind();
+         void rewind();
 
-         void Clear(UndoManager* um);
+         void clear(UndoManager* um);
 
-         /*LListElement**/void Add(Object* data, UndoManager* um);
+         void add(Object* data, UndoManager* um);
 
-         void AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
+         void addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
 
-         void Remove(const Object* data, UndoManager* um);
+         void remove(const Object* data, UndoManager* um);
 
-         void SwapData(Object* data1, Object* data2, UndoManager* um);
+         void swapData(Object* data1, Object* data2, UndoManager* um);
 
          /*!
           \brief Returns the number of entries in this list.
           */
-         uint32 Size() const;
+         uint32 size() const;
 
-         LinkedListIterator GetIterator() const;
+         LinkedListIterator iterator() const;
 
-         jm::String GetDisplayName() const override
+         jm::String displayName() const override
          {
             return "jm::LinkedList";
          };
@@ -168,15 +168,15 @@ namespace jm
 
          /*!
          	\brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-         	Das nächste Element kann NULL sein, aber dann wird HasNext() falsch zurückgeben.
+         	Das nächste Element kann NULL sein, aber dann wird hasNext() falsch zurückgeben.
          	*/
-         LListElement* NextElement();
+         LListElement* nextElement();
 
-         void Add(LListElement* item, UndoManager* um);
+         void add(LListElement* item, UndoManager* um);
 
-         void AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
+         void addBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
 
-         void Remove(LListElement* element, UndoManager* um);
+         void remove(LListElement* element, UndoManager* um);
 
    };
 

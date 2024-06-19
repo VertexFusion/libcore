@@ -240,7 +240,7 @@ namespace jm
     \return true, wenn die Vektoren linear unabhängig sind.
     */
    DllExport
-   bool IsLinearIndependent(const Vertex3 &v1, const Vertex3 &v2, const Vertex3 &v3);
+   bool isLinearIndependent(const Vertex3 &v1, const Vertex3 &v2, const Vertex3 &v3);
 
 
    /*!
@@ -263,28 +263,34 @@ namespace jm
    {
       public:
 
+      /*!
+       \brief Constructor.
+       */
          Extents();
 
          /*!
           \brief Expand the box to also enclose the point pt.
           */
-         void Add(const Vertex2& pt);
+         void add(const Vertex2& pt);
 
          /*!
          	\brief Expand the box to also enclose the point pt.
          	*/
-         void Add(const Vertex3& pt);
+         void add(const Vertex3& pt);
 
          /*!
           \brief Expand the box to also enclode the box ext.
           If the other box is invalid (no point was added), then it will be ignored.
           */
-         void Add(const Extents& ext);
+         void add(const Extents& ext);
 
-         Vertex3 GetMinPoint()const;
-         Vertex3 GetMaxPoint()const;
+         const Vertex3& minPoint()const;
+         const Vertex3& maxPoint()const;
 
-         bool IsValid()const;
+         /*!
+          \brief Returns true, if the Extent has collected at minimum 1 point.
+          */
+         bool isValid()const;
 
       private:
 

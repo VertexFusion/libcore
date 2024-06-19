@@ -70,10 +70,10 @@ void ZipOutputFile::Close()
    uint32 start = static_cast<uint32>(mFile->GetPosition());
 
    //Schreibe Finales Verzeichnis
-   mEntries.Rewind();
-   while(mEntries.HasNext())
+   mEntries.rewind();
+   while(mEntries.hasNext())
    {
-      ZipEntry* entry = (ZipEntry*)mEntries.Next();
+      ZipEntry* entry = (ZipEntry*)mEntries.next();
 
       ByteArray cname = entry->mName.ToCString();
       ByteArray cextra = entry->mExtra.ToCString();
@@ -112,8 +112,8 @@ void ZipOutputFile::Close()
    jm::SerializeLEInt32(eof, 0, 0x06054b50);//Signature
    jm::SerializeLEInt16(eof, 4, 0);//Number of Disks
    jm::SerializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
-   jm::SerializeLEInt16(eof, 8, (int16)mEntries.Size()); //Number of Central directory records on this disk
-   jm::SerializeLEInt16(eof, 10, (int16)mEntries.Size());//Total Number of Central directory records
+   jm::SerializeLEInt16(eof, 8, (int16)mEntries.size()); //Number of Central directory records on this disk
+   jm::SerializeLEInt16(eof, 10, (int16)mEntries.size());//Total Number of Central directory records
    jm::SerializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
    jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
    jm::SerializeLEInt16(eof, 20, 0);//Comment Length.
@@ -125,7 +125,7 @@ void ZipOutputFile::Close()
 
 void ZipOutputFile::CloseEntry()
 {
-   ZipEntry* entry = (ZipEntry*)mEntries.Last();
+   ZipEntry* entry = (ZipEntry*)mEntries.last();
 
    entry->mUncompressedSize = static_cast<uint32>(mTemp->GetPosition());
    mTemp->Seek(0);
@@ -158,7 +158,7 @@ void ZipOutputFile::CloseEntry()
 
 void ZipOutputFile::WriteAndClose(jm::File* file)
 {
-   ZipEntry* entry = static_cast<ZipEntry*>(mEntries.Last());
+   ZipEntry* entry = static_cast<ZipEntry*>(mEntries.last());
 
    entry->mUncompressedSize = static_cast<uint32>(file->Length());
    file->Open(kFmRead);
@@ -222,7 +222,7 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
    mTemp->CreateNewFile();
    mTemp->Open(kFmReadWrite);
 
-   mEntries.Add(entry, NULL);
+   mEntries.add(entry, NULL);
 }
 
 void ZipOutputFile::Write(uint8* data, Integer offset, Integer length)

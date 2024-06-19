@@ -108,7 +108,7 @@ Integer DiffDiag::GetEntry(Integer j)
       Object* o1 = GetObjU(i);
       Object* o2 = GetObjV(i);
 
-      if(o1->Equals(o2))
+      if(o1->equals(o2))
       {
          x = lu;
       }

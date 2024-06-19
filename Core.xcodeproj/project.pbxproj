@@ -86,6 +86,7 @@
 		C64322E92B9BB90900D75F5E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919B2AEF006B0085300B /* CoreServices.framework */; };
 		C64322EA2B9BB90E00D75F5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C64DDBFE2B768F01008ED3A4 /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */; };
+		C65510DC2C22294D00480B5E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65510DB2C22294D00480B5E /* CoreFoundation.framework */; };
 		C68CE9AD2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
 		C68CE9AE2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
@@ -453,6 +454,8 @@
 		C64321E22B9BB73800D75F5E /* libJameoCoreStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJameoCoreStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ByteArray.cpp; path = src/core/ByteArray.cpp; sourceTree = "<group>"; };
 		C651C3132B97D9C90043D289 /* ByteArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByteArray.h; path = include/core/ByteArray.h; sourceTree = "<group>"; };
+		C65510DB2C22294D00480B5E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C68CE9AC2C1B8F8400A2B981 /* Double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Double.cpp; path = src/core/Double.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65510DC2C22294D00480B5E /* CoreFoundation.framework in Frameworks */,
 				C64322EA2B9BB90E00D75F5E /* libz.tbd in Frameworks */,
 				C64322E92B9BB90900D75F5E /* CoreServices.framework in Frameworks */,
 			);
@@ -716,6 +720,8 @@
 		C62B919A2AEF006B0085300B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C65510DD2C222A0C00480B5E /* Cocoa.framework */,
+				C65510DB2C22294D00480B5E /* CoreFoundation.framework */,
 				C62B919D2AEF008A0085300B /* libz.tbd */,
 				C62B919B2AEF006B0085300B /* CoreServices.framework */,
 			);
@@ -1070,7 +1076,7 @@
 					include,
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1132,7 +1138,7 @@
 					include,
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -1161,7 +1167,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TAPI_LANGUAGE = "c++";
@@ -1174,7 +1180,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TAPI_LANGUAGE = "c++";

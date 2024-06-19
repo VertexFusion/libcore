@@ -63,32 +63,32 @@ namespace jm
           \brief Decreases the reference counter and releases the object immediately when the
           reference counter becomes 0.
           */
-         void Release();
+         void release();
 
          /*!
           \brief Increases the reference counter of this object by 1.
           \note An object is automatically released when the reference counter becomes 0.
           \return Reference to this object.
           */
-         Object* Retain();
+         Object* retain();
 
          /*!
-          \brief Same function as Release(), but releases the object with a delay if the reference
-          counter is 0. AutoreleasePool::Drain() must be called in the to release the object.
+          \brief Same function as release(), but releases the object with a delay if the reference
+          counter is 0. AutoreleasePool::drain() must be called in the to release the object.
           \return Reference to this object.
           */
-         Object* Autorelease();
+         Object* autorelease();
 
          /*!
           \brief Returns the value of the reference counter.
           */
-         int32 GetReferenceCount() const;
+         int32 referenceCount() const;
 
          /*!
           \brief Comparison of objects.
           \param other The object to compare with.
           */
-         virtual bool Equals(const Object* other) const;
+         virtual bool equals(const Object* other) const;
 
          /*!
           \brief Returns the display name of the object intended to present to a user.
@@ -97,18 +97,18 @@ namespace jm
           to the user of an application. For example the diff-algorithm uses this or also the dwg
           objects.
           */
-         virtual String GetDisplayName() const;
+         virtual String displayName() const;
 
          /*!
           \brief Output method for outputting the diff results for the diff algorithm.
           \param operation The calculated diff operation.
           \param other The object to compare with.
           */
-         virtual void PrintDiffInfo(DiffOperation operation, Object* other) const;
+         virtual void printDiffInfo(DiffOperation operation, Object* other) const;
 
          // Methods for flagging the object
-         void SetHighBit(bool status);
-         bool GetHighBit()const;
+         void setHighBit(bool status);
+         bool highBit()const;
 
       private:
 

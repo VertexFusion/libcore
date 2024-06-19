@@ -208,7 +208,7 @@ namespace jm
          /*!
           \copydoc jm::Object::Equals()
           */
-         bool Equals(const Object* other) const override;
+         bool equals(const Object* other) const override;
 
          /*!
           \brief Diese Methode prüft, ob diese Zeichenkette identisch zu einer anderen ist. Dabei

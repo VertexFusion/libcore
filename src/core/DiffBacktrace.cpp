@@ -105,7 +105,7 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
             op = kDiffDelete;
          }
       }
-      else if(diag->GetObjU(i)->Equals(diag->GetObjV(i)))
+      else if(diag->GetObjU(i)->equals(diag->GetObjV(i)))
       {
          op = kDiffEqual;
       }

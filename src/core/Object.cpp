@@ -46,16 +46,16 @@ Object::~Object()
    mPool = NULL;
 }
 
-void Object::Release()
+void Object::release()
 {
    if(mPool == NULL)return;
 
    int32 count;
-   Mutex* mutex = mPool->GetMutex();
+   Mutex* mutex = mPool->mutex();
 
    mutex->Lock();
    mRefCount--;
-   count = GetReferenceCount();
+   count = referenceCount();
    mutex->Unlock();
 
    if(count == 0)
@@ -63,52 +63,52 @@ void Object::Release()
       // Find Zombie
       //std::cout<<"Zombie delete"<<std::endl;
 
-      //! If mRefCount==0, Release() or Retain() must not called.
+      //! If mRefCount==0, release() or retain() must not called.
       delete this;
    }
 }
 
-Object* Object::Retain()
+Object* Object::retain()
 {
-   Mutex* mutex = mPool->GetMutex();
+   Mutex* mutex = mPool->mutex();
    mutex->Lock();
    mRefCount++;
    mutex->Unlock();
    return this;
 }
 
-Object* Object::Autorelease()
+Object* Object::autorelease()
 {
-   mPool->AddObject(this);
+   mPool->add(this);
    return this;
 }
 
-int32 Object::GetReferenceCount() const
+int32 Object::referenceCount() const
 {
    return mRefCount & 0x7FFFFFFF;
 }
 
-bool Object::Equals(const Object*) const
+bool Object::equals(const Object*) const
 {
    return false;
 }
 
-String Object::GetDisplayName() const
+String Object::displayName() const
 {
    return "jm::Object";
 }
 
-void Object::PrintDiffInfo(DiffOperation, Object*) const
+void Object::printDiffInfo(DiffOperation, Object*) const
 {
    // Nothing to do here. Placeholder method.
 }
 
-void Object::SetHighBit(bool status)
+void Object::setHighBit(bool status)
 {
-   mRefCount = GetReferenceCount() | (status ? 0x80000000 : 0x00000000);
+   mRefCount = referenceCount() | (status ? 0x80000000 : 0x00000000);
 }
 
-bool Object::GetHighBit()const
+bool Object::highBit()const
 {
    return (mRefCount & 0x80000000) != 0;
 }

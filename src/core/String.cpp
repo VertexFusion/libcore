@@ -597,7 +597,7 @@ void String::Zero()
 }
 
 
-bool String::Equals(const Object* other) const
+bool String::equals(const Object* other) const
 {
    const String* str = dynamic_cast<const String*>(other);
    if(str == NULL)return false;

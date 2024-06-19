@@ -111,7 +111,7 @@ void ZipFile::Open()
       entry->mCompressedSize = compressedSize;
       entry->mHeaderOffset = offset;
 
-      mEntries.Add(entry, NULL);
+      mEntries.add(entry, NULL);
 
       //Lies nächsten Eintrag
       index += 46 + fileNameLength + extraFieldLength + commentLength;
@@ -146,12 +146,12 @@ ZipEntry* ZipFile::GetEntry(const String &name)
 
 LinkedListIterator ZipFile::GetEntryIterator()
 {
-   return mEntries.GetIterator();
+   return mEntries.iterator();
 }
 
 uint32 ZipFile::GetEntryCount() const
 {
-   return mEntries.Size();
+   return mEntries.size();
 }
 
 jm::Stream* ZipFile::GetStream(const ZipEntry* entry)

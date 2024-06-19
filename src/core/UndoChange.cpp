@@ -38,18 +38,18 @@ UndoChange::UndoChange(Object* object)
    mPrev = NULL;
    mNext = NULL;
    mObject = object;
-   mObject->Retain();
-   objname = mObject->GetDisplayName();
+   mObject->retain();
+   objname = mObject->displayName();
 }
 
 UndoChange::~UndoChange()
 {
-   if(mObject->GetReferenceCount() == 0)
+   if(mObject->referenceCount() == 0)
    {
       std::cout << objname;
       std::cout << " ZOMBIE" << std::endl;
    }
-   mObject->Release();
+   mObject->release();
 }
 
 void UndoChange::Swap()
@@ -392,12 +392,12 @@ UndoChangeObjectRef::UndoChangeObjectRef(Object* object, Object **ptr): UndoChan
    mValue = *ptr;
 
    //Wenn "alter" Pointer einen Wert enthält, erhöhe Referenzzähler um 1.
-   if(mValue != NULL)mValue->Retain();
+   if(mValue != NULL)mValue->retain();
 }
 
 UndoChangeObjectRef::~UndoChangeObjectRef()
 {
-   if(mValue != NULL)mValue->Release();
+   if(mValue != NULL)mValue->release();
 }
 
 
@@ -410,8 +410,8 @@ void UndoChangeObjectRef::Swap()
 
    Object* tmpValue = *mPointer;
 
-   //	if(tmpValue!=NULL)tmpValue->Retain();
-   //   if(mValue!=NULL)mValue->Release();
+   //	if(tmpValue!=NULL)tmpValue->retain();
+   //   if(mValue!=NULL)mValue->release();
 
    *mPointer = mValue;
    mValue = tmpValue;
@@ -469,7 +469,7 @@ void UndoRegenerationMarker::Swap()
 
 UndoObjectRelease::UndoObjectRelease(Object* object, bool release): UndoChange(object)
 {
-   // Nothing to do here. The super method will Retain() the object.
+   // Nothing to do here. The super method will retain() the object.
    // This is just the one thing we want to do.
    mReleased = release;
    mObject = object;
@@ -477,15 +477,15 @@ UndoObjectRelease::UndoObjectRelease(Object* object, bool release): UndoChange(o
 
 UndoObjectRelease::~UndoObjectRelease()
 {
-   // Nothing to do here. The super method will Release() the object.
+   // Nothing to do here. The super method will release() the object.
    // This is just the one thing we want to do.
 }
 
 void UndoObjectRelease::Swap()
 {
    // We swap the reference counter here
-   if(mReleased)mObject->Retain();
-   else mObject->Release();
+   if(mReleased)mObject->retain();
+   else mObject->release();
 
    mReleased = !mReleased;
 

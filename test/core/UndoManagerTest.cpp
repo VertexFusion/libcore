@@ -56,7 +56,7 @@ void UndoManagerTest::DoTest()
    obj->undo = undo;
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 1, "Reference Counter must be 1.");
+   TestEquals(obj->referenceCount(), 1, "Reference Counter must be 1.");
    TestEquals(undo->GetUndoCount(), 0, "Undostack not empty. (1)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (1)");
 
@@ -70,7 +70,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 2, "Referenzzähler muss 2 sein.");
+   TestEquals(obj->referenceCount(), 2, "Referenzzähler muss 2 sein.");
    TestEquals(undo->GetUndoCount(), 1, "Undostack not empty. (2)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (2)");
 
@@ -80,7 +80,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Undo(), "Undo nicht ausgeführt (3)");
    str = jm::kEmptyString;
 
-   TestEquals(obj->GetReferenceCount(), 2, "Referenzzähler muss 2 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 2, "Referenzzähler muss 2 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 0, "Undostack not empty.(3)");
    TestEquals(undo->GetRedoCount(), 1, "Redostack not empty.(3)");
 
@@ -90,7 +90,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Redo(), "Redo nicht ausgeführt. (4)");
    str = "Hallo Welt";
 
-   TestEquals(obj->GetReferenceCount(), 2, "Referenzzähler muss 2 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 2, "Referenzzähler muss 2 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 1, "Undostack not empty. (4)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty.v(4)");
 
@@ -104,7 +104,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 3, "Referenzzähler muss 3 sein.");
+   TestEquals(obj->referenceCount(), 3, "Referenzzähler muss 3 sein.");
    TestEquals(undo->GetUndoCount(), 2, "Undostack not empty. (5)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (5)");
 
@@ -114,7 +114,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Undo(), "Undo nicht ausgeführt (3)");
    d = 0;
 
-   TestEquals(obj->GetReferenceCount(), 3, "Referenzzähler muss 3 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 3, "Referenzzähler muss 3 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 1, "Undostack not empty.(6)");
    TestEquals(undo->GetRedoCount(), 1, "Redostack not empty.(6)");
 
@@ -124,7 +124,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Redo(), "Redo nicht ausgeführt. (4)");
    d = 24.08;
 
-   TestEquals(obj->GetReferenceCount(), 3, "Referenzzähler muss 3 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 3, "Referenzzähler muss 3 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 2, "Undostack not empty. (7)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty.v(7)");
 
@@ -138,7 +138,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 4, "Referenzzähler muss 4 sein.");
+   TestEquals(obj->referenceCount(), 4, "Referenzzähler muss 4 sein.");
    TestEquals(undo->GetUndoCount(), 3, "Undostack not empty. (8)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (8)");
 
@@ -148,7 +148,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Undo(), "Undo nicht ausgeführt (3)");
    b1 = 0;
 
-   TestEquals(obj->GetReferenceCount(), 4, "Referenzzähler muss 4 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 4, "Referenzzähler muss 4 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 2, "Undostack not empty.(9)");
    TestEquals(undo->GetRedoCount(), 1, "Redostack not empty.(9)");
 
@@ -158,7 +158,7 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->Redo(), "Redo nicht ausgeführt. (4)");
    b1 = 17;
 
-   TestEquals(obj->GetReferenceCount(), 4, "Referenzzähler muss 4 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 4, "Referenzzähler muss 4 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->GetUndoCount(), 3, "Undostack not empty. (10)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty.v(10)");
 
@@ -172,7 +172,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 5, "Referenzzähler muss 5 sein.");
+   TestEquals(obj->referenceCount(), 5, "Referenzzähler muss 5 sein.");
    TestEquals(undo->GetUndoCount(), 4, "Undostack not empty. (11)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (11)");
 
@@ -213,7 +213,7 @@ void UndoManagerTest::DoTest()
    b1 = 17;
    b2 = 19;
    TestRef(obj);
-   TestEquals(obj->GetReferenceCount(), 5, "Referenzzähler muss 5 sein.");
+   TestEquals(obj->referenceCount(), 5, "Referenzzähler muss 5 sein.");
 
    //
    //int16 verändern
@@ -223,7 +223,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 6, "Referenzzähler muss 6 sein.");
+   TestEquals(obj->referenceCount(), 6, "Referenzzähler muss 6 sein.");
    TestEquals(undo->GetUndoCount(), 5, "Undostack not empty. (8)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (8)");
 
@@ -255,7 +255,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 7, "Referenzzähler muss 7 sein.");
+   TestEquals(obj->referenceCount(), 7, "Referenzzähler muss 7 sein.");
    TestEquals(undo->GetUndoCount(), 6, "Undostack not empty. (11)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (11)");
 
@@ -287,7 +287,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 8, "Referenzzähler muss 8 sein.");
+   TestEquals(obj->referenceCount(), 8, "Referenzzähler muss 8 sein.");
    TestEquals(undo->GetUndoCount(), 7, "Undostack not empty. (8)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (8)");
 
@@ -319,7 +319,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 9, "Referenzzähler muss 9 sein.");
+   TestEquals(obj->referenceCount(), 9, "Referenzzähler muss 9 sein.");
    TestEquals(undo->GetUndoCount(), 8, "Undostack not empty. (11)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (11)");
 
@@ -351,7 +351,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 10, "Referenzzähler muss 10 sein.");
+   TestEquals(obj->referenceCount(), 10, "Referenzzähler muss 10 sein.");
    TestEquals(undo->GetUndoCount(), 9, "Undostack not empty. (8)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (8)");
 
@@ -383,7 +383,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 11, "Referenzzähler muss 11 sein.");
+   TestEquals(obj->referenceCount(), 11, "Referenzzähler muss 11 sein.");
    TestEquals(undo->GetUndoCount(), 10, "Undostack not empty. (11)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (11)");
 
@@ -415,7 +415,7 @@ void UndoManagerTest::DoTest()
    undo->Close();
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 12, "Referenzzähler muss 12 sein.");
+   TestEquals(obj->referenceCount(), 12, "Referenzzähler muss 12 sein.");
    TestEquals(undo->GetUndoCount(), 11, "Undostack not empty. (11)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (11)");
 
@@ -444,18 +444,18 @@ void UndoManagerTest::DoTest()
    //Object verändern
    //
    UndoTestObject* o2 = new UndoTestObject();
-   TestEquals(o2->GetReferenceCount(), 1, "Obj-Referenzzähler muss 1 sein. (a)");
+   TestEquals(o2->referenceCount(), 1, "Obj-Referenzzähler muss 1 sein. (a)");
 
    obj->SetObject(o2);
    o = o2;
    undo->Close();
 
    //+1 Zähler für obj
-   //+1 Zähler für Undo/Retain
-   TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (b)");
+   //+1 Zähler für Undo/retain
+   TestEquals(o2->referenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (b)");
 
    //Objekt prüfen
-   TestEquals(obj->GetReferenceCount(), 13, "Referenzzähler muss 13 sein.");
+   TestEquals(obj->referenceCount(), 13, "Referenzzähler muss 13 sein.");
    TestEquals(undo->GetUndoCount(), 12, "Undostack not empty. (14)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (14)");
 
@@ -468,7 +468,7 @@ void UndoManagerTest::DoTest()
    //-1 Zähler für obj
    //(+1 Zähler für UndoManager) NEIN AKTUELL NICHT (2023-11-05) WAR 3
    //= Zähler bleibt gleich
-   TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (c)");
+   TestEquals(o2->referenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (c)");
 
    TestEquals(undo->GetUndoCount(), 11, "Undostack not empty.(15)");
    TestEquals(undo->GetRedoCount(), 1, "Redostack not empty.(15)");
@@ -482,7 +482,7 @@ void UndoManagerTest::DoTest()
    //+1 Zähler für obj
    //-1 Zähler für UndoManager
    //= Zähler bleibt gleich
-   TestEquals(o2->GetReferenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (d)");
+   TestEquals(o2->referenceCount(), 3, "Obj-Referenzzähler muss 3 sein. (d)");
 
    TestEquals(undo->GetUndoCount(), 12, "Undostack not empty. (16)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty.v(16)");
@@ -495,18 +495,18 @@ void UndoManagerTest::DoTest()
    //
 
    //Am Ende Stacks leeren
-   TestEquals(obj->GetReferenceCount(), 13, "Referenzzähler muss 12 sein.");
+   TestEquals(obj->referenceCount(), 13, "Referenzzähler muss 12 sein.");
    undo->ClearStacks();
 
-   TestEquals(obj->GetReferenceCount(), 1, "Referenzzähler muss 1 sein.");
-   TestEquals(o2->GetReferenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (e)");
+   TestEquals(obj->referenceCount(), 1, "Referenzzähler muss 1 sein.");
+   TestEquals(o2->referenceCount(), 2, "Obj-Referenzzähler muss 2 sein. (e)");
 
    TestEquals(undo->GetUndoCount(), 0, "Undostack not empty. (X)");
    TestEquals(undo->GetRedoCount(), 0, "Redostack not empty. (X)");
 
-   undo->Release();
-   TestEquals(obj->GetReferenceCount(), 1, "Referenzzähler muss 1 sein.");
-   obj->Release();
-   TestEquals(o2->GetReferenceCount(), 1, "Obj-Referenzzähler muss 1 sein. (e)");
-   o2->Release();
+   undo->release();
+   TestEquals(obj->referenceCount(), 1, "Referenzzähler muss 1 sein.");
+   obj->release();
+   TestEquals(o2->referenceCount(), 1, "Obj-Referenzzähler muss 1 sein. (e)");
+   o2->release();
 }

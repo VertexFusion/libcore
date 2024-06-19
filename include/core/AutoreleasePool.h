@@ -39,7 +39,7 @@ namespace jm
 {
    /*!
     \brief This class provides the memory pool component to release objects at regular intervals
-    that the programmer has designated for delayed release by Object::Autorelease().
+    that the programmer has designated for delayed release by Object::autorelease().
     \ingroup core
     */
    class DllExport AutoreleasePool: public Object
@@ -58,14 +58,14 @@ namespace jm
          ~AutoreleasePool();
 
          /*!
-          \brief Sends a Release() to all objects accumulated in the AutoreleasePool.
+          \brief Sends a release() to all objects accumulated in the AutoreleasePool.
           */
-         void Drain();
+         void drain();
 
          /*!
           \brief Returns the pointer to the mutex object.
           */
-         Mutex* GetMutex();
+         Mutex* mutex();
 
       private:
 
@@ -94,14 +94,14 @@ namespace jm
          Mutex mMutex;
 
          /*!
-          \brief Adds an object. Called in Object::Autorelease().
+          \brief Adds an object. Called in Object::autorelease().
           */
-         void AddObject(Object* object);
+         void add(Object* object);
 
          /*!
-          \brief Allow Object::Autorelease() access to AddObject().
+          \brief Allow Object::autorelease() access to AddObject().
           */
-         friend Object* Object::Autorelease();
+         friend Object* Object::autorelease();
 
    };
 }

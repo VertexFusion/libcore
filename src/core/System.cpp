@@ -337,7 +337,7 @@ void jm::System::Init(const jm::String &bundleId)
 
    gBundleId=bundleId;
 
-   // Start Autorelease pool
+   // Start autorelease pool
    if(gMainThreadPool == NULL)gMainThreadPool = new AutoreleasePool();
 
    // Load default translation

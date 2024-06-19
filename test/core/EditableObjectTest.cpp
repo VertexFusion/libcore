@@ -132,12 +132,12 @@ class Address : public EditableObject
 
 void AddressBook::AddAddress(Address* adr)
 {
-   mEntries.Add(adr, GetUndoManager());
+   mEntries.add(adr, GetUndoManager());
 }
 
 Integer AddressBook::GetAddressCount() const
 {
-   return mEntries.Size();
+   return mEntries.size();
 }
 
 

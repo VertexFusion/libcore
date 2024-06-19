@@ -204,7 +204,7 @@ void DiffInfo::Print( dxf::Arc* obj1, dxf::Arc* obj2 )
 {
 	Print( ( dxf::DwgCircle* )obj1, ( dxf::DwgCircle* )obj2 );
 	Print( obj1 != NULL ? obj1->GetStartAngle() : 0, obj2 != NULL ? obj2->GetStartAngle() : 0, "startAngle" );
-	Print( obj1 != NULL ? obj1->GetEndAngle() : 0, obj2 != NULL ? obj2->GetEndAngle() : 0 , "endAngle" );
+	Print( obj1 != NULL ? obj1->EndAngle() : 0, obj2 != NULL ? obj2->EndAngle() : 0 , "endAngle" );
 }
 
 void DiffInfo::Print( dxf::DwgCircle* obj1, dxf::DwgCircle* obj2 )
@@ -478,7 +478,7 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
          typeid(*obj1) != typeid(*obj2) &&
          operation == kDiffModified)
    {
-      std::cout << "R " << obj1->GetDisplayName() << " -> " << obj2->GetDisplayName() << ":" << std::endl;
+      std::cout << "R " << obj1->displayName() << " -> " << obj2->displayName() << ":" << std::endl;
       return;
    }
 
@@ -491,21 +491,21 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
    //Gib Überschrift aus:
    if(operation == kDiffAdd)
    {
-      std::cout << "A " << obj1->GetDisplayName() << std::endl;
+      std::cout << "A " << obj1->displayName() << std::endl;
    }
    else if(operation == kDiffDelete)
    {
-      std::cout << "D " << obj1->GetDisplayName() << std::endl;
+      std::cout << "D " << obj1->displayName() << std::endl;
    }
    else if(operation == kDiffModified)
    {
-      std::cout << "M " << obj1->GetDisplayName() << std::endl;
+      std::cout << "M " << obj1->displayName() << std::endl;
    }
    else return;
 
    // Output details. Object1 is not NULL in any case
    // Only for Modified, otherwise there is too much information. TODO Make it optional?
-   if(operation == kDiffModified)obj1->PrintDiffInfo(operation, obj2);
-   //else if(operation == kDiffAdd)obj1->PrintDiffInfo(operation, NULL);
+   if(operation == kDiffModified)obj1->printDiffInfo(operation, obj2);
+   //else if(operation == kDiffAdd)obj1->printDiffInfo(operation, NULL);
 
 }

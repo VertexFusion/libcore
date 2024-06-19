@@ -46,21 +46,21 @@ AutoreleasePool::AutoreleasePool(): Object()
 
 AutoreleasePool::~AutoreleasePool()
 {
-   // Cleanup Autorelease
-   Drain();
+   // Cleanup autorelease
+   drain();
 
    // Delete dummy
    delete mPool;
 }
 
-void AutoreleasePool::Drain()
+void AutoreleasePool::drain()
 {
    PoolEntry* pool = mPool->next;
 
    while(pool != NULL)
    {
       //Release objects
-      pool->object->Release();
+      pool->object->release();
 
       PoolEntry* next = pool->next;
       delete pool;
@@ -71,7 +71,7 @@ void AutoreleasePool::Drain()
    mPool->next = NULL;
 }
 
-void AutoreleasePool::AddObject(Object* object)
+void AutoreleasePool::add(Object* object)
 {
    PoolEntry* entry = new PoolEntry();
    entry->object = object;
@@ -80,7 +80,7 @@ void AutoreleasePool::AddObject(Object* object)
    mTop = entry;
 }
 
-Mutex* AutoreleasePool::GetMutex()
+Mutex* AutoreleasePool::mutex()
 {
    return &mMutex;
 }

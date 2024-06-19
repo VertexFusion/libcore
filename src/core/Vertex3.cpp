@@ -260,7 +260,7 @@ Vertex3 &jm::Vertex3::operator=(const Vertex3 &another)
 }
 
 
-bool jm::IsLinearIndependent(const Vertex3 &v1, const Vertex3 &v2, const Vertex3 &v3)
+bool jm::isLinearIndependent(const Vertex3 &v1, const Vertex3 &v2, const Vertex3 &v3)
 {
    Matrix m = Matrix(v1, v2, v3, false);
    double det = 0;

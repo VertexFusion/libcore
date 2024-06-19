@@ -79,7 +79,7 @@ void Document::SetUndoManager(bool status)
    {
       if(mUndoManager != NULL)
       {
-         mUndoManager->Release();
+         mUndoManager->release();
          mUndoManager = NULL;
       }
    }

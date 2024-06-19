@@ -55,59 +55,59 @@ LinkedList::LinkedList(Object* owner): Object()
 
 LinkedList::~LinkedList()
 {
-   Clear(NULL);
+   clear(NULL);
 }
 
-bool LinkedList::HasNext()
+bool LinkedList::hasNext()
 {
    return current != NULL;
 }
 
-LListElement* LinkedList::NextElement()
+LListElement* LinkedList::nextElement()
 {
    LListElement* ret = current;
    current = current->next;
    return ret;
 }
 
-Object* LinkedList::Next()
+Object* LinkedList::next()
 {
    Object* ret = current->data;
    current = current->next;
    return ret;
 }
 
-Object* LinkedList::First()
+Object* LinkedList::first() const
 {
    if(count == 0)return NULL;
    return listStart->data;
 }
 
-Object* LinkedList::Last()
+Object* LinkedList::last() const
 {
    if(count == 0)return NULL;
    return listEnd->data;
 }
 
-void LinkedList::Rewind()
+void LinkedList::rewind()
 {
    current = listStart;
 }
 
-void LinkedList::Clear(UndoManager* um)
+void LinkedList::clear(UndoManager* um)
 {
    if(um != NULL)
    {
       while(listStart != NULL)
       {
          LListElement* victim = listStart;
-         Remove(victim, um); //Here undo magic is done
+         remove(victim, um); //Here undo magic is done
       }
    }
    else
    {
-      Rewind();
-      while(HasNext())NextElement()->Release();
+      rewind();
+      while(hasNext())nextElement()->release();
    }
 
    listStart = NULL;
@@ -116,15 +116,15 @@ void LinkedList::Clear(UndoManager* um)
    count = 0;
 }
 
-void LinkedList::Add(Object* data, UndoManager* um)
+void LinkedList::add(Object* data, UndoManager* um)
 {
    LListElement* item = new LListElement();
    if(um != NULL)um->RegisterChange(item, reinterpret_cast<Object * *>(&(item->data)));
    item->data = data;
-   Add(item, um);
+   add(item, um);
 }
 
-void LinkedList::Add(LListElement* item, UndoManager* um)
+void LinkedList::add(LListElement* item, UndoManager* um)
 {
    if(um != NULL)
    {
@@ -152,14 +152,14 @@ void LinkedList::Add(LListElement* item, UndoManager* um)
    count++;
 }
 
-void LinkedList::AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um)
+void LinkedList::addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um)
 {
    LListElement* before = NULL;
 
-   Rewind();
-   while(HasNext())
+   rewind();
+   while(hasNext())
    {
-      LListElement* elem = NextElement();
+      LListElement* elem = nextElement();
       if(elem->data == addBeforeThis)
       {
          before = elem;
@@ -173,11 +173,11 @@ void LinkedList::AddBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager
       if(um != NULL)um->RegisterChange(item, (Object * *) & (item->data));
       item->data = itemToAdd;
 
-      AddBefore(before, item, um);
+      addBefore(before, item, um);
    }
 }
 
-void LinkedList::AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um)
+void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um)
 {
    LListElement* addAfterThis = addBeforeThis->prev;
 
@@ -209,7 +209,7 @@ void LinkedList::AddBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
 }
 
 
-void LinkedList::Remove(LListElement* element, UndoManager* um)
+void LinkedList::remove(LListElement* element, UndoManager* um)
 {
    LListElement* prev = element->prev;
    LListElement* next = element->next;
@@ -243,38 +243,38 @@ void LinkedList::Remove(LListElement* element, UndoManager* um)
 
    element->prev = NULL;
    element->next = NULL;
-   element->Release();
+   element->release();
    count--;
 }
 
 
-void LinkedList::Remove(const Object* data, UndoManager* um)
+void LinkedList::remove(const Object* data, UndoManager* um)
 {
-   Rewind();
-   while(HasNext())
+   rewind();
+   while(hasNext())
    {
-      LListElement* elem = NextElement();
+      LListElement* elem = nextElement();
       if(elem->data == data)
       {
-         Remove(elem, um);
+         remove(elem, um);
       }
    }
 }
 
-uint32 LinkedList::Size() const
+uint32 LinkedList::size() const
 {
    return count;
 }
 
-void LinkedList::SwapData(Object* data1, Object* data2, UndoManager* um)
+void LinkedList::swapData(Object* data1, Object* data2, UndoManager* um)
 {
    LListElement* elem1 = NULL;
    LListElement* elem2 = NULL;
 
-   Rewind();
-   while(HasNext())
+   rewind();
+   while(hasNext())
    {
-      LListElement* elem = NextElement();
+      LListElement* elem = nextElement();
       if(elem->data == data1)elem1 = elem;
       if(elem->data == data2)elem2 = elem;
       if(elem1 != NULL && elem2 != NULL)break;
@@ -292,7 +292,7 @@ void LinkedList::SwapData(Object* data1, Object* data2, UndoManager* um)
    }
 }
 
-LinkedListIterator LinkedList::GetIterator() const
+LinkedListIterator LinkedList::iterator() const
 {
    return LinkedListIterator(this);
 }

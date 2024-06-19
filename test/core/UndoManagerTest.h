@@ -48,7 +48,7 @@ class UndoTestObject: public jm::Object
 
       ~UndoTestObject()
       {
-         if(obj != NULL)obj->Release();
+         if(obj != NULL)obj->release();
       }
 
       void SetStr(jm::String value)
@@ -123,13 +123,13 @@ class UndoTestObject: public jm::Object
          if(obj != NULL)
          {
             undo->RegisterRelease(obj);
-            obj->Release();
+            obj->release();
          }
          obj = other;
          if(obj != NULL)
          {
             undo->RegisterRetain(obj);
-            obj->Retain();
+            obj->retain();
          }
       }
 
