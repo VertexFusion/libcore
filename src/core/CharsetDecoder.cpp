@@ -70,7 +70,7 @@ ByteArray RawDecoder::Encode(const CharArray &string)
 
    for(uint32 a = 0; a < string.length; a++)
    {
-      cstring[a] = (uint8)string.buffer[a].Unicode();
+      cstring[a] = (uint8)string.buffer[a].unicode();
    }
 
    return cstring;

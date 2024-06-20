@@ -37,14 +37,14 @@ jm::String gSystemError;
 bool gSystemLogDate = true;
 jm::LogLevel mSystemLogLabel = jm::kLogDebug;
 
-jm::String jm::System::GetLanguage()
+jm::String jm::System::language()
 {
    #ifdef __APPLE__ //macOS und iOS
 
    CFArrayRef langs = CFLocaleCopyPreferredLanguages();
    CFStringRef cflangCode = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
 
-   jm::String langCode = jm::String::FromCFString(cflangCode);
+   jm::String langCode = jm::String::fromCFString(cflangCode);
 
    CFRelease(langs);
 
@@ -72,27 +72,27 @@ jm::String jm::System::GetLanguage()
 
 }
 
-void jm::System::LogEnableDate(bool status)
+void jm::System::logEnableDate(bool status)
 {
-   gSystemMutex.Lock();
+   gSystemMutex.lock();
    gSystemLogDate = status;
-   gSystemMutex.Unlock();
+   gSystemMutex.unlock();
 }
 
-void jm::System::LogEnableLabel(jm::LogLevel logLevel)
+void jm::System::logEnableLabel(jm::LogLevel logLevel)
 {
-   gSystemMutex.Lock();
+   gSystemMutex.lock();
    mSystemLogLabel = logLevel;
-   gSystemMutex.Unlock();
+   gSystemMutex.unlock();
 }
 
 
-void jm::System::Log(const String &message, LogLevel logLevel)
+void jm::System::log(const String &message, LogLevel logLevel)
 {
-   gSystemMutex.Lock();
+   gSystemMutex.lock();
 
    jm::String msg;
-   if(gSystemLogDate)msg << '[' << jm::Date().ToString() << "] ";
+   if(gSystemLogDate)msg << '[' << jm::Date().toString() << "] ";
 
    switch(logLevel)
    {
@@ -142,8 +142,8 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 
       //	openlog ("jameo", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 
-      ByteArray cstr = msg.ToCString();
-      syslog(LOG_ERR, "%s", cstr.ConstData());
+      ByteArray cstr = msg.toCString();
+      syslog(LOG_ERR, "%s", cstr.constData());
       //	syslog (LOG_INFO, "A tree falls in a forest");
 
       //	closelog ();
@@ -161,16 +161,16 @@ void jm::System::Log(const String &message, LogLevel logLevel)
 
    #endif
 
-   gSystemMutex.Unlock();
+   gSystemMutex.unlock();
 }
 
-const jm::String& jm::System::GetLastErrorMessage()
+const jm::String& jm::System::lastErrorMessage()
 {
    return gSystemError;
 }
 
 
-jm::String jm::System::GetUserID()
+jm::String jm::System::userId()
 {
    #ifdef __APPLE__ //macOS und iOS
 
@@ -192,7 +192,7 @@ jm::String jm::System::GetUserID()
 }
 
 
-jm::String jm::System::GetUserFullName()
+jm::String jm::System::userFullName()
 {
    #ifdef __APPLE__ //macOS und iOS
 
@@ -242,13 +242,13 @@ wcout << wcstring << endl;
 
 */
 
-void* jm::System::LoadDynamicLibrary(jm::File* file)
+void* jm::System::loadDynamicLibrary(jm::File* file)
 {
    #ifdef __APPLE__ //macOS and iOS
 
-   ByteArray cstr = file->GetAbsolutePath().ToCString();
-   void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   ByteArray cstr = file->absolutePath().toCString();
+   void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined __linux__//Linux
@@ -269,7 +269,7 @@ void* jm::System::LoadDynamicLibrary(jm::File* file)
    #endif
 }
 
-void jm::System::UnloadDynamicLibrary(void* library)
+void jm::System::unloadDynamicLibrary(void* library)
 {
    #ifdef __APPLE__ //macOS und iOS
 
@@ -290,13 +290,13 @@ void jm::System::UnloadDynamicLibrary(void* library)
 }
 
 
-void* jm::System::FindSymbol(void* library, const String &name)
+void* jm::System::findSymbol(void* library, const String &name)
 {
    #ifdef __APPLE__ //macOS and iOS
 
-   ByteArray cstr = name.ToCString();
-   void* symptr = dlsym(library, cstr.ConstData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   ByteArray cstr = name.toCString();
+   void* symptr = dlsym(library, cstr.constData());
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined __linux__//Linux
@@ -320,17 +320,17 @@ void* jm::System::FindSymbol(void* library, const String &name)
 jm::AutoreleasePool* gMainThreadPool = NULL;
 jm::String gBundleId;
 
-jm::AutoreleasePool* jm::System::GetAutoreleasePool()
+jm::AutoreleasePool* jm::System::autoreleasePool()
 {
    return gMainThreadPool;
 }
 
-const jm::String& jm::System::GetBundleId()
+const jm::String& jm::System::bundleId()
 {
    return gBundleId;
 }
 
-void jm::System::Init(const jm::String &bundleId)
+void jm::System::init(const jm::String &bundleId)
 {
    // First of all, the charsets
    InitCharsets();
@@ -341,10 +341,10 @@ void jm::System::Init(const jm::String &bundleId)
    if(gMainThreadPool == NULL)gMainThreadPool = new AutoreleasePool();
 
    // Load default translation
-   I18nBundle::InitDefault();
+   I18nBundle::initDefault();
 }
 
-void jm::System::Quit()
+void jm::System::quit()
 {
    if(gMainThreadPool != NULL)delete gMainThreadPool;
 

@@ -633,7 +633,7 @@ ByteArray MacRomanDecoder::Encode(const CharArray &string)
 
    for(Integer a = 0; a < string.length; a++)
    {
-      cstring[a] = EncodeCharacter(string.buffer[a].Unicode());
+      cstring[a] = EncodeCharacter(string.buffer[a].unicode());
    }
 
    return cstring;

@@ -76,7 +76,7 @@ Property::Property(const String &id,
 
 Bool Property::Is(const String &id)const
 {
-   return mId.Equals(id);
+   return mId.equals(id);
 }
 
 PropertyType Property::GetType() const
@@ -166,14 +166,14 @@ VxfErrorStatus Property::SetIntegerValue(Integer value)
    return eOK;
 }
 /*
-VxfErrorStatus Property::SetDwgColourValue(const dwg::Colour& value)
+VxfErrorStatus Property::SetDwgColourValue(const dwg::Color& value)
 {
 	mDwgColourValue = value;
 	mType = kPropertyTypeDwgColour;
 	return eOK;
 }
 
-dwg::Colour Property::GetDwgColourValue() const
+dwg::Color Property::GetDwgColourValue() const
 {
 	return mDwgColourValue;
 }*/
@@ -216,7 +216,7 @@ void Property::SetValue(const Property &other)
 
 bool Property::IsValueEquals(const Property &other)const
 {
-   if(mTextValue.Equals(other.mTextValue) == false)return false;
+   if(mTextValue.equals(other.mTextValue) == false)return false;
    if(mNumberValue.intValue != other.mNumberValue.intValue)return false;
    return true;
 }
@@ -226,8 +226,8 @@ bool jm::operator==(Property const &v1, Property const &v2)
    // Actually we do not check mType, because if values are equal, but type different
    // (like for compoboxes), they are supposed to be equal anyway.
 
-   if(v1.mId.Equals(v2.mId) == false)return false;
-   if(v1.mEditor.Equals(v2.mEditor) == false)return false;
+   if(v1.mId.equals(v2.mId) == false)return false;
+   if(v1.mEditor.equals(v2.mEditor) == false)return false;
 
    if (v1.GetType() == kPropertyTypeValue)
    {
@@ -236,35 +236,35 @@ bool jm::operator==(Property const &v1, Property const &v2)
    }
 
    String editor = v1.mEditor;
-   if(editor.Equals("textfield"))
+   if(editor.equals("textfield"))
    {
-      return v1.GetStringValue().Equals(v2.GetStringValue());
+      return v1.GetStringValue().equals(v2.GetStringValue());
    }
-   else if(editor.Equals("number"))
+   else if(editor.equals("number"))
    {
       return v1.GetIntegerValue() == v2.GetIntegerValue();
    }
-   else if(editor.Equals("checkbox"))
+   else if(editor.equals("checkbox"))
    {
       return v1.GetBoolValue() == v2.GetBoolValue();
    }
-   else if(editor.Equals("file"))
+   else if(editor.equals("file"))
    {
-      return v1.GetStringValue().Equals(v2.GetStringValue());
+      return v1.GetStringValue().equals(v2.GetStringValue());
    }
-   else if(editor.Equals("combobox"))
+   else if(editor.equals("combobox"))
    {
       return v1.GetIntegerValue() == v2.GetIntegerValue();
    }
-   else if(editor.Equals("value"))
+   else if(editor.equals("value"))
    {
-      return v1.GetStringValue().Equals(v2.GetStringValue()) && jm::IsEqual(v1.GetDoubleValue(),
+      return v1.GetStringValue().equals(v2.GetStringValue()) && jm::IsEqual(v1.GetDoubleValue(),
              v2.GetDoubleValue());
    }
-   else if(editor.Equals("dwgcolour"))
+   else if(editor.equals("dwgcolour"))
    {
       return v1.GetIntegerValue() == v2.GetIntegerValue();
    }
-   System::Log(Tr("Property not comparable"), kLogDebug);
+   System::log(Tr("Property not comparable"), kLogDebug);
    return false;
 }

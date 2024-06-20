@@ -110,12 +110,12 @@ String::String(const char* cstring): Object(), Comparable<String>()
 String::String(const ByteArray &buffer) : Object(), Comparable<String>()
 {
    mHash = 0;
-   if(buffer.Size() > 0)
+   if(buffer.size() > 0)
    {
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
       // strings. (Initialization sequence not predictable)
       UTF8Decoder dec = UTF8Decoder();
-      CharArray array = dec.Decode(buffer.ConstData());
+      CharArray array = dec.Decode(buffer.constData());
       Copy(array);
    }
    else
@@ -137,7 +137,7 @@ String::String(const char* cstring, Charset* charset): Object(), Comparable<Stri
 String::String(const ByteArray &buffer, Charset* charset) : Object(), Comparable<String>()
 {
    mHash = 0;
-   CharArray array = charset->Decode(buffer.ConstData());
+   CharArray array = charset->Decode(buffer.constData());
    Copy(array);
 }
 
@@ -177,7 +177,7 @@ void String::CheckCapacity(Integer more)
 
 #ifdef __APPLE__
 
-String String::FromCFString(CFStringRef cfstring)
+String String::fromCFString(CFStringRef cfstring)
 {
    // NULL string?
    if(cfstring == NULL)return kEmptyString;
@@ -199,28 +199,28 @@ String String::FromCFString(CFStringRef cfstring)
    return result;
 }
 
-CFStringRef String::ToCFString()const
+CFStringRef String::toCFString()const
 {
-   ByteArray cstring = ToCString();
+   ByteArray cstring = toCString();
    CFStringRef cfstring = CFStringCreateWithCString(kCFAllocatorDefault,
-                          cstring.ConstData(),
+                          cstring.constData(),
                           kCFStringEncodingUTF8);
    return cfstring;
 }
 
 #endif
 
-Integer String::Length() const
+Integer String::size() const
 {
    return mStrLength;
 }
 
-ByteArray String::ToCString() const
+ByteArray String::toCString() const
 {
-   return ToCString(Charset::GetDefault());
+   return toCString(Charset::GetDefault());
 }
 
-ByteArray String::ToCString(Charset* charset) const
+ByteArray String::toCString(Charset* charset) const
 {
    CharArray array = CharArray(mStrLength);
    memcpy(array.buffer, mValue, mStrLength * 2);
@@ -279,8 +279,8 @@ bool String::AtIsIgnoreCase(Integer position,const String &another)
 
    for(Integer a = 0; a < another.mStrLength; a++)
    {
-      Char c1 = mValue[a+position].ToLowerCase();
-      Char c2 = another.mValue[a].ToLowerCase();
+      Char c1 = mValue[a+position].toLowerCase();
+      Char c2 = another.mValue[a].toLowerCase();
       if(c1 != c2)return false;
    }
 
@@ -291,7 +291,7 @@ Integer String::HashCode()
 {
    if(mHash != 0)return mHash;
    uint32 hash = 0;
-   for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].Unicode();
+   for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].unicode();
    mHash = (int32) hash;
    return hash;
 }
@@ -300,7 +300,7 @@ Integer String::ConstHashCode() const
 {
    if(mHash != 0)return mHash;
    uint32 hash = 0;
-   for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].Unicode();
+   for(int32 a = 0; a < mStrLength; a++)hash = (hash << 5) - hash + mValue[a].unicode();
    return hash;
 }
 
@@ -310,7 +310,7 @@ String String::ToLowerCase() const
 
    for(Integer a = 0; a < mStrLength; a++)
    {
-      ret.mValue[a] = ret.mValue[a].ToLowerCase();;
+      ret.mValue[a] = ret.mValue[a].toLowerCase();;
    }
 
    return ret;
@@ -322,7 +322,7 @@ String String::ToUpperCase() const
 
    for(Integer a = 0; a < mStrLength; a++)
    {
-      ret.mValue[a] = ret.mValue[a].ToUpperCase();
+      ret.mValue[a] = ret.mValue[a].toUpperCase();
    }
 
    return ret;
@@ -336,10 +336,10 @@ String String::Trim() const
    if(mStrLength == 0)return kEmptyString;
 
    //Von links
-   while(beginIndex < mStrLength && mValue[beginIndex].IsWhitespace())beginIndex++;
+   while(beginIndex < mStrLength && mValue[beginIndex].isWhitespace())beginIndex++;
 
    //Von rechts
-   while(endIndex > 0 && mValue[endIndex - 1].IsWhitespace())endIndex--;
+   while(endIndex > 0 && mValue[endIndex - 1].isWhitespace())endIndex--;
 
    if(endIndex <= beginIndex)return kEmptyString;
 
@@ -455,19 +455,19 @@ String String::ReplaceAll(String oldStr, String newStr)const
    do
    {
       // Append everything in front
-      output.Append(Substring(pos1, pos2));
+      output.append(Substring(pos1, pos2));
 
       // Append new string
-      output.Append(newStr);
+      output.append(newStr);
 
-      pos1 = pos2 + oldStr.Length();
+      pos1 = pos2 + oldStr.size();
       pos2 = IndexOf(oldStr, pos1);
 
    }
    while(pos2 >= pos1);
 
    // Append last part.
-   output.Append(Substring(pos1));
+   output.append(Substring(pos1));
 
    return output;
 }
@@ -503,7 +503,7 @@ void String::SetCharAt(Integer index, Char character)
    mHash = 0;
 }
 
-void String::Append(const String &another)
+void String::append(const String &another)
 {
    CheckCapacity(another.mStrLength);
    memcpy(&mValue[mStrLength], &another.mValue[0], sizeof(Char) * another.mStrLength);
@@ -511,7 +511,7 @@ void String::Append(const String &another)
    mHash = 0;
 }
 
-void String::Append(Char utf8char)
+void String::append(Char utf8char)
 {
    CheckCapacity(1);
    mValue[mStrLength] = utf8char;
@@ -533,7 +533,7 @@ void String::Insert(Integer index, const String &str)
 {
    if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
 
-   Integer len = str.Length();
+   Integer len = str.size();
    CheckCapacity(len);
 
    for(Integer a = mStrLength; a > index; a--)mValue[a + len - 1] = mValue[a - 1];
@@ -544,7 +544,7 @@ void String::Insert(Integer index, const String &str)
    mHash = 0;
 }
 
-void String::DeleteCharAt(Integer index)
+void String::deleteCharAt(Integer index)
 {
    if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
    for(Integer a = index ; a < mStrLength - 1; a++)
@@ -555,7 +555,7 @@ void String::DeleteCharAt(Integer index)
    mHash = 0;
 }
 
-void String::DeleteCharRangeAt(Integer index, Integer length)
+void String::deleteCharRangeAt(Integer index, Integer length)
 {
    if(index < 0 || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
    for(Integer a = index ; a < mStrLength - length; a++)
@@ -566,7 +566,7 @@ void String::DeleteCharRangeAt(Integer index, Integer length)
    mHash = 0;
 }
 
-Integer String::Count(Char character)const
+Integer String::count(Char character)const
 {
    Integer count = 0;
 
@@ -579,9 +579,9 @@ Integer String::Count(Char character)const
 }
 
 
-void String::Clear()
+void String::clear()
 {
-   Zero();
+   zero();
    if(mArrLength > 16)
    {
       delete[] mValue;
@@ -590,7 +590,7 @@ void String::Clear()
    }
 }
 
-void String::Zero()
+void String::zero()
 {
    mStrLength = 0;
    mHash = 0;
@@ -602,10 +602,10 @@ bool String::equals(const Object* other) const
    const String* str = dynamic_cast<const String*>(other);
    if(str == NULL)return false;
 
-   return str->Equals(*this);
+   return str->equals(*this);
 }
 
-bool String::Equals(const String &another) const
+bool String::equals(const String &another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
@@ -626,8 +626,8 @@ bool String::EqualsIgnoreCase(const String &another) const
    uint32 cnt = 0;
    while(cnt < mStrLength)
    {
-      Char c1 = mValue[cnt].ToLowerCase();
-      Char c2 = another.mValue[cnt].ToLowerCase();
+      Char c1 = mValue[cnt].toLowerCase();
+      Char c2 = another.mValue[cnt].toLowerCase();
       if(c1 != c2)return false;
       cnt++;
    }
@@ -635,7 +635,7 @@ bool String::EqualsIgnoreCase(const String &another) const
    return true;
 }
 
-int32 String::CompareTo(const String &another) const
+int32 String::compareTo(const String &another) const
 {
    Integer smallest = Min(mStrLength, another.mStrLength);
 
@@ -672,18 +672,18 @@ int32 String::CompareFancyTo(const String &another) const
    uint32 cntout = 0;
    while(cntin < strl1)
    {
-      if(mValue[cntin].IsDigit())
+      if(mValue[cntin].isDigit())
       {
-         uint32 number = mValue[cntin].DigitValue();
-         while(cntin + 1 < strl1 && mValue[cntin + 1].IsDigit())
+         uint32 number = mValue[cntin].digitValue();
+         while(cntin + 1 < strl1 && mValue[cntin + 1].isDigit())
          {
             cntin++;
             number *= 10;
-            number += mValue[cntin].DigitValue();
+            number += mValue[cntin].digitValue();
          }
          str1[cntout] = number;
       }
-      else str1[cntout] = mValue[cntin].Unicode();
+      else str1[cntout] = mValue[cntin].unicode();
 
       cntin++;
       cntout++;
@@ -695,18 +695,18 @@ int32 String::CompareFancyTo(const String &another) const
    cntout = 0;
    while(cntin < strl2)
    {
-      if(another.mValue[cntin].IsDigit())
+      if(another.mValue[cntin].isDigit())
       {
-         uint32 number = another.mValue[cntin].DigitValue();
-         while(cntin + 1 < strl2 && another.mValue[cntin + 1].IsDigit())
+         uint32 number = another.mValue[cntin].digitValue();
+         while(cntin + 1 < strl2 && another.mValue[cntin + 1].isDigit())
          {
             cntin++;
             number *= 10;
-            number += another.mValue[cntin].DigitValue();
+            number += another.mValue[cntin].digitValue();
          }
          str2[cntout] = number;
       }
-      else str2[cntout] = another.mValue[cntin].Unicode();
+      else str2[cntout] = another.mValue[cntin].unicode();
 
       cntin++;
       cntout++;
@@ -765,13 +765,13 @@ bool String::ArgIndicies(Integer &first, Integer &second)
 
    for(Integer index=0;index<mStrLength-1;index++)
    {
-      if(CharAt(index)==Char('%') && CharAt(index+1).IsDigit())
+      if(CharAt(index)==Char('%') && CharAt(index+1).isDigit())
       {
-         Integer number=CharAt(index+1).DigitValue();
-         if(index+2<mStrLength&&CharAt(index+2).IsDigit())
+         Integer number=CharAt(index+1).digitValue();
+         if(index+2<mStrLength&&CharAt(index+2).isDigit())
          {
             number*=10;
-            number+=CharAt(index+2).DigitValue();
+            number+=CharAt(index+2).digitValue();
          }
          if(number<lowest)
          {
@@ -802,7 +802,7 @@ String String::Arg(Integer value,
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
    {
-      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+      for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
    result<<s;
@@ -811,7 +811,7 @@ String String::Arg(Integer value,
    if(fieldWidth < 0)
    {
       fieldWidth = abs(fieldWidth);
-      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+      for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
    result<<Substring(second);
@@ -832,7 +832,7 @@ String String::Arg(const String &value,
    // Leading space if fieldWidth > 0
    if(fieldwidth > 0)
    {
-      for(Integer a = value.Length(); a < fieldwidth; a++)result << fillchar;
+      for(Integer a = value.size(); a < fieldwidth; a++)result << fillchar;
    }
 
    result << value;
@@ -840,8 +840,8 @@ String String::Arg(const String &value,
    // Trailing space if flg1 < 0
    if(fieldwidth < 0)
    {
-      fieldwidth = fieldwidth.Abs();
-      for(Integer a = value.Length(); a < fieldwidth; a++)result << fillchar;
+      fieldwidth = fieldwidth.abs();
+      for(Integer a = value.size(); a < fieldwidth; a++)result << fillchar;
    }
 
 
@@ -871,7 +871,7 @@ String String::Arg(Double value,
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
    {
-      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+      for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
    result << s;
@@ -879,8 +879,8 @@ String String::Arg(Double value,
    // Trailing space if flg1 < 0
    if(fieldWidth < 0)
    {
-      fieldWidth = fieldWidth.Abs();
-      for(Integer a = s.Length(); a < fieldWidth; a++)result << fillchar;
+      fieldWidth = fieldWidth.abs();
+      for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
 
@@ -903,7 +903,7 @@ String String::ValueOf(int64 number)
    // Check 0
    else if(number == 0)
    {
-      ret.Append('0');
+      ret.append('0');
    }
 
    // Solve the individual digits... Attention: the last digit comes first
@@ -911,18 +911,18 @@ String String::ValueOf(int64 number)
    {
       Integer digit = number % 10;
       number = number / 10;
-      ret.Append(Char(digit.Int16() + '0'));
+      ret.append(Char(digit.Int16() + '0'));
    }
-   if(neg)ret.Append('-');
+   if(neg)ret.append('-');
 
    // Reverse digits
-   Integer cnt = ret.Length() / 2;
+   Integer cnt = ret.size() / 2;
    for(Integer a = 0; a < cnt; a++)
    {
       Char s1 = ret.CharAt(a);
-      Char s2 = ret.CharAt(ret.Length() - 1 - a);
+      Char s2 = ret.CharAt(ret.size() - 1 - a);
       ret.SetCharAt(a, s2);
-      ret.SetCharAt(ret.Length() - 1 - a, s1);
+      ret.SetCharAt(ret.size() - 1 - a, s1);
    }
    return ret;
 }
@@ -934,7 +934,7 @@ String String::ValueOf(uint64 number)
    // Check 0
    if(number == 0)
    {
-      ret.Append('0');
+      ret.append('0');
       return ret;
    }
 
@@ -943,17 +943,17 @@ String String::ValueOf(uint64 number)
    {
       Integer digit = number % 10;
       number = number / 10;
-      ret.Append(Char(digit.Int16() + '0'));
+      ret.append(Char(digit.Int16() + '0'));
    }
 
    // Reverse digits
-   Integer cnt = ret.Length() / 2;
+   Integer cnt = ret.size() / 2;
    for(Integer a = 0; a < cnt; a++)
    {
       Char s1 = ret.CharAt(a);
-      Char s2 = ret.CharAt(ret.Length() - 1 - a);
+      Char s2 = ret.CharAt(ret.size() - 1 - a);
       ret.SetCharAt(a, s2);
-      ret.SetCharAt(ret.Length() - 1 - a, s1);
+      ret.SetCharAt(ret.size() - 1 - a, s1);
    }
    return ret;
 }
@@ -986,7 +986,7 @@ String String::ValueOf(double number, Integer precision, bool trunc)
    double factor = std::pow(10, precision.Int32());
 
    number = std::fmod(number, 1.0) * 10 * factor;
-   int64 after = Integer(static_cast<int64>(number)).Abs();
+   int64 after = Integer(static_cast<int64>(number)).abs();
 
    //Runden
    int64 rnd = after % 10;
@@ -1002,9 +1002,9 @@ String String::ValueOf(double number, Integer precision, bool trunc)
    if(neg)b.Insert(0, '-');
 
    String a = String::ValueOf(after);
-   while(a.Length() < precision)a.Insert(0, '0');
+   while(a.size() < precision)a.Insert(0, '0');
 
-   while(trunc && a.Length() > 1 && a.CharAt(a.Length() - 1) == '0')a.DeleteCharAt(a.Length() - 1);
+   while(trunc && a.size() > 1 && a.CharAt(a.size() - 1) == '0')a.deleteCharAt(a.size() - 1);
 
    if(after != 0 || trunc == false)return b + "," + a;
    else return b;
@@ -1036,13 +1036,13 @@ void jm::String::SetConsoleCharset(Charset* cs)
 
 bool jm::operator!=(String const &v1, String const &v2)
 {
-   return !v1.Equals(v2);
+   return !v1.equals(v2);
 }
 
 
 bool jm::operator==(String const &v1, String const &v2)
 {
-   return v1.Equals(v2);
+   return v1.equals(v2);
 }
 
 namespace jm
@@ -1053,8 +1053,8 @@ namespace jm
       //\todo It is best to set and get the charset globally. It's inefficient that way
       if(gConsoleCharset == NULL)gConsoleCharset = Charset::ForName("Windows-1252");
       String s = str;
-      ByteArray cstr = s.ToCString(gConsoleCharset);
-      out << cstr.ConstData();
+      ByteArray cstr = s.toCString(gConsoleCharset);
+      out << cstr.constData();
       return out;
    }
 
@@ -1068,55 +1068,55 @@ namespace jm
 
    String& operator << (String &out, const String &str)
    {
-      out.Append(str);
+      out.append(str);
       return out;
    }
 
    String& operator << (String& out, const Integer& i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String& operator << (String& out, const uint64& i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String &operator << (String &out, const int64 &i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String &operator << (String &out, const int32 &i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String &operator << (String &out, const uint32 &i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String &operator << (String &out, const double &i)
    {
-      out.Append(String::ValueOf(i));
+      out.append(String::ValueOf(i));
       return out;
    }
 
    String &operator << (String &out, const char &i)
    {
-      out.Append(i);
+      out.append(i);
       return out;
    }
 
    String &operator << (String &out, const Char &i)
    {
-      out.Append(i);
+      out.append(i);
       return out;
    }
 
@@ -1136,89 +1136,89 @@ namespace jm
 
    String &String::operator+=(const String &another)
    {
-      this->Append(another);
+      this->append(another);
       return *this;
    }
 
    String operator+(const String &left, const String &right)
    {
       String ret = left;
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    String operator+(const char* &left, const String &right)
    {
       String ret = left;
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    String operator+(const String &left, const char* &right)
    {
       String ret = left;
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    String operator+(int64 &left, const String &right)
    {
       String ret = String::ValueOf(left);
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    String operator+(const String &left, int64 &right)
    {
       String ret = left;
-      ret.Append(String::ValueOf(right));
+      ret.append(String::ValueOf(right));
       return ret;
    }
 
    String operator+(double &left, const String &right)
    {
       String ret = String::ValueOf(left);
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    String operator+(const String &left, double &right)
    {
       String ret = left;
-      ret.Append(String::ValueOf(right));
+      ret.append(String::ValueOf(right));
       return ret;
    }
 
    String operator+(const int8 &left, const String &right)
    {
       String ret;
-      ret.Append(left);
-      ret.Append(right);
+      ret.append(left);
+      ret.append(right);
       return ret;
    }
 
    String operator+(const String &left, const int8 &right)
    {
       String ret = left;
-      ret.Append(right);
+      ret.append(right);
       return ret;
    }
 
    bool operator<(const String &left, const String &right)
    {
       String str = left;
-      return str.CompareTo(right) < 0;
+      return str.compareTo(right) < 0;
    }
 
 }
 
 double jm::ConvertToDouble(String str)
 {
-   for(uint32 a = 0; a < str.Length(); a++)
+   for(uint32 a = 0; a < str.size(); a++)
    {
       if(str.CharAt(a) == ',') str.SetCharAt(a, '.');
    }
-   return Double::ValueOf(str);
+   return Double::valueOf(str);
 }
 
 String jm::URLDecode(const String &str)
@@ -1227,17 +1227,17 @@ String jm::URLDecode(const String &str)
    // A URL-encoded string contains only ASCII characters...
    //
 
-   ByteArray buffer = ByteArray(str.Length(),0);
+   ByteArray buffer = ByteArray(str.size(),0);
    uint32 pos = 0;
 
    // Eliminate URL-Decoding
    int8 c;
-   for(uint32 a = 0; a < str.Length(); a++)
+   for(uint32 a = 0; a < str.size(); a++)
    {
-      switch(str.CharAt(a).Unicode())
+      switch(str.CharAt(a).unicode())
       {
          case '%':
-            c = Integer::FromHex(str.Substring(a + 1, a + 3)).Int8();
+            c = Integer::fromHex(str.Substring(a + 1, a + 3)).Int8();
             a += 2;
             buffer[pos++] = c;
             break;
@@ -1247,11 +1247,11 @@ String jm::URLDecode(const String &str)
             break;
 
          default:
-            buffer[pos++] = (int8)str.CharAt(a).Unicode();
+            buffer[pos++] = (int8)str.CharAt(a).unicode();
             break;
       }
    }
-   buffer.Resize(pos);
+   buffer.resize(pos);
    String ret = String(buffer);
    return ret;
 }
@@ -1263,28 +1263,28 @@ String jm::URLEncode(const String &str)
    //
    String ret;
 
-   for(uint32 a = 0; a < str.Length(); a++)
+   for(uint32 a = 0; a < str.size(); a++)
    {
-      switch(str.CharAt(a).Unicode())
+      switch(str.CharAt(a).unicode())
       {
          case ' ':
-            ret.Append('+');
+            ret.append('+');
             break;
 
          case '%':
-            ret.Append('%');
-            ret.Append('2');
-            ret.Append('5');
+            ret.append('%');
+            ret.append('2');
+            ret.append('5');
             break;
 
          case '+':
-            ret.Append('%');
-            ret.Append('2');
-            ret.Append('B');
+            ret.append('%');
+            ret.append('2');
+            ret.append('B');
             break;
 
          default:
-            ret.Append(str.CharAt(a));
+            ret.append(str.CharAt(a));
             break;
       }
    }

@@ -73,11 +73,11 @@ class ExampleTest: public jm::Test
 // Entry methof of test application
 int main( int argc, const char* argv[] )
 {
-	// Init Jameo System
-	jm::System::Init();
-	jm::System::Log( "Example Test Suite" , jm::kLogInformation );
+	// init Jameo System
+	jm::System::init();
+	jm::System::log( "Example Test Suite" , jm::kLogInformation );
 
-	// Init test vector
+	// init test vector
 	jm::TestVector* vec = new jm::TestVector(argc, argv);
 	vec->AddTest( new ExampleTest() );
 
@@ -86,7 +86,7 @@ int main( int argc, const char* argv[] )
 
 	// Clean up
 	delete vec;
-	jm::System::Quit();
+	jm::System::quit();
 
 	// Return the number of errors to help calling scripts
 	return result;

@@ -81,7 +81,7 @@ namespace jm
 
 }
 
-void Color::ToRGB()
+void Color::toRgb()
 {
    switch(mMode)
    {
@@ -115,7 +115,7 @@ void Color::ToRGB()
    }
 }
 
-void Color::ToGreyScale()
+void Color::toGreyScale()
 {
    switch(mMode)
    {
@@ -138,14 +138,14 @@ void Color::ToGreyScale()
       case kColourModeCMYK:
       {
          // The "detour" via RGB is currently the simplest.
-         ToRGB();
-         ToGreyScale();
+         toRgb();
+         toGreyScale();
          break;
       }
    }
 }
 
-void Color::ToCMYK()
+void Color::toCmyk()
 {
    switch(mMode)
    {
@@ -197,58 +197,58 @@ void Color::ToCMYK()
    }
 }
 
-uint8 Color::Alpha() const
+uint8 Color::alpha() const
 {
    return mAlpha;
 }
 
-uint8 Color::Red() const
+uint8 Color::red() const
 {
    return col.rgb.red;
 }
 
-uint8 Color::Green() const
+uint8 Color::green() const
 {
    return col.rgb.green;
 }
 
-uint8 Color::Blue() const
+uint8 Color::blue() const
 {
    return col.rgb.blue;
 }
 
-uint8 Color::Grey() const
+uint8 Color::grey() const
 {
    return col.g.grey;
 }
 
-uint8 Color::Cyan() const
+uint8 Color::cyan() const
 {
    return col.cmyk.cyan;
 }
 
-uint8 Color::Magenta() const
+uint8 Color::magenta() const
 {
    return col.cmyk.magenta;
 }
 
-uint8 Color::Yellow() const
+uint8 Color::yellow() const
 {
    return col.cmyk.yellow;
 }
 
-uint8 Color::Key() const
+uint8 Color::key() const
 {
    return col.cmyk.key;
 }
 
-ColourMode Color::Mode() const
+ColourMode Color::mode() const
 {
    return mMode;
 }
 
 
-bool Color::IsWhite() const
+bool Color::isWhite() const
 {
    switch(mMode)
    {
@@ -265,13 +265,13 @@ bool Color::IsWhite() const
    return false;
 }
 
-void Color::GetHSVModel(float &hue, float &saturation, float &value) const
+void Color::hsvModel(float &hue, float &saturation, float &value) const
 {
    Color tmp = *this;
-   tmp.ToRGB();
+   tmp.toRgb();
 
-   uint8 MAX = std::max(std::max(tmp.Red(), tmp.Green()), tmp.Blue());
-   uint8 MIN = std::min(std::min(tmp.Red(), tmp.Green()), tmp.Blue());
+   uint8 MAX = std::max(std::max(tmp.red(), tmp.green()), tmp.blue());
+   uint8 MIN = std::min(std::min(tmp.red(), tmp.green()), tmp.blue());
 
    float MAX_MIN = static_cast<float>(MAX - MIN);
 
@@ -279,9 +279,9 @@ void Color::GetHSVModel(float &hue, float &saturation, float &value) const
    // HUE
    //
    if(MAX == MIN)hue = 0.0;
-   else if(MAX == tmp.Red())hue = 60.0f * static_cast<float>(tmp.Green() - tmp.Blue()) / MAX_MIN;
-   else if(MAX == tmp.Green())hue = 60.0f * (2.0f + static_cast<float>(tmp.Blue() - tmp.Red()) / MAX_MIN);
-   else if(MAX == tmp.Blue())hue = 60.0f * (4.0f + static_cast<float>(tmp.Red() - tmp.Green()) / MAX_MIN);
+   else if(MAX == tmp.red())hue = 60.0f * static_cast<float>(tmp.green() - tmp.blue()) / MAX_MIN;
+   else if(MAX == tmp.green())hue = 60.0f * (2.0f + static_cast<float>(tmp.blue() - tmp.red()) / MAX_MIN);
+   else if(MAX == tmp.blue())hue = 60.0f * (4.0f + static_cast<float>(tmp.red() - tmp.green()) / MAX_MIN);
 
    if(hue < 0.0)hue += 360.0f;
 
@@ -298,57 +298,57 @@ void Color::GetHSVModel(float &hue, float &saturation, float &value) const
 
 }
 
-void Color::SetMode(ColourMode mode)
+void Color::setMode(ColourMode mode)
 {
    mMode = mode;
 }
 
-void Color::SetAlpha(uint8 alpha)
+void Color::setAlpha(uint8 alpha)
 {
    mAlpha = alpha;
 }
 
-void Color::SetRed(uint8 red)
+void Color::setRed(uint8 red)
 {
    col.rgb.red = red;
 }
 
-void Color::SetGreen(uint8 green)
+void Color::setGreen(uint8 green)
 {
    col.rgb.green = green;
 }
 
-void Color::SetBlue(uint8 blue)
+void Color::setBlue(uint8 blue)
 {
    col.rgb.blue = blue;
 }
 
-void Color::SetGrey(uint8 grey)
+void Color::setGrey(uint8 grey)
 {
    col.g.grey = grey;
 }
 
-void Color::SetCyan(uint8 cyan)
+void Color::setCyan(uint8 cyan)
 {
    col.cmyk.cyan = cyan;
 }
 
-void Color::SetMagenta(uint8 magenta)
+void Color::setMagenta(uint8 magenta)
 {
    col.cmyk.magenta = magenta;
 }
 
-void Color::SetYellow(uint8 yellow)
+void Color::setYellow(uint8 yellow)
 {
    col.cmyk.yellow = yellow;
 }
 
-void Color::SetKey(uint8 key)
+void Color::setKey(uint8 key)
 {
    col.cmyk.key = key;
 }
 
-Color Color::FromGrey(uint8 grey, uint8 alpha)
+Color Color::fromGrey(uint8 grey, uint8 alpha)
 {
    Color c;
 
@@ -359,7 +359,7 @@ Color Color::FromGrey(uint8 grey, uint8 alpha)
    return c;
 }
 
-Color Color::FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha)
+Color Color::fromRgb(uint8 red, uint8 green, uint8 blue, uint8 alpha)
 {
    Color c;
 
@@ -372,7 +372,7 @@ Color Color::FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha)
    return c;
 }
 
-Color Color::FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
+Color Color::FromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
 {
    Color c;
 
@@ -386,7 +386,7 @@ Color Color::FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 
    return c;
 }
 
-Color Color::FromHSV(float hue, float saturation, float value, float alpha)
+Color Color::FromHsv(float hue, float saturation, float value, float alpha)
 {
    Color c;
 
@@ -402,31 +402,31 @@ Color Color::FromHSV(float hue, float saturation, float value, float alpha)
    {
       case 0:
       case 6:
-         c = FromRGB(static_cast<uint8>(value * 255), static_cast<uint8>(t * 255), static_cast<uint8>(p * 255));
+         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(t * 255), static_cast<uint8>(p * 255));
          break;
 
       case 1:
-         c = FromRGB(static_cast<uint8>(q * 255), static_cast<uint8>(value * 255), static_cast<uint8>(p * 255));
+         c = fromRgb(static_cast<uint8>(q * 255), static_cast<uint8>(value * 255), static_cast<uint8>(p * 255));
          break;
 
       case 2:
-         c = FromRGB(static_cast<uint8>(p * 255), static_cast<uint8>(value * 255), static_cast<uint8>(t * 255));
+         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(value * 255), static_cast<uint8>(t * 255));
          break;
 
       case 3:
-         c = FromRGB(static_cast<uint8>(p * 255), static_cast<uint8>(q * 255), static_cast<uint8>(value * 255));
+         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(q * 255), static_cast<uint8>(value * 255));
          break;
 
       case 4:
-         c = FromRGB(static_cast<uint8>(t * 255), static_cast<uint8>(p * 255), static_cast<uint8>(value * 255));
+         c = fromRgb(static_cast<uint8>(t * 255), static_cast<uint8>(p * 255), static_cast<uint8>(value * 255));
          break;
 
       case 5:
-         c = FromRGB(static_cast<uint8>(value * 255), static_cast<uint8>(p * 255), static_cast<uint8>(q * 255));
+         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(p * 255), static_cast<uint8>(q * 255));
          break;
    }
 
-   c.SetAlpha(static_cast<uint8>(alpha * 255));
+   c.setAlpha(static_cast<uint8>(alpha * 255));
 
    return c;
 }
@@ -457,7 +457,7 @@ uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colo
    return (uint8)(C * 255);
 }
 
-Color jm::Blend(Color background, Color foreground, uint8 alpha)
+Color jm::blend(Color background, Color foreground, uint8 alpha)
 {
    //Einfaches Alpha-Blendung für Nicht-Transparente Farben
    if(background.mAlpha == 255 && foreground.mAlpha == 255)
@@ -478,7 +478,7 @@ Color jm::Blend(Color background, Color foreground, uint8 alpha)
    return ret;
 }
 
-Color jm::Interpolate(Color colour1, Color colour2, float percent)
+Color jm::interpolate(Color colour1, Color colour2, float percent)
 {
    Color ret;
    ret.col.rgb.red = static_cast<uint8>(colour1.col.rgb.red + (colour2.col.rgb.red - colour1.col.rgb.red) * percent);

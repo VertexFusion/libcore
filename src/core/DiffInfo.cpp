@@ -105,7 +105,7 @@ void DiffInfo::Print(DiffOperation operation,
          break;
 
       case kDiffModified:
-         if(!obj1.Equals(obj2))
+         if(!obj1.equals(obj2))
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << std::endl;
          }
@@ -259,7 +259,7 @@ void DiffInfo::Print( dxf::LineType* obj1, dxf::LineType* obj2 )
 	Print( obj1 != NULL ? obj1->GetElementCount() : 0, obj2 != NULL ? obj2->GetElementCount() : 0, "elementCount" );
 	Print( obj1 != NULL ? obj1->flags : 0, obj2 != NULL ? obj2->flags : 0, "flags" );
 	Print( obj1 != NULL ? obj1->GetAlignmentCode() : 0, obj2 != NULL ? obj2->GetAlignmentCode() : 0, "alignmentCode" );
-	Print( obj1 != NULL ? obj1->GetName() : "", obj2 != NULL ? obj2->GetName() : "", "lineTypeName" );
+	Print( obj1 != NULL ? obj1->name() : "", obj2 != NULL ? obj2->name() : "", "lineTypeName" );
 	Print( obj1 != NULL ? obj1->description : "", obj2 != NULL ? obj2->description : "", "description" );
 	Print( obj1 != NULL ? obj1->totalPatternLength : 0, obj2 != NULL ? obj2->totalPatternLength : 0, "totalPatternLength" );
 
@@ -343,7 +343,7 @@ void DiffInfo::Print( dxf::MultiText* obj1, dxf::MultiText* obj2 )
 void DiffInfo::Print( dxf::Point* obj1, dxf::Point* obj2 )
 {
 	Print( ( dxf::DwgEntity* )obj1, ( dxf::DwgEntity* )obj2 );
-	Print( obj1 != NULL ? obj1->GetPosition() : Vertex3(), obj2 != NULL ? obj2->GetPosition() : Vertex3(), "position" );
+	Print( obj1 != NULL ? obj1->position() : Vertex3(), obj2 != NULL ? obj2->position() : Vertex3(), "position" );
 	Print( obj1 != NULL ? obj1->GetXAxisAngle() : 0, obj2 != NULL ? obj2->GetXAxisAngle() : 0, "xAxixAngle" );
 	Print( obj1 != NULL ? obj1->GetExtrusionDirection() : Vertex3(), obj2 != NULL ? obj2->GetExtrusionDirection() : Vertex3(), "extrusiondirection" );
 }
@@ -359,7 +359,7 @@ void DiffInfo::Print( dxf::Scale* obj1, dxf::Scale* obj2 )
 
 void DiffInfo::Print( dxf::Style* obj1, dxf::Style* obj2 )
 {
-	Print( obj1 != NULL ? obj1->GetName() : "", obj2 != NULL ? obj2->GetName() : "", "styleName" );
+	Print( obj1 != NULL ? obj1->name() : "", obj2 != NULL ? obj2->name() : "", "styleName" );
 	Print( obj1 != NULL ? obj1->primaryFontFileName : "", obj2 != NULL ? obj2->primaryFontFileName : "", "primaryFontFileName" );
 	Print( obj1 != NULL ? obj1->bigFontFileName : "", obj2 != NULL ? obj2->bigFontFileName : "", "bigFontFileName" );
 	Print( obj1 != NULL ? obj1->fixedTextHeight : 0, obj2 != NULL ? obj2->fixedTextHeight : 0, "fixedTextHeight" );

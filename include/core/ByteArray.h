@@ -76,54 +76,54 @@ namespace jm
           data. The data is always \0-terminated. The number of bytes can be assumed as Size()+1,
           including the \0-terminator.
           */
-         int8* Data();
+         int8* data();
 
          /*!
           \brief Returns a const pointer to the data.
           \note We use char (instead of int8 here, because char can be signe or unsigned, depending on operating system.)
           */
-         const char* ConstData() const;
+         const char* constData() const;
 
          /*!
           \brief Returns the size of the array.
           */
-         Integer Size() const;
+         Integer size() const;
 
          /*!
           \brief Returns true, if the array is NULL.
           */
-         bool IsNull() const;
+         bool isNull() const;
 
          /*!
           \brief Returns true, if the size of the array is 0.
           */
-         bool IsEmpty() const;
+         bool isEmpty() const;
 
          /*!
           \brief Sort the bytes in the array in ascending order.
           */
-         void Sort();
+         void sort();
 
          /*!
           \brief Set every byte in the array to ch.
           */
-         void Fill(uint8 ch);
+         void fill(uint8 ch);
 
          /*!
           \brief Resize the byte array. If the new size is bigger, it will increase the array. If the size is smaller,
           the bytes beyond the new size are excluded, but the array will have the same size.
          \param newSize The new size of the array. 
           */
-         void Resize(Integer newSize);
+         void resize(Integer newSize);
 
-         uint8 Get(Integer index) const;
+         uint8 get(Integer index) const;
 
-         void Set(Integer index, uint8 item);
+         void set(Integer index, uint8 item);
 
          /*!
           \brief Replaces the content of this array with the content of the other array
           */
-         void Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length);
+         void replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length);
 
          uint8& operator[](const Integer index) const;
 
@@ -142,7 +142,7 @@ namespace jm
          //! The array itself.
          uint8* mData;
 
-         void Init(const int8* buffer, Integer size);
+         void init(const int8* buffer, Integer size);
 
 
    };

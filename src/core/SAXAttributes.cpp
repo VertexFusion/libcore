@@ -84,7 +84,7 @@ int32 SAXAttributes::GetIndex(String qName) const
 {
    for(uint32 a = 0; a < mNames->size(); a++)
    {
-      if(mNames->at(a).Equals(qName))return a;
+      if(mNames->at(a).equals(qName))return a;
    }
 
    return -1;
@@ -144,12 +144,12 @@ String SAXAttributes::GetValue(const String &qname) const
 
 int32 SAXAttributes::GetIntValue(const String &qname) const
 {
-   return Integer::ValueOf(GetValue(qname)).Int32();
+   return Integer::valueOf(GetValue(qname)).Int32();
 }
 
 float SAXAttributes::GetFloatValue(const String &qname) const
 {
-   return (float)Double::ValueOf(GetValue(qname));
+   return (float)Double::valueOf(GetValue(qname));
 }
 
 bool SAXAttributes::GetBoolValue(const String &qname)const

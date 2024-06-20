@@ -41,24 +41,24 @@ MemoryStream::MemoryStream(uint8* stream, Integer length): Stream()
    mWritelength = 0;
 }
 
-VxfErrorStatus MemoryStream::Open(FileMode)
+VxfErrorStatus MemoryStream::open(FileMode)
 {
    mPosition = 0;
    mWritelength = 0;
    return eOK;
 }
 
-bool MemoryStream::IsOpen()
+bool MemoryStream::isOpen()
 {
    return true;
 }
 
-void MemoryStream::Close()
+void MemoryStream::close()
 {
    mPosition = 0;
 }
 
-Integer MemoryStream::Read(uint8* buffer, Integer length)
+Integer MemoryStream::read(uint8* buffer, Integer length)
 {
    Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    if(available > 0)memcpy(buffer, &mStream[mPosition], available);
@@ -68,28 +68,28 @@ Integer MemoryStream::Read(uint8* buffer, Integer length)
    return available;
 }
 
-Integer MemoryStream::ReadFully(ByteArray &buffer, Integer length)
+Integer MemoryStream::readFully(ByteArray &buffer, Integer length)
 {
-   return Read((uint8*)buffer.Data(), length);
+   return read((uint8*)buffer.data(), length);
 }
 
-void MemoryStream::Seek(Integer newPosition)
+void MemoryStream::seek(Integer newPosition)
 {
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-void MemoryStream::Move(Integer offset)
+void MemoryStream::move(Integer offset)
 {
    Integer newPosition = mPosition + offset;
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-Integer MemoryStream::GetPosition()
+Integer MemoryStream::position()
 {
    return mPosition;
 }
 
-Integer MemoryStream::Write(const uint8* buffer, Integer length)
+Integer MemoryStream::write(const uint8* buffer, Integer length)
 {
    Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    memcpy(&mStream[mPosition], buffer, length);
@@ -98,12 +98,12 @@ Integer MemoryStream::Write(const uint8* buffer, Integer length)
    return available;
 }
 
-Integer MemoryStream::Length() const
+Integer MemoryStream::size() const
 {
    return mStreamlength;
 }
 
-uint8* MemoryStream::GetBuffer()
+uint8* MemoryStream::buffer()
 {
    return mStream;
 }

@@ -238,7 +238,7 @@ namespace jm
 
          virtual ~Comparable() {};
 
-         virtual int32 CompareTo(const T &other) const = 0;
+         virtual int32 compareTo(const T &other) const = 0;
    };
 
 }

@@ -48,31 +48,31 @@ namespace jm
 
      /* explicit */ Char(uint16 character){mChar=character;};
 
-      uint16 Unicode() const {return mChar;};
+      uint16 unicode() const {return mChar;};
 
       //! \brief Returns the character as lower case (if possible).
-      Char ToLowerCase() const;
+      Char toLowerCase() const;
 
       //! \brief Returns the character as upper case (if possible).
-      Char ToUpperCase() const;
+      Char toUpperCase() const;
 
       //! \brief Returns true, if the character is a white space
-      bool IsWhitespace() const;
+      bool isWhitespace() const;
 
       //! \brief Returns true, if the character is a digit (0-9)
-      bool IsDigit() const;
+      bool isDigit() const;
 
       //! \brief Returns true, if the character is a letter
-      bool IsLetter() const;
+      bool isLetter() const;
 
       //! \brief Returns true, if the character is upper case
-      bool IsUpperCase() const;
+      bool isUpperCase() const;
 
       //! \brief Returns true, if the character is lower case
-      bool IsLowerCase() const;
+      bool isLowerCase() const;
 
       //! \brief Returns the digit value (0-9) or -1 if the character is no digit
-      int32 DigitValue()const;
+      int32 digitValue()const;
 
       /*!
        \brief Implementation of ==

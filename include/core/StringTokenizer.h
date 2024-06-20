@@ -59,13 +59,13 @@ namespace jm
          /*!
           \brief Gibt zurück, ob noch weitere Tokens in der Zeichenkette vorhanden sind.
           */
-         Bool HasMoreTokens();
+         Bool hasNext();
 
          /*!
           \brief Gibt das Nächste Token zurück.
           @throw Exception, wenn kein Token mehr vorhanden ist.
           */
-         String NextToken();
+         String next();
 
       private:
 

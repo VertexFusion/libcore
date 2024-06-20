@@ -57,14 +57,14 @@ namespace jm
           The programme can use this variable to decide which language it should display.
           \return The string has the form "de-DE"
           */
-         static String GetLanguage();
+         static String language();
 
          /*!
           \brief Diese Methode gibt den Benutzernamen des aktuell angemeldeten Benutzers zurück.
           Diese Funktion ermittelt dabei den "Systemnamen" BenutzerID. In der Regel ist dies der
           Account-Name.
           */
-         static String GetUserID();
+         static String userId();
 
          /*!
           \brief Diese Methode gibt den Benutzernamen des aktuell angemeldeten Benutzers zurück.
@@ -72,49 +72,49 @@ namespace jm
           Regel
           Leerzeichen und ist nicht mit dem Accountnamen identisch.
           */
-         static String GetUserFullName();
+         static String userFullName();
 
          /*!
-          \brief Returns the bundleId which was provided on Init()
+          \brief Returns the bundleId which was provided on init()
           */
-         static const String& GetBundleId();
+         static const String& bundleId();
 
          /*!
           \brief Diese Methode muss als erstes aufgerufen werden, damit wichtige statische
           Objekte eingerichtet werden
-          \note Beim Beenden ist \c Init() aufzurufen
+          \note Beim Beenden ist \c init() aufzurufen
           */
-         static void Init(const jm::String &bundleId);
+         static void init(const jm::String &bundleId);
 
          /*!
           \brief Diese Methode räumt statische Systemobjekte auf. Nach dieser Methode muss das
           Programm beendet werden, weil es sonst bei Verwendung von Objekten dieser Bibliothek zu
           unerwünschten Nebeneffekte kommen kann.
-          \note Beim Starten ist \c Init() aufzurufen
+          \note Beim Starten ist \c init() aufzurufen
           */
-         static void Quit();
+         static void quit();
 
          /*!
           \brief Turns logging of timestamp on or of.
           \param status If \c true the timestamp will be logged. Otherwise false.
           */
-         static void LogEnableDate(bool status);
+         static void logEnableDate(bool status);
 
          /*!
           \brief Set the minimum level where the level label will be logged.
           \param logLevel The minimum level.
           */
-         static void LogEnableLabel(LogLevel logLevel);
+         static void logEnableLabel(LogLevel logLevel);
 
          /*!
           \brief Loggt eine Nachricht mit...
           */
-         static void Log(const String &message, LogLevel logLevel);
+         static void log(const String &message, LogLevel logLevel);
 
          /*!
           \brief Gibt die letzte Fehlermeldung zurück
           */
-         static const String& GetLastErrorMessage();
+         static const String& lastErrorMessage();
 
          /*!
           \brief Diese Methode lädt eine dynamische Bibliothek. Unter macOS *.dylib, Windows *.dll
@@ -122,21 +122,21 @@ namespace jm
           \param file Datei der Bibliothek.
           \return Pointer auf die Bibliothek oder NULL, wenn sie nicht gefunden wurde.
           */
-         static void* LoadDynamicLibrary(File* file);
+         static void* loadDynamicLibrary(File* file);
 
          /*!
           \brief Diese Methode gibt eine geladene dynamische Bibliothek wieder frei
           */
-         static void UnloadDynamicLibrary(void* library);
+         static void unloadDynamicLibrary(void* library);
 
          /*!
           \brief Diese Methode sicht nach Symbolen in der Bibliothekt
           \param library Referenz auf die Bilbiothek, in der gesucht werden soll.
           \param name Name des Symbols
           */
-         static void* FindSymbol(void* library, const String &name);
+         static void* findSymbol(void* library, const String &name);
 
-         static AutoreleasePool* GetAutoreleasePool();
+         static AutoreleasePool* autoreleasePool();
 
    };
 

@@ -88,11 +88,11 @@ namespace jm
 
 Charset::Charset(CharsetDecoder* decoder): Object()
 {
-   mName.Append('U');
-   mName.Append('T');
-   mName.Append('F');
-   mName.Append('-');
-   mName.Append('8');
+   mName.append('U');
+   mName.append('T');
+   mName.append('F');
+   mName.append('-');
+   mName.append('8');
    mAlternatives = NULL;
    mAltCount = 0;
    mDecoder = decoder;
@@ -101,7 +101,7 @@ Charset::Charset(CharsetDecoder* decoder): Object()
 Charset::Charset(const char *name, CharsetDecoder* decoder): Object()
 {
    uint32 index = 0;
-   while(name[index] != 0)mName.Append(name[index++]);
+   while(name[index] != 0)mName.append(name[index++]);
 
    mAlternatives = NULL;
    mAltCount = 0;
@@ -133,11 +133,11 @@ String Charset::Name()
 
 bool Charset::HasName(const String &name)
 {
-   if(mName.Equals(name))return true;
+   if(mName.equals(name))return true;
 
    for(uint8 a = 0; a < mAltCount; a++)
    {
-      if(mAlternatives[a].Equals(name))return true;
+      if(mAlternatives[a].equals(name))return true;
    }
 
    return false;
@@ -220,7 +220,7 @@ String Charset::Guess(const char* stream, Integer length)
    }
 
    // Undefined characters in Windows-1252
-   if(encoding.Equals("Windows-1252"))
+   if(encoding.equals("Windows-1252"))
    {
       for(uint32 a = 0; a < length; a++)
       {

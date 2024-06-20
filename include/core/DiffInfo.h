@@ -81,7 +81,7 @@ namespace jm
                              const String& obj1, const String& obj2, const String& label);// Ignore Case
 
          //			static void Print(DiffOperation operation,
-         //			                  const dwg::Colour &obj1, const dwg::Colour &obj2, const String &label);
+         //			                  const dwg::Color &obj1, const dwg::Color &obj2, const String &label);
 
          static void Print(DiffOperation operation,
                            const Vertex2 &obj1, const Vertex2 &obj2, const String &label);

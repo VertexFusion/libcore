@@ -39,13 +39,13 @@ DateFormatter::DateFormatter(const String &pattern): Object()
    mPatterns->type = kEmpty;
    mLast = mPatterns;
 
-   if(pattern.Length() < 1)return;
+   if(pattern.size() < 1)return;
 
    String token;
    bool inText = false;
    bool isText = false;
 
-   for(uint32 a = 0; a < pattern.Length(); a++)
+   for(uint32 a = 0; a < pattern.size(); a++)
    {
       Char c = pattern.CharAt(a);
 
@@ -58,18 +58,18 @@ DateFormatter::DateFormatter(const String &pattern): Object()
             Pattern* tpattern = new Pattern(token, true);
             mLast->next = tpattern;
             mLast = tpattern;
-            token.Clear();
+            token.clear();
             isText = false;
          }
       }
       else if(inText)
       {
-         token.Append(c);
+         token.append(c);
       }
       else
       {
          Char l = c;
-         if(token.Length() > 0)l = token.CharAt(0);
+         if(token.size() > 0)l = token.CharAt(0);
 
          if(c != l)
          {
@@ -77,14 +77,14 @@ DateFormatter::DateFormatter(const String &pattern): Object()
             mLast->next = tpattern;
             mLast = tpattern;
 
-            token.Clear();
-            token.Append(c);
+            token.clear();
+            token.append(c);
          }
-         else token.Append(c);
+         else token.append(c);
       }
    }
 
-   if(token.Length() > 0)
+   if(token.size() > 0)
    {
       Pattern* tpattern = new Pattern(token);
       mLast->next = tpattern;
@@ -141,9 +141,9 @@ DateFormatter::Pattern::Pattern(const String &value, bool isText)
    }
    else
    {
-      length = (uint8)value.Length();
+      length = (uint8)value.size();
 
-      switch(value.CharAt(0).Unicode())
+      switch(value.CharAt(0).unicode())
       {
          case 'y':
             type = kYear;
@@ -195,169 +195,169 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          return;
 
       case kText:
-         value.Append(text);
+         value.append(text);
          return;
 
       case kYear:
          if(length == 2)
          {
-            int64 y = date.Year() % 100;
-            if(y < 10)value.Append('0');
-            value.Append(String::ValueOf(y));
+            int64 y = date.year() % 100;
+            if(y < 10)value.append('0');
+            value.append(String::ValueOf(y));
          }
-         else value.Append(String::ValueOf(date.Year()));
+         else value.append(String::ValueOf(date.year()));
          return;
 
       case kHourInDay0:
          if(length == 2)
          {
-            int64 d = date.GetHours();
-            if(d < 10)value.Append('0');
-            value.Append(String::ValueOf(d));
+            int64 d = date.hours();
+            if(d < 10)value.append('0');
+            value.append(String::ValueOf(d));
          }
-         else value.Append(String::ValueOf(date.GetHours()));
+         else value.append(String::ValueOf(date.hours()));
          return;
 
       case kMinute:
          if(length == 2)
          {
-            int64 d = date.GetMinutes();
+            int64 d = date.minutes();
             if(d < 0)d = 0;
-            if(d < 10)value.Append('0');
-            value.Append(String::ValueOf(d));
+            if(d < 10)value.append('0');
+            value.append(String::ValueOf(d));
          }
-         else value.Append(String::ValueOf(date.GetMinutes()));
+         else value.append(String::ValueOf(date.minutes()));
          return;
 
       case kSecond:
          if(length == 2)
          {
-            int64 s = date.GetSeconds();
-            if(s < 10)value.Append('0');
-            value.Append(String::ValueOf(s));
+            int64 s = date.seconds();
+            if(s < 10)value.append('0');
+            value.append(String::ValueOf(s));
          }
-         else value.Append(String::ValueOf(date.GetSeconds()));
+         else value.append(String::ValueOf(date.seconds()));
          return;
 
       case kMillisecond:
          if(length > 1)
          {
-            int64 s = date.GetMilliseconds() ;
-            if(s < 10)value.Append('0');
-            if(s < 100)value.Append('0');
-            value.Append(String::ValueOf(s));
+            int64 s = date.milliseconds() ;
+            if(s < 10)value.append('0');
+            if(s < 100)value.append('0');
+            value.append(String::ValueOf(s));
          }
-         else value.Append(String::ValueOf(date.GetMilliseconds()));
+         else value.append(String::ValueOf(date.milliseconds()));
          return;
 
       case kDayInMonth:
          if(length == 2)
          {
-            int64 d = date.GetDate();
+            int64 d = date.date();
             if(d < 0)d = 0;
-            if(d < 10)value.Append('0');
-            value.Append(String::ValueOf(d));
+            if(d < 10)value.append('0');
+            value.append(String::ValueOf(d));
          }
-         else value.Append(String::ValueOf(date.GetDate()));
+         else value.append(String::ValueOf(date.date()));
          return;
 
       case kDayInWeek:
          if(length == 1)
          {
-            switch(date.GetDay())
+            switch(date.day())
             {
                case Date::MONDAY:
-                  value.Append("M");
+                  value.append("M");
                   return;
 
                case Date::TUESDAY:
-                  value.Append("D");
+                  value.append("D");
                   return;
 
                case Date::WEDNESDAY:
-                  value.Append("M");
+                  value.append("M");
                   return;
 
                case Date::THURSDAY:
-                  value.Append("D");
+                  value.append("D");
                   return;
 
                case Date::FRIDAY:
-                  value.Append("F");
+                  value.append("F");
                   return;
 
                case Date::SATURDAY:
-                  value.Append("S");
+                  value.append("S");
                   return;
 
                case Date::SUNDAY:
-                  value.Append("S");
+                  value.append("S");
                   return;
             }
          }
          else if(length == 2)
          {
-            switch(date.GetDay())
+            switch(date.day())
             {
                case Date::MONDAY:
-                  value.Append("Mo");
+                  value.append("Mo");
                   return;
 
                case Date::TUESDAY:
-                  value.Append("Di");
+                  value.append("Di");
                   return;
 
                case Date::WEDNESDAY:
-                  value.Append("Mi");
+                  value.append("Mi");
                   return;
 
                case Date::THURSDAY:
-                  value.Append("Do");
+                  value.append("Do");
                   return;
 
                case Date::FRIDAY:
-                  value.Append("Fr");
+                  value.append("Fr");
                   return;
 
                case Date::SATURDAY:
-                  value.Append("Sa");
+                  value.append("Sa");
                   return;
 
                case Date::SUNDAY:
-                  value.Append("So");
+                  value.append("So");
                   return;
             }
          }
          else
          {
-            switch(date.GetDay())
+            switch(date.day())
             {
                case Date::MONDAY:
-                  value.Append("Montag");
+                  value.append("Montag");
                   return;
 
                case Date::TUESDAY:
-                  value.Append("Dienstag");
+                  value.append("Dienstag");
                   return;
 
                case Date::WEDNESDAY:
-                  value.Append("Mittwoch");
+                  value.append("Mittwoch");
                   return;
 
                case Date::THURSDAY:
-                  value.Append("Donnerstag");
+                  value.append("Donnerstag");
                   return;
 
                case Date::FRIDAY:
-                  value.Append("Freitag");
+                  value.append("Freitag");
                   return;
 
                case Date::SATURDAY:
-                  value.Append("Samstag");
+                  value.append("Samstag");
                   return;
 
                case Date::SUNDAY:
-                  value.Append("Sonntag");
+                  value.append("Sonntag");
                   return;
             }
          }
@@ -366,124 +366,124 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
       case kMonthInYear:
          if(length == 1)
          {
-            value.Append(String::ValueOf(date.Month() + 1));
+            value.append(String::ValueOf(date.month() + 1));
          }
          else if(length == 2)
          {
-            int64 m = date.Month() + 1;
-            if(m < 10)value.Append('0');
-            value.Append(String::ValueOf(m));
+            int64 m = date.month() + 1;
+            if(m < 10)value.append('0');
+            value.append(String::ValueOf(m));
          }
          else if(length == 3)
          {
-            switch(date.Month())
+            switch(date.month())
             {
                case Date::JANUARY:
-                  value.Append("Jan");
+                  value.append("Jan");
                   return;
 
                case Date::FEBRUARY:
-                  value.Append("Feb");
+                  value.append("Feb");
                   return;
 
                case Date::MARCH:
-                  value.Append("Mrz");
+                  value.append("Mrz");
                   return;
 
                case Date::APRIL:
-                  value.Append("Apr");
+                  value.append("Apr");
                   return;
 
                case Date::MAY:
-                  value.Append("Mai");
+                  value.append("Mai");
                   return;
 
                case Date::JUNE:
-                  value.Append("Jun");
+                  value.append("Jun");
                   return;
 
                case Date::JULY:
-                  value.Append("Jul");
+                  value.append("Jul");
                   return;
 
                case Date::AUGUST:
-                  value.Append("Aug");
+                  value.append("Aug");
                   return;
 
                case Date::SEPTEMBER:
-                  value.Append("Sep");
+                  value.append("Sep");
                   return;
 
                case Date::OCTOBER:
-                  value.Append("Okt");
+                  value.append("Okt");
                   return;
 
                case Date::NOVEMBER:
-                  value.Append("Nov");
+                  value.append("Nov");
                   return;
 
                case Date::DECEMBER:
-                  value.Append("Dez");
+                  value.append("Dez");
                   return;
             }
          }
          else
          {
-            switch(date.Month())
+            switch(date.month())
             {
                case Date::JANUARY:
-                  value.Append("Januar");
+                  value.append("Januar");
                   return;
 
                case Date::FEBRUARY:
-                  value.Append("Februar");
+                  value.append("Februar");
                   return;
 
                case Date::MARCH:
-                  value.Append("März");
+                  value.append("März");
                   return;
 
                case Date::APRIL:
-                  value.Append("April");
+                  value.append("April");
                   return;
 
                case Date::MAY:
-                  value.Append("Mai");
+                  value.append("Mai");
                   return;
 
                case Date::JUNE:
-                  value.Append("Juni");
+                  value.append("Juni");
                   return;
 
                case Date::JULY:
-                  value.Append("Juli");
+                  value.append("Juli");
                   return;
 
                case Date::AUGUST:
-                  value.Append(Tr("August"));
+                  value.append(Tr("August"));
                   return;
 
                case Date::SEPTEMBER:
-                  value.Append("Septemper");
+                  value.append("Septemper");
                   return;
 
                case Date::OCTOBER:
-                  value.Append("Oktober");
+                  value.append("Oktober");
                   return;
 
                case Date::NOVEMBER:
-                  value.Append("November");
+                  value.append("November");
                   return;
 
                case Date::DECEMBER:
-                  value.Append("Dezember");
+                  value.append("Dezember");
                   return;
             }
          }
          return;
 
       case kDayInYear:
-         value.Append(String::ValueOf(date.GetDayOfYear() + 1));
+         value.append(String::ValueOf(date.dayOfYear() + 1));
          return;
 
       case kWeekInYear:

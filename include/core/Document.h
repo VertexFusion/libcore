@@ -80,12 +80,12 @@ namespace jm
          /*!
           \brief Closes the undo step. This method should be called by applications
           */
-         virtual void CloseUndoStep();
+         virtual void closeUndoStep();
 
          /*!
           \brief Returns the undo manager if it exists.
           */
-         UndoManager* GetUndoManager();
+         UndoManager* undoManager();
 
          /*!
           \brief Determines whether an undo manager exists or not.
@@ -95,12 +95,12 @@ namespace jm
 
           \param status Turn undo manager on (\c true) or off (\c false).
           */
-         void SetUndoManager(bool status);
+         void setUndoManager(bool status);
 
          /*!
           \brief Returns the status of whether an undo manager exists.
           */
-         bool HasUndoManager() const;
+         bool hasUndoManager() const;
 
          /*!
           \brief Returns the status of whether the document has been edited since last saving.
@@ -108,7 +108,7 @@ namespace jm
            This value is set to false when saving. Nevertheless, the undo manager can contain steps
            for undo.
           */
-         bool IsDocumentChanged() const;
+         bool isDocumentChanged() const;
 
          /*!
           \brief Sets the status of whether the file has been changed.
@@ -120,7 +120,7 @@ namespace jm
 
           \param status status if whether the file hase been changed (\c true) or not (\ false)
           */
-         void SetDocumentChanged(bool status);
+         void setDocumentChanged(bool status);
 
          /*
           *
@@ -131,35 +131,35 @@ namespace jm
          /*!
           \brief Sets the file for this document
           */
-         void SetFile(const File &file);
+         void setFile(const File &file);
 
          /*!
           \brief Returns the File object of this document.
           */
-         File* GetFile();
+         File* file();
 
          /*!
           \brief Saves the file on the drive.
 
           This method shall called by your software when the file shall be saved.
-          GetFile() returns the file.
+          file() returns the file.
 
           Must be implemented by derived classes.
           */
-         virtual bool SaveDocument() = 0;
+         virtual bool saveDocument() = 0;
 
          /*!
           \brief Loads the file from the drive.
 
           This method shall called by your software when the file shall be loaded.
-          GetFile() returns the file.
+          file() returns the file.
 
-          \warning If this method is to be called, InitNewDocument() must not be called and vice
+          \warning If this method is to be called, initNewDocument() must not be called and vice
           versa.
 
           Must be implemented by derived classes.
           */
-         virtual bool LoadDocument() = 0;
+         virtual bool loadDocument() = 0;
 
          /*!
           \brief Initializes an "empty" document, ready for the user to work with it.
@@ -169,28 +169,28 @@ namespace jm
           However, this content must not be present when a document is loaded. Therefore, this
           content must be deliberately created here.
 
-          \warning If this method is to be called, LoadDocument() must not be called and vice versa.
+          \warning If this method is to be called, loadDocument() must not be called and vice versa.
 
           \param props Settings, which pass programme settings to the file, if applicable.
           */
-         virtual VxfErrorStatus InitNewDocument(Preferences* props) = 0;
+         virtual VxfErrorStatus initNewDocument(Preferences* props) = 0;
 
          /*!
           \brief Determines that the visual representation should be renewed for this document in
           the next run.
           */
-         virtual void Regenerate();
+         virtual void regenerate();
 
          /*!
          \brief This method should be called by the regeneration method after the visual
          representation of this object has been updated.
          */
-         virtual void RegenerationDone();
+         virtual void regenerationDone();
 
          /*!
          \brief Returns the regeneration status.
          */
-         virtual bool ShouldRegenerate() const;
+         virtual bool shouldRegenerate() const;
 
       private:
 

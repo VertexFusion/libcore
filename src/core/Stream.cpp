@@ -38,10 +38,10 @@ Stream::Stream(): Object()
 
 }
 
-Integer Stream::Write(const String &string)
+Integer Stream::write(const String &string)
 {
-   ByteArray cstr = string.ToCString();
-   Integer ret = Write((const uint8*)cstr.ConstData(), cstr.Size());
+   ByteArray cstr = string.toCString();
+   Integer ret = write((const uint8*)cstr.constData(), cstr.size());
    return ret;
 }
 

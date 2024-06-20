@@ -54,17 +54,17 @@ class DllExport Double
 
       // bool Equals(const Double& another) const;
 
-      int32 CompareTo(const Double& another) const;
+      int32 compareTo(const Double& another) const;
 
       /*!
        \brief Converts a string to double.
        \param string string in the form "1.23" with colon (.) as decimal divider.
        */
-      static Double ValueOf(const jm::String& string);
+      static Double valueOf(const jm::String& string);
 
-      Integer Floor() const;
+      Integer floor() const;
 
-      Integer Ceil() const;
+      Integer ceil() const;
 
       bool IsNaN() const;
 

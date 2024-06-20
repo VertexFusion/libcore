@@ -42,7 +42,7 @@
 #include "ByteArray.h"
 #include "CharArray.h"
 #include "Charset.h"
-#include "Colour.h"
+#include "Color.h"
 #include "CRC.h"
 #include "Date.h"
 #include "Deflater.h"

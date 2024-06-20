@@ -62,11 +62,11 @@ Integer TestVector::Execute()
 
    Integer single = -1;
 
-   if(arg.Length() > 0)
+   if(arg.size() > 0)
    {
       try
       {
-         single = Integer::ValueOf(arg);
+         single = Integer::valueOf(arg);
       }
       catch(jm::Exception* e)
       {
@@ -100,7 +100,7 @@ void TestVector::Testrun(Test* test)
 {
    if(test == NULL)return;
 
-   System::Log(Tr("Execute %1...").Arg(test->GetName()), kLogInformation);
+   System::log(Tr("Execute %1...").Arg(test->GetName()), kLogInformation);
 
    try
    {
@@ -115,7 +115,7 @@ void TestVector::Testrun(Test* test)
       delete e;
    }
 
-   System::Log(Tr("Test finished! %1 Tests, %2 Errors.")
+   System::log(Tr("Test finished! %1 Tests, %2 Errors.")
                .Arg(gTestCount)
                .Arg(gErrorCount),
                kLogInformation);

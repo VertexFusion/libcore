@@ -49,15 +49,15 @@ bool XMLWriter::StartDocument()
 {
    mIndent = 0;
    mLastIndent = false;
-   if(mOutput->IsOpen() == false)mOutput->Open(kFmWrite);
+   if(mOutput->isOpen() == false)mOutput->open(kFmWrite);
 
-   mOutput->Write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+   mOutput->write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
    return true;
 }
 
 bool XMLWriter::EndDocument()
 {
-   mOutput->Close();
+   mOutput->close();
    return true;
 }
 
@@ -66,7 +66,7 @@ void XMLWriter::StartIndent()
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
    {
       mOpenElements->TopRef()->hasContent = true;
-      mOutput->Write(">");
+      mOutput->write(">");
    }
    mIndent += 3;
    mLastIndent = true;
@@ -77,7 +77,7 @@ void XMLWriter::EndIndent()
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
    {
       mOpenElements->TopRef()->hasContent = true;
-      mOutput->Write(">");
+      mOutput->write(">");
    }
    mLastIndent = false;
    mIndent -= 3;
@@ -89,7 +89,7 @@ void XMLWriter::StartElement(const jm::String &name)
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
    {
       mOpenElements->TopRef()->hasContent = true;
-      mOutput->Write(">");
+      mOutput->write(">");
    }
 
    if(mLastIndent)
@@ -98,8 +98,8 @@ void XMLWriter::StartElement(const jm::String &name)
    }
 
 
-   mOutput->Write("<");
-   mOutput->Write(name);
+   mOutput->write("<");
+   mOutput->write(name);
 
    ElementInfo info;
    info.name = name;
@@ -112,7 +112,7 @@ void XMLWriter::EndElement()
 {
    if(mOpenElements->Top().hasContent == false)
    {
-      mOutput->Write("/>");
+      mOutput->write("/>");
    }
    else
    {
@@ -121,9 +121,9 @@ void XMLWriter::EndElement()
          WriteIndent();
       }
 
-      mOutput->Write("</");
-      mOutput->Write(mOpenElements->Top().name);
-      mOutput->Write(">");
+      mOutput->write("</");
+      mOutput->write(mOpenElements->Top().name);
+      mOutput->write(">");
    }
 
    mOpenElements->Pop();
@@ -135,7 +135,7 @@ void XMLWriter::WriteCDATA(const jm::String &cdata, bool xmlencode)
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
    {
       mOpenElements->TopRef()->hasContent = true;
-      mOutput->Write(">");
+      mOutput->write(">");
    }
 
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasCharacters == false)
@@ -149,11 +149,11 @@ void XMLWriter::WriteCDATA(const jm::String &cdata, bool xmlencode)
       jm::String encoded = Encode(cdata);
 
 
-      mOutput->Write(encoded);
+      mOutput->write(encoded);
    }
    else
    {
-      mOutput->Write(cdata);
+      mOutput->write(cdata);
    }
    mLastIndent = false;
 }
@@ -163,16 +163,16 @@ jm::String XMLWriter::Encode(const jm::String &input)
    jm::String encoded;
    jm::StringTokenizer st = jm::StringTokenizer(input, "&<>\"'", true);
 
-   while(st.HasMoreTokens())
+   while(st.hasNext())
    {
-      jm::String token = st.NextToken();
+      jm::String token = st.next();
 
-      if(token.Equals("&"))encoded.Append("&amp;");
-      else if(token.Equals("<"))encoded.Append("&lt;");
-      else if(token.Equals(">"))encoded.Append("&gt;");
-      else if(token.Equals("\""))encoded.Append("&quot;");
-      else if(token.Equals("'"))encoded.Append("&apos;");
-      else encoded.Append(token);
+      if(token.equals("&"))encoded.append("&amp;");
+      else if(token.equals("<"))encoded.append("&lt;");
+      else if(token.equals(">"))encoded.append("&gt;");
+      else if(token.equals("\""))encoded.append("&quot;");
+      else if(token.equals("'"))encoded.append("&apos;");
+      else encoded.append(token);
    }
    return encoded;
 }
@@ -183,12 +183,12 @@ void XMLWriter::WriteBase64(uint8* data, Integer length)
    {
       mOpenElements->TopRef()->hasContent = true;
       mOpenElements->TopRef()->hasCharacters = true;
-      mOutput->Write(">");
+      mOutput->write(">");
    }
 
 
-   uint8* encoded = jm::Base64::Encode(data, length);
-   mOutput->Write(encoded, length);
+   uint8* encoded = jm::Base64::encode(data, length);
+   mOutput->write(encoded, length);
    delete[] encoded;
    mLastIndent = false;
 }
@@ -201,11 +201,11 @@ void XMLWriter::WriteAttribute(const jm::String &name, const jm::String &content
       return;
    }
 
-   mOutput->Write(" ");
-   mOutput->Write(name);
-   mOutput->Write("=\"");
-   mOutput->Write(Encode(content));
-   mOutput->Write("\"");
+   mOutput->write(" ");
+   mOutput->write(name);
+   mOutput->write("=\"");
+   mOutput->write(Encode(content));
+   mOutput->write("\"");
    mLastIndent = false;
 }
 
@@ -238,7 +238,7 @@ void XMLWriter::WriteIndent()
 {
    jm::String str;
    str << '\n';
-   for(int32 a = 0; a < mIndent; a++)str.Append(' ');
-   if(str.Length() == 0)return;
-   mOutput->Write(str);
+   for(int32 a = 0; a < mIndent; a++)str.append(' ');
+   if(str.size() == 0)return;
+   mOutput->write(str);
 }

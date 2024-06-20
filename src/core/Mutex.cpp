@@ -54,7 +54,7 @@ Mutex::~Mutex()
    #endif
 }
 
-void Mutex::Lock()
+void Mutex::lock()
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_lock(&criticalSection);
@@ -65,7 +65,7 @@ void Mutex::Lock()
    #endif
 }
 
-void Mutex::Unlock()
+void Mutex::unlock()
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_unlock(&criticalSection);
@@ -77,7 +77,7 @@ void Mutex::Unlock()
    #endif
 }
 
-void Mutex::Sleep()
+void Mutex::sleep()
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_lock(&criticalSection);
@@ -91,7 +91,7 @@ void Mutex::Sleep()
    #endif
 }
 
-void Mutex::WakeUp()
+void Mutex::wakeUp()
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_cond_signal(&cond);

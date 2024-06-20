@@ -27,7 +27,7 @@
 		C64321EA2B9BB75000D75F5E /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908B2AEEFC550085300B /* Character.cpp */; };
 		C64321EB2B9BB75000D75F5E /* Charset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90902AEEFC550085300B /* Charset.cpp */; };
 		C64321EC2B9BB75000D75F5E /* CharsetDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90622AEEFC550085300B /* CharsetDecoder.cpp */; };
-		C64321ED2B9BB75000D75F5E /* Colour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90932AEEFC550085300B /* Colour.cpp */; };
+		C64321ED2B9BB75000D75F5E /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90932AEEFC550085300B /* Color.cpp */; };
 		C64321EE2B9BB75000D75F5E /* CRC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906E2AEEFC550085300B /* CRC.cpp */; };
 		C64321EF2B9BB75000D75F5E /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B908D2AEEFC550085300B /* Date.cpp */; };
 		C64321F02B9BB75000D75F5E /* DateFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90982AEEFC550085300B /* DateFormatter.cpp */; };
@@ -94,7 +94,7 @@
 		C699222C2AF7AA660099AEC0 /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
 		C699222D2AF7AA660099AEC0 /* Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90632AEEFC550085300B /* Mutex.cpp */; };
 		C699222E2AF7AA660099AEC0 /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90812AEEFC550085300B /* Stream.cpp */; };
-		C699222F2AF7AA660099AEC0 /* Colour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90932AEEFC550085300B /* Colour.cpp */; };
+		C699222F2AF7AA660099AEC0 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90932AEEFC550085300B /* Color.cpp */; };
 		C69922302AF7AA660099AEC0 /* Inflater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907A2AEEFC550085300B /* Inflater.cpp */; };
 		C69922312AF7AA660099AEC0 /* UndoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B906A2AEEFC550085300B /* UndoManager.cpp */; };
 		C69922322AF7AA660099AEC0 /* ZipOutputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90942AEEFC550085300B /* ZipOutputFile.cpp */; };
@@ -159,7 +159,7 @@
 		C69922702AF7AB6C0099AEC0 /* Base64.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90DD2AEEFC6A0085300B /* Base64.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922712AF7AB6C0099AEC0 /* CharArray.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90E22AEEFC6A0085300B /* CharArray.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922722AF7AB6C0099AEC0 /* Charset.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F12AEEFC6A0085300B /* Charset.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C69922732AF7AB6C0099AEC0 /* Colour.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91032AEEFC6A0085300B /* Colour.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C69922732AF7AB6C0099AEC0 /* Color.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91032AEEFC6A0085300B /* Color.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922742AF7AB6C0099AEC0 /* Core.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90E82AEEFC6A0085300B /* Core.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922752AF7AB6C0099AEC0 /* CRC.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91062AEEFC6A0085300B /* CRC.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922762AF7AB6C0099AEC0 /* Date.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90FD2AEEFC6A0085300B /* Date.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -246,7 +246,7 @@
 				C69922702AF7AB6C0099AEC0 /* Base64.h in Copy Headers */,
 				C69922712AF7AB6C0099AEC0 /* CharArray.h in Copy Headers */,
 				C69922722AF7AB6C0099AEC0 /* Charset.h in Copy Headers */,
-				C69922732AF7AB6C0099AEC0 /* Colour.h in Copy Headers */,
+				C69922732AF7AB6C0099AEC0 /* Color.h in Copy Headers */,
 				C69922742AF7AB6C0099AEC0 /* Core.h in Copy Headers */,
 				C69922752AF7AB6C0099AEC0 /* CRC.h in Copy Headers */,
 				C69922762AF7AB6C0099AEC0 /* Date.h in Copy Headers */,
@@ -380,7 +380,7 @@
 		C62B90902AEEFC550085300B /* Charset.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Charset.cpp; path = src/core/Charset.cpp; sourceTree = "<group>"; };
 		C62B90912AEEFC550085300B /* StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringTokenizer.cpp; path = src/core/StringTokenizer.cpp; sourceTree = "<group>"; };
 		C62B90922AEEFC550085300B /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = src/core/File.cpp; sourceTree = "<group>"; };
-		C62B90932AEEFC550085300B /* Colour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Colour.cpp; path = src/core/Colour.cpp; sourceTree = "<group>"; };
+		C62B90932AEEFC550085300B /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = src/core/Color.cpp; sourceTree = "<group>"; };
 		C62B90942AEEFC550085300B /* ZipOutputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ZipOutputFile.cpp; path = src/core/ZipOutputFile.cpp; sourceTree = "<group>"; };
 		C62B90952AEEFC550085300B /* MacRomanDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MacRomanDecoder.cpp; path = src/core/MacRomanDecoder.cpp; sourceTree = "<group>"; };
 		C62B90962AEEFC550085300B /* Base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Base64.cpp; path = src/core/Base64.cpp; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 		C62B91002AEEFC6A0085300B /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Test.h; path = include/core/Test.h; sourceTree = SOURCE_ROOT; };
 		C62B91012AEEFC6A0085300B /* SAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SAXParser.h; path = include/core/SAXParser.h; sourceTree = SOURCE_ROOT; };
 		C62B91022AEEFC6A0085300B /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = include/core/Geometry.h; sourceTree = SOURCE_ROOT; };
-		C62B91032AEEFC6A0085300B /* Colour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Colour.h; path = include/core/Colour.h; sourceTree = SOURCE_ROOT; };
+		C62B91032AEEFC6A0085300B /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = include/core/Color.h; sourceTree = SOURCE_ROOT; };
 		C62B91042AEEFC6A0085300B /* Thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Thread.h; path = include/core/Thread.h; sourceTree = SOURCE_ROOT; };
 		C62B91052AEEFC6A0085300B /* Hashtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hashtable.h; path = include/core/Hashtable.h; sourceTree = SOURCE_ROOT; };
 		C62B91062AEEFC6A0085300B /* CRC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRC.h; path = include/core/CRC.h; sourceTree = SOURCE_ROOT; };
@@ -457,6 +457,7 @@
 		C65510DB2C22294D00480B5E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C68CE9AC2C1B8F8400A2B981 /* Double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Double.cpp; path = src/core/Double.cpp; sourceTree = "<group>"; };
+		C68DF4F82C236B8C005F1DB6 /* Double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Double.h; path = include/core/Double.h; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
@@ -593,7 +594,7 @@
 				C62B908B2AEEFC550085300B /* Character.cpp */,
 				C62B90902AEEFC550085300B /* Charset.cpp */,
 				C62B90622AEEFC550085300B /* CharsetDecoder.cpp */,
-				C62B90932AEEFC550085300B /* Colour.cpp */,
+				C62B90932AEEFC550085300B /* Color.cpp */,
 				C62B906E2AEEFC550085300B /* CRC.cpp */,
 				C62B908D2AEEFC550085300B /* Date.cpp */,
 				C62B90982AEEFC550085300B /* DateFormatter.cpp */,
@@ -656,13 +657,14 @@
 		C62B90D62AEEFC5F0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C68DF4F82C236B8C005F1DB6 /* Double.h */,
 				C651C3132B97D9C90043D289 /* ByteArray.h */,
 				C62B90FC2AEEFC6A0085300B /* Array.h */,
 				C62B90E62AEEFC6A0085300B /* AutoreleasePool.h */,
 				C62B90DD2AEEFC6A0085300B /* Base64.h */,
 				C62B90E22AEEFC6A0085300B /* CharArray.h */,
 				C62B90F12AEEFC6A0085300B /* Charset.h */,
-				C62B91032AEEFC6A0085300B /* Colour.h */,
+				C62B91032AEEFC6A0085300B /* Color.h */,
 				C62B90E82AEEFC6A0085300B /* Core.h */,
 				C62B91062AEEFC6A0085300B /* CRC.h */,
 				C62B90FD2AEEFC6A0085300B /* Date.h */,
@@ -874,7 +876,7 @@
 				C64321EA2B9BB75000D75F5E /* Character.cpp in Sources */,
 				C64321EB2B9BB75000D75F5E /* Charset.cpp in Sources */,
 				C64321EC2B9BB75000D75F5E /* CharsetDecoder.cpp in Sources */,
-				C64321ED2B9BB75000D75F5E /* Colour.cpp in Sources */,
+				C64321ED2B9BB75000D75F5E /* Color.cpp in Sources */,
 				C64321EE2B9BB75000D75F5E /* CRC.cpp in Sources */,
 				C64321EF2B9BB75000D75F5E /* Date.cpp in Sources */,
 				C64321F02B9BB75000D75F5E /* DateFormatter.cpp in Sources */,
@@ -984,7 +986,7 @@
 				C69922672AF7AA660099AEC0 /* SAXParser.cpp in Sources */,
 				C69922482AF7AA660099AEC0 /* MacBindings.mm in Sources */,
 				C699223B2AF7AA660099AEC0 /* Math.cpp in Sources */,
-				C699222F2AF7AA660099AEC0 /* Colour.cpp in Sources */,
+				C699222F2AF7AA660099AEC0 /* Color.cpp in Sources */,
 				C69922402AF7AA660099AEC0 /* DiffBacktrace.cpp in Sources */,
 				C699225E2AF7AA660099AEC0 /* Document.cpp in Sources */,
 				C69922662AF7AA660099AEC0 /* Extents.cpp in Sources */,

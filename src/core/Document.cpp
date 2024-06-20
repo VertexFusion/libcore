@@ -38,12 +38,12 @@ Document::Document(): Object()
    mUndoManager = NULL;
    mChanged = false;
    mRegenerate = false;
-   SetUndoManager(true);
+   setUndoManager(true);
 }
 
 Document::~Document()
 {
-   if(mFile.IsOpen())mFile.Close();
+   if(mFile.isOpen())mFile.close();
 
 
    // We own the undo manage. We delete it.
@@ -54,25 +54,25 @@ Document::~Document()
    }
 }
 
-void Document::CloseUndoStep()
+void Document::closeUndoStep()
 {
-   if(mUndoManager != NULL)mUndoManager->Close();
+   if(mUndoManager != NULL)mUndoManager->close();
 }
 
-UndoManager* Document::GetUndoManager()
+UndoManager* Document::undoManager()
 {
    return mUndoManager;
 }
 
-void Document::SetUndoManager(bool status)
+void Document::setUndoManager(bool status)
 {
    if(status)
    {
       if(mUndoManager == NULL)
       {
          mUndoManager = new UndoManager();
-         mUndoManager->SetDocument(this);
-         mUndoManager->SetActive(true);
+         mUndoManager->setDocument(this);
+         mUndoManager->setActive(true);
       }
    }
    else
@@ -85,42 +85,42 @@ void Document::SetUndoManager(bool status)
    }
 }
 
-bool Document::HasUndoManager() const
+bool Document::hasUndoManager() const
 {
    return mUndoManager != NULL;
 }
 
-bool Document::IsDocumentChanged() const
+bool Document::isDocumentChanged() const
 {
    return mChanged;
 }
 
-void Document::SetDocumentChanged(bool status)
+void Document::setDocumentChanged(bool status)
 {
    mChanged = status;
 }
 
-void Document::SetFile(const File &file)
+void Document::setFile(const File &file)
 {
    mFile = file;
 }
 
-File* Document::GetFile()
+File* Document::file()
 {
    return &mFile;
 }
 
-void Document::Regenerate()
+void Document::regenerate()
 {
    mRegenerate = true;
 }
 
-void Document::RegenerationDone()
+void Document::regenerationDone()
 {
    mRegenerate = false;
 }
 
-bool Document::ShouldRegenerate() const
+bool Document::shouldRegenerate() const
 {
    return mRegenerate;
 }

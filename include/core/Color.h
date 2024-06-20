@@ -73,12 +73,12 @@ namespace jm
          /*!
           \brief Converts the colour to the RGB colour space.
           */
-         void ToRGB();
+         void toRgb();
 
          /*!
           \brief Converts the colour to the CMYK colour space.
           */
-         void ToCMYK();
+         void toCmyk();
 
          /*!
           \brief  Converts the colour to the greyscale colour space.
@@ -86,72 +86,72 @@ namespace jm
           The following algorithm is used:
           G = 0.2126 R + 0.7152 G + 0.0722 B.
           */
-         void ToGreyScale();
+         void toGreyScale();
 
          /*!
           \brief Returns alpha component directly. 0 = transparent, 255 = opaque.
 
           Value is colour space independent.
           */
-         uint8 Alpha() const;
+         uint8 alpha() const;
 
          /*!
           \brief Returns red component directly.
           \note Value only has a meaning in RGB mode
           */
-         uint8 Red() const;
+         uint8 red() const;
 
          /*!
           \brief Returns green component directly.
           \note Value only has a meaning in RGB mode
           */
-         uint8 Green() const;
+         uint8 green() const;
 
          /*!
           \brief Returns blue component directly.
           \note Value only has a meaning in RGB mode
           */
-         uint8 Blue() const;
+         uint8 blue() const;
 
          /*!
           \brief Returns grey component directly.
           \note Value only has meaning in greyscale mode.
           */
-         uint8 Grey() const;
+         uint8 grey() const;
 
          /*!
           \brief Returns cyan component directly.
            \note Value only has meaning in CMYK mode
           */
-         uint8 Cyan() const;
+         uint8 cyan() const;
 
          /*!
           \brief Returns magenta component directly.
            \note Value only has meaning in CMYK mode
           */
-         uint8 Magenta() const;
+         uint8 magenta() const;
 
          /*!
           \brief Returns yellow component directly.
            \note Value only has meaning in CMYK mode
           */
-         uint8 Yellow() const;
+         uint8 yellow() const;
 
          /*!
           \brief Returns key (black) component directly.
            \note Value only has meaning in CMYK mode
           */
-         uint8 Key() const;
+         uint8 key() const;
 
          /*!
           \brief Returns the colour mode.
           */
-         ColourMode Mode() const;
+         ColourMode mode() const;
 
          /*!
           \brief Is the colour white?
           */
-         bool IsWhite() const;
+         bool isWhite() const;
 
          /*!
           \brief Returns the HSV values of this colour. If the colour is not created in the RGB colour
@@ -160,98 +160,98 @@ namespace jm
           \param saturation Output filled in with the saturation value.
           \param value Output filled in with the brightness value.
           */
-         void GetHSVModel(float &hue, float &saturation, float &value) const;
+         void hsvModel(float &hue, float &saturation, float &value) const;
 
          /*!
           \brief Sets the colour space directly.
           \note There is no conversion of values.
           */
-         void SetMode(ColourMode mode);
+         void setMode(ColourMode mode);
 
          /*!
           \brief Directly sets the transparency. 0 = transparent, 255 = opaque.
           */
-         void SetAlpha(uint8 alpha);
+         void setAlpha(uint8 alpha);
 
          /*!
           \brief Sets the red component directly.
           \note Value only has a meaning in RGB mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetRed(uint8 red);
+         void setRed(uint8 red);
 
          /*!
           \brief Sets the green component directly.
           \note Value only has a meaning in RGB mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetGreen(uint8 green);
+         void setGreen(uint8 green);
 
          /*!
           \brief Sets the blue component directly.
           \note Value only has a meaning in RGB mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetBlue(uint8 blue);
+         void setBlue(uint8 blue);
 
          /*!
           \brief Sets the grey component directly.
           \note Value only has a meaning in grey scale mode. In other colour spaces, the colour is
           changed incorrectly.
           */
-         void SetGrey(uint8 grey);
+         void setGrey(uint8 grey);
 
          /*!
           \brief Sets the cyan component directly.
           \note Value only has a meaning in CMYK mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetCyan(uint8 cyan);
+         void setCyan(uint8 cyan);
 
          /*!
           \brief Sets the magenta component directly.
           \note Value only has a meaning in CMYK mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetMagenta(uint8 magenta);
+         void setMagenta(uint8 magenta);
 
          /*!
           \brief Sets the yellow component directly.
           \note Value only has a meaning in CMYK mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetYellow(uint8 yellow);
+         void setYellow(uint8 yellow);
 
          /*!
           \brief Sets the key (black) component directly.
           \note Value only has a meaning in CMYK mode. In other colour spaces, the colour is changed
           incorrectly.
           */
-         void SetKey(uint8 key);
+         void setKey(uint8 key);
 
          /*!
           \brief This method creates a colour in the colour space "greyscale".
           0 means black, 255 means white
           */
-         static Color FromGrey(uint8 grey, uint8 alpha = 255);
+         static Color fromGrey(uint8 grey, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "RGB".
           0 means black/dark/no colour, 255 means white/light/full colour
           */
-         static Color FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255);
+         static Color fromRgb(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "CMYK".
           0 means no colour (white on paper), 255 means full colour (dark on paper)
           */
-         static Color FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
+         static Color FromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "RGB" using the HSV model.
           All specifications in the space from 0.0-1.0
           */
-         static Color FromHSV(float hue, float saturation, float value, float alpha = 1.0);
+         static Color FromHsv(float hue, float saturation, float value, float alpha = 1.0);
 
       private:
 
@@ -292,17 +292,17 @@ namespace jm
          DllExport friend bool operator!=(Color const& c1, Color const& c2);
          DllExport friend const Color operator-(Color const &c1, Color const &c2);
          DllExport friend const Color operator+(Color const &c1, Color const &c2);
-         DllExport friend Color Blend(Color background, Color foreground, uint8 alpha);
-         DllExport friend Color Interpolate(Color colour1, Color colour2, float percent);
+         DllExport friend Color blend(Color background, Color foreground, uint8 alpha);
+         DllExport friend Color interpolate(Color colour1, Color colour2, float percent);
    };
 
    // Under windows we do not need that, under macOS it is required
    #if defined __APPLE__ || defined __linux__
    DllExport
-   Color Blend(Color background, Color foreground, uint8 alpha);
+   Color blend(Color background, Color foreground, uint8 alpha);
 
    DllExport
-   Color Interpolate(Color colour1, Color colour2, float percent);
+   Color interpolate(Color colour1, Color colour2, float percent);
 
    DllExport
    bool operator==(Color const& c1, Color const& c2);

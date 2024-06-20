@@ -40,13 +40,13 @@ I18nBundle::I18nBundle(const String &language)
    mLanguage = language;
 }
 
-void I18nBundle::AppendMO(File file)
+void I18nBundle::appendMo(File file)
 {
-   if(!file.Exists())
+   if(!file.exists())
    {
       String appID, name;
-      System::Log(Tr("Cannot find translation file: %1 %2")
-                  .Arg(file.GetPath())
+      System::log(Tr("Cannot find translation file: %1 %2")
+                  .Arg(file.path())
                   .Arg(mLanguage),
                   kLogError);
 
@@ -54,23 +54,23 @@ void I18nBundle::AppendMO(File file)
    }
 
    // Read file from disk
-   Integer length = file.Length();
+   Integer length = file.size();
    ByteArray buf = ByteArray(length, 0);
-   VxfErrorStatus status = file.Open(kFmRead);
+   VxfErrorStatus status = file.open(kFmRead);
    if (status != eOK)
    {
-      System::Log(Tr("Cannot open file: %1").Arg(file.GetPath()), kLogError);
+      System::log(Tr("Cannot open file: %1").Arg(file.path()), kLogError);
       return;
    }
-   Integer check = file.Stream::ReadFully(buf);
-   file.Close();
+   Integer check = file.Stream::readFully(buf);
+   file.close();
 
    if(check != length)
    {
-      System::Log(Tr("File not fully read: %1").Arg(file.GetPath()), kLogError);
+      System::log(Tr("File not fully read: %1").Arg(file.path()), kLogError);
       return;
    }
-   uint8* buffer = (uint8*)buf.ConstData();
+   uint8* buffer = (uint8*)buf.constData();
 
    // Process content
    uint32 magic = jm::DeserializeLEUInt32(buffer, 0);
@@ -81,12 +81,12 @@ void I18nBundle::AppendMO(File file)
 
    if(magic != 0x950412de)
    {
-      System::Log(Tr("File magic wrong: %1").Arg(file.GetPath()), kLogError);
+      System::log(Tr("File magic wrong: %1").Arg(file.path()), kLogError);
       return;
    }
    if(version != 0)
    {
-      System::Log(Tr("MO file version not supported: %1").Arg(file.GetPath()), kLogError);
+      System::log(Tr("MO file version not supported: %1").Arg(file.path()), kLogError);
       return;
    }
 
@@ -125,52 +125,52 @@ void I18nBundle::AppendMO(File file)
    }
 }
 
-String I18nBundle::Translate(const String& key) const
+String I18nBundle::translate(const String& key) const
 {
    return GetPreference(key, key);
 }
 
 
-I18nBundle* I18nBundle::GetDefault()
+I18nBundle* I18nBundle::getDefault()
 {
    return gDefaultTranslation;
 }
 
-void I18nBundle::InitDefault()
+void I18nBundle::initDefault()
 {
-   jm::String language = System::GetLanguage();
+   jm::String language = System::language();
    gDefaultTranslation = new I18nBundle(language);
 
    // Append Data
-   gDefaultTranslation->AppendMO(GetTansFileByBundleId(jm::kEmptyString,
+   gDefaultTranslation->appendMo(transFileByBundleId(jm::kEmptyString,
                                                        gDefaultTranslation->mLanguage));
 }
 
-jm::File I18nBundle::GetTansFileByBundleId(const String &filename,
+jm::File I18nBundle::transFileByBundleId(const String &filename,
                                            const String& lang)
 {
    String language = lang;
 
-   if(language.Length() == 0)language = System::GetLanguage();
+   if(language.size() == 0)language = System::language();
 
    language = language.Replace('-', '_');
 
    // Resource of translations
-   const File resDir = ResourceDir(jm::System::GetBundleId());
+   const File resDir = ResourceDir(jm::System::bundleId());
    const File translationDir = File(resDir, "translations");
 
    // Bundle-id + language
    File translationFile = File(translationDir, filename + "." + language + ".mo");
 
    // Maybe without bundle id ?
-   if(translationFile.Exists() == false)
+   if(translationFile.exists() == false)
    {
       translationFile = File(translationDir, language + ".mo");
    }
    else return translationFile;
 
    // Maybe without region?
-   if(translationFile.Exists() == false && language.IndexOf('_') > 0)
+   if(translationFile.exists() == false && language.IndexOf('_') > 0)
    {
       language = language.Substring(0, language.IndexOf('_'));
       translationFile = File(translationDir, filename + "." + language + ".mo");
@@ -178,7 +178,7 @@ jm::File I18nBundle::GetTansFileByBundleId(const String &filename,
    else return translationFile;
 
    // Maybe without region and without bundle id?
-   if(translationFile.Exists() == false && language.IndexOf('_') > 0)
+   if(translationFile.exists() == false && language.IndexOf('_') > 0)
    {
       language = language.Substring(0, language.IndexOf('_'));
       translationFile = File(translationDir, language + ".mo");

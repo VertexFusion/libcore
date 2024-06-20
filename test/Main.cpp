@@ -25,8 +25,8 @@ using namespace jm;
 
 int main(int argc, const char* argv[])
 {
-   System::Init("de.jameo.testsuite");
-   System::Log("Test Suite for VertexFusion ", jm::kLogInformation);
+   System::init("de.jameo.testsuite");
+   System::log("Test Suite for VertexFusion ", jm::kLogInformation);
 
    TestVector* vec = new TestVector(argc, argv);
 
@@ -49,6 +49,6 @@ int main(int argc, const char* argv[])
 
    delete vec;
 
-   System::Quit();
+   System::quit();
    return result.Int32();
 }

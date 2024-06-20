@@ -53,82 +53,82 @@ class UndoTestObject: public jm::Object
 
       void SetStr(jm::String value)
       {
-         undo->RegisterChange(this, &str);
+         undo->registerChange(this, &str);
          str = value;
       }
 
       void SetFloat(float value)
       {
-         undo->RegisterChange(this, &f);
+         undo->registerChange(this, &f);
          f = value;
       }
 
       void SetDouble(double value)
       {
-         undo->RegisterChange(this, &d);
+         undo->registerChange(this, &d);
          d = value;
       }
 
       void SetInt8(int8 value)
       {
-         undo->RegisterChange(this, &b1);
+         undo->registerChange(this, &b1);
          b1 = value;
       }
 
       void SetUInt8(uint8 value)
       {
-         undo->RegisterChange(this, &b2);
+         undo->registerChange(this, &b2);
          b2 = value;
       }
 
       void SetInt16(int16 value)
       {
-         undo->RegisterChange(this, &s1);
+         undo->registerChange(this, &s1);
          s1 = value;
       }
 
       void SetUInt16(uint16 value)
       {
-         undo->RegisterChange(this, &s2);
+         undo->registerChange(this, &s2);
          s2 = value;
       }
 
       void SetInt32(int32 value)
       {
-         undo->RegisterChange(this, &i1);
+         undo->registerChange(this, &i1);
          i1 = value;
       }
 
       void SetUInt32(uint32 value)
       {
-         undo->RegisterChange(this, &i2);
+         undo->registerChange(this, &i2);
          i2 = value;
       }
 
       void SetInt64(int64 value)
       {
-         undo->RegisterChange(this, &l1);
+         undo->registerChange(this, &l1);
          l1 = value;
       }
 
       void SetUInt64(uint64 value)
       {
-         undo->RegisterChange(this, &l2);
+         undo->registerChange(this, &l2);
          l2 = value;
       }
 
       void SetObject(UndoTestObject* other)
       {
-         undo->RegisterChange(this, (jm::Object**)&obj);
+         undo->registerChange(this, (jm::Object**)&obj);
          if(obj != NULL)
          {
-            undo->RegisterRelease(obj);
+            undo->registerRelease(obj);
             obj->release();
          }
          obj = other;
          if(obj != NULL)
          {
-            undo->RegisterRetain(obj);
+            undo->registerRetain(obj);
             obj->retain();
          }
       }

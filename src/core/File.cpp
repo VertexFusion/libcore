@@ -42,24 +42,24 @@ File::File(): Stream(), Comparable<File>()
 
 File::File(const String &pathname): Stream(), Comparable<File>()
 {
-   mPathname = Normalize(pathname);
-   SetCString();
+   mPathname = normalize(pathname);
+   setCString();
    mHandle = NULL;
 }
 
 File::File(String parent, String child): Stream(), Comparable<File>()
 {
-   if(child.Length() < 1)throw new Exception(Tr("Child is empty."));
-   mPathname = Resolve(Normalize(parent), Normalize(child));
-   SetCString();
+   if(child.size() < 1)throw new Exception(Tr("Child is empty."));
+   mPathname = resolve(normalize(parent), normalize(child));
+   setCString();
    mHandle = NULL;
 }
 
 File::File(const File& parent, String child): Stream(), Comparable<File>()
 {
-   if(child.Length() < 1)throw new Exception(Tr("Child is empty."));
-   mPathname = Resolve(parent.GetAbsolutePath(), Normalize(child));
-   SetCString();
+   if(child.size() < 1)throw new Exception(Tr("Child is empty."));
+   mPathname = resolve(parent.absolutePath(), normalize(child));
+   setCString();
    mHandle = NULL;
 }
 
@@ -67,7 +67,7 @@ File::File(const File &other): Stream(), Comparable<File>()
 {
    mPathname = other.mPathname;
    mHandle = other.mHandle;
-   if(mPathname.Length() > 0)SetCString();
+   if(mPathname.size() > 0)setCString();
    else mCstr = ByteArray();
 }
 
@@ -82,7 +82,7 @@ File& File::operator=(const File &another)
    {
       mPathname = another.mPathname;
       mHandle = another.mHandle;
-      if (mPathname.Length() > 0)SetCString();
+      if (mPathname.size() > 0)setCString();
       else mCstr = ByteArray();
    }
 
@@ -90,11 +90,11 @@ File& File::operator=(const File &another)
 }
 
 
-void File::SetCString()
+void File::setCString()
 {
    #ifdef __APPLE__ //macOS
    // Under 10.10 umlauts are transferred correctly...
-   mCstr = mPathname.ToCString(Charset::ForName("UTF-8"));
+   mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
    #elif defined __linux__ //Linux
    mCstr = mPathname.ToCString(Charset::ForName("UTF-8"));
    #elif defined _WIN32 //Windows
@@ -103,32 +103,32 @@ void File::SetCString()
    #endif
 }
 
-String File::Resolve(String parent, String child)
+String File::resolve(String parent, String child)
 {
    // Parent and child are normalized
    String sep;
-   sep.Append(DIR_SEP);
+   sep.append(DIR_SEP);
 
    // under UNIX:
-   if(parent.Length() < 1 && child.Length() < 1)return sep;
+   if(parent.size() < 1 && child.size() < 1)return sep;
 
    // If child begins with separator
    if(child.CharAt(0) == DIR_SEP)
    {
-      if(parent.Equals(sep))return child;
+      if(parent.equals(sep))return child;
       return parent + child;
    }
    else
    {
-      if(parent.Equals(sep))return parent + child;
+      if(parent.equals(sep))return parent + child;
       return parent + sep + child;
    }
 }
 
-String File::Normalize(const String &path)
+String File::normalize(const String &path)
 {
    String pathname = path;
-   Integer length = pathname.Length();
+   Integer length = pathname.size();
    Char prev = 0;
 
    for(Integer a = 0; a < length; a++)
@@ -138,7 +138,7 @@ String File::Normalize(const String &path)
       // Remove duplicate separator
       if(prev == DIR_SEP && character == DIR_SEP)
       {
-         pathname.DeleteCharAt(a);
+         pathname.deleteCharAt(a);
          a--;
          length--;
       }
@@ -146,16 +146,16 @@ String File::Normalize(const String &path)
    }
 
    // If last character is path separator and file name is longer than 1
-   if(prev == DIR_SEP && pathname.Length() > 1)pathname.DeleteCharAt(pathname.Length() - 1);
+   if(prev == DIR_SEP && pathname.size() > 1)pathname.deleteCharAt(pathname.size() - 1);
 
    return pathname;
 }
 
-bool File::MakeDirectory()
+bool File::makeDirectory()
 {
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   int32 result = mkdir(mCstr.ConstData(), S_IRWXU | S_IRGRP | S_IROTH);
+   int32 result = mkdir(mCstr.constData(), S_IRWXU | S_IRGRP | S_IROTH);
    return result == 0;
 
    #elif defined _WIN32//Windows
@@ -164,12 +164,12 @@ bool File::MakeDirectory()
    #endif
 }
 
-bool File::Exists() const
+bool File::exists() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   return access(mCstr.ConstData(), F_OK) == 0;
+   return access(mCstr.constData(), F_OK) == 0;
 
    #elif defined _WIN32//Windows
    if(mCstr.Size() == 0)return false;
@@ -181,12 +181,12 @@ bool File::Exists() const
    #endif
 }
 
-bool File::CanRead() const
+bool File::canRead() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   return access(mCstr.ConstData(), R_OK) == 0;
+   return access(mCstr.constData(), R_OK) == 0;
 
    #elif defined _WIN32//Windows
 
@@ -200,12 +200,12 @@ bool File::CanRead() const
 
 }
 
-bool File::CanWrite() const
+bool File::canWrite() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   return access(mCstr.ConstData(), W_OK) == 0;
+   return access(mCstr.constData(), W_OK) == 0;
 
    #elif defined _WIN32//Windows
 
@@ -219,12 +219,12 @@ bool File::CanWrite() const
 
 }
 
-bool File::IsDirectory() const
+bool File::isDirectory() const
 {
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
    bool ret = S_ISDIR(st.st_mode);
    return ret;
 
@@ -240,13 +240,13 @@ bool File::IsDirectory() const
 
 }
 
-bool File::IsFile() const
+bool File::isFile() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
    bool ret = S_ISREG(st.st_mode);
    return ret;
 
@@ -263,12 +263,12 @@ bool File::IsFile() const
 
 }
 
-bool File::IsHidden() const
+bool File::isHidden() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   return GetName().CharAt(0) == '.';
+   return name().CharAt(0) == '.';
 
    #elif defined _WIN32//Windows
 
@@ -282,13 +282,13 @@ bool File::IsHidden() const
 
 }
 
-bool File::IsLink() const
+bool File::isLink() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
    bool ret = S_ISLNK(st.st_mode);
    return ret;
 
@@ -306,13 +306,13 @@ bool File::IsLink() const
 
 }
 
-bool File::IsPipe() const
+bool File::isPipe() const
 {
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
    bool ret = S_ISFIFO(st.st_mode);
    return ret;
 
@@ -329,12 +329,12 @@ bool File::IsPipe() const
 
 }
 
-Date File::LastModified() const
+Date File::lastModified() const
 {
    #if defined(__APPLE__) //macOS
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
 
    //Umrechnen
    timespec tm = st.st_mtimespec;
@@ -371,15 +371,15 @@ Date File::LastModified() const
 
 bool File::Delete()
 {
-   if(remove(mCstr.ConstData()) == 0)return true;
+   if(remove(mCstr.constData()) == 0)return true;
    else return false;
 }
 
-bool File::MoveToTrash()
+bool File::moveToTrash()
 {
    #if defined(__APPLE__)//macOS
 
-   return File_MoveToTrash(mCstr.ConstData());
+   return File_MoveToTrash(mCstr.constData());
 
    #elif defined(__linux__) //Linus
 
@@ -392,13 +392,13 @@ bool File::MoveToTrash()
    return false;
 }
 
-bool File::RenameTo(const String &newPath)
+bool File::renameTo(const String &newPath)
 {
    int32 result;
 
 
    #ifdef __APPLE__ //macOS
-   ByteArray newname = newPath.ToCString();
+   ByteArray newname = newPath.toCString();
    #elif defined __linux__ //Linux
    ByteArray newname = newPath.ToCString();
    #elif defined _WIN32 //Windows
@@ -406,7 +406,7 @@ bool File::RenameTo(const String &newPath)
    #endif
 
 
-   result = rename(mCstr.ConstData(), newname.ConstData());
+   result = rename(mCstr.constData(), newname.constData());
 
    if(result == 0)
    {
@@ -420,16 +420,16 @@ bool File::RenameTo(const String &newPath)
 }
 
 
-Array<File>* File::ListFiles()const
+Array<File>* File::listFiles()const
 {
-   if(!IsDirectory())return NULL;//throw new Exception("ShxFile \"" + GetAbsolutePath() + "\" is not a directory.");
+   if(!isDirectory())return NULL;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 
    DIR* dp;
    struct dirent* dirp;
-   dp = opendir(mCstr.ConstData());
+   dp = opendir(mCstr.constData());
 
    if(dp == NULL)
    {
@@ -506,73 +506,73 @@ Array<File>* File::ListFiles()const
 }
 
 
-Integer File::Length() const
+Integer File::size() const
 {
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
 
    // If it doesn't exist, then I can't read it.
-   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").Arg(GetAbsolutePath()));
+   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").Arg(absolutePath()));
 
    return Integer((uint64)filestat.st_size);
 }
 
 
-const String& File::GetAbsolutePath() const
+const String& File::absolutePath() const
 {
    return mPathname;
 }
 
-String File::GetPath() const
+String File::path() const
 {
    return mPathname;
 }
 
-String File::GetParent() const
+String File::parent() const
 {
    Integer idx = mPathname.LastIndexOf(DIR_SEP);
    if(idx < 0)idx = 0;
    return mPathname.Substring(0, idx);
 }
 
-String File::GetName() const
+String File::name() const
 {
    return mPathname.Substring(mPathname.LastIndexOf(DIR_SEP) + 1);
 }
 
-String File::GetExtension() const
+String File::extension() const
 {
    return mPathname.Substring(mPathname.LastIndexOf('.') + 1);
 }
 
-bool File::CreateNewFile()
+bool File::createNewFile()
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
-   mHandle = fopen(mCstr.ConstData(), "wb");
+   mHandle = fopen(mCstr.constData(), "wb");
    Integer ret = mHandle != NULL;
    #elif defined _WIN32 //Windows
    Integer ret = fopen_s(&mHandle, mCstr.ConstData(), "wb");
    #endif
 
-   Close();
+   close();
    return ret == 0;
 }
 
-VxfErrorStatus File::Open(FileMode mode)
+VxfErrorStatus File::open(FileMode mode)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    switch(mode)
    {
       case kFmRead:
-         mHandle = fopen(mCstr.ConstData(), "rb");
+         mHandle = fopen(mCstr.constData(), "rb");
          break;
 
       case kFmWrite:
-         mHandle = fopen(mCstr.ConstData(), "wb");
+         mHandle = fopen(mCstr.constData(), "wb");
          break;
 
       case kFmReadWrite:
-         mHandle = fopen(mCstr.ConstData(), "rb+");
+         mHandle = fopen(mCstr.constData(), "rb+");
          break;
    }
    #elif defined _WIN32 //Windows
@@ -595,7 +595,7 @@ VxfErrorStatus File::Open(FileMode mode)
    if(mHandle == NULL)
    {
       String msg=Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno));
-      jm::System::Log(msg,jm::kLogError);
+      jm::System::log(msg,jm::kLogError);
       
       if(errno == EACCES)return eNotAllowed;
       if(errno == ENOENT)return  eNotFound;
@@ -606,12 +606,12 @@ VxfErrorStatus File::Open(FileMode mode)
    return eOK;
 }
 
-bool File::IsOpen()
+bool File::isOpen()
 {
    return mHandle != NULL;
 }
 
-void File::Close()
+void File::close()
 {
    if(mHandle == NULL)return;
    int32 eof = fclose(mHandle);
@@ -619,57 +619,57 @@ void File::Close()
    mHandle = NULL;
 }
 
-void File::Seek(Integer position)
+void File::seek(Integer position)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)position, SEEK_SET);
    if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
 }
 
-void File::Move(Integer offset)
+void File::move(Integer offset)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)offset, SEEK_CUR);
    if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
 }
 
-Integer File::GetPosition()
+Integer File::position()
 {
    return Integer((uint64)ftell(mHandle));
 }
 
 
-Integer File::Read(uint8* buffer, Integer length)
+Integer File::read(uint8* buffer, Integer length)
 {
    return (uint32)fread(buffer, 1, length, mHandle);
 }
 
-Integer File::ReadFully(ByteArray& buffer, Integer length)
+Integer File::readFully(ByteArray& buffer, Integer length)
 {
    Integer rest = length;
-   Integer read = 0;
+   Integer count = 0;
    Integer step;
-   uint8* buf = (uint8*)buffer.Data();
+   uint8* buf = (uint8*)buffer.data();
 
-   while((rest > 0) && ((step = Read(&buf[read], rest)) > 0))
+   while((rest > 0) && ((step = read(&buf[count], rest)) > 0))
    {
-      read += step;
+      count += step;
       rest -= step;
    };
 
-   return read;
+   return count;
 }
 
-Integer File::Write(const uint8* buffer, Integer length)
+Integer File::write(const uint8* buffer, Integer length)
 {
    return fwrite(buffer, 1, length, mHandle);
 }
 
-int32 File::CompareTo(const File &other) const
+int32 File::compareTo(const File &other) const
 {
    //Erst Verzeichnis
-   bool d1 = IsDirectory();
-   bool d2 = other.IsDirectory();
+   bool d1 = isDirectory();
+   bool d2 = other.isDirectory();
    if(d1 != d2)
    {
       if(d1)return -1;
@@ -677,21 +677,21 @@ int32 File::CompareTo(const File &other) const
    }
 
    //Dann Name
-   return mPathname.CompareTo(other.mPathname);
+   return mPathname.compareTo(other.mPathname);
 }
 
-StringList File::GetTags()const
+StringList File::getTags()const
 {
    #ifdef __APPLE__ //macOS
 
    // Create necessary system related objects
    CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
-                       mCstr.ConstData(),
+                       mCstr.constData(),
                        kCFStringEncodingUTF8);
    CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
                      cfstr,
                      kCFURLPOSIXPathStyle,
-                     IsDirectory());
+                     isDirectory());
 
    // Query tags
    CFArrayRef tags = NULL;
@@ -714,7 +714,7 @@ StringList File::GetTags()const
          for(Integer index = 0; index < count; index++)
          {
             CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(tags, index);
-            taglist << String::FromCFString(str);
+            taglist << String::fromCFString(str);
          }
 
          // Clean up
@@ -747,26 +747,26 @@ StringList File::GetTags()const
    return StringList();
 }
 
-VxfErrorStatus File::AddTag(const String &tag)
+VxfErrorStatus File::addTag(const String &tag)
 {
    #ifdef __APPLE__ //macOS
-   StringList oldtags = GetTags();
+   StringList oldtags = getTags();
 
    //Check is tag is present, if yes, just return
-   for(Integer index = 0; index < oldtags.Size(); index++)
+   for(Integer index = 0; index < oldtags.size(); index++)
    {
       if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
    }
 
    //Create new array and append tag
-   Integer newsize = oldtags.Size() + 1;
+   Integer newsize = oldtags.size() + 1;
    CFStringRef* strs = new CFStringRef[newsize];
    for(Integer index = 0; index < newsize - 1; index++)
    {
-      strs[index] = oldtags[index].ToCFString();;
+      strs[index] = oldtags[index].toCFString();;
    }
 
-   strs[newsize - 1] = tag.ToCFString();
+   strs[newsize - 1] = tag.toCFString();
 
    CFArrayRef newtags = CFArrayCreate(NULL, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
@@ -776,12 +776,12 @@ VxfErrorStatus File::AddTag(const String &tag)
 
    // Create necessary system related objects
    CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
-                       mCstr.ConstData(),
+                       mCstr.constData(),
                        kCFStringEncodingUTF8);
    CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
                      cfstr,
                      kCFURLPOSIXPathStyle,
-                     IsDirectory());
+                     isDirectory());
 
    // Query tags
    Boolean result = CFURLSetResourcePropertyForKey(urlref,
@@ -807,14 +807,14 @@ VxfErrorStatus File::AddTag(const String &tag)
    return eNotImplemented;
 }
 
-VxfErrorStatus File::RemoveTag(const String &tag)
+VxfErrorStatus File::removeTag(const String &tag)
 {
    #ifdef __APPLE__ //macOS
-   StringList oldtags = GetTags();
+   StringList oldtags = getTags();
 
    //Check is tag is present, if not, just return
    bool found = false;
-   for(Integer index = 0; index < oldtags.Size(); index++)
+   for(Integer index = 0; index < oldtags.size(); index++)
    {
       if(oldtags[index].EqualsIgnoreCase(tag))
       {
@@ -825,14 +825,14 @@ VxfErrorStatus File::RemoveTag(const String &tag)
    if(!found)return eOK;
 
    //Create new array and remove tag
-   Integer newsize = oldtags.Size() - 1;
+   Integer newsize = oldtags.size() - 1;
    CFStringRef* strs = new CFStringRef[newsize];
    Integer cnt = 0;
    for(Integer index = 0; index < newsize + 1; index++)
    {
       if(oldtags[index].EqualsIgnoreCase(tag) == false)
       {
-         CFStringRef cfstr = oldtags[index].ToCFString();
+         CFStringRef cfstr = oldtags[index].toCFString();
          strs[cnt] = cfstr;
          cnt++;
       }
@@ -846,12 +846,12 @@ VxfErrorStatus File::RemoveTag(const String &tag)
 
    // Create necessary system related objects
    CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
-                       mCstr.ConstData(),
+                       mCstr.constData(),
                        kCFStringEncodingUTF8);
    CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
                      cfstr,
                      kCFURLPOSIXPathStyle,
-                     IsDirectory());
+                     isDirectory());
 
    // Query tags
    Boolean result = CFURLSetResourcePropertyForKey(urlref,
@@ -950,7 +950,7 @@ File jm::ResourceDir(const String &bundleId)
 {
 
    //CFString aus Bundle-ID erzeugen
-   CFStringRef cfstr = bundleId.ToCFString();
+   CFStringRef cfstr = bundleId.toCFString();
 
    //Erzeuge Referenzen auf das Bundle, die BundleURL und die Ressourcen-URL
    CFBundleRef thisBundle = CFBundleGetBundleWithIdentifier(cfstr);
@@ -959,7 +959,7 @@ File jm::ResourceDir(const String &bundleId)
       //Aufräumen
       CFRelease(cfstr);
 
-      System::Log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").Arg(bundleId), kLogError);
+      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").Arg(bundleId), kLogError);
       return File("/");
    }
 
@@ -992,11 +992,11 @@ File jm::ResourceDir(const String &bundleId)
 
    // Convert bundle URL to string
    CFStringRef sr1 = CFURLCopyPath(bundleURL);
-   String filename = URLDecode(String::FromCFString(sr1));
+   String filename = URLDecode(String::fromCFString(sr1));
 
    // Attach resource URL
    CFStringRef sr2 = CFURLCopyPath(resourceDirURL);
-   filename.Append(URLDecode(String::FromCFString(sr2)));
+   filename.append(URLDecode(String::fromCFString(sr2)));
 
    // Clean up
    CFRelease(cfstr);

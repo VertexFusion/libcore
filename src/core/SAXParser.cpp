@@ -45,13 +45,13 @@ SAXParser::~SAXParser()
 
 void SAXParser::Parse(File &file)
 {
-   if(!file.Exists())return;
-   if(!file.CanRead())return;
-   Integer length = file.Length();
+   if(!file.exists())return;
+   if(!file.canRead())return;
+   Integer length = file.size();
    ByteArray buffer = ByteArray(length, 0);
-   file.Open(jm::kFmRead);
-   file.Stream::ReadFully(buffer);
-   file.Close();
+   file.open(jm::kFmRead);
+   file.Stream::readFully(buffer);
+   file.close();
    jm::String content = jm::String(buffer);
    Parse(content);
 }
@@ -62,11 +62,11 @@ void SAXParser::Parse(const String &xml)
 
    // Make sure that the token is large enough and does not have to be constantly enlarged for
    // binary data.
-   token.CheckCapacity(xml.Length());
+   token.CheckCapacity(xml.size());
 
    StartDocument();
 
-   Integer length = xml.Length(); // Length of XML-Code
+   Integer length = xml.size(); // Length of XML-Code
    Integer pos = 0; // Position of pointer
 
    Bool inTag = false;   // Status, if tag is open
@@ -82,60 +82,60 @@ void SAXParser::Parse(const String &xml)
       {
          inTag = true;
          // Outputs characters: TODO: IgnorableWhitespaces muss hier noch berücksichtigt werden.
-         if(token.Length() > 0)
+         if(token.size() > 0)
          {
             String beginWhitespaces;
             String endWhiteSpaces;
 
             // Cut whitespaces at the beginning
             Integer sub = 0;
-            while(sub < token.Length() && token.CharAt(sub).IsWhitespace())
+            while(sub < token.size() && token.CharAt(sub).isWhitespace())
             {
-               beginWhitespaces.Append(token.CharAt(sub));
+               beginWhitespaces.append(token.CharAt(sub));
                sub++;
             }
-            if(beginWhitespaces.Length() > 0)
+            if(beginWhitespaces.size() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               const String tmp = token.Substring(beginWhitespaces.Length());
-               token.Zero();
-               token.Append(tmp);
+               const String tmp = token.Substring(beginWhitespaces.size());
+               token.zero();
+               token.append(tmp);
             }
 
             // Cut off whitespaces at the end
-            sub = token.Length() - 1;
-            while(sub >= 0 && sub < token.Length() && token.CharAt(sub).IsWhitespace())
+            sub = token.size() - 1;
+            while(sub >= 0 && sub < token.size() && token.CharAt(sub).isWhitespace())
             {
                endWhiteSpaces.Insert(0, token.CharAt(sub));
                sub--;
             }
-            if(endWhiteSpaces.Length() > 0)
+            if(endWhiteSpaces.size() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               const String tmp = token.Substring(0, token.Length() - endWhiteSpaces.Length());
-               token.Zero();
-               token.Append(tmp);
+               const String tmp = token.Substring(0, token.size() - endWhiteSpaces.size());
+               token.zero();
+               token.append(tmp);
             }
 
-            if(beginWhitespaces.Length() > 0)
+            if(beginWhitespaces.size() > 0)
             {
-               token.Insert(0, beginWhitespaces.CharAt(beginWhitespaces.Length() - 1));
-               beginWhitespaces.DeleteCharAt(beginWhitespaces.Length() - 1);
+               token.Insert(0, beginWhitespaces.CharAt(beginWhitespaces.size() - 1));
+               beginWhitespaces.deleteCharAt(beginWhitespaces.size() - 1);
             }
 
-            if(endWhiteSpaces.Length() > 0)
+            if(endWhiteSpaces.size() > 0)
             {
-               token.Append(endWhiteSpaces.CharAt(0));
-               endWhiteSpaces.DeleteCharAt(0);
+               token.append(endWhiteSpaces.CharAt(0));
+               endWhiteSpaces.deleteCharAt(0);
             }
 
             // Call parsing methods
-            if(beginWhitespaces.Length() > 0)IgnorableWhiteSpaces(beginWhitespaces);
-            if(token.Length() > 0)Characters(token);
-            if(endWhiteSpaces.Length() > 0)IgnorableWhiteSpaces(endWhiteSpaces);
+            if(beginWhitespaces.size() > 0)IgnorableWhiteSpaces(beginWhitespaces);
+            if(token.size() > 0)Characters(token);
+            if(endWhiteSpaces.size() > 0)IgnorableWhiteSpaces(endWhiteSpaces);
          }
 
-         token.Zero();
+         token.zero();
       }
       else if(c == '&' && inTag == false)
       {
@@ -144,23 +144,23 @@ void SAXParser::Parse(const String &xml)
          {
             pos++;
             c = xml.CharAt(pos);
-            escape.Append(c);
+            escape.append(c);
          }
          while(c != ';' && pos < length - 1);
 
-         if(escape.Equals("lt;"))token.Append('<');
-         else if(escape.Equals("gt;"))token.Append('>');
-         else if(escape.Equals("amp;"))token.Append('&');
-         else if(escape.Equals("quot;"))token.Append('"');
-         else if(escape.Equals("le;"))token.Append(0x2264); //≤
-         else if(escape.Equals("ge;"))token.Append(0x2265); //≥
-         else if(escape.Equals("leq;"))token.Append(0x2264); //≤
-         else if(escape.Equals("geq;"))token.Append(0x2265); //≥
+         if(escape.equals("lt;"))token.append('<');
+         else if(escape.equals("gt;"))token.append('>');
+         else if(escape.equals("amp;"))token.append('&');
+         else if(escape.equals("quot;"))token.append('"');
+         else if(escape.equals("le;"))token.append(0x2264); //≤
+         else if(escape.equals("ge;"))token.append(0x2265); //≥
+         else if(escape.equals("leq;"))token.append(0x2264); //≤
+         else if(escape.equals("geq;"))token.append(0x2265); //≥
       }
       else if(c == '>' && inTag == true && inValue == false)
       {
          ParseTagString(token);
-         token.Zero();
+         token.zero();
          inTag = false;
       }
       else if((c == '\"' || c == '\'') && inTag == true)
@@ -174,9 +174,9 @@ void SAXParser::Parse(const String &xml)
          {
             inValue = false;
          }
-         token.Append(c);
+         token.append(c);
       }
-      else token.Append(c);
+      else token.append(c);
 
 
       pos++;
@@ -189,10 +189,10 @@ void SAXParser::ParseTagString(const String &xmlline)
 {
    String line = xmlline;
 
-   line.Append(' ');// Whitespace at the end makes parsing easier because code is saved.
+   line.append(' ');// Whitespace at the end makes parsing easier because code is saved.
 
    Integer pos = 0; //Position of pointer
-   Integer length = line.Length(); // Length
+   Integer length = line.size(); // Length
    bool inValue = false; // Status, if in value
    Char c;
    Char opener = 0;
@@ -200,8 +200,8 @@ void SAXParser::ParseTagString(const String &xmlline)
    Integer step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
 
    // Check for '/' at the end
-   pos = line.Length() - 1;
-   while(line.CharAt(pos).IsWhitespace())pos--;
+   pos = line.size() - 1;
+   while(line.CharAt(pos).isWhitespace())pos--;
    if(line.CharAt(pos) == '/')
    {
       tagType = 2;
@@ -210,7 +210,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 
    // Skip whitespaces at beginning
    pos = 0;
-   while(line.CharAt(pos).IsWhitespace())pos++;
+   while(line.CharAt(pos).isWhitespace())pos++;
 
    // Check for '/' at beginning.
    if(line.CharAt(pos) == '/')
@@ -247,10 +247,10 @@ void SAXParser::ParseTagString(const String &xmlline)
                avalue = token;
                step--;
                attribs.AddAttribute(jm::kEmptyString, aname, aname, avalue);
-               token.Clear();
+               token.clear();
             }
          }
-         else token.Append(c);
+         else token.append(c);
       }
       else if(c == '&' && inValue == true)
       {
@@ -259,19 +259,19 @@ void SAXParser::ParseTagString(const String &xmlline)
          {
             pos++;
             c = line.CharAt(pos);
-            escape.Append(c);
+            escape.append(c);
          }
          while(c != ';' && pos < length);
 
-         if(escape.Equals("lt;"))token.Append('<');
-         else if(escape.Equals("gt;"))token.Append('>');
-         else if(escape.Equals("amp;"))token.Append('&');
-         else if(escape.Equals("quot;"))token.Append('"');
+         if(escape.equals("lt;"))token.append('<');
+         else if(escape.equals("gt;"))token.append('>');
+         else if(escape.equals("amp;"))token.append('&');
+         else if(escape.equals("quot;"))token.append('"');
       }
-      else if((c.IsWhitespace() || c == '=' || c == '/') && !inValue)
+      else if((c.isWhitespace() || c == '=' || c == '/') && !inValue)
       {
          // Process Token
-         if(token.Length() > 0)
+         if(token.size() > 0)
          {
             if(step == 0)
             {
@@ -283,10 +283,10 @@ void SAXParser::ParseTagString(const String &xmlline)
                aname = token;
                step++;
             }
-            token.Clear();
+            token.clear();
          }
       }
-      else token.Append(c);
+      else token.append(c);
 
       pos++;
    }

@@ -89,38 +89,38 @@ namespace jm
           \brief Legt das Dokument fest, welches mit diesem Manager assoziiert wird.
           Dadurch werden Änderungen automatisch verfolgt.
           */
-         void SetDocument(jm::Document* document);
+         void setDocument(jm::Document* document);
 
          /*!
           \brief Legt fest, ob Änderungen verfolgt werden sollen, oder nicht
           \param status Wahr, wenn Änderungen verfolgt werden sollen.
           */
-         void SetActive(bool status);
+         void setActive(bool status);
 
          /*!
           \brief Gibt den Statis zurück, ob der Manager aktiv ist.
           \return wahr, wenn Änderungen verfolgt werden.
           */
-         bool IsActive() const;
+         bool isActive() const;
 
          /*!
           \brief Returns true, if a undo step is open.
           */
-         bool HasOpenUndoStep() const;
+         bool hasOpenUndoStep() const;
 
          /*!
           \brief Diese Methode macht den letzten Bearbeitungsschritt an der Datei rückgängig. Und
           schiebt die Änderung auf den RedoStack.
           \return Gibt wahr zurück, wenn Undo durchgeführt wurde. Andernfalls falsch.
           */
-         bool Undo();
+         bool undo();
 
          /*!
           \brief Diese Methode wiederholt den letzen Bearbeitungsschritt. Damit werden "Undos"
           wieder rückgängig gemacht.
           \return Gibt wahr zurück, wenn Redo durchgeführt wurde. Andernfalls falsch.
           */
-         bool Redo();
+         bool redo();
 
          /*!
           \brief Diese Methode schließt den aktuellen Bearbeitungsschritt ab.
@@ -131,33 +131,33 @@ namespace jm
           - Nur wenn Änderungen vorhanden sind, wird der Schritt abgeschlossen.
           */
          //private:
-         void Close();
+         void close();
          friend class Document;
       public:
          /*!
           \brief Diese Methode löscht den Undo-Stack und den Redo-Stack manuell
           */
-         void ClearStacks();
+         void clearStacks();
 
          /*!
           \brief Diese Methode löscht den Undo-Stack manuell
           */
-         void ClearUndoStack();
+         void clearUndoStack();
 
          /*!
           \brief Diese Methode löscht den Redo-Stack manuell
           */
-         void ClearRedoStack();
+         void clearRedoStack();
 
          /*!
           \brief Gibt die Anzahl der Elemente auf dem Undo-Stack zurück
           */
-         unsigned int GetUndoCount();
+         unsigned int undoCount();
 
          /*!
           \brief Gibt die Anzahl der Elemente auf dem Undo-Stack zurück
           */
-         unsigned int GetRedoCount();
+         unsigned int redoCount();
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein float-Wert eines
@@ -167,7 +167,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, float* pointer);
+         void registerChange(Object* object, float* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein double-Wert eines
@@ -177,7 +177,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, double* pointer);
+         void registerChange(Object* object, double* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein double-Wert eines
@@ -187,7 +187,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Double* pointer);
+         void registerChange(Object* object, Double* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein bool-Wert eines
@@ -197,7 +197,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, bool* pointer);
+         void registerChange(Object* object, bool* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
@@ -208,7 +208,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, int8* pointer);
+         void registerChange(Object* object, int8* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
@@ -219,7 +219,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, uint8* pointer);
+         void registerChange(Object* object, uint8* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
@@ -230,7 +230,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, int16* pointer);
+         void registerChange(Object* object, int16* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
@@ -241,7 +241,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, uint16* pointer);
+         void registerChange(Object* object, uint16* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein int-Wert eines
@@ -251,7 +251,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, int32* pointer);
+         void registerChange(Object* object, int32* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein int-Wert eines
@@ -261,7 +261,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, uint32* pointer);
+         void registerChange(Object* object, uint32* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
@@ -271,7 +271,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Integer* pointer);
+         void registerChange(Object* object, Integer* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
@@ -281,7 +281,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, int64* pointer);
+         void registerChange(Object* object, int64* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
@@ -291,7 +291,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, uint64* pointer);
+         void registerChange(Object* object, uint64* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Vertex3-Wert
@@ -302,7 +302,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Vertex2* pointer);
+         void registerChange(Object* object, Vertex2* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Vertex3-Wert
@@ -313,7 +313,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Vertex3* pointer);
+         void registerChange(Object* object, Vertex3* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein String-Wert eines
@@ -323,7 +323,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, String* pointer);
+         void registerChange(Object* object, String* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Date-Wert eines
@@ -333,7 +333,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Date* pointer);
+         void registerChange(Object* object, Date* pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Farb-Wert eines
@@ -343,13 +343,13 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Colour* pointer);
+         void registerChange(Object* object, Color* pointer);
 
          /*!
           \brief Diese Methode registriert eine allgemeine Änderung an der Datei. Diese Methode
           wird gebraucht, wenn der Anwender eigene Änderungsschritte ableitet.
           */
-         void RegisterChange(UndoChange* change);
+         void registerChange(UndoChange* change);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem eine Objektreferenz
@@ -360,7 +360,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, Object** pointer);
+         void registerChange(Object* object, Object** pointer);
 
          /*!
           \brief Diese Methode registriert eine Änderung an der Datei, bei dem eine Objektreferenz
@@ -371,7 +371,7 @@ namespace jm
           \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
           wird. Diese Methode sichert automatisch den alten Wert.
           */
-         void RegisterChange(Object* object, uint8** pointer, uint64 length);
+         void registerChange(Object* object, uint8** pointer, uint64 length);
 
          /*!
           \brief Diese Methode registriert einen Regenerations-Marker, der bei jedem
@@ -379,11 +379,11 @@ namespace jm
           \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
           Redo-Stack zurück.
           */
-         void RegisterRegenerationMarker(EditableObject* object);
+         void registerRegenerationMarker(EditableObject* object);
 
-         void RegisterRelease(Object* object);
+         void registerRelease(Object* object);
 
-         void RegisterRetain(Object* object);
+         void registerRetain(Object* object);
 
          /*!
           \brief Begin a transaction.
@@ -394,7 +394,7 @@ namespace jm
 
           Each time this method is called, the transaction level increments.
           */
-         void OpenTransaction();
+         void openTransaction();
 
          /*!
           \brief Commit the content of the transaction to the current undo step.
@@ -404,10 +404,10 @@ namespace jm
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
           the commit of changes happens, whether the transaction status value.
 
-          \warning Usually you not need to call this method, because CloseTransaction() is doing
+          \warning Usually you not need to call this method, because closeTransaction() is doing
           the necessary stuff. Propably we change this method to private in the future.
           */
-         void Commit();
+         void commit();
 
          /*!
           \brief Rollback all changes of the transaction.
@@ -417,10 +417,10 @@ namespace jm
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
           the rollback of changes happens, whether the transaction status value.
 
-          \warning Usually you not need to call this method, because CloseTransaction() is doing
+          \warning Usually you not need to call this method, because closeTransaction() is doing
           the necessary stuff. Propably we change this method to private in the future.
           */
-         void Rollback();
+         void rollback();
 
          /*!
           \brief Closes the transaction.
@@ -431,27 +431,27 @@ namespace jm
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
           the closing actions happens.
           */
-         VxfErrorStatus CloseTransaction();
+         VxfErrorStatus closeTransaction();
 
          /*!
           \brief Returns true, if a transaction is open.
 
           The transaction is open, if the transaction level is > 0.
           */
-         bool HasOpenTransaction() const;
+         bool hasOpenTransaction() const;
 
          /*!
           \brief This method registers the status of operations during a transaction. As long
           as status is eOK, nothing happens. If status is not eOk, we register a transaction error.
           */
-         void RegisterTransactionStatus(VxfErrorStatus status);
+         void registerTransactionStatus(VxfErrorStatus status);
 
          /*!
           \brief Returns the transaction status.
           */
-         VxfErrorStatus GetTransactionStatus() const;
+         VxfErrorStatus transactionStatus() const;
 
-         UndoStep* GetOpenStep();
+         UndoStep* openStep();
 
       private:
 

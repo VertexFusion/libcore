@@ -56,31 +56,31 @@ UndoManager::UndoManager(): Object()
 
 UndoManager::~UndoManager()
 {
-   ClearStacks();
+   clearStacks();
    delete mCurrent;
 }
 
-void UndoManager::SetDocument(Document* document)
+void UndoManager::setDocument(Document* document)
 {
    mDocument = document;
 }
 
-void UndoManager::SetActive(bool status)
+void UndoManager::setActive(bool status)
 {
    mActive = status;
 }
 
-bool UndoManager::IsActive()const
+bool UndoManager::isActive()const
 {
    return mActive;
 }
 
-bool UndoManager::HasOpenUndoStep() const
+bool UndoManager::hasOpenUndoStep() const
 {
    return mOpen;
 }
 
-bool UndoManager::Undo()
+bool UndoManager::undo()
 {
    if(mOpen)return false;
    if(mUndoStack == NULL)return false;
@@ -95,7 +95,7 @@ bool UndoManager::Undo()
    UndoChange* change = step->recent;
    while(change != NULL)
    {
-      change->Swap();
+      change->swap();
       change = change->mPrev;
    }
 
@@ -108,11 +108,11 @@ bool UndoManager::Undo()
 
    mUndoing = false;
 
-   if(mDocument != NULL)mDocument->SetDocumentChanged(true);
+   if(mDocument != NULL)mDocument->setDocumentChanged(true);
    return true;
 }
 
-bool UndoManager::Redo()
+bool UndoManager::redo()
 {
    if(mOpen) return false;
    if(mRedoStack == NULL)return false;
@@ -127,7 +127,7 @@ bool UndoManager::Redo()
    UndoChange* change = step->eldest;
    while(change != NULL)
    {
-      change->Swap();
+      change->swap();
       change = change->mNext;
    }
 
@@ -140,11 +140,11 @@ bool UndoManager::Redo()
 
    mUndoing = false;
 
-   if(mDocument != NULL)mDocument->SetDocumentChanged(true);
+   if(mDocument != NULL)mDocument->setDocumentChanged(true);
    return true;
 }
 
-void UndoManager::Close()
+void UndoManager::close()
 {
    // Only close, if changes are present
    if(mCurrent->count == 0)return;
@@ -154,17 +154,17 @@ void UndoManager::Close()
    mCurrent = new UndoStep();
    mOpen = false;
    mUndoCount++;
-   if(mDocument != NULL)mDocument->SetDocumentChanged(true);
+   if(mDocument != NULL)mDocument->setDocumentChanged(true);
 }
 
-void UndoManager::ClearStacks()
+void UndoManager::clearStacks()
 {
-   Close();
-   ClearUndoStack();
-   ClearRedoStack();
+   close();
+   clearUndoStack();
+   clearRedoStack();
 }
 
-void UndoManager::ClearUndoStack()
+void UndoManager::clearUndoStack()
 {
    UndoStep* step = mUndoStack;
    while(step != NULL)
@@ -177,7 +177,7 @@ void UndoManager::ClearUndoStack()
    mUndoCount = 0;
 }
 
-void UndoManager::ClearRedoStack()
+void UndoManager::clearRedoStack()
 {
    UndoStep* step = mRedoStack;
    while(step != NULL)
@@ -190,133 +190,133 @@ void UndoManager::ClearRedoStack()
    mRedoCount = 0;
 }
 
-uint32 UndoManager::GetUndoCount()
+uint32 UndoManager::undoCount()
 {
    return mUndoCount;
 }
 
-uint32 UndoManager::GetRedoCount()
+uint32 UndoManager::redoCount()
 {
    return mRedoCount;
 }
 
-void UndoManager::RegisterChange(Object* object, int8* pointer)
+void UndoManager::registerChange(Object* object, int8* pointer)
 {
-   RegisterChange(new UndoChangeInt8(object, pointer));
+   registerChange(new UndoChangeInt8(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, uint8* pointer)
+void UndoManager::registerChange(Object* object, uint8* pointer)
 {
-   RegisterChange(new UndoChangeUInt8(object, pointer));
+   registerChange(new UndoChangeUInt8(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, int16* pointer)
+void UndoManager::registerChange(Object* object, int16* pointer)
 {
-   RegisterChange(new UndoChangeInt16(object, pointer));
+   registerChange(new UndoChangeInt16(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, uint16* pointer)
+void UndoManager::registerChange(Object* object, uint16* pointer)
 {
-   RegisterChange(new UndoChangeUInt16(object, pointer));
+   registerChange(new UndoChangeUInt16(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, int32* pointer)
+void UndoManager::registerChange(Object* object, int32* pointer)
 {
-   RegisterChange(new UndoChangeInt32(object, pointer));
+   registerChange(new UndoChangeInt32(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, uint32* pointer)
+void UndoManager::registerChange(Object* object, uint32* pointer)
 {
-   RegisterChange(new UndoChangeUInt32(object, pointer));
+   registerChange(new UndoChangeUInt32(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, Integer* pointer)
+void UndoManager::registerChange(Object* object, Integer* pointer)
 {
-   RegisterChange(new UndoChangeInteger(object, pointer));
+   registerChange(new UndoChangeInteger(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, int64* pointer)
+void UndoManager::registerChange(Object* object, int64* pointer)
 {
-   RegisterChange(new UndoChangeInt64(object, pointer));
+   registerChange(new UndoChangeInt64(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, uint64* pointer)
+void UndoManager::registerChange(Object* object, uint64* pointer)
 {
-   RegisterChange(new UndoChangeUInt64(object, pointer));
+   registerChange(new UndoChangeUInt64(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, float* pointer)
+void UndoManager::registerChange(Object* object, float* pointer)
 {
-   RegisterChange(new UndoChangeFloat(object, pointer));
+   registerChange(new UndoChangeFloat(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, double* pointer)
+void UndoManager::registerChange(Object* object, double* pointer)
 {
-   RegisterChange(new UndoChangeDouble(object, pointer));
+   registerChange(new UndoChangeDouble(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, Double* pointer)
+void UndoManager::registerChange(Object* object, Double* pointer)
 {
-   RegisterChange(new UndoChangeDouble2(object, pointer));
+   registerChange(new UndoChangeDouble2(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, bool* pointer)
+void UndoManager::registerChange(Object* object, bool* pointer)
 {
-   RegisterChange(new UndoChangeBool(object, pointer));
+   registerChange(new UndoChangeBool(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, jm::Vertex2* pointer)
+void UndoManager::registerChange(Object* object, jm::Vertex2* pointer)
 {
-   RegisterChange(new UndoChangeVertex2(object, pointer));
+   registerChange(new UndoChangeVertex2(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, jm::Vertex3* pointer)
+void UndoManager::registerChange(Object* object, jm::Vertex3* pointer)
 {
-   RegisterChange(new UndoChangeVertex3(object, pointer));
+   registerChange(new UndoChangeVertex3(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, jm::String* pointer)
+void UndoManager::registerChange(Object* object, jm::String* pointer)
 {
-   RegisterChange(new UndoChangeString(object, pointer));
+   registerChange(new UndoChangeString(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, jm::Date* pointer)
+void UndoManager::registerChange(Object* object, jm::Date* pointer)
 {
-   RegisterChange(new UndoChangeDate(object, pointer));
+   registerChange(new UndoChangeDate(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, jm::Colour* pointer)
+void UndoManager::registerChange(Object* object, jm::Color* pointer)
 {
-   RegisterChange(new UndoChangeColour(object, pointer));
+   registerChange(new UndoChangeColour(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, Object** pointer)
+void UndoManager::registerChange(Object* object, Object** pointer)
 {
-   RegisterChange(new UndoChangeObjectRef(object, pointer));
+   registerChange(new UndoChangeObjectRef(object, pointer));
 }
 
-void UndoManager::RegisterChange(Object* object, uint8** pointer, uint64 length)
+void UndoManager::registerChange(Object* object, uint8** pointer, uint64 length)
 {
-   RegisterChange(new UndoChangeBuffer(object, pointer, length));
+   registerChange(new UndoChangeBuffer(object, pointer, length));
 }
 
-void UndoManager::RegisterRegenerationMarker(jm::EditableObject* object)
+void UndoManager::registerRegenerationMarker(jm::EditableObject* object)
 {
-   RegisterChange(new UndoRegenerationMarker(object));
+   registerChange(new UndoRegenerationMarker(object));
 }
 
-void UndoManager::RegisterRelease(Object* object)
+void UndoManager::registerRelease(Object* object)
 {
-   RegisterChange(new UndoObjectRelease(object, true));
+   registerChange(new UndoObjectRelease(object, true));
 }
 
-void UndoManager::RegisterRetain(Object* object)
+void UndoManager::registerRetain(Object* object)
 {
-   RegisterChange(new UndoObjectRelease(object, false));
+   registerChange(new UndoObjectRelease(object, false));
 }
 
 
-void UndoManager::RegisterChange(UndoChange* change)
+void UndoManager::registerChange(UndoChange* change)
 {
    if(!mActive || mUndoing)
    {
@@ -326,13 +326,13 @@ void UndoManager::RegisterChange(UndoChange* change)
 
    if(mTransactionLevel > 0)
    {
-      mTransaction->AddChange(change);
+      mTransaction->add(change);
    }
    else
    {
-      mCurrent->AddChange(change);
+      mCurrent->add(change);
 
-      ClearRedoStack();
+      clearRedoStack();
       mOpen = true;
    }
 }
@@ -341,7 +341,7 @@ void UndoManager::RegisterChange(UndoChange* change)
 // Transaction management
 //
 
-void UndoManager::OpenTransaction()
+void UndoManager::openTransaction()
 {
    if(mTransactionLevel == 0)
    {
@@ -352,17 +352,17 @@ void UndoManager::OpenTransaction()
    mTransactionLevel++;
 }
 
-VxfErrorStatus UndoManager::CloseTransaction()
+VxfErrorStatus UndoManager::closeTransaction()
 {
-   VxfErrorStatus status = GetTransactionStatus();
+   VxfErrorStatus status = transactionStatus();
 
-   if(status == eOK)Commit();
-   else Rollback();
+   if(status == eOK)commit();
+   else rollback();
 
    return status;
 }
 
-void UndoManager::Commit()
+void UndoManager::commit()
 {
    if(mTransactionLevel == 0)return;
 
@@ -380,7 +380,7 @@ void UndoManager::Commit()
          change = change->mNext;
          trans->mPrev = NULL;
          trans->mNext = NULL;
-         RegisterChange(trans);
+         registerChange(trans);
       }
 
       // Set all to null, to prevent deletion in next step.
@@ -395,7 +395,7 @@ void UndoManager::Commit()
    }
 }
 
-void UndoManager::Rollback()
+void UndoManager::rollback()
 {
    if(mTransactionLevel == 0)return;
 
@@ -410,7 +410,7 @@ void UndoManager::Rollback()
       UndoChange* change = step->recent;
       while(change != NULL)
       {
-         change->Swap();
+         change->swap();
          change = change->mPrev;
       }
 
@@ -420,23 +420,23 @@ void UndoManager::Rollback()
    }
 }
 
-bool UndoManager::HasOpenTransaction() const
+bool UndoManager::hasOpenTransaction() const
 {
    return mTransactionLevel > 0;
 }
 
-void UndoManager::RegisterTransactionStatus(VxfErrorStatus status)
+void UndoManager::registerTransactionStatus(VxfErrorStatus status)
 {
    if(status != eOK &&
          status != eNotChanged)mTransactionStatus = status;
 }
 
-VxfErrorStatus UndoManager::GetTransactionStatus()const
+VxfErrorStatus UndoManager::transactionStatus()const
 {
    return mTransactionStatus;
 }
 
-UndoStep* UndoManager::GetOpenStep()
+UndoStep* UndoManager::openStep()
 {
    return mCurrent;
 }

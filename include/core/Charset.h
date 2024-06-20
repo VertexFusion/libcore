@@ -283,13 +283,13 @@ namespace jm
 
    /*!
    \brief Initialisisiert die Charsets.
-   \discussion Wird von System::Init aufgerufen. Daher kein Export notwendig
+   \discussion Wird von System::init aufgerufen. Daher kein Export notwendig
    */
    void InitCharsets();
 
    /*!
    \brief Löscht die Charsetobjekte
-   \discussion Wird von System::Quit aufgerufen. Dahr kein Export notwendig
+   \discussion Wird von System::quit aufgerufen. Dahr kein Export notwendig
    */
    void QuitCharsets();
 

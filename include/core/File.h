@@ -103,35 +103,35 @@ namespace jm
          /*!
           \brief Checks if the file can be executed.
           */
-         bool CanExecute() const;
+         bool canExecute() const;
 
          /*!
           \brief Checks if the file can be read.
           */
-         bool CanRead() const;
+         bool canRead() const;
 
          /*!
           \brief Checks if the file can be written.
           */
-         bool CanWrite() const;
+         bool canWrite() const;
 
          /*!
           \brief Creates a new file, but only, if the file not exist. If the file exists,
 		  nothing happens.
           \return true, if a new file was created. false otherwise.
           */
-         bool CreateNewFile();
+         bool createNewFile();
 
          /*!
           \brief Create a new directory.
           \return true, if a new directory was created. false otherwise.
           */
-         bool MakeDirectory();
+         bool makeDirectory();
 
          /*!
           \brief Checks if the file exists.
           */
-         bool Exists() const;
+         bool exists() const;
 
          /*!
           \brief Diese Methode löscht die Datei (endgültig). Ein Verzeichnis nur, wenn es leer
@@ -142,114 +142,114 @@ namespace jm
          /*!
           \brief Diese Methode verschiebt die Datei in den System-Papierkorb.
           */
-         bool MoveToTrash();
+         bool moveToTrash();
 
          /*!
           \brief Benennt die Datei um
           */
-         bool RenameTo(const String &newPath);
+         bool renameTo(const String &newPath);
 
          /*!
           \brief Gibt den Namen der Datei zurück. Dies ist der reine Name ohne Pfadangabe usw.
           */
-         String GetName() const;
+         String name() const;
 
          /*!
           \brief Gibt den Pfadnamen zu der Datei an, Also ohne den Dateinamen selbst.
           Es entspricht dem Verzeichnis, in dem diese Datei liegt.
           */
-         String GetParent() const;
+         String parent() const;
 
          /*!
           \brief Gibt den absoluten Dateinamen von der Wurzel des Dateisystems an zurück
           */
-         const String& GetAbsolutePath() const;
+         const String& absolutePath() const;
 
          /*!
           \brief Gibt den vollständigen Pfad dieser Datei an. Dieser kann relativ sein, wenn er
           relativ ist,
           oder auch absolut, wenn er absolut ist.
           */
-         String GetPath() const;
+         String path() const;
 
          /*!
           \brief Diese Methode gibt die Dateiendund der Datei zurück. Wenn die Datei keine
           Dateiendung besitzt, dann ist der Rückgabewert ein leerer String. Eine Dateiendung ist
           duch einen Punkt gekennzeichnet. Für ".tar.gz" wird nur "gz" zurückgegeben.
           */
-         String GetExtension() const;
+         String extension() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei absolut ist
           */
-         bool IsAbsolute() const;
+         bool isAbsolute() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei ein Verzeichnis ist
           */
-         bool IsDirectory() const;
+         bool isDirectory() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei eine gewöhnliche Datei ist
           */
-         bool IsFile() const;
+         bool isFile() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei eine Verknüpfung ist
           */
-         bool IsLink() const;
+         bool isLink() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei eine FIFO ist.
           */
-         bool IsPipe() const;
+         bool isPipe() const;
 
          /*!
           \brief Diese Methode prüft, ob diese Datei versteckt ist
           */
-         bool IsHidden() const;
+         bool isHidden() const;
 
          /*!
           \brief Methode macht eine Liste mit Allen Dateien im dem Verzeichnis.
           */
-         Array<File>* ListFiles()const;
+         Array<File>* listFiles()const;
 
          /*!
           \brief Gibt die Größe der Datei in Bytes zurück
           */
-         Integer Length() const override;
+         Integer size() const override;
 
          /*!
           \brief Gibt das Datum der letzten Änderung zurück
           */
-         Date LastModified() const;
+         Date lastModified() const;
 
          /*!
           \brief Öffnet die Datei um Lese- oder Schreiboperationen an ihr vorzunehmen
           \param mode Der Modus zum öffnen.
           */
-         VxfErrorStatus Open(FileMode mode) override;
+         VxfErrorStatus open(FileMode mode) override;
 
          /*!
           \brief Status, ob die Datei geöffnet ist
           */
-         bool IsOpen() override;
+         bool isOpen() override;
 
          /*!
           \brief Schließt die Datei, wenn sie vorher geöffnet war
           */
-         void Close() override;
+         void close() override;
 
          /*!
           \brief Liest maximal length bytes in das Array
           \discussion Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
           noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
-          zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man "ReadFully"
+          zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man "readFully"
           aufrufen.
           \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
           (EOF)
           */
-         Integer Read(unsigned char* buffer,
+         Integer read(unsigned char* buffer,
                       Integer length) override;
 
          /*!
@@ -257,7 +257,7 @@ namespace jm
           \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
           (EOF)
           */
-         Integer ReadFully(ByteArray& buffer, Integer length) override;
+         Integer readFully(ByteArray& buffer, Integer length) override;
 
 
 
@@ -265,44 +265,44 @@ namespace jm
           \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
           (0-basierter Index)
           */
-         void Seek(Integer position) override;
+         void seek(Integer position) override;
 
          /*!
           \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
           */
-         void Move(Integer offset) override;
+         void move(Integer offset) override;
 
          /*!
           \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
           */
-         Integer GetPosition() override;
+         Integer position() override;
 
          /*!
           \brief Schreibt einen Buffer in die Ausgabedatei
           */
-         Integer Write(const uint8* buffer, Integer length) override;
+         Integer write(const uint8* buffer, Integer length) override;
 
          /*!
           \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander
           */
-         int32 CompareTo(const File &other) const override;
+         int32 compareTo(const File &other) const override;
 
          /*!
           \brief Returns the tags of the file.
 
           In mac os these tags are presented by the Finder.
           */
-         StringList GetTags()const;
+         StringList getTags()const;
 
          /*!
           \brief Adds a tag to the file. If the tag already exists, nothing happens.
           */
-         VxfErrorStatus AddTag(const String &tag);
+         VxfErrorStatus addTag(const String &tag);
 
          /*!
           \brief Remove a tag from the file. If the tag not exists, nothing happens.
           */
-         VxfErrorStatus RemoveTag(const String &tag);
+         VxfErrorStatus removeTag(const String &tag);
 
          //Operatore
          File &operator=(const File &another);
@@ -329,7 +329,7 @@ namespace jm
           \discussion Unter Unix enthält ein normalisierter Pfadname keine doppelten Schrägstriche
           und endet nicht mit einem Schrägstrich.
           */
-         String Normalize(const String &pathnames);
+         String normalize(const String &pathnames);
 
          /*!
           \brief Diese Methode kombiniert den Vaternamen mit dem Childnamen
@@ -337,14 +337,14 @@ namespace jm
           \param parent Der Pfadname der "Vaterdatei".
           \param child Der Pfadname der "Kinddatei"
           */
-         String Resolve(String parent,
+         String resolve(String parent,
                         String child);
 
          /*!
           \brief Diese Helfermethode setzt den C-String, mit dem dann im Betriebssystem der
           Dateiname aufgelöst wird
           */
-         void SetCString();
+         void setCString();
    };
 
 

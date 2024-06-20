@@ -59,7 +59,7 @@ UndoStep::~UndoStep()
    count = 0;
 }
 
-void UndoStep::AddChange(UndoChange* change)
+void UndoStep::add(UndoChange* change)
 {
    //Verkette
    change->mPrev = recent;

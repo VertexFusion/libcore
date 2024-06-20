@@ -134,7 +134,7 @@ namespace jm
           \param nsdate double value, representing the time in seconds relative to 00:00:00 UTC on
           1 January 2001.
           */
-         static Date FromNSDate(double nsdate);
+         static Date fromNSDate(double nsdate);
 
          /*!
           \brief Destructor
@@ -144,115 +144,115 @@ namespace jm
          /*!
           \brief Status, ob das Daten leer ist
          */
-         bool IsEmpty() const;
+         bool isEmpty() const;
 
          /*!
           \brief Gibt die Zeit in Millisekunden seit Mitternacht des 01.01.1970 in UTC zurück
           */
-         int64 Time() const;
+         int64 time() const;
 
          /*!
           \brief Legt die Zeit in Millisekunden seit Mitternach des 01.01.1970 in UTC fest.
           \param t Neue Zeit in UTC
           */
-         void SetTime(int64 t);
+         void setTime(int64 t);
 
          /*!
           \brief Gibt das Jahr in lokaler Zeit zurück
           */
-         int64 Year() const;
+         int64 year() const;
 
          /*!
           \brief Gibt das Jahr in UTC-Zeit zurück
           */
-         int64 UTCYear() const;
+         int64 utcYear() const;
 
          /*!
           \brief Gibt den Monat in lokaler Zeit zurück.
           \note Die Zahl ist im Bereich 0-11
           */
-         int64 Month() const;
+         int64 month() const;
 
          /*!
           \brief Gibt den Monat in UTC-Zeit zurück
           */
-         int64 UTCMonth() const;
+         int64 utcMonth() const;
 
          /*!
           \brief Gibt den Tag im Monat in lokaler Zeit zurück
           */
-         int64 GetDate() const;
+         int64 date() const;
 
          /*!
           \brief Gibt den Tag im Monat in UTC-Zeit zurück
           */
-         int64 GetUTCDate() const;
+         int64 utcDate() const;
 
          /*!
           \brief Gibt den Tag in der Woche in lokaler Zeit zurück
           */
-         int64 GetDay() const;
+         int64 day() const;
 
          /*!
           \brief Gibt den Tag in der Woche in UTC-Zeit zurück
           */
-         int64 GetUTCDay() const;
+         int64 utcDay() const;
 
          /*!
           \brief Gibt die Stunden des Tages in lokaler Zeit zurück
           */
-         int64 GetHours() const;
+         int64 hours() const;
 
          /*!
           \brief Gibt die Stunden des Tages in UTC-Zeit zurück
           */
-         int64 GetUTCHours() const;
+         int64 utcHours() const;
 
          /*!
           \brief Gibt die Minuten der Stunde in lokaler Zeit zurück
           */
-         int64 GetMinutes() const;
+         int64 minutes() const;
 
          /*!
           \brief Gibt die Minuten der Stunde in UTC-Zeit zurück
           */
-         int64 GetUTCMinutes() const;
+         int64 utcMinutes() const;
 
          /*!
           \brief Gibt die Sekunden der Minute in lokaler Zeit zurück
           */
-         int64 GetSeconds() const;
+         int64 seconds() const;
 
          /*!
           \brief Gibt den Tag des Jahres zurück
           */
-         int64 GetDayOfYear()const;
+         int64 dayOfYear()const;
 
          /*!
           \brief Gibt die Sekunden der Minute in UTC-Zeit zurück
           */
-         int64 GetUTCSeconds() const;
+         int64 utcSeconds() const;
 
          /*!
           \brief Gibt die Millisekunden der Sekunde in lokaler Zeit zurück
           */
-         int64 GetMilliseconds() const;
+         int64 milliseconds() const;
 
          /*!
           \brief Gibt die Millisekunden der Sekunde in UTC-Zeit zurück
           */
-         int64 GetUTCMilliseconds() const;
+         int64 utcMilliseconds() const;
 
          /*!
           \brief Gibt das Datum im Standardformat zurück: YYYY-MM-DDThh:mm:ss.sssZ
           */
-         String ToString() const;
+         String toString() const;
 
          /*!
           \brief Diese Methode vergleicht die Reihenfolge der Daten.
           \param another Das Datum, mit der dieses verglichen wird.
           */
-         int32 CompareTo(const Date &another) const;
+         int32 compareTo(const Date &another) const;
 
          /*!
           \brief Implementierung des Operators <
@@ -302,13 +302,13 @@ namespace jm
          msPerDay=86400 000
          \param t absolute Zeit.
          */
-         int64 Day(int64 t) const;
+         int64 day(int64 t) const;
 
          /*!
          \brief Helfermethode berechnet die Millisekungen im aktuellen Tag
          \param t absolute Zeit.
          */
-         int64 TimeWithinDay(int64 t) const;
+         int64 timeWithinDay(int64 t) const;
 
          /*!
          \brief Helfermethode berechnet die Anzahl der Tage im angebenen Jahr

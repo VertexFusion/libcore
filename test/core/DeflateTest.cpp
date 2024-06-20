@@ -47,7 +47,7 @@ void DeflateTest::DoTest()
       "Wasser fließe\n"
       "Und mit reichem, vollem Schwalle\n"
       "Zu dem Bade sich ergieße.";
-   jm::ByteArray uncompressed = test.ToCString();
+   jm::ByteArray uncompressed = test.toCString();
    Integer uncompressedLength = 0;
    while(uncompressed[uncompressedLength] != 0)uncompressedLength++;
 
@@ -58,7 +58,7 @@ void DeflateTest::DoTest()
    Integer compressedLength = 0;
    jm::Deflater deflater = jm::Deflater();
    deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
+   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.Deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;
@@ -639,8 +639,8 @@ void DeflateTest::DoTest()
       "BT /Helvetica 10 Tf 311.811 53.8583 Td (Schrift: Symbol) Tj ET"
       "0 g BT /Helvetica 10 Tf 297.6378 34.0158 Td (1\\0577) Tj ET";
 
-   uncompressed = test.ToCString();
-   uncompressedLength = uncompressed.Size();
+   uncompressed = test.toCString();
+   uncompressedLength = uncompressed.size();
 
    std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
@@ -648,7 +648,7 @@ void DeflateTest::DoTest()
    compressed = NULL;
    compressedLength = 0;
    deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
+   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.Deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;
@@ -688,7 +688,7 @@ void DeflateTest::DoTest()
    compressed = NULL;
    compressedLength = 0;
    deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.Data(), uncompressedLength);
+   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.Deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;

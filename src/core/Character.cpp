@@ -32,7 +32,7 @@
 #include "Precompiled.h"
 
 
-bool jm::Char::IsWhitespace() const
+bool jm::Char::isWhitespace() const
 {
    switch(mChar)
    {
@@ -50,31 +50,44 @@ bool jm::Char::IsWhitespace() const
 }
 
 
-bool jm::Char::IsDigit()const
+bool jm::Char::isDigit()const
 {
    if(mChar >= '0' && mChar <= '9')return true;
    return false;
 }
 
-bool jm::Char::IsLetter() const
+bool jm::Char::isUpperCase() const
 {
-   // See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
-   if(mChar >= 'a' && mChar <= 'z')return true;
    if(mChar >= 'A' && mChar <= 'Z')return true;
    if(mChar >= 0xC0 && mChar <= 0xD6)return true;//Unicode U+00C0-U+00D6
-   if(mChar >= 0xD8 && mChar <= 0xF6)return true;//Unicode U+00D8-U+00F6
+   if(mChar >= 0xD8 && mChar <= 0xDE)return true;//Unicode U+00D8-U+00DE
+   return false;
+}
+
+bool jm::Char::isLowerCase() const
+{
+   if(mChar >= 'a' && mChar <= 'z')return true;
+   if(mChar >= 0xDF && mChar <= 0xF6)return true;//Unicode U+00D8-U+00F6
    if(mChar >= 0xF8 && mChar <= 0xFF)return true;//Unicode U+00F8-U+00FF
    return false;
 }
 
-int32 jm::Char::DigitValue()const
+bool jm::Char::isLetter() const
+{
+   // See: https://en.wikipedia.org/wiki/List_of_Unicode_characters
+   if(isLowerCase())return true;
+   if(isUpperCase())return true;
+   return false;
+}
+
+int32 jm::Char::digitValue()const
 {
    if(mChar >= '0' && mChar <= '9') return mChar-'0';
    return -1;
 }
 
 
-jm::Char jm::Char::ToLowerCase() const
+jm::Char jm::Char::toLowerCase() const
 {
    // Encoding is unicode
 
@@ -147,7 +160,7 @@ jm::Char jm::Char::ToLowerCase() const
    }
 }
 
-jm::Char jm::Char::ToUpperCase() const
+jm::Char jm::Char::toUpperCase() const
 {
    // Encoding is unicode
 
@@ -218,14 +231,4 @@ jm::Char jm::Char::ToUpperCase() const
       default:
          return mChar;
    }
-}
-
-bool jm::Char::IsUpperCase() const
-{
-   return (mChar >= 'A' && mChar <= 'Z');
-}
-
-bool jm::Char::IsLowerCase() const
-{
-   return (mChar >= 'a' && mChar <= 'z');
 }

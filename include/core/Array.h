@@ -97,7 +97,7 @@ namespace jm
                   Integer j = i + 1;
                   Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
                   Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
-                  if(a1->CompareTo(*(T *)a2) > 0)
+                  if(a1->compareTo(*(T *)a2) > 0)
                   {
                      //Vertausche
                      T tmp = mData[i];
@@ -220,7 +220,7 @@ namespace jm
                   uint32 j = i + 1;
                   const Comparable<T>* a1 = static_cast<Comparable<T>*>(mData[i]);
                   const T& a2 = *mData[j];
-                  if(a1->CompareTo(a2) > 0)
+                  if(a1->compareTo(a2) > 0)
                   {
                      // Swap
                      T* tmp = mData[i];
@@ -430,16 +430,16 @@ namespace jm
          mSize=0;
       };
 
-      void Append(const jm::String &string)
+      void append(const jm::String &string)
       {
-         CheckSize(1);
+         checkSize(1);
          mData[mSize++]=string;
       }
 
       DllExport
       friend StringList& operator<< (StringList &out, const String& str)
       {
-         out.Append(str);
+         out.append(str);
          return out;
       }
 
@@ -461,12 +461,12 @@ namespace jm
          if(mData != NULL)delete[] mData;
       };
 
-      inline Integer Size() const
+      inline Integer size() const
       {
          return mSize;
       };
 
-      inline void Sort()
+      inline void sort()
       {
          if(mLength < 1)return;
 
@@ -479,7 +479,7 @@ namespace jm
                Integer j = i + 1;
                String* a1 = &mData[i];
                String* a2 = &mData[j];
-               if(a1->CompareTo(*a2) > 0)
+               if(a1->compareTo(*a2) > 0)
                {
                   // Swap
                   String tmp = mData[i];
@@ -494,14 +494,14 @@ namespace jm
          while(n > 1);
       }
 
-      inline String Get(Integer index) const
+      inline String get(Integer index) const
       {
          if(index < 0 || index >= mSize)
             throw new Exception("Array index out of bounds.");
          return mData[index];
       };
 
-      inline void Set(Integer index, String item)
+      inline void set(Integer index, String item)
       {
          if(index < 0 || index >= mSize)
             throw new Exception("Array index out of bounds.");
@@ -533,7 +533,7 @@ namespace jm
          return *this;
       }
 
-      void Clear()
+      void clear()
       {
          mSize=0;
       }
@@ -549,7 +549,7 @@ namespace jm
       //! The data array itself.
       String* mData;
 
-      void CheckSize(Integer size)
+      void checkSize(Integer size)
       {
          if(mSize+size<mLength)return;
          while(mLength<mSize+size)mLength+=8;

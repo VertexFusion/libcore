@@ -46,7 +46,7 @@ StringTokenizer::StringTokenizer(const String &str, const String &delimiters, Bo
 Bool StringTokenizer::IsDelimiter(Integer index) const
 {
    Integer cnt = 0;
-   Integer l = mDelimiters.Length();
+   Integer l = mDelimiters.size();
    Char c = mStr.CharAt(index);
 
    while(cnt < l)
@@ -59,7 +59,7 @@ Bool StringTokenizer::IsDelimiter(Integer index) const
 Integer StringTokenizer::FindTokenEnd(Integer startPos) const
 {
    Integer pos = startPos;
-   Integer l = mStr.Length();
+   Integer l = mStr.size();
 
    while(pos < l)
    {
@@ -72,7 +72,7 @@ Integer StringTokenizer::FindTokenEnd(Integer startPos) const
 Integer StringTokenizer::FindDelimEnd(Integer startPos) const
 {
    Integer pos = startPos;
-   Integer l = mStr.Length();
+   Integer l = mStr.size();
 
    if(mRetDelim && pos < l && IsDelimiter(pos))return pos;
 
@@ -84,19 +84,19 @@ Integer StringTokenizer::FindDelimEnd(Integer startPos) const
    return pos;
 }
 
-Bool StringTokenizer::HasMoreTokens()
+Bool StringTokenizer::hasNext()
 {
    if(mNewStart < 0)mNewStart = FindDelimEnd(mPosition);
 
-   return mNewStart < mStr.Length();
+   return mNewStart < mStr.size();
 }
 
-String StringTokenizer::NextToken()
+String StringTokenizer::next()
 {
    mPosition = (mNewStart > -1) ? mNewStart : FindDelimEnd(mPosition);
    mNewStart = -1;
 
-   if(mPosition >= mStr.Length())throw new Exception(Tr("No such element."));
+   if(mPosition >= mStr.size())throw new Exception(Tr("No such element."));
 
    if(mRetDelim && IsDelimiter(mPosition))
    {

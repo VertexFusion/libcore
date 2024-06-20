@@ -186,12 +186,12 @@ namespace jm
          /*!
           \brief String festlegen
           */
-         //VxfErrorStatus SetDwgColourValue(const dwg::Colour& value);
+         //VxfErrorStatus SetDwgColourValue(const dwg::Color& value);
 
          /*!
           \brief Gibt String zurück
           */
-         //dwg::Colour GetDwgColourValue() const;
+         //dwg::Color GetDwgColourValue() const;
 
          /*!
           \brief Set the Integer value of this Property
@@ -323,7 +323,7 @@ namespace jm
          } mNumberValue;
 
          String mTextValue;
-         //dwg::Colour mDwgColourValue;
+         //dwg::Color mDwgColourValue;
 
 
    };
@@ -350,18 +350,18 @@ namespace jm
           \brief Determines that the visual representation should be renewed for this object in the
           next run.
           */
-         virtual void Regenerate();
+         virtual void regenerate();
 
          /*!
           \brief This method should be called by the regeneration method after the visual
           representation of this object has been updated.
           */
-         virtual void RegenerationDone();
+         virtual void regenerationDone();
 
          /*!
           \brief Returns the regeneration status
           */
-         virtual bool ShouldRegenerate() const;
+         virtual bool shouldRegenerate() const;
 
       protected:
 
@@ -374,7 +374,7 @@ namespace jm
           \param pointer The pointer to the String member.
           \param value The new value for the member.
           */
-         virtual VxfErrorStatus SetMember(String* pointer, const String& value);
+         virtual VxfErrorStatus setMember(String* pointer, const String& value);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
@@ -390,7 +390,7 @@ namespace jm
           \param rangeMin Minium valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
           */
-         virtual VxfErrorStatus SetMember(Integer* pointer,
+         virtual VxfErrorStatus setMember(Integer* pointer,
                                           Integer value,
                                           Integer rangeMin = INT64_MIN,
                                           Integer rangeMax = INT64_MAX);
@@ -406,7 +406,7 @@ namespace jm
           \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
           and eOK if set successfully.
           */
-         virtual VxfErrorStatus SetMember(Double* pointer, const Double value);
+         virtual VxfErrorStatus setMember(Double* pointer, const Double value);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
@@ -419,20 +419,22 @@ namespace jm
           \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
           and eOK if set successfully.
           */
-         virtual VxfErrorStatus SetMember(double* pointer, double value);
+         virtual VxfErrorStatus setMember(double* pointer, double value);
 
-         virtual VxfErrorStatus SetMember(bool* pointer, bool value);
+         virtual VxfErrorStatus setMember(bool* pointer, bool value);
+
+      virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
 
          /*!
           \brief Begins an editing tansaction;
           */
-         VxfErrorStatus OpenTransaction();
+         VxfErrorStatus openTransaction();
 
          /*!
           \brief Closes an transaction;
 
           */
-         VxfErrorStatus CloseTransaction();
+         VxfErrorStatus closeTransaction();
 
       private:
 

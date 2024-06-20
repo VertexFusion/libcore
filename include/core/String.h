@@ -114,7 +114,7 @@ namespace jm
          String(const char* buffer, Integer size, Charset* charset);
 
          /*!
-          \brief Copy-Konstruktor
+          \brief Copy constructor
           */
          String(const String &another);
 
@@ -128,24 +128,24 @@ namespace jm
          /*! \brief Converts from CFString
           \note Only visible on mac
          */
-         static String FromCFString(CFStringRef cfstring);
+         static String fromCFString(CFStringRef cfstring);
 
          /*! \brief Converts to CFString
          	\note Only visible on mac
            */
-         CFStringRef ToCFString()const;
+         CFStringRef toCFString()const;
          #endif
          /*!
           \brief Diese Methode gibt die Länge der Zeichenkette zurück.
           */
-         Integer Length() const;
+         Integer size() const;
 
          /*!
           \brief Diese Methode erzeugt unter Berücksichtigung der Standardkodierung (UTF-8) einen
           C-String aus der Zeichenkette.
           \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
           */
-         ByteArray ToCString()const;
+         ByteArray toCString()const;
 
          /*!
           \brief Diese Methode erzeugt unter Berücksichtigung der Unicode-Kodierung einen
@@ -161,52 +161,52 @@ namespace jm
           soll.
           \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
           */
-         ByteArray ToCString(Charset* charset)const;
+         ByteArray toCString(Charset* charset)const;
 
          /*!
           \brief Count the occurences of the character in the string
           */
-         Integer Count(Char character)const;
+         Integer count(Char character)const;
 
          /*!
           \brief Diese Methode löscht den Inhalt der Zeichenkette. GGf. wird Speicher Freigegeben.
           */
-         void Clear();
+         void clear();
 
          /*!
           \brief Setzt die Länge auf 0, ohne Speicher freizugeben.
           */
-         void Zero();
+         void zero();
 
          /*!
           \brief Diese Methode hängt eine andere Zeichenkette an diese an.
           \param another Die Zeichenkette, die an das Ende dieser Zeichenkette angehängt werden
           soll.
           */
-         void Append(const String &another);
+         void append(const String &another);
 
          /*!
           \brief Diese Methode hängt einen Buchstaben an diese Zeichenkette an.
           \param unicodechar Der Unicode-Codepunkt, Buchstabe, der an diese Zeichenkette angehängt
           werden soll.
           */
-         void Append(Char unicodechar);
+         void append(Char unicodechar);
 
          /*!
           \brief Diese Methode löscht einen Buchstaben aus dieser Zeichenkette heraus.
           \param index Der 0-basierte Index der Position des Buchstabens.
           */
-         void DeleteCharAt(Integer index);
+         void deleteCharAt(Integer index);
 
          /*!
           \brief Diese Methode löscht einen Abschnitt aus dieser Zeichenkette heraus.
           \param index Der 0-basierte Index der Position des Anfangs.
           \param length Die Länge des Abschnitts
           */
-         void DeleteCharRangeAt(Integer index, Integer length);
+         void deleteCharRangeAt(Integer index, Integer length);
 
          /*!
-          \copydoc jm::Object::Equals()
+          \copydoc jm::Object::equals()
           */
          bool equals(const Object* other) const override;
 
@@ -217,14 +217,14 @@ namespace jm
           \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
           Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist falsch.
           */
-         bool Equals(const String &another) const;
+         bool equals(const String &another) const;
 
          /*!
           \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird streng
           Zeichenweise von links nach rechts verglichen.
           \param another Die Zeichenkette, mit der diese verglichen wird.
           */
-         int32 CompareTo(const String &another) const override;
+         int32 compareTo(const String &another) const override;
 
          /*!
           \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird unter

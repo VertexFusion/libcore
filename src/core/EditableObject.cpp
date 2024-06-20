@@ -39,96 +39,106 @@ EditableObject::EditableObject(Document* doc) : Object()
    mRegenerate = true;
 };
 
-void EditableObject::Regenerate()
+void EditableObject::regenerate()
 {
    mRegenerate = true;
 }
 
-void EditableObject::RegenerationDone()
+void EditableObject::regenerationDone()
 {
    mRegenerate = false;
 }
 
-bool EditableObject::ShouldRegenerate() const
+bool EditableObject::shouldRegenerate() const
 {
    return mRegenerate;
 }
 
-VxfErrorStatus EditableObject::SetMember(String* pointer, const String& value)
+VxfErrorStatus EditableObject::setMember(String* pointer, const String& value)
 {
-   if(value.Equals(*pointer))return eNotChanged;
+   if(value.equals(*pointer))return eNotChanged;
 
-   UndoManager* um = mDocument->GetUndoManager();
-   if(um != NULL)um->RegisterChange(this, pointer);
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
 
-VxfErrorStatus EditableObject::SetMember(Integer* pointer,
+VxfErrorStatus EditableObject::setMember(Integer* pointer,
       Integer value,
       Integer rangeMin,
       Integer rangeMax)
 {
    if(value == *pointer)return eNotChanged;
 
-   UndoManager* um = mDocument->GetUndoManager();
+   UndoManager* um = mDocument->undoManager();
    if(!(value >= rangeMin && value <= rangeMax))
    {
       VxfErrorStatus status = eInvalidInput;
-      if(um != NULL)um->RegisterTransactionStatus(status);
+      if(um != NULL)um->registerTransactionStatus(status);
       return status;
    }
-   if(um != NULL)um->RegisterChange(this, pointer);
+   if(um != NULL)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
 
-VxfErrorStatus EditableObject::SetMember(Double* pointer, const Double value)
+VxfErrorStatus EditableObject::setMember(Double* pointer, const Double value)
 {
    if(value.IsNaN())return eInvalidInput;
    if(value == *pointer)return eNotChanged;
 
-   UndoManager* um = mDocument->GetUndoManager();
-   if(um != NULL)um->RegisterChange(this, pointer);
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
 
-VxfErrorStatus EditableObject::SetMember(double* pointer, double value)
+VxfErrorStatus EditableObject::setMember(double* pointer, double value)
 {
    if(IsNaN(value))return eInvalidInput;
    if(value == *pointer)return eNotChanged;
 
-   UndoManager* um = mDocument->GetUndoManager();
-   if(um != NULL)um->RegisterChange(this, pointer);
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
 
-VxfErrorStatus EditableObject::SetMember(bool* pointer, bool value)
+VxfErrorStatus EditableObject::setMember(bool* pointer, bool value)
 {
    if(value == *pointer)return eNotChanged;
 
-   UndoManager* um = mDocument->GetUndoManager();
-   if(um != NULL)um->RegisterChange(this, pointer);
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->registerChange(this, pointer);
+   *pointer = value;
+   return eOK;
+}
+
+VxfErrorStatus EditableObject::setMember(uint8* pointer, uint8 value)
+{
+   if(value == *pointer)return eNotChanged;
+
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
 
 
-VxfErrorStatus EditableObject::OpenTransaction()
+VxfErrorStatus EditableObject::openTransaction()
 {
-   UndoManager* um = mDocument->GetUndoManager();
-   if(um != NULL)um->OpenTransaction();
+   UndoManager* um = mDocument->undoManager();
+   if(um != NULL)um->openTransaction();
    return eOK;
 }
 
-VxfErrorStatus EditableObject::CloseTransaction()
+VxfErrorStatus EditableObject::closeTransaction()
 {
-   UndoManager* um = mDocument->GetUndoManager();
+   UndoManager* um = mDocument->undoManager();
    if(um != NULL)
    {
-      return um->CloseTransaction();
+      return um->closeTransaction();
    }
    return eNotChanged;
 }

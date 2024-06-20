@@ -52,7 +52,7 @@ namespace jm
           \return The output buffer. The caller of the method takes over the array and has to clean
           it up by himself.
           */
-         static uint8* Encode(const uint8* data, Integer &length);
+         static uint8* encode(const uint8* data, Integer &length);
 
          /*!
           \brief Decodes the data stream with the BASE64 algorithm.
@@ -62,7 +62,7 @@ namespace jm
           \return The output buffer. The caller of the method takes over the array and has to clean
           it up by himself.
           */
-         static uint8* Decode(const uint8* data, uint32 &length);
+         static uint8* decode(const uint8* data, uint32 &length);
 
    };
 

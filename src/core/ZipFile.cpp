@@ -45,10 +45,10 @@ ZipFile::ZipFile(File* file): jm::Object(),
 
 void ZipFile::Open()
 {
-   uint32 length = (uint32)mFile->Length();
+   uint32 length = (uint32)mFile->size();
    uint32 seek = length - 22;
 
-   mFile->Open(kFmRead);
+   mFile->open(kFmRead);
 
    // If the file is empty, then we are done
    if(length == 0)return;
@@ -64,9 +64,9 @@ void ZipFile::Open()
    bool found = false;
    do
    {
-      mFile->Seek(seek);
-      mFile->Stream::ReadFully(eocd);
-      signature = jm::DeserializeLEInt32((uint8*)eocd.ConstData(), 0);
+      mFile->seek(seek);
+      mFile->Stream::readFully(eocd);
+      signature = jm::DeserializeLEInt32((uint8*)eocd.constData(), 0);
       seek--;
 
       if(signature == 0x06054b50)
@@ -79,13 +79,13 @@ void ZipFile::Open()
 
    if(!found)throw new jm::Exception("ZIP-File is invalid.");
 
-   uint16 recordCount = jm::DeserializeLEUInt16((uint8*)eocd.ConstData(), 10);
-   uint32 dictSize = jm::DeserializeLEUInt32((uint8*)eocd.ConstData(), 12);
-   uint32 dictOffset = jm::DeserializeLEUInt32((uint8*)eocd.ConstData(), 16);
+   uint16 recordCount = jm::DeserializeLEUInt16((uint8*)eocd.constData(), 10);
+   uint32 dictSize = jm::DeserializeLEUInt32((uint8*)eocd.constData(), 12);
+   uint32 dictOffset = jm::DeserializeLEUInt32((uint8*)eocd.constData(), 16);
 
    ByteArray dict = ByteArray(dictSize, 0);
-   mFile->Seek(dictOffset);
-   mFile->Stream::ReadFully(dict);
+   mFile->seek(dictOffset);
+   mFile->Stream::readFully(dict);
 
 
    uint32 index = 0;
@@ -93,12 +93,12 @@ void ZipFile::Open()
    while(count < recordCount)
    {
       //signature = jm::DeserializeLEInt32(dict, index);
-      uint32 compressedSize = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 20);
-      uint32 uncompressedSize = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 24);
-      uint32 fileNameLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 28);
-      uint32 extraFieldLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 30);
-      uint32 commentLength = jm::DeserializeLEUInt16((uint8*)dict.ConstData(), index + 32);
-      uint32 offset = jm::DeserializeLEUInt32((uint8*)dict.ConstData(), index + 42);
+      uint32 compressedSize = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 20);
+      uint32 uncompressedSize = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 24);
+      uint32 fileNameLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 28);
+      uint32 extraFieldLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 30);
+      uint32 commentLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 32);
+      uint32 offset = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 42);
 
       jm::String name = jm::String((char*)&dict[index + 46], fileNameLength);
       jm::String extra = jm::String((char*)&dict[index + 46 + fileNameLength], extraFieldLength);
@@ -123,7 +123,7 @@ void ZipFile::Open()
 
 void ZipFile::Close()
 {
-   mFile->Close();
+   mFile->close();
 }
 
 jm::String ZipFile::GetComment()
@@ -135,10 +135,10 @@ ZipEntry* ZipFile::GetEntry(const String &name)
 {
    LinkedListIterator iter = GetEntryIterator();
 
-   while(iter.HasNext())
+   while(iter.hasNext())
    {
-      ZipEntry* entry = static_cast<ZipEntry*>(iter.Next());
-      if(entry->mName.Equals(name))return entry;
+      ZipEntry* entry = static_cast<ZipEntry*>(iter.next());
+      if(entry->mName.equals(name))return entry;
    }
 
    return NULL;
@@ -161,29 +161,29 @@ jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
 
    //Local Header
    ByteArray localHeader = ByteArray(30, 0);
-   mFile->Seek(entry->mHeaderOffset);
-   mFile->Stream::ReadFully(localHeader);
-   uint32 signature = jm::DeserializeLEUInt32((uint8*)localHeader.ConstData(), 0);
+   mFile->seek(entry->mHeaderOffset);
+   mFile->Stream::readFully(localHeader);
+   uint32 signature = jm::DeserializeLEUInt32((uint8*)localHeader.constData(), 0);
 
    if(signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
 
-   uint16 cm = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 8);
-   uint32 fl = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 26);
-   uint32 el = jm::DeserializeLEUInt16((uint8*)localHeader.ConstData(), 28);
+   uint16 cm = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 8);
+   uint32 fl = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 26);
+   uint32 el = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 28);
 
 
-   mFile->Seek(entry->mHeaderOffset + 30 + fl + el);
-   mFile->Stream::ReadFully(input);
+   mFile->seek(entry->mHeaderOffset + 30 + fl + el);
+   mFile->Stream::readFully(input);
 
    if(cm == 0) //Daten uncompressed
    {
-      memcpy(buffer, input.ConstData(), entry->mCompressedSize);
+      memcpy(buffer, input.constData(), entry->mCompressedSize);
    }
    if(cm == 8) //Deflate
    {
       Inflater inf = Inflater(true);
       Integer control;
-      inf.SetInput((uint8*)input.ConstData(), entry->mCompressedSize);
+      inf.SetInput((uint8*)input.constData(), entry->mCompressedSize);
       inf.Inflate(buffer, control);
    }
 

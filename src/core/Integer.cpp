@@ -104,12 +104,12 @@ Integer::Integer(ulong value)
 }
 #endif
 
-bool Integer::Equals(const Integer &another) const
+bool Integer::equals(const Integer &another) const
 {
    return mValue == another.mValue;
 }
 
-int32 Integer::CompareTo(const Integer &another) const
+int32 Integer::compareTo(const Integer &another) const
 {
    if(mValue > another.mValue)return 1;
    if(mValue < another.mValue)return -1;
@@ -117,7 +117,7 @@ int32 Integer::CompareTo(const Integer &another) const
 }
 
 
-uint8 Integer::Digits()const
+uint8 Integer::digits()const
 {
    Integer number = mValue;
    uint8 i = 1;
@@ -135,19 +135,19 @@ uint8 Integer::Digits()const
    return i;
 }
 
-Integer Integer::ValueOf(const jm::String &string)
+Integer Integer::valueOf(const jm::String &string)
 {
    int32 val = 0;
    bool neg = false;
 
-   for(Integer a = 0; a < string.Length(); a++)
+   for(Integer a = 0; a < string.size(); a++)
    {
       jm::Char c = string.CharAt(a);
 
-      if(c.IsDigit())
+      if(c.isDigit())
       {
          val *= 10;
-         val += c.DigitValue();
+         val += c.digitValue();
       }
       else if(c == '-')neg = true;
       else throw new jm::Exception("Number format exception for input string: \"" + string + "\"");
@@ -158,12 +158,12 @@ Integer Integer::ValueOf(const jm::String &string)
 }
 
 
-Integer Integer::FromHex(const jm::String& str)
+Integer Integer::fromHex(const jm::String& str)
 {
-   return FromHex(str, 0, str.Length().Uint32());
+   return fromHex(str, 0, str.size().Uint32());
 }
 
-Integer Integer::FromHex(const jm::String& str, uint32 begin, uint32 size)
+Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
 {
    uint64 r = 0;
 
@@ -177,17 +177,17 @@ Integer Integer::FromHex(const jm::String& str, uint32 begin, uint32 size)
 
       uint64 i = 0;
 
-      if (c.IsDigit())
+      if (c.isDigit())
       {
-         i = c.DigitValue();
+         i = c.digitValue();
       }
       else if (c >= 'a' && c <= 'f')
       {
-         i = c.Unicode() - 'a' + 10;
+         i = c.unicode() - 'a' + 10;
       }
       else if (c >= 'A' && c <= 'F')
       {
-         i = c.Unicode() - 'A' + 10;
+         i = c.unicode() - 'A' + 10;
       }
 
       r <<= 4;
@@ -199,7 +199,7 @@ Integer Integer::FromHex(const jm::String& str, uint32 begin, uint32 size)
 }
 
 
-jm::String Integer::ToHexString()
+jm::String Integer::toHexString()
 {
    jm::String ret;
 
@@ -208,7 +208,7 @@ jm::String Integer::ToHexString()
    //Prüfe auf 0
    if(number == 0)
    {
-      ret.Append('0');
+      ret.append('0');
       return ret;
    }
 
@@ -219,14 +219,14 @@ jm::String Integer::ToHexString()
    {
       int64 digit = number % base;
       number = number / base;
-      ret.Append(gMask[digit]);
+      ret.append(gMask[digit]);
    }
 
    //Zahlen umkehren
    return ret.Reverse();
 }
 
-jm::String Integer::ToRomanString()
+jm::String Integer::toRomanString()
 {
    jm::String output;
 
@@ -242,7 +242,7 @@ jm::String Integer::ToRomanString()
 
       while(div > 0)
       {
-         output.Append(gRoman[index]);
+         output.append(gRoman[index]);
          div--;
       }
       index--;
@@ -251,7 +251,7 @@ jm::String Integer::ToRomanString()
    return output;
 }
 
-jm::String Integer::ToLatinAlphabetString()
+jm::String Integer::toLatinAlphabetString()
 {
    jm::String output;
 
@@ -262,7 +262,7 @@ jm::String Integer::ToLatinAlphabetString()
       int32 div = static_cast<int32>(number / 26);
       int16 rest = (int16)(number % 26 - 1);
 
-      output.Append('A' + rest);
+      output.append('A' + rest);
 
       number = div;
    }
@@ -311,7 +311,7 @@ double Integer::Dbl()const
    return (double)mValue;
 }
 
-Integer Integer::Abs() const
+Integer Integer::abs() const
 {
    return std::abs(mValue);
 }
@@ -826,12 +826,12 @@ Integer operator/(Integer left, uint32 right)
    return Integer(left.mValue / right);
 }
 
-Integer Min(Integer left, Integer right)
+Integer jm::Min(Integer left, Integer right)
 {
    return std::min(left, right);
 }
 
-Integer Max(Integer left, Integer right)
+Integer jm::Max(Integer left, Integer right)
 {
    return std::max(left, right);
 }

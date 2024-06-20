@@ -45,20 +45,20 @@ Hashtable::Hashtable(): Object()
 
 Hashtable::~Hashtable()
 {
-   Clear();
+   clear();
    delete[] mData;
    mDataLength = 0;
    mArrLength = 0;
 }
 
-void* Hashtable::Put(String key, void* value)
+void* Hashtable::put(String key, void* value)
 {
    // Make sure that no entry already exists in the hash table.
    Integer hash = key.HashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
    {
-      if((e->hash == hash) && e->key.Equals(key))
+      if((e->hash == hash) && e->key.equals(key))
       {
          void* old = e->value;
          e->value = value;
@@ -69,7 +69,7 @@ void* Hashtable::Put(String key, void* value)
    // Increase table when threshold value is reached.
    if(mDataLength >= mThreshold)
    {
-      Rehash();
+      rehash();
       index = (hash & 0x7FFFFFFF) % mArrLength;
    }
 
@@ -85,14 +85,14 @@ void* Hashtable::Put(String key, void* value)
    return NULL;
 }
 
-void* Hashtable::Get(const String &key) const
+void* Hashtable::get(const String &key) const
 {
    Integer hash = key.ConstHashCode();
 
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
    {
-      if((e->hash == hash) && e->key.Equals(key))
+      if((e->hash == hash) && e->key.equals(key))
       {
          return e->value;
       }
@@ -101,7 +101,7 @@ void* Hashtable::Get(const String &key) const
    return NULL;
 }
 
-void* Hashtable::Remove(const String &key)
+void* Hashtable::remove(const String &key)
 {
    Integer hash = key.ConstHashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
@@ -110,7 +110,7 @@ void* Hashtable::Remove(const String &key)
    HashtableEntry* e = mData[index];
    while(e != NULL)
    {
-      if((e->hash == hash) && e->key.Equals(key))
+      if((e->hash == hash) && e->key.equals(key))
       {
          // Delete element in the linked list
          if(prev != NULL)
@@ -136,7 +136,7 @@ void* Hashtable::Remove(const String &key)
    return NULL;
 }
 
-void Hashtable::Clear()
+void Hashtable::clear()
 {
    for(Integer index = 0; index < mArrLength; index++)
    {
@@ -152,12 +152,12 @@ void Hashtable::Clear()
    mDataLength = 0;
 }
 
-Integer Hashtable::Size() const
+Integer Hashtable::size() const
 {
    return mDataLength;
 }
 
-void Hashtable::Rehash()
+void Hashtable::rehash()
 {
    Integer oldLength = mArrLength;
    HashtableEntry** oldData = mData;
@@ -169,7 +169,7 @@ void Hashtable::Rehash()
    for(Integer a = 0; a < newLength; a++)newData[a] = NULL;
 
    mArrLength = newLength;
-   mThreshold = (newLength * mLoadfactor).Ceil();
+   mThreshold = (newLength * mLoadfactor).ceil();
 
    for(Integer a = 0 ; a < oldLength ; a++)
    {
@@ -190,12 +190,12 @@ void Hashtable::Rehash()
    mData = newData;
 }
 
-Iterator* Hashtable::Keys()
+Iterator* Hashtable::keys()
 {
    return new HashtableIterator(this, true);
 }
 
-Iterator* Hashtable::Values()
+Iterator* Hashtable::values()
 {
    return new HashtableIterator(this, false);
 }
@@ -214,7 +214,7 @@ Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, Bool _retKey)
    last = NULL;
 }
 
-bool Hashtable::HashtableIterator::HasNext()
+bool Hashtable::HashtableIterator::hasNext()
 {
    while(entry == NULL && index < table->mArrLength)
    {
@@ -223,7 +223,7 @@ bool Hashtable::HashtableIterator::HasNext()
    return entry != NULL;
 }
 
-Object* Hashtable::HashtableIterator::Next()
+Object* Hashtable::HashtableIterator::next()
 {
    while(entry == NULL && index < table->mArrLength)
    {

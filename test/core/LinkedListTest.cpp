@@ -156,7 +156,7 @@ void LinkedListTest::DoTest2(bool active)
 {
    // Test mit Undo-Manager
    UndoManager* um = new UndoManager();
-   um->SetActive(active);
+   um->setActive(active);
 
    Object o1;
    Object o2;
@@ -276,7 +276,7 @@ void LinkedListTest::DoTest2(bool active)
 
    TestEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
-   um->ClearStacks();
+   um->clearStacks();
    l->release();
    delete um;
 
@@ -286,7 +286,7 @@ void LinkedListTest::DoTest3(bool active)
 {
    // Test mit Undo-Manager
    UndoManager* um = new UndoManager();
-   um->SetActive(active);
+   um->setActive(active);
 
    Object o1;
    Object o2;
@@ -302,7 +302,7 @@ void LinkedListTest::DoTest3(bool active)
    l->add(&o3, um);
    l->add(&o4, um);
    l->add(&o5, um);
-   um->Close();
+   um->close();
    Object* i;
 
    l->rewind();
@@ -352,12 +352,12 @@ void LinkedListTest::DoTest3(bool active)
    TestEquals(l->hasNext(), false, "LinkedList fails (12)");
 
    l->clear(um);
-   um->Close();
+   um->close();
    TestEquals(l->size(), 0, "LinkedList fails (13)");
 
    if(active)// Next test only works with enabled undo manager
    {
-      um->Undo();
+      um->undo();
       TestEquals(l->size(), 5, "LinkedList fails (14)");
 
       l->rewind();
@@ -384,7 +384,7 @@ void LinkedListTest::DoTest3(bool active)
       TestEquals(l->hasNext(), false, "LinkedList fails (20)");
 
       l->clear(um);
-      um->Close();
+      um->close();
    }
    TestEquals(l->size(), 0, "LinkedList fails (21)");
 

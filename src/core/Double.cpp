@@ -78,7 +78,7 @@ Double::Double(Integer value)
    mValue = value.Dbl();
 }
 
-int32 Double::CompareTo(const Double& another) const
+int32 Double::compareTo(const Double& another) const
 {
    if (mValue > another.mValue)return 1;
    if (mValue < another.mValue)return -1;
@@ -90,22 +90,22 @@ double Double::Dbl()const
    return mValue;
 }
 
-Double Double::ValueOf(const jm::String& string)
+Double Double::valueOf(const jm::String& string)
 {
-   jm::ByteArray cstr = string.ToCString();
+   jm::ByteArray cstr = string.toCString();
    std::stringstream ss;
    double d = 0;
-   ss << cstr.ConstData();
+   ss << cstr.constData();
    ss >> d;
    return d;
 }
 
-Integer Double::Floor() const
+Integer Double::floor() const
 {
    return Integer((int64)std::floor(mValue));
 }
 
-Integer Double::Ceil() const
+Integer Double::ceil() const
 {
    return Integer((int64)std::ceil(mValue));
 }

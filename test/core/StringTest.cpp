@@ -19,8 +19,8 @@ StringTest::StringTest(): Test()
 void StringTest::DoTest()
 {
    TestEquals((int)sizeof(Char),2, "Size of jm::Char must be 2");
-   TestTrue(Char('0').IsDigit(), "Char('0').IsDigit() fails");
-   TestFalse(Char('A').IsDigit(), "Char('A').IsDigit() fails");
+   TestTrue(Char('0').isDigit(), "Char('0').IsDigit() fails");
+   TestFalse(Char('A').isDigit(), "Char('A').IsDigit() fails");
 
    String str1 = String("abc");
    String str2 = String("abc");
@@ -32,18 +32,18 @@ void StringTest::DoTest()
    String str8 = String("äöüabc");
 
    //Teste UTF-8 Charakter
-   TestEquals(str5.CharAt(0).Unicode(), 0x00C4, "A-Umlaut fails");
-   TestEquals(str5.CharAt(1).Unicode(), 0x00D6, "O-Umlaut fails");
-   TestEquals(str5.CharAt(2).Unicode(), 0x00DC, "U-Umlaut fails");
+   TestEquals(str5.CharAt(0).unicode(), 0x00C4, "A-Umlaut fails");
+   TestEquals(str5.CharAt(1).unicode(), 0x00D6, "O-Umlaut fails");
+   TestEquals(str5.CharAt(2).unicode(), 0x00DC, "U-Umlaut fails");
 
    //Length
-   TestEquals((int)str1.Length(), (int)str6.Length(), "String.Length fails");
+   TestEquals((int)str1.size(), (int)str6.size(), "String.Length fails");
 
    //Equals
-   TestTrue(str1.Equals(str2), "String.Equals fails");
-   TestFalse(str1.Equals(str3), "String.Equals fails");
-   TestFalse(str1.Equals(str4), "String.Equals fails");
-   TestFalse(str4.Equals(str1), "String.Equals fails");
+   TestTrue(str1.equals(str2), "String.Equals fails");
+   TestFalse(str1.equals(str3), "String.Equals fails");
+   TestFalse(str1.equals(str4), "String.Equals fails");
+   TestFalse(str4.equals(str1), "String.Equals fails");
    TestTrue(str1==str2, "String.Equals fails");
    TestTrue(str1!=str3, "String.Equals fails");
    TestFalse(str1==str4, "String.Equals fails");

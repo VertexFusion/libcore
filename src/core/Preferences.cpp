@@ -40,11 +40,11 @@ Preferences::Preferences(): Hashtable()
 
 Preferences::~Preferences()
 {
-   Iterator* i = Keys();
-   while(i->HasNext())
+   Iterator* i = keys();
+   while(i->hasNext())
    {
-      String* s = static_cast<String*>(i->Next());
-      String* p = static_cast<String*>(Get(*s));
+      String* s = static_cast<String*>(i->next());
+      String* p = static_cast<String*>(get(*s));
       delete p;
    }
    delete i;
@@ -53,13 +53,13 @@ Preferences::~Preferences()
 
 void Preferences::Load(File file)
 {
-   if(!file.Exists())return;
+   if(!file.exists())return;
 
-   Integer l = file.Length();
+   Integer l = file.size();
    ByteArray buffer = ByteArray(l, 0);
-   file.Open(kFmRead);
-   Integer check = file.Stream::ReadFully(buffer);
-   file.Close();
+   file.open(kFmRead);
+   Integer check = file.Stream::readFully(buffer);
+   file.close();
    String data = String(buffer);
 
    if(check != l)throw new Exception("Property file incomplete loaded.");
@@ -67,9 +67,9 @@ void Preferences::Load(File file)
    StringTokenizer* st = new StringTokenizer(data, "\r\n", false);
 
    //Zeilenweise einlesen
-   while(st->HasMoreTokens())
+   while(st->hasNext())
    {
-      String line = st->NextToken();
+      String line = st->next();
 
       Integer pos = line.IndexOf('=');
       if(pos > 0)
@@ -85,21 +85,21 @@ void Preferences::Load(File file)
 
          //Ersetze
          Integer index = 0;
-         while(index < value.Length())
+         while(index < value.size())
          {
             Char c = value.CharAt(index);
 
-            if(c == '\\' && index + 1 < value.Length())
+            if(c == '\\' && index + 1 < value.size())
             {
                Char d = value.CharAt(index + 1);
                if(d == 't')
                {
                   value.SetCharAt(index, '\t');
-                  value.DeleteCharAt(index + 1);
+                  value.deleteCharAt(index + 1);
                }
                if(d == '\\')
                {
-                  value.DeleteCharAt(index + 1);
+                  value.deleteCharAt(index + 1);
                }
             }
             index++;
@@ -116,30 +116,30 @@ void Preferences::Store(File file)
 {
    try
    {
-      if(file.Exists() == false)
+      if(file.exists() == false)
       {
-         jm::File dir = jm::File(file.GetParent());
-         if(dir.Exists() == false)dir.MakeDirectory();
-         file.CreateNewFile();
+         jm::File dir = jm::File(file.parent());
+         if(dir.exists() == false)dir.makeDirectory();
+         file.createNewFile();
       }
-      VxfErrorStatus status = file.Open(kFmWrite);
+      VxfErrorStatus status = file.open(kFmWrite);
       if(status!=eOK)
       {
-         jm::System::Log(Tr("cannot store preferences in '%1'").Arg(file.GetAbsolutePath()),jm::kLogError);
+         jm::System::log(Tr("cannot store preferences in '%1'").Arg(file.absolutePath()),jm::kLogError);
          return;
       }
 
-      Iterator* keys = Keys();
+      Iterator* keyiter = keys();
 
-      while(keys->HasNext())
+      while(keyiter->hasNext())
       {
-         String key = *static_cast<String*>(keys->Next());
+         String key = *static_cast<String*>(keyiter->next());
          String value = GetPreference(key);
 
          //Ersetzungen
          //Ersetze
          uint32 index = 0;
-         while(index < value.Length())
+         while(index < value.size())
          {
             Char c = value.CharAt(index);
 
@@ -158,27 +158,27 @@ void Preferences::Store(File file)
          }
 
          //Zeile bilden
-         key.Append('=');
-         key.Append(value);
-         key.Append(String::LineSeparator());
-         ByteArray cstr = key.ToCString();
-         file.Write((uint8*)cstr.ConstData(), cstr.Size());
+         key.append('=');
+         key.append(value);
+         key.append(String::LineSeparator());
+         ByteArray cstr = key.toCString();
+         file.write((uint8*)cstr.constData(), cstr.size());
       }
-      delete keys;
+      delete keyiter;
 
-      file.Close();
+      file.close();
    }
    catch(Exception* e)
    {
       e->PrintStackTrace();
-      System::Log("Cannot save property file: " + file.GetAbsolutePath(), kLogError);
+      System::log("Cannot save property file: " + file.absolutePath(), kLogError);
       delete e;
    }
 }
 
 bool Preferences::HasPreference(const String& key)const
 {
-   return Get(key) != NULL;
+   return get(key) != NULL;
 }
 
 void Preferences::SetPreference(const String &key, const String &value)
@@ -188,7 +188,7 @@ void Preferences::SetPreference(const String &key, const String &value)
    tmp = tmp.ReplaceAll("\r", "\\n");
    tmp = tmp.ReplaceAll("\n", "\\n");
    String* actual = new String(tmp);
-   String* old = static_cast<String*>(Put(key, actual));
+   String* old = static_cast<String*>(put(key, actual));
    if(old != NULL)delete old;
 }
 
@@ -205,14 +205,14 @@ void Preferences::SetPreference(const String &key, bool value)
 
 String Preferences::GetPreference(const String &key) const
 {
-   String* result = (String*)Get(key);
+   String* result = (String*)get(key);
    if(result == NULL)return kEmptyString;
    return *result;
 }
 
 String Preferences::GetPreference(const String &key, String const &defaultValue) const
 {
-   String* result = static_cast<String*>(Get(key));
+   String* result = static_cast<String*>(get(key));
    if(result == NULL)return defaultValue;
    return *result;
 }
@@ -221,12 +221,12 @@ int32 Preferences::GetPreferenceInt(const String &key, int32 defaultValue) const
 {
    String result = GetPreference(key);
 
-   if(result.Length() == 0)return defaultValue;
+   if(result.size() == 0)return defaultValue;
 
    int32 value = defaultValue;
    try
    {
-      value = static_cast<int32>(Integer::ValueOf(result));
+      value = static_cast<int32>(Integer::valueOf(result));
    }
    catch(Exception* e)
    {
@@ -240,7 +240,7 @@ bool Preferences::GetPreferenceBool(const String &key, bool defaultValue) const
 {
    String result = GetPreference(key);
 
-   if(result.Length() == 0)return defaultValue;
+   if(result.size() == 0)return defaultValue;
 
-   return result.Equals("true");
+   return result.equals("true");
 }

@@ -48,17 +48,17 @@ class AddressBook : public Document
 
       };
 
-      VxfErrorStatus InitNewDocument(Preferences* props) override
+      VxfErrorStatus initNewDocument(Preferences* props) override
       {
          return eOK;// Needs to be overriden
       }
 
-      bool SaveDocument() override
+      bool saveDocument() override
       {
          return true;// Needs to be overriden
       };
 
-      bool LoadDocument() override
+      bool loadDocument() override
       {
          return true;// Needs to be overriden
       };
@@ -93,7 +93,7 @@ class Address : public EditableObject
 
       VxfErrorStatus SetName(const String& name)
       {
-         return SetMember(&mName, name);
+         return setMember(&mName, name);
       };
 
       const String& GetName() const
@@ -103,10 +103,10 @@ class Address : public EditableObject
 
       VxfErrorStatus SetStreetAddress(const String& street, Integer housenumber)
       {
-         OpenTransaction();
-         SetMember(&mStreetName, street);
-         SetMember(&mHouseNumber, housenumber, 0);
-         return CloseTransaction();
+         openTransaction();
+         setMember(&mStreetName, street);
+         setMember(&mHouseNumber, housenumber, 0);
+         return closeTransaction();
       }
 
       const String& GetStreet()const
@@ -132,7 +132,7 @@ class Address : public EditableObject
 
 void AddressBook::AddAddress(Address* adr)
 {
-   mEntries.add(adr, GetUndoManager());
+   mEntries.add(adr, undoManager());
 }
 
 Integer AddressBook::GetAddressCount() const
@@ -150,9 +150,9 @@ void EditableObjectTest::DoTest()
 {
 
    AddressBook* book = new AddressBook();
-   book->InitNewDocument(NULL); // From API side, this shall be called first, though we have not implementation hier. Just as reminder
+   book->initNewDocument(NULL); // From API side, this shall be called first, though we have not implementation hier. Just as reminder
 
-   UndoManager* um = book->GetUndoManager();//Get reference for later
+   UndoManager* um = book->undoManager();//Get reference for later
 
    // Add first address
    Address* adr = new Address(book);
@@ -160,35 +160,35 @@ void EditableObjectTest::DoTest()
    // Check simple member changing
    // Set "wrong" name, test undo and correct.
    adr->SetName("UweRuntemund");
-   um->Close();
+   um->close();
    TestEquals(adr->GetName(), "UweRuntemund", "Name wrong (1)");
 
-   um->Undo();
+   um->undo();
 
    adr->SetName("Uwe Runtemund");
-   um->Close();
+   um->close();
    TestEquals(adr->GetName(), "Uwe Runtemund", "Name wrong (2)");
 
    TestEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (3)");
    book->AddAddress(adr);
-   um->Close();
+   um->close();
    TestEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (4)");
-   um->Undo();
+   um->undo();
    TestEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (5)");
-   um->Redo();
+   um->redo();
    TestEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (6)");
 
    // Check simple Transaction
    TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (7)");
    TestEquals(adr->GetHouseNumber(), 0, "House number wrong (8)");
    adr->SetStreetAddress("Waldstraße", 51);
-   um->Close();
+   um->close();
    TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (9)");
    TestEquals(adr->GetHouseNumber(), 51, "House number wrong (10)");
-   um->Undo();
+   um->undo();
    TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (11)");
    TestEquals(adr->GetHouseNumber(), 0, "House number wrong (12)");
-   um->Redo();
+   um->redo();
    TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (13)");
    TestEquals(adr->GetHouseNumber(), 51, "House number wrong (14)");
 
@@ -197,27 +197,27 @@ void EditableObjectTest::DoTest()
    TestEquals(status, eInvalidInput, "VxfErrorStatus wrong (15)");
    TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (16)");
    TestEquals(adr->GetHouseNumber(), 51, "House number wrong (17)");
-   TestFalse(um->HasOpenTransaction(), "Transaction is open (18)");
-   TestFalse(um->HasOpenUndoStep(), "Undo Step is open (19)");
+   TestFalse(um->hasOpenTransaction(), "Transaction is open (18)");
+   TestFalse(um->hasOpenUndoStep(), "Undo Step is open (19)");
 
    // Undo shall happen with previous data, as nothing should happened
-   um->Undo();
+   um->undo();
    TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (20)");
    TestEquals(adr->GetHouseNumber(), 0, "House number wrong (21)");
-   um->Redo();
+   um->redo();
    TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (22)");
    TestEquals(adr->GetHouseNumber(), 51, "House number wrong (23)");
 
-   // Changing just the house number should not have any effect, though calling SetMember with
+   // Changing just the house number should not have any effect, though calling setMember with
    // the street will return eNotChanged, which should not have any effect on the transaction
    status = adr->SetStreetAddress("Waldstraße", 7);
    TestEquals(status, eOK, "VxfErrorStatus wrong (24)");
    TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");
    TestEquals(adr->GetHouseNumber(), 7, "House number wrong (26)");
-   TestFalse(um->HasOpenTransaction(), "Transaction is open (27)");
-   TestTrue(um->HasOpenUndoStep(), "Undo Step is closed (28)");
-   um->Close();
-   TestFalse(um->HasOpenUndoStep(), "Undo Step is open (28)");
+   TestFalse(um->hasOpenTransaction(), "Transaction is open (27)");
+   TestTrue(um->hasOpenUndoStep(), "Undo Step is closed (28)");
+   um->close();
+   TestFalse(um->hasOpenUndoStep(), "Undo Step is open (28)");
 
    delete book;
 }

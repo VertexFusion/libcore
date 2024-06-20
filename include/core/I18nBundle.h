@@ -37,7 +37,7 @@
 /*!
 \brief Quick macro for translation
  */
-#define Tr(X) jm::I18nBundle::GetDefault()->Translate(X)
+#define Tr(X) jm::I18nBundle::getDefault()->translate(X)
 
 namespace jm
 {
@@ -60,22 +60,22 @@ namespace jm
          	\brief This method reads a *.mo file and adds the content to this bundle.
          	\param file The mo file.
          	*/
-         void AppendMO(File file);
+         void appendMo(File file);
 
-         String Translate(const String& key) const;
+         String translate(const String& key) const;
 
-         static I18nBundle* GetDefault();
+         static I18nBundle* getDefault();
 
          /*!
           \brief This method is called on start-up from jm::System to initialise the default
           language. The developer usually do not need to call this.
           */
-         static void InitDefault();
+         static void initDefault();
 
          /*!
           \brief Try to examine the language file for given bundle-id
           */
-         static jm::File GetTansFileByBundleId(const String &filename,
+         static jm::File transFileByBundleId(const String &filename,
                                                const String &language);
 
       private:

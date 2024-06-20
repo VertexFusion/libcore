@@ -149,15 +149,15 @@ class DllExport Integer
       #ifdef WITHULONG
       Integer(ulong value);
       #endif
-      bool Equals(const Integer& another) const;
+      bool equals(const Integer& another) const;
 
-      int32 CompareTo(const Integer& another) const;
+      int32 compareTo(const Integer& another) const;
 
       /*!
        \brief Returns the number of digits, this number has.
        \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
        */
-      uint8 Digits() const;
+      uint8 digits() const;
 
       /*!
        \brief Methode wandelt einen String in einen Integer-Wert um.
@@ -165,14 +165,14 @@ class DllExport Integer
        soll.
        \return Die gewünschte Integer-Zahl.
        */
-      static Integer ValueOf(const jm::String& string);
+      static Integer valueOf(const jm::String& string);
 
       /*!
        \brief Method converts a hexadecimal string value into an integer number.
        \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
        \return Returns the desired number as an integer value.
        */
-      static Integer FromHex(const jm::String& str);
+      static Integer fromHex(const jm::String& str);
 
       /*!
        \brief Method converts a hexadecimal string value into an integer number.
@@ -181,28 +181,28 @@ class DllExport Integer
        \param size Size of hex string 
        \return Returns the desired number as an integer value.
        */
-      static Integer FromHex(const jm::String& str, uint32 begin, uint32 size);
+      static Integer fromHex(const jm::String& str, uint32 begin, uint32 size);
 
       /*!
        \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
        \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
        Also z.B. "FF" für 255.
        */
-      jm::String ToHexString();
+      jm::String toHexString();
 
       /*!
        \brief Methode wandelt eine Integer-Zahl in einen String um, der eine Römische Zahl
        darstellt.
        \return Gibt die gewünschte Zahl als String mit dem Wert einer Römischen Zahl zurück.
        */
-      jm::String ToRomanString();
+      jm::String toRomanString();
 
       /*!
        \brief Methode wandelt eine Integer-Zahl in einen String um, der einm Großbuchstaben
        entspricht. 1=A,2=C,3=C usw-
        \return Gibt die gewünschte Zahl als String mit dem Wert eines Großbuchstaben zurück.
        */
-      jm::String ToLatinAlphabetString();
+      jm::String toLatinAlphabetString();
 
       int8 Int8()const;
       int16 Int16()const;
@@ -213,7 +213,7 @@ class DllExport Integer
       uint32 Uint32()const;
       double Dbl()const;
 
-      Integer Abs() const;
+      Integer abs() const;
 
       operator int64() const;
 
@@ -534,10 +534,12 @@ class DllExport Integer
       int64 mValue;
 };
 
-DllExport
-Integer Min(Integer left, Integer right);
-
-DllExport
-Integer Max(Integer left, Integer right);
-
+namespace jm
+{
+   DllExport
+   Integer Min(Integer left, Integer right);
+   
+   DllExport
+   Integer Max(Integer left, Integer right);
+}
 #endif

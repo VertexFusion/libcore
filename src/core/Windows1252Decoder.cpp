@@ -86,7 +86,7 @@ ByteArray Windows1252Decoder::Encode(const CharArray &string)
 
    for(Integer a = 0; a < string.length; a++)
    {
-      switch(string.buffer[a].Unicode())
+      switch(string.buffer[a].unicode())
       {
          case 0x20AC:
             cstring[a] = (uint8)0x80;
@@ -201,7 +201,7 @@ ByteArray Windows1252Decoder::Encode(const CharArray &string)
             break;
 
          default:
-            cstring[a] = (uint8)string.buffer[a].Unicode();
+            cstring[a] = (uint8)string.buffer[a].unicode();
       }
    }
 

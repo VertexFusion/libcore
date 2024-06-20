@@ -44,7 +44,7 @@ namespace jm
     obtained.
 
     \note With initialisation of the list, the pointer to the elements precedes the first element,
-    so that the first call to Next() actually returns the first element.
+    so that the first call to next() actually returns the first element.
     \ingroup core
     */
    class DllExport Iterator
@@ -56,12 +56,12 @@ namespace jm
           \return "Wahr", wenn noch mindestens ein weiteres Element in der Liste existiert,
           andernfalls "Falsch".
           */
-         virtual bool HasNext() = 0;
+         virtual bool hasNext() = 0;
 
          /*!
           \brief Diese Methode iteriert zum nächsten Element in der Liste und gibt es zurück.
           */
-         virtual Object* Next() = 0;
+         virtual Object* next() = 0;
 
          virtual ~Iterator();
    };

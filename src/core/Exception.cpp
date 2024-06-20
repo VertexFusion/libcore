@@ -13,7 +13,7 @@ using namespace jm;
 Exception::Exception(String _message): Object()
 {
    message = _message;
-   System::Log(message, kLogError);
+   System::log(message, kLogError);
 
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    tid = pthread_self();
@@ -63,7 +63,7 @@ void Exception::PrintStackTrace() const
 
    //1. Zeile
    std::cerr << "Exception in thread \"" << tid  << "\"";
-   if(message.Length() > 0)std::cerr << " : " << message;
+   if(message.size() > 0)std::cerr << " : " << message;
    std::cerr << std::endl;
 
    char* buffer = new char[1024];
@@ -97,8 +97,8 @@ void Exception::PrintStackTrace() const
 
       int status;
       size_t size = 1024;
-      ByteArray cstr = function.ToCString();
-      abi::__cxa_demangle(cstr.ConstData(), buffer, &size, &status);
+      ByteArray cstr = function.toCString();
+      abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
       function = String(buffer, (int)size, Charset::ForName("RAW"));
 
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << std::endl;
@@ -126,7 +126,7 @@ String Exception::GetStrackTrace() const
 
    //1. Zeile
    ret << "Exception in thread \"" << /* reinterpret_cast<int64>(tid)  << */ "\"";
-   if(message.Length() > 0)ret << " : " << message;
+   if(message.size() > 0)ret << " : " << message;
    ret << '\r' << '\n';
 
    char* buffer = new char[1024];
@@ -160,8 +160,8 @@ String Exception::GetStrackTrace() const
 
       int status;
       size_t size = 1024;
-      ByteArray cstr = function.ToCString();
-      abi::__cxa_demangle(cstr.ConstData(), buffer, &size, &status);
+      ByteArray cstr = function.toCString();
+      abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
       function = String(buffer, (int)size, Charset::ForName("RAW"));
 
       ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r' << '\n';

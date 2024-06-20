@@ -155,7 +155,7 @@ ByteArray UTF8Decoder::Encode(const CharArray &string)
    uint32 cntC = 0;
    for(uint32 a = 0; a < string.length; a++)
    {
-      uint16 character = string.buffer[a].Unicode();
+      uint16 character = string.buffer[a].unicode();
       if(character < 0x80)   //1 Zeichen
       {
          cntC += 1;
@@ -174,7 +174,7 @@ ByteArray UTF8Decoder::Encode(const CharArray &string)
    cntC = 0;
    for(Integer a = 0; a < string.length; a++)
    {
-      uint16 character = string.buffer[a].Unicode();
+      uint16 character = string.buffer[a].unicode();
       if(character < 0x80)   //1 Zeichen
       {
          cstring[cntC] = (int8)character;

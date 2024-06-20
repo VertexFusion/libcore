@@ -96,7 +96,7 @@ ByteArray UTF16Decoder::Encode(const CharArray &string)
    Integer idx = 0;
    for(uint32 a = 0; a < string.length; a++)
    {
-      uint16 character = string.buffer[a].Unicode();
+      uint16 character = string.buffer[a].unicode();
       cstring[idx] = (int8)(character >> 8);
       idx++;
       cstring[idx] = (int8)character;

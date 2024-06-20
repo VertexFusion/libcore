@@ -67,7 +67,7 @@ namespace jm
           \param value Der Pointer auf das Objekt, welches hier eingeordnet werden soll.
           \return Wenn ein altes Objekt dadurch ersetzt wird, wird dieses zurückgegeben.
           */
-         void* Put(String key, void* value);
+         void* put(String key, void* value);
 
          /*!
           \brief Diese Methode gibt das Objekt zurück, welches zu dem gesuchten Key zugeordnet
@@ -76,62 +76,62 @@ namespace jm
           \return Den Pointer auf das Objekt, welches gesucht wird, oder NULL, wenn das Objekt nicht
           in der Hashtabelle vorhanden ist.
           */
-         void* Get(const String &key) const;
+         void* get(const String &key) const;
 
          /*!
           \brief Diese Methode entfernt das Objekt, welches zu dem gesuchten Key zugeordnet ist.
           \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
           \return Den Pointer auf das Objekt, welches entfernt wurde.
           */
-         void* Remove(const String &key);
+         void* remove(const String &key);
 
          /*!
           \brief Returns the number of entries in this hash table.
           */
-         Integer Size() const;
+         Integer size() const;
 
          /*!
           \brief Diese Methode gibt "wahr" zurück, wenn die Hashtabelle leer ist.
           */
-         bool IsEmpty() const;
+         bool isEmpty() const;
 
          /*!
           \brief Diese Methode gibt "wahr" zurück, wenn zu dem Schlüssel ein Objekt zugeordnet
           ist.
           \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
           */
-         bool ContainsKey(const String &key) const;
+         bool containsKey(const String &key) const;
 
          /*!
           \brief Diese Methode gibt "wahr" zurück, wenn zu dem Schlüssel ein Objekt zugeordnet
           ist.
           \param value Dert Wert,nach dem gesucht wird
           */
-         bool ContainsValue(void* value) const;
+         bool containsValue(void* value) const;
 
          /*!
           \brief Diese Methode gibt ein Objekt der Klasse "Iterator" zurück, welches sich durch
           die Schlüssel dieser Tabelle iteriert.
           */
-         Iterator* Keys();
+         Iterator* keys();
 
          /*!
           \brief Diese Methode gibt ein Objekt der Klasse "Iterator" zurück, welches sich durch
          die Werte dieser Tabelle iteriert.
           */
-         Iterator* Values();
+         Iterator* values();
 
          /*!
           \brief Diese Methode entfernt alle Elemente aus der Hashtable
           */
-         void Clear();
+         void clear();
 
       protected:
 
          /*!
          \brief Diese Methode erhöhte die Kapazität der Hashtabelle
          */
-         void Rehash();
+         void rehash();
 
       private:
 
@@ -191,8 +191,8 @@ namespace jm
                Integer index;
             public:
                HashtableIterator(Hashtable* table, Bool retKey);
-               bool HasNext();
-               Object* Next();
+               bool hasNext();
+               Object* next();
          };
 
    };

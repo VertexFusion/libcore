@@ -34,7 +34,7 @@
 
 #include "String.h"
 #include "Date.h"
-#include "Colour.h"
+#include "Color.h"
 #include "Property.h"
 #include "Vertex3.h"
 
@@ -84,9 +84,9 @@ namespace jm
           \brief Diese Methode macht einen Rückgängig-Schritt und wandelt es in einen Redo-Schritt
           oder umgekehrt.
           \discussion Es werden der gespeicherte Wert (hier) mit dem gespeicherten Wert auf dem der
-          Pointer zeigt vertauscht. Außerdem wird ein Regenerate() in EditableObjects ausgelöst.
+          Pointer zeigt vertauscht. Außerdem wird ein regenerate() in EditableObjects ausgelöst.
           */
-         virtual void Swap();
+         virtual void swap();
 
          jm::String objname;
    };
@@ -99,7 +99,7 @@ namespace jm
       public:
 
          UndoChangeBool(Object* object, bool *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -116,7 +116,7 @@ namespace jm
       public:
 
          UndoChangeInt8(Object* object, int8 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -130,7 +130,7 @@ namespace jm
       public:
 
          UndoChangeUInt8(Object* object, uint8 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -144,7 +144,7 @@ namespace jm
       public:
 
          UndoChangeInt16(Object* object, int16 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -158,7 +158,7 @@ namespace jm
       public:
 
          UndoChangeUInt16(Object* object, uint16 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -172,7 +172,7 @@ namespace jm
       public:
 
          UndoChangeInt32(Object* object, int32 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -186,7 +186,7 @@ namespace jm
       public:
 
          UndoChangeUInt32(Object* object, uint32 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -200,7 +200,7 @@ namespace jm
       public:
 
          UndoChangeInteger(Object* object, Integer* ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -214,7 +214,7 @@ namespace jm
       public:
 
          UndoChangeInt64(Object* object, int64 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -228,7 +228,7 @@ namespace jm
       public:
 
          UndoChangeUInt64(Object* object, uint64 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -242,7 +242,7 @@ namespace jm
       public:
 
          UndoChangeFloat(Object* object, float *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -256,7 +256,7 @@ namespace jm
       public:
 
          UndoChangeDouble(Object* object, double *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -270,7 +270,7 @@ namespace jm
       public:
 
          UndoChangeDouble2(Object* object, Double* ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -284,7 +284,7 @@ namespace jm
       public:
 
          UndoChangeString(Object* object, String *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -298,7 +298,7 @@ namespace jm
       public:
 
          UndoChangeVertex2(Object* object, Vertex2* ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -312,7 +312,7 @@ namespace jm
       public:
 
          UndoChangeVertex3(Object* object, Vertex3 *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -326,7 +326,7 @@ namespace jm
       public:
 
          UndoChangeDate(Object* object, Date *ptr);
-         void Swap();
+         void swap();
 
       private:
 
@@ -339,13 +339,13 @@ namespace jm
    {
       public:
 
-         UndoChangeColour(Object* object, Colour *ptr);
-         void Swap();
+         UndoChangeColour(Object* object, Color *ptr);
+         void swap();
 
       private:
 
-         Colour* mPointer;
-         Colour mValue;
+         Color* mPointer;
+         Color mValue;
 
    };
 
@@ -355,7 +355,7 @@ namespace jm
 
          UndoChangeObjectRef(Object* object, Object **ptr);
          ~UndoChangeObjectRef();
-         void Swap();
+         void swap();
 
       private:
 
@@ -369,7 +369,7 @@ namespace jm
       public:
 
          UndoChangeBuffer(Object* object, uint8 **ptr, uint64 length);
-         void Swap();
+         void swap();
 
       private:
 
@@ -383,7 +383,7 @@ namespace jm
       public:
 
          UndoRegenerationMarker(EditableObject* object);
-         void Swap();
+         void swap();
 
       private:
    };
@@ -393,7 +393,7 @@ namespace jm
       public:
          UndoObjectRelease(Object* object, bool release);
          virtual ~UndoObjectRelease();
-         void Swap();
+         void swap();
       private:
          bool mReleased;
          Object* mObject;
@@ -447,7 +447,7 @@ namespace jm
           \brief Fügt eine Änderung hinzu.
           \param change Die Änderung, die hinzugefügt wird.
           */
-         void AddChange(UndoChange* change);
+         void add(UndoChange* change);
 
    };
 

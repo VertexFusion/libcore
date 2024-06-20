@@ -61,59 +61,59 @@ namespace jm
          \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
          \param mode Der Modus zum öffnen.
          */
-         VxfErrorStatus Open(FileMode mode) override;
+         VxfErrorStatus open(FileMode mode) override;
 
          /*!
           \brief Status, ob die Datei geöffnet ist
           */
-         bool IsOpen() override;
+         bool isOpen() override;
 
          /*!
          \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen frei.
          */
-         void Close() override;
+         void close() override;
 
          /*!
          \brief Liest maximal length bytes in das Array
          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
          */
-         Integer Read(uint8* buffer, Integer length) override;
+         Integer read(uint8* buffer, Integer length) override;
 
          /*!
          \brief Liest maximal length bytes in das Array
          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
          */
-         Integer ReadFully(ByteArray& buffer, Integer length) override;
+         Integer readFully(ByteArray& buffer, Integer length) override;
 
          /*!
          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)
          */
-         void Seek(Integer position) override;
+         void seek(Integer position) override;
 
          /*!
           \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
           */
-         void Move(Integer offset) override;
+         void move(Integer offset) override;
 
          /*!
          \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
          */
-         Integer GetPosition() override;
+         Integer position() override;
 
          /*!
          \brief Schreibt einen Buffer in die Ausgabedatei
          */
-         Integer Write(const uint8* buffer, Integer length) override;
+         Integer write(const uint8* buffer, Integer length) override;
 
          /*!
           \brief Gibt die Länge des Streams zurück
           */
-         Integer Length() const override;
+         Integer size() const override;
 
          /*!
           \brief Gibt den Puffer zurück
           */
-         uint8* GetBuffer();
+         uint8* buffer();
 
       private:
 

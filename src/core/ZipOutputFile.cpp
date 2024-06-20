@@ -61,13 +61,13 @@ ZipOutputFile::ZipOutputFile(File* file): jm::Object(),
 
 void ZipOutputFile::Open()
 {
-   if(mFile->Exists() == false)mFile->CreateNewFile();
-   mFile->Open(kFmReadWrite);
+   if(mFile->exists() == false)mFile->createNewFile();
+   mFile->open(kFmReadWrite);
 }
 
 void ZipOutputFile::Close()
 {
-   uint32 start = static_cast<uint32>(mFile->GetPosition());
+   uint32 start = static_cast<uint32>(mFile->position());
 
    //Schreibe Finales Verzeichnis
    mEntries.rewind();
@@ -75,9 +75,9 @@ void ZipOutputFile::Close()
    {
       ZipEntry* entry = (ZipEntry*)mEntries.next();
 
-      ByteArray cname = entry->mName.ToCString();
-      ByteArray cextra = entry->mExtra.ToCString();
-      ByteArray ccomment = entry->mComment.ToCString();
+      ByteArray cname = entry->mName.toCString();
+      ByteArray cextra = entry->mExtra.toCString();
+      ByteArray ccomment = entry->mComment.toCString();
 
       uint8 cdfh[46];
       jm::SerializeLEInt32(cdfh, 0, 0x02014b50);//Signature
@@ -90,22 +90,22 @@ void ZipOutputFile::Close()
       jm::SerializeLEInt32(cdfh, 16, entry->mCRC);//CRC
       jm::SerializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
       jm::SerializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
-      jm::SerializeLEInt16(cdfh, 28, cname.Size().Int16());//ShxFile name Length
-      jm::SerializeLEInt16(cdfh, 30, cextra.Size().Int16());//Extra field length
-      jm::SerializeLEInt16(cdfh, 32, ccomment.Size().Int16());//Comment field length
+      jm::SerializeLEInt16(cdfh, 28, cname.size().Int16());//ShxFile name Length
+      jm::SerializeLEInt16(cdfh, 30, cextra.size().Int16());//Extra field length
+      jm::SerializeLEInt16(cdfh, 32, ccomment.size().Int16());//Comment field length
       jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
       jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
       jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
       jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
 
-      mFile->Write(cdfh, 46);
-      if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());
-      if(cextra.Size() > 0)mFile->Write((uint8*)cextra.ConstData(), cextra.Size());
-      if(ccomment.Size() > 0)mFile->Write((uint8*)ccomment.ConstData(), ccomment.Size());
+      mFile->write(cdfh, 46);
+      if(cname.size() > 0)mFile->write((uint8*)cname.constData(), cname.size());
+      if(cextra.size() > 0)mFile->write((uint8*)cextra.constData(), cextra.size());
+      if(ccomment.size() > 0)mFile->write((uint8*)ccomment.constData(), ccomment.size());
 
    }
 
-   uint32 end = static_cast<uint32>(mFile->GetPosition());
+   uint32 end = static_cast<uint32>(mFile->position());
 
    //Frilte End of Directory Record
    uint8 eof[22];
@@ -118,32 +118,32 @@ void ZipOutputFile::Close()
    jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
    jm::SerializeLEInt16(eof, 20, 0);//Comment Length.
 
-   mFile->Write(eof, 22);
+   mFile->write(eof, 22);
 
-   mFile->Close();
+   mFile->close();
 }
 
 void ZipOutputFile::CloseEntry()
 {
    ZipEntry* entry = (ZipEntry*)mEntries.last();
 
-   entry->mUncompressedSize = static_cast<uint32>(mTemp->GetPosition());
-   mTemp->Seek(0);
+   entry->mUncompressedSize = static_cast<uint32>(mTemp->position());
+   mTemp->seek(0);
    ByteArray buffer = ByteArray(entry->mUncompressedSize, 0);
-   mTemp->Stream::ReadFully(buffer);
-   mTemp->Close();
+   mTemp->Stream::readFully(buffer);
+   mTemp->close();
    mTemp->Delete();
    delete mTemp;
    mTemp = NULL;
 
    //CRC berechnen
-   entry->mCRC = CRC32(buffer.ConstData(), entry->mUncompressedSize);
+   entry->mCRC = CRC32(buffer.constData(), entry->mUncompressedSize);
 
    //Schreibe unkomprimiert
    entry->mCompressedSize = entry->mUncompressedSize;
 
-   mFile->Write((uint8*)buffer.ConstData(), entry->mUncompressedSize);
-   uint32 pos = static_cast<uint32>(mFile->GetPosition());
+   mFile->write((uint8*)buffer.constData(), entry->mUncompressedSize);
+   uint32 pos = static_cast<uint32>(mFile->position());
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
@@ -151,34 +151,34 @@ void ZipOutputFile::CloseEntry()
    jm::SerializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
    jm::SerializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
 
-   mFile->Seek(entry->mHeaderOffset + 14);
-   mFile->Write(lfhfragment, 12);
-   mFile->Seek(pos);
+   mFile->seek(entry->mHeaderOffset + 14);
+   mFile->write(lfhfragment, 12);
+   mFile->seek(pos);
 }
 
 void ZipOutputFile::WriteAndClose(jm::File* file)
 {
    ZipEntry* entry = static_cast<ZipEntry*>(mEntries.last());
 
-   entry->mUncompressedSize = static_cast<uint32>(file->Length());
-   file->Open(kFmRead);
+   entry->mUncompressedSize = static_cast<uint32>(file->size());
+   file->open(kFmRead);
    ByteArray buffer = ByteArray(entry->mUncompressedSize, 0);
-   file->Stream::ReadFully(buffer);
-   file->Close();
+   file->Stream::readFully(buffer);
+   file->close();
 
-   mTemp->Close();
+   mTemp->close();
    mTemp->Delete();
    delete mTemp;
    mTemp = NULL;
 
    //CRC berechnen
-   entry->mCRC = CRC32(buffer.ConstData(), entry->mUncompressedSize);
+   entry->mCRC = CRC32(buffer.constData(), entry->mUncompressedSize);
 
    //Schreibe unkomprimiert
    entry->mCompressedSize = entry->mUncompressedSize;
 
-   mFile->Write((uint8*)buffer.ConstData(), entry->mUncompressedSize);
-   uint32 pos = static_cast<uint32>(mFile->GetPosition());
+   mFile->write((uint8*)buffer.constData(), entry->mUncompressedSize);
+   uint32 pos = static_cast<uint32>(mFile->position());
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
@@ -186,17 +186,17 @@ void ZipOutputFile::WriteAndClose(jm::File* file)
    jm::SerializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
    jm::SerializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
 
-   mFile->Seek(entry->mHeaderOffset + 14);
-   mFile->Write(lfhfragment, 12);
-   mFile->Seek(pos);
+   mFile->seek(entry->mHeaderOffset + 14);
+   mFile->write(lfhfragment, 12);
+   mFile->seek(pos);
 }
 
 void ZipOutputFile::PutNextEntry(ZipEntry* entry)
 {
-   entry->mHeaderOffset = static_cast<uint32>(mFile->GetPosition());
+   entry->mHeaderOffset = static_cast<uint32>(mFile->position());
 
-   ByteArray cname = entry->mName.ToCString();
-   ByteArray cextra = entry->mExtra.ToCString();
+   ByteArray cname = entry->mName.toCString();
+   ByteArray cextra = entry->mExtra.toCString();
 
    //Schreibe Local FileHeader
    uint8 lfh[30];
@@ -209,23 +209,23 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
    jm::SerializeLEInt32(lfh, 14, 0);//CRC
    jm::SerializeLEInt32(lfh, 18, 0);//Compressed Size
    jm::SerializeLEInt32(lfh, 22, 0);//Uncompressed Size
-   jm::SerializeLEInt16(lfh, 26, cname.Size().Int16());//File name Length
-   jm::SerializeLEInt16(lfh, 28, cextra.Size().Int16());//Extra field length
+   jm::SerializeLEInt16(lfh, 26, cname.size().Int16());//File name Length
+   jm::SerializeLEInt16(lfh, 28, cextra.size().Int16());//Extra field length
 
-   mFile->Write(lfh, 30);
-   if(cname.Size() > 0)mFile->Write((uint8*)cname.ConstData(), cname.Size());
-   if(cextra.Size() > 0)mFile->Write((uint8*)cextra.ConstData(), cextra.Size());
+   mFile->write(lfh, 30);
+   if(cname.size() > 0)mFile->write((uint8*)cname.constData(), cname.size());
+   if(cextra.size() > 0)mFile->write((uint8*)cextra.constData(), cextra.size());
 
-   entry->mDataOffset = static_cast<uint32>(mFile->GetPosition());
+   entry->mDataOffset = static_cast<uint32>(mFile->position());
 
-   mTemp = new jm::File(mFile->GetParent(), "jmzipdata.tmp");
-   mTemp->CreateNewFile();
-   mTemp->Open(kFmReadWrite);
+   mTemp = new jm::File(mFile->parent(), "jmzipdata.tmp");
+   mTemp->createNewFile();
+   mTemp->open(kFmReadWrite);
 
    mEntries.add(entry, NULL);
 }
 
 void ZipOutputFile::Write(uint8* data, Integer offset, Integer length)
 {
-   mTemp->Write(&data[offset], length);
+   mTemp->write(&data[offset], length);
 }

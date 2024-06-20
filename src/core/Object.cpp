@@ -36,7 +36,7 @@ using namespace jm;
 Object::Object()
 {
    mRefCount = 1;
-   mPool = System::GetAutoreleasePool();
+   mPool = System::autoreleasePool();
    // Find Zombie
    //mRefCount=2;
 }
@@ -53,10 +53,10 @@ void Object::release()
    int32 count;
    Mutex* mutex = mPool->mutex();
 
-   mutex->Lock();
+   mutex->lock();
    mRefCount--;
    count = referenceCount();
-   mutex->Unlock();
+   mutex->unlock();
 
    if(count == 0)
    {
@@ -71,9 +71,9 @@ void Object::release()
 Object* Object::retain()
 {
    Mutex* mutex = mPool->mutex();
-   mutex->Lock();
+   mutex->lock();
    mRefCount++;
-   mutex->Unlock();
+   mutex->unlock();
    return this;
 }
 

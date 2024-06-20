@@ -63,22 +63,22 @@ namespace jm
          /*!
           \brief Lock the mutex object.
           */
-         void Lock();
+         void lock();
 
          /*!
           \brief Unlock the mutex object.
           */
-         void Unlock();
+         void unlock();
 
          /*!
           \brief Sleep
           */
-         void Sleep();
+         void sleep();
 
          /*!
           \brief Wake up.
           */
-         void WakeUp();
+         void wakeUp();
 
       private:
 

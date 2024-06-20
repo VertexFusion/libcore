@@ -78,7 +78,7 @@ Date::Date(uint16 year,
    mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
 }
 
-Date Date::FromNSDate(double nsdate)
+Date Date::fromNSDate(double nsdate)
 {
    Date d;
    //Milliseconds since 01.01.1970 00:00:00.000.
@@ -94,12 +94,12 @@ Date::~Date()
    mTime = 0;
 }
 
-int64 Date::Day(int64 t) const
+int64 Date::day(int64 t) const
 {
    return DivFloor(t, MS_PER_DAY) ;
 }
 
-int64 Date::TimeWithinDay(int64 t) const
+int64 Date::timeWithinDay(int64 t) const
 {
    return t % MS_PER_DAY;
 }
@@ -157,7 +157,7 @@ int16 Date::InLeapYear(int64 t) const
 
 int64 Date::DayWithinYear(int64 t) const
 {
-   return Day(t) - DayFromYear(YearFromTime(t));
+   return day(t) - DayFromYear(YearFromTime(t));
 }
 
 int64 Date::MonthFromTime(int64 t) const
@@ -233,7 +233,7 @@ int64 Date::DateFromTime(int64 t) const
 int64 Date::WeekDay(int64 t) const
 {
    //01.01.1970 = Donnerstag (=4)
-   return (Day(t) + 4) % 7;
+   return (day(t) + 4) % 7;
 }
 
 int64 Date::LocalTimeZoneAdjustment() const
@@ -354,7 +354,7 @@ int64 Date::MakeDay(int64 year, int64 month, int64 date) const
 
    int64 r7 = tfy + tfm;
 
-   return Day(r7) + date - 1;
+   return day(r7) + date - 1;
 }
 
 int64 Date::MakeDate(int64 day, int64 millis) const
@@ -362,111 +362,111 @@ int64 Date::MakeDate(int64 day, int64 millis) const
    return day * MS_PER_DAY + millis;
 }
 
-bool Date::IsEmpty() const
+bool Date::isEmpty() const
 {
    return mTime == EMPTY;
 }
 
-int64 Date::Time() const
+int64 Date::time() const
 {
    return mTime;
 }
 
-void Date::SetTime(int64 t)
+void Date::setTime(int64 t)
 {
    mTime = t;
 }
 
-int64 Date::Year() const
+int64 Date::year() const
 {
    return YearFromTime(LocalTime(mTime));
 }
 
-int64 Date::UTCYear() const
+int64 Date::utcYear() const
 {
    return YearFromTime(mTime);
 }
 
-int64 Date::Month() const
+int64 Date::month() const
 {
    return MonthFromTime(LocalTime(mTime));
 }
 
-int64 Date::UTCMonth() const
+int64 Date::utcMonth() const
 {
    return MonthFromTime(mTime);
 }
 
-int64 Date::GetDate() const
+int64 Date::date() const
 {
    return DateFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCDate() const
+int64 Date::utcDate() const
 {
    return DateFromTime(mTime);
 }
 
-int64 Date::GetDay() const
+int64 Date::day() const
 {
    return WeekDay(LocalTime(mTime));
 }
 
-int64 Date::GetDayOfYear()const
+int64 Date::dayOfYear()const
 {
    return DayWithinYear(LocalTime(mTime));
 }
 
-int64 Date::GetUTCDay() const
+int64 Date::utcDay() const
 {
    return WeekDay(mTime);
 }
 
-int64 Date::GetHours() const
+int64 Date::hours() const
 {
    return HourFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCHours() const
+int64 Date::utcHours() const
 {
    return HourFromTime(mTime);
 }
 
-int64 Date::GetMinutes() const
+int64 Date::minutes() const
 {
    return MinuteFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCMinutes() const
+int64 Date::utcMinutes() const
 {
    return MinuteFromTime(mTime);
 }
 
-int64 Date::GetSeconds() const
+int64 Date::seconds() const
 {
    return SecondFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCSeconds() const
+int64 Date::utcSeconds() const
 {
    return SecondFromTime(mTime);
 }
 
-int64 Date::GetMilliseconds() const
+int64 Date::milliseconds() const
 {
    return MilliFromTime(LocalTime(mTime));
 }
 
-int64 Date::GetUTCMilliseconds() const
+int64 Date::utcMilliseconds() const
 {
    return MilliFromTime(mTime);
 }
 
-String Date::ToString() const
+String Date::toString() const
 {
    char pre[] = "0000-00-00T00:00:00.000Z\0";
 
-   int year = UTCYear() % 10000;
+   int year = utcYear() % 10000;
    pre[0] = static_cast<char>('0' + year / 1000);
    year = year % 1000;
    pre[1] = static_cast<char>('0' + year / 100);
@@ -474,27 +474,27 @@ String Date::ToString() const
    pre[2] = static_cast<char>('0' + year / 10);
    pre[3] = static_cast<char>('0' + year % 10);
 
-   int month = 1 + UTCMonth() % 100;
+   int month = 1 + utcMonth() % 100;
    pre[5] = static_cast<char>('0' + month / 10);
    pre[6] = static_cast<char>('0' + month % 10);
 
-   int day = GetUTCDate() % 100;
+   int day = utcDate() % 100;
    pre[8] = static_cast<char>('0' + day / 10);
    pre[9] = static_cast<char>('0' + day % 10);
 
-   int hour = GetUTCHours() % 100;
+   int hour = utcHours() % 100;
    pre[11] = static_cast<char>('0' + hour / 10);
    pre[12] = static_cast<char>('0' + hour % 10);
 
-   int minute = GetUTCMinutes() % 100;
+   int minute = utcMinutes() % 100;
    pre[14] = static_cast<char>('0' + minute / 10);
    pre[15] = static_cast<char>('0' + minute % 10);
 
-   int second = GetUTCSeconds() % 100;
+   int second = utcSeconds() % 100;
    pre[17] = static_cast<char>('0' + second / 10);
    pre[18] = static_cast<char>('0' + second % 10);
 
-   int millis = GetUTCMilliseconds() % 1000;
+   int millis = utcMilliseconds() % 1000;
    pre[20] = static_cast<char>('0' + millis / 100);
    millis = millis % 100;
    pre[21] = static_cast<char>('0' + millis / 10);
@@ -503,7 +503,7 @@ String Date::ToString() const
    return String(pre);
 }
 
-int32 Date::CompareTo(const Date &another) const
+int32 Date::compareTo(const Date &another) const
 {
    if(mTime < another.mTime)return -1;
    if(mTime > another.mTime)return 1;

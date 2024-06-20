@@ -33,7 +33,7 @@
 #define jm_Painter_h
 
 #include "Object.h"
-#include "Colour.h"
+#include "Color.h"
 
 #include "Transform.h"
 #include "Nurbs.h"
@@ -105,9 +105,9 @@ namespace jm
           \brief Diese Methode wechselt auf dem Zielkontext die Farbe mit der gezeichnet wird
           \param colour Die RGB-Farbe, mit der gezeichnet wird.
           */
-         virtual void SetColour(Colour colour) = 0;
+         virtual void SetColour(Color colour) = 0;
 
-         virtual Colour GetColour() const = 0;
+         virtual Color GetColour() const = 0;
 
          /*!
           \brief Diese Methode legt die Strichstärke fest, mit der die Objekte gezeichnet werden

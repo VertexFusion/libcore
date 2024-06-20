@@ -42,15 +42,15 @@ ByteArray::ByteArray() : Object()
 
 ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
 {
-   Init(buffer,size);
+   init(buffer,size);
 }
 
 ByteArray::ByteArray(const uint8* buffer, Integer size) : Object()
 {
-   Init((const int8*)buffer,size);
+   init((const int8*)buffer,size);
 }
 
-void ByteArray::Init(const int8* buffer, Integer size)
+void ByteArray::init(const int8* buffer, Integer size)
 {
    if(buffer == NULL)
    {
@@ -84,7 +84,7 @@ ByteArray::ByteArray(Integer length, uint8 ch) : Object()
    mRawSize = mArrSize + 1;
    mData = new uint8[mRawSize];
    mData[mArrSize] = 0;
-   Fill(ch);
+   fill(ch);
 };
 
 ByteArray::ByteArray(const ByteArray& other) : Object()
@@ -119,33 +119,33 @@ ByteArray::~ByteArray()
    if(mData != NULL)delete[] mData;
 };
 
-Integer ByteArray::Size() const
+Integer ByteArray::size() const
 {
    return mArrSize;
 };
 
-bool ByteArray::IsNull() const
+bool ByteArray::isNull() const
 {
    return mData == NULL;
 }
 
-bool ByteArray::IsEmpty() const
+bool ByteArray::isEmpty() const
 {
    return mArrSize == 0;
 }
 
-int8* ByteArray::Data()
+int8* ByteArray::data()
 {
    return reinterpret_cast<int8*>(mData);
 }
 
-const char* ByteArray::ConstData() const
+const char* ByteArray::constData() const
 {
    return reinterpret_cast<const char*>(mData);
 }
 
 
-void ByteArray::Sort()
+void ByteArray::sort()
 {
    if(mArrSize < 1)return;
 
@@ -173,27 +173,27 @@ void ByteArray::Sort()
    while(n > 1);
 }
 
-void ByteArray::Fill(uint8 ch)
+void ByteArray::fill(uint8 ch)
 {
    for(Integer index = 0; index < mArrSize; index++)mData[index] = ch;
 }
 
 
-uint8 ByteArray::Get(Integer index) const
+uint8 ByteArray::get(Integer index) const
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
    return mData[index];
 };
 
-void ByteArray::Set(Integer index, uint8 item)
+void ByteArray::set(Integer index, uint8 item)
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
    mData[index] = item;
 };
 
-void ByteArray::Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length)
+void ByteArray::replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length)
 {
    Integer range=Min(length, mArrSize-tgtOffset);
 
@@ -203,7 +203,7 @@ void ByteArray::Replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buf
    }
 }
 
-void ByteArray::Resize(Integer newSize)
+void ByteArray::resize(Integer newSize)
 {
    if(newSize<=mRawSize-1)
    {
@@ -255,9 +255,9 @@ namespace jm
 {
    bool operator==(const ByteArray& a1, const ByteArray& a2)
    {
-      if(a1.Size() != a2.Size())return false;
+      if(a1.size() != a2.size())return false;
 
-      for(Integer index = 0; index < a1.Size(); index++)
+      for(Integer index = 0; index < a1.size(); index++)
       {
          if(a1[index] != a2[index])return false;
       }
