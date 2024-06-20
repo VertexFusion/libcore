@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Character.cpp
 // Library:     Jameo Core Library
-// Purpose:     Implementation of Colour
+// Purpose:     Implementation of Color
 //
 // Author:      Uwe Runtemund (2013-today)
 // Modified by:
@@ -43,7 +43,7 @@ using std::max;
 #endif
 
 
-Colour::Colour()
+Color::Color()
 {
    mMode = kColourModeRGB;
    col.rgb.red = 0;
@@ -52,7 +52,7 @@ Colour::Colour()
    mAlpha = 255;
 }
 
-Colour::Colour(const Colour &other)
+Color::Color(const Color &other)
 {
    mMode = other.mMode;
    col.cmyk.cyan = other.col.cmyk.cyan;
@@ -64,7 +64,7 @@ Colour::Colour(const Colour &other)
 
 namespace jm
 {
-   Colour& Colour::operator=(const Colour &other)
+   Color& Color::operator=(const Color &other)
    {
       if(this != &other)
       {
@@ -81,7 +81,7 @@ namespace jm
 
 }
 
-void Colour::ToRGB()
+void Color::ToRGB()
 {
    switch(mMode)
    {
@@ -115,7 +115,7 @@ void Colour::ToRGB()
    }
 }
 
-void Colour::ToGreyScale()
+void Color::ToGreyScale()
 {
    switch(mMode)
    {
@@ -145,7 +145,7 @@ void Colour::ToGreyScale()
    }
 }
 
-void Colour::ToCMYK()
+void Color::ToCMYK()
 {
    switch(mMode)
    {
@@ -197,58 +197,58 @@ void Colour::ToCMYK()
    }
 }
 
-uint8 Colour::Alpha() const
+uint8 Color::Alpha() const
 {
    return mAlpha;
 }
 
-uint8 Colour::Red() const
+uint8 Color::Red() const
 {
    return col.rgb.red;
 }
 
-uint8 Colour::Green() const
+uint8 Color::Green() const
 {
    return col.rgb.green;
 }
 
-uint8 Colour::Blue() const
+uint8 Color::Blue() const
 {
    return col.rgb.blue;
 }
 
-uint8 Colour::Grey() const
+uint8 Color::Grey() const
 {
    return col.g.grey;
 }
 
-uint8 Colour::Cyan() const
+uint8 Color::Cyan() const
 {
    return col.cmyk.cyan;
 }
 
-uint8 Colour::Magenta() const
+uint8 Color::Magenta() const
 {
    return col.cmyk.magenta;
 }
 
-uint8 Colour::Yellow() const
+uint8 Color::Yellow() const
 {
    return col.cmyk.yellow;
 }
 
-uint8 Colour::Key() const
+uint8 Color::Key() const
 {
    return col.cmyk.key;
 }
 
-ColourMode Colour::Mode() const
+ColourMode Color::Mode() const
 {
    return mMode;
 }
 
 
-bool Colour::IsWhite() const
+bool Color::IsWhite() const
 {
    switch(mMode)
    {
@@ -265,9 +265,9 @@ bool Colour::IsWhite() const
    return false;
 }
 
-void Colour::GetHSVModel(float &hue, float &saturation, float &value) const
+void Color::GetHSVModel(float &hue, float &saturation, float &value) const
 {
-   Colour tmp = *this;
+   Color tmp = *this;
    tmp.ToRGB();
 
    uint8 MAX = std::max(std::max(tmp.Red(), tmp.Green()), tmp.Blue());
@@ -298,59 +298,59 @@ void Colour::GetHSVModel(float &hue, float &saturation, float &value) const
 
 }
 
-void Colour::SetMode(ColourMode mode)
+void Color::SetMode(ColourMode mode)
 {
    mMode = mode;
 }
 
-void Colour::SetAlpha(uint8 alpha)
+void Color::SetAlpha(uint8 alpha)
 {
    mAlpha = alpha;
 }
 
-void Colour::SetRed(uint8 red)
+void Color::SetRed(uint8 red)
 {
    col.rgb.red = red;
 }
 
-void Colour::SetGreen(uint8 green)
+void Color::SetGreen(uint8 green)
 {
    col.rgb.green = green;
 }
 
-void Colour::SetBlue(uint8 blue)
+void Color::SetBlue(uint8 blue)
 {
    col.rgb.blue = blue;
 }
 
-void Colour::SetGrey(uint8 grey)
+void Color::SetGrey(uint8 grey)
 {
    col.g.grey = grey;
 }
 
-void Colour::SetCyan(uint8 cyan)
+void Color::SetCyan(uint8 cyan)
 {
    col.cmyk.cyan = cyan;
 }
 
-void Colour::SetMagenta(uint8 magenta)
+void Color::SetMagenta(uint8 magenta)
 {
    col.cmyk.magenta = magenta;
 }
 
-void Colour::SetYellow(uint8 yellow)
+void Color::SetYellow(uint8 yellow)
 {
    col.cmyk.yellow = yellow;
 }
 
-void Colour::SetKey(uint8 key)
+void Color::SetKey(uint8 key)
 {
    col.cmyk.key = key;
 }
 
-Colour Colour::FromGrey(uint8 grey, uint8 alpha)
+Color Color::FromGrey(uint8 grey, uint8 alpha)
 {
-   Colour c;
+   Color c;
 
    c.mMode = kColourModeGrey;
    c.col.g.grey = grey;
@@ -359,9 +359,9 @@ Colour Colour::FromGrey(uint8 grey, uint8 alpha)
    return c;
 }
 
-Colour Colour::FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha)
+Color Color::FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha)
 {
-   Colour c;
+   Color c;
 
    c.mMode = kColourModeRGB;
    c.col.rgb.red = red;
@@ -372,9 +372,9 @@ Colour Colour::FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha)
    return c;
 }
 
-Colour Colour::FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
+Color Color::FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
 {
-   Colour c;
+   Color c;
 
    c.mMode = kColourModeCMYK;
    c.col.cmyk.cyan = cyan;
@@ -386,9 +386,9 @@ Colour Colour::FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint
    return c;
 }
 
-Colour Colour::FromHSV(float hue, float saturation, float value, float alpha)
+Color Color::FromHSV(float hue, float saturation, float value, float alpha)
 {
-   Colour c;
+   Color c;
 
    //Siehe: https://de.wikipedia.org/wiki/HSV-Farbraum
 
@@ -457,12 +457,12 @@ uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colo
    return (uint8)(C * 255);
 }
 
-Colour jm::Blend(Colour background, Colour foreground, uint8 alpha)
+Color jm::Blend(Color background, Color foreground, uint8 alpha)
 {
    //Einfaches Alpha-Blendung für Nicht-Transparente Farben
    if(background.mAlpha == 255 && foreground.mAlpha == 255)
    {
-      Colour ret;
+      Color ret;
       ret.col.rgb.red = (alpha * foreground.col.rgb.red + (255 - alpha) * background.col.rgb.red) / 255;
       ret.col.rgb.green = (alpha * foreground.col.rgb.green + (255 - alpha) * background.col.rgb.green) / 255;
       ret.col.rgb.blue = (alpha * foreground.col.rgb.blue + (255 - alpha) * background.col.rgb.blue) / 255;
@@ -470,7 +470,7 @@ Colour jm::Blend(Colour background, Colour foreground, uint8 alpha)
    }
 
    //Blending nach Porter Duff Algorithmus
-   Colour ret;
+   Color ret;
    ret.col.rgb.red = PorterDuffColour(background.col.rgb.red, background.mAlpha, foreground.col.rgb.red, foreground.mAlpha);
    ret.col.rgb.green = PorterDuffColour(background.col.rgb.green, background.mAlpha, foreground.col.rgb.green, foreground.mAlpha);
    ret.col.rgb.blue = PorterDuffColour(background.col.rgb.blue, background.mAlpha, foreground.col.rgb.blue, foreground.mAlpha);
@@ -478,9 +478,9 @@ Colour jm::Blend(Colour background, Colour foreground, uint8 alpha)
    return ret;
 }
 
-Colour jm::Interpolate(Colour colour1, Colour colour2, float percent)
+Color jm::Interpolate(Color colour1, Color colour2, float percent)
 {
-   Colour ret;
+   Color ret;
    ret.col.rgb.red = static_cast<uint8>(colour1.col.rgb.red + (colour2.col.rgb.red - colour1.col.rgb.red) * percent);
    ret.col.rgb.green = static_cast<uint8>(colour1.col.rgb.green + (colour2.col.rgb.green - colour1.col.rgb.green) * percent);
    ret.col.rgb.blue = static_cast<uint8>(colour1.col.rgb.blue + (colour2.col.rgb.blue - colour1.col.rgb.blue) * percent);
@@ -489,7 +489,7 @@ Colour jm::Interpolate(Colour colour1, Colour colour2, float percent)
 }
 
 
-bool jm::operator==(Colour const &c1, Colour const &c2)
+bool jm::operator==(Color const &c1, Color const &c2)
 {
    if(c1.mMode != c2.mMode) return false;
 
@@ -518,14 +518,14 @@ bool jm::operator==(Colour const &c1, Colour const &c2)
    return true;
 }
 
-bool jm::operator!=(Colour const &c1, Colour const &c2)
+bool jm::operator!=(Color const &c1, Color const &c2)
 {
    return !(c1 == c2);
 }
 
-const Colour jm::operator-(Colour const &c1, Colour const &c2)
+const Color jm::operator-(Color const &c1, Color const &c2)
 {
-   Colour ret = c1;
+   Color ret = c1;
    switch(c1.mMode)
    {
       case kColourModeGrey:
@@ -550,9 +550,9 @@ const Colour jm::operator-(Colour const &c1, Colour const &c2)
    return ret;
 }
 
-const Colour jm::operator+(Colour const &c1, Colour const &c2)
+const Color jm::operator+(Color const &c1, Color const &c2)
 {
-   Colour ret = c1;
+   Color ret = c1;
    switch(c1.mMode)
    {
       case kColourModeGrey:

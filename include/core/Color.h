@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Name:        Colour.h
+// Name:        Color.h
 // Library:     Jameo Core Library
-// Purpose:     Colour models
+// Purpose:     Color models
 //
 // Author:      Uwe Runtemund (2017-today)
 // Modified by:
@@ -34,10 +34,10 @@
 
 namespace jm
 {
-   struct Colour;
+   struct Color;
 
    /*!
-    \brief Enumeration of available colour modes for \c Colour
+    \brief Enumeration of available colour modes for \c Color
     \note Compile with -fshort-enums
     \ingroup core
     */
@@ -55,20 +55,20 @@ namespace jm
     space-saving. It only requires 6 bytes
     \ingroup core
     */
-   struct DllExport Colour
+   struct DllExport Color
    {
          /*!
           \brief Constructor
           */
-         Colour();
+         Color();
 
          /*!
           \brief Copy construktur
           \param other The colour we became a copy of.
           */
-         Colour(const Colour &other);
+         Color(const Color &other);
 
-         Colour &operator=(const Colour &other);
+         Color &operator=(const Color &other);
 
          /*!
           \brief Converts the colour to the RGB colour space.
@@ -233,25 +233,25 @@ namespace jm
           \brief This method creates a colour in the colour space "greyscale".
           0 means black, 255 means white
           */
-         static Colour FromGrey(uint8 grey, uint8 alpha = 255);
+         static Color FromGrey(uint8 grey, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "RGB".
           0 means black/dark/no colour, 255 means white/light/full colour
           */
-         static Colour FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255);
+         static Color FromRGB(uint8 red, uint8 green, uint8 blue, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "CMYK".
           0 means no colour (white on paper), 255 means full colour (dark on paper)
           */
-         static Colour FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
+         static Color FromCMYK(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "RGB" using the HSV model.
           All specifications in the space from 0.0-1.0
           */
-         static Colour FromHSV(float hue, float saturation, float value, float alpha = 1.0);
+         static Color FromHSV(float hue, float saturation, float value, float alpha = 1.0);
 
       private:
 
@@ -288,33 +288,33 @@ namespace jm
 
          uint8 mAlpha;
 
-         DllExport friend bool operator==(Colour const &c1, Colour const &c2);
-         DllExport friend bool operator!=(Colour const& c1, Colour const& c2);
-         DllExport friend const Colour operator-(Colour const &c1, Colour const &c2);
-         DllExport friend const Colour operator+(Colour const &c1, Colour const &c2);
-         DllExport friend Colour Blend(Colour background, Colour foreground, uint8 alpha);
-         DllExport friend Colour Interpolate(Colour colour1, Colour colour2, float percent);
+         DllExport friend bool operator==(Color const &c1, Color const &c2);
+         DllExport friend bool operator!=(Color const& c1, Color const& c2);
+         DllExport friend const Color operator-(Color const &c1, Color const &c2);
+         DllExport friend const Color operator+(Color const &c1, Color const &c2);
+         DllExport friend Color Blend(Color background, Color foreground, uint8 alpha);
+         DllExport friend Color Interpolate(Color colour1, Color colour2, float percent);
    };
 
    // Under windows we do not need that, under macOS it is required
    #if defined __APPLE__ || defined __linux__
    DllExport
-   Colour Blend(Colour background, Colour foreground, uint8 alpha);
+   Color Blend(Color background, Color foreground, uint8 alpha);
 
    DllExport
-   Colour Interpolate(Colour colour1, Colour colour2, float percent);
+   Color Interpolate(Color colour1, Color colour2, float percent);
 
    DllExport
-   bool operator==(Colour const& c1, Colour const& c2);
+   bool operator==(Color const& c1, Color const& c2);
 
    DllExport
-   bool operator!=(Colour const& c1, Colour const& c2);
+   bool operator!=(Color const& c1, Color const& c2);
 
    DllExport
-   const Colour operator-(Colour const& c1, Colour const& c2);
+   const Color operator-(Color const& c1, Color const& c2);
 
    DllExport
-   const Colour operator+(Colour const& c1, Colour const& c2);
+   const Color operator+(Color const& c1, Color const& c2);
    #endif
 
 }
