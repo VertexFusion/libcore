@@ -80,6 +80,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <dlfcn.h>
+#include <pwd.h>
 #include <sys/xattr.h> // For File Tags
 
 #elif defined _WIN32 // Windows

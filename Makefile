@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Linux)
    C__ =clang
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
-   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11
+   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11 
    TESTFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
@@ -54,7 +54,7 @@ SOURCES =\
  $(PATH_CORE)/Character.cpp\
  $(PATH_CORE)/Charset.cpp\
  $(PATH_CORE)/CharsetDecoder.cpp\
- $(PATH_CORE)/Colour.cpp\
+ $(PATH_CORE)/Color.cpp\
  $(PATH_CORE)/CRC.cpp\
  $(PATH_CORE)/Date.cpp\
  $(PATH_CORE)/DateFormatter.cpp\
@@ -92,6 +92,7 @@ SOURCES =\
  $(PATH_CORE)/Serializer.cpp\
  $(PATH_CORE)/Stream.cpp\
  $(PATH_CORE)/String.cpp\
+ $(PATH_CORE)/StringList.cpp\
  $(PATH_CORE)/StringTokenizer.cpp\
  $(PATH_CORE)/System.cpp\
  $(PATH_CORE)/Test.cpp\

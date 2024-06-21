@@ -99,6 +99,11 @@ namespace jm
           */
          ~File();
 
+         /*!
+          \brief checks if the file is null (has no path).
+          */
+         bool isNull()const;
+
 
          /*!
           \brief Checks if the file can be executed.

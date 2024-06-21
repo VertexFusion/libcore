@@ -67,6 +67,82 @@ namespace jm
       kPropertyTypeValue
    };
 
+   struct DllExport Variant
+   {
+      Variant()
+      {
+         mType=kPropertyTypeInteger;
+         mNumberValue.intValue=0;
+      }
+
+      Variant(const Variant& other)
+      {
+         mType=other.mType;
+         mNumberValue=other.mNumberValue;
+         if(mType==kPropertyTypeString)mTextValue=other.mTextValue;
+      };
+
+      Variant(int64 number)
+      {
+         mType=kPropertyTypeInteger;
+         mNumberValue.intValue=number;
+      }
+
+      Variant(double number)
+      {
+         mType=kPropertyTypeDouble;
+         mNumberValue.doubleValue=number;
+      }
+
+      Variant(const jm::String &string)
+      {
+         mType=kPropertyTypeString;
+         mTextValue=string;
+      }
+
+      int64 toInt64() const
+      {
+         return mNumberValue.intValue;
+      }
+
+      int32 toInt32() const
+      {
+         return static_cast<int32>(mNumberValue.intValue);
+      }
+
+      double toDouble() const
+      {
+         return mNumberValue.doubleValue;
+      }
+
+      const String& toString() const
+      {
+         return mTextValue;
+      }
+
+
+         /*!
+          \brief Type of Property
+          */
+         PropertyType mType;
+
+         /*!
+          \brief Der Wert des Properties wird normalerweise durch den Anwender in der GUI festgelegt. Also ist der Wert üblicherweise ein String, Bool oder Zahl.
+          Sollte ein anderer Typ vorhanden sein, ist klug zu überlegen, ob die Übergabe nicht als Text passiert, oder ob das hier erweitert werden soll.
+          Es würde aber immer besser ein, einen Text zu parsen. Wie gesagt: Es kommt aus der Oberfläche und nicht von anderen Daten
+          */
+         union
+         {
+            bool boolValue;
+            uint64 uintValue;
+            int64 intValue;
+            float floatValue;
+            double doubleValue;
+         } mNumberValue;
+
+         String mTextValue;
+   };
+
    /*!
     \brief This interface defines the possibility to edit properties of an object via a uniform
     interface. This is particularly useful for saving time when objects are to be edited in the GUI.

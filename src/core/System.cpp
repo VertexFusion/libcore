@@ -191,7 +191,6 @@ jm::String jm::System::userId()
    #endif
 }
 
-
 jm::String jm::System::userFullName()
 {
    #ifdef __APPLE__ //macOS und iOS
@@ -200,7 +199,15 @@ jm::String jm::System::userFullName()
 
    #elif defined __linux__//Linux
 
-   return "Not implemented";
+   uid_t uid= geteuid ();
+   struct passwd* pw = NULL;
+   pw = getpwuid (uid);
+   if (pw)
+   {
+      return pw->pw_gecos;
+   }
+
+   return "Not Found";
 
    #elif defined _WIN32//Windows
 
@@ -253,9 +260,9 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    #elif defined __linux__//Linux
 
-   ByteArray cstr = file->GetAbsolutePath().ToCString();
-   void* libptr = dlopen(cstr.ConstData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   ByteArray cstr = file->absolutePath().toCString();
+   void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined _WIN32// Windows
@@ -301,9 +308,9 @@ void* jm::System::findSymbol(void* library, const String &name)
 
    #elif defined __linux__//Linux
 
-   ByteArray cstr = name.ToCString();
-   void* symptr = dlsym(library, cstr.ConstData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.ConstData() << " failed!" << std::endl << dlerror() << std::endl;
+   ByteArray cstr = name.toCString();
+   void* symptr = dlsym(library, cstr.constData());
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined _WIN32//Windows

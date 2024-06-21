@@ -63,8 +63,7 @@ Date::Date(int64 milliseconds): Comparable<Date>()
 
 Date::Date(uint16 year, uint16 month, uint16 day): Comparable<Date>()
 {
-   //\todo Is month in makeday 0 or 1-based?
-   mTime = UTC(MakeDate(MakeDay(year, month - 1, day), 0));
+   mTime = UTC(MakeDate(MakeDay(year, month, day), 0));
 }
 
 Date::Date(uint16 year,

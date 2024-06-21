@@ -125,6 +125,11 @@ namespace jm
           */
          void replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length);
 
+         /*!
+          \brief Replaces every byte of oldValue by the newValue.
+          */
+         void replace(uint8 oldValue,uint8 newValue);
+
          uint8& operator[](const Integer index) const;
 
          ByteArray& operator=(const ByteArray& another);

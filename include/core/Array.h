@@ -423,141 +423,45 @@ namespace jm
 
    public:
 
-      StringList():Object()
-      { 
-         mData=new String[8];
-         mLength=8;
-         mSize=0;
-      };
+      StringList();
 
-      void append(const jm::String &string)
-      {
-         checkSize(1);
-         mData[mSize++]=string;
-      }
+      StringList(const StringList &other);
+
+      StringList(const jm::String &string);
+
+      virtual ~StringList();
+
+      void append(const jm::String &string);
+
+      ::Integer size() const;
+
+      void sort();
+
+      const String& get(::Integer index) const;
+
+      void set(::Integer index,const String& item);
+
+      String &operator[](const ::Integer index) const;
+
+      StringList& operator=(const StringList &another);
+
+      void clear();
 
       DllExport
-      friend StringList& operator<< (StringList &out, const String& str)
-      {
-         out.append(str);
-         return out;
-      }
-
-      StringList(const StringList &other): Object()
-      {
-         mSize=other.mSize;
-         mLength = other.mLength;
-         mData = new String[mLength];
-         for(Integer a = 0; a < mSize; a++)
-         {
-            mData[a] = other.mData[a];
-         }
-      }
-
-      virtual ~StringList()
-      {
-         mLength = 0;
-         mSize=0;
-         if(mData != NULL)delete[] mData;
-      };
-
-      inline Integer size() const
-      {
-         return mSize;
-      };
-
-      inline void sort()
-      {
-         if(mLength < 1)return;
-
-         Integer n = mLength;
-         do
-         {
-            Integer newn = 1;
-            for(Integer i = 0; i < n - 1; ++i)
-            {
-               Integer j = i + 1;
-               String* a1 = &mData[i];
-               String* a2 = &mData[j];
-               if(a1->compareTo(*a2) > 0)
-               {
-                  // Swap
-                  String tmp = mData[i];
-                  mData[i] = mData[j];
-                  mData[j] = tmp;
-
-                  newn = i + 1;
-               }
-            }
-            n = newn;
-         }
-         while(n > 1);
-      }
-
-      inline String get(Integer index) const
-      {
-         if(index < 0 || index >= mSize)
-            throw new Exception("Array index out of bounds.");
-         return mData[index];
-      };
-
-      inline void set(Integer index, String item)
-      {
-         if(index < 0 || index >= mSize)
-            throw new Exception("Array index out of bounds.");
-         mData[index] = item;
-      };
-
-      inline String &operator[](const Integer index) const
-      {
-         if(index < 0 || index >= mSize)
-            throw new Exception("Array index out of bounds.");
-         return mData[index];
-      }
-
-      StringList& operator=(const StringList &another)
-      {
-         if(this != &another)
-         {
-            delete[] mData;
-
-            mLength = another.mLength;
-            mSize=another.mSize;
-            mData = new String[mLength];
-            for(Integer a = 0; a < mSize; a++)
-            {
-               mData[a] = another.mData[a];
-            }
-         }
-
-         return *this;
-      }
-
-      void clear()
-      {
-         mSize=0;
-      }
+      friend StringList& operator<< (StringList &out, const String& str);
 
    private:
 
       //! The length of the array.
-      Integer mLength;
+      ::Integer mLength;
 
       //! The data size (can be less then length
-      Integer mSize;
+      ::Integer mSize;
 
       //! The data array itself.
       String* mData;
 
-      void checkSize(Integer size)
-      {
-         if(mSize+size<mLength)return;
-         while(mLength<mSize+size)mLength+=8;
-         String* tmp = new String[mLength];
-         for(Integer index=0;index<mSize;index++)tmp[index]=mData[index];
-         delete[] mData;
-         mData=tmp;
-      }
+      void checkSize(::Integer size);
    };
 }
 

@@ -105,7 +105,12 @@ void Document::setFile(const File &file)
    mFile = file;
 }
 
-File* Document::file()
+const File& Document::file() const
+{
+   return mFile;
+}
+
+File* Document::fileRef()
 {
    return &mFile;
 }

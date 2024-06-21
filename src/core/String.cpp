@@ -489,6 +489,18 @@ String String::Reverse() const
    return ret;
 }
 
+StringList String::split(Char character)
+{
+   StringList result;
+   String delim;
+   delim<<character;
+   StringTokenizer st(*this,delim,false);
+   while(st.hasNext())result << st.next();
+
+   return result;
+}
+
+
 Char String::CharAt(Integer index) const
 {
    if(index < 0 || index >= mStrLength)

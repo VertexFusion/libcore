@@ -203,6 +203,15 @@ void ByteArray::replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buf
    }
 }
 
+void ByteArray::replace(uint8 oldValue,uint8 newValue)
+{
+   for(Integer index=0;index<mArrSize;index++)
+   {
+      if(mData[index]==oldValue)mData[index]=newValue;
+   }
+}
+
+
 void ByteArray::resize(Integer newSize)
 {
    if(newSize<=mRawSize-1)

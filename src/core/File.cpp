@@ -89,6 +89,11 @@ File& File::operator=(const File &another)
    return *this;
 }
 
+bool File::isNull()const
+{
+   return mCstr.size()==0;
+}
+
 
 void File::setCString()
 {
@@ -96,7 +101,7 @@ void File::setCString()
    // Under 10.10 umlauts are transferred correctly...
    mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
    #elif defined __linux__ //Linux
-   mCstr = mPathname.ToCString(Charset::ForName("UTF-8"));
+   mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
    #elif defined _WIN32 //Windows
    // Must be under Windows Windows-1252 for fopen
    mCstr = mPathname.ToCString(Charset::ForName("Windows-1252"));
@@ -346,7 +351,7 @@ Date File::lastModified() const
    #elif defined(__linux__) //Linux
 
    struct stat st;
-   lstat(mCstr.ConstData(), &st);
+   lstat(mCstr.constData(), &st);
 
    //Umrechnen
    timespec tm = st.st_mtim;
@@ -400,7 +405,7 @@ bool File::renameTo(const String &newPath)
    #ifdef __APPLE__ //macOS
    ByteArray newname = newPath.toCString();
    #elif defined __linux__ //Linux
-   ByteArray newname = newPath.ToCString();
+   ByteArray newname = newPath.toCString();
    #elif defined _WIN32 //Windows
    ByteArray newname = newPath.ToCString(Charset::ForName("Windows-1252"));
    #endif
@@ -732,14 +737,14 @@ StringList File::getTags()const
    
 	const int sz=4096;
 	char buffer[sz];
-	int result = getxattr(mCstr.ConstData(),"user.xdg.tags",buffer,sz);
+	int result = getxattr(mCstr.constData(),"user.xdg.tags",buffer,sz);
 
 	if(result>0)
 	{
-		// Data is store usually as comma(,) separated list.
-		// So we just need to replace ',' by '\n'.
+		// Data is stored usually as comma(,) separated list.
 		ByteArray tagList = ByteArray((int8*)buffer,result);
-		//TODO: tagList.replace(',','\n');
+      String string(tagList);
+      return string.split(',');
 	}
    #endif
 

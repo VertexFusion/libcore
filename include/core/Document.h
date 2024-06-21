@@ -136,7 +136,9 @@ namespace jm
          /*!
           \brief Returns the File object of this document.
           */
-         File* file();
+         const File& file() const;
+
+         File* fileRef();
 
          /*!
           \brief Saves the file on the drive.

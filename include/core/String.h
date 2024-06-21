@@ -46,6 +46,7 @@ namespace jm
 {
    class Charset;
    class ByteArray;
+   class StringList;
 
    /*!
     \brief \c string implements our generic string because \c std::string is inadequate and
@@ -348,6 +349,11 @@ namespace jm
           \brief Diese Methode dreht die Reihenfolge der Zeichen um
           */
          String Reverse() const;
+
+         /*!
+          \brief Splits the string into a list of strings, using the char as separator.
+          */
+         StringList split(Char character);
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens des gewünschten
