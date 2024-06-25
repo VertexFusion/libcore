@@ -798,6 +798,36 @@ bool String::ArgIndicies(Integer &first, Integer &second)
    return true;
 }
 
+String String::Arg(Char character,
+                 Integer fieldWidth,
+                 Char fillchar)
+{
+   Integer first,second;
+   Bool found = ArgIndicies(first, second);
+   if(!found)return *this;
+
+   String result=Substring(0,first);
+
+   // Leading space if fieldWidth > 0
+   if(fieldWidth > 0)
+   {
+      for(Integer a = 1; a < fieldWidth; a++)result << fillchar;
+   }
+
+   result<<character;
+
+   // Trailing space if flg1 < 0
+   if(fieldWidth < 0)
+   {
+      fieldWidth = abs(fieldWidth);
+      for(Integer a = 1; a < fieldWidth; a++)result << fillchar;
+   }
+
+   result<<Substring(second);
+
+   return result;
+}
+
 
 String String::Arg(Integer value,
                    Integer fieldWidth,

@@ -92,7 +92,7 @@ namespace jm
          \param another The other vector.
          \return The result of "this x another".
          */
-         Vertex3 CrossProduct(const Vertex3 &another) const;
+         Vertex3 crossProduct(const Vertex3 &another) const;
 
          /*!
           \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück.

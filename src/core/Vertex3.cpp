@@ -54,7 +54,7 @@ Vertex3::Vertex3(const Vertex2 xy, double z_)
    z = z_;
 }
 
-Vertex3 Vertex3::CrossProduct(const Vertex3 &another) const
+Vertex3 Vertex3::crossProduct(const Vertex3 &another) const
 {
    return Vertex3(y * another.z - z * another.y,
                   z * another.x - x * another.z,
@@ -68,7 +68,7 @@ double Vertex3::DotProduct(const Vertex3 &another) const
 
 bool Vertex3::IsCollinear(const Vertex3 &another) const
 {
-   return IsEqual(CrossProduct(another).Abs(), 0.0);
+   return IsEqual(crossProduct(another).Abs(), 0.0);
 }
 
 bool Vertex3::IsOrthogonal(const Vertex3 &another) const

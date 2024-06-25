@@ -487,6 +487,10 @@ namespace jm
                  Integer fieldwidth=0,
                  Char fillchar=Char(' '));
 
+      String Arg(Char character,
+                 Integer fieldwidth=0,
+                 Char fillchar=Char(' '));
+
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number

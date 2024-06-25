@@ -263,10 +263,10 @@ Matrix jm::OCSMatrix(const jm::Vertex3& extrusion)
 
    //Arbitrary Axis algorithm
    double b = 1.0 / 64.0;
-   if(std::abs(extrusion.x) < b && std::abs(extrusion.y) < b) ox = wy.CrossProduct(extrusion);
-   else ox = wz.CrossProduct(extrusion);
+   if(std::abs(extrusion.x) < b && std::abs(extrusion.y) < b) ox = wy.crossProduct(extrusion);
+   else ox = wz.crossProduct(extrusion);
    ox.Normalize();
-   oy = extrusion.CrossProduct(ox);
+   oy = extrusion.crossProduct(ox);
    oy.Normalize();
 
    jm::Matrix ocs = jm::Matrix(ox, oy, oz, true);

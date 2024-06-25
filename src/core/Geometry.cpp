@@ -119,8 +119,8 @@ Vertex3 jm::ClosestPointOnLine(const Vertex3 &position1,
    //    -> E: ( x - position1) * normal2
    // 3. The intersection of the 2nd straight line with the 2nd auxiliary plane is the perpendicular
    //    base point
-   Vertex3 normal1 = direction1.CrossProduct(direction2);
-   Vertex3 normal2 = direction1.CrossProduct(normal1);
+   Vertex3 normal1 = direction1.crossProduct(direction2);
+   Vertex3 normal2 = direction1.crossProduct(normal1);
    return IntersectionPointLineAndPlane(position1, normal2, position2, direction2, true);
 }
 
@@ -250,7 +250,7 @@ double jm::DistanceLineToLine(const Vertex3 &position1,
       // 1. Bestimme die Differenz aus beiden Ortsvektoren
       // 2. Bestimme Kreuzprodukt aus 1. Richtungsvektor und Differenz
       // 3. Teile durch Betrag des 1. Richtungsvektor
-      Vertex3 cross = direction1.CrossProduct(position2 - position1);
+      Vertex3 cross = direction1.crossProduct(position2 - position1);
       return cross.Abs() / direction1.Abs();
    }
    else
