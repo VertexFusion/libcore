@@ -51,7 +51,7 @@ Preferences::~Preferences()
 }
 
 
-void Preferences::Load(File file)
+void Preferences::load(File file)
 {
    if(!file.exists())return;
 
@@ -105,14 +105,14 @@ void Preferences::Load(File file)
             index++;
          }
 
-         SetPreference(key, value);
+         setValue(key, value);
       }
    }
    delete st;
 
 }
 
-void Preferences::Store(File file)
+void Preferences::save(File file)
 {
    try
    {
@@ -134,24 +134,24 @@ void Preferences::Store(File file)
       while(keyiter->hasNext())
       {
          String key = *static_cast<String*>(keyiter->next());
-         String value = GetPreference(key);
+         String val = value(key);
 
          //Ersetzungen
          //Ersetze
          uint32 index = 0;
-         while(index < value.size())
+         while(index < val.size())
          {
-            Char c = value.CharAt(index);
+            Char c = val.CharAt(index);
 
             if(c == '\\')
             {
-               value.Insert(index + 1, '\\');
+               val.Insert(index + 1, '\\');
                index++;
             }
             else if(c == '\t')
             {
-               value.SetCharAt(index, '\\');
-               value.Insert(index + 1, 't');
+               val.SetCharAt(index, '\\');
+               val.Insert(index + 1, 't');
                index++;
             }
             index++;
@@ -159,7 +159,7 @@ void Preferences::Store(File file)
 
          //Zeile bilden
          key.append('=');
-         key.append(value);
+         key.append(val);
          key.append(String::LineSeparator());
          ByteArray cstr = key.toCString();
          file.write((uint8*)cstr.constData(), cstr.size());
@@ -176,12 +176,12 @@ void Preferences::Store(File file)
    }
 }
 
-bool Preferences::HasPreference(const String& key)const
+bool Preferences::hasValue(const String& key)const
 {
    return get(key) != NULL;
 }
 
-void Preferences::SetPreference(const String &key, const String &value)
+void Preferences::setValue(const String &key, const String &value)
 {
    String tmp = value;
    tmp = tmp.ReplaceAll("\r\n", "\\n");
@@ -192,34 +192,34 @@ void Preferences::SetPreference(const String &key, const String &value)
    if(old != NULL)delete old;
 }
 
-void Preferences::SetPreference(const String &key, int32 value)
+void Preferences::setValue(const String &key, int32 value)
 {
-   SetPreference(key, String::ValueOf(value));
+   setValue(key, String::ValueOf(value));
 }
 
 
-void Preferences::SetPreference(const String &key, bool value)
+void Preferences::setValue(const String &key, bool value)
 {
-   SetPreference(key, static_cast<String>(value ? "true" : "false"));
+   setValue(key, static_cast<String>(value ? "true" : "false"));
 }
 
-String Preferences::GetPreference(const String &key) const
+String Preferences::value(const String &key) const
 {
    String* result = (String*)get(key);
    if(result == NULL)return kEmptyString;
    return *result;
 }
 
-String Preferences::GetPreference(const String &key, String const &defaultValue) const
+String Preferences::value(const String &key, String const &defaultValue) const
 {
    String* result = static_cast<String*>(get(key));
    if(result == NULL)return defaultValue;
    return *result;
 }
 
-int32 Preferences::GetPreferenceInt(const String &key, int32 defaultValue) const
+int32 Preferences::valueInt(const String &key, int32 defaultValue) const
 {
-   String result = GetPreference(key);
+   String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 
@@ -236,9 +236,9 @@ int32 Preferences::GetPreferenceInt(const String &key, int32 defaultValue) const
    return value;
 }
 
-bool Preferences::GetPreferenceBool(const String &key, bool defaultValue) const
+bool Preferences::valueBool(const String &key, bool defaultValue) const
 {
-   String result = GetPreference(key);
+   String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 

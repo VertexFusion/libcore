@@ -36,6 +36,8 @@ jm::String gSystemError;
 
 bool gSystemLogDate = true;
 jm::LogLevel mSystemLogLabel = jm::kLogDebug;
+jm::Preferences*  gPreferences=NULL;
+jm::File* gPrefFile = NULL;
 
 jm::String jm::System::language()
 {
@@ -349,13 +351,30 @@ void jm::System::init(const jm::String &bundleId)
 
    // Load default translation
    I18nBundle::initDefault();
+
+   // Load default preferences, if any
+   jm::File propDir = jm::PropertyDir();
+   gPreferences = new jm::Preferences();
+   gPrefFile  = new jm::File(propDir, bundleId + ".properties");
+   std::cout<<gPrefFile->absolutePath()<<std::endl;
+   if(gPrefFile->exists())gPreferences->load(*gPrefFile);
 }
 
 void jm::System::quit()
 {
+   // save preferences
+   gPreferences->save(*gPrefFile);
+   delete gPreferences;
+   delete gPrefFile;
+
    if(gMainThreadPool != NULL)delete gMainThreadPool;
 
    // Finally
    QuitCharsets();
+}
+
+jm::Preferences* jm::System::preferences()
+{
+   return gPreferences;
 }
 

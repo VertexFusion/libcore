@@ -36,8 +36,11 @@
 
 /*!
 \brief Quick macro for translation
+\deprecated please use jtr
  */
 #define Tr(X) jm::I18nBundle::getDefault()->translate(X)
+
+#define jtr(X) jm::I18nBundle::getDefault()->translate(X)
 
 namespace jm
 {
@@ -64,6 +67,9 @@ namespace jm
 
          String translate(const String& key) const;
 
+         /*!
+          \brief returns the application default translation
+          */
          static I18nBundle* getDefault();
 
          /*!

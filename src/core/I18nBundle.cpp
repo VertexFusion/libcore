@@ -121,13 +121,13 @@ void I18nBundle::appendMo(File file)
       const Record rec = records[index];
       const jm::String orig = jm::String((char*)&buffer[rec.origOffset], rec.origLength);
       const jm::String trans = jm::String((char*)&buffer[rec.transOffset], rec.transLength);
-      SetPreference(orig, trans);
+      setValue(orig, trans);
    }
 }
 
 String I18nBundle::translate(const String& key) const
 {
-   return GetPreference(key, key);
+   return value(key, key);
 }
 
 

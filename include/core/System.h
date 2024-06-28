@@ -53,6 +53,11 @@ namespace jm
       public:
 
          /*!
+          \brief returns the global application settings
+          */
+         static Preferences* preferences();
+
+         /*!
           \brief This method returns the language of the system that is currently set.
           The programme can use this variable to decide which language it should display.
           \return The string has the form "de-DE"

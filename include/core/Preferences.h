@@ -62,68 +62,68 @@ namespace jm
           \param file Die Datei mit den Eigenschaften.
           @throws Exception, wenn die Datei nicht gefunden wurde, oder fehlerhaft ist.
           */
-         void Load(File file);
+         void load(File file);
 
          /*!
           \brief Diese Methode schreibt die Preferences in die Datei.
           \param file Name der Datei, in der die Eigenschaften gespeichert werden
           @throws Exception, wenn die Datei nicht geschrieben werden kann
           */
-         void Store(File file);
+         void save(File file);
 
          /*!
           \brief This method check, if the property is present or not.
           \param key The key of the property of interest.
           */
-         bool HasPreference(const String &key)const;
+         bool hasValue(const String &key)const;
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void SetPreference(const String &key, const String &value);
+         void setValue(const String &key, const String &value);
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void SetPreference(const String &key, int32 value);
+         void setValue(const String &key, int32 value);
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void SetPreference(const String &key, bool value);
+         void setValue(const String &key, bool value);
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           */
-         String GetPreference(const String &key) const;
-
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-          */
-         String GetPreference(const String &key, const String &defaultValue) const;
+         String value(const String &key) const;
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
           */
-         int32 GetPreferenceInt(const String &key, int32 defaultValue) const;
+         String value(const String &key, const String &defaultValue) const;
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
           */
-         bool GetPreferenceBool(const String &key, bool defaultValue) const;
+         int32 valueInt(const String &key, int32 defaultValue) const;
+
+         /*!
+          \brief Gibt die gewünschte Eigenschaft zurück
+          \param key Die Eigenschaft
+          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
+          */
+         bool valueBool(const String &key, bool defaultValue) const;
    };
 
 }

@@ -85,19 +85,19 @@ void DateTest::DoTest()
    //01.01.1979
    d = Date(283996800000L);
    TestEquals(d.time(), 283996800000L, "jm::Date::Time() fails");
-   TestEquals(d.toString(), "1979-01-01T00:00:00.000Z", "jm::Date::ToString() fails [7]");
-   TestEquals(df1.Format(d), "01.01.1979 00:00:00.000", "jm::DateFormatter::Format() fails [7]");
+   TestEquals(d.toString(), "1979-01-01T00:00:00.000Z", "jm::Date::ToString() fails [8]");
+   TestEquals(df1.Format(d), "01.01.1979 00:00:00.000", "jm::DateFormatter::Format() fails [8]");
 
    //01.08.1979
    d = Date(302313600000L);
    TestEquals(d.time(), 302313600000L, "jm::Date::Time() fails");
-   TestEquals(d.toString(), "1979-08-01T00:00:00.000Z", "jm::Date::ToString() fails [7]");
-   TestEquals(df1.Format(d), "01.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [7]");
+   TestEquals(d.toString(), "1979-08-01T00:00:00.000Z", "jm::Date::ToString() fails [9]");
+   TestEquals(df1.Format(d), "01.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [9]");
 
    //24.08.1979
-   d = Date(1979, 8, 24);
-   TestEquals(d.toString(), "1979-08-24T00:00:00.000Z", "jm::Date::ToString() fails [7]");
-   TestEquals(df1.Format(d), "24.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [7]");
+   d = Date(1979, Date::AUGUST, 24);
+   TestEquals(d.toString(), "1979-08-24T00:00:00.000Z", "jm::Date::ToString() fails [10]");
+   TestEquals(df1.Format(d), "24.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [10]");
 
    //#warning TODO Diese Funktion testen
    d = Date();
