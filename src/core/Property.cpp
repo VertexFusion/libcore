@@ -265,6 +265,10 @@ bool jm::operator==(Property const &v1, Property const &v2)
    {
       return v1.GetIntegerValue() == v2.GetIntegerValue();
    }
+   else if(editor.equals("dwglayer"))
+   {
+      return v1.GetStringValue().equals(v2.GetStringValue());
+   }
    System::log(Tr("Property not comparable"), kLogDebug);
    return false;
 }
