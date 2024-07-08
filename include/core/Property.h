@@ -75,12 +75,24 @@ namespace jm
          mNumberValue.intValue=0;
       }
 
-      Variant(const Variant& other)
+      Variant(const Variant& another)
       {
-         mType=other.mType;
-         mNumberValue=other.mNumberValue;
-         if(mType==kPropertyTypeString)mTextValue=other.mTextValue;
+         mType=another.mType;
+         mNumberValue=another.mNumberValue;
+         if(mType==kPropertyTypeString)mTextValue=another.mTextValue;
       };
+
+      Variant& operator=(const Variant &another)
+      {
+         if(this != &another)
+         {
+            mType=another.mType;
+            mNumberValue=another.mNumberValue;
+            if(mType==kPropertyTypeString)mTextValue=another.mTextValue;
+         }
+
+         return *this;
+      }
 
       Variant(int64 number)
       {
