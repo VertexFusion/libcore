@@ -82,3 +82,7 @@ bool Extents::isValid()const
    return mPtMin.x < 1E89;
 }
 
+Vertex3 Extents::delta()const
+{
+   return mPtMax-mPtMin;
+}

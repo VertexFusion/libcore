@@ -287,6 +287,8 @@ namespace jm
          const Vertex3& minPoint()const;
          const Vertex3& maxPoint()const;
 
+         Vertex3 delta()const;
+
          /*!
           \brief Returns true, if the Extent has collected at minimum 1 point.
           */
