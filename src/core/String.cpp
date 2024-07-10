@@ -47,7 +47,7 @@ String::String(const uint16* buffer, Integer size): Object(), Comparable<String>
    mHash = 0;
    CharArray array = CharArray(size);
    memcpy(array.buffer, buffer, sizeof(Char) * size);
-   Copy(array);
+   copy(array);
 }
 
 String::String(const String &another): Object(), Comparable<String>()
@@ -70,7 +70,7 @@ String::String(const char* buffer, Integer size): Object(), Comparable<String>()
    // (Initialization sequence not predictable)
    UTF8Decoder dec = UTF8Decoder();
    CharArray array = dec.Decode(cstring);
-   Copy(array);
+   copy(array);
 
    delete[] cstring;
 }
@@ -83,7 +83,7 @@ String::String(const char* buffer, Integer size, Charset* charset): Object(), Co
    cstring[size] = 0;
    cstring[size + 1] = 0; //For UTF16 required
    CharArray array = charset->Decode(cstring);
-   Copy(array);
+   copy(array);
    delete[] cstring;
 }
 
@@ -96,7 +96,7 @@ String::String(const char* cstring): Object(), Comparable<String>()
       // strings. (Initialization sequence not predictable)
       UTF8Decoder dec = UTF8Decoder();
       CharArray array = dec.Decode(cstring);
-      Copy(array);
+      copy(array);
    }
    else
    {
@@ -116,7 +116,7 @@ String::String(const ByteArray &buffer) : Object(), Comparable<String>()
       // strings. (Initialization sequence not predictable)
       UTF8Decoder dec = UTF8Decoder();
       CharArray array = dec.Decode(buffer.constData());
-      Copy(array);
+      copy(array);
    }
    else
    {
@@ -131,14 +131,14 @@ String::String(const char* cstring, Charset* charset): Object(), Comparable<Stri
 {
    mHash = 0;
    CharArray array = charset->Decode(cstring);
-   Copy(array);
+   copy(array);
 }
 
 String::String(const ByteArray &buffer, Charset* charset) : Object(), Comparable<String>()
 {
    mHash = 0;
    CharArray array = charset->Decode(buffer.constData());
-   Copy(array);
+   copy(array);
 }
 
 String::~String()
@@ -150,7 +150,7 @@ String::~String()
    mValue = NULL;
 }
 
-void String::Copy(const CharArray &array)
+void String::copy(const CharArray &array)
 {
    mStrLength = array.length;
    mArrLength = mStrLength;
@@ -160,7 +160,7 @@ void String::Copy(const CharArray &array)
    memcpy(mValue, array.buffer, 2 * mStrLength);
 }
 
-void String::CheckCapacity(Integer more)
+void String::checkCapacity(Integer more)
 {
    if(mStrLength + more < mArrLength)return;
 
@@ -228,7 +228,7 @@ ByteArray String::toCString(Charset* charset) const
 }
 
 
-uint16* String::ToWString() const
+uint16* String::toWString() const
 {
    uint16* ret = new uint16 [mStrLength + 1];
    memcpy(ret, mValue, mStrLength * 2);
@@ -236,7 +236,7 @@ uint16* String::ToWString() const
    return ret;
 }
 
-bool String::StartsWith(const String &another) const
+bool String::startsWith(const String &another) const
 {
    if(another.mStrLength > mStrLength)return false;
 
@@ -249,7 +249,7 @@ bool String::StartsWith(const String &another) const
 }
 
 
-bool String::EndsWith(const String &another) const
+bool String::endsWith(const String &another) const
 {
    if(another.mStrLength > mStrLength)return false;
 
@@ -261,7 +261,7 @@ bool String::EndsWith(const String &another) const
    return true;
 }
 
-bool String::AtIs(Integer position,const String &another)
+bool String::atIs(Integer position,const String &another)
 {
    if(position+another.mStrLength > mStrLength)return false;
 
@@ -273,7 +273,7 @@ bool String::AtIs(Integer position,const String &another)
    return true;
 }
 
-bool String::AtIsIgnoreCase(Integer position,const String &another)
+bool String::atIsIgnoreCase(Integer position,const String &another)
 {
    if(position+another.mStrLength > mStrLength)return false;
 
@@ -287,7 +287,7 @@ bool String::AtIsIgnoreCase(Integer position,const String &another)
    return true;
 }
 
-Integer String::HashCode()
+Integer String::hashCode()
 {
    if(mHash != 0)return mHash;
    uint32 hash = 0;
@@ -296,7 +296,7 @@ Integer String::HashCode()
    return hash;
 }
 
-Integer String::ConstHashCode() const
+Integer String::constHashCode() const
 {
    if(mHash != 0)return mHash;
    uint32 hash = 0;
@@ -304,7 +304,7 @@ Integer String::ConstHashCode() const
    return hash;
 }
 
-String String::ToLowerCase() const
+String String::toLowerCase() const
 {
    String ret = *this;
 
@@ -316,7 +316,7 @@ String String::ToLowerCase() const
    return ret;
 }
 
-String String::ToUpperCase() const
+String String::toUpperCase() const
 {
    String ret = *this;
 
@@ -328,7 +328,7 @@ String String::ToUpperCase() const
    return ret;
 }
 
-String String::Trim() const
+String String::trim() const
 {
    Integer beginIndex = 0;
    Integer endIndex = mStrLength;
@@ -343,20 +343,20 @@ String String::Trim() const
 
    if(endIndex <= beginIndex)return kEmptyString;
 
-   return Substring(beginIndex, endIndex);
+   return substring(beginIndex, endIndex);
 }
 
-Integer String::IndexOf(Char character) const
+Integer String::indexOf(Char character) const
 {
-   return IndexOf(character, 0);
+   return indexOf(character, 0);
 }
 
-Integer String::IndexOf(const String &str) const
+Integer String::indexOf(const String &str) const
 {
-   return IndexOf(str, 0);
+   return indexOf(str, 0);
 }
 
-Integer String::IndexOf(Char character, Integer fromIndex) const
+Integer String::indexOf(Char character, Integer fromIndex) const
 {
    if(fromIndex < 0)fromIndex = 0;
 
@@ -367,7 +367,7 @@ Integer String::IndexOf(Char character, Integer fromIndex) const
    return -1;
 }
 
-Integer String::IndexOf(const String &str, Integer fromIndex) const
+Integer String::indexOf(const String &str, Integer fromIndex) const
 {
    if(fromIndex < 0)fromIndex = 0;
 
@@ -387,19 +387,19 @@ Integer String::IndexOf(const String &str, Integer fromIndex) const
    return -1;
 }
 
-Integer String::LastIndexOf(Char character) const
+Integer String::lastIndexOf(Char character) const
 {
-   return LastIndexOf(character, mStrLength - 1);
+   return lastIndexOf(character, mStrLength - 1);
 }
 
-Integer String::LastIndexOf(const String &str) const
+Integer String::lastIndexOf(const String &str) const
 {
-   return LastIndexOf(str, mStrLength - 1);
+   return lastIndexOf(str, mStrLength - 1);
 }
 
-Integer String::LastIndexOf(Char character, Integer fromIndex) const
+Integer String::lastIndexOf(Char character, Integer fromIndex) const
 {
-   if(fromIndex >= mStrLength) throw new Exception("Index out of Bounds: " + String::ValueOf(fromIndex));
+   if(fromIndex >= mStrLength) throw new Exception("Index out of Bounds: " + String::valueOf(fromIndex));
    if(fromIndex < 0)fromIndex = 0;
    if(fromIndex > mStrLength - 1)fromIndex = mStrLength - 1;
 
@@ -410,7 +410,7 @@ Integer String::LastIndexOf(Char character, Integer fromIndex) const
    return -1;
 }
 
-Integer String::LastIndexOf(const String &str, Integer fromIndex) const
+Integer String::lastIndexOf(const String &str, Integer fromIndex) const
 {
    Integer begin = mStrLength - str.mStrLength;
    fromIndex = (fromIndex > begin) ? begin : fromIndex;
@@ -432,7 +432,7 @@ Integer String::LastIndexOf(const String &str, Integer fromIndex) const
 }
 
 
-String String::Replace(Char oldChar, Char newChar) const
+String String::replace(Char oldChar, Char newChar) const
 {
    String ret = String(*this);
 
@@ -444,10 +444,10 @@ String String::Replace(Char oldChar, Char newChar) const
    return ret;
 }
 
-String String::ReplaceAll(String oldStr, String newStr)const
+String String::replaceAll(String oldStr, String newStr)const
 {
    Integer pos1 = 0;
-   Integer pos2 = IndexOf(oldStr);
+   Integer pos2 = indexOf(oldStr);
    if(pos2 < 0)return *this;
 
    String output;
@@ -455,25 +455,25 @@ String String::ReplaceAll(String oldStr, String newStr)const
    do
    {
       // Append everything in front
-      output.append(Substring(pos1, pos2));
+      output.append(substring(pos1, pos2));
 
       // Append new string
       output.append(newStr);
 
       pos1 = pos2 + oldStr.size();
-      pos2 = IndexOf(oldStr, pos1);
+      pos2 = indexOf(oldStr, pos1);
 
    }
    while(pos2 >= pos1);
 
    // Append last part.
-   output.append(Substring(pos1));
+   output.append(substring(pos1));
 
    return output;
 }
 
 
-String String::Reverse() const
+String String::reverse() const
 {
    String ret = String(*this);
    Integer cnt = mStrLength / 2;
@@ -501,23 +501,23 @@ StringList String::split(Char character)
 }
 
 
-Char String::CharAt(Integer index) const
+Char String::charAt(Integer index) const
 {
    if(index < 0 || index >= mStrLength)
-      throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+      throw new Exception("Index out of Bounds: " + String::valueOf(index));
    return mValue[index];
 }
 
-void String::SetCharAt(Integer index, Char character)
+void String::setCharAt(Integer index, Char character)
 {
-   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
    mValue[index] = character;
    mHash = 0;
 }
 
 void String::append(const String &another)
 {
-   CheckCapacity(another.mStrLength);
+   checkCapacity(another.mStrLength);
    memcpy(&mValue[mStrLength], &another.mValue[0], sizeof(Char) * another.mStrLength);
    mStrLength += another.mStrLength;
    mHash = 0;
@@ -525,32 +525,32 @@ void String::append(const String &another)
 
 void String::append(Char utf8char)
 {
-   CheckCapacity(1);
+   checkCapacity(1);
    mValue[mStrLength] = utf8char;
    mStrLength++;
    mHash = 0;
 }
 
-void String::Insert(Integer index, Char character)
+void String::insert(Integer index, Char character)
 {
-   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
-   CheckCapacity(1);
+   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   checkCapacity(1);
    for(Integer a = mStrLength; a > index; a--)mValue[a] = mValue[a - 1];
    mValue[index] = character;
    mStrLength++;
    mHash = 0;
 }
 
-void String::Insert(Integer index, const String &str)
+void String::insert(Integer index, const String &str)
 {
-   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
 
    Integer len = str.size();
-   CheckCapacity(len);
+   checkCapacity(len);
 
    for(Integer a = mStrLength; a > index; a--)mValue[a + len - 1] = mValue[a - 1];
 
-   for(Integer a = 0; a < len; a++)mValue[index + a] = str.CharAt(a);
+   for(Integer a = 0; a < len; a++)mValue[index + a] = str.charAt(a);
 
    mStrLength += len;
    mHash = 0;
@@ -558,7 +558,7 @@ void String::Insert(Integer index, const String &str)
 
 void String::deleteCharAt(Integer index)
 {
-   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
    for(Integer a = index ; a < mStrLength - 1; a++)
    {
       mValue[a] = mValue[a + 1];
@@ -569,7 +569,7 @@ void String::deleteCharAt(Integer index)
 
 void String::deleteCharRangeAt(Integer index, Integer length)
 {
-   if(index < 0 || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::ValueOf(index));
+   if(index < 0 || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
    for(Integer a = index ; a < mStrLength - length; a++)
    {
       mValue[a] = mValue[a + length];
@@ -631,7 +631,7 @@ bool String::equals(const String &another) const
    return true;
 }
 
-bool String::EqualsIgnoreCase(const String &another) const
+bool String::equalsIgnoreCase(const String &another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
@@ -668,7 +668,7 @@ int32 String::compareTo(const String &another) const
 
 }
 
-int32 String::CompareFancyTo(const String &another) const
+int32 String::compareFancyTo(const String &another) const
 {
    //Wandle String in 32bit-Zahlen um, wobei Nummernbestandteile direkt umgewandelt werden.
    uint32 str1[256];
@@ -745,7 +745,7 @@ int32 String::CompareFancyTo(const String &another) const
 }
 
 
-String String::Substring(Integer beginIndex, Integer endIndex) const
+String String::substring(Integer beginIndex, Integer endIndex) const
 {
 
    if(endIndex < beginIndex)throw new Exception("End index is before start index.");
@@ -756,7 +756,7 @@ String String::Substring(Integer beginIndex, Integer endIndex) const
 
    if(sublength > 0)
    {
-      ret.CheckCapacity(sublength);
+      ret.checkCapacity(sublength);
       memcpy(&ret.mValue[0], &mValue[beginIndex], sizeof(Char) * sublength);
       ret.mStrLength = sublength;
    }
@@ -764,26 +764,26 @@ String String::Substring(Integer beginIndex, Integer endIndex) const
    return ret;
 }
 
-String String::Substring(Integer beginIndex) const
+String String::substring(Integer beginIndex) const
 {
-   return Substring(beginIndex, mStrLength);
+   return substring(beginIndex, mStrLength);
 }
 
-bool String::ArgIndicies(Integer &first, Integer &second)
+bool String::argIndicies(Integer &first, Integer &second)
 {
-   if(IndexOf(Char('%'))<0)return false;
+   if(indexOf(Char('%'))<0)return false;
 
    Integer lowest=100;
 
    for(Integer index=0;index<mStrLength-1;index++)
    {
-      if(CharAt(index)==Char('%') && CharAt(index+1).isDigit())
+      if(charAt(index)==Char('%') && charAt(index+1).isDigit())
       {
-         Integer number=CharAt(index+1).digitValue();
-         if(index+2<mStrLength&&CharAt(index+2).isDigit())
+         Integer number=charAt(index+1).digitValue();
+         if(index+2<mStrLength&&charAt(index+2).isDigit())
          {
             number*=10;
-            number+=CharAt(index+2).digitValue();
+            number+=charAt(index+2).digitValue();
          }
          if(number<lowest)
          {
@@ -798,15 +798,15 @@ bool String::ArgIndicies(Integer &first, Integer &second)
    return true;
 }
 
-String String::Arg(Char character,
+String String::arg(Char character,
                  Integer fieldWidth,
                  Char fillchar)
 {
    Integer first,second;
-   Bool found = ArgIndicies(first, second);
+   Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=Substring(0,first);
+   String result=substring(0,first);
 
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
@@ -823,23 +823,23 @@ String String::Arg(Char character,
       for(Integer a = 1; a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<Substring(second);
+   result<<substring(second);
 
    return result;
 }
 
 
-String String::Arg(Integer value,
+String String::arg(Integer value,
                    Integer fieldWidth,
                    Char fillchar)
 {
    Integer first,second;
-   Bool found = ArgIndicies(first, second);
+   Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=Substring(0,first);
+   String result=substring(0,first);
 
-   String s = String::ValueOf(value);
+   String s = String::valueOf(value);
 
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
@@ -856,20 +856,20 @@ String String::Arg(Integer value,
       for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<Substring(second);
+   result<<substring(second);
 
    return result;
 }
 
-String String::Arg(const String &value,
+String String::arg(const String &value,
            Integer fieldwidth,
            Char fillchar)
 {
    Integer first,second;
-   Bool found = ArgIndicies(first, second);
+   Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=Substring(0,first);
+   String result=substring(0,first);
 
    // Leading space if fieldWidth > 0
    if(fieldwidth > 0)
@@ -887,28 +887,28 @@ String String::Arg(const String &value,
    }
 
 
-   result<<Substring(second);
+   result<<substring(second);
 
    return result;
 
 }
 
 
-String String::Arg(Double value,
+String String::arg(Double value,
                    Integer fieldWidth,
                    Integer precision,
                    Char fillchar)
 {
    Integer first,second;
-   Bool found = ArgIndicies(first, second);
+   Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=Substring(0,first);
+   String result=substring(0,first);
 
    bool cutzero = precision<0;
    if(cutzero)precision=10;
 
-   String s = String::ValueOf(value, precision, cutzero);
+   String s = String::valueOf(value, precision, cutzero);
 
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
@@ -926,12 +926,12 @@ String String::Arg(Double value,
    }
 
 
-   result<<Substring(second);
+   result<<substring(second);
 
    return result;
 }
 
-String String::ValueOf(int64 number)
+String String::valueOf(int64 number)
 {
    String ret;
    bool neg = false;
@@ -961,15 +961,15 @@ String String::ValueOf(int64 number)
    Integer cnt = ret.size() / 2;
    for(Integer a = 0; a < cnt; a++)
    {
-      Char s1 = ret.CharAt(a);
-      Char s2 = ret.CharAt(ret.size() - 1 - a);
-      ret.SetCharAt(a, s2);
-      ret.SetCharAt(ret.size() - 1 - a, s1);
+      Char s1 = ret.charAt(a);
+      Char s2 = ret.charAt(ret.size() - 1 - a);
+      ret.setCharAt(a, s2);
+      ret.setCharAt(ret.size() - 1 - a, s1);
    }
    return ret;
 }
 
-String String::ValueOf(uint64 number)
+String String::valueOf(uint64 number)
 {
    String ret;
 
@@ -992,25 +992,25 @@ String String::ValueOf(uint64 number)
    Integer cnt = ret.size() / 2;
    for(Integer a = 0; a < cnt; a++)
    {
-      Char s1 = ret.CharAt(a);
-      Char s2 = ret.CharAt(ret.size() - 1 - a);
-      ret.SetCharAt(a, s2);
-      ret.SetCharAt(ret.size() - 1 - a, s1);
+      Char s1 = ret.charAt(a);
+      Char s2 = ret.charAt(ret.size() - 1 - a);
+      ret.setCharAt(a, s2);
+      ret.setCharAt(ret.size() - 1 - a, s1);
    }
    return ret;
 }
 
-String String::ValueOf(int32 number)
+String String::valueOf(int32 number)
 {
-   return ValueOf((int64) number);
+   return valueOf((int64) number);
 }
 
-String String::ValueOf(uint32 number)
+String String::valueOf(uint32 number)
 {
-   return ValueOf((int64) number);
+   return valueOf((int64) number);
 }
 
-String String::ValueOf(double number)
+String String::valueOf(double number)
 {
    std::stringstream ss;
    ss << std::setprecision(10) << number;
@@ -1019,7 +1019,7 @@ String String::ValueOf(double number)
    return String(cstr);
 }
 
-String String::ValueOf(double number, Integer precision, bool trunc)
+String String::valueOf(double number, Integer precision, bool trunc)
 {
    bool neg = jm::IsLess(number, 0.0);
    int64 before = static_cast<int64>(number);
@@ -1040,25 +1040,25 @@ String String::ValueOf(double number, Integer precision, bool trunc)
       before++;
    }
 
-   String b = String::ValueOf(before);
-   if(neg)b.Insert(0, '-');
+   String b = String::valueOf(before);
+   if(neg)b.insert(0, '-');
 
-   String a = String::ValueOf(after);
-   while(a.size() < precision)a.Insert(0, '0');
+   String a = String::valueOf(after);
+   while(a.size() < precision)a.insert(0, '0');
 
-   while(trunc && a.size() > 1 && a.CharAt(a.size() - 1) == '0')a.deleteCharAt(a.size() - 1);
+   while(trunc && a.size() > 1 && a.charAt(a.size() - 1) == '0')a.deleteCharAt(a.size() - 1);
 
    if(after != 0 || trunc == false)return b + "," + a;
    else return b;
 }
 
 
-String String::ValueOf(bool value)
+String String::valueOf(bool value)
 {
    return value ? "true" : "false";
 }
 
-String String::LineSeparator()
+String String::lineSeparator()
 {
    #ifdef __APPLE__//macOS, iOS
    return "\n";
@@ -1071,7 +1071,7 @@ String String::LineSeparator()
 
 Charset* gConsoleCharset = NULL;
 
-void jm::String::SetConsoleCharset(Charset* cs)
+void jm::String::setConsoleCharset(Charset* cs)
 {
    gConsoleCharset = cs;
 }
@@ -1116,37 +1116,37 @@ namespace jm
 
    String& operator << (String& out, const Integer& i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
    String& operator << (String& out, const uint64& i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
    String &operator << (String &out, const int64 &i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
    String &operator << (String &out, const int32 &i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
    String &operator << (String &out, const uint32 &i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
    String &operator << (String &out, const double &i)
    {
-      out.append(String::ValueOf(i));
+      out.append(String::valueOf(i));
       return out;
    }
 
@@ -1205,7 +1205,7 @@ namespace jm
 
    String operator+(int64 &left, const String &right)
    {
-      String ret = String::ValueOf(left);
+      String ret = String::valueOf(left);
       ret.append(right);
       return ret;
    }
@@ -1213,13 +1213,13 @@ namespace jm
    String operator+(const String &left, int64 &right)
    {
       String ret = left;
-      ret.append(String::ValueOf(right));
+      ret.append(String::valueOf(right));
       return ret;
    }
 
    String operator+(double &left, const String &right)
    {
-      String ret = String::ValueOf(left);
+      String ret = String::valueOf(left);
       ret.append(right);
       return ret;
    }
@@ -1227,7 +1227,7 @@ namespace jm
    String operator+(const String &left, double &right)
    {
       String ret = left;
-      ret.append(String::ValueOf(right));
+      ret.append(String::valueOf(right));
       return ret;
    }
 
@@ -1258,7 +1258,7 @@ double jm::ConvertToDouble(String str)
 {
    for(uint32 a = 0; a < str.size(); a++)
    {
-      if(str.CharAt(a) == ',') str.SetCharAt(a, '.');
+      if(str.charAt(a) == ',') str.setCharAt(a, '.');
    }
    return Double::valueOf(str);
 }
@@ -1276,10 +1276,10 @@ String jm::URLDecode(const String &str)
    int8 c;
    for(uint32 a = 0; a < str.size(); a++)
    {
-      switch(str.CharAt(a).unicode())
+      switch(str.charAt(a).unicode())
       {
          case '%':
-            c = Integer::fromHex(str.Substring(a + 1, a + 3)).Int8();
+            c = Integer::fromHex(str.substring(a + 1, a + 3)).Int8();
             a += 2;
             buffer[pos++] = c;
             break;
@@ -1289,7 +1289,7 @@ String jm::URLDecode(const String &str)
             break;
 
          default:
-            buffer[pos++] = (int8)str.CharAt(a).unicode();
+            buffer[pos++] = (int8)str.charAt(a).unicode();
             break;
       }
    }
@@ -1307,7 +1307,7 @@ String jm::URLEncode(const String &str)
 
    for(uint32 a = 0; a < str.size(); a++)
    {
-      switch(str.CharAt(a).unicode())
+      switch(str.charAt(a).unicode())
       {
          case ' ':
             ret.append('+');
@@ -1326,7 +1326,7 @@ String jm::URLEncode(const String &str)
             break;
 
          default:
-            ret.append(str.CharAt(a));
+            ret.append(str.charAt(a));
             break;
       }
    }

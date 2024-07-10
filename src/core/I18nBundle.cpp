@@ -46,8 +46,8 @@ void I18nBundle::appendMo(File file)
    {
       String appID, name;
       System::log(Tr("Cannot find translation file: %1 %2")
-                  .Arg(file.path())
-                  .Arg(mLanguage),
+                  .arg(file.path())
+                  .arg(mLanguage),
                   kLogError);
 
       return;
@@ -59,7 +59,7 @@ void I18nBundle::appendMo(File file)
    VxfErrorStatus status = file.open(kFmRead);
    if (status != eOK)
    {
-      System::log(Tr("Cannot open file: %1").Arg(file.path()), kLogError);
+      System::log(Tr("Cannot open file: %1").arg(file.path()), kLogError);
       return;
    }
    Integer check = file.Stream::readFully(buf);
@@ -67,7 +67,7 @@ void I18nBundle::appendMo(File file)
 
    if(check != length)
    {
-      System::log(Tr("File not fully read: %1").Arg(file.path()), kLogError);
+      System::log(Tr("File not fully read: %1").arg(file.path()), kLogError);
       return;
    }
    uint8* buffer = (uint8*)buf.constData();
@@ -81,12 +81,12 @@ void I18nBundle::appendMo(File file)
 
    if(magic != 0x950412de)
    {
-      System::log(Tr("File magic wrong: %1").Arg(file.path()), kLogError);
+      System::log(Tr("File magic wrong: %1").arg(file.path()), kLogError);
       return;
    }
    if(version != 0)
    {
-      System::log(Tr("MO file version not supported: %1").Arg(file.path()), kLogError);
+      System::log(Tr("MO file version not supported: %1").arg(file.path()), kLogError);
       return;
    }
 
@@ -153,7 +153,7 @@ jm::File I18nBundle::transFileByBundleId(const String &filename,
 
    if(language.size() == 0)language = System::language();
 
-   language = language.Replace('-', '_');
+   language = language.replace('-', '_');
 
    // Resource of translations
    const File resDir = ResourceDir(jm::System::bundleId());
@@ -170,17 +170,17 @@ jm::File I18nBundle::transFileByBundleId(const String &filename,
    else return translationFile;
 
    // Maybe without region?
-   if(translationFile.exists() == false && language.IndexOf('_') > 0)
+   if(translationFile.exists() == false && language.indexOf('_') > 0)
    {
-      language = language.Substring(0, language.IndexOf('_'));
+      language = language.substring(0, language.indexOf('_'));
       translationFile = File(translationDir, filename + "." + language + ".mo");
    }
    else return translationFile;
 
    // Maybe without region and without bundle id?
-   if(translationFile.exists() == false && language.IndexOf('_') > 0)
+   if(translationFile.exists() == false && language.indexOf('_') > 0)
    {
-      language = language.Substring(0, language.IndexOf('_'));
+      language = language.substring(0, language.indexOf('_'));
       translationFile = File(translationDir, language + ".mo");
    }
    else return translationFile;

@@ -198,140 +198,130 @@ namespace jm
          /*!
           \brief Status, if property is read-only.
           */
-         Bool IsReadOnly() const;
+         Bool isReadOnly() const;
 
          /*!
           \brief Status, if property can be empty.
           */
-         Bool AllowEmpty() const;
+         Bool allowEmpty() const;
 
          /*!
           \brief Status, how the change of one property will effect other properties of the
           corresponding object.
           */
-         PropertyChangeMode GetChangeMode() const;
+         PropertyChangeMode changeMode() const;
 
          /*!
           \brief Short call for checking is. Same as: GetId().IsEqual()
           \param id The unique id of the property.
           */
-         Bool Is(const String &id)const;
+         Bool is(const String &id)const;
 
          /*!
           \brief Returns the id of the property
           */
-         const String& GetID() const;
+         const String& id() const;
 
          /*!
           \brief Returns the name of the property.
           */
-         const String& GetName() const;
+         const String& name() const;
 
          /*!
           \brief Returns a help string for the property.
           */
-         const String& GetHint() const;
+         const String& hint() const;
 
          /*!
           \brief Returns an identifiert for the suggested edtior of this property.
           */
-         const String& GetEditor() const;
+         const String& editor() const;
 
          /*!
           \brief Returns the group this property can belong to.
           */
-         const String& GetGroup() const;
+         const String& group() const;
 
          /*!
           \brief Set the name of an icon of this property.
           \param iconname The name of the icon.
           */
-         void SetIcon(const String &iconname);
+         void setIcon(const String &iconname);
 
          /*!
           \brief Returns the icon name of this property.
           */
-         const String& GetIcon() const;
+         const String& icon() const;
 
          /*!
           \brief Set the string value of this property.
           \param value The string value.
           */
-         VxfErrorStatus SetStringValue(const String &value);
+         VxfErrorStatus setStringValue(const String &value);
 
          /*!
           \brief Set unit value.
           \param value The number.
           \param unit The unit.
           */
-         VxfErrorStatus SetUnitValue(double value, const String &unit);
+         VxfErrorStatus setUnitValue(double value, const String &unit);
 
          /*!
           \brief Returns the string value of this property.
           */
-         const String& GetStringValue() const;
-
-         /*!
-          \brief String festlegen
-          */
-         //VxfErrorStatus SetDwgColourValue(const dwg::Color& value);
-
-         /*!
-          \brief Gibt String zurück
-          */
-         //dwg::Color GetDwgColourValue() const;
+         const String& stringValue() const;
 
          /*!
           \brief Set the Integer value of this Property
           \param value The Integer value
           */
-         VxfErrorStatus SetIntegerValue(Integer value);
+         VxfErrorStatus setIntegerValue(Integer value);
 
          /*!
           \brief Returns the Integer Value of this property.
           */
-         Integer GetIntegerValue() const;
+         Integer integerValue() const;
 
          /*!
           \brief Set the Bool value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus SetBoolValue(Bool value);
+         VxfErrorStatus setBoolValue(Bool value);
 
          /*!
           \brief Returns the Bool Value of this property.
           */
-         Bool GetBoolValue() const;
+         Bool boolValue() const;
 
          /*!
           \brief Set the Double value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus SetDoubleValue(Double value);
+         VxfErrorStatus setDoubleValue(Double value);
 
          /*!
           \brief Returns the Dool Value of this property.
           */
-         Double GetDoubleValue() const;
+         Double doubleValue() const;
 
          /*!
           \brief Returns the type of the last value which was set. It is assumed that this is the
           right property type. Consider that on type (like comboboxes) this type can be wrong and has
           no meaning in that case.
           */
-         PropertyType GetType() const;
+         PropertyType type() const;
 
-         void SetType(PropertyType type);
+         void setType(PropertyType type);
 
          /*!
           \brief Übernimmt den Wert aus dem anderen Property
           */
-         void SetValue(const Property &other);
+         void setValue(const Property &other);
 
          /*!
           \brief Prüfe, ob Werte gleich sind
           */
-         bool IsValueEquals(const Property &other)const;
+         bool isValueEquals(const Property &other)const;
 
          /*!
           \brief Implementierung des Operators ==

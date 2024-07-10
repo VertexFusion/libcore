@@ -334,7 +334,7 @@ Object* LinkedListIterator::next()
    return ret;
 }
 
-Object* LinkedListIterator::Seek()
+Object* LinkedListIterator::seek()
 {
    return current->data;
 }

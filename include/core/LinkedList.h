@@ -70,7 +70,7 @@ namespace jm
 
          Object* next();
 
-         Object* Seek();//Gibt das nächste Objekt zurück, ohne den Iterator zu bewegenn
+         Object* seek();//Gibt das nächste Objekt zurück, ohne den Iterator zu bewegenn
 
          ~LinkedListIterator();
 

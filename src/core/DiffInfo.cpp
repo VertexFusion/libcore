@@ -129,7 +129,7 @@ void DiffInfo::PrintIC(DiffOperation operation,
          break;
 
       case kDiffModified:
-         if(!obj1.EqualsIgnoreCase(obj2))
+         if(!obj1.equalsIgnoreCase(obj2))
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << std::endl;
          }

@@ -74,79 +74,79 @@ Property::Property(const String &id,
    mType = kPropertyTypeString;
 }
 
-Bool Property::Is(const String &id)const
+Bool Property::is(const String &id)const
 {
    return mId.equals(id);
 }
 
-PropertyType Property::GetType() const
+PropertyType Property::type() const
 {
    return mType;
 }
 
-void Property::SetType(PropertyType type)
+void Property::setType(PropertyType type)
 {
    mType = type;
 }
 
-const String& Property::GetID() const
+const String& Property::id() const
 {
    return mId;
 }
 
-const String& Property::GetName() const
+const String& Property::name() const
 {
    return mName;
 }
 
-const String& Property::GetHint() const
+const String& Property::hint() const
 {
    return mHint;
 }
 
-const String& Property::GetEditor() const
+const String& Property::editor() const
 {
    return mEditor;
 }
 
-const String& Property::GetGroup() const
+const String& Property::group() const
 {
    return mGroup;
 }
 
-void Property::SetIcon(const String &iconname)
+void Property::setIcon(const String &iconname)
 {
    mIcon = iconname;
 }
 
-const  String& Property::GetIcon() const
+const  String& Property::icon() const
 {
    return mIcon;
 }
 
-Bool Property::IsReadOnly() const
+Bool Property::isReadOnly() const
 {
    return mReadOnly;
 }
 
-Bool Property::AllowEmpty() const
+Bool Property::allowEmpty() const
 {
    return mAllowEmpty;
 }
 
-PropertyChangeMode Property::GetChangeMode() const
+PropertyChangeMode Property::changeMode() const
 {
    return mChangeMode;
 }
 
-VxfErrorStatus Property::SetStringValue(const String &value)
+VxfErrorStatus Property::setStringValue(const String &value)
 {
    mTextValue = value;
    mType = kPropertyTypeString;
    return eOK;
 }
 
-VxfErrorStatus Property::SetUnitValue(double value, const String &unit)
+VxfErrorStatus Property::setUnitValue(double value, const String &unit)
 {
    mTextValue = unit;
    mNumberValue.doubleValue = value;
@@ -154,12 +154,12 @@ VxfErrorStatus Property::SetUnitValue(double value, const String &unit)
    return eOK;
 }
 
-const String& Property::GetStringValue() const
+const String& Property::stringValue() const
 {
    return mTextValue;
 }
 
-VxfErrorStatus Property::SetIntegerValue(Integer value)
+VxfErrorStatus Property::setIntegerValue(Integer value)
 {
    mNumberValue.intValue = value;
    mType = kPropertyTypeInteger;
@@ -178,43 +178,43 @@ dwg::Color Property::GetDwgColourValue() const
 	return mDwgColourValue;
 }*/
 
-Integer Property::GetIntegerValue() const
+Integer Property::integerValue() const
 {
    return mNumberValue.intValue;
 }
 
-VxfErrorStatus Property::SetDoubleValue(Double value)
+VxfErrorStatus Property::setDoubleValue(Double value)
 {
    mNumberValue.doubleValue = value;
    mType = kPropertyTypeDouble;
    return eOK;
 }
 
-Double Property::GetDoubleValue() const
+Double Property::doubleValue() const
 {
    return mNumberValue.doubleValue;
 }
 
-VxfErrorStatus Property::SetBoolValue(Bool value)
+VxfErrorStatus Property::setBoolValue(Bool value)
 {
    mNumberValue.boolValue = value;
    mType = kPropertyTypeBoolean;
    return eOK;
 }
 
-Bool Property::GetBoolValue() const
+Bool Property::boolValue() const
 {
    return mNumberValue.boolValue;
 }
 
-void Property::SetValue(const Property &other)
+void Property::setValue(const Property &other)
 {
    mTextValue = other.mTextValue;
    mNumberValue = other.mNumberValue;
    mType = other.mType;
 }
 
-bool Property::IsValueEquals(const Property &other)const
+bool Property::isValueEquals(const Property &other)const
 {
    if(mTextValue.equals(other.mTextValue) == false)return false;
    if(mNumberValue.intValue != other.mNumberValue.intValue)return false;
@@ -229,45 +229,45 @@ bool jm::operator==(Property const &v1, Property const &v2)
    if(v1.mId.equals(v2.mId) == false)return false;
    if(v1.mEditor.equals(v2.mEditor) == false)return false;
 
-   if (v1.GetType() == kPropertyTypeValue)
+   if (v1.type() == kPropertyTypeValue)
    {
-      return v1.GetStringValue()==v2.GetStringValue() &&
-         jm::IsEqual(v1.GetDoubleValue(),v2.GetDoubleValue());
+      return v1.stringValue()==v2.stringValue() &&
+         jm::IsEqual(v1.doubleValue(),v2.doubleValue());
    }
 
    String editor = v1.mEditor;
    if(editor.equals("textfield"))
    {
-      return v1.GetStringValue().equals(v2.GetStringValue());
+      return v1.stringValue().equals(v2.stringValue());
    }
    else if(editor.equals("number"))
    {
-      return v1.GetIntegerValue() == v2.GetIntegerValue();
+      return v1.integerValue() == v2.integerValue();
    }
    else if(editor.equals("checkbox"))
    {
-      return v1.GetBoolValue() == v2.GetBoolValue();
+      return v1.boolValue() == v2.boolValue();
    }
    else if(editor.equals("file"))
    {
-      return v1.GetStringValue().equals(v2.GetStringValue());
+      return v1.stringValue().equals(v2.stringValue());
    }
    else if(editor.equals("combobox"))
    {
-      return v1.GetIntegerValue() == v2.GetIntegerValue();
+      return v1.integerValue() == v2.integerValue();
    }
    else if(editor.equals("value"))
    {
-      return v1.GetStringValue().equals(v2.GetStringValue()) && jm::IsEqual(v1.GetDoubleValue(),
-             v2.GetDoubleValue());
+      return v1.stringValue().equals(v2.stringValue()) && jm::IsEqual(v1.doubleValue(),
+             v2.doubleValue());
    }
    else if(editor.equals("dwgcolour"))
    {
-      return v1.GetIntegerValue() == v2.GetIntegerValue();
+      return v1.integerValue() == v2.integerValue();
    }
    else if(editor.equals("dwglayer"))
    {
-      return v1.GetStringValue().equals(v2.GetStringValue());
+      return v1.stringValue().equals(v2.stringValue());
    }
    System::log(Tr("Property not comparable"), kLogDebug);
    return false;

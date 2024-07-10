@@ -211,27 +211,27 @@ void XMLWriter::WriteAttribute(const jm::String &name, const jm::String &content
 
 void XMLWriter::WriteAttribute(const jm::String &name, int32 content)
 {
-   WriteAttribute(name, jm::String::ValueOf(content));
+   WriteAttribute(name, jm::String::valueOf(content));
 }
 
 void XMLWriter::WriteAttribute(const jm::String &name, uint32 content)
 {
-   WriteAttribute(name, jm::String::ValueOf(content));
+   WriteAttribute(name, jm::String::valueOf(content));
 }
 
 void XMLWriter::WriteAttribute(const jm::String& name, Integer content)
 {
-   WriteAttribute(name, jm::String::ValueOf(content));
+   WriteAttribute(name, jm::String::valueOf(content));
 }
 
 void XMLWriter::WriteAttribute(const jm::String &name, float content)
 {
-   WriteAttribute(name, jm::String::ValueOf(content));
+   WriteAttribute(name, jm::String::valueOf(content));
 }
 
 void XMLWriter::WriteAttribute(const jm::String& name, Double content)
 {
-   WriteAttribute(name, jm::String::ValueOf(content));
+   WriteAttribute(name, jm::String::valueOf(content));
 }
 
 void XMLWriter::WriteIndent()

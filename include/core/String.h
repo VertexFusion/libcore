@@ -153,7 +153,7 @@ namespace jm
           C-String mit 16bit-Elementen. Defacto ist es eine Kopie des Buffers.
           \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
           */
-         uint16* ToWString() const;
+         uint16* toWString() const;
 
          /*!
           \brief Diese Methode erzeugt unter Berücksichtigung der Kodierung einen C-String aus
@@ -234,7 +234,7 @@ namespace jm
           Zeit aus Effizienzgründen nur maximal die ersten 256 Zeichen verglichen.
           \param another Die Zeichenkette, mit der diese verglichen wird.
           */
-         int32 CompareFancyTo(const String &another) const;
+         int32 compareFancyTo(const String &another) const;
 
          /*!
           \brief Diese Methode prüft unter vernachlässigung der Klein- und Großbuchstaben, ob
@@ -243,7 +243,7 @@ namespace jm
           \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
           Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist auch wahr.
           */
-         bool EqualsIgnoreCase(const String &another) const;
+         bool equalsIgnoreCase(const String &another) const;
 
          /*!
           \brief Diese Methode prüft, ob der Anfang dieser Zeichenkette mit der anderen
@@ -252,7 +252,7 @@ namespace jm
           \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren beginnt.
           Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
           */
-         bool StartsWith(const String &another) const;
+         bool startsWith(const String &another) const;
 
          /*!
           \brief Diese Methode prüft, ob das Ende dieser Zeichenkette mit der anderen
@@ -261,7 +261,7 @@ namespace jm
           \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren endet.
           Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
           */
-         bool EndsWith(const String &another) const;
+         bool endsWith(const String &another) const;
 
          /*!
           \brief This method checks, is the string at position is the same as the other string.
@@ -270,34 +270,34 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool AtIs(Integer position,const String &another);
+         bool atIs(Integer position,const String &another);
 
       /*!
-       \brief Same as AtIs, but ignoring case.
+       \brief Same as atIs, but ignoring case.
        \param position The position where another string is expected
        \param another The comaring string
        \return Returns \c true is the substring sequence at position is the same as \c another.
        Otherwise \c false
        */
-      bool AtIsIgnoreCase(Integer position,const String &another);
+      bool atIsIgnoreCase(Integer position,const String &another);
 
          /*!
           \brief Diese Methode berechnet den Hashcode für diese Zeichenkette und gibt ihn zurück.
           */
-         Integer HashCode();
-         Integer ConstHashCode() const;
+         Integer hashCode();
+         Integer constHashCode() const;
 
          /*!
           \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Großbuchstaben durch
           Kleinbuchstaben ersetzt wurden
           */
-         String ToLowerCase() const;
+         String toLowerCase() const;
 
          /*!
           \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Kleinbuchstaben durch
           Großbuchstaben ersetzt wurden
           */
-         String ToUpperCase() const;
+         String toUpperCase() const;
 
          /*!
           \brief Diese Methode erzeugt eine Zeichenkette, die nur auf einem Teil dieser
@@ -307,7 +307,7 @@ namespace jm
           \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und bis zum Ende der
           Zeichenkette geht.
           */
-         String Substring(Integer beginIndex)const;
+         String substring(Integer beginIndex)const;
 
          /*!
           \brief Diese Methode erzeugt eine Zeichenkette, die nur auf einem Teil dieser
@@ -319,13 +319,13 @@ namespace jm
           \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und einen Buchstaben vor dem
           endIndex endet..
           */
-         String Substring(Integer beginIndex, Integer endIndex) const;
+         String substring(Integer beginIndex, Integer endIndex) const;
 
          /*!
           \brief Diese Methode gibt eine neue Zeichenkette zurück, an der alle nicht sichtbaren
           Textzeichen (Whitespaces) am Anfang und am Ende der Zeichenkette entfernt wurden.
           */
-         String Trim() const;
+         String trim() const;
 
          /*!
           \brief Diese Methode ersetzt Buchstaben in der Zeichenkette. Der "alte" Buchstabe wird
@@ -334,7 +334,7 @@ namespace jm
           \param newChar Der neue Buchstabe, mit dem der alte ersetzt werden soll.
           \return Die Zeichenkette mit den Ersetzungen.
           */
-         String Replace(Char oldChar, Char newChar) const;
+         String replace(Char oldChar, Char newChar) const;
 
          /*!
           \brief Diese Methode ersetzt Zeichenketten in der Zeichenkette. Die "alte" Zeichenkette
@@ -343,12 +343,12 @@ namespace jm
           \param newStr Die neue Zeichenkette, mit der die alte ersetzt werden soll.
           \return Die Zeichenkette mit den Ersetzungen.
           */
-         String ReplaceAll(String oldStr, String newStr) const;
+         String replaceAll(String oldStr, String newStr) const;
 
          /*!
           \brief Diese Methode dreht die Reihenfolge der Zeichen um
           */
-         String Reverse() const;
+         String reverse() const;
 
          /*!
           \brief Splits the string into a list of strings, using the char as separator.
@@ -362,7 +362,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer IndexOf(Char character) const;
+         Integer indexOf(Char character) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
@@ -371,7 +371,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer IndexOf(const String &str) const;
+         Integer indexOf(const String &str) const;
 
 
          /*!
@@ -382,7 +382,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer IndexOf(Char character, Integer fromIndex) const;
+         Integer indexOf(Char character, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
@@ -392,7 +392,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer IndexOf(const String &str, Integer fromIndex) const;
+         Integer indexOf(const String &str, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens des gewünschten
@@ -403,7 +403,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer LastIndexOf(Char character) const;
+         Integer lastIndexOf(Char character) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
@@ -414,7 +414,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer LastIndexOf(const String &str) const;
+         Integer lastIndexOf(const String &str) const;
 
 
          /*!
@@ -427,7 +427,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer LastIndexOf(Char character, Integer fromIndex) const;
+         Integer lastIndexOf(Char character, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
@@ -439,21 +439,21 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer LastIndexOf(const String &str, Integer fromIndex) const;
+         Integer lastIndexOf(const String &str, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt das Zeichen an einer bestimmten Position in der Zeichenkette
           zurück.
           \param index Der 0-basierte Index, dessen Zeichen gewünscht ist.
           */
-         Char CharAt(Integer index) const;
+         Char charAt(Integer index) const;
 
          /*!
           \brief Diese Methode ersetzt ein Zeichen in der Zeichenkette durch ein Neues.
           \param index Der 0-basierte Index des Zeichens, der ersetzt werden soll.
           \param character Das Zeichen, welches eingesetzt werden soll.
           */
-         void SetCharAt(Integer index, Char character);
+         void setCharAt(Integer index, Char character);
 
          /*!
           \brief Diese Methode fügt ein Zeichen in die Zeichenkette an der Position index ein
@@ -461,7 +461,7 @@ namespace jm
           \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
           \param character Das Zeichen, welches eingefügt werden soll
           */
-         void Insert(Integer index, Char character);
+         void insert(Integer index, Char character);
 
          /*!
           \brief Diese Methode fügt eine Zeichenkette in die Zeichenkette an der Position index ein
@@ -469,13 +469,13 @@ namespace jm
           \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
           \param string Die Zeichenkette, welchee eingefügt werden soll
           */
-         void Insert(Integer index, const String &string);
+         void insert(Integer index, const String &string);
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-          String Arg(Integer valueInteger,
+          String arg(Integer valueInteger,
                  Integer fieldwidth=0,
                  Char fillchar=Char(' '));
 
@@ -483,11 +483,11 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-      String Arg(const String &value,
+      String arg(const String &value,
                  Integer fieldwidth=0,
                  Char fillchar=Char(' '));
 
-      String Arg(Char character,
+      String arg(Char character,
                  Integer fieldwidth=0,
                  Char fillchar=Char(' '));
 
@@ -501,17 +501,17 @@ namespace jm
           \param precision The number of digits after the descimal separator.
           \param fillchar The character for filling the space, until fieldwidth chars are reached.
           */
-         String Arg(Double value,
+         String arg(Double value,
                     Integer fieldwidth=0,
                     Integer precision=-1,
                     Char fillchar=Char(' '));
 
-      String Arg(double value,
+      String arg(double value,
                  Integer fieldwidth=0,
                  Integer precision=-1,
-                 Char fillchar=Char(' ')){return Arg(Double(value),fieldwidth,precision,fillchar);};
+                 Char fillchar=Char(' ')){return arg(Double(value),fieldwidth,precision,fillchar);};
 
-         static void SetConsoleCharset(Charset* cs);
+         static void setConsoleCharset(Charset* cs);
 
          // Operators
          String& operator=(const String &another);
@@ -598,7 +598,7 @@ namespace jm
             \param number The double value.
             \return A string representing the double value. eg. "12.23" or "24.0".
             */
-         static String ValueOf(double number);
+         static String valueOf(double number);
 
          /*!
           \brief Converts the double to decimal String
@@ -606,7 +606,7 @@ namespace jm
           \param precision Number of digits after .
           \param trunc Truncate trailing 0 ?
           */
-         static String ValueOf(double number, Integer precision, bool trunc);
+         static String valueOf(double number, Integer precision, bool trunc);
 
 
          /*!
@@ -614,29 +614,29 @@ namespace jm
           \param number The value
           \return A String representing the int value. eg. "12" or "24".
           */
-         static String ValueOf(int64 number);
-         static String ValueOf(uint64 number);
-         static String ValueOf(int32 number);
-         static String ValueOf(uint32 number);
+         static String valueOf(int64 number);
+         static String valueOf(uint64 number);
+         static String valueOf(int32 number);
+         static String valueOf(uint32 number);
 
          /*!
           \brief Converts a bool value into a string.
           \param value The value.
           \return "true" if true and "false" if false.
           */
-         static String ValueOf(bool value);
+         static String valueOf(bool value);
 
          /*!
           \brief Returns operation system dependent line separator.
           */
-         static String LineSeparator();
+         static String lineSeparator();
 
          /*!
           \brief This method checks, if the string has the capacity to hold more bytes.
           If not, the array will be enlarged.
           \param more The number of additional bytes.
           */
-         void CheckCapacity(Integer more);
+         void checkCapacity(Integer more);
 
       private:
 
@@ -658,10 +658,10 @@ namespace jm
           \brief This method copies the content of CharArrays into this string.
           \param array The source CharArray.
           */
-         void Copy(const CharArray &array);
+         void copy(const CharArray &array);
 
-         //! Helper method for Arg.
-         bool ArgIndicies(Integer &first, Integer &second);
+         //! Helper method for arg.
+         bool argIndicies(Integer &first, Integer &second);
 
    };
 

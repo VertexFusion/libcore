@@ -36,9 +36,9 @@ const int32 gArabic[] = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
 const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
 
 
-Bool Bool::ValueOf(const jm::String& value)
+Bool Bool::valueOf(const jm::String& value)
 {
-   return value.EqualsIgnoreCase("true");
+   return value.equalsIgnoreCase("true");
 }
 
 
@@ -142,7 +142,7 @@ Integer Integer::valueOf(const jm::String &string)
 
    for(Integer a = 0; a < string.size(); a++)
    {
-      jm::Char c = string.CharAt(a);
+      jm::Char c = string.charAt(a);
 
       if(c.isDigit())
       {
@@ -172,7 +172,7 @@ Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
 
    while (cnt < sz)
    {
-      jm::Char c = str.CharAt(cnt);
+      jm::Char c = str.charAt(cnt);
       cnt++;
 
       uint64 i = 0;
@@ -223,7 +223,7 @@ jm::String Integer::toHexString()
    }
 
    //Zahlen umkehren
-   return ret.Reverse();
+   return ret.reverse();
 }
 
 jm::String Integer::toRomanString()
@@ -268,7 +268,7 @@ jm::String Integer::toLatinAlphabetString()
    }
 
    //Zahlen umkehren
-   return output.Reverse();
+   return output.reverse();
 }
 
 int8 Integer::Int8()const

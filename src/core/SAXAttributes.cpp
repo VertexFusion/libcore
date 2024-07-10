@@ -154,7 +154,7 @@ float SAXAttributes::GetFloatValue(const String &qname) const
 
 bool SAXAttributes::GetBoolValue(const String &qname)const
 {
-   return GetValue(qname).EqualsIgnoreCase("true");
+   return GetValue(qname).equalsIgnoreCase("true");
 }
 
 

@@ -62,7 +62,7 @@ void SAXParser::Parse(const String &xml)
 
    // Make sure that the token is large enough and does not have to be constantly enlarged for
    // binary data.
-   token.CheckCapacity(xml.size());
+   token.checkCapacity(xml.size());
 
    StartDocument();
 
@@ -76,7 +76,7 @@ void SAXParser::Parse(const String &xml)
 
    while(pos < length)
    {
-      c = xml.CharAt(pos);
+      c = xml.charAt(pos);
 
       if(c == '<' && inTag == false && inValue == false) // Found beginning of a tag.
       {
@@ -89,43 +89,43 @@ void SAXParser::Parse(const String &xml)
 
             // Cut whitespaces at the beginning
             Integer sub = 0;
-            while(sub < token.size() && token.CharAt(sub).isWhitespace())
+            while(sub < token.size() && token.charAt(sub).isWhitespace())
             {
-               beginWhitespaces.append(token.CharAt(sub));
+               beginWhitespaces.append(token.charAt(sub));
                sub++;
             }
             if(beginWhitespaces.size() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               const String tmp = token.Substring(beginWhitespaces.size());
+               const String tmp = token.substring(beginWhitespaces.size());
                token.zero();
                token.append(tmp);
             }
 
             // Cut off whitespaces at the end
             sub = token.size() - 1;
-            while(sub >= 0 && sub < token.size() && token.CharAt(sub).isWhitespace())
+            while(sub >= 0 && sub < token.size() && token.charAt(sub).isWhitespace())
             {
-               endWhiteSpaces.Insert(0, token.CharAt(sub));
+               endWhiteSpaces.insert(0, token.charAt(sub));
                sub--;
             }
             if(endWhiteSpaces.size() > 0)
             {
                // Direct assignment would change the length of tokens. Hence this detour
-               const String tmp = token.Substring(0, token.size() - endWhiteSpaces.size());
+               const String tmp = token.substring(0, token.size() - endWhiteSpaces.size());
                token.zero();
                token.append(tmp);
             }
 
             if(beginWhitespaces.size() > 0)
             {
-               token.Insert(0, beginWhitespaces.CharAt(beginWhitespaces.size() - 1));
+               token.insert(0, beginWhitespaces.charAt(beginWhitespaces.size() - 1));
                beginWhitespaces.deleteCharAt(beginWhitespaces.size() - 1);
             }
 
             if(endWhiteSpaces.size() > 0)
             {
-               token.append(endWhiteSpaces.CharAt(0));
+               token.append(endWhiteSpaces.charAt(0));
                endWhiteSpaces.deleteCharAt(0);
             }
 
@@ -143,7 +143,7 @@ void SAXParser::Parse(const String &xml)
          do
          {
             pos++;
-            c = xml.CharAt(pos);
+            c = xml.charAt(pos);
             escape.append(c);
          }
          while(c != ';' && pos < length - 1);
@@ -201,8 +201,8 @@ void SAXParser::ParseTagString(const String &xmlline)
 
    // Check for '/' at the end
    pos = line.size() - 1;
-   while(line.CharAt(pos).isWhitespace())pos--;
-   if(line.CharAt(pos) == '/')
+   while(line.charAt(pos).isWhitespace())pos--;
+   if(line.charAt(pos) == '/')
    {
       tagType = 2;
    }
@@ -210,10 +210,10 @@ void SAXParser::ParseTagString(const String &xmlline)
 
    // Skip whitespaces at beginning
    pos = 0;
-   while(line.CharAt(pos).isWhitespace())pos++;
+   while(line.charAt(pos).isWhitespace())pos++;
 
    // Check for '/' at beginning.
-   if(line.CharAt(pos) == '/')
+   if(line.charAt(pos) == '/')
    {
       tagType = 1;
       pos++;
@@ -229,7 +229,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 
    while(pos < length)
    {
-      c = line.CharAt(pos);
+      c = line.charAt(pos);
 
       if(c == '\"' || c == '\'')
       {
@@ -258,7 +258,7 @@ void SAXParser::ParseTagString(const String &xmlline)
          do
          {
             pos++;
-            c = line.CharAt(pos);
+            c = line.charAt(pos);
             escape.append(c);
          }
          while(c != ';' && pos < length);
@@ -293,7 +293,7 @@ void SAXParser::ParseTagString(const String &xmlline)
 
    // VProcess in the parser
    const String qualifiedName = tname;
-   const String localName = qualifiedName.Substring(qualifiedName.LastIndexOf(':') + 1);
+   const String localName = qualifiedName.substring(qualifiedName.lastIndexOf(':') + 1);
    switch(tagType)
    {
       case 0:

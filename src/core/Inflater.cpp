@@ -102,7 +102,7 @@ void Inflater::Inflate(uint8* &buffer, Integer &length)
 
       int8 compressionMethod = cmf & 0x0F;
       int8 compressionInfo = (cmf >> 4) & 0x0F;
-      if(compressionMethod != 8)throw new Exception("Compression method must be deflate with 32k window. (" + String::ValueOf(compressionMethod) + ")");
+      if(compressionMethod != 8)throw new Exception("Compression method must be deflate with 32k window. (" + String::valueOf(compressionMethod) + ")");
       if(compressionInfo > 7)throw new Exception("png window size is only for 32k implemented.");
 
       //int8 fcheck = flg & 0x1F; Does not have to be calculated explicitly for decompression, as fcheck must be set so that the following check is successful.
@@ -312,7 +312,7 @@ void Inflater::HandleCompressedFixHuffman()
             WriteUncompressed(mUncompBytes[src + a]);
          }
       }
-      else throw Exception("Code has unexpected value: " + String::ValueOf(value));
+      else throw Exception("Code has unexpected value: " + String::valueOf(value));
 
 
    }
@@ -334,7 +334,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
    //1. Determine maxBits at the same time
    std::vector<Inflater::HuffmanTree*> nodes;
    int32 maxBits = 0;
-   for(Integer a = 0; a < lengths->Length(); a++)
+   for(Integer a = 0; a < lengths->size(); a++)
    {
       // Only insert the elements that exist (i.e. length>0)
       if((*lengths)[a] != 0)
@@ -476,7 +476,7 @@ Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
 {
    //Größte Codelänge
    MAX_BITS = 0;
-   for(uint32 a = 0; a < codelengths->Length(); a++)MAX_BITS = (*codelengths)[a] > MAX_BITS ? (*codelengths)[a] : MAX_BITS;
+   for(uint32 a = 0; a < codelengths->size(); a++)MAX_BITS = (*codelengths)[a] > MAX_BITS ? (*codelengths)[a] : MAX_BITS;
 
    uint16* blCount = new uint16[MAX_BITS + 1];
    uint16* nextCode = new uint16[MAX_BITS + 1];
@@ -489,7 +489,7 @@ Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
    //1. Zähle die Codelängen
    // Count the number of codes for each code length.  Let
    //    bl_count[N] be the number of codes of length N, N >= 1.
-   for(uint32 a = 0; a < codelengths->Length(); a++)
+   for(uint32 a = 0; a < codelengths->size(); a++)
    {
       uint16 l = (*codelengths)[a];
       blCount[l]++;
@@ -513,9 +513,9 @@ Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
    //    (which have a bit length of zero) must not be assigned a
    //    value.
 
-   Array<uint16>* codes = new Array<uint16>(codelengths->Length());
+   Array<uint16>* codes = new Array<uint16>(codelengths->size());
    //for (int n = 0;  n <= codelengths->Length(); n++)
-   for(uint32 n = 0;  n < codelengths->Length(); n++)
+   for(uint32 n = 0;  n < codelengths->size(); n++)
    {
       int32 len = (*codelengths)[n];
       if(len != 0)
@@ -603,7 +603,7 @@ void Inflater::HandleCompressedDynamicHuffman()
 
    //Codelängenarray erzeugen und Nullen
    Array<uint16>* codelengths = new Array<uint16>(19);
-   for(uint32 a = 0; a < codelengths->Length(); a++)(*codelengths)[a] = 0;
+   for(uint32 a = 0; a < codelengths->size(); a++)(*codelengths)[a] = 0;
 
    //Einlesen der definierten Codelängen (3 Bit feste Breite)
    for(uint16 a = 0; a < HCLEN; a++)
@@ -678,7 +678,7 @@ void Inflater::HandleCompressedDynamicHuffman()
             WriteUncompressed(mUncompBytes[src + a]);
          }
       }
-      else throw Exception("Code has unexpected value: " + String::ValueOf(value));
+      else throw Exception("Code has unexpected value: " + String::valueOf(value));
 
 
    }

@@ -65,9 +65,9 @@ struct DllExport Bool
          return *this;
       };
 
-      static Bool ValueOf(const jm::String& value);
+      static Bool valueOf(const jm::String& value);
 
-      bool IsTrue() const
+      bool isTrue() const
       {
          return mValue == BoolTrue;
       };
@@ -85,7 +85,7 @@ struct DllExport Bool
       //Implizit conversion
       operator bool() const
       {
-         return IsTrue();
+         return isTrue();
       };
 
       /*!
@@ -100,13 +100,13 @@ struct DllExport Bool
       DllExport
       friend bool operator==(Bool v1, bool v2)
       {
-         return v2 ? v1.IsTrue() : v1.IsFalse();
+         return v2 ? v1.isTrue() : v1.IsFalse();
       };
 
       DllExport
          friend bool operator==(bool v1, Bool v2)
       {
-         return v1 ? v2.IsTrue() : v2.IsFalse();
+         return v1 ? v2.isTrue() : v2.IsFalse();
       };
 
       /*!

@@ -212,7 +212,7 @@ void Thread::SetName(const jm::String &name)
    ByteArray cstr = name.toCString();
    pthread_setname_np(thread, cstr.constData());
    #elif defined _WIN32
-   uint16* cstr = name.ToWString();
+   uint16* cstr = name.toWString();
    SetThreadDescription(mHandle, (PCWSTR)cstr);
    delete[] cstr;
    #endif

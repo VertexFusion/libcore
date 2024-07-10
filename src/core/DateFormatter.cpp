@@ -47,7 +47,7 @@ DateFormatter::DateFormatter(const String &pattern): Object()
 
    for(uint32 a = 0; a < pattern.size(); a++)
    {
-      Char c = pattern.CharAt(a);
+      Char c = pattern.charAt(a);
 
       if(c == '\'')
       {
@@ -69,7 +69,7 @@ DateFormatter::DateFormatter(const String &pattern): Object()
       else
       {
          Char l = c;
-         if(token.size() > 0)l = token.CharAt(0);
+         if(token.size() > 0)l = token.charAt(0);
 
          if(c != l)
          {
@@ -143,7 +143,7 @@ DateFormatter::Pattern::Pattern(const String &value, bool isText)
    {
       length = (uint8)value.size();
 
-      switch(value.CharAt(0).unicode())
+      switch(value.charAt(0).unicode())
       {
          case 'y':
             type = kYear;
@@ -203,9 +203,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          {
             int64 y = date.year() % 100;
             if(y < 10)value.append('0');
-            value.append(String::ValueOf(y));
+            value.append(String::valueOf(y));
          }
-         else value.append(String::ValueOf(date.year()));
+         else value.append(String::valueOf(date.year()));
          return;
 
       case kHourInDay0:
@@ -213,9 +213,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          {
             int64 d = date.hours();
             if(d < 10)value.append('0');
-            value.append(String::ValueOf(d));
+            value.append(String::valueOf(d));
          }
-         else value.append(String::ValueOf(date.hours()));
+         else value.append(String::valueOf(date.hours()));
          return;
 
       case kMinute:
@@ -224,9 +224,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
             int64 d = date.minutes();
             if(d < 0)d = 0;
             if(d < 10)value.append('0');
-            value.append(String::ValueOf(d));
+            value.append(String::valueOf(d));
          }
-         else value.append(String::ValueOf(date.minutes()));
+         else value.append(String::valueOf(date.minutes()));
          return;
 
       case kSecond:
@@ -234,9 +234,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          {
             int64 s = date.seconds();
             if(s < 10)value.append('0');
-            value.append(String::ValueOf(s));
+            value.append(String::valueOf(s));
          }
-         else value.append(String::ValueOf(date.seconds()));
+         else value.append(String::valueOf(date.seconds()));
          return;
 
       case kMillisecond:
@@ -245,9 +245,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
             int64 s = date.milliseconds() ;
             if(s < 10)value.append('0');
             if(s < 100)value.append('0');
-            value.append(String::ValueOf(s));
+            value.append(String::valueOf(s));
          }
-         else value.append(String::ValueOf(date.milliseconds()));
+         else value.append(String::valueOf(date.milliseconds()));
          return;
 
       case kDayInMonth:
@@ -256,9 +256,9 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
             int64 d = date.date();
             if(d < 0)d = 0;
             if(d < 10)value.append('0');
-            value.append(String::ValueOf(d));
+            value.append(String::valueOf(d));
          }
-         else value.append(String::ValueOf(date.date()));
+         else value.append(String::valueOf(date.date()));
          return;
 
       case kDayInWeek:
@@ -366,13 +366,13 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
       case kMonthInYear:
          if(length == 1)
          {
-            value.append(String::ValueOf(date.month() + 1));
+            value.append(String::valueOf(date.month() + 1));
          }
          else if(length == 2)
          {
             int64 m = date.month() + 1;
             if(m < 10)value.append('0');
-            value.append(String::ValueOf(m));
+            value.append(String::valueOf(m));
          }
          else if(length == 3)
          {
@@ -483,7 +483,7 @@ void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) cons
          return;
 
       case kDayInYear:
-         value.append(String::ValueOf(date.dayOfYear() + 1));
+         value.append(String::valueOf(date.dayOfYear() + 1));
          return;
 
       case kWeekInYear:

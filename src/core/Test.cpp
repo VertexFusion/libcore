@@ -75,7 +75,7 @@ void Test::TestEquals(const double actual, const double expected, const String &
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage + " '" + String::ValueOf(actual) + "' '" + String::ValueOf(expected) + "'", kLogError);
+   System::log(failmessage + " '" + String::valueOf(actual) + "' '" + String::valueOf(expected) + "'", kLogError);
 }
 
 void Test::TestEquals(Integer actual, Integer expected, const String& failmessage)
@@ -185,7 +185,7 @@ void Test::TestEqualsIgnoreCase(const String& actual,
    jm::gTotalTestCount++;
    jm::gTestCount++;
 
-   if(expected.EqualsIgnoreCase(actual))return;
+   if(expected.equalsIgnoreCase(actual))return;
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;

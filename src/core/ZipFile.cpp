@@ -43,7 +43,7 @@ ZipFile::ZipFile(File* file): jm::Object(),
    mFile = file;
 }
 
-void ZipFile::Open()
+void ZipFile::open()
 {
    uint32 length = (uint32)mFile->size();
    uint32 seek = length - 22;
@@ -121,19 +121,19 @@ void ZipFile::Open()
 
 }
 
-void ZipFile::Close()
+void ZipFile::close()
 {
    mFile->close();
 }
 
-jm::String ZipFile::GetComment()
+jm::String ZipFile::comment()
 {
    return kEmptyString;
 }
 
-ZipEntry* ZipFile::GetEntry(const String &name)
+ZipEntry* ZipFile::entry(const String &name)
 {
-   LinkedListIterator iter = GetEntryIterator();
+   LinkedListIterator iter = entryIterator();
 
    while(iter.hasNext())
    {
@@ -144,17 +144,17 @@ ZipEntry* ZipFile::GetEntry(const String &name)
    return NULL;
 }
 
-LinkedListIterator ZipFile::GetEntryIterator()
+LinkedListIterator ZipFile::entryIterator()
 {
    return mEntries.iterator();
 }
 
-uint32 ZipFile::GetEntryCount() const
+uint32 ZipFile::entryCount() const
 {
    return mEntries.size();
 }
 
-jm::Stream* ZipFile::GetStream(const ZipEntry* entry)
+jm::Stream* ZipFile::stream(const ZipEntry* entry)
 {
    ByteArray input = ByteArray(entry->mCompressedSize, 0);
    uint8* buffer = new uint8[entry->mUncompressedSize];
@@ -204,22 +204,22 @@ ZipEntry::ZipEntry(const String &name): jm::Object()
    mDataOffset = 0;
 }
 
-String ZipEntry::GetName()const
+String ZipEntry::name()const
 {
    return mName;
 }
 
-void ZipEntry::SetUncompressedSize(uint32 size)
+void ZipEntry::setUncompressedSize(uint32 size)
 {
    mUncompressedSize = size;
 }
 
-uint32 ZipEntry::GetUncompressedSize()const
+uint32 ZipEntry::uncompressedSize()const
 {
    return mUncompressedSize;
 }
 
-bool ZipEntry::IsDirectory()const
+bool ZipEntry::isDirectory()const
 {
    return false;
 }

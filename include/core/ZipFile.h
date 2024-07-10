@@ -43,56 +43,41 @@ namespace jm
       public:
 
          /*!
-          \brief Konstruktor
+          \brief Constructor
           */
          ZipEntry(const String &name);
 
          /*!
-          \brief Gibt den Namen des Eintrages zurück
+          \brief Returns the name of the entry.
           */
-         String GetName()const;
+         String name()const;
 
          /*!
-          \brief Legt die Größe des unkomprimierten Eintrages fest
+          \brief set the size of the uncompressed entry.
           */
-         void SetUncompressedSize(uint32 size);
+         void setUncompressedSize(uint32 size);
 
          /*!
-          \brief Gibt die Größe des unkomprimierten Eintrages zurück
+          \brief Returns the size of the uncompressed entry.
           */
-         uint32 GetUncompressedSize()const;
+         uint32 uncompressedSize()const;
 
          /*!
-          \brief Gibt den Status zurück, ob der Eintrag ein Verzeichnis ist. Ein Verzeichnis
-          ist dadurch definiert, dass das letzte Zeichen im Namen ein "/" ist.
+          \brief Returns true, if the entry is a directory. An entry is recognized as
+          a directory, if the last character of the name is '/'.
           */
-         bool IsDirectory()const;
+         bool isDirectory()const;
 
       private:
 
-         /*! \brief Der Name */
          String mName;
-
-         /*! \brief Extrafeld */
          String mExtra;
-
-         /*! \brief Kommentar */
          String mComment;
-
-         /*! \brief Die unkomprimierte Größe */
          uint32 mUncompressedSize;
-
-         /*! \brief Die komprimierte Größe */
          uint32 mCompressedSize;
-
-         /*! \brief Offset des Local Headers */
          uint32 mHeaderOffset;
-
-         /*! \brief Prüfsumme */
          uint32 mCRC;
-
-         /*! \brieg 0-basierter Offset in Datei */
-         uint32 mDataOffset;
+         uint32 mDataOffset; // 0-based offset in file
 
          friend class ZipFile;
          friend class ZipOutputFile;
@@ -114,41 +99,41 @@ namespace jm
          /*!
           \brief Öffnet die Datei zum Lesen
           */
-         void Open();
+         void open();
 
          /*!
           \brief Schließt die Datei
           */
-         void Close();
+         void close();
 
          /*!
           \brief Gibt den Kommentar der ZIP-Datei zurück, oder leeren String, wenn kein Kommentar
           existiert.
           */
-         String GetComment();
+         String comment();
 
          /*!
           \brief Gibt den Zip-Eintrag zurück, wenn er existiert, oder NULL, wenn er nicht
           existiert.
           */
-         ZipEntry* GetEntry(const String &name);
+         ZipEntry* entry(const String &name);
 
          /*!
           \brief Gibt einen Iterator über die Zipeinträge zurück
           */
-         LinkedListIterator GetEntryIterator();
+         LinkedListIterator entryIterator();
 
          /*!
           \brief Gibt die Anzahl der Zipeinträge zurück.
           */
-         uint32 GetEntryCount() const;
+         uint32 entryCount() const;
 
          /*!
           \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer
           dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur
           geeignet die Daten einer ZIP-Datei zu lesen. In den Stream kann nicht geschrieben werden.
           */
-         Stream* GetStream(const ZipEntry* entry);
+         Stream* stream(const ZipEntry* entry);
 
       private:
 
@@ -181,34 +166,34 @@ namespace jm
          /*!
          \brief Öffnet die Datei zum Schreiben
          */
-         void Open();
+         void open();
 
          /*!
          \brief Schließt die Datei
          */
-         void Close();
+         void close();
 
          /*!
          \brief Schließt den aktuellen Eintrag und bereitet die Datei auf das Schreiben des nächsten
          Eintrages vor
          */
-         void CloseEntry();
+         void closeEntry();
 
          /*!
          \brief Beginnt mit dem Schreiben eines neuen ZIP-Eintrags. Der Stream wartet nun an
          korrekter Position auf Daten
          */
-         void PutNextEntry(ZipEntry* entry);
+         void putNextEntry(ZipEntry* entry);
 
          /*!
          \brief Gibt den Stream für das Schreiben der Daten zurück.
          */
-         void Write(uint8* data, Integer offset, Integer length);
+         void write(uint8* data, Integer offset, Integer length);
 
          /*!
          \brief Schreibt den Inhalt der Datei in den Stream
          */
-         void WriteAndClose(File* file);
+         void writeAndClose(File* file);
 
 
       private:
@@ -224,8 +209,8 @@ namespace jm
          File* mTemp;
 
          /*!
-         	 \brief Die Einträge
-         	 */
+          \brief Die Einträge
+          */
          LinkedList mEntries;
 
    };

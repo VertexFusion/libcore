@@ -71,30 +71,30 @@ void Preferences::load(File file)
    {
       String line = st->next();
 
-      Integer pos = line.IndexOf('=');
+      Integer pos = line.indexOf('=');
       if(pos > 0)
       {
-         String key = line.Substring(0, pos).Trim();
-         String value = line.Substring(pos + 1).Trim();
+         String key = line.substring(0, pos).trim();
+         String value = line.substring(pos + 1).trim();
 
          //Prüfe auf Zeilenumbruch
-         while((pos = value.IndexOf("\\n")) > 0)
+         while((pos = value.indexOf("\\n")) > 0)
          {
-            value = value.Substring(0, pos) + "\n" + value.Substring(pos + 2);
+            value = value.substring(0, pos) + "\n" + value.substring(pos + 2);
          }
 
          //Ersetze
          Integer index = 0;
          while(index < value.size())
          {
-            Char c = value.CharAt(index);
+            Char c = value.charAt(index);
 
             if(c == '\\' && index + 1 < value.size())
             {
-               Char d = value.CharAt(index + 1);
+               Char d = value.charAt(index + 1);
                if(d == 't')
                {
-                  value.SetCharAt(index, '\t');
+                  value.setCharAt(index, '\t');
                   value.deleteCharAt(index + 1);
                }
                if(d == '\\')
@@ -125,7 +125,7 @@ void Preferences::save(File file)
       VxfErrorStatus status = file.open(kFmWrite);
       if(status!=eOK)
       {
-         jm::System::log(Tr("cannot store preferences in '%1'").Arg(file.absolutePath()),jm::kLogError);
+         jm::System::log(Tr("cannot store preferences in '%1'").arg(file.absolutePath()),jm::kLogError);
          return;
       }
 
@@ -141,17 +141,17 @@ void Preferences::save(File file)
          uint32 index = 0;
          while(index < val.size())
          {
-            Char c = val.CharAt(index);
+            Char c = val.charAt(index);
 
             if(c == '\\')
             {
-               val.Insert(index + 1, '\\');
+               val.insert(index + 1, '\\');
                index++;
             }
             else if(c == '\t')
             {
-               val.SetCharAt(index, '\\');
-               val.Insert(index + 1, 't');
+               val.setCharAt(index, '\\');
+               val.insert(index + 1, 't');
                index++;
             }
             index++;
@@ -160,7 +160,7 @@ void Preferences::save(File file)
          //Zeile bilden
          key.append('=');
          key.append(val);
-         key.append(String::LineSeparator());
+         key.append(String::lineSeparator());
          ByteArray cstr = key.toCString();
          file.write((uint8*)cstr.constData(), cstr.size());
       }
@@ -184,9 +184,9 @@ bool Preferences::hasValue(const String& key)const
 void Preferences::setValue(const String &key, const String &value)
 {
    String tmp = value;
-   tmp = tmp.ReplaceAll("\r\n", "\\n");
-   tmp = tmp.ReplaceAll("\r", "\\n");
-   tmp = tmp.ReplaceAll("\n", "\\n");
+   tmp = tmp.replaceAll("\r\n", "\\n");
+   tmp = tmp.replaceAll("\r", "\\n");
+   tmp = tmp.replaceAll("\n", "\\n");
    String* actual = new String(tmp);
    String* old = static_cast<String*>(put(key, actual));
    if(old != NULL)delete old;
@@ -194,7 +194,7 @@ void Preferences::setValue(const String &key, const String &value)
 
 void Preferences::setValue(const String &key, int32 value)
 {
-   setValue(key, String::ValueOf(value));
+   setValue(key, String::valueOf(value));
 }
 
 

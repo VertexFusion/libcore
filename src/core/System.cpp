@@ -228,7 +228,7 @@ jm::String jm::System::userFullName()
 
    // Name has form "Uwe-PC\Uwe"
    String str = String(user_name, user_name_size);
-   return str.Substring(str.IndexOf('\\') + 1);
+   return str.substring(str.indexOf('\\') + 1);
 
    #endif
 
@@ -269,7 +269,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    #elif defined _WIN32// Windows
 
-   uint16* wstr = file->GetAbsolutePath().ToWString();
+   uint16* wstr = file->GetAbsolutePath().toWString();
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
    delete[] wstr;
    if(libptr == NULL) std::cout << "Loading dynamic library " << file->GetAbsolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;

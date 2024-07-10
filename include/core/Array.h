@@ -52,21 +52,21 @@ namespace jm
 
          Array(): Object()
          {
-            mLength = 0;
+            mSize = 0;
             mData = new T[0];
          };
 
-         Array(Integer length): Object()
+         Array(Integer size): Object()
          {
-            mLength = length;
-            mData = new T[length];
+            mSize = size;
+            mData = new T[size];
          };
 
          Array(const Array &other): Object()
          {
-            mLength = other.mLength;
-            mData = new T[mLength];
-            for(Integer a = 0; a < mLength; a++)
+            mSize = other.mSize;
+            mData = new T[mSize];
+            for(Integer a = 0; a < mSize; a++)
             {
                mData[a] = other.mData[a];
             }
@@ -74,21 +74,21 @@ namespace jm
 
          virtual ~Array()
          {
-            mLength = 0;
+            mSize = 0;
             if(mData != NULL)delete[] mData;
          };
 
-         inline Integer Length() const
+         inline Integer size() const
          {
-            return mLength;
+            return mSize;
          };
 
-         inline void Sort()
+         inline void sort()
          {
-            if(mLength < 1)return;
+            if(mSize < 1)return;
             if(dynamic_cast<Comparable<T>*>(&mData[0]) == NULL)return;
 
-            Integer n = mLength;
+            Integer n = mSize;
             do
             {
                Integer newn = 1;
@@ -112,23 +112,23 @@ namespace jm
             while(n > 1);
          }
 
-         inline T Get(Integer index) const
+         inline T get(Integer index) const
          {
-            if(index < 0 || index >= mLength)
+            if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             return mData[index];
          };
 
-         inline void Set(Integer index, T item)
+         inline void set(Integer index, T item)
          {
-            if(index < 0 || index >= mLength)
+            if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
          inline T &operator[](const Integer index) const
          {
-            if(index < 0 || index >= mLength)
+            if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             return mData[index];
          }
@@ -139,9 +139,9 @@ namespace jm
             {
                delete[] mData;
 
-               mLength = another.mLength;
-               mData = new T[mLength];
-               for(Integer a = 0; a < mLength; a++)
+               mSize = another.mSize;
+               mData = new T[mSize];
+               for(Integer a = 0; a < mSize; a++)
                {
                   mData[a] = another.mData[a];
                }
@@ -155,7 +155,7 @@ namespace jm
          /*!
           The length of the array.
           */
-         Integer mLength;
+         Integer mSize;
 
          /*!
           \brief The data array itself.
@@ -206,7 +206,7 @@ namespace jm
             return mLength;
          };
 
-         inline void Sort()
+         inline void sort()
          {
             if(mLength < 1)return;
             if(mData[0] == NULL)return;

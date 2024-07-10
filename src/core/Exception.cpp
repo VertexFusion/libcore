@@ -76,24 +76,24 @@ void Exception::PrintStackTrace() const
 
       //Schneide Index (o) ab
       String line = symbollist[i];
-      line = line.Trim();
-      Integer pos = line.IndexOf(' ');
-      line = line.Substring(pos).Trim();
+      line = line.trim();
+      Integer pos = line.indexOf(' ');
+      line = line.substring(pos).trim();
 
       //Name der Binärdatei
-      pos = line.IndexOf(' ');
-      String binaryName = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String binaryName = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       // Address
-      pos = line.IndexOf(' ');
-      String address = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String address = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       // Function
-      pos = line.IndexOf(' ');
-      String function = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String function = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       int status;
       size_t size = 1024;
@@ -139,24 +139,24 @@ String Exception::GetStrackTrace() const
 
       //Schneide Index (o) ab
       String line = symbollist[i];
-      line = line.Trim();
-      Integer pos = line.IndexOf(' ');
-      line = line.Substring(pos).Trim();
+      line = line.trim();
+      Integer pos = line.indexOf(' ');
+      line = line.substring(pos).trim();
 
       //Name der Binärdatei
-      pos = line.IndexOf(' ');
-      String binaryName = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String binaryName = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       // Address
-      pos = line.IndexOf(' ');
-      String address = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String address = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       // Function
-      pos = line.IndexOf(' ');
-      String function = line.Substring(0, pos);
-      line = line.Substring(pos).Trim();
+      pos = line.indexOf(' ');
+      String function = line.substring(0, pos);
+      line = line.substring(pos).trim();
 
       int status;
       size_t size = 1024;

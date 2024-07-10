@@ -47,11 +47,11 @@ Bool StringTokenizer::IsDelimiter(Integer index) const
 {
    Integer cnt = 0;
    Integer l = mDelimiters.size();
-   Char c = mStr.CharAt(index);
+   Char c = mStr.charAt(index);
 
    while(cnt < l)
    {
-      if(mDelimiters.CharAt(cnt++) == c)return true;
+      if(mDelimiters.charAt(cnt++) == c)return true;
    }
    return false;
 }
@@ -103,14 +103,14 @@ String StringTokenizer::next()
       Integer start = mPosition;
       Integer end = mPosition + 1;
       mPosition = end;
-      return mStr.Substring(start, end);
+      return mStr.substring(start, end);
    }
    else
    {
       Integer start = mPosition;
       Integer end = FindTokenEnd(start);
       mPosition = end;
-      return mStr.Substring(start, end);
+      return mStr.substring(start, end);
    }
 
 }

@@ -54,7 +54,7 @@ Hashtable::~Hashtable()
 void* Hashtable::put(String key, void* value)
 {
    // Make sure that no entry already exists in the hash table.
-   Integer hash = key.HashCode();
+   Integer hash = key.hashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
    {
@@ -87,7 +87,7 @@ void* Hashtable::put(String key, void* value)
 
 void* Hashtable::get(const String &key) const
 {
-   Integer hash = key.ConstHashCode();
+   Integer hash = key.constHashCode();
 
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
@@ -103,7 +103,7 @@ void* Hashtable::get(const String &key) const
 
 void* Hashtable::remove(const String &key)
 {
-   Integer hash = key.ConstHashCode();
+   Integer hash = key.constHashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
 
    HashtableEntry* prev = NULL;

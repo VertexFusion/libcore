@@ -118,7 +118,7 @@ String File::resolve(String parent, String child)
    if(parent.size() < 1 && child.size() < 1)return sep;
 
    // If child begins with separator
-   if(child.CharAt(0) == DIR_SEP)
+   if(child.charAt(0) == DIR_SEP)
    {
       if(parent.equals(sep))return child;
       return parent + child;
@@ -138,7 +138,7 @@ String File::normalize(const String &path)
 
    for(Integer a = 0; a < length; a++)
    {
-      Char character = pathname.CharAt(a);
+      Char character = pathname.charAt(a);
 
       // Remove duplicate separator
       if(prev == DIR_SEP && character == DIR_SEP)
@@ -273,7 +273,7 @@ bool File::isHidden() const
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   return name().CharAt(0) == '.';
+   return name().charAt(0) == '.';
 
    #elif defined _WIN32//Windows
 
@@ -456,7 +456,7 @@ Array<File>* File::listFiles()const
    while((dirp = readdir(dp)) != NULL)
    {
       String filename = String(dirp->d_name);
-      list->Set(cnt++, File(*this, filename));
+      list->set(cnt++, File(*this, filename));
    }
    closedir(dp);
 
@@ -471,7 +471,7 @@ Array<File>* File::listFiles()const
    String tmp = mPathname;
    tmp.Append(DIR_SEP);
    tmp.Append('*');
-   uint16* wstr = tmp.ToWString();
+   uint16* wstr = tmp.toWString();
 
    hFind = FindFirstFile((LPCWSTR)wstr, &data);
 
@@ -517,7 +517,7 @@ Integer File::size() const
    int32 result = stat(mCstr.constData(), &filestat);
 
    // If it doesn't exist, then I can't read it.
-   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").Arg(absolutePath()));
+   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").arg(absolutePath()));
 
    return Integer((uint64)filestat.st_size);
 }
@@ -535,19 +535,19 @@ String File::path() const
 
 String File::parent() const
 {
-   Integer idx = mPathname.LastIndexOf(DIR_SEP);
+   Integer idx = mPathname.lastIndexOf(DIR_SEP);
    if(idx < 0)idx = 0;
-   return mPathname.Substring(0, idx);
+   return mPathname.substring(0, idx);
 }
 
 String File::name() const
 {
-   return mPathname.Substring(mPathname.LastIndexOf(DIR_SEP) + 1);
+   return mPathname.substring(mPathname.lastIndexOf(DIR_SEP) + 1);
 }
 
 String File::extension() const
 {
-   return mPathname.Substring(mPathname.LastIndexOf('.') + 1);
+   return mPathname.substring(mPathname.lastIndexOf('.') + 1);
 }
 
 bool File::createNewFile()
@@ -599,7 +599,7 @@ VxfErrorStatus File::open(FileMode mode)
 
    if(mHandle == NULL)
    {
-      String msg=Tr("Cannot open file! \"%1\" Errno: %2").Arg(mPathname).Arg(Integer(errno));
+      String msg=Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(Integer(errno));
       jm::System::log(msg,jm::kLogError);
       
       if(errno == EACCES)return eNotAllowed;
@@ -760,7 +760,7 @@ VxfErrorStatus File::addTag(const String &tag)
    //Check is tag is present, if yes, just return
    for(Integer index = 0; index < oldtags.size(); index++)
    {
-      if(oldtags[index].EqualsIgnoreCase(tag))return eOK;
+      if(oldtags[index].equalsIgnoreCase(tag))return eOK;
    }
 
    //Create new array and append tag
@@ -821,7 +821,7 @@ VxfErrorStatus File::removeTag(const String &tag)
    bool found = false;
    for(Integer index = 0; index < oldtags.size(); index++)
    {
-      if(oldtags[index].EqualsIgnoreCase(tag))
+      if(oldtags[index].equalsIgnoreCase(tag))
       {
          found = true;
          break;
@@ -835,7 +835,7 @@ VxfErrorStatus File::removeTag(const String &tag)
    Integer cnt = 0;
    for(Integer index = 0; index < newsize + 1; index++)
    {
-      if(oldtags[index].EqualsIgnoreCase(tag) == false)
+      if(oldtags[index].equalsIgnoreCase(tag) == false)
       {
          CFStringRef cfstr = oldtags[index].toCFString();
          strs[cnt] = cfstr;
@@ -937,16 +937,16 @@ String jm::ExecPath()
 String jm::ExecName()
 {
    String exec = ExecPath();
-   Integer pos = exec.LastIndexOf(DIR_SEP);
-   return exec.Substring(pos + 1);
+   Integer pos = exec.lastIndexOf(DIR_SEP);
+   return exec.substring(pos + 1);
 }
 
 String jm::ExecDir()
 {
    String exec = ExecPath();
-   Integer pos = exec.LastIndexOf(DIR_SEP);
-   if(exec.CharAt(pos - 1) == '.' && exec.CharAt(pos - 2) == DIR_SEP)pos -= 2;
-   return exec.Substring(0, pos);
+   Integer pos = exec.lastIndexOf(DIR_SEP);
+   if(exec.charAt(pos - 1) == '.' && exec.charAt(pos - 2) == DIR_SEP)pos -= 2;
+   return exec.substring(0, pos);
 }
 
 
@@ -964,7 +964,7 @@ File jm::ResourceDir(const String &bundleId)
       //Aufräumen
       CFRelease(cfstr);
 
-      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").Arg(bundleId), kLogError);
+      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId), kLogError);
       return File("/");
    }
 

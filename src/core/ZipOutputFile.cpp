@@ -59,13 +59,13 @@ ZipOutputFile::ZipOutputFile(File* file): jm::Object(),
    mTemp = NULL;
 }
 
-void ZipOutputFile::Open()
+void ZipOutputFile::open()
 {
    if(mFile->exists() == false)mFile->createNewFile();
    mFile->open(kFmReadWrite);
 }
 
-void ZipOutputFile::Close()
+void ZipOutputFile::close()
 {
    uint32 start = static_cast<uint32>(mFile->position());
 
@@ -123,7 +123,7 @@ void ZipOutputFile::Close()
    mFile->close();
 }
 
-void ZipOutputFile::CloseEntry()
+void ZipOutputFile::closeEntry()
 {
    ZipEntry* entry = (ZipEntry*)mEntries.last();
 
@@ -156,7 +156,7 @@ void ZipOutputFile::CloseEntry()
    mFile->seek(pos);
 }
 
-void ZipOutputFile::WriteAndClose(jm::File* file)
+void ZipOutputFile::writeAndClose(jm::File* file)
 {
    ZipEntry* entry = static_cast<ZipEntry*>(mEntries.last());
 
@@ -191,7 +191,7 @@ void ZipOutputFile::WriteAndClose(jm::File* file)
    mFile->seek(pos);
 }
 
-void ZipOutputFile::PutNextEntry(ZipEntry* entry)
+void ZipOutputFile::putNextEntry(ZipEntry* entry)
 {
    entry->mHeaderOffset = static_cast<uint32>(mFile->position());
 
@@ -225,7 +225,7 @@ void ZipOutputFile::PutNextEntry(ZipEntry* entry)
    mEntries.add(entry, NULL);
 }
 
-void ZipOutputFile::Write(uint8* data, Integer offset, Integer length)
+void ZipOutputFile::write(uint8* data, Integer offset, Integer length)
 {
    mTemp->write(&data[offset], length);
 }
