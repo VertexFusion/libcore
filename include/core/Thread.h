@@ -119,7 +119,6 @@ namespace jm
           */
          Thread();
 
-
          /*!
           \brief Standarddestruktor
           */

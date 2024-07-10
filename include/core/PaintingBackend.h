@@ -82,8 +82,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~PaintingBackend();
-
+         virtual ~PaintingBackend();
 
          /*!
           \brief Wenn diese Methode aufgerufen wird, wird die Arbeit des Zeichnenden Threads

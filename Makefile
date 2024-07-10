@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Linux)
    C__ =clang
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
-   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++11 
+   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3
    TESTFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
@@ -152,25 +152,23 @@ TEST =\
  $(PATH_TEST)/core/UndoManagerTest.cpp
 
 
-TESTOBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o)
+TESTOBJECTS =  $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o)
 
 # Wo finde ich die Header-Dateien?
 INCLUDE = -Iinclude -I3rdparty -Iprec
 
 # Target = ALL
 Debug: $(OBJECTS)
-	$(CXX) $(LFLAGS) -o $(LIB_NAME) $(OBJECTS)
 	mkdir -p $(PATH_BIN)
-	ar rcs libjameo.a $(OBJECTS)
-	mv $(LIB_NAME) $(PATH_BIN)/$(LIB_NAME)
-	mv libjameo.a $(PATH_BIN)/libjameo.a
+	$(CXX) $(LFLAGS) -o $(PATH_BIN)/$(LIB_NAME) $(OBJECTS)
+	ar rcs $(PATH_BIN)/libcore.a $(OBJECTS)
 
 install:
 	mkdir -p $(prefix)/usr/lib/jameo
 	cp $(PATH_BIN)/$(LIB_NAME) $(prefix)/usr/lib/jameo/$(LIB_NAME)
 
 test: $(TESTOBJECTS)
-	$(CXX) $(INCLUDE) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS)
+	$(CXX) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS) $(PATH_BIN)/libcore.a
 
 prec/Precompiled.pch: prec/Precompiled.h
 	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.h -o prec/Precompiled.pch
@@ -186,7 +184,7 @@ prec/Precompiled.pch: prec/Precompiled.h
 	$(CXX) $(CFLAGS) $(INCLUDE) -include-pch prec/Precompiled.pch -c $< -o $@
 
 clean:
-	rm -f $(TESTOBJECTS) prec/Precompiled.pch
+	rm -f $(OBJECTS) $(TESTOBJECTS) prec/Precompiled.pch
 	rm -Rf $(PATH_BIN)/*
 
 # DO NOT DELETE
