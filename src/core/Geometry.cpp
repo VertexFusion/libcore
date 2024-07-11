@@ -34,7 +34,7 @@
 
 using namespace jm;
 
-Vertex3 jm::IntersectionPointLineAndPlane(const Vertex3 &planePosition,
+Vertex3 jm::intersectionPointLineAndPlane(const Vertex3 &planePosition,
       const Vertex3 &normal,
       const Vertex3 &linePosition,
       const Vertex3 &direction,
@@ -75,7 +75,7 @@ Vertex3 jm::IntersectionPointLineAndPlane(const Vertex3 &planePosition,
    return linePosition + direction * lambda;
 }
 
-Vertex3 jm::ClosestPointOnPlane(const Vertex3 &point,
+Vertex3 jm::closestPointOnPlane(const Vertex3 &point,
                                 const Vertex3 &position,
                                 const Vertex3 &normal)
 {
@@ -85,10 +85,10 @@ Vertex3 jm::ClosestPointOnPlane(const Vertex3 &point,
    // 2. A straight line is defined that is perpendicular to the plane and passes through P
    // -> g: point + lambda * normal
 
-   return IntersectionPointLineAndPlane(position, normal, point, normal, true);
+   return intersectionPointLineAndPlane(position, normal, point, normal, true);
 }
 
-Vertex3 jm::ClosestPointOnLine(const Vertex3 &point,
+Vertex3 jm::closestPointOnLine(const Vertex3 &point,
                                const Vertex3 &position,
                                const Vertex3 &direction)
 {
@@ -98,10 +98,10 @@ Vertex3 jm::ClosestPointOnLine(const Vertex3 &point,
    // 2. The straight line is already defined by its equation.
    // -> g: position + lanbda * direction
 
-   return IntersectionPointLineAndPlane(point, direction, position, direction, true);
+   return intersectionPointLineAndPlane(point, direction, position, direction, true);
 }
 
-Vertex3 jm::ClosestPointOnLine(const Vertex3 &position1,
+Vertex3 jm::closestPointOnLine(const Vertex3 &position1,
                                const Vertex3 &direction1,
                                const Vertex3 &position2,
                                const Vertex3 &direction2)
@@ -121,11 +121,11 @@ Vertex3 jm::ClosestPointOnLine(const Vertex3 &position1,
    //    base point
    Vertex3 normal1 = direction1.crossProduct(direction2);
    Vertex3 normal2 = direction1.crossProduct(normal1);
-   return IntersectionPointLineAndPlane(position1, normal2, position2, direction2, true);
+   return intersectionPointLineAndPlane(position1, normal2, position2, direction2, true);
 }
 
 
-Vertex3 jm::ClosestPointOnLine(const Vertex3 &point,
+Vertex3 jm::closestPointOnLine(const Vertex3 &point,
                                const Vertex3 &lineStart,
                                const Vertex3 &lineEnd,
                                bool extend)
@@ -139,10 +139,10 @@ Vertex3 jm::ClosestPointOnLine(const Vertex3 &point,
    // -> E: ( x - point ) * direction
 
    Vertex3 direction = lineEnd - lineStart;
-   return IntersectionPointLineAndPlane(point, direction, lineStart, direction, extend);
+   return intersectionPointLineAndPlane(point, direction, lineStart, direction, extend);
 }
 
-Vertex3 jm::ClosestPointOnCircle(const Vertex3 &point,
+Vertex3 jm::closestPointOnCircle(const Vertex3 &point,
                                  const Vertex3 &center,
                                  double radius,
                                  const Vertex3 &normal)
@@ -160,13 +160,13 @@ Vertex3 jm::ClosestPointOnCircle(const Vertex3 &point,
    // -> lambda = |r| / radius
    // Calculate the intersection.
 
-   Vertex3 loc = ClosestPointOnPlane(point, center, normal);
+   Vertex3 loc = closestPointOnPlane(point, center, normal);
    Vertex3 r = loc - center;
    double lambda = r.Abs() / radius;
    return center + r * lambda;
 }
 
-double jm::DistancePointToPlane(const Vertex3 &point,
+double jm::distancePointToPlane(const Vertex3 &point,
                                 const Vertex3 &position,
                                 const Vertex3 &normal)
 {
@@ -175,12 +175,12 @@ double jm::DistancePointToPlane(const Vertex3 &point,
    // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
    // 3. Betrag ist Abstand
 
-   Vertex3 loc = ClosestPointOnPlane(point, position, normal);
+   Vertex3 loc = closestPointOnPlane(point, position, normal);
    loc = loc - point;
    return loc.Abs();
 }
 
-double jm::DistancePointToPoint(const Vertex3 &point1,
+double jm::distancePointToPoint(const Vertex3 &point1,
                                 const Vertex3 &point2)
 {
    Vertex3 v = point2 - point1;
@@ -188,14 +188,14 @@ double jm::DistancePointToPoint(const Vertex3 &point1,
 }
 
 
-double jm::DistancePointToPoint(const Vertex2 &point1,
+double jm::distancePointToPoint(const Vertex2 &point1,
                                 const Vertex2 &point2)
 {
    Vertex2 v = point2 - point1;
    return v.Abs();
 }
 
-double jm::DistancePointToLine(const Vertex3 &point,
+double jm::distancePointToLine(const Vertex3 &point,
                                const Vertex3 &position,
                                const Vertex3 &direction)
 {
@@ -204,12 +204,12 @@ double jm::DistancePointToLine(const Vertex3 &point,
    // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
    // 3. Betrag ist Abstand
 
-   Vertex3 loc = ClosestPointOnLine(point, position, direction);
+   Vertex3 loc = closestPointOnLine(point, position, direction);
    loc = loc - point;
    return loc.Abs();
 }
 
-double jm::DistancePointToLine(const Vertex3 &point,
+double jm::distancePointToLine(const Vertex3 &point,
                                const Vertex3 &lineStart,
                                const Vertex3 &lineEnd,
                                bool extend)
@@ -219,12 +219,12 @@ double jm::DistancePointToLine(const Vertex3 &point,
    // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
    // 3. Betrag ist Abstand
 
-   Vertex3 loc = ClosestPointOnLine(point, lineStart, lineEnd, extend);
+   Vertex3 loc = closestPointOnLine(point, lineStart, lineEnd, extend);
    loc = loc - point;
    return loc.Abs();
 }
 
-double jm::DistancePointToCircle(const Vertex3 &point,
+double jm::distancePointToCircle(const Vertex3 &point,
                                  const Vertex3 &center,
                                  double radius,
                                  const Vertex3 &normal)
@@ -234,12 +234,12 @@ double jm::DistancePointToCircle(const Vertex3 &point,
    // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
    // 3. Betrag ist Abstand
 
-   Vertex3 loc = ClosestPointOnCircle(point, center, radius, normal);
+   Vertex3 loc = closestPointOnCircle(point, center, radius, normal);
    loc = loc - point;
    return loc.Abs();
 }
 
-double jm::DistanceLineToLine(const Vertex3 &position1,
+double jm::distanceLineToLine(const Vertex3 &position1,
                               const Vertex3 &direction1,
                               const Vertex3 &position2,
                               const Vertex3 &direction2)
@@ -260,57 +260,57 @@ double jm::DistanceLineToLine(const Vertex3 &position1,
       // 2. Berechne Lotpunkt auf der 1. Geraden
       // 3. Bestimme Abstand der beiden Punkte
 
-      Vertex3 loc2 = ClosestPointOnLine(position1, direction1, position2, direction2);
-      Vertex3 loc1 = ClosestPointOnLine(position2, direction2, position1, direction1);
+      Vertex3 loc2 = closestPointOnLine(position1, direction1, position2, direction2);
+      Vertex3 loc1 = closestPointOnLine(position2, direction2, position1, direction1);
 
-      return DistancePointToPoint(loc1, loc2);
+      return distancePointToPoint(loc1, loc2);
    }
 }
 
 
-bool jm::IsOnPlane(const Vertex3 &point,
+bool jm::isPointOnPlane(const Vertex3 &point,
                    const Vertex3 &position,
                    const Vertex3 &normal,
                    double maxDistance)
 {
-   double dist = DistancePointToPlane(point, position, normal);
+   double dist = distancePointToPlane(point, position, normal);
    return IsLess(dist, maxDistance);
 }
 
-bool jm::IsOnLine(const Vertex3 &point,
+bool jm::isPointOnLine(const Vertex3 &point,
                   const Vertex3 &position,
                   const Vertex3 &direction)
 {
-   double dist = DistancePointToLine(point, position, direction);
+   double dist = distancePointToLine(point, position, direction);
    return IsEqual(dist, 0);
 }
 
-bool jm::IsOnLine(const Vertex3 &point,
+bool jm::isPointOnLine(const Vertex3 &point,
                   const Vertex3 &lineStart,
                   const Vertex3 &lineEnd,
                   bool extend)
 {
-   double dist = DistancePointToLine(point, lineStart, lineEnd, extend);
+   double dist = distancePointToLine(point, lineStart, lineEnd, extend);
    return IsEqual(dist, 0);
 }
 
-bool jm::IsOnCircle(const Vertex3 &point,
+bool jm::isPointOnCircle(const Vertex3 &point,
                     const Vertex3 &center,
                     double radius,
                     const Vertex3 &normal)
 {
-   double dist = DistancePointToCircle(point, center, radius, normal);
+   double dist = distancePointToCircle(point, center, radius, normal);
    return IsEqual(dist, 0);
 }
 
-bool jm::IsSamePoint(const Vertex3 &point1,
+bool jm::isSamePoint(const Vertex3 &point1,
                      const Vertex3 &point2)
 {
-   double dist = DistancePointToPoint(point1, point2);
+   double dist = distancePointToPoint(point1, point2);
    return IsEqual(dist, 0);
 }
 
-Vertex2 jm::IntersectionPoint(const Vertex2 &position1,
+Vertex2 jm::intersectionPoint(const Vertex2 &position1,
                               const Vertex2 &direction1,
                               const Vertex2 &position2,
                               const Vertex2 &direction2)
@@ -323,7 +323,7 @@ Vertex2 jm::IntersectionPoint(const Vertex2 &position1,
    }
 }
 
-Vertex3 jm::IntersectionPoint(const Vertex3 &position1,
+Vertex3 jm::intersectionPoint(const Vertex3 &position1,
                               const Vertex3 &direction1,
                               const Vertex3 &position2,
                               const Vertex3 &direction2)
@@ -331,7 +331,7 @@ Vertex3 jm::IntersectionPoint(const Vertex3 &position1,
    //
    // 1. Ermittle Abstand der Geraden.
    //
-   double dist = DistanceLineToLine(position1,
+   double dist = distanceLineToLine(position1,
                                     direction1,
                                     position2,
                                     direction2);
@@ -344,7 +344,7 @@ Vertex3 jm::IntersectionPoint(const Vertex3 &position1,
       //
       // Welcher Punkt auf der 2. Geraden hat den kürzesten Abstand zur 1. Geraden ?
       //
-      Vertex3 inter = ClosestPointOnLine(position1,
+      Vertex3 inter = closestPointOnLine(position1,
                                          direction1,
                                          position2,
                                          direction2);
@@ -361,7 +361,7 @@ Vertex3 jm::IntersectionPoint(const Vertex3 &position1,
    return Vertex3(NAN, NAN, NAN);
 }
 
-bool jm::Crosses(const Vertex2 &start1,
+bool jm::crosses(const Vertex2 &start1,
                  const Vertex2 &end1,
                  const Vertex2 &start2,
                  const Vertex2 &end2)
@@ -375,7 +375,7 @@ bool jm::Crosses(const Vertex2 &start1,
    double lambda1 = x.x;
    double lambda2 = x.y;
 
-   /*	Vertex2 intersection = IntersectionPoint( start1, dir1, start2, dir2 );
+   /*	Vertex2 intersection = intersectionPoint( start1, dir1, start2, dir2 );
 
     if( IsNaN( intersection.x ) || IsNaN( intersection.y ) ) return false;
 
@@ -394,7 +394,7 @@ bool jm::Crosses(const Vertex2 &start1,
    return true;
 }
 
-Vertex2 jm::ExtensionPointOnLine(const Vertex2 &rayorigin,
+Vertex2 jm::extensionPointOnLine(const Vertex2 &rayorigin,
                                  const Vertex2 &direction,
                                  const Vertex2 &start,
                                  const Vertex2 &end)
@@ -545,7 +545,7 @@ Vertex2 PQCheck(double p,
    return Vertex2(NAN, NAN);
 }
 
-Vertex2 jm::ExtensionPointOnArc(const Vertex2 &rayorigin,
+Vertex2 jm::extensionPointOnArc(const Vertex2 &rayorigin,
                                 const Vertex2 &direction,
                                 const Vertex2 &center,
                                 double radius,
@@ -590,7 +590,7 @@ Vertex2 jm::ExtensionPointOnArc(const Vertex2 &rayorigin,
    return PQCheck(p, q, rayorigin, direction, center, start, end);
 }
 
-Vertex2 jm::ExtensionPointOnEllipse(const Vertex2 &rayorigin_,
+Vertex2 jm::extensionPointOnEllipse(const Vertex2 &rayorigin_,
                                     const Vertex2 &direction_,
                                     const Vertex2 &center_,
                                     const Vertex2 &mainAxis,
@@ -643,17 +643,17 @@ Vertex2 jm::ExtensionPointOnEllipse(const Vertex2 &rayorigin_,
    return result;
 }
 
-Vertex3 jm::AngleBisector(const Vertex3 &direction1, const Vertex3 &direction2)
+Vertex3 jm::angleBisector(const Vertex3 &direction1, const Vertex3 &direction2)
 {
    return direction1.Normalized() + direction2.Normalized();
 }
 
-Vertex2 jm::AngleBisector(const Vertex2 &direction1, const Vertex2 &direction2)
+Vertex2 jm::angleBisector(const Vertex2 &direction1, const Vertex2 &direction2)
 {
    return direction1.Normalized() + direction2.Normalized();
 }
 
-jm::VxfErrorStatus jm::CircleParameterBy3Points(Vertex2 &centre, double &radius,
+jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2 &centre, double &radius,
       const Vertex2 &p1,
       const Vertex2 &p2,
       const Vertex3 &p3)

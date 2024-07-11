@@ -53,7 +53,7 @@ namespace jm
     möchte. Wenn es keinen Schnittpunkt gibt, wird ein ungültiver Vektor zurückgegeben.
     */
    DllExport
-   Vertex3 IntersectionPointLineAndPlane(const Vertex3 &planePosition,
+   Vertex3 intersectionPointLineAndPlane(const Vertex3 &planePosition,
                                          const Vertex3 &normal,
                                          const Vertex3 &linePosition,
                                          const Vertex3 &direction,
@@ -68,7 +68,7 @@ namespace jm
     \return Den Punkt auf der Ebene mit dem minimalen (lotrechten) Abstand vom Punkt zur Ebene
     */
    DllExport
-   Vertex3 ClosestPointOnPlane(const Vertex3 &point,
+   Vertex3 closestPointOnPlane(const Vertex3 &point,
                                const Vertex3 &position,
                                const Vertex3 &normal);
 
@@ -82,7 +82,7 @@ namespace jm
     \return Den Punkt auf der Geraden mit dem kürzesten Abstand zwischen Linie und Punkt
     */
    DllExport
-   Vertex3 ClosestPointOnLine(const Vertex3 &point,
+   Vertex3 closestPointOnLine(const Vertex3 &point,
                               const Vertex3 &position,
                               const Vertex3 &direction);
 
@@ -97,7 +97,7 @@ namespace jm
     \return Den Punkt auf der 2. Geraden mit dem kürzesten Abstand zwischen Linie und Linie
     */
    DllExport
-   Vertex3 ClosestPointOnLine(const Vertex3 &position1,
+   Vertex3 closestPointOnLine(const Vertex3 &position1,
                               const Vertex3 &direction1,
                               const Vertex3 &position2,
                               const Vertex3 &direction2);
@@ -113,7 +113,7 @@ namespace jm
     \return Den Punkt auf der Geraden mit dem kürzesten Abstand zwischen Linie und Punkt
     */
    DllExport
-   Vertex3 ClosestPointOnLine(const Vertex3 &point,
+   Vertex3 closestPointOnLine(const Vertex3 &point,
                               const Vertex3 &lineStart,
                               const Vertex3 &lineEnd,
                               bool extend);
@@ -127,7 +127,7 @@ namespace jm
     \return Den Punkt auf dem Kreios mit dem kürzesten Abstand zwischen Linie und Kreis
     */
    DllExport
-   Vertex3 ClosestPointOnCircle(const Vertex3 &point,
+   Vertex3 closestPointOnCircle(const Vertex3 &point,
                                 const Vertex3 &center,
                                 double radius,
                                 const Vertex3 &normal);
@@ -141,7 +141,7 @@ namespace jm
     \return Den minimalen (lotrechten) Abstand vom Punkt zur Ebene
     */
    DllExport
-   double DistancePointToPlane(const Vertex3 &point,
+   double distancePointToPlane(const Vertex3 &point,
                                const Vertex3 &position,
                                const Vertex3 &normal);
 
@@ -152,7 +152,7 @@ namespace jm
     \return Den Abstand vom ersten zum zweiten Punkt
     */
    DllExport
-   double DistancePointToPoint(const Vertex3 &point1,
+   double distancePointToPoint(const Vertex3 &point1,
                                const Vertex3 &point2);
 
    /*!
@@ -162,7 +162,7 @@ namespace jm
     \return Den Abstand vom ersten zum zweiten Punkt
     */
    DllExport
-   double DistancePointToPoint(const Vertex2 &point1,
+   double distancePointToPoint(const Vertex2 &point1,
                                const Vertex2 &point2);
 
    /*!
@@ -173,7 +173,7 @@ namespace jm
     \return Den kürzesten Abstand zwischen Linie und Punkt
     */
    DllExport
-   double DistancePointToLine(const Vertex3 &point,
+   double distancePointToLine(const Vertex3 &point,
                               const Vertex3 &position,
                               const Vertex3 &direction);
 
@@ -188,7 +188,7 @@ namespace jm
     \return Den kürzesten Abstand zwischen Linie und Punkt
     */
    DllExport
-   double DistancePointToLine(const Vertex3 &point,
+   double distancePointToLine(const Vertex3 &point,
                               const Vertex3 &lineStart,
                               const Vertex3 &lineEnd,
                               bool extend);
@@ -202,7 +202,7 @@ namespace jm
     \return Den kürzesten Abstand zwischen Linie und Kreis
     */
    DllExport
-   double DistancePointToCircle(const Vertex3 &point,
+   double distancePointToCircle(const Vertex3 &point,
                                 const Vertex3 &center,
                                 double radius,
                                 const Vertex3 &normal);
@@ -216,7 +216,7 @@ namespace jm
     \return Den kürzesten Abstand zwischen den Geraden
     */
    DllExport
-   double DistanceLineToLine(const Vertex3 &position1,
+   double distanceLineToLine(const Vertex3 &position1,
                              const Vertex3 &direction1,
                              const Vertex3 &position2,
                              const Vertex3 &direction2);
@@ -231,7 +231,7 @@ namespace jm
     \return "wahr", wenn der Punkt auf der Ebene liegt
     */
    DllExport
-   bool IsOnPlane(const Vertex3 &point,
+   bool isPointOnPlane(const Vertex3 &point,
                   const Vertex3 &position,
                   const Vertex3 &normal,
                   double maxDistance = 0.0);
@@ -245,7 +245,7 @@ namespace jm
     \return "wahr", wenn der Punkt auf der Geraden liegt
     */
    DllExport
-   bool IsOnLine(const Vertex3 &point,
+   bool isPointOnLine(const Vertex3 &point,
                  const Vertex3 &position,
                  const Vertex3 &direction);
 
@@ -260,7 +260,7 @@ namespace jm
     \return "wahr", wenn der Punkt auf dem Linienelement liegt
     */
    DllExport
-   bool IsOnLine(const Vertex3 &point,
+   bool isPointOnLine(const Vertex3 &point,
                  const Vertex3 &lineStart,
                  const Vertex3 &lineEnd,
                  bool extend);
@@ -275,7 +275,7 @@ namespace jm
     \return "wahr", wenn der Punkt auf dem Kreis liegt
     */
    DllExport
-   bool IsOnCircle(const Vertex3 &point,
+   bool isPointOnCircle(const Vertex3 &point,
                    const Vertex3 &center,
                    double radius,
                    const Vertex3 &normal);
@@ -288,7 +288,7 @@ namespace jm
     \return "wahr", wenn beide Punkte aufeinander liegen
     */
    DllExport
-   bool IsSamePoint(const Vertex3 &point1,
+   bool isSamePoint(const Vertex3 &point1,
                     const Vertex3 &point2);
 
    /*!
@@ -302,7 +302,7 @@ namespace jm
     der Punkt die Werte NAN
     */
    DllExport
-   Vertex2 IntersectionPoint(const Vertex2 &position1,
+   Vertex2 intersectionPoint(const Vertex2 &position1,
                              const Vertex2 &direction1,
                              const Vertex2 &position2,
                              const Vertex2 &direction2);
@@ -318,7 +318,7 @@ namespace jm
     windschiefer Geraten hat der Punkt die Werte NAN
     */
    DllExport
-   Vertex3 IntersectionPoint(const Vertex3 &position1,
+   Vertex3 intersectionPoint(const Vertex3 &position1,
                              const Vertex3 &direction1,
                              const Vertex3 &position2,
                              const Vertex3 &direction2);
@@ -333,7 +333,7 @@ namespace jm
     \return "wahr", wenn sich die Linien zwischen den Endpunkten schneiden. Andernfalls "falsch".
     */
    DllExport
-   bool Crosses(const Vertex2 &start1,
+   bool crosses(const Vertex2 &start1,
                 const Vertex2 &end1,
                 const Vertex2 &start2,
                 const Vertex2 &end2);
@@ -353,7 +353,7 @@ namespace jm
     existiert, hat der Vektor NaN als Einträge.
     */
    DllExport
-   Vertex2 ExtensionPointOnLine(const Vertex2 &rayorigin,
+   Vertex2 extensionPointOnLine(const Vertex2 &rayorigin,
                                 const Vertex2 &direction,
                                 const Vertex2 &start,
                                 const Vertex2 &end);
@@ -375,7 +375,7 @@ namespace jm
     existiert, hat der Vektor NaN als Einträge.
     */
    DllExport
-   Vertex2 ExtensionPointOnArc(const Vertex2 &rayorigin,
+   Vertex2 extensionPointOnArc(const Vertex2 &rayorigin,
                                const Vertex2 &direction,
                                const Vertex2 &center,
                                double radius,
@@ -401,7 +401,7 @@ namespace jm
     existiert, hat der Vektor NaN als Einträge.
     */
    DllExport
-   Vertex2 ExtensionPointOnEllipse(const Vertex2 &rayorigin,
+   Vertex2 extensionPointOnEllipse(const Vertex2 &rayorigin,
                                    const Vertex2 &direction,
                                    const Vertex2 &center,
                                    const Vertex2 &mainAxis,
@@ -414,21 +414,21 @@ namespace jm
     Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
     */
    DllExport
-   Vertex3 AngleBisector(const Vertex3 &direction1,
+   Vertex3 angleBisector(const Vertex3 &direction1,
                          const Vertex3 &direction2);
    /*!
     \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
     Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
     */
    DllExport
-   Vertex2 AngleBisector(const Vertex2 &direction1,
+   Vertex2 angleBisector(const Vertex2 &direction1,
                          const Vertex2 &direction2);
 
    /*!
     \brief Calculates the circle parameters centre point and radius given by the 3 points.
     */
    DllExport
-   jm::VxfErrorStatus CircleParameterBy3Points(Vertex2 &centre, double &radius,
+   jm::VxfErrorStatus circleParameterBy3Points(Vertex2 &centre, double &radius,
          const Vertex2 &p1,
          const Vertex2 &p2,
          const Vertex3 &p3);

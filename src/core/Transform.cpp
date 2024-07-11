@@ -229,7 +229,7 @@ void Transform::InitMirroring(const jm::Vertex3 &planePoint,
 
 void Transform::InitWCS(const jm::Vertex3 &extrusion)
 {
-   Matrix mx = WCSMatrix(extrusion);
+   Matrix mx = wcsMatrix(extrusion);
    Zeros();
    Set(0, 0, mx.Get(0, 0));
    Set(1, 0, mx.Get(1, 0));
@@ -250,7 +250,7 @@ void Transform::InitIdentity()
 }
 
 
-Matrix jm::OCSMatrix(const jm::Vertex3& extrusion)
+Matrix jm::ocsMatrix(const jm::Vertex3& extrusion)
 {
    //Koordinatenachsen des WCS
    jm::Vertex3 wy = jm::Vertex3(0.0, 1.0, 0.0);
@@ -273,16 +273,16 @@ Matrix jm::OCSMatrix(const jm::Vertex3& extrusion)
    return ocs;
 }
 
-Matrix jm::WCSMatrix(const jm::Vertex3 &extrusion)
+Matrix jm::wcsMatrix(const jm::Vertex3 &extrusion)
 {
    //WCS = OCS^-1
-   jm::Matrix WCS = OCSMatrix(extrusion);
+   jm::Matrix WCS = ocsMatrix(extrusion);
    WCS.Inverse();
    return WCS;
 }
 
 
-Vertex3 jm::WCSToOCS(jm::Vertex3 wcs,
+Vertex3 jm::wcsToOcs(jm::Vertex3 wcs,
                      jm::Vertex3 extrusion)
 {
    /*	Matrix in = Matrix( 1, 3 );
@@ -290,7 +290,7 @@ Vertex3 jm::WCSToOCS(jm::Vertex3 wcs,
     in.Set( 0, 1, wcs.y );
     in.Set( 0, 2, wcs.z );*/
 
-   jm::Matrix OCS = OCSMatrix(extrusion);
+   jm::Matrix OCS = ocsMatrix(extrusion);
 
    //	Matrix out = in * OCS;
    jm::Vertex3 out = OCS * wcs;
@@ -299,14 +299,14 @@ Vertex3 jm::WCSToOCS(jm::Vertex3 wcs,
    //	return ocs;
 }
 
-Vertex3 jm::OCSToWCS(const jm::Vertex3& ocs, const jm::Vertex3& extrusion)
+Vertex3 jm::ocsToWcs(const jm::Vertex3& ocs, const jm::Vertex3& extrusion)
 {
    /*	Matrix in = Matrix( 1, 3 );
     in.Set( 0, 0, ocs.x );
     in.Set( 0, 1, ocs.y );
     in.Set( 0, 2, ocs.z );*/
 
-   jm::Matrix WCS = WCSMatrix(extrusion);
+   jm::Matrix WCS = wcsMatrix(extrusion);
 
    //	Matrix out = in * WCS;
    jm::Vertex3 out = WCS * ocs;

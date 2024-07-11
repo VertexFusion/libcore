@@ -43,14 +43,14 @@ namespace jm
     \brief Diese Methode rechnet WCS-Koordinaten in OCS-Koordinaten um
     */
    DllExport
-   Vertex3 WCSToOCS(Vertex3 wcs,
+   Vertex3 wcsToOcs(Vertex3 wcs,
                     Vertex3 extrusion);
 
    /*!
     \brief Diese Methode rechnet OCS-Koordinaten in WCS-Koordinaten um
     */
    DllExport
-   Vertex3 OCSToWCS(const Vertex3& ocs,
+   Vertex3 ocsToWcs(const Vertex3& ocs,
                     const Vertex3& extrusion);
 
    /*!
@@ -58,14 +58,14 @@ namespace jm
     Es wird der "Arbitrary Axis Algorithm" aus der DXF-Referenz angewendet.
     */
    DllExport
-   Matrix OCSMatrix(const Vertex3 &extrusion);
+   Matrix ocsMatrix(const Vertex3 &extrusion);
 
    /*!
     \brief Diese Methode berechnet die WCS-Transformationsmatrix.
     Es wird der "Arbitrary Axis Algorithm" aud der DXF-Referenz angewendet.
     */
    DllExport
-   Matrix WCSMatrix(const Vertex3 &extrusion);
+   Matrix wcsMatrix(const Vertex3 &extrusion);
 
    /*!
     \brief Diese Klasse ist eine Abstrahierung der Matrix und erweitert sie um Funktionen
