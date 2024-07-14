@@ -138,7 +138,11 @@ namespace jm
 
          void addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
 
-         void remove(const Object* data, UndoManager* um);
+         /*!
+          \brief removes the element from the list.
+          \return eOK on success. eNotFound, if entry is not in the list.
+          */
+         VxfErrorStatus remove(const Object* data, UndoManager* um);
 
          void swapData(Object* data1, Object* data2, UndoManager* um);
 
@@ -176,7 +180,7 @@ namespace jm
 
          void addBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
 
-         void remove(LListElement* element, UndoManager* um);
+         VxfErrorStatus remove(LListElement* element, UndoManager* um);
 
    };
 

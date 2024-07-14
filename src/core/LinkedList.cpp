@@ -209,7 +209,7 @@ void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
 }
 
 
-void LinkedList::remove(LListElement* element, UndoManager* um)
+VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
 {
    LListElement* prev = element->prev;
    LListElement* next = element->next;
@@ -245,10 +245,12 @@ void LinkedList::remove(LListElement* element, UndoManager* um)
    element->next = NULL;
    element->release();
    count--;
+
+   return eOK;
 }
 
 
-void LinkedList::remove(const Object* data, UndoManager* um)
+VxfErrorStatus LinkedList::remove(const Object* data, UndoManager* um)
 {
    rewind();
    while(hasNext())
@@ -256,9 +258,11 @@ void LinkedList::remove(const Object* data, UndoManager* um)
       LListElement* elem = nextElement();
       if(elem->data == data)
       {
-         remove(elem, um);
+         return remove(elem, um);
       }
    }
+
+   return eNotFound;
 }
 
 uint32 LinkedList::size() const
