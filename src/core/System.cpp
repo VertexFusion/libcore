@@ -269,10 +269,10 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    #elif defined _WIN32// Windows
 
-   uint16* wstr = file->GetAbsolutePath().toWString();
+   uint16* wstr = file->absolutePath().toWString();
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
    delete[] wstr;
-   if(libptr == NULL) std::cout << "Loading dynamic library " << file->GetAbsolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;
+   if(libptr == NULL) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;
    return libptr;
 
    #endif
@@ -293,7 +293,7 @@ void jm::System::unloadDynamicLibrary(void* library)
    #elif defined _WIN32//Windows
 
    bool res = (bool)FreeLibrary((HMODULE) library);
-   if(res == false) Log("Closing dynamic library failed!", kLogError);
+   if(res == false) log("Closing dynamic library failed!", kLogError);
 
    #endif
 }
@@ -317,8 +317,8 @@ void* jm::System::findSymbol(void* library, const String &name)
 
    #elif defined _WIN32//Windows
 
-   ByteArray cstring = name.ToCString();
-   void* ptr = GetProcAddress((HMODULE) library, cstring.ConstData());
+   ByteArray cstring = name.toCString();
+   void* ptr = GetProcAddress((HMODULE) library, cstring.constData());
 
    return ptr;
 

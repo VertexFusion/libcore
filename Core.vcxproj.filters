@@ -254,9 +254,6 @@
     <ClCompile Include="src\core\CharsetDecoder.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\Colour.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\CRC.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -513,6 +510,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\core\Double.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Color.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\StringList.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

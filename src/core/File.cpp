@@ -104,7 +104,7 @@ void File::setCString()
    mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
    #elif defined _WIN32 //Windows
    // Must be under Windows Windows-1252 for fopen
-   mCstr = mPathname.ToCString(Charset::ForName("Windows-1252"));
+   mCstr = mPathname.toCString(Charset::ForName("Windows-1252"));
    #endif
 }
 
@@ -164,7 +164,7 @@ bool File::makeDirectory()
    return result == 0;
 
    #elif defined _WIN32//Windows
-   int32 result = _mkdir(mCstr.ConstData());
+   int32 result = _mkdir(mCstr.constData());
    return result == 0;
    #endif
 }
@@ -177,10 +177,10 @@ bool File::exists() const
    return access(mCstr.constData(), F_OK) == 0;
 
    #elif defined _WIN32//Windows
-   if(mCstr.Size() == 0)return false;
+   if(mCstr.size() == 0)return false;
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    return result == 0;
 
    #endif
@@ -196,7 +196,7 @@ bool File::canRead() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if(filestat.st_mode & _S_IREAD) return true;
    return false;
@@ -215,7 +215,7 @@ bool File::canWrite() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if(filestat.st_mode & _S_IWRITE) return true;
    return false;
@@ -236,7 +236,7 @@ bool File::isDirectory() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if(filestat.st_mode & _S_IFDIR) return true;
    return false;
@@ -259,7 +259,7 @@ bool File::isFile() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if(filestat.st_mode & _S_IFREG) return true;
    return false;
@@ -278,7 +278,7 @@ bool File::isHidden() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if((filestat.st_mode & _S_IFREG) == 0) return true;
    return false;
@@ -325,7 +325,7 @@ bool File::isPipe() const
    #elif defined _WIN32//Windows
 
    struct stat filestat;
-   int32 result = stat(mCstr.ConstData(), &filestat);
+   int32 result = stat(mCstr.constData(), &filestat);
    if(result != 0)return false;  //Existiert nicht
    if(filestat.st_mode & _S_IFIFO) return true;
    return false;
@@ -363,7 +363,7 @@ Date File::lastModified() const
    #elif defined _WIN32//Windows
 
    struct stat st;
-   stat(mCstr.ConstData(), &st);
+   stat(mCstr.constData(), &st);
 
    // Convert
    const time_t ct = st.st_mtime;//time_t is the time in seconds
@@ -407,7 +407,7 @@ bool File::renameTo(const String &newPath)
    #elif defined __linux__ //Linux
    ByteArray newname = newPath.toCString();
    #elif defined _WIN32 //Windows
-   ByteArray newname = newPath.ToCString(Charset::ForName("Windows-1252"));
+   ByteArray newname = newPath.toCString(Charset::ForName("Windows-1252"));
    #endif
 
 
@@ -469,8 +469,8 @@ Array<File>* File::listFiles()const
    WIN32_FIND_DATA data;
 
    String tmp = mPathname;
-   tmp.Append(DIR_SEP);
-   tmp.Append('*');
+   tmp.append(DIR_SEP);
+   tmp.append('*');
    uint16* wstr = tmp.toWString();
 
    hFind = FindFirstFile((LPCWSTR)wstr, &data);
@@ -495,7 +495,7 @@ Array<File>* File::listFiles()const
       {
          // Only the file name is stored in Files.
          // The path name must therefore precede it for it to work...
-         list->Set(a, File(mPathname, files[a]));
+         list->set(a, File(mPathname, files[a]));
       }
 
       delete wstr;
@@ -556,7 +556,7 @@ bool File::createNewFile()
    mHandle = fopen(mCstr.constData(), "wb");
    Integer ret = mHandle != NULL;
    #elif defined _WIN32 //Windows
-   Integer ret = fopen_s(&mHandle, mCstr.ConstData(), "wb");
+   Integer ret = fopen_s(&mHandle, mCstr.constData(), "wb");
    #endif
 
    close();
@@ -584,15 +584,15 @@ VxfErrorStatus File::open(FileMode mode)
    switch(mode)
    {
       case kFmRead:
-         ret = fopen_s(&mHandle, mCstr.ConstData(), "rb");
+         fopen_s(&mHandle, mCstr.constData(), "rb");
          break;
 
       case kFmWrite:
-         ret = fopen_s(&mHandle, mCstr.ConstData(), "wb");
+         fopen_s(&mHandle, mCstr.constData(), "wb");
          break;
 
       case kFmReadWrite:
-         ret = fopen_s(&mHandle, mCstr.ConstData(), "rb+");
+         fopen_s(&mHandle, mCstr.constData(), "rb+");
          break;
    }
    #endif
@@ -925,7 +925,7 @@ String jm::ExecPath()
       String ret;
 
       uint32 pos = 0;
-      while(path[pos] != 0)ret.Append(path[pos++]);
+      while(path[pos] != 0)ret.append(path[pos++]);
 
       return ret;
    }
@@ -1106,6 +1106,11 @@ File jm::CurrentDir()
    getcwd(cwd, sizeof(cwd));
    return File(cwd);
    #elif defined _WIN32 //Windows
-   #endif
+   uint16 path[MAX_PATH];
+   LPWSTR ptr = (LPWSTR) & path[0];
+   uint32 size = GetCurrentDirectory(MAX_PATH,ptr);
+   String name = String((uint16*)path, size);
+   return File(name);
+#endif
 }
 

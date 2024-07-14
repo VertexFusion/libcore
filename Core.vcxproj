@@ -553,7 +553,7 @@
     <ClCompile Include="src\core\Character.cpp" />
     <ClCompile Include="src\core\Charset.cpp" />
     <ClCompile Include="src\core\CharsetDecoder.cpp" />
-    <ClCompile Include="src\core\Colour.cpp" />
+    <ClCompile Include="src\core\Color.cpp" />
     <ClCompile Include="src\core\CRC.cpp" />
     <ClCompile Include="src\core\Date.cpp" />
     <ClCompile Include="src\core\DateFormatter.cpp" />
@@ -590,6 +590,7 @@
     <ClCompile Include="src\core\Serializer.cpp" />
     <ClCompile Include="src\core\Stream.cpp" />
     <ClCompile Include="src\core\String.cpp" />
+    <ClCompile Include="src\core\StringList.cpp" />
     <ClCompile Include="src\core\StringTokenizer.cpp" />
     <ClCompile Include="src\core\Mutex.cpp" />
     <ClCompile Include="src\core\System.cpp" />
