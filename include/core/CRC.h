@@ -50,7 +50,7 @@ namespace jm
           \param buffer Pointer to the first byte in the buffer to check.
           \param length Length to check
           */
-         static uint16 crc8(uint16 initial, uint8* buffer, uint32 length);
+         static uint16 crc8(uint16 initial,const uint8* buffer, uint32 length);
    };
 
 

@@ -60,7 +60,7 @@ uint16 crctable[256] =
    0x4100, 0x81C1, 0x8081, 0x4040
 };
 
-uint16 CRC::crc8(uint16 initial, uint8* buffer, uint32 length)
+uint16 CRC::crc8(uint16 initial,const uint8* buffer, uint32 length)
 {
    uint8 al;
    while(length-- > 0)
