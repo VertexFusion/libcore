@@ -115,7 +115,7 @@ Vertex2::Vertex2()
    y = 0.0;
 }
 
-Vertex2::Vertex2(Double xx, Double yy)
+Vertex2::Vertex2(double xx, double yy)
 {
    x = xx;
    y = yy;
