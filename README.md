@@ -27,3 +27,6 @@ them here.
 
 In general we are looking forward to fellow contributors who will help us with this.
 
+## Links
+- ![License](LICENSE)
+- ![Coding Style](CODINGSTYLE.md)
