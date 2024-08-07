@@ -67,15 +67,14 @@ namespace jm
    };
 
    /*!
-    \brief Dies Klasse stellt die Vaterklasse für die Grafikausgabe zur Verfügung. Diese Klasse
-    zeichnet.
+    \brief This class provides the parent class for the graphic output. This class draws.
     */
    class DllExport PaintingBackend: public Object
    {
       public:
 
          /*!
-          \brief Konstruktor
+          \brief Constructor
           */
          PaintingBackend();
 

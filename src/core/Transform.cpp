@@ -48,7 +48,7 @@ double Transform::Trans(const double& value) const
    //!\todo  Gibt es eine bessere Lösung?
    jm::Vertex3 p1 = Trans(jm::Vertex3(0, 0, 0));
    jm::Vertex3 p2 = Trans(jm::Vertex3(value, 0, 0));
-   return (p2 - p1).Abs();
+   return (p2 - p1).abs();
 }
 
 Double Transform::TransAngle(const Double& angle) const
@@ -65,7 +65,7 @@ Double Transform::TransAngle(const Double& angle) const
 
    direction -= center;
 
-   Double newrotation = direction.AngleTo(x);
+   Double newrotation = direction.angleTo(x);
 
    return newrotation;
 }
@@ -77,20 +77,20 @@ void Transform::InitMoving(const jm::Vertex3& distance)
    // | 0 1 0 y |
    // | 0 0 1 z |
    // | 0 0 0 1 |
-   Zeros();
-   Diag(1.0f);
-   Set(0, 3, distance.x);
-   Set(1, 3, distance.y);
-   Set(2, 3, distance.z);
+   zeros();
+   diag(1.0f);
+   set(0, 3, distance.x);
+   set(1, 3, distance.y);
+   set(2, 3, distance.z);
 }
 
 void Transform::InitScaling(const jm::Vertex3& factors)
 {
-   Zeros();
-   Set(0, 0, factors.x);
-   Set(1, 1, factors.y);
-   Set(2, 2, factors.z);
-   Set(3, 3, 1.0);
+   zeros();
+   set(0, 0, factors.x);
+   set(1, 1, factors.y);
+   set(2, 2, factors.z);
+   set(3, 3, 1.0);
 }
 
 void Transform::InitScaling(const jm::Vertex3& basePoint, double factor)
@@ -108,31 +108,31 @@ void Transform::InitScaling(const jm::Vertex3& basePoint, double factor)
    // | 0 0 1 z |   | 0 0 f 0 |   | 0 0 1 -z | = | 0 0 f z-f*z |
    // | 0 0 0 1 |   | 0 0 0 1 |   | 0 0 0  1 |   | 0 0 0     1 |
 
-   Zeros();
-   Set(0, 0, factor);
-   Set(1, 1, factor);
-   Set(2, 2, factor);
+   zeros();
+   set(0, 0, factor);
+   set(1, 1, factor);
+   set(2, 2, factor);
 
-   Set(0, 3, basePoint.x - factor * basePoint.x);
-   Set(1, 3, basePoint.y - factor * basePoint.y);
-   Set(2, 3, basePoint.z - factor * basePoint.z);
-   Set(3, 3, 1.0);
+   set(0, 3, basePoint.x - factor * basePoint.x);
+   set(1, 3, basePoint.y - factor * basePoint.y);
+   set(2, 3, basePoint.z - factor * basePoint.z);
+   set(3, 3, 1.0);
 }
 
 void Transform::InitRotationZ(double angle)
 {
-   Matrix mx = Matrix::Generate3x3RotationZMatrix(angle);
-   Zeros();
-   Set(0, 0, mx.Get(0, 0));
-   Set(1, 0, mx.Get(1, 0));
-   Set(2, 0, mx.Get(2, 0));
-   Set(0, 1, mx.Get(0, 1));
-   Set(1, 1, mx.Get(1, 1));
-   Set(2, 1, mx.Get(2, 1));
-   Set(0, 2, mx.Get(0, 2));
-   Set(1, 2, mx.Get(1, 2));
-   Set(2, 2, mx.Get(2, 2));
-   Set(3, 3, 1.0);
+   Matrix mx = Matrix::generate3x3RotationZMatrix(angle);
+   zeros();
+   set(0, 0, mx.get(0, 0));
+   set(1, 0, mx.get(1, 0));
+   set(2, 0, mx.get(2, 0));
+   set(0, 1, mx.get(0, 1));
+   set(1, 1, mx.get(1, 1));
+   set(2, 1, mx.get(2, 1));
+   set(0, 2, mx.get(0, 2));
+   set(1, 2, mx.get(1, 2));
+   set(2, 2, mx.get(2, 2));
+   set(3, 3, 1.0);
 }
 
 void Transform::InitRotation(const jm::Vertex3& axisPoint,
@@ -156,21 +156,21 @@ void Transform::InitRotation(const jm::Vertex3& axisPoint,
    double y = axisPoint.y;
    double z = axisPoint.z;
 
-   Matrix mx = Matrix::Generate3x3RotationMatrix(angle, axisDirection);
-   Zeros();
-   Set(0, 0, mx.Get(0, 0));
-   Set(1, 0, mx.Get(1, 0));
-   Set(2, 0, mx.Get(2, 0));
-   Set(0, 1, mx.Get(0, 1));
-   Set(1, 1, mx.Get(1, 1));
-   Set(2, 1, mx.Get(2, 1));
-   Set(0, 2, mx.Get(0, 2));
-   Set(1, 2, mx.Get(1, 2));
-   Set(2, 2, mx.Get(2, 2));
-   Set(0, 3, x - x * mx.Get(0, 0) - y * mx.Get(0, 1) - z * mx.Get(0, 2));
-   Set(1, 3, y - x * mx.Get(1, 0) - y * mx.Get(1, 1) - z * mx.Get(1, 2));
-   Set(2, 3, z - x * mx.Get(2, 0) - y * mx.Get(2, 1) - z * mx.Get(2, 2));
-   Set(3, 3, 1.0);
+   Matrix mx = Matrix::generate3x3RotationMatrix(angle, axisDirection);
+   zeros();
+   set(0, 0, mx.get(0, 0));
+   set(1, 0, mx.get(1, 0));
+   set(2, 0, mx.get(2, 0));
+   set(0, 1, mx.get(0, 1));
+   set(1, 1, mx.get(1, 1));
+   set(2, 1, mx.get(2, 1));
+   set(0, 2, mx.get(0, 2));
+   set(1, 2, mx.get(1, 2));
+   set(2, 2, mx.get(2, 2));
+   set(0, 3, x - x * mx.get(0, 0) - y * mx.get(0, 1) - z * mx.get(0, 2));
+   set(1, 3, y - x * mx.get(1, 0) - y * mx.get(1, 1) - z * mx.get(1, 2));
+   set(2, 3, z - x * mx.get(2, 0) - y * mx.get(2, 1) - z * mx.get(2, 2));
+   set(3, 3, 1.0);
 
 }
 
@@ -210,43 +210,43 @@ void Transform::InitMirroring(const jm::Vertex3& planePoint,
               - planePoint.y * planeNormal.y
               - planePoint.z * planeNormal.z;
 
-   Zeros();
-   Set(0, 0, 1.0 - 2.0 * a * a);
-   Set(1, 0, -2.0 * a * b);
-   Set(2, 0, -2.0 * a * c);
-   Set(0, 1, -2.0 * b * a);
-   Set(1, 1, 1.0 - 2.0 * b * b);
-   Set(2, 1, -2.0 * b * c);
-   Set(0, 2, -2.0 * a * c);
-   Set(1, 2, -2.0 * b * c);
-   Set(2, 2, 1.0 - 2.0 * c * c);
-   Set(0, 3, -2.0 * a * d);
-   Set(1, 3, -2.0 * b * d);
-   Set(2, 3, -2.0 * c * d);
-   Set(3, 3, 1.0);
+   zeros();
+   set(0, 0, 1.0 - 2.0 * a * a);
+   set(1, 0, -2.0 * a * b);
+   set(2, 0, -2.0 * a * c);
+   set(0, 1, -2.0 * b * a);
+   set(1, 1, 1.0 - 2.0 * b * b);
+   set(2, 1, -2.0 * b * c);
+   set(0, 2, -2.0 * a * c);
+   set(1, 2, -2.0 * b * c);
+   set(2, 2, 1.0 - 2.0 * c * c);
+   set(0, 3, -2.0 * a * d);
+   set(1, 3, -2.0 * b * d);
+   set(2, 3, -2.0 * c * d);
+   set(3, 3, 1.0);
 }
 
 
 void Transform::InitWCS(const jm::Vertex3& extrusion)
 {
    Matrix mx = wcsMatrix(extrusion);
-   Zeros();
-   Set(0, 0, mx.Get(0, 0));
-   Set(1, 0, mx.Get(1, 0));
-   Set(2, 0, mx.Get(2, 0));
-   Set(0, 1, mx.Get(0, 1));
-   Set(1, 1, mx.Get(1, 1));
-   Set(2, 1, mx.Get(2, 1));
-   Set(0, 2, mx.Get(0, 2));
-   Set(1, 2, mx.Get(1, 2));
-   Set(2, 2, mx.Get(2, 2));
-   Set(3, 3, 1.0);
+   zeros();
+   set(0, 0, mx.get(0, 0));
+   set(1, 0, mx.get(1, 0));
+   set(2, 0, mx.get(2, 0));
+   set(0, 1, mx.get(0, 1));
+   set(1, 1, mx.get(1, 1));
+   set(2, 1, mx.get(2, 1));
+   set(0, 2, mx.get(0, 2));
+   set(1, 2, mx.get(1, 2));
+   set(2, 2, mx.get(2, 2));
+   set(3, 3, 1.0);
 }
 
 void Transform::InitIdentity()
 {
-   Zeros();
-   Diag(1.0f);
+   zeros();
+   diag(1.0f);
 }
 
 
@@ -277,7 +277,7 @@ Matrix jm::wcsMatrix(const jm::Vertex3& extrusion)
 {
    //WCS = OCS^-1
    jm::Matrix WCS = ocsMatrix(extrusion);
-   WCS.Inverse();
+   WCS.inverse();
    return WCS;
 }
 

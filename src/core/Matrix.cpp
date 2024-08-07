@@ -40,7 +40,7 @@ Matrix::Matrix(Integer rows, Integer cols)
 
    data = new double[m * n];
 
-   Zeros();
+   zeros();
 }
 
 Matrix::Matrix(const Vertex3& c1,
@@ -140,23 +140,23 @@ Matrix::~Matrix()
    }
 }
 
-void Matrix::Set(Integer row, Integer col, double value)
+void Matrix::set(Integer row, Integer col, double value)
 {
    // It is saved column by column
    data[row + col * m] = value;
 }
 
-void Matrix::Add(Integer row, Integer col, double value)
+void Matrix::add(Integer row, Integer col, double value)
 {
    data[row + col * m] += value;
 }
 
-double Matrix::Get(Integer row, Integer col) const
+double Matrix::get(Integer row, Integer col) const
 {
    return data[row + col * m];
 }
 
-void Matrix::Zeros()
+void Matrix::zeros()
 {
    uint64 count = m * n;
    for(uint32 i = 0; i < count; i++)
@@ -165,7 +165,7 @@ void Matrix::Zeros()
    }
 }
 
-VxfErrorStatus Matrix::Det(double& det) const
+VxfErrorStatus Matrix::det(double& det) const
 {
    if(m == n)
    {
@@ -251,7 +251,7 @@ VxfErrorStatus Matrix::Det(double& det) const
 
 
 
-VxfErrorStatus Matrix::Inverse()
+VxfErrorStatus Matrix::inverse()
 {
    // See http://de.wikipedia.org/wiki/Inverse
    // http://www.cg.info.hiroshima-cu.ac.jp/~miyazaki/knowledge/teche23.html
@@ -266,9 +266,9 @@ VxfErrorStatus Matrix::Inverse()
       }
       else if(m == 2)
       {
-         double det;
-         Det(det);
-         det = 1.0 / det;
+         double determinant;
+         det(determinant);
+         determinant = 1.0 / determinant;
 
          // Index
          // | 0 2 |   | a b |
@@ -278,18 +278,18 @@ VxfErrorStatus Matrix::Inverse()
          double b = data[2];
          double c = data[1];
          double d = data[3];
-         data[0] = d * det;
-         data[2] = (-b) * det;
-         data[1] = (-c) * det;
-         data[3] = a * det;
+         data[0] = d * determinant;
+         data[2] = (-b) * determinant;
+         data[1] = (-c) * determinant;
+         data[3] = a * determinant;
 
          return eOK;
       }
       else if(m == 3)
       {
-         double det;
-         Det(det);
-         det = 1.0 / det;
+         double determinant;
+         det(determinant);
+         determinant = 1.0 / determinant;
 
          // Index
          // | 0 3 6 |   | a b c |
@@ -305,23 +305,23 @@ VxfErrorStatus Matrix::Inverse()
          double g = data[2];
          double h = data[5];
          double i = data[8];
-         data[0] = (e * i - f * h) * det;
-         data[3] = (c * h - b * i) * det;
-         data[6] = (b * f - c * e) * det;
-         data[1] = (f * g - d * i) * det;
-         data[4] = (a * i - c * g) * det;
-         data[7] = (c * d - a * f) * det;
-         data[2] = (d * h - e * g) * det;
-         data[5] = (b * g - a * h) * det;
-         data[8] = (a * e - b * d) * det;
+         data[0] = (e * i - f * h) * determinant;
+         data[3] = (c * h - b * i) * determinant;
+         data[6] = (b * f - c * e) * determinant;
+         data[1] = (f * g - d * i) * determinant;
+         data[4] = (a * i - c * g) * determinant;
+         data[7] = (c * d - a * f) * determinant;
+         data[2] = (d * h - e * g) * determinant;
+         data[5] = (b * g - a * h) * determinant;
+         data[8] = (a * e - b * d) * determinant;
 
          return eOK;
       }
       else if(m == 4)
       {
-         double det;
-         Det(det);
-         det = 1.0 / det;
+         double determinant;
+         det(determinant);
+         determinant = 1.0 / determinant;
 
          // Index
          // | 0 4  8 12 |   | a e i m |   | 11 12 13 14 |
@@ -347,37 +347,37 @@ VxfErrorStatus Matrix::Inverse()
          double a44 = data[15];
 
          data[0] = (a22 * a33 * a44 + a23 * a34 * a42 + a24 * a32 * a43 - a22 * a34 * a43 - a23 * a32 * a44 -
-                    a24 * a33 * a42) * det;
+                    a24 * a33 * a42) * determinant;
          data[1] = (a21 * a34 * a43 + a23 * a31 * a44 + a24 * a33 * a41 - a21 * a33 * a44 - a23 * a34 * a41 -
-                    a24 * a31 * a43) * det;
+                    a24 * a31 * a43) * determinant;
          data[2] = (a21 * a32 * a44 + a22 * a34 * a41 + a24 * a31 * a42 - a21 * a34 * a42 - a22 * a31 * a44 -
-                    a24 * a32 * a41) * det;
+                    a24 * a32 * a41) * determinant;
          data[3] = (a21 * a33 * a42 + a22 * a31 * a43 + a23 * a32 * a41 - a21 * a32 * a43 - a22 * a33 * a41 -
-                    a23 * a31 * a42) * det;
+                    a23 * a31 * a42) * determinant;
          data[4] = (a12 * a34 * a43 + a13 * a32 * a44 + a14 * a33 * a42 - a12 * a33 * a44 - a13 * a34 * a42 -
-                    a14 * a32 * a43) * det;
+                    a14 * a32 * a43) * determinant;
          data[5] = (a11 * a33 * a44 + a13 * a34 * a41 + a14 * a31 * a43 - a11 * a34 * a43 - a13 * a31 * a44 -
-                    a14 * a33 * a41) * det;
+                    a14 * a33 * a41) * determinant;
          data[6] = (a11 * a34 * a42 + a12 * a31 * a44 + a14 * a32 * a41 - a11 * a32 * a44 - a12 * a34 * a41 -
-                    a14 * a31 * a42) * det;
+                    a14 * a31 * a42) * determinant;
          data[7] = (a11 * a32 * a43 + a12 * a33 * a41 + a13 * a31 * a42 - a11 * a33 * a42 - a12 * a31 * a43 -
-                    a13 * a32 * a41) * det;
+                    a13 * a32 * a41) * determinant;
          data[8] = (a12 * a23 * a44 + a13 * a24 * a42 + a14 * a22 * a43 - a12 * a24 * a43 - a13 * a22 * a44 -
-                    a14 * a23 * a42) * det;
+                    a14 * a23 * a42) * determinant;
          data[9] = (a11 * a24 * a43 + a13 * a21 * a44 + a14 * a23 * a41 - a11 * a23 * a44 - a13 * a24 * a41 -
-                    a14 * a21 * a43) * det;
+                    a14 * a21 * a43) * determinant;
          data[10] = (a11 * a22 * a44 + a12 * a24 * a41 + a14 * a21 * a42 - a11 * a24 * a42 - a12 * a21 * a44
-                     - a14 * a22 * a41) * det;
+                     - a14 * a22 * a41) * determinant;
          data[11] = (a11 * a23 * a42 + a12 * a21 * a43 + a13 * a22 * a41 - a11 * a22 * a43 - a12 * a23 * a41
-                     - a13 * a21 * a42) * det;
+                     - a13 * a21 * a42) * determinant;
          data[12] = (a12 * a24 * a33 + a13 * a22 * a34 + a14 * a23 * a32 - a12 * a23 * a34 - a13 * a24 * a32
-                     - a14 * a22 * a33) * det;
+                     - a14 * a22 * a33) * determinant;
          data[13] = (a11 * a23 * a34 + a13 * a24 * a31 + a14 * a21 * a33 - a11 * a24 * a33 - a13 * a21 * a34
-                     - a14 * a23 * a31) * det;
+                     - a14 * a23 * a31) * determinant;
          data[14] = (a11 * a24 * a32 + a12 * a21 * a34 + a14 * a22 * a31 - a11 * a22 * a34 - a12 * a24 * a31
-                     - a14 * a21 * a32) * det;
+                     - a14 * a21 * a32) * determinant;
          data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33
-                     - a13 * a22 * a31) * det;
+                     - a13 * a22 * a31) * determinant;
 
          return eOK;
       }
@@ -386,7 +386,7 @@ VxfErrorStatus Matrix::Inverse()
    else return eError;
 }
 
-void Matrix::Transpose()
+void Matrix::transpose()
 {
    Matrix tmp = this;
    Integer i = m;
@@ -397,13 +397,13 @@ void Matrix::Transpose()
    {
       for(Integer b = 0; b < tmp.n; b++)
       {
-         Set(b, a, tmp.Get(a, b));
+         set(b, a, tmp.get(a, b));
       }
    }
 }
 
 
-void Matrix::Insert(const Matrix& A)
+void Matrix::insert(const Matrix& A)
 {
    Integer rows = std::min(m, A.m);
    Integer cols = std::min(n, A.n);
@@ -418,7 +418,7 @@ void Matrix::Insert(const Matrix& A)
 }
 
 
-void Matrix::Insert(const Matrix& A, Integer _r, Integer _c)
+void Matrix::insert(const Matrix& A, Integer _r, Integer _c)
 {
    Integer rows = std::min(m - _r, A.m);
    Integer cols = std::min(n - _c, A.n);
@@ -432,7 +432,7 @@ void Matrix::Insert(const Matrix& A, Integer _r, Integer _c)
    }
 }
 
-void Matrix::Diag(double value)
+void Matrix::diag(double value)
 {
    Integer cnt = std::min(m, n);
 
@@ -442,12 +442,12 @@ void Matrix::Diag(double value)
    }
 }
 
-const double* Matrix::GetRef() const
+const double* Matrix::ref() const
 {
    return data;
 }
 
-double Matrix::Norm(MatrixNorm nm) const
+double Matrix::norm(MatrixNorm nm) const
 {
    double norm = 0;
    double sum;
@@ -460,7 +460,7 @@ double Matrix::Norm(MatrixNorm nm) const
             sum = 0;
             for(uint32 row = 0; row < m; row++)
             {
-               sum += fabs(Get(row, col));
+               sum += fabs(get(row, col));
             }
             if(sum > norm)norm = sum;
          }
@@ -473,7 +473,7 @@ double Matrix::Norm(MatrixNorm nm) const
             sum = 0;
             for(uint32 col = 0; col < n; col++)
             {
-               sum += fabs(Get(row, col));
+               sum += fabs(get(row, col));
             }
             if(sum > norm)norm = sum;
          }
@@ -486,7 +486,7 @@ double Matrix::Norm(MatrixNorm nm) const
    return norm;
 }
 
-void Matrix::Print() const
+void Matrix::print() const
 {
    for(uint32 r = 0; r < m; r++)
    {
@@ -500,7 +500,7 @@ void Matrix::Print() const
 
 }
 
-uint32 Matrix::CountNonZeroElements() const
+uint32 Matrix::nonZeroElementCount() const
 {
    uint32 count = 0;
 
@@ -515,7 +515,7 @@ uint32 Matrix::CountNonZeroElements() const
    return count;
 }
 
-double Matrix::Trace() const
+double Matrix::trace() const
 {
    double sum = 0.0;
 
@@ -530,7 +530,7 @@ double Matrix::Trace() const
    return sum;
 }
 
-Vector Matrix::Eigen() const
+Vector Matrix::eigen() const
 {
    if(m != n)throw new Exception("Matrix must be square");
 
@@ -539,16 +539,16 @@ Vector Matrix::Eigen() const
    if(m == 1)
    {
       Vector v = Vector(1);
-      v.data[0] = Get(0, 0);
+      v.data[0] = get(0, 0);
       return v;
    }
    if(m == 2)
    {
       Vector v = Vector(2);
 
-      double trA = Trace();
+      double trA = trace();
       double detA;
-      Det(detA);
+      det(detA);
       double gapA = sqrt(trA * trA - 4 * detA);
 
       v.data[0] = (trA - gapA) / 2.0;
@@ -561,28 +561,28 @@ Vector Matrix::Eigen() const
       // Note: Matrix must be symmetric
       Vector v = Vector(3);
 
-      double p1 = pow(Get(0, 1), 2.0) + pow(Get(0, 2), 2.0) + pow(Get(1, 2), 2.0);
+      double p1 = pow(get(0, 1), 2.0) + pow(get(0, 2), 2.0) + pow(get(1, 2), 2.0);
 
       if(p1 == 0.0)
       {
-         v.data[0] = Get(0, 0);
-         v.data[1] = Get(1, 1);
-         v.data[2] = Get(2, 2);
+         v.data[0] = get(0, 0);
+         v.data[1] = get(1, 1);
+         v.data[2] = get(2, 2);
       }
       else
       {
-         double q = Trace() / 3.0;
-         double p2 = pow(Get(0, 0) - q, 2.0) + pow(Get(1, 1) - q, 2.0) + pow(Get(2, 2) - q, 2.0) + 2.0 * p1;
+         double q = trace() / 3.0;
+         double p2 = pow(get(0, 0) - q, 2.0) + pow(get(1, 1) - q, 2.0) + pow(get(2, 2) - q, 2.0) + 2.0 * p1;
          double p = sqrt(p2 / 6.0);
 
          Matrix A = *this;
          Matrix I(3, 3);
-         I.Diag(1.0);
+         I.diag(1.0);
 
          Matrix B = (1.0 / p) * (A - q * I);
 
          double detB;
-         B.Det(detB);
+         B.det(detB);
 
          double r = detB / 2.0;
 
@@ -757,7 +757,7 @@ const Matrix jm::operator/(Matrix const& A, double const& d)
    return R;
 }
 
-Matrix Matrix::Generate3x3RotationMatrix(double angle, const Vertex3& axis)
+Matrix Matrix::generate3x3RotationMatrix(double angle, const Vertex3& axis)
 {
    //Siehe https://www.opengl.org/sdk/docs/man2/xhtml/glRotate.xml (eher nicht)
    //      https://en.wikipedia.org/wiki/Rotation_matrix
@@ -792,7 +792,7 @@ Matrix Matrix::Generate3x3RotationMatrix(double angle, const Vertex3& axis)
    return r;
 }
 
-Matrix Matrix::Generate3x3RotationXMatrix(double angle)
+Matrix Matrix::generate3x3RotationXMatrix(double angle)
 {
 
    // Index
@@ -812,7 +812,7 @@ Matrix Matrix::Generate3x3RotationXMatrix(double angle)
    return r;
 }
 
-Matrix Matrix::Generate3x3RotationYMatrix(double angle)
+Matrix Matrix::generate3x3RotationYMatrix(double angle)
 {
 
    // Index
@@ -832,7 +832,7 @@ Matrix Matrix::Generate3x3RotationYMatrix(double angle)
    return r;
 }
 
-Matrix Matrix::Generate3x3RotationZMatrix(double angle)
+Matrix Matrix::generate3x3RotationZMatrix(double angle)
 {
 
    // Index
@@ -868,7 +868,7 @@ const Vector jm::operator*(Matrix const& A, Vector const& b)
       ret.data[r] = 0.0;
       for(Integer c = 0; c < A.n; c++)
       {
-         ret.data[r] += b.data[c] * A.Get(r, c);
+         ret.data[r] += b.data[c] * A.get(r, c);
       }
    }
 

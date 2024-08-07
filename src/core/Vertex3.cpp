@@ -68,7 +68,7 @@ double Vertex3::DotProduct(const Vertex3& another) const
 
 bool Vertex3::IsCollinear(const Vertex3& another) const
 {
-   return isEqual(crossProduct(another).Abs(), 0.0);
+   return isEqual(crossProduct(another).abs(), 0.0);
 }
 
 bool Vertex3::IsOrthogonal(const Vertex3& another) const
@@ -76,13 +76,13 @@ bool Vertex3::IsOrthogonal(const Vertex3& another) const
    return isEqual(DotProduct(another), 0.0);
 }
 
-double Vertex3::AngleTo(const Vertex3& another) const
+double Vertex3::angleTo(const Vertex3& another) const
 {
-   double angle = this->DotProduct(another) / (this->Abs() * another.Abs());
+   double angle = this->DotProduct(another) / (this->abs() * another.abs());
    return acos(angle);
 }
 
-double Vertex3::Abs() const
+double Vertex3::abs() const
 {
    return std::sqrt(x * x + y * y + z * z);
 }
@@ -100,7 +100,7 @@ bool Vertex3::IsValid() const
 
 void Vertex3::RotateX(double angle)
 {
-   Matrix r = Matrix::Generate3x3RotationXMatrix(angle);
+   Matrix r = Matrix::generate3x3RotationXMatrix(angle);
 
    Vertex3 b = *this;
    Vertex3 v = r * b;
@@ -111,7 +111,7 @@ void Vertex3::RotateX(double angle)
 
 void Vertex3::RotateY(double angle)
 {
-   Matrix r = Matrix::Generate3x3RotationYMatrix(angle);
+   Matrix r = Matrix::generate3x3RotationYMatrix(angle);
 
    Vertex3 b = *this;
    Vertex3 v = r * b;
@@ -122,7 +122,7 @@ void Vertex3::RotateY(double angle)
 
 void Vertex3::RotateZ(double angle)
 {
-   Matrix r = Matrix::Generate3x3RotationZMatrix(angle);
+   Matrix r = Matrix::generate3x3RotationZMatrix(angle);
 
    Vertex3 b = *this;
    Vertex3 v = r * b;
@@ -133,7 +133,7 @@ void Vertex3::RotateZ(double angle)
 
 void Vertex3::Rotate(double angle, const Vertex3& axis)
 {
-   Matrix r = Matrix::Generate3x3RotationMatrix(angle, axis);
+   Matrix r = Matrix::generate3x3RotationMatrix(angle, axis);
    Vertex3 n = r * (*this);
    x = n.x;
    y = n.y;
@@ -142,16 +142,16 @@ void Vertex3::Rotate(double angle, const Vertex3& axis)
 
 Vertex3& Vertex3::normalize()
 {
-   double abs = Abs();
-   if(jm::isEqual(abs, 0.0))return *this;
-   return *this = *this * (1.0 / abs);
+   double absolute = abs();
+   if(jm::isEqual(absolute, 0.0))return *this;
+   return *this = *this * (1.0 / absolute);
 }
 
 Vertex3 Vertex3::normalized() const
 {
-   double abs = Abs();
-   if(jm::isEqual(abs, 0.0))return *this;
-   return *this * (1.0 / abs);
+   double absolute = abs();
+   if(jm::isEqual(absolute, 0.0))return *this;
+   return *this * (1.0 / absolute);
 }
 
 Vertex3 Vertex3::scale(const Vertex3& another)const
@@ -264,7 +264,7 @@ bool jm::isLinearIndependent(const Vertex3& v1, const Vertex3& v2, const Vertex3
 {
    Matrix m = Matrix(v1, v2, v3, false);
    double det = 0;
-   m.Det(det);
+   m.det(det);
    return isNotEqual(det, 0);
 }
 

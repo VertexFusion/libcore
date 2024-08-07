@@ -79,10 +79,10 @@ int main( int argc, const char* argv[] )
 
 	// init test vector
 	jm::TestVector* vec = new jm::TestVector(argc, argv);
-	vec->AddTest( new ExampleTest() );
+	vec->addTest( new ExampleTest() );
 
 	// Execute test vector
-	int32 result = vec->Execute().Int32();
+	int32 result = vec->execute().Int32();
 
 	// Clean up
 	delete vec;
@@ -362,25 +362,25 @@ namespace jm
           \brief Addds \p test to the test vector.
           \param test The test to be added.
           */
-         void AddTest(Test* test);
+         void addTest(Test* test);
 
          /*!
           \brief Executes the test vector.
           \return The number or errors. 0, if everything is ok.
           */
-         Integer Execute();
+         Integer execute();
 
       private:
 
          //! \brief The 1st argument from command line (after executable name).
-         String arg;
+         String mArg;
 
          //! \brief  The tests to be done.
-         std::vector<Test*>* tests;
+         std::vector<Test*>* mTests;
 
          //! \brief  Helper method for single test run.
          //! \param test Test to run.
-         void Testrun(Test* test);
+         void testrun(Test* test);
 
    };
 

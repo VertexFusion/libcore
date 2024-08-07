@@ -73,7 +73,7 @@ SAXAttributes& SAXAttributes::operator=(const SAXAttributes& other)
 
 }
 
-void SAXAttributes::AddAttribute(String /*uri*/, String localname, String /*qName*/, String value)
+void SAXAttributes::addAttribute(String /*uri*/, String localname, String /*qName*/, String value)
 {
    //	std::cout << "Add Attrib: " << localname << " " << value << std::endl;
    mNames->push_back(localname);

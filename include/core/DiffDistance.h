@@ -77,14 +77,14 @@ namespace jm
          void Clear();
 
          /*!
-          \brief Fügt ein Element in den U-Vektor hinzu
+          \brief Adds an element to the u vector.
           */
-         void AddU(Object* obj);
+         void addU(Object* obj);
 
          /*!
-          \brief Fügt ein Element in den V-Vektor hinzu
+          \brief Adds an element to the v vector.
           */
-         void AddV(Object* obj);
+         void addV(Object* obj);
 
          /*!
           \brief Diese Methode berechnet die Levenshtein-Distanz

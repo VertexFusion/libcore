@@ -65,12 +65,12 @@ void DiffDistance::Clear()
    calc = 0;
 }
 
-void DiffDistance::AddU(Object* obj)
+void DiffDistance::addU(Object* obj)
 {
    u->push_back(obj);
 }
 
-void DiffDistance::AddV(Object* obj)
+void DiffDistance::addV(Object* obj)
 {
    v->push_back(obj);
 }

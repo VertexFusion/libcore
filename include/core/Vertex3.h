@@ -131,14 +131,16 @@ namespace jm
          bool IsValid() const;
 
          /*!
-         \brief Gibt den Winkel von einem zum anderen Winkel zurück
-         */
-         double AngleTo(const Vertex3& another) const;
+          \brief Returns the angle between this vector and another vector.
+          \param another The vector we want to know the angle to.
+          \return Angle in radians.
+          */
+         double angleTo(const Vertex3& another) const;
 
          /*!
-          \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
+          \brief This method returns the absolute value of the vector. The absolute value is equal to the length.
           */
-         double Abs() const;
+         double abs() const;
 
          /*!
           \brief Diese Methode rotiert den Vektor um die X-Achse um den angegebenen Winkel.

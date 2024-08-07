@@ -246,7 +246,7 @@ void SAXParser::ParseTagString(const String& xmlline)
             {
                avalue = token;
                step--;
-               attribs.AddAttribute(jm::kEmptyString, aname, aname, avalue);
+               attribs.addAttribute(jm::kEmptyString, aname, aname, avalue);
                token.clear();
             }
          }

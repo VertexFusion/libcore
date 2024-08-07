@@ -162,7 +162,7 @@ Vertex3 jm::closestPointOnCircle(const Vertex3& point,
 
    Vertex3 loc = closestPointOnPlane(point, center, normal);
    Vertex3 r = loc - center;
-   double lambda = r.Abs() / radius;
+   double lambda = r.abs() / radius;
    return center + r * lambda;
 }
 
@@ -177,14 +177,14 @@ double jm::distancePointToPlane(const Vertex3& point,
 
    Vertex3 loc = closestPointOnPlane(point, position, normal);
    loc = loc - point;
-   return loc.Abs();
+   return loc.abs();
 }
 
 double jm::distancePointToPoint(const Vertex3& point1,
                                 const Vertex3& point2)
 {
    Vertex3 v = point2 - point1;
-   return v.Abs();
+   return v.abs();
 }
 
 
@@ -206,7 +206,7 @@ double jm::distancePointToLine(const Vertex3& point,
 
    Vertex3 loc = closestPointOnLine(point, position, direction);
    loc = loc - point;
-   return loc.Abs();
+   return loc.abs();
 }
 
 double jm::distancePointToLine(const Vertex3& point,
@@ -221,7 +221,7 @@ double jm::distancePointToLine(const Vertex3& point,
 
    Vertex3 loc = closestPointOnLine(point, lineStart, lineEnd, extend);
    loc = loc - point;
-   return loc.Abs();
+   return loc.abs();
 }
 
 double jm::distancePointToCircle(const Vertex3& point,
@@ -236,7 +236,7 @@ double jm::distancePointToCircle(const Vertex3& point,
 
    Vertex3 loc = closestPointOnCircle(point, center, radius, normal);
    loc = loc - point;
-   return loc.Abs();
+   return loc.abs();
 }
 
 double jm::distanceLineToLine(const Vertex3& position1,
@@ -251,7 +251,7 @@ double jm::distanceLineToLine(const Vertex3& position1,
       // 2. Bestimme Kreuzprodukt aus 1. Richtungsvektor und Differenz
       // 3. Teile durch Betrag des 1. Richtungsvektor
       Vertex3 cross = direction1.crossProduct(position2 - position1);
-      return cross.Abs() / direction1.Abs();
+      return cross.abs() / direction1.abs();
    }
    else
    {
@@ -683,11 +683,11 @@ jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2& centre, double& radius,
                        Vertex3(p2.x * p2.x + p2.y * p2.y, p2.x, 1.0),
                        Vertex3(p3.x * p3.x + p3.y * p3.y, p3.x, 1.0), true);
    double m11, m12, m13;
-   VxfErrorStatus status = M11.Det(m11);
+   VxfErrorStatus status = M11.det(m11);
    if(status != eOK)return status;
-   status = M12.Det(m12);
+   status = M12.det(m12);
    if(status != eOK)return status;
-   status = M13.Det(m13);
+   status = M13.det(m13);
    if(status != eOK)return status;
 
    double x = 0.5 * m12 / m11;

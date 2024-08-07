@@ -31,21 +31,21 @@ int main(int argc, const char* argv[])
    TestVector* vec = new TestVector(argc, argv);
 
    //CORE
-   vec->AddTest(new StringTest());
-   vec->AddTest(new StringTokenizerTest());
-   vec->AddTest(new HashtableTest());
-   vec->AddTest(new LinkedListTest());
-   vec->AddTest(new MathTest());
-   vec->AddTest(new VertexTest());
-   vec->AddTest(new MatrixTest());
-   vec->AddTest(new GeometryTest());
-   vec->AddTest(new DeflateTest());
-   vec->AddTest(new UndoManagerTest());
-   vec->AddTest(new DateTest());
-   vec->AddTest(new DateTest());
-   vec->AddTest(new EditableObjectTest());
+   vec->addTest(new StringTest());
+   vec->addTest(new StringTokenizerTest());
+   vec->addTest(new HashtableTest());
+   vec->addTest(new LinkedListTest());
+   vec->addTest(new MathTest());
+   vec->addTest(new VertexTest());
+   vec->addTest(new MatrixTest());
+   vec->addTest(new GeometryTest());
+   vec->addTest(new DeflateTest());
+   vec->addTest(new UndoManagerTest());
+   vec->addTest(new DateTest());
+   vec->addTest(new DateTest());
+   vec->addTest(new EditableObjectTest());
 
-   Integer result = vec->Execute();
+   Integer result = vec->execute();
 
    delete vec;
 

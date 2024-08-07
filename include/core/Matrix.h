@@ -136,7 +136,7 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value of the cell.
           */
-         void Set(Integer row, Integer col, double value);
+         void set(Integer row, Integer col, double value);
 
          /*!
           \brief Adds to the value of a cell the passed value.
@@ -144,119 +144,119 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value to be added to the cell.
           */
-         void Add(Integer row, Integer col, double value);
+         void add(Integer row, Integer col, double value);
 
          /*!
           \brief Returns the value of a cell.
           \param row The 0-based index of the row.
           \param col The 0-based index of the column.
           */
-         double Get(Integer row, Integer col) const;
+         double get(Integer row, Integer col) const;
 
          /*!
           \brief This method fills all elements of the matrix with 0.
           */
-         void Zeros();
+         void zeros();
 
          /*!
           \brief This method transposes the matrix,
           */
-         void Transpose();
+         void transpose();
 
          /*!
           \brief This method inserts the contents of the other matrix into this matrix. Upper left
           element is 0,0
           */
-         void Insert(const Matrix& A);
+         void insert(const Matrix& A);
 
          /*!
          \brief This method inserts the contents of the Other matrix into this matrix. Upper left
           element is r,c
          */
-         void Insert(const Matrix& A, Integer r, Integer c);
+         void insert(const Matrix& A, Integer r, Integer c);
 
          /*!
           \brief This method sets all values on the diagonal elements to the desired value.
           */
-         void Diag(double value);
+         void diag(double value);
 
          /*!
           \brief Calculates the determinant of a matrix.
 
           This method is currently limited to a maximum of 4x4 matrices.
           */
-         VxfErrorStatus Det(double& det) const;
+         VxfErrorStatus det(double& det) const;
 
          /*!
           \brief Inverts this matrix.
 
           This method is currently limited to a maximum of 4x4 matrices.
           */
-         VxfErrorStatus Inverse();
+         VxfErrorStatus inverse();
 
          /*!
           \brief This method returns the reference to the data array.
 
           Only needed for efficient access for OpenGL.
           */
-         const double* GetRef() const;
+         const double* ref() const;
 
          /*!
           \brief This method calculates the condition of the matrix according to the corresponding
           matrix norm.
           */
-         double Norm(MatrixNorm norm) const;
+         double norm(MatrixNorm norm) const;
 
          /*!
           \brief Returns the sum of the diagonal elements.
           */
-         double Trace() const;
+         double trace() const;
 
          /*!
           \brief Returns the Eigen Values of the matrix.
 
           Currentrly this is restricted to matrices of maximum 3x3.
           */
-         Vector Eigen() const;
+         Vector eigen() const;
 
          /*!
           \brief Prints the content of the matrix on \c std::cout
           */
-         void Print() const;
+         void print() const;
 
          /*!
           \brief This method calculates the number of elements that are not 0.0.
           Currently this is done without EPS.
           */
-         uint32 CountNonZeroElements() const;
+         uint32 nonZeroElementCount() const;
 
          /*!
           \brief This static function generates a 3x3 rotation matrix
           \param angle Angle of rotation in radians
           \param axis Rotation axis (must be normalized)
           */
-         static Matrix Generate3x3RotationMatrix(double angle, const Vertex3& axis);
+         static Matrix generate3x3RotationMatrix(double angle, const Vertex3& axis);
 
          /*!
           \brief This static function generates a 3x3 rotation matrix for a rotation around the
           X-axis.
           \param angle Angle of rotation in radians
           */
-         static Matrix Generate3x3RotationXMatrix(double angle);
+         static Matrix generate3x3RotationXMatrix(double angle);
 
          /*!
           \brief This static function generates a 3x3 rotation matrix for a rotation around the
           Y-axis.
           \param angle Angle of rotation in radians
           */
-         static Matrix Generate3x3RotationYMatrix(double angle);
+         static Matrix generate3x3RotationYMatrix(double angle);
 
          /*!
           \brief This static function generates a 3x3 rotation matrix for a rotation around the
           Z-axis.
           \param angle Angle of rotation in radians
           */
-         static Matrix Generate3x3RotationZMatrix(double angle);
+         static Matrix generate3x3RotationZMatrix(double angle);
 
          Matrix& operator=(const Matrix& A);
 

@@ -37,23 +37,23 @@ TestVector::TestVector(int argc, const char* argv[])
 {
    if(argc >= 2)
    {
-      arg = argv[1];
+      mArg = argv[1];
    }
-   tests = new std::vector<Test*>();
+   mTests = new std::vector<Test*>();
 }
 
 TestVector::~TestVector()
 {
-   for(uint32 a = 0; a < tests->size(); a++)delete tests->at(a);
-   delete tests;
+   for(uint32 a = 0; a < mTests->size(); a++)delete mTests->at(a);
+   delete mTests;
 }
 
-void TestVector::AddTest(Test* test)
+void TestVector::addTest(Test* test)
 {
-   tests->push_back(test);
+   mTests->push_back(test);
 }
 
-Integer TestVector::Execute()
+Integer TestVector::execute()
 {
    jm::gTotalTestCount = 0;
    jm::gTotalErrorCount = 0;
@@ -62,11 +62,11 @@ Integer TestVector::Execute()
 
    Integer single = -1;
 
-   if(arg.size() > 0)
+   if(mArg.size() > 0)
    {
       try
       {
-         single = Integer::valueOf(arg);
+         single = Integer::valueOf(mArg);
       }
       catch(jm::Exception* e)
       {
@@ -74,9 +74,9 @@ Integer TestVector::Execute()
       }
    }
 
-   for(Integer a = 0; a < tests->size(); a++)
+   for(Integer a = 0; a < mTests->size(); a++)
    {
-      if(single < 0 || single == a)Testrun(tests->at(a));
+      if(single < 0 || single == a)testrun(mTests->at(a));
    }
 
    clock_t et = clock();
@@ -96,7 +96,7 @@ Integer TestVector::Execute()
    return gTotalErrorCount;
 }
 
-void TestVector::Testrun(Test* test)
+void TestVector::testrun(Test* test)
 {
    if(test == NULL)return;
 

@@ -40,7 +40,7 @@
 namespace jm
 {
    /*!
-    \brief Diese Klasse repräsentiert die Attribute, die in dem SAX-Parser verwendet werden
+    \brief This class represents the attributes used in the SAX parser.
     */
    class DllExport SAXAttributes: public Object
    {
@@ -48,7 +48,7 @@ namespace jm
       public:
 
          /*!
-          \brief Konstruktor
+          \brief Constructor
           */
          SAXAttributes();
 
@@ -58,19 +58,19 @@ namespace jm
          virtual ~SAXAttributes();
 
          /*!
-          \brief Copykonstruktor
+          \brief Copy constructor
           */
          SAXAttributes(const SAXAttributes& other);
 
          /*!
-          \brief Zuweisungsoperator
+          \brief assigning operator
           */
          SAXAttributes& operator=(const SAXAttributes& another);
 
          /*!
-          \brief Diese Methode braucht der Parser, um die Attributliste mit Inhalt zu füllen
+          \brief This method is needed by the parser to fill the list with content.
           */
-         void AddAttribute(String uri, String localname, String qName, String value);
+         void addAttribute(String uri, String localname, String qName, String value);
 
          /*!
           \brief Sucht nach dem Index eines Attributes
