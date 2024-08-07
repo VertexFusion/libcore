@@ -50,12 +50,12 @@ struct DllExport Bool
          mValue = value;
       };
 
-      Bool(const Bool &value)
+      Bool(const Bool& value)
       {
          mValue = value.mValue;
       };
 
-      Bool &operator=(const Bool &another)
+      Bool& operator=(const Bool& another)
       {
          if(this != &another)
          {
@@ -104,7 +104,7 @@ struct DllExport Bool
       };
 
       DllExport
-         friend bool operator==(bool v1, Bool v2)
+      friend bool operator==(bool v1, Bool v2)
       {
          return v1 ? v2.isTrue() : v2.IsFalse();
       };
@@ -136,7 +136,7 @@ class DllExport Integer
    public:
 
       Integer();
-      Integer(const Integer &other);
+      Integer(const Integer& other);
       Integer(uint8 value);
       Integer(int8 value);
       Integer(uint16 value);
@@ -145,7 +145,7 @@ class DllExport Integer
       Integer(uint32 value);
       Integer(int64 value);
       Integer(uint64 value);
-//      Integer(slong value); double under linux
+      //      Integer(slong value); double under linux
       #ifdef WITHULONG
       Integer(ulong value);
       #endif
@@ -178,7 +178,7 @@ class DllExport Integer
        \brief Method converts a hexadecimal string value into an integer number.
        \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
        \param begin start index of hex string
-       \param size Size of hex string 
+       \param size Size of hex string
        \return Returns the desired number as an integer value.
        */
       static Integer fromHex(const jm::String& str, uint32 begin, uint32 size);
@@ -242,11 +242,11 @@ class DllExport Integer
       */
       Integer& operator=(const Integer& another);
 
-      Integer &operator+=(const Integer &another);
+      Integer& operator+=(const Integer& another);
 
-      Integer &operator-=(const Integer &another);
+      Integer& operator-=(const Integer& another);
 
-      Integer &operator*=(const Integer &another);
+      Integer& operator*=(const Integer& another);
 
       Integer operator<<(const Integer& shift);
 
@@ -538,7 +538,7 @@ namespace jm
 {
    DllExport
    Integer Min(Integer left, Integer right);
-   
+
    DllExport
    Integer Max(Integer left, Integer right);
 }

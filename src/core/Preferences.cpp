@@ -123,9 +123,9 @@ void Preferences::save(File file)
          file.createNewFile();
       }
       VxfErrorStatus status = file.open(kFmWrite);
-      if(status!=eOK)
+      if(status != eOK)
       {
-         jm::System::log(Tr("cannot store preferences in '%1'").arg(file.absolutePath()),jm::kLogError);
+         jm::System::log(Tr("cannot store preferences in '%1'").arg(file.absolutePath()), jm::kLogError);
          return;
       }
 
@@ -181,7 +181,7 @@ bool Preferences::hasValue(const String& key)const
    return get(key) != NULL;
 }
 
-void Preferences::setValue(const String &key, const String &value)
+void Preferences::setValue(const String& key, const String& value)
 {
    String tmp = value;
    tmp = tmp.replaceAll("\r\n", "\\n");
@@ -192,32 +192,32 @@ void Preferences::setValue(const String &key, const String &value)
    if(old != NULL)delete old;
 }
 
-void Preferences::setValue(const String &key, int32 value)
+void Preferences::setValue(const String& key, int32 value)
 {
    setValue(key, String::valueOf(value));
 }
 
 
-void Preferences::setValue(const String &key, bool value)
+void Preferences::setValue(const String& key, bool value)
 {
    setValue(key, static_cast<String>(value ? "true" : "false"));
 }
 
-String Preferences::value(const String &key) const
+String Preferences::value(const String& key) const
 {
    String* result = (String*)get(key);
    if(result == NULL)return kEmptyString;
    return *result;
 }
 
-String Preferences::value(const String &key, String const &defaultValue) const
+String Preferences::value(const String& key, String const& defaultValue) const
 {
    String* result = static_cast<String*>(get(key));
    if(result == NULL)return defaultValue;
    return *result;
 }
 
-int32 Preferences::valueInt(const String &key, int32 defaultValue) const
+int32 Preferences::valueInt(const String& key, int32 defaultValue) const
 {
    String result = value(key);
 
@@ -236,7 +236,7 @@ int32 Preferences::valueInt(const String &key, int32 defaultValue) const
    return value;
 }
 
-bool Preferences::valueBool(const String &key, bool defaultValue) const
+bool Preferences::valueBool(const String& key, bool defaultValue) const
 {
    String result = value(key);
 

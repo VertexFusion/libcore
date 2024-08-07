@@ -40,7 +40,7 @@ File::File(): Stream(), Comparable<File>()
    mHandle = NULL;
 }
 
-File::File(const String &pathname): Stream(), Comparable<File>()
+File::File(const String& pathname): Stream(), Comparable<File>()
 {
    mPathname = normalize(pathname);
    setCString();
@@ -63,7 +63,7 @@ File::File(const File& parent, String child): Stream(), Comparable<File>()
    mHandle = NULL;
 }
 
-File::File(const File &other): Stream(), Comparable<File>()
+File::File(const File& other): Stream(), Comparable<File>()
 {
    mPathname = other.mPathname;
    mHandle = other.mHandle;
@@ -76,13 +76,13 @@ File::~File()
 {
 }
 
-File& File::operator=(const File &another)
+File& File::operator=(const File& another)
 {
    if(this != &another)
    {
       mPathname = another.mPathname;
       mHandle = another.mHandle;
-      if (mPathname.size() > 0)setCString();
+      if(mPathname.size() > 0)setCString();
       else mCstr = ByteArray();
    }
 
@@ -91,7 +91,7 @@ File& File::operator=(const File &another)
 
 bool File::isNull()const
 {
-   return mCstr.size()==0;
+   return mCstr.size() == 0;
 }
 
 
@@ -130,7 +130,7 @@ String File::resolve(String parent, String child)
    }
 }
 
-String File::normalize(const String &path)
+String File::normalize(const String& path)
 {
    String pathname = path;
    Integer length = pathname.size();
@@ -397,7 +397,7 @@ bool File::moveToTrash()
    return false;
 }
 
-bool File::renameTo(const String &newPath)
+bool File::renameTo(const String& newPath)
 {
    int32 result;
 
@@ -427,7 +427,8 @@ bool File::renameTo(const String &newPath)
 
 Array<File>* File::listFiles()const
 {
-   if(!isDirectory())return NULL;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
+   if(!isDirectory())return
+         NULL;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
@@ -599,9 +600,9 @@ VxfErrorStatus File::open(FileMode mode)
 
    if(mHandle == NULL)
    {
-      String msg=Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(Integer(errno));
-      jm::System::log(msg,jm::kLogError);
-      
+      String msg = Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(Integer(errno));
+      jm::System::log(msg, jm::kLogError);
+
       if(errno == EACCES)return eNotAllowed;
       if(errno == ENOENT)return  eNotFound;
       if(errno == ETIMEDOUT)return eTimeout;
@@ -670,7 +671,7 @@ Integer File::write(const uint8* buffer, Integer length)
    return fwrite(buffer, 1, length, mHandle);
 }
 
-int32 File::compareTo(const File &other) const
+int32 File::compareTo(const File& other) const
 {
    //Erst Verzeichnis
    bool d1 = isDirectory();
@@ -734,25 +735,25 @@ StringList File::getTags()const
    #endif
 
    #ifdef __linux__
-   
-	const int sz=4096;
-	char buffer[sz];
-	int result = getxattr(mCstr.constData(),"user.xdg.tags",buffer,sz);
 
-	if(result>0)
-	{
-		// Data is stored usually as comma(,) separated list.
-		ByteArray tagList = ByteArray((int8*)buffer,result);
+   const int sz = 4096;
+   char buffer[sz];
+   int result = getxattr(mCstr.constData(), "user.xdg.tags", buffer, sz);
+
+   if(result > 0)
+   {
+      // Data is stored usually as comma(,) separated list.
+      ByteArray tagList = ByteArray((int8*)buffer, result);
       String string(tagList);
       return string.split(',');
-	}
+   }
    #endif
 
    // Return empty if no tags found array
    return StringList();
 }
 
-VxfErrorStatus File::addTag(const String &tag)
+VxfErrorStatus File::addTag(const String& tag)
 {
    #ifdef __APPLE__ //macOS
    StringList oldtags = getTags();
@@ -812,7 +813,7 @@ VxfErrorStatus File::addTag(const String &tag)
    return eNotImplemented;
 }
 
-VxfErrorStatus File::removeTag(const String &tag)
+VxfErrorStatus File::removeTag(const String& tag)
 {
    #ifdef __APPLE__ //macOS
    StringList oldtags = getTags();
@@ -950,8 +951,8 @@ String jm::ExecDir()
 }
 
 
-   #ifdef __APPLE__
-File jm::ResourceDir(const String &bundleId)
+#ifdef __APPLE__
+File jm::ResourceDir(const String& bundleId)
 {
 
    //CFString aus Bundle-ID erzeugen
@@ -964,7 +965,8 @@ File jm::ResourceDir(const String &bundleId)
       //Aufräumen
       CFRelease(cfstr);
 
-      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId), kLogError);
+      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
+                  kLogError);
       return File("/");
    }
 
@@ -1012,22 +1014,22 @@ File jm::ResourceDir(const String &bundleId)
 
    // Return
    return File(filename);
-   }
+}
    #endif
 
-   #elif defined __linux__ //Linux
-File jm::ResourceDir(const String &/*bundleId*/)
+#elif defined __linux__ //Linux
+File jm::ResourceDir(const String& /*bundleId*/)
 {
    // The resource directory is /usr/share/appname
-   return File("/usr/share/"+ExecName());
+   return File("/usr/share/" + ExecName());
 }
-   #elif defined _WIN32 //Windows
-File jm::ResourceDir(const String &/*bundleId*/)
+#elif defined _WIN32 //Windows
+File jm::ResourceDir(const String& /*bundleId*/)
 {
    // The Exec-Dir is currently used as the resource directory
    return File(ExecDir());
 }
-   #endif
+#endif
 
 File jm::PropertyDir()
 {
@@ -1079,7 +1081,7 @@ File jm::UserDir()
 
    uint16 path[MAX_PATH];
 
-   if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, (WCHAR *)&path)))
+   if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, (WCHAR*)&path)))
    {
       uint32 textlength = 0;
       while(path[textlength] != 0)textlength++;
@@ -1108,9 +1110,9 @@ File jm::CurrentDir()
    #elif defined _WIN32 //Windows
    uint16 path[MAX_PATH];
    LPWSTR ptr = (LPWSTR) & path[0];
-   uint32 size = GetCurrentDirectory(MAX_PATH,ptr);
+   uint32 size = GetCurrentDirectory(MAX_PATH, ptr);
    String name = String((uint16*)path, size);
    return File(name);
-#endif
+   #endif
 }
 

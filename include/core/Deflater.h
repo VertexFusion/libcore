@@ -80,8 +80,8 @@ namespace jm
           \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
           \param length Die Länge des Puffers
           */
-         void Deflate(uint8* &buffer,
-                      Integer &length);
+         void Deflate(uint8*& buffer,
+                      Integer& length);
 
          /*!
           \brief Setzt den Komprimierer zurück, damit ein neues Objekt komprimiert werden kann

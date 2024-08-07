@@ -38,7 +38,7 @@ Stream::Stream(): Object()
 
 }
 
-Integer Stream::write(const String &string)
+Integer Stream::write(const String& string)
 {
    ByteArray cstr = string.toCString();
    Integer ret = write((const uint8*)cstr.constData(), cstr.size());

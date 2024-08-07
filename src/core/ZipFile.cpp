@@ -102,7 +102,8 @@ void ZipFile::open()
 
       jm::String name = jm::String((char*)&dict[index + 46], fileNameLength);
       jm::String extra = jm::String((char*)&dict[index + 46 + fileNameLength], extraFieldLength);
-      jm::String comment = jm::String((char*)&dict[index + 46 + fileNameLength + extraFieldLength], commentLength);
+      jm::String comment = jm::String((char*)&dict[index + 46 + fileNameLength + extraFieldLength],
+                                      commentLength);
 
       ZipEntry* entry = new ZipEntry(name);
       entry->mExtra = extra;
@@ -131,7 +132,7 @@ jm::String ZipFile::comment()
    return kEmptyString;
 }
 
-ZipEntry* ZipFile::entry(const String &name)
+ZipEntry* ZipFile::entry(const String& name)
 {
    LinkedListIterator iter = entryIterator();
 
@@ -194,7 +195,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
 // ZIP ENTRY
 //
 
-ZipEntry::ZipEntry(const String &name): jm::Object()
+ZipEntry::ZipEntry(const String& name): jm::Object()
 {
    mName = name;
    mUncompressedSize = 0;

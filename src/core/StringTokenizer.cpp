@@ -33,7 +33,8 @@
 
 using namespace jm;
 
-StringTokenizer::StringTokenizer(const String &str, const String &delimiters, Bool retDelim): Object()
+StringTokenizer::StringTokenizer(const String& str, const String& delimiters,
+                                 Bool retDelim): Object()
 {
    mStr = str;
    mDelimiters = delimiters;

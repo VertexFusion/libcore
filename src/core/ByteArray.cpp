@@ -42,12 +42,12 @@ ByteArray::ByteArray() : Object()
 
 ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
 {
-   init(buffer,size);
+   init(buffer, size);
 }
 
 ByteArray::ByteArray(const uint8* buffer, Integer size) : Object()
 {
-   init((const int8*)buffer,size);
+   init((const int8*)buffer, size);
 }
 
 void ByteArray::init(const int8* buffer, Integer size)
@@ -193,45 +193,46 @@ void ByteArray::set(Integer index, uint8 item)
    mData[index] = item;
 };
 
-void ByteArray::replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length)
+void ByteArray::replace(Integer tgtOffset, Integer srcOffset, const ByteArray& buffer,
+                        Integer length)
 {
-   Integer range=Min(length, mArrSize-tgtOffset);
+   Integer range = Min(length, mArrSize - tgtOffset);
 
-   for(Integer a=0;a<range;a++)
+   for(Integer a = 0; a < range; a++)
    {
-      mData[a] = buffer.mData[srcOffset+a];
+      mData[a] = buffer.mData[srcOffset + a];
    }
 }
 
-void ByteArray::replace(uint8 oldValue,uint8 newValue)
+void ByteArray::replace(uint8 oldValue, uint8 newValue)
 {
-   for(Integer index=0;index<mArrSize;index++)
+   for(Integer index = 0; index < mArrSize; index++)
    {
-      if(mData[index]==oldValue)mData[index]=newValue;
+      if(mData[index] == oldValue)mData[index] = newValue;
    }
 }
 
 
 void ByteArray::resize(Integer newSize)
 {
-   if(newSize<=mRawSize-1)
+   if(newSize <= mRawSize - 1)
    {
-      mArrSize=newSize;
-      mData[mArrSize]=0;
+      mArrSize = newSize;
+      mData[mArrSize] = 0;
    }
    else
    {
-      uint8* tmp = new uint8[newSize+1];
-      for(Integer index=0;index<mArrSize;index++)
+      uint8* tmp = new uint8[newSize + 1];
+      for(Integer index = 0; index < mArrSize; index++)
       {
          tmp[index] = mData[index];
       }
-      for(Integer index=mArrSize;index<newSize;index++)
+      for(Integer index = mArrSize; index < newSize; index++)
       {
          tmp[index] = 0;
       }
-      mRawSize=newSize+1;
-      mArrSize=newSize;
+      mRawSize = newSize + 1;
+      mArrSize = newSize;
    }
 }
 

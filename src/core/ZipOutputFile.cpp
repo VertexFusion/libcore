@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-uint32 CRC32(const char *s, uint32 n)
+uint32 CRC32(const char* s, uint32 n)
 {
    uint32 crc = 0xFFFFFFFF;
 
@@ -112,7 +112,8 @@ void ZipOutputFile::close()
    jm::SerializeLEInt32(eof, 0, 0x06054b50);//Signature
    jm::SerializeLEInt16(eof, 4, 0);//Number of Disks
    jm::SerializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
-   jm::SerializeLEInt16(eof, 8, (int16)mEntries.size()); //Number of Central directory records on this disk
+   jm::SerializeLEInt16(eof, 8, (int16)
+                        mEntries.size()); //Number of Central directory records on this disk
    jm::SerializeLEInt16(eof, 10, (int16)mEntries.size());//Total Number of Central directory records
    jm::SerializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
    jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive

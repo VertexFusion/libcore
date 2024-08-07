@@ -57,7 +57,7 @@ namespace jm
          /*!
           \brief Copykonstruktor
           */
-         DiffInfo(const DiffInfo &another);
+         DiffInfo(const DiffInfo& another);
 
          /*!
           \brief Diese Methode schreibt die Diff-Info der beiden Objekte in die Kommandozeile.
@@ -72,10 +72,10 @@ namespace jm
                            Integer obj1, Integer obj2, const String& label);
 
          static void Print(DiffOperation operation,
-                           double obj1, double obj2, const String &label);
+                           double obj1, double obj2, const String& label);
 
          static void Print(DiffOperation operation,
-                           const String &obj1, const String &obj2, const String &label);
+                           const String& obj1, const String& obj2, const String& label);
 
          static void PrintIC(DiffOperation operation,
                              const String& obj1, const String& obj2, const String& label);// Ignore Case
@@ -84,10 +84,10 @@ namespace jm
          //			                  const dwg::Color &obj1, const dwg::Color &obj2, const String &label);
 
          static void Print(DiffOperation operation,
-                           const Vertex2 &obj1, const Vertex2 &obj2, const String &label);
+                           const Vertex2& obj1, const Vertex2& obj2, const String& label);
 
          static void Print(DiffOperation operation,
-                           const Vertex3 &obj1, const Vertex3 &obj2, const String &label);
+                           const Vertex3& obj1, const Vertex3& obj2, const String& label);
 
          //			static void Print(DiffOperation operation,
          //			                  const dwg::Handle& obj1, const dwg::Handle& obj2, const String& label);

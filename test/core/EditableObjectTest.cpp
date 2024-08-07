@@ -150,7 +150,8 @@ void EditableObjectTest::DoTest()
 {
 
    AddressBook* book = new AddressBook();
-   book->initNewDocument(NULL); // From API side, this shall be called first, though we have not implementation hier. Just as reminder
+   book->initNewDocument(
+      NULL); // From API side, this shall be called first, though we have not implementation hier. Just as reminder
 
    UndoManager* um = book->undoManager();//Get reference for later
 

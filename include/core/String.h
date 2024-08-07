@@ -71,53 +71,57 @@ namespace jm
          String();
 
          /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
-          (UTF-8).
-          \param cstring Ein C-String, der die Zeichenkette darstellt. Ein C-String ist dadurch
-          gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
+          \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
+          \param cstring A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
           */
          String(const char* cstring);
+
+         /*!
+          \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
+          \param buffer A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
+          */
          String(const ByteArray& buffer);
 
          /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette.
-          \param cstring Ein C-String, der die Zeichenkette darstellt. Ein C-String ist dadurch
-          gegennzeichnet, dass das Ende der Zeichenkette durch ein 0-Byte symbolisiert ist.
-          \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
+          \brief This constructor generates a character string.
+          \param cstring A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
+          \param charset The coding with which the character string is encoded.
           */
          String(const char* cstring, Charset* charset);
-         String(const ByteArray &buffer, Charset* charset);
 
          /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist die Standardkodierung
-          (UTF-8).
-          \param buffer Ein Feld, das die Zeichenkette enthält.
-          \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
-          Zeichenkette übernommen werden.
+          \brief This constructor generates a character string.
+          \param buffer A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
+          \param charset The coding with which the character string is encoded.
+          */
+         String(const ByteArray& buffer, Charset* charset);
+
+         /*!
+          \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
+          \param buffer An array, which contains the string.
+          \param size The length of the string.
           */
          String(const char* buffer, Integer size);
 
          /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette. Die Kodierung ist Unicode.
-          \param buffer Ein Feld, das die Zeichenkette enthält.
-          \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
-          Zeichenkette übernommen werden.
+          \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
+          \param buffer An array, which contains the string.
+          \param size The length of the string.
           */
          String(const uint16* buffer, Integer size);
 
          /*!
-          \brief Dieser Konstruktor erzeugt Zeichenkette.
-          \param buffer Ein Feld, das die Zeichenkette enthält.
-          \param size Die Anzahl an Bytes, die von dem Feld gelesen werden sollen und als
-          Zeichenkette übernommen werden.
-          \param charset Die Kodierung, mit der die Zeichenkette kodiert ist.
+          \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
+          \param buffer An array, which contains the string.
+          \param size The length of the string.
+          \param charset The coding with which the character string is encoded.
           */
          String(const char* buffer, Integer size, Charset* charset);
 
          /*!
           \brief Copy constructor
           */
-         String(const String &another);
+         String(const String& another);
 
          /*!
           \brief Destructor
@@ -137,7 +141,7 @@ namespace jm
          CFStringRef toCFString()const;
          #endif
          /*!
-          \brief Diese Methode gibt die Länge der Zeichenkette zurück.
+          \brief Returns the size of the string.
           */
          Integer size() const;
 
@@ -184,7 +188,7 @@ namespace jm
           \param another Die Zeichenkette, die an das Ende dieser Zeichenkette angehängt werden
           soll.
           */
-         void append(const String &another);
+         void append(const String& another);
 
          /*!
           \brief Diese Methode hängt einen Buchstaben an diese Zeichenkette an.
@@ -218,14 +222,14 @@ namespace jm
           \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
           Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist falsch.
           */
-         bool equals(const String &another) const;
+         bool equals(const String& another) const;
 
          /*!
           \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird streng
           Zeichenweise von links nach rechts verglichen.
           \param another Die Zeichenkette, mit der diese verglichen wird.
           */
-         int32 compareTo(const String &another) const override;
+         int32 compareTo(const String& another) const override;
 
          /*!
           \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird unter
@@ -234,7 +238,7 @@ namespace jm
           Zeit aus Effizienzgründen nur maximal die ersten 256 Zeichen verglichen.
           \param another Die Zeichenkette, mit der diese verglichen wird.
           */
-         int32 compareFancyTo(const String &another) const;
+         int32 compareFancyTo(const String& another) const;
 
          /*!
           \brief Diese Methode prüft unter vernachlässigung der Klein- und Großbuchstaben, ob
@@ -243,7 +247,7 @@ namespace jm
           \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
           Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist auch wahr.
           */
-         bool equalsIgnoreCase(const String &another) const;
+         bool equalsIgnoreCase(const String& another) const;
 
          /*!
           \brief Diese Methode prüft, ob der Anfang dieser Zeichenkette mit der anderen
@@ -252,7 +256,7 @@ namespace jm
           \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren beginnt.
           Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
           */
-         bool startsWith(const String &another) const;
+         bool startsWith(const String& another) const;
 
          /*!
           \brief Diese Methode prüft, ob das Ende dieser Zeichenkette mit der anderen
@@ -261,7 +265,7 @@ namespace jm
           \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren endet.
           Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
           */
-         bool endsWith(const String &another) const;
+         bool endsWith(const String& another) const;
 
          /*!
           \brief This method checks, is the string at position is the same as the other string.
@@ -270,16 +274,16 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool atIs(Integer position,const String &another);
+         bool atIs(Integer position, const String& another);
 
-      /*!
-       \brief Same as atIs, but ignoring case.
-       \param position The position where another string is expected
-       \param another The comaring string
-       \return Returns \c true is the substring sequence at position is the same as \c another.
-       Otherwise \c false
-       */
-      bool atIsIgnoreCase(Integer position,const String &another);
+         /*!
+          \brief Same as atIs, but ignoring case.
+          \param position The position where another string is expected
+          \param another The comaring string
+          \return Returns \c true is the substring sequence at position is the same as \c another.
+          Otherwise \c false
+          */
+         bool atIsIgnoreCase(Integer position, const String& another);
 
          /*!
           \brief Diese Methode berechnet den Hashcode für diese Zeichenkette und gibt ihn zurück.
@@ -371,7 +375,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer indexOf(const String &str) const;
+         Integer indexOf(const String& str) const;
 
 
          /*!
@@ -392,7 +396,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer indexOf(const String &str, Integer fromIndex) const;
+         Integer indexOf(const String& str, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens des gewünschten
@@ -414,7 +418,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer lastIndexOf(const String &str) const;
+         Integer lastIndexOf(const String& str) const;
 
 
          /*!
@@ -439,7 +443,7 @@ namespace jm
           \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
           nicht vorkommt.
           */
-         Integer lastIndexOf(const String &str, Integer fromIndex) const;
+         Integer lastIndexOf(const String& str, Integer fromIndex) const;
 
          /*!
           \brief Diese Methode gibt das Zeichen an einer bestimmten Position in der Zeichenkette
@@ -469,27 +473,27 @@ namespace jm
           \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
           \param string Die Zeichenkette, welchee eingefügt werden soll
           */
-         void insert(Integer index, const String &string);
+         void insert(Integer index, const String& string);
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-          String arg(Integer valueInteger,
-                 Integer fieldwidth=0,
-                 Char fillchar=Char(' '));
+         String arg(Integer valueInteger,
+                    Integer fieldwidth = 0,
+                    Char fillchar = Char(' '));
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-      String arg(const String &value,
-                 Integer fieldwidth=0,
-                 Char fillchar=Char(' '));
+         String arg(const String& value,
+                    Integer fieldwidth = 0,
+                    Char fillchar = Char(' '));
 
-      String arg(Char character,
-                 Integer fieldwidth=0,
-                 Char fillchar=Char(' '));
+         String arg(Char character,
+                    Integer fieldwidth = 0,
+                    Char fillchar = Char(' '));
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -502,33 +506,36 @@ namespace jm
           \param fillchar The character for filling the space, until fieldwidth chars are reached.
           */
          String arg(Double value,
-                    Integer fieldwidth=0,
-                    Integer precision=-1,
-                    Char fillchar=Char(' '));
+                    Integer fieldwidth = 0,
+                    Integer precision = -1,
+                    Char fillchar = Char(' '));
 
-      String arg(double value,
-                 Integer fieldwidth=0,
-                 Integer precision=-1,
-                 Char fillchar=Char(' ')){return arg(Double(value),fieldwidth,precision,fillchar);};
+         String arg(double value,
+                    Integer fieldwidth = 0,
+                    Integer precision = -1,
+                    Char fillchar = Char(' '))
+         {
+            return arg(Double(value), fieldwidth, precision, fillchar);
+         };
 
          static void setConsoleCharset(Charset* cs);
 
          // Operators
-         String& operator=(const String &another);
-         String& operator+=(const String &another);
+         String& operator=(const String& another);
+         String& operator+=(const String& another);
 
          // Friends
          DllExport
-         friend bool operator==(String const &v1, String const &v2);
+         friend bool operator==(String const& v1, String const& v2);
 
          DllExport
-         friend bool operator!=(String const &v1, String const &v2);
+         friend bool operator!=(String const& v1, String const& v2);
 
          DllExport
-         friend std::ostream& operator<< (std::ostream &out, const String& str);
+         friend std::ostream& operator<< (std::ostream& out, const String& str);
 
          DllExport
-         friend String& operator<< (String &out, const String& str);
+         friend String& operator<< (String& out, const String& str);
 
          DllExport
          friend String& operator<< (String& out, const Integer& i);
@@ -537,55 +544,55 @@ namespace jm
          friend String& operator<< (String& out, const uint64& i);
 
          DllExport
-         friend String& operator<< (String& out, const int64 &i);
+         friend String& operator<< (String& out, const int64& i);
 
          DllExport
-         friend String& operator<< (String& out, const int32 &i);
+         friend String& operator<< (String& out, const int32& i);
 
          DllExport
-         friend String& operator<< (String& out, const uint32 &i);
+         friend String& operator<< (String& out, const uint32& i);
 
          DllExport
-         friend String& operator<< (String& out, const double &d);
+         friend String& operator<< (String& out, const double& d);
 
          DllExport
-         friend String& operator<< (String& out, const char &c);
+         friend String& operator<< (String& out, const char& c);
 
          DllExport
-         friend String& operator<< (String& out, const Char &c);
+         friend String& operator<< (String& out, const Char& c);
 
          DllExport
          friend std::istream& operator>> (std::istream& in, String& str);
 
          DllExport
-         friend String operator+(const String &left, const String &right);
+         friend String operator+(const String& left, const String& right);
 
          DllExport
-         friend String operator+(const char* &left, const String &right);
+         friend String operator+(const char*& left, const String& right);
 
          DllExport
-         friend String operator+(const String &left, const char* &right);
+         friend String operator+(const String& left, const char*& right);
 
          DllExport
-         friend String operator+(int64 &left, const String &right);
+         friend String operator+(int64& left, const String& right);
 
          DllExport
-         friend String operator+(const String &left, int64 &right);
+         friend String operator+(const String& left, int64& right);
 
          DllExport
-         friend String operator+(double &left, const String &right);
+         friend String operator+(double& left, const String& right);
 
          DllExport
-         friend String operator+(const String &left, double &right);
+         friend String operator+(const String& left, double& right);
 
          DllExport
-         friend String operator+(const int8 &left, const String &right);
+         friend String operator+(const int8& left, const String& right);
 
          DllExport
-         friend String operator+(const String &left, const int8 &right);
+         friend String operator+(const String& left, const int8& right);
 
          DllExport
-         friend bool operator<(const String &left, const String &right);
+         friend bool operator<(const String& left, const String& right);
 
          /*
           *
@@ -642,7 +649,7 @@ namespace jm
 
          //! This char array stores the content of the string. The length of the string can be
          //! bigger than the string itself. In principle, the characters are unicode encoded.
-         //! Valid values are in the range of 0x0000 - 0xFFFF. 
+         //! Valid values are in the range of 0x0000 - 0xFFFF.
          Char* mValue;
 
          //! Length of array.
@@ -658,16 +665,16 @@ namespace jm
           \brief This method copies the content of CharArrays into this string.
           \param array The source CharArray.
           */
-         void copy(const CharArray &array);
+         void copy(const CharArray& array);
 
          //! Helper method for arg.
-         bool argIndicies(Integer &first, Integer &second);
+         bool argIndicies(Integer& first, Integer& second);
 
    };
 
    /*!
     \brief Method converts a String into a double.
-    
+
     This method is similar to Double::ValueFrom(), but as a decimal divider a point
     or a comma is accepted.
     \param str The string in form: "1.23".
@@ -676,11 +683,11 @@ namespace jm
    extern DllExport
    double ConvertToDouble(String str);
 
-    extern DllExport
-   String URLDecode(const String &str);
+   extern DllExport
+   String URLDecode(const String& str);
 
    extern DllExport
-   String URLEncode(const String &str);
+   String URLEncode(const String& str);
 
    static String kEmptyString = "";
 }

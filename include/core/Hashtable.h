@@ -76,14 +76,14 @@ namespace jm
           \return Den Pointer auf das Objekt, welches gesucht wird, oder NULL, wenn das Objekt nicht
           in der Hashtabelle vorhanden ist.
           */
-         void* get(const String &key) const;
+         void* get(const String& key) const;
 
          /*!
           \brief Diese Methode entfernt das Objekt, welches zu dem gesuchten Key zugeordnet ist.
           \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
           \return Den Pointer auf das Objekt, welches entfernt wurde.
           */
-         void* remove(const String &key);
+         void* remove(const String& key);
 
          /*!
           \brief Returns the number of entries in this hash table.
@@ -100,7 +100,7 @@ namespace jm
           ist.
           \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
           */
-         bool containsKey(const String &key) const;
+         bool containsKey(const String& key) const;
 
          /*!
           \brief Diese Methode gibt "wahr" zurück, wenn zu dem Schlüssel ein Objekt zugeordnet

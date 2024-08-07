@@ -101,7 +101,8 @@ void Exception::PrintStackTrace() const
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
       function = String(buffer, (int)size, Charset::ForName("RAW"));
 
-      std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << std::endl;
+      std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" <<
+                 std::endl;
       #elif defined __linux__//Linux
       String line = symbollist[i];
       std::cerr << "\ta" << line << std::endl;
@@ -164,7 +165,8 @@ String Exception::GetStrackTrace() const
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
       function = String(buffer, (int)size, Charset::ForName("RAW"));
 
-      ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r' << '\n';
+      ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r'
+          << '\n';
       #elif defined __linux__//Linux
       String line = symbollist[i];
       ret << "\ta" << line << "\r\n";

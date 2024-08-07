@@ -46,7 +46,7 @@ jm::Vector::Vector(Integer rows)
    for(Integer a = 0; a < m; a++)data[a] = 0.0;
 }
 
-jm::Vector::Vector(const Vector &another)
+jm::Vector::Vector(const Vector& another)
 {
    m = another.m;
    if(m > 0)
@@ -64,7 +64,7 @@ jm::Vector::~Vector()
    m = 0;
 }
 
-double jm::Vector::Abs() const
+double jm::Vector::abs() const
 {
    double ret = 0;
 
@@ -75,24 +75,24 @@ double jm::Vector::Abs() const
    return ret;
 }
 
-void jm::Vector::Normalize()
+void jm::Vector::normalize()
 {
-   double v = Abs();
+   double v = abs();
 
    for(Integer a = 0; a < m; a++)data[a] /= v;
 }
 
-void jm::Vector::Zeros()
+void jm::Vector::zeros()
 {
    for(Integer a = 0; a < m; a++)data[a] = 0.0;
 }
 
-void jm::Vector::Ones()
+void jm::Vector::ones()
 {
    for(Integer a = 0; a < m; a++)data[a] = 1.0;
 }
 
-double jm::Vector::DotProduct(const Vector &another) const
+double jm::Vector::dotProduct(const Vector& another) const
 {
    double prod = 0.0;
    for(Integer a = 0; a < m; a++)
@@ -102,7 +102,7 @@ double jm::Vector::DotProduct(const Vector &another) const
    return prod;
 }
 
-std::ostream& jm::operator<< (std::ostream &out, const Vector &vec)
+std::ostream& jm::operator<< (std::ostream& out, const Vector& vec)
 {
    out << "[ ";
    for(Integer a = 0; a < vec.m; a++)out << vec.data[a] << ' ' ;
@@ -110,7 +110,7 @@ std::ostream& jm::operator<< (std::ostream &out, const Vector &vec)
    return out;
 }
 
-jm::Vector& jm::Vector::operator=(const jm::Vector &another)
+jm::Vector& jm::Vector::operator=(const jm::Vector& another)
 {
    if(this != &another)
    {
@@ -127,7 +127,7 @@ jm::Vector& jm::Vector::operator=(const jm::Vector &another)
    return *this;
 }
 
-const jm::Vector jm::operator+(const jm::Vector &v1, const jm::Vector &v2)
+const jm::Vector jm::operator+(const jm::Vector& v1, const jm::Vector& v2)
 {
    if(v1.m != v2.m) throw new Exception("dimensions don't match");
    jm::Vector v = jm::Vector(v1.m);
@@ -137,7 +137,7 @@ const jm::Vector jm::operator+(const jm::Vector &v1, const jm::Vector &v2)
    return v;
 }
 
-const jm::Vector jm::operator-(const jm::Vector &v1, const jm::Vector &v2)
+const jm::Vector jm::operator-(const jm::Vector& v1, const jm::Vector& v2)
 {
    if(v1.m != v2.m) throw new Exception("dimensions don't match");
 
@@ -148,7 +148,7 @@ const jm::Vector jm::operator-(const jm::Vector &v1, const jm::Vector &v2)
    return v;
 }
 
-const jm::Vector jm::operator*(const double &d, const jm::Vector &v)
+const jm::Vector jm::operator*(const double& d, const jm::Vector& v)
 {
    jm::Vector r = jm::Vector(v.m);
 

@@ -101,7 +101,7 @@ namespace jm
          /*!
           \brief Copyconstruktor
           */
-         Date(const Date &other);
+         Date(const Date& other);
 
          /*!
           \brief Konstruktor
@@ -127,7 +127,8 @@ namespace jm
           \param seconds Die Sekunden (0-59)
           \param millis Die Millisekunden (0-999)
           */
-         Date(uint16 year, uint16 month, uint16 day, uint16 hours, uint16 minutes, uint16 seconds, uint16 millis);
+         Date(uint16 year, uint16 month, uint16 day, uint16 hours, uint16 minutes, uint16 seconds,
+              uint16 millis);
 
          /*!
           \brief Constructor for a Date value given as a NSDate double value (typically on Mac)
@@ -252,43 +253,43 @@ namespace jm
           \brief Diese Methode vergleicht die Reihenfolge der Daten.
           \param another Das Datum, mit der dieses verglichen wird.
           */
-         int32 compareTo(const Date &another) const;
+         int32 compareTo(const Date& another) const;
 
          /*!
           \brief Implementierung des Operators <
          */
          DllExport
-         friend bool operator<(Date const &v1, Date const &v2);
+         friend bool operator<(Date const& v1, Date const& v2);
 
          /*!
          	\brief Implementierung des Operators >
            */
          DllExport
-         friend bool operator>(Date const &v1, Date const &v2);
+         friend bool operator>(Date const& v1, Date const& v2);
 
          /*!
          	\brief Implementierung des Operators <=
            */
          DllExport
-         friend bool operator<=(Date const &v1, Date const &v2);
+         friend bool operator<=(Date const& v1, Date const& v2);
 
          /*!
          	\brief Implementierung des Operators >=
            */
          DllExport
-         friend bool operator>=(Date const &v1, Date const &v2);
+         friend bool operator>=(Date const& v1, Date const& v2);
 
          /*!
           \brief Implementierung des Operators ==
           */
          DllExport
-         friend bool operator==(Date const &v1, Date const &v2);
+         friend bool operator==(Date const& v1, Date const& v2);
 
          /*!
           \brief Implementierung des Operators !=
           */
          DllExport
-         friend bool operator!=(Date const &v1, Date const &v2);
+         friend bool operator!=(Date const& v1, Date const& v2);
 
       private:
 
@@ -464,13 +465,13 @@ namespace jm
 
       public:
 
-         DateFormatter(const String &pattern);
+         DateFormatter(const String& pattern);
 
          ~DateFormatter();
 
-         String Format(const Date &date)const;
+         String Format(const Date& date)const;
 
-         static String Format(const String &format, const Date &date);
+         static String Format(const String& format, const Date& date);
 
       private:
 
@@ -512,9 +513,9 @@ namespace jm
 
             Pattern();
 
-            Pattern(const String &value, bool text = false);
+            Pattern(const String& value, bool text = false);
 
-            void AppendPattern(String &value, const Date &date) const;
+            void AppendPattern(String& value, const Date& date) const;
          };
 
          Pattern* mPatterns;

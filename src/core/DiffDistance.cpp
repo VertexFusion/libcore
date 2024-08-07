@@ -114,10 +114,10 @@ DiffBacktrace* DiffDistance::Solve()
    Integer sz = m * n;
    std::cout << Tr("Distance %1").arg(distance) << std::endl;
    std::cout << Tr("Calculated %1/%2: %3%")
-      .arg(calc)
-      .arg(sz)
-      .arg(calc * 100.0 / sz.Dbl())
-   << std::endl;
+             .arg(calc)
+             .arg(sz)
+             .arg(calc * 100.0 / sz.Dbl())
+             << std::endl;
 
    int i = (int) std::min(m, n);
    return DiffBacktrace::Backtrace(diagonal, i);

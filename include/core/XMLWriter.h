@@ -83,28 +83,28 @@ namespace jm
          /*!
           \brief Diese Methode öffnet ein neues XML-Element
           */
-         void StartElement(const String &name);
+         void StartElement(const String& name);
 
          /*!
           \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
           \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
           werden.
           */
-         void WriteAttribute(const String &name, const String &content);
+         void WriteAttribute(const String& name, const String& content);
 
          /*!
           \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
           \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
           werden.
           */
-         void WriteAttribute(const String &name, int32 content);
+         void WriteAttribute(const String& name, int32 content);
 
          /*!
           \brief Diese Methode schreibt ein XML-Attribut in das offene Start-Element.
           \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
           werden.
           */
-         void WriteAttribute(const String &name, uint32 content);
+         void WriteAttribute(const String& name, uint32 content);
 
          void WriteAttribute(const String& name, Integer content);
 
@@ -113,7 +113,7 @@ namespace jm
           \warning Diese Methode muss aufgerufen werden, bevor Inhalte zu einem Element geschrieben
           werden.
           */
-         void WriteAttribute(const String &name, float content);
+         void WriteAttribute(const String& name, float content);
          void WriteAttribute(const String& name, Double content);
 
          /*!
@@ -128,13 +128,13 @@ namespace jm
           \param xmlencode Wenn wahr (Standard), dann werden bestimmte Zeichen (z.B. & -> &amp;)
           "xml"-kodiert.
           */
-         void WriteCDATA(const String &cdata, bool xmlencode = true);
+         void WriteCDATA(const String& cdata, bool xmlencode = true);
 
          /*!
           \brief Schreibt Daten und kodiert sie mit dem BASE64-Algorithmus
           \param data Die uncodierten Daten
           */
-         void WriteBase64(uint8 *data, Integer length);
+         void WriteBase64(uint8* data, Integer length);
 
 
       private:
@@ -163,7 +163,7 @@ namespace jm
 
          Stack<ElementInfo>* mOpenElements;
 
-         String Encode(const String &input);
+         String Encode(const String& input);
 
          void WriteIndent();
    };

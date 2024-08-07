@@ -36,7 +36,7 @@ jm::String gSystemError;
 
 bool gSystemLogDate = true;
 jm::LogLevel mSystemLogLabel = jm::kLogDebug;
-jm::Preferences*  gPreferences=NULL;
+jm::Preferences*  gPreferences = NULL;
 jm::File* gPrefFile = NULL;
 
 jm::String jm::System::language()
@@ -89,7 +89,7 @@ void jm::System::logEnableLabel(jm::LogLevel logLevel)
 }
 
 
-void jm::System::log(const String &message, LogLevel logLevel)
+void jm::System::log(const String& message, LogLevel logLevel)
 {
    gSystemMutex.lock();
 
@@ -201,10 +201,10 @@ jm::String jm::System::userFullName()
 
    #elif defined __linux__//Linux
 
-   uid_t uid= geteuid ();
+   uid_t uid = geteuid();
    struct passwd* pw = NULL;
-   pw = getpwuid (uid);
-   if (pw)
+   pw = getpwuid(uid);
+   if(pw)
    {
       return pw->pw_gecos;
    }
@@ -257,14 +257,16 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
+                                   std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined __linux__//Linux
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
+   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
+                                   std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined _WIN32// Windows
@@ -272,7 +274,8 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
    uint16* wstr = file->absolutePath().toWString();
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
    delete[] wstr;
-   if(libptr == NULL) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!" << /*std::endl << dlerror() <<*/ std::endl;
+   if(libptr == NULL) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!"
+                                   << /*std::endl << dlerror() <<*/ std::endl;
    return libptr;
 
    #endif
@@ -299,20 +302,22 @@ void jm::System::unloadDynamicLibrary(void* library)
 }
 
 
-void* jm::System::findSymbol(void* library, const String &name)
+void* jm::System::findSymbol(void* library, const String& name)
 {
    #ifdef __APPLE__ //macOS and iOS
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
+                                   " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined __linux__//Linux
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() << " failed!" << std::endl << dlerror() << std::endl;
+   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
+                                   " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined _WIN32//Windows
@@ -339,12 +344,12 @@ const jm::String& jm::System::bundleId()
    return gBundleId;
 }
 
-void jm::System::init(const jm::String &bundleId)
+void jm::System::init(const jm::String& bundleId)
 {
    // First of all, the charsets
    InitCharsets();
 
-   gBundleId=bundleId;
+   gBundleId = bundleId;
 
    // Start autorelease pool
    if(gMainThreadPool == NULL)gMainThreadPool = new AutoreleasePool();
@@ -356,7 +361,7 @@ void jm::System::init(const jm::String &bundleId)
    jm::File propDir = jm::PropertyDir();
    gPreferences = new jm::Preferences();
    gPrefFile  = new jm::File(propDir, bundleId + ".properties");
-   std::cout<<gPrefFile->absolutePath()<<std::endl;
+   std::cout << gPrefFile->absolutePath() << std::endl;
    if(gPrefFile->exists())gPreferences->load(*gPrefFile);
 }
 

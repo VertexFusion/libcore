@@ -85,7 +85,7 @@ bool Inflater::Finished()
    return mEof;
 }
 
-void Inflater::Inflate(uint8* &buffer, Integer &length)
+void Inflater::Inflate(uint8*& buffer, Integer& length)
 {
    mUncompIndex = 0;
 
@@ -102,7 +102,9 @@ void Inflater::Inflate(uint8* &buffer, Integer &length)
 
       int8 compressionMethod = cmf & 0x0F;
       int8 compressionInfo = (cmf >> 4) & 0x0F;
-      if(compressionMethod != 8)throw new Exception("Compression method must be deflate with 32k window. (" + String::valueOf(compressionMethod) + ")");
+      if(compressionMethod != 8)throw new
+         Exception("Compression method must be deflate with 32k window. (" + String::valueOf(
+                      compressionMethod) + ")");
       if(compressionInfo > 7)throw new Exception("png window size is only for 32k implemented.");
 
       //int8 fcheck = flg & 0x1F; Does not have to be calculated explicitly for decompression, as fcheck must be set so that the following check is successful.
@@ -476,7 +478,8 @@ Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
 {
    //Größte Codelänge
    MAX_BITS = 0;
-   for(uint32 a = 0; a < codelengths->size(); a++)MAX_BITS = (*codelengths)[a] > MAX_BITS ? (*codelengths)[a] : MAX_BITS;
+   for(uint32 a = 0; a < codelengths->size();
+         a++)MAX_BITS = (*codelengths)[a] > MAX_BITS ? (*codelengths)[a] : MAX_BITS;
 
    uint16* blCount = new uint16[MAX_BITS + 1];
    uint16* nextCode = new uint16[MAX_BITS + 1];
@@ -741,15 +744,18 @@ uint16 Inflater::NextFixedHuffmanCode()
       code <<= 1;
       code |= NextBit();
 
-      if(code >= 0xC0 && code <= 0xC7)  // (8 bit) 1100 0000 - 1100 0111 ( 192 - 199 | 0xC0 - 0xC7 ) -> 280 - 287: +88 = +0x58
+      if(code >= 0xC0
+            && code <= 0xC7)  // (8 bit) 1100 0000 - 1100 0111 ( 192 - 199 | 0xC0 - 0xC7 ) -> 280 - 287: +88 = +0x58
          code += 0x58;
-      else if(code >= 0x30 && code <= 0xBF)  // (8 bit) 0011 0000 - 1011 1111 ( 48 - 191 | 0x30 - 0BF ) -> 0 - 143: -48 =-0x30
+      else if(code >= 0x30
+              && code <= 0xBF)  // (8 bit) 0011 0000 - 1011 1111 ( 48 - 191 | 0x30 - 0BF ) -> 0 - 143: -48 =-0x30
          code -= 0x30;
       else
       {
          code <<= 1;
          code |= NextBit();
-         if(code >= 0x190 && code <= 0x1FF)  // (9 bit) 1 1001 0000 - 1 1111 1111 ( 400 - 511 | 0x190 - 0x1FF ) -> 144 - 255: -256 =-0x100
+         if(code >= 0x190
+               && code <= 0x1FF)  // (9 bit) 1 1001 0000 - 1 1111 1111 ( 400 - 511 | 0x190 - 0x1FF ) -> 144 - 255: -256 =-0x100
             code -= 0x100;
          else throw new Exception("Wrong code");
       }

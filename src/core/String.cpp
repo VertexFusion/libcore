@@ -50,7 +50,7 @@ String::String(const uint16* buffer, Integer size): Object(), Comparable<String>
    copy(array);
 }
 
-String::String(const String &another): Object(), Comparable<String>()
+String::String(const String& another): Object(), Comparable<String>()
 {
    mHash = 0;
    mStrLength = another.mStrLength;
@@ -107,7 +107,7 @@ String::String(const char* cstring): Object(), Comparable<String>()
    }
 }
 
-String::String(const ByteArray &buffer) : Object(), Comparable<String>()
+String::String(const ByteArray& buffer) : Object(), Comparable<String>()
 {
    mHash = 0;
    if(buffer.size() > 0)
@@ -134,7 +134,7 @@ String::String(const char* cstring, Charset* charset): Object(), Comparable<Stri
    copy(array);
 }
 
-String::String(const ByteArray &buffer, Charset* charset) : Object(), Comparable<String>()
+String::String(const ByteArray& buffer, Charset* charset) : Object(), Comparable<String>()
 {
    mHash = 0;
    CharArray array = charset->Decode(buffer.constData());
@@ -150,7 +150,7 @@ String::~String()
    mValue = NULL;
 }
 
-void String::copy(const CharArray &array)
+void String::copy(const CharArray& array)
 {
    mStrLength = array.length;
    mArrLength = mStrLength;
@@ -191,7 +191,8 @@ String String::fromCFString(CFStringRef cfstring)
    if(ccstr != NULL)return String(ccstr);
 
    // Fallback
-   char* cstr = new char[length * 2]; //Hope, that not all characters are greater than 4 bytes representation
+   char* cstr = new char[length *
+                                2]; //Hope, that not all characters are greater than 4 bytes representation
    CFStringGetCString(cfstring, cstr, length * 2, kCFStringEncodingUTF8);
    String result = String(cstr);
    delete[] cstr;
@@ -236,7 +237,7 @@ uint16* String::toWString() const
    return ret;
 }
 
-bool String::startsWith(const String &another) const
+bool String::startsWith(const String& another) const
 {
    if(another.mStrLength > mStrLength)return false;
 
@@ -249,7 +250,7 @@ bool String::startsWith(const String &another) const
 }
 
 
-bool String::endsWith(const String &another) const
+bool String::endsWith(const String& another) const
 {
    if(another.mStrLength > mStrLength)return false;
 
@@ -261,25 +262,25 @@ bool String::endsWith(const String &another) const
    return true;
 }
 
-bool String::atIs(Integer position,const String &another)
+bool String::atIs(Integer position, const String& another)
 {
-   if(position+another.mStrLength > mStrLength)return false;
+   if(position + another.mStrLength > mStrLength)return false;
 
    for(Integer a = 0; a < another.mStrLength; a++)
    {
-      if(mValue[a+position] != another.mValue[a])return false;
+      if(mValue[a + position] != another.mValue[a])return false;
    }
 
    return true;
 }
 
-bool String::atIsIgnoreCase(Integer position,const String &another)
+bool String::atIsIgnoreCase(Integer position, const String& another)
 {
-   if(position+another.mStrLength > mStrLength)return false;
+   if(position + another.mStrLength > mStrLength)return false;
 
    for(Integer a = 0; a < another.mStrLength; a++)
    {
-      Char c1 = mValue[a+position].toLowerCase();
+      Char c1 = mValue[a + position].toLowerCase();
       Char c2 = another.mValue[a].toLowerCase();
       if(c1 != c2)return false;
    }
@@ -351,7 +352,7 @@ Integer String::indexOf(Char character) const
    return indexOf(character, 0);
 }
 
-Integer String::indexOf(const String &str) const
+Integer String::indexOf(const String& str) const
 {
    return indexOf(str, 0);
 }
@@ -367,7 +368,7 @@ Integer String::indexOf(Char character, Integer fromIndex) const
    return -1;
 }
 
-Integer String::indexOf(const String &str, Integer fromIndex) const
+Integer String::indexOf(const String& str, Integer fromIndex) const
 {
    if(fromIndex < 0)fromIndex = 0;
 
@@ -392,14 +393,15 @@ Integer String::lastIndexOf(Char character) const
    return lastIndexOf(character, mStrLength - 1);
 }
 
-Integer String::lastIndexOf(const String &str) const
+Integer String::lastIndexOf(const String& str) const
 {
    return lastIndexOf(str, mStrLength - 1);
 }
 
 Integer String::lastIndexOf(Char character, Integer fromIndex) const
 {
-   if(fromIndex >= mStrLength) throw new Exception("Index out of Bounds: " + String::valueOf(fromIndex));
+   if(fromIndex >= mStrLength)
+      throw new Exception("Index out of Bounds: " + String::valueOf(fromIndex));
    if(fromIndex < 0)fromIndex = 0;
    if(fromIndex > mStrLength - 1)fromIndex = mStrLength - 1;
 
@@ -410,7 +412,7 @@ Integer String::lastIndexOf(Char character, Integer fromIndex) const
    return -1;
 }
 
-Integer String::lastIndexOf(const String &str, Integer fromIndex) const
+Integer String::lastIndexOf(const String& str, Integer fromIndex) const
 {
    Integer begin = mStrLength - str.mStrLength;
    fromIndex = (fromIndex > begin) ? begin : fromIndex;
@@ -493,8 +495,8 @@ StringList String::split(Char character)
 {
    StringList result;
    String delim;
-   delim<<character;
-   StringTokenizer st(*this,delim,false);
+   delim << character;
+   StringTokenizer st(*this, delim, false);
    while(st.hasNext())result << st.next();
 
    return result;
@@ -510,12 +512,13 @@ Char String::charAt(Integer index) const
 
 void String::setCharAt(Integer index, Char character)
 {
-   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0 || index >= mStrLength)
+      throw new Exception("Index out of Bounds: " + String::valueOf(index));
    mValue[index] = character;
    mHash = 0;
 }
 
-void String::append(const String &another)
+void String::append(const String& another)
 {
    checkCapacity(another.mStrLength);
    memcpy(&mValue[mStrLength], &another.mValue[0], sizeof(Char) * another.mStrLength);
@@ -533,7 +536,8 @@ void String::append(Char utf8char)
 
 void String::insert(Integer index, Char character)
 {
-   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0
+         || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
    checkCapacity(1);
    for(Integer a = mStrLength; a > index; a--)mValue[a] = mValue[a - 1];
    mValue[index] = character;
@@ -541,9 +545,10 @@ void String::insert(Integer index, Char character)
    mHash = 0;
 }
 
-void String::insert(Integer index, const String &str)
+void String::insert(Integer index, const String& str)
 {
-   if(index < 0 || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0
+         || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
 
    Integer len = str.size();
    checkCapacity(len);
@@ -558,7 +563,8 @@ void String::insert(Integer index, const String &str)
 
 void String::deleteCharAt(Integer index)
 {
-   if(index < 0 || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0
+         || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
    for(Integer a = index ; a < mStrLength - 1; a++)
    {
       mValue[a] = mValue[a + 1];
@@ -569,7 +575,9 @@ void String::deleteCharAt(Integer index)
 
 void String::deleteCharRangeAt(Integer index, Integer length)
 {
-   if(index < 0 || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0
+         || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(
+                     index));
    for(Integer a = index ; a < mStrLength - length; a++)
    {
       mValue[a] = mValue[a + length];
@@ -582,9 +590,9 @@ Integer String::count(Char character)const
 {
    Integer count = 0;
 
-   for (Integer index = 0; index < mStrLength; index++)
+   for(Integer index = 0; index < mStrLength; index++)
    {
-      if (mValue[index] == character)count++;
+      if(mValue[index] == character)count++;
    }
 
    return count;
@@ -617,7 +625,7 @@ bool String::equals(const Object* other) const
    return str->equals(*this);
 }
 
-bool String::equals(const String &another) const
+bool String::equals(const String& another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
@@ -631,7 +639,7 @@ bool String::equals(const String &another) const
    return true;
 }
 
-bool String::equalsIgnoreCase(const String &another) const
+bool String::equalsIgnoreCase(const String& another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
@@ -647,7 +655,7 @@ bool String::equalsIgnoreCase(const String &another) const
    return true;
 }
 
-int32 String::compareTo(const String &another) const
+int32 String::compareTo(const String& another) const
 {
    Integer smallest = Min(mStrLength, another.mStrLength);
 
@@ -668,7 +676,7 @@ int32 String::compareTo(const String &another) const
 
 }
 
-int32 String::compareFancyTo(const String &another) const
+int32 String::compareFancyTo(const String& another) const
 {
    //Wandle String in 32bit-Zahlen um, wobei Nummernbestandteile direkt umgewandelt werden.
    uint32 str1[256];
@@ -769,28 +777,28 @@ String String::substring(Integer beginIndex) const
    return substring(beginIndex, mStrLength);
 }
 
-bool String::argIndicies(Integer &first, Integer &second)
+bool String::argIndicies(Integer& first, Integer& second)
 {
-   if(indexOf(Char('%'))<0)return false;
+   if(indexOf(Char('%')) < 0)return false;
 
-   Integer lowest=100;
+   Integer lowest = 100;
 
-   for(Integer index=0;index<mStrLength-1;index++)
+   for(Integer index = 0; index < mStrLength - 1; index++)
    {
-      if(charAt(index)==Char('%') && charAt(index+1).isDigit())
+      if(charAt(index) == Char('%') && charAt(index + 1).isDigit())
       {
-         Integer number=charAt(index+1).digitValue();
-         if(index+2<mStrLength&&charAt(index+2).isDigit())
+         Integer number = charAt(index + 1).digitValue();
+         if(index + 2 < mStrLength && charAt(index + 2).isDigit())
          {
-            number*=10;
-            number+=charAt(index+2).digitValue();
+            number *= 10;
+            number += charAt(index + 2).digitValue();
          }
-         if(number<lowest)
+         if(number < lowest)
          {
-            first=index;
-            second=index+2;
-            if(number>9)second++;
-            lowest=number;
+            first = index;
+            second = index + 2;
+            if(number > 9)second++;
+            lowest = number;
          }
       }
    }
@@ -799,14 +807,14 @@ bool String::argIndicies(Integer &first, Integer &second)
 }
 
 String String::arg(Char character,
-                 Integer fieldWidth,
-                 Char fillchar)
+                   Integer fieldWidth,
+                   Char fillchar)
 {
-   Integer first,second;
+   Integer first, second;
    Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=substring(0,first);
+   String result = substring(0, first);
 
    // Leading space if fieldWidth > 0
    if(fieldWidth > 0)
@@ -814,7 +822,7 @@ String String::arg(Char character,
       for(Integer a = 1; a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<character;
+   result << character;
 
    // Trailing space if flg1 < 0
    if(fieldWidth < 0)
@@ -823,7 +831,7 @@ String String::arg(Char character,
       for(Integer a = 1; a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<substring(second);
+   result << substring(second);
 
    return result;
 }
@@ -833,11 +841,11 @@ String String::arg(Integer value,
                    Integer fieldWidth,
                    Char fillchar)
 {
-   Integer first,second;
+   Integer first, second;
    Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=substring(0,first);
+   String result = substring(0, first);
 
    String s = String::valueOf(value);
 
@@ -847,7 +855,7 @@ String String::arg(Integer value,
       for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<s;
+   result << s;
 
    // Trailing space if flg1 < 0
    if(fieldWidth < 0)
@@ -856,20 +864,20 @@ String String::arg(Integer value,
       for(Integer a = s.size(); a < fieldWidth; a++)result << fillchar;
    }
 
-   result<<substring(second);
+   result << substring(second);
 
    return result;
 }
 
-String String::arg(const String &value,
-           Integer fieldwidth,
-           Char fillchar)
+String String::arg(const String& value,
+                   Integer fieldwidth,
+                   Char fillchar)
 {
-   Integer first,second;
+   Integer first, second;
    Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=substring(0,first);
+   String result = substring(0, first);
 
    // Leading space if fieldWidth > 0
    if(fieldwidth > 0)
@@ -887,7 +895,7 @@ String String::arg(const String &value,
    }
 
 
-   result<<substring(second);
+   result << substring(second);
 
    return result;
 
@@ -899,14 +907,14 @@ String String::arg(Double value,
                    Integer precision,
                    Char fillchar)
 {
-   Integer first,second;
+   Integer first, second;
    Bool found = argIndicies(first, second);
    if(!found)return *this;
 
-   String result=substring(0,first);
+   String result = substring(0, first);
 
-   bool cutzero = precision<0;
-   if(cutzero)precision=10;
+   bool cutzero = precision < 0;
+   if(cutzero)precision = 10;
 
    String s = String::valueOf(value, precision, cutzero);
 
@@ -926,7 +934,7 @@ String String::arg(Double value,
    }
 
 
-   result<<substring(second);
+   result << substring(second);
 
    return result;
 }
@@ -1021,7 +1029,7 @@ String String::valueOf(double number)
 
 String String::valueOf(double number, Integer precision, bool trunc)
 {
-   bool neg = jm::IsLess(number, 0.0);
+   bool neg = jm::isLess(number, 0.0);
    int64 before = static_cast<int64>(number);
    if(neg)before *= -1;
 
@@ -1076,13 +1084,13 @@ void jm::String::setConsoleCharset(Charset* cs)
    gConsoleCharset = cs;
 }
 
-bool jm::operator!=(String const &v1, String const &v2)
+bool jm::operator!=(String const& v1, String const& v2)
 {
    return !v1.equals(v2);
 }
 
 
-bool jm::operator==(String const &v1, String const &v2)
+bool jm::operator==(String const& v1, String const& v2)
 {
    return v1.equals(v2);
 }
@@ -1090,7 +1098,7 @@ bool jm::operator==(String const &v1, String const &v2)
 namespace jm
 {
 
-   ostream &operator << (ostream &out, const String &str)
+   ostream& operator << (ostream& out, const String& str)
    {
       //\todo It is best to set and get the charset globally. It's inefficient that way
       if(gConsoleCharset == NULL)gConsoleCharset = Charset::ForName("Windows-1252");
@@ -1108,7 +1116,7 @@ namespace jm
       return in;
    }
 
-   String& operator << (String &out, const String &str)
+   String& operator << (String& out, const String& str)
    {
       out.append(str);
       return out;
@@ -1126,43 +1134,43 @@ namespace jm
       return out;
    }
 
-   String &operator << (String &out, const int64 &i)
+   String& operator << (String& out, const int64& i)
    {
       out.append(String::valueOf(i));
       return out;
    }
 
-   String &operator << (String &out, const int32 &i)
+   String& operator << (String& out, const int32& i)
    {
       out.append(String::valueOf(i));
       return out;
    }
 
-   String &operator << (String &out, const uint32 &i)
+   String& operator << (String& out, const uint32& i)
    {
       out.append(String::valueOf(i));
       return out;
    }
 
-   String &operator << (String &out, const double &i)
+   String& operator << (String& out, const double& i)
    {
       out.append(String::valueOf(i));
       return out;
    }
 
-   String &operator << (String &out, const char &i)
+   String& operator << (String& out, const char& i)
    {
       out.append(i);
       return out;
    }
 
-   String &operator << (String &out, const Char &i)
+   String& operator << (String& out, const Char& i)
    {
       out.append(i);
       return out;
    }
 
-   String& String::operator=(const String &another)
+   String& String::operator=(const String& another)
    {
       if(this != &another)
       {
@@ -1176,62 +1184,62 @@ namespace jm
       return *this;
    }
 
-   String &String::operator+=(const String &another)
+   String& String::operator+=(const String& another)
    {
       this->append(another);
       return *this;
    }
 
-   String operator+(const String &left, const String &right)
+   String operator+(const String& left, const String& right)
    {
       String ret = left;
       ret.append(right);
       return ret;
    }
 
-   String operator+(const char* &left, const String &right)
+   String operator+(const char*& left, const String& right)
    {
       String ret = left;
       ret.append(right);
       return ret;
    }
 
-   String operator+(const String &left, const char* &right)
+   String operator+(const String& left, const char*& right)
    {
       String ret = left;
       ret.append(right);
       return ret;
    }
 
-   String operator+(int64 &left, const String &right)
+   String operator+(int64& left, const String& right)
    {
       String ret = String::valueOf(left);
       ret.append(right);
       return ret;
    }
 
-   String operator+(const String &left, int64 &right)
+   String operator+(const String& left, int64& right)
    {
       String ret = left;
       ret.append(String::valueOf(right));
       return ret;
    }
 
-   String operator+(double &left, const String &right)
+   String operator+(double& left, const String& right)
    {
       String ret = String::valueOf(left);
       ret.append(right);
       return ret;
    }
 
-   String operator+(const String &left, double &right)
+   String operator+(const String& left, double& right)
    {
       String ret = left;
       ret.append(String::valueOf(right));
       return ret;
    }
 
-   String operator+(const int8 &left, const String &right)
+   String operator+(const int8& left, const String& right)
    {
       String ret;
       ret.append(left);
@@ -1239,14 +1247,14 @@ namespace jm
       return ret;
    }
 
-   String operator+(const String &left, const int8 &right)
+   String operator+(const String& left, const int8& right)
    {
       String ret = left;
       ret.append(right);
       return ret;
    }
 
-   bool operator<(const String &left, const String &right)
+   bool operator<(const String& left, const String& right)
    {
       String str = left;
       return str.compareTo(right) < 0;
@@ -1263,13 +1271,13 @@ double jm::ConvertToDouble(String str)
    return Double::valueOf(str);
 }
 
-String jm::URLDecode(const String &str)
+String jm::URLDecode(const String& str)
 {
    //
    // A URL-encoded string contains only ASCII characters...
    //
 
-   ByteArray buffer = ByteArray(str.size(),0);
+   ByteArray buffer = ByteArray(str.size(), 0);
    uint32 pos = 0;
 
    // Eliminate URL-Decoding
@@ -1298,7 +1306,7 @@ String jm::URLDecode(const String &str)
    return ret;
 }
 
-String jm::URLEncode(const String &str)
+String jm::URLEncode(const String& str)
 {
    //
    // A URL-encoded string contains only ASCII characters...

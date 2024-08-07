@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Math.h
 // Library:     Jameo Core Library
-// Purpose:     Usefull math functions
+// Purpose:     Useful math functions
 //
 // Author:      Uwe Runtemund (2012-today)
 // Modified by:
@@ -44,214 +44,214 @@ namespace jm
    double const RESABS = 1E-6;
 
    /*!
-    \brief  Diese Funktion rechnet den Winkel im Gradmaß in das Bogenmaß um.
-    \param deg Gegebener Winkel im Gradmaß (z.B. 30 für 30°).
-    \return Gibt den Winkel im Bogenmaß zurück.
-    */
-   extern "C" DllExport
-   double DegToRad(double deg);
-
-   /*!
-    \brief  Diese Funktion rechnet den Winkel im Bogenmaß in das Gradmaß um.
-    \param rad Gegebener Winkel im Bogenmaß (z.B. PI/2 für 90°).
-    \return Gibt den Winkel im Gradmaß zurück.
-    */
-   extern "C" DllExport
-   double RadToDeg(double rad);
-
-   /*!
-    \brief  Diese Funktion sibt das Vorzeichen einer Zahl zurück
-    \param d Die Zahl, dessen Vorzeichen ermittelt werden soll.
-    \return -1, wenn negativ, 0 bei 0 und 1 bei positivem d.
-    */
-   extern "C" DllExport
-   int16 Sgn(double d);
-
-   /*!
-    \brief  Diese Funktion rundet eine Zahl kaufmännisch auf die Ganze Zahl
-    \param d Zahl, die gerundet werden soll.
-    \return Ganze Zahl.
-    */
-   extern "C" DllExport
-   int64 Round(double d);
-
-   /*!
-    \brief  Diese Funktion rundet eine Zahl auf die gewünschte Anzahl der Nachkommastellen.
-    \note Beachte, dass aufgrund der Maschinengenauigkeigt nicht immer der exakte Wert getroffen
-    werden kann.
-    \param f Zahl, die gerundet werden soll.
-    \return Gerundete Zahl
-    */
-   extern "C" DllExport
-   float RoundFrac(float f, int32 digits);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob die beiden Werte identisch
-    sind. Es gilt also |v2-v1| < RESABS. Wenn also RESABS unterschied ist, dann ist der Wert bereits
-    nicht mehr gleich.
-    // ES MUSS KLEINER EPSILON SEIN
-    \return Das Ergebnis von v1==v2
-    */
-   extern "C" DllExport
-   bool IsEqual(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der erste Wert ungleich dem
-    zweiten ist.
-    \return Das Ergebnis von v1!=v2
-    */
-   extern "C" DllExport
-   bool IsNotEqual(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der erste Wert niedriger ist
-    als der zweite
-    \return Das Ergebnis von v1<v2
-    */
-   extern "C" DllExport
-   bool IsLess(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der erste Wert niedriger
-    oder gleich ist als der zweite
-    \return Das Ergebnis von v1<=v2
-    */
-   extern "C" DllExport
-   bool IsLessEqual(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der erste Wert größer ist
-    als der zweite
-    \return Das Ergebnis von v1>v2
-    */
-   extern "C" DllExport
-   bool IsGreater(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der erste Wert größer oder
-    gleich ist als der zweite
-    \return Das Ergebnis von v1<v2
-    */
-   extern "C" DllExport
-   bool IsGreaterEqual(double v1, double v2);
-
-   /*!
-    \brief Diese Methode prüft , ob die Zahl "Not a Number" ist.
-    \param d Der Wert, der geprüft werden soll
-    \return Das Ergebnis von d!=d
-    */
-   extern "C" DllExport
-   bool IsNaN(double d);
-
-   /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief This function converts the angle from degrees into radians.
+    \param deg Given angle in degrees (e.g. 30 for 30°).
+    \return Returns the angle in radians.
     */
    DllExport
-   void Swap(Double& v1, Double& v2);
+   double degToRad(double deg);
 
    /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief  This function converts the angle from radians into degrees.
+    \param rad Given angle in radians (e.g. PI/2 for 90°).
+    \return Returns the angle in degrees.
     */
    DllExport
-   void Swap(double &v1, double &v2);
+   double radToDeg(double rad);
 
    /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief This function returns the sign of a number.
+    \param d The number whose sign is to be determined.
+    \return -1, if negative, 0 for 0 and 1 for positive d.
     */
    DllExport
-   void Swap(int32 &v1, int32 &v2);
+   int16 sign(double d);
 
    /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief This function rounds a number commercially to the integral number.
+    \param d Number to be rounded.
+    \return Integer number.
     */
    DllExport
-   void Swap(uint32 &v1, uint32 &v2);
+   int64 round(double d);
 
    /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief This function rounds a number to the desired number of decimal places.
+    \note Please note that the exact value cannot always be determined due to the accuracy of the machine.
+    \param f Number to be rounded.
+    \return Rounded number
     */
    DllExport
-   void Swap(uint16 &v1, uint16 &v2);
+   float roundFrac(float f, int32 digits);
 
    /*!
-    \brief Diese Methode vertausch die beiden Variablen
+    \brief This method checks whether the two values are identical, taking resabs into account,
+    are identical. Therefore |v2-v1| < RESABS applies. So if RESABS is the different, then the value is already
+    is no longer the same. IT MUST BE LESS THAN EPSILON
+    \return The result of v1==v2
     */
    DllExport
-   void Swap(uint8 &v1, uint8 &v2);
+   bool isEqual(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the first value is not equal to the second, taking resabs into account.
+    \return The result of v1!=v2
+    */
+   DllExport
+   bool isNotEqual(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the first value is lower than the second, taking resabs into account.
+    \return The result of v1<v2
+    */
+   DllExport
+   bool isLess(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the first value is lower or equal to the second, taking resabs into account.
+    \return The result of v1<=v2
+    */
+   DllExport
+   bool isLessEqual(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the first value is greater than the second, taking resabs into account.
+    \return The result of v1>v2
+    */
+   DllExport
+   bool isGreater(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the first value is greater than or equal to the second, taking resabs into account.
+    \return The result of v1<v2
+    */
+   DllExport
+   bool isGreaterEqual(double v1, double v2);
+
+   /*!
+    \brief This method checks whether the number is "Not a Number".
+    \param d The value to be checked.
+    \return The result of d!=d
+    */
+   DllExport
+   bool isNaN(double d);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(Double& v1, Double& v2);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(double& v1, double& v2);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(int32& v1, int32& v2);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(uint32& v1, uint32& v2);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(uint16& v1, uint16& v2);
+
+   /*!
+    \brief This method swaps the two variables in place.
+    */
+   DllExport
+   void swap(uint8& v1, uint8& v2);
 
    /*!
     \brief Returna a random number between 0.0 and 1.0
-    \note Not safe in sence of cryptography. Just an arbitrary number
+    \note Not safe in sense of cryptography. Just an arbitrary number.
     */
    DllExport
-   double Random();
+   double random();
 
    /*!
-    \brief Gibt eine ganzzahlige Zufallszahl zurück
-    \note Not safe in sence of cryptography. Just an arbitrary number
-    \param lower Untere einschließliche Grenze des Wertebereiches der zurückgegeben werden soll
-    \param upper Obere einschließliche Grenze des Wertebereiches der zurückgegeben werden soll
+    \brief Returns a random integer number.
+    \note Not safe in sense of cryptography. Just an arbitrary number.
+    \param lower Lower inclusive limit of the value range to be returned.
+    \param upper Upper inclusive limit of the value range to be returned.
     */
    DllExport
-   int32 Random(int32 lower, int32 upper);
+   int32 random(int32 lower, int32 upper);
 
    /*!
-    \brief ermittelt zufällig, ob die bestimmte Wahrscheinlichkeit erfüllt ist
+    \brief randomly determines whether the specified probability is fulfilled.
     */
    DllExport
-   bool Probability(double percent);
+   bool probability(double percent);
 
    /*!
-    \brief Diese Methode interpoliert den Zahlenwert zwischen begin und end.
-    \param begin Startwert für die Interpolation
-    \param end Endwert für die Interpolations
-    \param percent Verschiebungswert zwisch 0 und 1
+    \brief This method interpolates the numerical value between begin and end.
+    \param begin Start value for interpolation.
+    \param end End value for the interpolation.
+    \param percent Shift value between 0 and 1
     */
    DllExport
-   float Interpolate(float begin, float end, float percent);
+   float interpolate(float begin, float end, float percent);
 
    /*!
-    \brief Diese Methode interpoliert den Zahlenwert zwischen begin und end.
-    \param begin Startwert für die Interpolation
-    \param end Endwert für die Interpolations
-    \param percent Verschiebungswert zwisch 0 und 1
+    \brief This method interpolates the numerical value between begin and end.
+    \param begin Start value for interpolation.
+    \param end End value for the interpolation.
+    \param percent Shift value between 0 and 1
     */
    DllExport
-   double Interpolate(double begin, double end, double percent);
+   double interpolate(double begin, double end, double percent);
 
-   DllExport
-   double Interpolate(double vbegin, double vend, double begin, double end, double position);
 
    /*!
-    \brief Diese Methode prüft, ob die übergebene Zahl eine Potenz von 2 ist.
-    \param x Die Zahl, die geprüft werden soll
-    \return Gibt wahr zurück, wenn die Zahl eine Potens von 2 (also 1,2,4,8,16 usw.)ist, andernfalls
-    falsch.
+    \brief This method interpolates the numerical value between vbegin and vend.
+    \param vbegin Start value for interpolation.
+    \param vend End value for the interpolation.
+    \param begin lower value than position. Begin of range to calculate the percentage for interpolation.
+    \param end bigger value than position. End of range to calculate the percentage for interpolation.
+    \param position Value between begin and end to calculate the percentage for interpolation
     */
    DllExport
-   bool PowerOf2(int x);
+   double interpolate(double vbegin, double vend, double begin, double end, double position);
 
    /*!
-    \brief Diese Methode gibt die kleinste Potenz von 2 über dem gegebenen Wert an. Wenn der Wert
-    selbst
-    eine Potenz von 2 ist, dann wird der Wert zurückgegeben
+    \brief This method checks whether the number passed is a power of 2.
+    \param x The number to be checked.
+    \return Returns true if the number is a power of 2 (i.e. 1,2,4,8,16 etc.), otherwise false.
     */
    DllExport
-   uint32 CeilPowerOf2(uint32 x);
+   bool powerOf2(int x);
 
    /*!
-    \brief Diese Funktion berechnet die Relative Maschinengenauigkeit für double-Werte. Sollte
-    bei 64 bit 1.11022e-16 sein. Machne Literatur-Quellen geben auch 2.22045e-16 als Genauigkeit an.
+    \brief This method specifies the smallest power of 2 over the given value. If the value
+    itself is a power of 2, then the value is returned
     */
    DllExport
-   double DoubleMaschineEpsilon();
+   uint32 ceilPowerOf2(uint32 x);
 
    /*!
-    \brief Diese Funktion berechnet die Relative Maschinengenauigkeit für float-Werte. Sollte bei
-    32 bit 5.96046e-08 sein. Machne Literatur-Quellen geben auch 1.19209e-07 als Genauigkeit an.
+    \brief This function calculates the relative machine accuracy for double values. Should
+    be 1.11022e-16 for 64 bit. Some literature sources also give 2.22045e-16 as accuracy.
     */
    DllExport
-   float FloatMaschineEpsilon();
+   double doubleMaschineEpsilon();
+
+   /*!
+    \brief This function calculates the relative machine accuracy for float values. Should be at
+    32 bit should be 5.96046e-08. Some literature sources also give 1.19209e-07 as accuracy.
+    */
+   DllExport
+   float floatMaschineEpsilon();
 
    /*!
     \brief Divide one integer by another and round towards minus infinity.
@@ -260,7 +260,7 @@ namespace jm
     \return The quotient, rounded towards minus infinity.
     */
    DllExport
-   int64 DivFloor(int64 x, int64 y);
+   int64 divFloor(int64 x, int64 y);
 
    /*!
     \brief Calculates the residual value after dividing one integer by another and rounds the
@@ -270,7 +270,7 @@ namespace jm
     \return Residual value
     */
    DllExport
-   int64 ModFloor(int64 x, int64 y);
+   int64 modFloor(int64 x, int64 y);
 
 }
 #endif

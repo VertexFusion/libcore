@@ -64,7 +64,7 @@ namespace jm
 
          LinkedListIterator(const LinkedList* list);
 
-         LinkedListIterator(const LinkedListIterator &other);
+         LinkedListIterator(const LinkedListIterator& other);
 
          bool hasNext();
 
@@ -74,7 +74,7 @@ namespace jm
 
          ~LinkedListIterator();
 
-         LinkedListIterator &operator=(const LinkedListIterator &other);
+         LinkedListIterator& operator=(const LinkedListIterator& other);
 
       private:
 

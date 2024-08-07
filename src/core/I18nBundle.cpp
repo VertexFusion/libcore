@@ -35,7 +35,7 @@ using namespace jm;
 
 I18nBundle* gDefaultTranslation = NULL;
 
-I18nBundle::I18nBundle(const String &language)
+I18nBundle::I18nBundle(const String& language)
 {
    mLanguage = language;
 }
@@ -57,7 +57,7 @@ void I18nBundle::appendMo(File file)
    Integer length = file.size();
    ByteArray buf = ByteArray(length, 0);
    VxfErrorStatus status = file.open(kFmRead);
-   if (status != eOK)
+   if(status != eOK)
    {
       System::log(Tr("Cannot open file: %1").arg(file.path()), kLogError);
       return;
@@ -143,11 +143,11 @@ void I18nBundle::initDefault()
 
    // Append Data
    gDefaultTranslation->appendMo(transFileByBundleId(jm::kEmptyString,
-                                                       gDefaultTranslation->mLanguage));
+                                 gDefaultTranslation->mLanguage));
 }
 
-jm::File I18nBundle::transFileByBundleId(const String &filename,
-                                           const String& lang)
+jm::File I18nBundle::transFileByBundleId(const String& filename,
+      const String& lang)
 {
    String language = lang;
 

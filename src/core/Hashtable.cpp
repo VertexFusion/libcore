@@ -56,7 +56,7 @@ void* Hashtable::put(String key, void* value)
    // Make sure that no entry already exists in the hash table.
    Integer hash = key.hashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
-   for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
+   for(HashtableEntry* e = mData[index] ; e != NULL ; e = e->next)
    {
       if((e->hash == hash) && e->key.equals(key))
       {
@@ -85,12 +85,12 @@ void* Hashtable::put(String key, void* value)
    return NULL;
 }
 
-void* Hashtable::get(const String &key) const
+void* Hashtable::get(const String& key) const
 {
    Integer hash = key.constHashCode();
 
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;
-   for(HashtableEntry * e = mData[index] ; e != NULL ; e = e->next)
+   for(HashtableEntry* e = mData[index] ; e != NULL ; e = e->next)
    {
       if((e->hash == hash) && e->key.equals(key))
       {
@@ -101,7 +101,7 @@ void* Hashtable::get(const String &key) const
    return NULL;
 }
 
-void* Hashtable::remove(const String &key)
+void* Hashtable::remove(const String& key)
 {
    Integer hash = key.constHashCode();
    Integer index = (hash & 0x7FFFFFFF) % mArrLength;

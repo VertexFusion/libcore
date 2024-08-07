@@ -46,12 +46,13 @@ Date::Date(): Comparable<Date>()
    gettimeofday(&tp, NULL);
    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
    #elif defined _WIN32
-   std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+   std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>
+                                  (std::chrono::system_clock::now().time_since_epoch());
    mTime = ms.count();
    #endif
 }
 
-Date::Date(const Date &other): Comparable<Date>()
+Date::Date(const Date& other): Comparable<Date>()
 {
    mTime = other.mTime;
 }
@@ -95,7 +96,7 @@ Date::~Date()
 
 int64 Date::day(int64 t) const
 {
-   return DivFloor(t, MS_PER_DAY) ;
+   return divFloor(t, MS_PER_DAY) ;
 }
 
 int64 Date::timeWithinDay(int64 t) const
@@ -114,9 +115,9 @@ int64 Date::DaysInYear(int64 y) const
 int64 Date::DayFromYear(int64 y) const
 {
    return 365 * (y - 1970)
-          + DivFloor(y - 1969, 4)
-          - DivFloor(y - 1901, 100)
-          + DivFloor(y - 1601, 400);
+          + divFloor(y - 1969, 4)
+          - divFloor(y - 1901, 100)
+          + divFloor(y - 1601, 400);
 }
 
 int64 Date::TimeFromYear(int64 y) const
@@ -257,22 +258,22 @@ int64 Date::UTC(int64 t) const
 
 int64 Date::HourFromTime(int64 t) const
 {
-   return ModFloor(DivFloor(t, MS_PER_HOUR), HOURS_PER_DAY);
+   return modFloor(divFloor(t, MS_PER_HOUR), HOURS_PER_DAY);
 }
 
 int64 Date::MinuteFromTime(int64 t) const
 {
-   return ModFloor(DivFloor(t, MS_PER_MINUTE), MINUTES_PER_HOUR);
+   return modFloor(divFloor(t, MS_PER_MINUTE), MINUTES_PER_HOUR);
 }
 
 int64 Date::SecondFromTime(int64 t) const
 {
-   return ModFloor(DivFloor(t, MS_PER_SECOND), SECONDS_PER_MINUTE);
+   return modFloor(divFloor(t, MS_PER_SECOND), SECONDS_PER_MINUTE);
 }
 
 int64 Date::MilliFromTime(int64 t) const
 {
-   return ModFloor(t, MS_PER_SECOND);
+   return modFloor(t, MS_PER_SECOND);
 }
 
 int64 Date::MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const
@@ -282,7 +283,7 @@ int64 Date::MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const
 
 int64 Date::MakeDay(int64 year, int64 month, int64 date) const
 {
-   int64 theYear = year + DivFloor(month, 12);
+   int64 theYear = year + divFloor(month, 12);
    int64 theMonth = month % 12;
 
    //Find t with: (==r7)
@@ -502,40 +503,40 @@ String Date::toString() const
    return String(pre);
 }
 
-int32 Date::compareTo(const Date &another) const
+int32 Date::compareTo(const Date& another) const
 {
    if(mTime < another.mTime)return -1;
    if(mTime > another.mTime)return 1;
    return 0;
 }
 
-bool jm::operator<(Date const &v1, Date const &v2)
+bool jm::operator<(Date const& v1, Date const& v2)
 {
    return v1.mTime < v2.mTime;
 }
 
-bool jm::operator<=(Date const &v1, Date const &v2)
+bool jm::operator<=(Date const& v1, Date const& v2)
 {
    return v1.mTime <= v2.mTime;
 }
 
-bool jm::operator>(Date const &v1, Date const &v2)
+bool jm::operator>(Date const& v1, Date const& v2)
 {
    return v1.mTime > v2.mTime;
 }
 
-bool jm::operator>=(Date const &v1, Date const &v2)
+bool jm::operator>=(Date const& v1, Date const& v2)
 {
    return v1.mTime >= v2.mTime;
 }
 
-bool jm::operator!=(Date const &v1, Date const &v2)
+bool jm::operator!=(Date const& v1, Date const& v2)
 {
    return v1.mTime != v2.mTime;
 }
 
 
-bool jm::operator==(Date const &v1, Date const &v2)
+bool jm::operator==(Date const& v1, Date const& v2)
 {
    return v1.mTime == v2.mTime;
 }

@@ -48,7 +48,7 @@ CharArray UTF16Decoder::Decode(const char* cstring)
 
    //Prüfe auf Steuerzeichen am Anfang des cstring. Wenn vorhanden ignoriere
    if(cstring[0] == static_cast<char>(0xFE) &&
-      cstring[1] == static_cast<char>(0xFF))
+         cstring[1] == static_cast<char>(0xFF))
    {
       cntC = 2;
       start = 2;
@@ -87,7 +87,7 @@ CharArray UTF16Decoder::Decode(const char* cstring)
    return ret;
 }
 
-ByteArray UTF16Decoder::Encode(const CharArray &string)
+ByteArray UTF16Decoder::Encode(const CharArray& string)
 {
    //Länge bleibt gleich..
 

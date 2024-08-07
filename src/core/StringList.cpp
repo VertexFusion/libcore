@@ -34,134 +34,134 @@
 using namespace jm;
 
 
-StringList::StringList():Object()
-{ 
-    mData=new String[8];
-    mLength=8;
-    mSize=0;
+StringList::StringList(): Object()
+{
+   mData = new String[8];
+   mLength = 8;
+   mSize = 0;
 }
 
-StringList::StringList(const jm::String &string):Object()
-{ 
-    mData=new String[8];
-    mLength=8;
-    mSize=0;
-    append(string);
+StringList::StringList(const jm::String& string): Object()
+{
+   mData = new String[8];
+   mLength = 8;
+   mSize = 0;
+   append(string);
 };
 
-StringList::StringList(const StringList &other): Object()
+StringList::StringList(const StringList& other): Object()
 {
-    mSize=other.mSize;
-    mLength = other.mLength;
-    mData = new String[mLength];
-    for(Integer a = 0; a < mSize; a++)
-    {
-    mData[a] = other.mData[a];
-    }
+   mSize = other.mSize;
+   mLength = other.mLength;
+   mData = new String[mLength];
+   for(Integer a = 0; a < mSize; a++)
+   {
+      mData[a] = other.mData[a];
+   }
 }
 
 StringList::~StringList()
 {
-    mLength = 0;
-    mSize=0;
-    if(mData != NULL)delete[] mData;
+   mLength = 0;
+   mSize = 0;
+   if(mData != NULL)delete[] mData;
 }
 
-void StringList::append(const jm::String &string)
+void StringList::append(const jm::String& string)
 {
-    checkSize(1);
-    mData[mSize++]=string;
+   checkSize(1);
+   mData[mSize++] = string;
 }
 
 Integer StringList::size() const
 {
-    return mSize;
+   return mSize;
 }
 
 void StringList::sort()
 {
-    if(mSize < 1)return;
+   if(mSize < 1)return;
 
-    Integer n = mSize;
-    do
-    {
-    Integer newn = 1;
-    for(Integer i = 0; i < n - 1; ++i)
-    {
-        Integer j = i + 1;
-        String* a1 = &mData[i];
-        String* a2 = &mData[j];
-        if(a1->compareTo(*a2) > 0)
-        {
+   Integer n = mSize;
+   do
+   {
+      Integer newn = 1;
+      for(Integer i = 0; i < n - 1; ++i)
+      {
+         Integer j = i + 1;
+         String* a1 = &mData[i];
+         String* a2 = &mData[j];
+         if(a1->compareTo(*a2) > 0)
+         {
             // Swap
             String tmp = mData[i];
             mData[i] = mData[j];
             mData[j] = tmp;
 
             newn = i + 1;
-        }
-    }
-    n = newn;
-    }
-    while(n > 1);
+         }
+      }
+      n = newn;
+   }
+   while(n > 1);
 }
 
 const String& StringList::get(Integer index) const
 {
-    if(index < 0 || index >= mSize)
-    throw new Exception("Array index out of bounds.");
-    return mData[index];
+   if(index < 0 || index >= mSize)
+      throw new Exception("Array index out of bounds.");
+   return mData[index];
 }
 
-void StringList::set(Integer index,const String& item)
+void StringList::set(Integer index, const String& item)
 {
-    if(index < 0 || index >= mSize)
-    throw new Exception("Array index out of bounds.");
-    mData[index] = item;
+   if(index < 0 || index >= mSize)
+      throw new Exception("Array index out of bounds.");
+   mData[index] = item;
 }
 
 void StringList::clear()
 {
-    mSize=0;
+   mSize = 0;
 }
 
 void StringList::checkSize(Integer size)
 {
-    if(mSize+size<mLength)return;
-    while(mLength<mSize+size)mLength+=8;
-    String* tmp = new String[mLength];
-    for(Integer index=0;index<mSize;index++)tmp[index]=mData[index];
-    delete[] mData;
-    mData=tmp;
+   if(mSize + size < mLength)return;
+   while(mLength < mSize + size)mLength += 8;
+   String* tmp = new String[mLength];
+   for(Integer index = 0; index < mSize; index++)tmp[index] = mData[index];
+   delete[] mData;
+   mData = tmp;
 }
 
 String& jm::StringList::operator[](const Integer index) const
 {
-    if(index < 0 || index >= mSize)
-    throw new Exception("Array index out of bounds.");
-    return mData[index];
+   if(index < 0 || index >= mSize)
+      throw new Exception("Array index out of bounds.");
+   return mData[index];
 }
 
-StringList& jm::StringList::operator=(const StringList &another)
+StringList& jm::StringList::operator=(const StringList& another)
 {
-    if(this != &another)
-    {
-        delete[] mData;
+   if(this != &another)
+   {
+      delete[] mData;
 
-        mLength = another.mLength;
-        mSize=another.mSize;
-        mData = new String[mLength];
-        for(Integer a = 0; a < mSize; a++)
-        {
-            mData[a] = another.mData[a];
-        }
-    }
+      mLength = another.mLength;
+      mSize = another.mSize;
+      mData = new String[mLength];
+      for(Integer a = 0; a < mSize; a++)
+      {
+         mData[a] = another.mData[a];
+      }
+   }
 
-    return *this;
+   return *this;
 }
 
-StringList& jm::operator<< (StringList &out, const String& str)
+StringList& jm::operator<< (StringList& out, const String& str)
 {
-    out.append(str);
-    return out;
+   out.append(str);
+   return out;
 }

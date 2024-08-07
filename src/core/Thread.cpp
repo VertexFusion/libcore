@@ -204,7 +204,7 @@ bool Thread::IsAlive()
 }
 
 
-void Thread::SetName(const jm::String &name)
+void Thread::SetName(const jm::String& name)
 {
    #if defined __APPLE__
    pthread_setname_np(name.toCString().constData());

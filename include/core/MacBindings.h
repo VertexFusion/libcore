@@ -14,7 +14,7 @@
 {
 }
 // The Objective-C member function you want to call from C++
-+ (bool) File_MoveToTrash:(const char *) cstr;
++ (bool) File_MoveToTrash:(const char*) cstr;
 @end
 
 #endif /* MacBindings_h */

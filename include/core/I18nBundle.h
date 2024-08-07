@@ -57,7 +57,7 @@ namespace jm
           \brief Construktor
           \param language Language String in form: "de-DE"
           */
-         I18nBundle(const String &language);
+         I18nBundle(const String& language);
 
          /*!
          	\brief This method reads a *.mo file and adds the content to this bundle.
@@ -81,8 +81,8 @@ namespace jm
          /*!
           \brief Try to examine the language file for given bundle-id
           */
-         static jm::File transFileByBundleId(const String &filename,
-                                               const String &language);
+         static jm::File transFileByBundleId(const String& filename,
+                                             const String& language);
 
       private:
 

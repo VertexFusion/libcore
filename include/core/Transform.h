@@ -58,14 +58,14 @@ namespace jm
     Es wird der "Arbitrary Axis Algorithm" aus der DXF-Referenz angewendet.
     */
    DllExport
-   Matrix ocsMatrix(const Vertex3 &extrusion);
+   Matrix ocsMatrix(const Vertex3& extrusion);
 
    /*!
     \brief Diese Methode berechnet die WCS-Transformationsmatrix.
     Es wird der "Arbitrary Axis Algorithm" aud der DXF-Referenz angewendet.
     */
    DllExport
-   Matrix wcsMatrix(const Vertex3 &extrusion);
+   Matrix wcsMatrix(const Vertex3& extrusion);
 
    /*!
     \brief Diese Klasse ist eine Abstrahierung der Matrix und erweitert sie um Funktionen
@@ -81,18 +81,18 @@ namespace jm
       /*!
        \brief Konstruktor
        */
-      Transform(const Matrix &m);
+      Transform(const Matrix& m);
 
       /*!
        \brief Diese Methode transformiert den Vektor mit der 4x4 Transformationsmatrix.
        */
-      Vertex3 Trans(const Vertex3 &vertex) const;
+      Vertex3 Trans(const Vertex3& vertex) const;
 
       /*!
        \brief Diese Methode transformiert die Zahl mit der 4x4 Transformationsmatrix.
        (X-Faktor wird genommen...)
        */
-      double Trans(const double &value) const;
+      double Trans(const double& value) const;
 
       /*!
        \brief Transform a rotation angle about the Z-Axis of LCS as usually neede by arcs or texts .
@@ -103,18 +103,18 @@ namespace jm
       /*!
        \brief Initialisiert diese Transformation als Verschiebung
        */
-      void InitMoving(const Vertex3 &distance);
+      void InitMoving(const Vertex3& distance);
 
       /*!
        \brief Initialisiert diese Transformation als Skalierung
        (um Nullpunkt) x,y,z verschiedene Faktoren
        */
-      void InitScaling(const Vertex3 &factors);
+      void InitScaling(const Vertex3& factors);
 
       /*!
        \brief Initialisiert diese Transformation als Skalierung um einen Punkt
        */
-      void InitScaling(const Vertex3 &basePoint, double factor);
+      void InitScaling(const Vertex3& basePoint, double factor);
 
       /*!
        \brief Initialisiert diese Transform als Rotationsmatrix um die Z-Achse
@@ -128,21 +128,21 @@ namespace jm
        \param axisDirection normalisierter Richtungsvektor der Drehachse
        \param angle im Bogenmaß
        */
-      void InitRotation(const Vertex3 &axisPoint,
-                        const Vertex3 &axisDirection,
+      void InitRotation(const Vertex3& axisPoint,
+                        const Vertex3& axisDirection,
                         double angle);
       /*!
        \brief Initialisiert diese Transform als Reflektionsmatrix
        \param planePoint Ortsvektor auf der Spiegelebene
        \param planeNormal Normalenvektor der Spiegelebene
        */
-      void InitMirroring(const Vertex3 &planePoint,
-                         const Vertex3 &planeNormal);
+      void InitMirroring(const Vertex3& planePoint,
+                         const Vertex3& planeNormal);
 
       /*!
        \brief Initialisiert diese Transform als WCS.Matrix
        */
-      void InitWCS(const Vertex3 &extrusion);
+      void InitWCS(const Vertex3& extrusion);
 
       /*!
        \brief Initialisiert diese Transformation als Einheitsmatrix

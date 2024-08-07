@@ -61,7 +61,7 @@ namespace jm
       /*!
        \brief Copy constructor
        */
-      Vector(const Vector &another);
+      Vector(const Vector& another);
 
       /*!
        \brief Constructor creates an n-dimensional vector.
@@ -77,23 +77,23 @@ namespace jm
       /*!
        \brief This method returns the absolute value of the vector.
        */
-      double Abs() const;
+      double abs() const;
 
       /*!
        \brief This method normalises the vector. The length of the vector is set to 1. The direction
        remains the same.
        */
-      void Normalize();
+      void normalize();
 
       /*!
        \brief This method zeroes all entries of the vector.
        */
-      void Zeros();
+      void zeros();
 
       /*!
        \brief This method sets all entries of the vector to 1.0.
        */
-      void Ones();
+      void ones();
 
       /*!
        \brief Returns the scalar product of one vector with another.
@@ -106,12 +106,12 @@ namespace jm
        </ul>
        \param another The vector with which the scalar product "this × other" is formed.
        */
-      double DotProduct(const Vector &another) const;
+      double dotProduct(const Vector& another) const;
 
-      Vector& operator=(const Vector &another);
+      Vector& operator=(const Vector& another);
 
       DllExport
-      friend std::ostream &operator<< (std::ostream &out, const Vector &str);
+      friend std::ostream& operator<< (std::ostream& out, const Vector& str);
 
    };
 
@@ -119,19 +119,19 @@ namespace jm
     \brief Implementation of the operator +
     */
    DllExport
-   const Vector operator+(const Vector &v1, const Vector &v2);
+   const Vector operator+(const Vector& v1, const Vector& v2);
 
    /*!
     \brief Implementation of the operator -
     */
    DllExport
-   const Vector operator-(const Vector &v1, const Vector &v2);
+   const Vector operator-(const Vector& v1, const Vector& v2);
 
    /*!
     \brief Implementation of the operator *
     */
    DllExport
-   const Vector operator*(const double &d, const Vector &v);
+   const Vector operator*(const double& d, const Vector& v);
 
 }
 

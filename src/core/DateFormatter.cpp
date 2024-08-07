@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-DateFormatter::DateFormatter(const String &pattern): Object()
+DateFormatter::DateFormatter(const String& pattern): Object()
 {
    mPatterns = new Pattern();
    mPatterns->type = kEmpty;
@@ -103,7 +103,7 @@ DateFormatter::~DateFormatter()
    }
 }
 
-String DateFormatter::Format(const Date &date) const
+String DateFormatter::Format(const Date& date) const
 {
    String value;
 
@@ -130,7 +130,7 @@ DateFormatter::Pattern::Pattern()
    next = NULL;
 }
 
-DateFormatter::Pattern::Pattern(const String &value, bool isText)
+DateFormatter::Pattern::Pattern(const String& value, bool isText)
 {
    next = NULL;
 
@@ -186,7 +186,7 @@ DateFormatter::Pattern::Pattern(const String &value, bool isText)
 }
 
 
-void DateFormatter::Pattern::AppendPattern(String &value, const Date &date) const
+void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) const
 {
    switch(type)
    {

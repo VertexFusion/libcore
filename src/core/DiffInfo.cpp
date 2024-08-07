@@ -39,7 +39,7 @@ DiffInfo::DiffInfo()
 
 }
 
-DiffInfo::DiffInfo(const DiffInfo &another)
+DiffInfo::DiffInfo(const DiffInfo& another)
 {
    mOperation = another.mOperation;
 }
@@ -59,7 +59,8 @@ void DiffInfo::Print(DiffOperation operation,
       case kDiffModified:
          if(obj1 != obj2)
          {
-            std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " << (obj2 - obj1) << std::endl;
+            std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " <<
+                      (obj2 - obj1) << std::endl;
          }
          break;
 
@@ -71,7 +72,7 @@ void DiffInfo::Print(DiffOperation operation,
 void DiffInfo::Print(DiffOperation operation,
                      double obj1,
                      double obj2,
-                     const String &label)
+                     const String& label)
 {
    switch(operation)
    {
@@ -81,9 +82,10 @@ void DiffInfo::Print(DiffOperation operation,
          break;
 
       case kDiffModified:
-         if(IsNotEqual(obj1, obj2))
+         if(isNotEqual(obj1, obj2))
          {
-            std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " << (obj2 - obj1) << std::endl;
+            std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " <<
+                      (obj2 - obj1) << std::endl;
          }
          break;
 
@@ -93,9 +95,9 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-                     const String &obj1,
-                     const String &obj2,
-                     const String &label)
+                     const String& obj1,
+                     const String& obj2,
+                     const String& label)
 {
    switch(operation)
    {
@@ -117,9 +119,9 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::PrintIC(DiffOperation operation,
-                       const String &obj1,
-                       const String &obj2,
-                       const String &label)
+                       const String& obj1,
+                       const String& obj2,
+                       const String& label)
 {
    switch(operation)
    {
@@ -141,9 +143,9 @@ void DiffInfo::PrintIC(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-                     const Vertex2 &obj1,
-                     const Vertex2 &obj2,
-                     const String &label)
+                     const Vertex2& obj1,
+                     const Vertex2& obj2,
+                     const String& label)
 {
    switch(operation)
    {
@@ -167,9 +169,9 @@ void DiffInfo::Print(DiffOperation operation,
 }
 
 void DiffInfo::Print(DiffOperation operation,
-                     const Vertex3 &obj1,
-                     const Vertex3 &obj2,
-                     const String &label)
+                     const Vertex3& obj1,
+                     const Vertex3& obj2,
+                     const String& label)
 {
    switch(operation)
    {

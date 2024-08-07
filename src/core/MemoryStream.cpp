@@ -68,7 +68,7 @@ Integer MemoryStream::read(uint8* buffer, Integer length)
    return available;
 }
 
-Integer MemoryStream::readFully(ByteArray &buffer, Integer length)
+Integer MemoryStream::readFully(ByteArray& buffer, Integer length)
 {
    return read((uint8*)buffer.data(), length);
 }

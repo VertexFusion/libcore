@@ -626,7 +626,7 @@ CharArray MacRomanDecoder::Decode(const char* cstring)
    return array;
 }
 
-ByteArray MacRomanDecoder::Encode(const CharArray &string)
+ByteArray MacRomanDecoder::Encode(const CharArray& string)
 {
    // The number of encoded bytes remains the same.
    ByteArray cstring = ByteArray(string.length, 0);

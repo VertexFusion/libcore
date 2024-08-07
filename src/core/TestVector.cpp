@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-TestVector::TestVector(int argc, const char * argv[])
+TestVector::TestVector(int argc, const char* argv[])
 {
    if(argc >= 2)
    {
@@ -90,7 +90,7 @@ Integer TestVector::Execute()
              << kTxtReset << std::endl;
 
    std::cout <<
-             Tr("Duration: %1 sec").arg(Double((double)(et - bt) / CLOCKS_PER_SEC),1,3)
+             Tr("Duration: %1 sec").arg(Double((double)(et - bt) / CLOCKS_PER_SEC), 1, 3)
              << std::endl;
 
    return gTotalErrorCount;

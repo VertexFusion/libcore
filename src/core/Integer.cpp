@@ -47,9 +47,9 @@ Integer::Integer()
    mValue = 0;
 }
 
-Integer::Integer(const Integer &other)
+Integer::Integer(const Integer& other)
 {
-   mValue=other.mValue;
+   mValue = other.mValue;
 }
 
 Integer::Integer(int8 value)
@@ -92,11 +92,6 @@ Integer::Integer(uint64 value)
    mValue = value;
 }
 
-//Integer::Integer(slong value)
-//{
- //  mValue = value;
-//}
-
 #ifdef WITHULONG
 Integer::Integer(ulong value)
 {
@@ -104,12 +99,12 @@ Integer::Integer(ulong value)
 }
 #endif
 
-bool Integer::equals(const Integer &another) const
+bool Integer::equals(const Integer& another) const
 {
    return mValue == another.mValue;
 }
 
-int32 Integer::compareTo(const Integer &another) const
+int32 Integer::compareTo(const Integer& another) const
 {
    if(mValue > another.mValue)return 1;
    if(mValue < another.mValue)return -1;
@@ -121,13 +116,13 @@ uint8 Integer::digits()const
 {
    Integer number = mValue;
    uint8 i = 1;
-   if (number < 0)
+   if(number < 0)
    {
       number *= -1;
       i++;
    }
 
-   while (number > 9)
+   while(number > 9)
    {
       number = number / 10;
       i++;
@@ -135,7 +130,7 @@ uint8 Integer::digits()const
    return i;
 }
 
-Integer Integer::valueOf(const jm::String &string)
+Integer Integer::valueOf(const jm::String& string)
 {
    int32 val = 0;
    bool neg = false;
@@ -170,22 +165,22 @@ Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
    uint32 cnt = begin;
    uint32 sz = begin + size;
 
-   while (cnt < sz)
+   while(cnt < sz)
    {
       jm::Char c = str.charAt(cnt);
       cnt++;
 
       uint64 i = 0;
 
-      if (c.isDigit())
+      if(c.isDigit())
       {
          i = c.digitValue();
       }
-      else if (c >= 'a' && c <= 'f')
+      else if(c >= 'a' && c <= 'f')
       {
          i = c.unicode() - 'a' + 10;
       }
-      else if (c >= 'A' && c <= 'F')
+      else if(c >= 'A' && c <= 'F')
       {
          i = c.unicode() - 'A' + 10;
       }
@@ -347,7 +342,7 @@ Integer Integer::operator--(int32)
    return i;
 }
 
-Integer& Integer::operator=(const Integer &another)
+Integer& Integer::operator=(const Integer& another)
 {
    if(this != &another)
    {
@@ -611,19 +606,19 @@ bool operator==(Integer left, uint32 right)
    return left.mValue == (int32)right;
 }
 
-Integer& Integer::operator+=(const Integer &another)
+Integer& Integer::operator+=(const Integer& another)
 {
    mValue += another.mValue;
    return *this;
 }
 
-Integer& Integer::operator-=(const Integer &another)
+Integer& Integer::operator-=(const Integer& another)
 {
    mValue -= another.mValue;
    return *this;
 }
 
-Integer& Integer::operator*=(const Integer &another)
+Integer& Integer::operator*=(const Integer& another)
 {
    mValue *= another.mValue;
    return *this;

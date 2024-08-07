@@ -112,7 +112,7 @@ namespace jm
          /*!
           \brief Resize the byte array. If the new size is bigger, it will increase the array. If the size is smaller,
           the bytes beyond the new size are excluded, but the array will have the same size.
-         \param newSize The new size of the array. 
+         \param newSize The new size of the array.
           */
          void resize(Integer newSize);
 
@@ -123,12 +123,12 @@ namespace jm
          /*!
           \brief Replaces the content of this array with the content of the other array
           */
-         void replace(Integer tgtOffset,Integer srcOffset,const ByteArray &buffer, Integer length);
+         void replace(Integer tgtOffset, Integer srcOffset, const ByteArray& buffer, Integer length);
 
          /*!
           \brief Replaces every byte of oldValue by the newValue.
           */
-         void replace(uint8 oldValue,uint8 newValue);
+         void replace(uint8 oldValue, uint8 newValue);
 
          uint8& operator[](const Integer index) const;
 

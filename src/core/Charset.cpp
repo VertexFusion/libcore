@@ -35,13 +35,13 @@ using namespace jm;
 
 uint16 Charset::gCharsetCount = 7;
 Charset* Charset::gCharsets[7] = { new Charset(new UTF8Decoder()),
-                                   new Charset("Windows-1252", new Windows1252Decoder()),
-                                   new Charset("MacRoman", new MacRomanDecoder()),
-                                   new Charset("UTF-16LE", new UTF16Decoder(false)),
-                                   new Charset("UTF-16BE", new UTF16Decoder(true)),
-                                   new Charset("RAW", new RawDecoder()),
-                                   new Charset("ASCII", new RawDecoder())
-                                 };
+            new Charset("Windows-1252", new Windows1252Decoder()),
+            new Charset("MacRoman", new MacRomanDecoder()),
+            new Charset("UTF-16LE", new UTF16Decoder(false)),
+            new Charset("UTF-16BE", new UTF16Decoder(true)),
+            new Charset("RAW", new RawDecoder()),
+            new Charset("ASCII", new RawDecoder())
+};
 
 CharArray::CharArray()
 {
@@ -49,7 +49,7 @@ CharArray::CharArray()
    buffer = NULL;
 }
 
-CharArray::CharArray(const CharArray &another)
+CharArray::CharArray(const CharArray& another)
 {
    length = another.length;
    buffer = new Char[length];
@@ -74,7 +74,7 @@ CharArray::~CharArray()
 
 namespace jm
 {
-   CharArray &CharArray::operator=(const CharArray &another)
+   CharArray& CharArray::operator=(const CharArray& another)
    {
       if(this == &another) return *this;
       if(buffer != NULL)delete[] buffer;
@@ -98,7 +98,7 @@ Charset::Charset(CharsetDecoder* decoder): Object()
    mDecoder = decoder;
 }
 
-Charset::Charset(const char *name, CharsetDecoder* decoder): Object()
+Charset::Charset(const char* name, CharsetDecoder* decoder): Object()
 {
    uint32 index = 0;
    while(name[index] != 0)mName.append(name[index++]);
@@ -108,7 +108,8 @@ Charset::Charset(const char *name, CharsetDecoder* decoder): Object()
    mDecoder = decoder;
 }
 
-Charset::Charset(const String &name, const String* alternatives, uint8 altCount, CharsetDecoder* decoder): Object()
+Charset::Charset(const String& name, const String* alternatives, uint8 altCount,
+                 CharsetDecoder* decoder): Object()
 {
    mName = name;
    mAlternatives = new String[mAltCount];
@@ -131,7 +132,7 @@ String Charset::Name()
    return mName;
 }
 
-bool Charset::HasName(const String &name)
+bool Charset::HasName(const String& name)
 {
    if(mName.equals(name))return true;
 
@@ -148,12 +149,12 @@ CharArray Charset::Decode(const char* cString)
    return mDecoder->Decode(cString);
 }
 
-ByteArray Charset::Encode(const CharArray &string)
+ByteArray Charset::Encode(const CharArray& string)
 {
    return mDecoder->Encode(string);
 }
 
-Charset* Charset::ForName(const String &name)
+Charset* Charset::ForName(const String& name)
 {
    for(uint16 a = 0; a < Charset::gCharsetCount; a++)
    {
@@ -182,7 +183,7 @@ String Charset::Guess(const char* stream, Integer length)
 
    //UTF-16BE
    if(stream[0] == static_cast<char>(0xFE) &&
-      stream[1] == static_cast<char>(0xFF))return "UTF-16BE";
+         stream[1] == static_cast<char>(0xFF))return "UTF-16BE";
 
    //UTF-16LE
    else if(stream[0] == static_cast<char>(0xFF) &&

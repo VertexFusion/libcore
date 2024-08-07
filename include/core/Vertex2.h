@@ -39,7 +39,7 @@ namespace jm
    class Vertex3;
 
    /*!
-    \brief A two dimensional vector. Owns special functions for 3D space.
+    \brief A two dimensional vector. Owns special functions for 2d space.
     */
    class DllExport Vertex2
    {
@@ -47,139 +47,162 @@ namespace jm
 
          /*!
           \brief X component of vector.
-         	 \note We need fast acces to this value and other protection measures are not necessary.
-         	 So we leave it public.
+          \note We need fast access to this value and other protection measures are not necessary.
+          So we leave it public.
           */
          double x;
 
          /*!
           \brief Y component of vector.
-         	 \note We need fast acces to this value and other protection measures are not necessary.
-         	 So we leave it public.
+        	 \note We need fast access to this value and other protection measures are not necessary.
+        	 So we leave it public.
           */
          double y;
 
 
          /*!
-          \brief Konstruktor erzeugt Nullvektor.
+          \brief Constructor creates null vector.
           */
          Vertex2();
 
          /*!
-          \brief Konstruktor erzeugt beliebigen Vektor
-          \param x X-Komponente des Vektors
-          \param y Y-Komponente des Vektors
+          \brief Constructor creates arbitrary vector
+          \param x X-component of the vector
+          \param y y-component of the vector
           */
          Vertex2(double x, double y);
 
-         Vertex2(const Vertex3 &v3);
+         Vertex2(const Vertex3& v3);
 
          /*!
-          \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
+          \brief This method returns the absolute value of the vector. The absolute value is equal to the length.
           */
-         double Abs() const;
+         double abs() const;
 
          /*!
-          \brief Diese Methode normalisiert den Vektor. Ein normalisierter Vektor besitzt die Länge 1.
+          \brief This method normalizes the vector. A normalized vector has the length 1.
+          \note If this vector has the length (nearly) 0, it is returned unchanged.
           */
-         void Normalize();
-         Vertex2 Normalized()const;
+         Vertex2& normalize();
 
          /*!
-          \brief Gibt das Kreuzprodukt aus diesem Vektor multipliziert mit einem anderen zurück.
+          \brief This method returns a normalized vector with the length 1.
+          \note If this vector has the length (nearly) 0, it is returned unchanged.
           */
-         double CrossProduct(const Vertex2 &another) const;
+         Vertex2 normalized()const;
 
          /*!
-          \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück
+          \brief Returns the cross product of this vector multiplied by another.
+          \param another the other vector.
+          \return Returns the result of: this × another
           */
-         double DotProduct(const Vertex2 &another) const;
+         double crossProduct(const Vertex2& another) const;
 
          /*!
-          \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
-            Also ob beide Vektoren parallel sind.
+          \brief Returns the scalar product of this vector with another
+          \param another the other vector.
+          \return Returns the result of: this dot another
           */
-         bool IsCollinear(const Vertex2 &another) const;
+         double dotProduct(const Vertex2& another) const;
 
          /*!
-          \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
-          Also ob sie senktrecht aufeinander stehen
+          \brief This method calculates whether the two vectors are collinear.
+          In other words, whether both vectors are parallel.
           */
-         bool IsOrthogonal(const Vertex2 &another) const;
+         bool isCollinear(const Vertex2& another) const;
+
+         /*!
+          \brief This method calculates whether the two vectors are orthogonal.
+          In other words, whether they are perpendicular to each other.
+          */
+         bool isOrthogonal(const Vertex2& another) const;
 
          /*!
           \brief Returns the signed angle between this vector and another vector.
-          \note Note this methode uses as positive direction the clockwise direction with right
+          \note This method uses as positive direction the clockwise direction with right
           x-axis as 0° like in SVG.
           \param another The vector we want to know the angle to.
           \return Angle in radians.
           */
-         double AngleTo(const Vertex2 &another) const;
+         double angleTo(const Vertex2& another) const;
 
          /*!
-          \brief Diese Methode berechnet, ob dieser Vector "rechts" also im Uhrzeigersinn neben dem anderen Vector liegt
+          \brief This method calculates whether this vector is "to the right", i.e. clockwise next to the other vector.
           */
-         bool IsRightTo(const Vertex2 &another) const;
+         bool isRightTo(const Vertex2& another) const;
 
          /*!
-          \brief Diese Methode berechnet, ob dieser Vector "links" also geden den Uhrzeigersinn neben dem anderem Vector liegt
+          \brief This method calculates whether this vector is "left", i.e. counterclockwise, next to the other vector
           */
-         bool IsLeftTo(const Vertex2 &another) const;
+         bool isLeftTo(const Vertex2& another) const;
 
          /*!
-          \brief Diese Methode gibt wahr zurück, wennd er Vektor definiert ist, also beie Zahlen nicht
-          NAN sind.
+          \brief This method returns true if the vector is defined, i.e. if the numbers are not
+          NAN "Not-a-number".
           */
-         bool IsValid() const;
+         bool isValid() const;
 
          /*!
-          \brief Diese Methode rotiert den Vektor um die Z-Achse mit dem angegebenen Winkel.
-          \param angle Der Rotationswinkel im mathematisch positivem Sinn im Bogenmaß.
+          \brief This method rotates the vector around the Z-axis with the specified angle.
+          \param angle The angle of rotation in the mathematical positive sense in radians.
           */
-         Vertex2& Rotate(double angle);
+         Vertex2& rotate(double angle);
 
-         Vertex2 &operator+=(const Vertex2 &another);
+         Vertex2& operator+=(const Vertex2& another);
 
-         Vertex2 &operator-=(const Vertex2 &another);
+         Vertex2& operator-=(const Vertex2& another);
+
+         /*!
+          \brief Implementation of the operator *
+          */
+         Vertex2 operator*(double b) const;
+
+         /*!
+          \brief Implementation of the operator /
+          */
+         Vertex2 operator/(double b) const;
 
          DllExport
-         friend std::ostream& operator<< (std::ostream& out, const Vertex2 & vertex);
+         friend std::ostream& operator<< (std::ostream& out, const Vertex2& vertex);
    };
 
 
    /*!
-    \brief Implementierung des Operators +
+    \brief Implementation of the operator +
     */
    DllExport
-   const Vertex2 operator+(const Vertex2 &v1, const Vertex2 &v2);
+   const Vertex2 operator+(const Vertex2& v1, const Vertex2& v2);
 
    /*!
-    \brief Implementierung des Operators -
+    \brief Implementation of the operator -
     */
    DllExport
-   const Vertex2 operator-(const Vertex2 &v1, const Vertex2 &v2);
+   const Vertex2 operator-(const Vertex2& v1, const Vertex2& v2);
 
    /*!
-    \brief Implementierung des Operators *
+    \brief Implementation of the operator *
     */
    DllExport
-   const Vertex2 operator*(const double &d, const Vertex2 &v);
+   const Vertex2 operator*(const double& d, const Vertex2& v);
 
+   /*!
+    \brief Implementation of the operator *
+    */
    DllExport
    const Vertex2 operator*(const Integer& i, const Vertex2& v);
 
    /*!
-    \brief Implementierung des Operators -=
+    \brief Implementation of the operator -=
     */
    DllExport
-   bool operator!=(Vertex2 const &v1, Vertex2 const &v2);
+   bool operator!=(Vertex2 const& v1, Vertex2 const& v2);
 
    /*!
-    \brief Diese Methode löst ein lineares Gleichungssystem mit zwei Unbekannten:
+    \brief This method solves a linear system of equations with two unknowns:
      r.x = x * a.x + y * b.x
      r.y = x * a.y + y * b.y
-    Das System wird nach x und y augelöst und gelöst.
-    Matrixschreibweise:
+     The system is solved for x and y.
+     Matrix notation:
    	  a   b                 r
    	| a.x b.x | * | x | = | r.x |
    	| a.y b.y |   | y |   | r.y |

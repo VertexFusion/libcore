@@ -60,12 +60,12 @@ namespace jm
          /*!
           \brief Copykonstruktor
           */
-         SAXAttributes(const SAXAttributes &other);
+         SAXAttributes(const SAXAttributes& other);
 
          /*!
           \brief Zuweisungsoperator
           */
-         SAXAttributes &operator=(const SAXAttributes &another);
+         SAXAttributes& operator=(const SAXAttributes& another);
 
          /*!
           \brief Diese Methode braucht der Parser, um die Attributliste mit Inhalt zu füllen
@@ -126,16 +126,16 @@ namespace jm
          /*!
           \brief Gibt den Wert zurück
           */
-         String GetValue(const String &qname) const;
+         String GetValue(const String& qname) const;
 
-         int32 GetIntValue(const String &qname)const;
-         float GetFloatValue(const String &qname)const;
-         bool GetBoolValue(const String &qname)const;
+         int32 GetIntValue(const String& qname)const;
+         float GetFloatValue(const String& qname)const;
+         bool GetBoolValue(const String& qname)const;
 
          /*!
           \brief Prüft, ob das Attribut enthalten ist
           */
-         bool HasValue(const String &qname) const;
+         bool HasValue(const String& qname) const;
 
          /*!
           \brief Gibt den Wert zurück
@@ -171,18 +171,18 @@ namespace jm
           */
          virtual ~SAXParser();
 
-         void Parse(File &file);
+         void Parse(File& file);
 
          /*!
           \brief Diese Methode parst die übergebene Zeichenkette, welche XML sein soll
           \param xml Der XML-Code
           */
-         void Parse(const String &xml);
+         void Parse(const String& xml);
 
          /*!
           \brief Diese Methode wird vom Parser aufgerufen, wenn er Buchstaben entdeckt hat.
           */
-         virtual void Characters(const String &characters);
+         virtual void Characters(const String& characters);
 
          /*!
           \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende des Dokumentes erreicht wurde.
@@ -192,27 +192,27 @@ namespace jm
          /*!
           \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende eines Elementes erreicht wurde.
           */
-         virtual void EndElement(const String &uri, const String &localName, const String &qName);
+         virtual void EndElement(const String& uri, const String& localName, const String& qName);
 
          /*!
           \brief End the scope of a prefix-URI mapping.
           */
-         virtual void EndPrefixMapping(const String &prefix);
+         virtual void EndPrefixMapping(const String& prefix);
 
          /*!
           \brief Diese Methode wird vom Parser aufgerufen, wenn ignorierbare Leerzeichen gefunden wurden
           */
-         virtual void IgnorableWhiteSpaces(const String &characters);
+         virtual void IgnorableWhiteSpaces(const String& characters);
 
          /*!
           \brief Receive notification of a processing instruction.
           */
-         virtual void ProcessingInstruction(const String &target, const String &data);
+         virtual void ProcessingInstruction(const String& target, const String& data);
 
          /*!
           \brief Receive notification of a skipped entity.
           */
-         virtual void SkippedEntity(const String &name);
+         virtual void SkippedEntity(const String& name);
 
          /*!
           \brief Diese Methode wird am Anfang des Dokuemntes aufgerufen
@@ -222,10 +222,10 @@ namespace jm
          /*!
           \brief Diese Methode wird beim Beginn eines Elementes aufgerufen.
           */
-         virtual void StartElement(const String &uri,
-                                   const String &localName,
-                                   const String &qName,
-                                   const SAXAttributes &attributes);
+         virtual void StartElement(const String& uri,
+                                   const String& localName,
+                                   const String& qName,
+                                   const SAXAttributes& attributes);
 
 
       private:
@@ -233,7 +233,7 @@ namespace jm
          /*!
           \brief Diese Helfermethode parst den Tagstring... Das ist der gesamte Teil zwischen < und >
           */
-         void ParseTagString(const String &token);
+         void ParseTagString(const String& token);
 
    };
 

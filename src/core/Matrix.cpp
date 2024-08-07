@@ -43,9 +43,9 @@ Matrix::Matrix(Integer rows, Integer cols)
    Zeros();
 }
 
-Matrix::Matrix(const Vertex3 &c1,
-               const Vertex3 &c2,
-               const Vertex3 &c3,
+Matrix::Matrix(const Vertex3& c1,
+               const Vertex3& c2,
+               const Vertex3& c3,
                bool rowwise)
 {
    m = 3;
@@ -101,7 +101,7 @@ Matrix::Matrix(double value)
    data[0] = value;
 }
 
-Matrix::Matrix(const Matrix &other)
+Matrix::Matrix(const Matrix& other)
 {
    m = other.m;
    n = other.n;
@@ -165,7 +165,7 @@ void Matrix::Zeros()
    }
 }
 
-VxfErrorStatus Matrix::Det(double &det) const
+VxfErrorStatus Matrix::Det(double& det) const
 {
    if(m == n)
    {
@@ -346,22 +346,38 @@ VxfErrorStatus Matrix::Inverse()
          double a34 = data[14];
          double a44 = data[15];
 
-         data[0] = (a22 * a33 * a44 + a23 * a34 * a42 + a24 * a32 * a43 - a22 * a34 * a43 - a23 * a32 * a44 - a24 * a33 * a42) * det;
-         data[1] = (a21 * a34 * a43 + a23 * a31 * a44 + a24 * a33 * a41 - a21 * a33 * a44 - a23 * a34 * a41 - a24 * a31 * a43) * det;
-         data[2] = (a21 * a32 * a44 + a22 * a34 * a41 + a24 * a31 * a42 - a21 * a34 * a42 - a22 * a31 * a44 - a24 * a32 * a41) * det;
-         data[3] = (a21 * a33 * a42 + a22 * a31 * a43 + a23 * a32 * a41 - a21 * a32 * a43 - a22 * a33 * a41 - a23 * a31 * a42) * det;
-         data[4] = (a12 * a34 * a43 + a13 * a32 * a44 + a14 * a33 * a42 - a12 * a33 * a44 - a13 * a34 * a42 - a14 * a32 * a43) * det;
-         data[5] = (a11 * a33 * a44 + a13 * a34 * a41 + a14 * a31 * a43 - a11 * a34 * a43 - a13 * a31 * a44 - a14 * a33 * a41) * det;
-         data[6] = (a11 * a34 * a42 + a12 * a31 * a44 + a14 * a32 * a41 - a11 * a32 * a44 - a12 * a34 * a41 - a14 * a31 * a42) * det;
-         data[7] = (a11 * a32 * a43 + a12 * a33 * a41 + a13 * a31 * a42 - a11 * a33 * a42 - a12 * a31 * a43 - a13 * a32 * a41) * det;
-         data[8] = (a12 * a23 * a44 + a13 * a24 * a42 + a14 * a22 * a43 - a12 * a24 * a43 - a13 * a22 * a44 - a14 * a23 * a42) * det;
-         data[9] = (a11 * a24 * a43 + a13 * a21 * a44 + a14 * a23 * a41 - a11 * a23 * a44 - a13 * a24 * a41 - a14 * a21 * a43) * det;
-         data[10] = (a11 * a22 * a44 + a12 * a24 * a41 + a14 * a21 * a42 - a11 * a24 * a42 - a12 * a21 * a44 - a14 * a22 * a41) * det;
-         data[11] = (a11 * a23 * a42 + a12 * a21 * a43 + a13 * a22 * a41 - a11 * a22 * a43 - a12 * a23 * a41 - a13 * a21 * a42) * det;
-         data[12] = (a12 * a24 * a33 + a13 * a22 * a34 + a14 * a23 * a32 - a12 * a23 * a34 - a13 * a24 * a32 - a14 * a22 * a33) * det;
-         data[13] = (a11 * a23 * a34 + a13 * a24 * a31 + a14 * a21 * a33 - a11 * a24 * a33 - a13 * a21 * a34 - a14 * a23 * a31) * det;
-         data[14] = (a11 * a24 * a32 + a12 * a21 * a34 + a14 * a22 * a31 - a11 * a22 * a34 - a12 * a24 * a31 - a14 * a21 * a32) * det;
-         data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33 - a13 * a22 * a31) * det;
+         data[0] = (a22 * a33 * a44 + a23 * a34 * a42 + a24 * a32 * a43 - a22 * a34 * a43 - a23 * a32 * a44 -
+                    a24 * a33 * a42) * det;
+         data[1] = (a21 * a34 * a43 + a23 * a31 * a44 + a24 * a33 * a41 - a21 * a33 * a44 - a23 * a34 * a41 -
+                    a24 * a31 * a43) * det;
+         data[2] = (a21 * a32 * a44 + a22 * a34 * a41 + a24 * a31 * a42 - a21 * a34 * a42 - a22 * a31 * a44 -
+                    a24 * a32 * a41) * det;
+         data[3] = (a21 * a33 * a42 + a22 * a31 * a43 + a23 * a32 * a41 - a21 * a32 * a43 - a22 * a33 * a41 -
+                    a23 * a31 * a42) * det;
+         data[4] = (a12 * a34 * a43 + a13 * a32 * a44 + a14 * a33 * a42 - a12 * a33 * a44 - a13 * a34 * a42 -
+                    a14 * a32 * a43) * det;
+         data[5] = (a11 * a33 * a44 + a13 * a34 * a41 + a14 * a31 * a43 - a11 * a34 * a43 - a13 * a31 * a44 -
+                    a14 * a33 * a41) * det;
+         data[6] = (a11 * a34 * a42 + a12 * a31 * a44 + a14 * a32 * a41 - a11 * a32 * a44 - a12 * a34 * a41 -
+                    a14 * a31 * a42) * det;
+         data[7] = (a11 * a32 * a43 + a12 * a33 * a41 + a13 * a31 * a42 - a11 * a33 * a42 - a12 * a31 * a43 -
+                    a13 * a32 * a41) * det;
+         data[8] = (a12 * a23 * a44 + a13 * a24 * a42 + a14 * a22 * a43 - a12 * a24 * a43 - a13 * a22 * a44 -
+                    a14 * a23 * a42) * det;
+         data[9] = (a11 * a24 * a43 + a13 * a21 * a44 + a14 * a23 * a41 - a11 * a23 * a44 - a13 * a24 * a41 -
+                    a14 * a21 * a43) * det;
+         data[10] = (a11 * a22 * a44 + a12 * a24 * a41 + a14 * a21 * a42 - a11 * a24 * a42 - a12 * a21 * a44
+                     - a14 * a22 * a41) * det;
+         data[11] = (a11 * a23 * a42 + a12 * a21 * a43 + a13 * a22 * a41 - a11 * a22 * a43 - a12 * a23 * a41
+                     - a13 * a21 * a42) * det;
+         data[12] = (a12 * a24 * a33 + a13 * a22 * a34 + a14 * a23 * a32 - a12 * a23 * a34 - a13 * a24 * a32
+                     - a14 * a22 * a33) * det;
+         data[13] = (a11 * a23 * a34 + a13 * a24 * a31 + a14 * a21 * a33 - a11 * a24 * a33 - a13 * a21 * a34
+                     - a14 * a23 * a31) * det;
+         data[14] = (a11 * a24 * a32 + a12 * a21 * a34 + a14 * a22 * a31 - a11 * a22 * a34 - a12 * a24 * a31
+                     - a14 * a21 * a32) * det;
+         data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33
+                     - a13 * a22 * a31) * det;
 
          return eOK;
       }
@@ -387,7 +403,7 @@ void Matrix::Transpose()
 }
 
 
-void Matrix::Insert(const Matrix &A)
+void Matrix::Insert(const Matrix& A)
 {
    Integer rows = std::min(m, A.m);
    Integer cols = std::min(n, A.n);
@@ -402,7 +418,7 @@ void Matrix::Insert(const Matrix &A)
 }
 
 
-void Matrix::Insert(const Matrix &A, Integer _r, Integer _c)
+void Matrix::Insert(const Matrix& A, Integer _r, Integer _c)
 {
    Integer rows = std::min(m - _r, A.m);
    Integer cols = std::min(n - _c, A.n);
@@ -592,7 +608,7 @@ Vector Matrix::Eigen() const
 
 namespace jm
 {
-   Matrix &Matrix::operator=(const Matrix &A)
+   Matrix& Matrix::operator=(const Matrix& A)
    {
       if(this == &A) return *this;
       m = A.m;
@@ -615,7 +631,7 @@ namespace jm
    }
 }
 
-const Vertex3 jm::operator*(Matrix const &A, Vertex3 const &b)
+const Vertex3 jm::operator*(Matrix const& A, Vertex3 const& b)
 {
    // Index
    // | 0 3 6 |   | x |
@@ -630,11 +646,12 @@ const Vertex3 jm::operator*(Matrix const &A, Vertex3 const &b)
    return r;
 }
 
-const Matrix jm::operator*(Matrix const &A, Matrix const &B)
+const Matrix jm::operator*(Matrix const& A, Matrix const& B)
 {
    // The number of columns in the left-hand matrix must match the number of rows in the right-hand
    // matrix
-   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new
+      jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
@@ -661,10 +678,11 @@ const Matrix jm::operator*(Matrix const &A, Matrix const &B)
    return R;
 }
 
-const Matrix jm::operator+(Matrix const &A, Matrix const &B)
+const Matrix jm::operator+(Matrix const& A, Matrix const& B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
-   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new
+      jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
@@ -685,10 +703,11 @@ const Matrix jm::operator+(Matrix const &A, Matrix const &B)
    return R;
 }
 
-const Matrix jm::operator-(Matrix const &A, Matrix const &B)
+const Matrix jm::operator-(Matrix const& A, Matrix const& B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
-   if(A.n != B.m) throw new jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
+   if(A.n != B.m) throw new
+      jm::Exception("Die Matrizen passen nicht zusammen! A: ");   //'+IntToStr(A.m)+'x'+IntToStr(A.n)+' B:'+IntToStr(B.m)+'x'+IntToStr(B.n));
 
    Matrix R = Matrix(A.m, B.n);
 
@@ -709,7 +728,7 @@ const Matrix jm::operator-(Matrix const &A, Matrix const &B)
    return R;
 }
 
-const Matrix jm::operator*(double const &d, Matrix const &A)
+const Matrix jm::operator*(double const& d, Matrix const& A)
 {
    Matrix R = Matrix(A.m, A.n);
 
@@ -721,12 +740,12 @@ const Matrix jm::operator*(double const &d, Matrix const &A)
    return R;
 }
 
-const Matrix jm::operator*(Matrix const &A, double const &d)
+const Matrix jm::operator*(Matrix const& A, double const& d)
 {
    return d * A;
 }
 
-const Matrix jm::operator/(Matrix const &A, double const &d)
+const Matrix jm::operator/(Matrix const& A, double const& d)
 {
    Matrix R = Matrix(A.m, A.n);
 
@@ -738,7 +757,7 @@ const Matrix jm::operator/(Matrix const &A, double const &d)
    return R;
 }
 
-Matrix Matrix::Generate3x3RotationMatrix(double angle, const Vertex3 &axis)
+Matrix Matrix::Generate3x3RotationMatrix(double angle, const Vertex3& axis)
 {
    //Siehe https://www.opengl.org/sdk/docs/man2/xhtml/glRotate.xml (eher nicht)
    //      https://en.wikipedia.org/wiki/Rotation_matrix

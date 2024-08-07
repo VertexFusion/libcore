@@ -23,13 +23,13 @@ Transform::Transform(): jm::Matrix(4, 4)
 
 }
 
-Transform::Transform(const jm::Matrix &m): jm::Matrix(m)
+Transform::Transform(const jm::Matrix& m): jm::Matrix(m)
 {
    if(m.m != m.n && m.m != 4)throw new jm::Exception("Matrix must be 4");
 }
 
 
-jm::Vertex3 Transform::Trans(const jm::Vertex3 &vertex) const
+jm::Vertex3 Transform::Trans(const jm::Vertex3& vertex) const
 {
    jm::Vector input = jm::Vector(4);
    input.data[0] = vertex.x;
@@ -43,7 +43,7 @@ jm::Vertex3 Transform::Trans(const jm::Vertex3 &vertex) const
    return jm::Vertex3(output.data[0], output.data[1], output.data[2]);
 }
 
-double Transform::Trans(const double &value) const
+double Transform::Trans(const double& value) const
 {
    //!\todo  Gibt es eine bessere Lösung?
    jm::Vertex3 p1 = Trans(jm::Vertex3(0, 0, 0));
@@ -70,7 +70,7 @@ Double Transform::TransAngle(const Double& angle) const
    return newrotation;
 }
 
-void Transform::InitMoving(const jm::Vertex3 &distance)
+void Transform::InitMoving(const jm::Vertex3& distance)
 {
    //Transformationsmatrix:
    // | 1 0 0 x |
@@ -84,7 +84,7 @@ void Transform::InitMoving(const jm::Vertex3 &distance)
    Set(2, 3, distance.z);
 }
 
-void Transform::InitScaling(const jm::Vertex3 &factors)
+void Transform::InitScaling(const jm::Vertex3& factors)
 {
    Zeros();
    Set(0, 0, factors.x);
@@ -93,7 +93,7 @@ void Transform::InitScaling(const jm::Vertex3 &factors)
    Set(3, 3, 1.0);
 }
 
-void Transform::InitScaling(const jm::Vertex3 &basePoint, double factor)
+void Transform::InitScaling(const jm::Vertex3& basePoint, double factor)
 {
    //Transformationsmatrix:
 
@@ -135,8 +135,8 @@ void Transform::InitRotationZ(double angle)
    Set(3, 3, 1.0);
 }
 
-void Transform::InitRotation(const jm::Vertex3 &axisPoint,
-                             const jm::Vertex3 &axisDirection,
+void Transform::InitRotation(const jm::Vertex3& axisPoint,
+                             const jm::Vertex3& axisDirection,
                              double angle)
 {
    //Transformationsmatrix:
@@ -174,8 +174,8 @@ void Transform::InitRotation(const jm::Vertex3 &axisPoint,
 
 }
 
-void Transform::InitMirroring(const jm::Vertex3 &planePoint,
-                              const jm::Vertex3 &planeNormal)
+void Transform::InitMirroring(const jm::Vertex3& planePoint,
+                              const jm::Vertex3& planeNormal)
 {
    //Transformationsmatrix:
 
@@ -227,7 +227,7 @@ void Transform::InitMirroring(const jm::Vertex3 &planePoint,
 }
 
 
-void Transform::InitWCS(const jm::Vertex3 &extrusion)
+void Transform::InitWCS(const jm::Vertex3& extrusion)
 {
    Matrix mx = wcsMatrix(extrusion);
    Zeros();
@@ -265,15 +265,15 @@ Matrix jm::ocsMatrix(const jm::Vertex3& extrusion)
    double b = 1.0 / 64.0;
    if(std::abs(extrusion.x) < b && std::abs(extrusion.y) < b) ox = wy.crossProduct(extrusion);
    else ox = wz.crossProduct(extrusion);
-   ox.Normalize();
+   ox.normalize();
    oy = extrusion.crossProduct(ox);
-   oy.Normalize();
+   oy.normalize();
 
    jm::Matrix ocs = jm::Matrix(ox, oy, oz, true);
    return ocs;
 }
 
-Matrix jm::wcsMatrix(const jm::Vertex3 &extrusion)
+Matrix jm::wcsMatrix(const jm::Vertex3& extrusion)
 {
    //WCS = OCS^-1
    jm::Matrix WCS = ocsMatrix(extrusion);

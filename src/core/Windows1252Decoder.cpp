@@ -80,7 +80,7 @@ CharArray Windows1252Decoder::Decode(const char* cstring)
    return array;
 }
 
-ByteArray Windows1252Decoder::Encode(const CharArray &string)
+ByteArray Windows1252Decoder::Encode(const CharArray& string)
 {
    ByteArray cstring = ByteArray(string.length, 0);
 

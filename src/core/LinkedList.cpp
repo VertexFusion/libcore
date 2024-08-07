@@ -170,7 +170,7 @@ void LinkedList::addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager
    if(before != NULL)
    {
       LListElement* item = new LListElement();
-      if(um != NULL)um->registerChange(item, (Object * *) & (item->data));
+      if(um != NULL)um->registerChange(item, (Object* *) & (item->data));
       item->data = itemToAdd;
 
       addBefore(before, item, um);
@@ -185,9 +185,10 @@ void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
    {
       um->registerChange(itemToAdd, (Object**) & (itemToAdd->prev));
       um->registerChange(itemToAdd, (Object**) & (itemToAdd->next));
-      if(listStart == addBeforeThis)um->registerChange(this, (Object * *)&listStart);
+      if(listStart == addBeforeThis)um->registerChange(this, (Object* *)&listStart);
       um->registerChange(addBeforeThis, (Object**) & (addBeforeThis->prev));
-      if(addBeforeThis->prev != NULL)um->registerChange(addBeforeThis, (Object * *) & (addAfterThis->next));
+      if(addBeforeThis->prev != NULL)um->registerChange(addBeforeThis,
+               (Object* *) & (addAfterThis->next));
       um->registerChange(this, &count);
    }
 
@@ -216,10 +217,10 @@ VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
 
    if(um != NULL)
    {
-      if(prev != NULL)um->registerChange(prev, (Object * *) & (prev->next));
-      if(next != NULL)um->registerChange(next, (Object * *) & (next->prev));
-      if(listStart == element)um->registerChange(this, (Object * *) &listStart);
-      if(listEnd == element)um->registerChange(this, (Object * *) &listEnd);
+      if(prev != NULL)um->registerChange(prev, (Object* *) & (prev->next));
+      if(next != NULL)um->registerChange(next, (Object* *) & (next->prev));
+      if(listStart == element)um->registerChange(this, (Object* *) &listStart);
+      if(listEnd == element)um->registerChange(this, (Object* *) &listEnd);
       um->registerChange(element, reinterpret_cast<Object**>(&element->prev));
       um->registerChange(element, (Object**) & (element->next));
       um->registerChange(this, &count);
@@ -317,7 +318,7 @@ LinkedListIterator::LinkedListIterator(const LinkedList* list)
    count = list->count;
 }
 
-LinkedListIterator::LinkedListIterator(const LinkedListIterator &other)
+LinkedListIterator::LinkedListIterator(const LinkedListIterator& other)
 {
    listStart = other.listStart;
    listEnd = other.listEnd;
@@ -350,7 +351,7 @@ LinkedListIterator::~LinkedListIterator()
 
 namespace jm
 {
-   LinkedListIterator& LinkedListIterator::operator=(const LinkedListIterator &other)
+   LinkedListIterator& LinkedListIterator::operator=(const LinkedListIterator& other)
    {
       if(this != &other)
       {

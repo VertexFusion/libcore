@@ -44,7 +44,7 @@ class DllExport Double
    public:
 
       Double();
-      Double(const Double &value);
+      Double(const Double& value);
 
       Double(float value);
       Double(double value);
@@ -112,13 +112,13 @@ class DllExport Double
        */
       Double& operator=(const Double& another);
 
-      Double &operator+=(const Double &another);
+      Double& operator+=(const Double& another);
 
-      Double &operator-=(const Double &another);
+      Double& operator-=(const Double& another);
 
-      Double &operator*=(const Double &another);
+      Double& operator*=(const Double& another);
 
-      Double &operator/=(const Double &another);
+      Double& operator/=(const Double& another);
 
       DllExport
       friend Double operator+(Double left, Double right);

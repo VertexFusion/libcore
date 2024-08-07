@@ -93,7 +93,7 @@ namespace jm
          /*!
           \brief Diese Methode legt eine neue Transformation auf dem Transformationsstapel ab.
           */
-         void PushTransform(const Transform &t);
+         void PushTransform(const Transform& t);
 
          /*!
           \brief Diese Methode löscht das obere Element auf dem Transformationsstapel.
@@ -121,7 +121,7 @@ namespace jm
           ohne etwas zu zeichnen.
           \param pt Die neue Position im WKS.
           */
-         void MoveTo(const Vertex3 &pt);
+         void MoveTo(const Vertex3& pt);
 
          /*!
           \brief Diese Methode "zeichnet" eine unsichtbare Linie zum neuen Punkt. Das ist
@@ -130,14 +130,14 @@ namespace jm
           verändert.
           \param pt Die neue Position im WKS.
           */
-         void BlindTo(const Vertex3 &pt);
+         void BlindTo(const Vertex3& pt);
 
          /*!
           \brief Diese Methode bewegt den Stift von der aktuellen Position zur neuen Position,
           und zeichnet dabei eine gerade Linie.
           \param pt Die neue Position im WKS.
           */
-         void LineTo(const Vertex3 &pt);
+         void LineTo(const Vertex3& pt);
 
          /*!
           \brief Diese Methode schließt den aktuellen Pfad, zeichnet Ihn und öffnet einen neuen
@@ -169,8 +169,8 @@ namespace jm
           \param startAngle Der Startwinkel im Gradmaß
           \param endAngle Der Endwinkel im Gradmaß
           */
-         void Arc(const Vertex3 &center,
-                  const Vertex3 &normal,
+         void Arc(const Vertex3& center,
+                  const Vertex3& normal,
                   Double radius,
                   Double startAngle,
                   Double endAngle);
@@ -184,9 +184,9 @@ namespace jm
           \param startAngle Der Startwinkel im Bogenmaß
           \param endAngle Der Endwinkel im BOgenmaß
           */
-         void Elliptic(const Vertex3 &center,
-                       const Vertex3 &majorAxis,
-                       const Vertex3 &minorAxis,
+         void Elliptic(const Vertex3& center,
+                       const Vertex3& majorAxis,
+                       const Vertex3& minorAxis,
                        Double startAngle,
                        Double endAngle);
 
@@ -199,14 +199,14 @@ namespace jm
          /*!
           \brief Diese Methode zeichnet eine gerade Linie zwischen zwei Punkten im Zielkontext
           */
-         virtual void DrawLineSegment(const Vertex3 &start, const Vertex3 &end) = 0;
+         virtual void DrawLineSegment(const Vertex3& start, const Vertex3& end) = 0;
 
          virtual void FinishStroke() = 0;
 
          /*!
           \brief Punkt zeichnen
           */
-         virtual void DrawPoint(const Vertex3 &point) = 0;
+         virtual void DrawPoint(const Vertex3& point) = 0;
 
          /*!
           \brief Diese Methode setzt das Linienmuster zum Zeichnen zurück, damit beim Beginn
@@ -219,9 +219,9 @@ namespace jm
 
       protected:
 
-         void BlindLine(const Vertex3 &p1, const Vertex3 &p2);
+         void BlindLine(const Vertex3& p1, const Vertex3& p2);
 
-         void PutLine(const Vertex3 &p1, const Vertex3 &p2, bool pendown);
+         void PutLine(const Vertex3& p1, const Vertex3& p2, bool pendown);
 
       private:
 
@@ -294,7 +294,7 @@ namespace jm
           \discussion Wesentlicher Grund für die Veränderung der Transformationseinstellungen sind
           Blockreferenzen und verschachtelte Blockreferenzen.
           */
-         Vertex3 Trans(const Vertex3 &pt) const;
+         Vertex3 Trans(const Vertex3& pt) const;
 
    };
 

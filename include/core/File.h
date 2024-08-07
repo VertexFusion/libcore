@@ -71,7 +71,7 @@ namespace jm
           \brief Constructor
           \param pathname Path to the file.
           */
-         File(const String &pathname);
+         File(const String& pathname);
 
          /*!
           \brief Constructor
@@ -86,13 +86,13 @@ namespace jm
           \param parent File object of parent file
           \param child Path of child file
           */
-         File(const File &parent,
+         File(const File& parent,
               String child);
 
          /*!
           \brief Copy constructor
           */
-         File(const File &other);
+         File(const File& other);
 
          /*!
           \brief Destructor
@@ -122,7 +122,7 @@ namespace jm
 
          /*!
           \brief Creates a new file, but only, if the file not exist. If the file exists,
-		  nothing happens.
+         nothing happens.
           \return true, if a new file was created. false otherwise.
           */
          bool createNewFile();
@@ -152,7 +152,7 @@ namespace jm
          /*!
           \brief Benennt die Datei um
           */
-         bool renameTo(const String &newPath);
+         bool renameTo(const String& newPath);
 
          /*!
           \brief Gibt den Namen der Datei zurück. Dies ist der reine Name ohne Pfadangabe usw.
@@ -290,7 +290,7 @@ namespace jm
          /*!
           \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander
           */
-         int32 compareTo(const File &other) const override;
+         int32 compareTo(const File& other) const override;
 
          /*!
           \brief Returns the tags of the file.
@@ -302,15 +302,15 @@ namespace jm
          /*!
           \brief Adds a tag to the file. If the tag already exists, nothing happens.
           */
-         VxfErrorStatus addTag(const String &tag);
+         VxfErrorStatus addTag(const String& tag);
 
          /*!
           \brief Remove a tag from the file. If the tag not exists, nothing happens.
           */
-         VxfErrorStatus removeTag(const String &tag);
+         VxfErrorStatus removeTag(const String& tag);
 
          //Operatore
-         File &operator=(const File &another);
+         File& operator=(const File& another);
 
       private:
          /*!
@@ -334,7 +334,7 @@ namespace jm
           \discussion Unter Unix enthält ein normalisierter Pfadname keine doppelten Schrägstriche
           und endet nicht mit einem Schrägstrich.
           */
-         String normalize(const String &pathnames);
+         String normalize(const String& pathnames);
 
          /*!
           \brief Diese Methode kombiniert den Vaternamen mit dem Childnamen
@@ -378,7 +378,7 @@ namespace jm
     soll
     */
    extern DllExport
-   File ResourceDir(const String &bundleId);   //Unter MAC mit Bundle-ID...
+   File ResourceDir(const String& bundleId);   //Unter MAC mit Bundle-ID...
 
    /*!
     Diese Methode gibt das Verzeichnis zurück, in dem ide aktuelle Anwendung ihre Einstellungen

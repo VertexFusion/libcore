@@ -75,55 +75,55 @@ namespace jm
           \brief This method check, if the property is present or not.
           \param key The key of the property of interest.
           */
-         bool hasValue(const String &key)const;
+         bool hasValue(const String& key)const;
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void setValue(const String &key, const String &value);
+         void setValue(const String& key, const String& value);
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void setValue(const String &key, int32 value);
+         void setValue(const String& key, int32 value);
 
          /*!
           \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
           \param key Der Property-Schlüssel
           \param value Der Wert
           */
-         void setValue(const String &key, bool value);
+         void setValue(const String& key, bool value);
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           */
-         String value(const String &key) const;
-
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-          */
-         String value(const String &key, const String &defaultValue) const;
+         String value(const String& key) const;
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
           */
-         int32 valueInt(const String &key, int32 defaultValue) const;
+         String value(const String& key, const String& defaultValue) const;
 
          /*!
           \brief Gibt die gewünschte Eigenschaft zurück
           \param key Die Eigenschaft
           \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
           */
-         bool valueBool(const String &key, bool defaultValue) const;
+         int32 valueInt(const String& key, int32 defaultValue) const;
+
+         /*!
+          \brief Gibt die gewünschte Eigenschaft zurück
+          \param key Die Eigenschaft
+          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
+          */
+         bool valueBool(const String& key, bool defaultValue) const;
    };
 
 }

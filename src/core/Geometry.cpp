@@ -34,10 +34,10 @@
 
 using namespace jm;
 
-Vertex3 jm::intersectionPointLineAndPlane(const Vertex3 &planePosition,
-      const Vertex3 &normal,
-      const Vertex3 &linePosition,
-      const Vertex3 &direction,
+Vertex3 jm::intersectionPointLineAndPlane(const Vertex3& planePosition,
+      const Vertex3& normal,
+      const Vertex3& linePosition,
+      const Vertex3& direction,
       bool extend)
 {
    if(normal.IsNull())
@@ -68,16 +68,16 @@ Vertex3 jm::intersectionPointLineAndPlane(const Vertex3 &planePosition,
       // \todo It should be considered whether it is an extra option that the point is set to the end point
       //if( IsLess( lambda , 0 ) )lambda = 0;
       //else if( IsGreater( lambda , 1 ) ) lambda = 1;
-      if(IsLess(lambda, 0))return Vertex3(NAN, NAN, NAN);
-      else if(IsGreater(lambda, 1))return Vertex3(NAN, NAN, NAN);
+      if(isLess(lambda, 0))return Vertex3(NAN, NAN, NAN);
+      else if(isGreater(lambda, 1))return Vertex3(NAN, NAN, NAN);
    }
 
    return linePosition + direction * lambda;
 }
 
-Vertex3 jm::closestPointOnPlane(const Vertex3 &point,
-                                const Vertex3 &position,
-                                const Vertex3 &normal)
+Vertex3 jm::closestPointOnPlane(const Vertex3& point,
+                                const Vertex3& position,
+                                const Vertex3& normal)
 {
    // Procedure:
    // 1. The plane is already defined by the normal form (position, normal).
@@ -88,9 +88,9 @@ Vertex3 jm::closestPointOnPlane(const Vertex3 &point,
    return intersectionPointLineAndPlane(position, normal, point, normal, true);
 }
 
-Vertex3 jm::closestPointOnLine(const Vertex3 &point,
-                               const Vertex3 &position,
-                               const Vertex3 &direction)
+Vertex3 jm::closestPointOnLine(const Vertex3& point,
+                               const Vertex3& position,
+                               const Vertex3& direction)
 {
    // Procedure:
    // 1. Define a plane that is perpendicular to the straight line and lies at point p.
@@ -101,10 +101,10 @@ Vertex3 jm::closestPointOnLine(const Vertex3 &point,
    return intersectionPointLineAndPlane(point, direction, position, direction, true);
 }
 
-Vertex3 jm::closestPointOnLine(const Vertex3 &position1,
-                               const Vertex3 &direction1,
-                               const Vertex3 &position2,
-                               const Vertex3 &direction2)
+Vertex3 jm::closestPointOnLine(const Vertex3& position1,
+                               const Vertex3& direction1,
+                               const Vertex3& position2,
+                               const Vertex3& direction2)
 {
    // Prerequisites
    // - The straight lines are not parallel and are skewed
@@ -125,9 +125,9 @@ Vertex3 jm::closestPointOnLine(const Vertex3 &position1,
 }
 
 
-Vertex3 jm::closestPointOnLine(const Vertex3 &point,
-                               const Vertex3 &lineStart,
-                               const Vertex3 &lineEnd,
+Vertex3 jm::closestPointOnLine(const Vertex3& point,
+                               const Vertex3& lineStart,
+                               const Vertex3& lineEnd,
                                bool extend)
 {
    // Vorgehen
@@ -142,12 +142,12 @@ Vertex3 jm::closestPointOnLine(const Vertex3 &point,
    return intersectionPointLineAndPlane(point, direction, lineStart, direction, extend);
 }
 
-Vertex3 jm::closestPointOnCircle(const Vertex3 &point,
-                                 const Vertex3 &center,
+Vertex3 jm::closestPointOnCircle(const Vertex3& point,
+                                 const Vertex3& center,
                                  double radius,
-                                 const Vertex3 &normal)
+                                 const Vertex3& normal)
 {
-   if(IsEqual(radius, 0.0)) return Vertex3(NAN, NAN, NAN);
+   if(isEqual(radius, 0.0)) return Vertex3(NAN, NAN, NAN);
 
    // Procedure:
    // 1. Define A plane in which the circle lies and passes through the point p (point)
@@ -166,9 +166,9 @@ Vertex3 jm::closestPointOnCircle(const Vertex3 &point,
    return center + r * lambda;
 }
 
-double jm::distancePointToPlane(const Vertex3 &point,
-                                const Vertex3 &position,
-                                const Vertex3 &normal)
+double jm::distancePointToPlane(const Vertex3& point,
+                                const Vertex3& position,
+                                const Vertex3& normal)
 {
    //Vorgehen:
    // 1. Berechne Lotpunkt auf der Ebene ( = loc)
@@ -180,24 +180,24 @@ double jm::distancePointToPlane(const Vertex3 &point,
    return loc.Abs();
 }
 
-double jm::distancePointToPoint(const Vertex3 &point1,
-                                const Vertex3 &point2)
+double jm::distancePointToPoint(const Vertex3& point1,
+                                const Vertex3& point2)
 {
    Vertex3 v = point2 - point1;
    return v.Abs();
 }
 
 
-double jm::distancePointToPoint(const Vertex2 &point1,
-                                const Vertex2 &point2)
+double jm::distancePointToPoint(const Vertex2& point1,
+                                const Vertex2& point2)
 {
    Vertex2 v = point2 - point1;
-   return v.Abs();
+   return v.abs();
 }
 
-double jm::distancePointToLine(const Vertex3 &point,
-                               const Vertex3 &position,
-                               const Vertex3 &direction)
+double jm::distancePointToLine(const Vertex3& point,
+                               const Vertex3& position,
+                               const Vertex3& direction)
 {
    //Vorgehen:
    // 1. Berechne Lotpunkt auf der Geraden ( = loc)
@@ -209,9 +209,9 @@ double jm::distancePointToLine(const Vertex3 &point,
    return loc.Abs();
 }
 
-double jm::distancePointToLine(const Vertex3 &point,
-                               const Vertex3 &lineStart,
-                               const Vertex3 &lineEnd,
+double jm::distancePointToLine(const Vertex3& point,
+                               const Vertex3& lineStart,
+                               const Vertex3& lineEnd,
                                bool extend)
 {
    //Vorgehen:
@@ -224,10 +224,10 @@ double jm::distancePointToLine(const Vertex3 &point,
    return loc.Abs();
 }
 
-double jm::distancePointToCircle(const Vertex3 &point,
-                                 const Vertex3 &center,
+double jm::distancePointToCircle(const Vertex3& point,
+                                 const Vertex3& center,
                                  double radius,
-                                 const Vertex3 &normal)
+                                 const Vertex3& normal)
 {
    //Vorgehen:
    // 1. Berechne Lotpunkt auf dem Kreis ( = loc)
@@ -239,10 +239,10 @@ double jm::distancePointToCircle(const Vertex3 &point,
    return loc.Abs();
 }
 
-double jm::distanceLineToLine(const Vertex3 &position1,
-                              const Vertex3 &direction1,
-                              const Vertex3 &position2,
-                              const Vertex3 &direction2)
+double jm::distanceLineToLine(const Vertex3& position1,
+                              const Vertex3& direction1,
+                              const Vertex3& position2,
+                              const Vertex3& direction2)
 {
    if(direction1.IsCollinear(direction2))
    {
@@ -268,54 +268,54 @@ double jm::distanceLineToLine(const Vertex3 &position1,
 }
 
 
-bool jm::isPointOnPlane(const Vertex3 &point,
-                   const Vertex3 &position,
-                   const Vertex3 &normal,
-                   double maxDistance)
+bool jm::isPointOnPlane(const Vertex3& point,
+                        const Vertex3& position,
+                        const Vertex3& normal,
+                        double maxDistance)
 {
    double dist = distancePointToPlane(point, position, normal);
-   return IsLess(dist, maxDistance);
+   return isLess(dist, maxDistance);
 }
 
-bool jm::isPointOnLine(const Vertex3 &point,
-                  const Vertex3 &position,
-                  const Vertex3 &direction)
+bool jm::isPointOnLine(const Vertex3& point,
+                       const Vertex3& position,
+                       const Vertex3& direction)
 {
    double dist = distancePointToLine(point, position, direction);
-   return IsEqual(dist, 0);
+   return isEqual(dist, 0);
 }
 
-bool jm::isPointOnLine(const Vertex3 &point,
-                  const Vertex3 &lineStart,
-                  const Vertex3 &lineEnd,
-                  bool extend)
+bool jm::isPointOnLine(const Vertex3& point,
+                       const Vertex3& lineStart,
+                       const Vertex3& lineEnd,
+                       bool extend)
 {
    double dist = distancePointToLine(point, lineStart, lineEnd, extend);
-   return IsEqual(dist, 0);
+   return isEqual(dist, 0);
 }
 
-bool jm::isPointOnCircle(const Vertex3 &point,
-                    const Vertex3 &center,
-                    double radius,
-                    const Vertex3 &normal)
+bool jm::isPointOnCircle(const Vertex3& point,
+                         const Vertex3& center,
+                         double radius,
+                         const Vertex3& normal)
 {
    double dist = distancePointToCircle(point, center, radius, normal);
-   return IsEqual(dist, 0);
+   return isEqual(dist, 0);
 }
 
-bool jm::isSamePoint(const Vertex3 &point1,
-                     const Vertex3 &point2)
+bool jm::isSamePoint(const Vertex3& point1,
+                     const Vertex3& point2)
 {
    double dist = distancePointToPoint(point1, point2);
-   return IsEqual(dist, 0);
+   return isEqual(dist, 0);
 }
 
-Vertex2 jm::intersectionPoint(const Vertex2 &position1,
-                              const Vertex2 &direction1,
-                              const Vertex2 &position2,
-                              const Vertex2 &direction2)
+Vertex2 jm::intersectionPoint(const Vertex2& position1,
+                              const Vertex2& direction1,
+                              const Vertex2& position2,
+                              const Vertex2& direction2)
 {
-   if(direction1.IsCollinear(direction2)) return Vertex2(NAN, NAN);
+   if(direction1.isCollinear(direction2)) return Vertex2(NAN, NAN);
    else
    {
       Vertex2 x = SolveLinearSystem(direction1, -1 * direction2, position2 - position1);
@@ -323,10 +323,10 @@ Vertex2 jm::intersectionPoint(const Vertex2 &position1,
    }
 }
 
-Vertex3 jm::intersectionPoint(const Vertex3 &position1,
-                              const Vertex3 &direction1,
-                              const Vertex3 &position2,
-                              const Vertex3 &direction2)
+Vertex3 jm::intersectionPoint(const Vertex3& position1,
+                              const Vertex3& direction1,
+                              const Vertex3& position2,
+                              const Vertex3& direction2)
 {
    //
    // 1. Ermittle Abstand der Geraden.
@@ -339,7 +339,7 @@ Vertex3 jm::intersectionPoint(const Vertex3 &position1,
    //
    // 2. Ein Schnittpunkt ist vorhanden, wenn der Abstand 0 ist.
    //
-   if(IsLessEqual(dist, 0.0))
+   if(isLessEqual(dist, 0.0))
    {
       //
       // Welcher Punkt auf der 2. Geraden hat den kürzesten Abstand zur 1. Geraden ?
@@ -361,15 +361,15 @@ Vertex3 jm::intersectionPoint(const Vertex3 &position1,
    return Vertex3(NAN, NAN, NAN);
 }
 
-bool jm::crosses(const Vertex2 &start1,
-                 const Vertex2 &end1,
-                 const Vertex2 &start2,
-                 const Vertex2 &end2)
+bool jm::crosses(const Vertex2& start1,
+                 const Vertex2& end1,
+                 const Vertex2& start2,
+                 const Vertex2& end2)
 {
    Vertex2 dir1 = end1 - start1;
    Vertex2 dir2 = end2 - start2;
 
-   if(dir1.IsCollinear(dir2)) return false;
+   if(dir1.isCollinear(dir2)) return false;
 
    Vertex2 x = SolveLinearSystem(dir1, -1 * dir2, start2 - start1);
    double lambda1 = x.x;
@@ -386,24 +386,24 @@ bool jm::crosses(const Vertex2 &start1,
     double lambda1 = dist1.Abs() / dir1.Abs();
     double lambda2 = dist2.Abs() / dir2.Abs();*/
 
-   if(IsLess(lambda1, 0) ||
-         IsGreater(lambda1, 1) ||
-         IsLess(lambda2, 0) ||
-         IsGreater(lambda2, 1))return false;
+   if(isLess(lambda1, 0) ||
+         isGreater(lambda1, 1) ||
+         isLess(lambda2, 0) ||
+         isGreater(lambda2, 1))return false;
 
    return true;
 }
 
-Vertex2 jm::extensionPointOnLine(const Vertex2 &rayorigin,
-                                 const Vertex2 &direction,
-                                 const Vertex2 &start,
-                                 const Vertex2 &end)
+Vertex2 jm::extensionPointOnLine(const Vertex2& rayorigin,
+                                 const Vertex2& direction,
+                                 const Vertex2& start,
+                                 const Vertex2& end)
 {
    //Richtung der Linie vom Start zum Endpunkt
    Vertex2 direction2 = end - start;
 
    double lambda = -1;
-   if(direction.IsCollinear(direction2)) return Vertex2(NAN, NAN);
+   if(direction.isCollinear(direction2)) return Vertex2(NAN, NAN);
    else
    {
       Vertex2 x = SolveLinearSystem(direction, -1 * direction2, start - rayorigin);
@@ -413,26 +413,26 @@ Vertex2 jm::extensionPointOnLine(const Vertex2 &rayorigin,
 
    //Bekomme Schnittpunkt
    Vertex2 intersection = start + lambda * direction2;
-   if(IsNaN(intersection.x) || IsNaN(intersection.y)) return intersection;
+   if(isNaN(intersection.x) || isNaN(intersection.y)) return intersection;
 
    //Wenn Schnittpunkt == Startpunkt ist, dann gibt auf NAN zurück
-   if(IsEqual(intersection.x, rayorigin.x) &&
-         IsEqual(intersection.y, rayorigin.y))
+   if(isEqual(intersection.x, rayorigin.x) &&
+         isEqual(intersection.y, rayorigin.y))
       return Vertex2(NAN, NAN);
 
    //Wenn lambda nicht >= 0 und <=1 ist der Punkt außerhalb der Linie
-   if(IsLess(lambda, 0) || IsGreater(lambda, 1))return Vertex2(NAN, NAN);
+   if(isLess(lambda, 0) || isGreater(lambda, 1))return Vertex2(NAN, NAN);
 
    //Prüfe nun, ob der Schnittpunkt in Richtung des Strahls liegt
    direction2 = intersection - rayorigin;
 
    Vertex2 ndir = direction;
-   ndir.Normalize();
+   ndir.normalize();
    Vertex2 ndir2 = direction2;
-   ndir2.Normalize();
+   ndir2.normalize();
 
    //Wenn gleichgerichtet, dann ist der Punkt vor dem Strahl
-   if(IsEqual(ndir.x, ndir2.x) && IsEqual(ndir.y, ndir2.y))return intersection;
+   if(isEqual(ndir.x, ndir2.x) && isEqual(ndir.y, ndir2.y))return intersection;
 
    //Entgegengesetzt, also kein Schnittpunkt
    return Vertex2(NAN, NAN);
@@ -442,12 +442,12 @@ Vertex2 jm::extensionPointOnLine(const Vertex2 &rayorigin,
  \brief Diese Helfermethode prüft, ob der punkt p innerhalb des Start und Endwinkels liegt
  Start und Endwinkel im Bogenmaß
  */
-bool CheckAngle(const Vertex2 &point,
-                const Vertex2 &center,
+bool CheckAngle(const Vertex2& point,
+                const Vertex2& center,
                 double start,
                 double end);
-bool CheckAngle(const Vertex2 &point,
-                const Vertex2 &center,
+bool CheckAngle(const Vertex2& point,
+                const Vertex2& center,
                 double start,
                 double end)
 {
@@ -459,16 +459,16 @@ bool CheckAngle(const Vertex2 &point,
    double const DBL_PI = 2 * M_PI;
 
    //Sorge dafür, dass Startwinkel im Bereich 0-2PI ist;
-   while(IsGreaterEqual(start, DBL_PI))start -= DBL_PI;
+   while(isGreaterEqual(start, DBL_PI))start -= DBL_PI;
 
    //Sroge dafür, dass er Startwinkel größer start ist, aber nicht um ein vielfaches größer
-   while(IsGreaterEqual(end, DBL_PI))end -= DBL_PI;
-   while(IsLessEqual(end, start))end += DBL_PI;
+   while(isGreaterEqual(end, DBL_PI))end -= DBL_PI;
+   while(isLessEqual(end, start))end += DBL_PI;
 
    //Sorge dafür, dass angle > start ist
-   while(IsLess(angle, start))angle += DBL_PI;
+   while(isLess(angle, start))angle += DBL_PI;
 
-   if(IsLessEqual(angle, end))return true;
+   if(isLessEqual(angle, end))return true;
 
    return false;
 }
@@ -479,16 +479,16 @@ bool CheckAngle(const Vertex2 &point,
  */
 Vertex2 PQCheck(double p,
                 double q,
-                const Vertex2 &rayorigin,
-                const Vertex2 &direction,
-                const Vertex2 &center,
+                const Vertex2& rayorigin,
+                const Vertex2& direction,
+                const Vertex2& center,
                 double start,
                 double end);
 Vertex2 PQCheck(double p,
                 double q,
-                const Vertex2 &rayorigin,
-                const Vertex2 &direction,
-                const Vertex2 &center,
+                const Vertex2& rayorigin,
+                const Vertex2& direction,
+                const Vertex2& center,
                 double start,
                 double end)
 {
@@ -497,9 +497,9 @@ Vertex2 PQCheck(double p,
 
    //Wenn rt < 0 ist, dann wird der Kreis nicht geschnitten.
    //Wenn rt ~ 0 ist, setze es auf Null, damit die Wurzel auch berechnet wird.
-   if(IsLessEqual(rt, 0.0))
+   if(isLessEqual(rt, 0.0))
    {
-      if(IsLess(rt, 0.0)) return Vertex2(NAN, NAN);
+      if(isLess(rt, 0.0)) return Vertex2(NAN, NAN);
       rt = 0;
    }
 
@@ -507,7 +507,7 @@ Vertex2 PQCheck(double p,
    double n2 = - p2 + sqrt(rt);
 
    // Both points are behind the beam origin, then there are no points
-   if(IsLessEqual(n1, 0.0) && IsLessEqual(n2, 0.0))return Vertex2(NAN, NAN);
+   if(isLessEqual(n1, 0.0) && isLessEqual(n2, 0.0))return Vertex2(NAN, NAN);
 
    Vertex2 pt1 = rayorigin + n1 * direction;
    Vertex2 pt2 = rayorigin + n2 * direction;
@@ -515,9 +515,9 @@ Vertex2 PQCheck(double p,
    bool pt2ok = CheckAngle(pt2, center, start, end);
 
    // Both points are in front of the beam source
-   if(IsGreater(n1, 0.0) && IsGreater(n2, 0.0))
+   if(isGreater(n1, 0.0) && isGreater(n2, 0.0))
    {
-      if(IsLess(n1, n2))
+      if(isLess(n1, n2))
       {
          if(pt1ok)return pt1;
          if(pt2ok)return pt2;
@@ -531,11 +531,11 @@ Vertex2 PQCheck(double p,
    }
 
    //Ein Punkt liegt hinter der Strahlquelle
-   if(IsLessEqual(n1, 0.0) && pt2ok)
+   if(isLessEqual(n1, 0.0) && pt2ok)
    {
       return pt2;
    }
-   if(IsLessEqual(n2, 0.0) && pt1ok)
+   if(isLessEqual(n2, 0.0) && pt1ok)
    {
       return pt1;
    }
@@ -545,9 +545,9 @@ Vertex2 PQCheck(double p,
    return Vertex2(NAN, NAN);
 }
 
-Vertex2 jm::extensionPointOnArc(const Vertex2 &rayorigin,
-                                const Vertex2 &direction,
-                                const Vertex2 &center,
+Vertex2 jm::extensionPointOnArc(const Vertex2& rayorigin,
+                                const Vertex2& direction,
+                                const Vertex2& center,
                                 double radius,
                                 double start,
                                 double end)
@@ -590,10 +590,10 @@ Vertex2 jm::extensionPointOnArc(const Vertex2 &rayorigin,
    return PQCheck(p, q, rayorigin, direction, center, start, end);
 }
 
-Vertex2 jm::extensionPointOnEllipse(const Vertex2 &rayorigin_,
-                                    const Vertex2 &direction_,
-                                    const Vertex2 &center_,
-                                    const Vertex2 &mainAxis,
+Vertex2 jm::extensionPointOnEllipse(const Vertex2& rayorigin_,
+                                    const Vertex2& direction_,
+                                    const Vertex2& center_,
+                                    const Vertex2& mainAxis,
                                     double minorAxisRatio,
                                     double start,
                                     double end)
@@ -604,11 +604,11 @@ Vertex2 jm::extensionPointOnEllipse(const Vertex2 &rayorigin_,
    double angle = std::atan2(center_.y, center_.x);
 
    Vertex2 center = center_;
-   center.Rotate(-angle);
+   center.rotate(-angle);
    Vertex2 direction = direction_;
-   direction.Rotate(-angle);
+   direction.rotate(-angle);
    Vertex2 rayorigin = rayorigin_;
-   rayorigin.Rotate(-angle);
+   rayorigin.rotate(-angle);
 
    //Nun liegt die Ellipse mit der Hauptachse auf der X-Achse
 
@@ -624,7 +624,7 @@ Vertex2 jm::extensionPointOnEllipse(const Vertex2 &rayorigin_,
    // Geradengleichung (vektoriell) o + n * d = p
    // Einsetzen und quadratische Gleichung mit pq-Formel lösen führt zu:
 
-   double a = mainAxis.Abs();
+   double a = mainAxis.abs();
    double b = a * minorAxisRatio;
 
    double a2 = a * a;
@@ -639,24 +639,24 @@ Vertex2 jm::extensionPointOnEllipse(const Vertex2 &rayorigin_,
    double q = ((qx * qx / a2) + (qy * qy / b) - 1.0) / div;
 
    Vertex2 result = PQCheck(p, q, rayorigin, direction, center, start, end);
-   if(result.IsValid())result.Rotate(angle);
+   if(result.isValid())result.rotate(angle);
    return result;
 }
 
-Vertex3 jm::angleBisector(const Vertex3 &direction1, const Vertex3 &direction2)
+Vertex3 jm::angleBisector(const Vertex3& direction1, const Vertex3& direction2)
 {
-   return direction1.Normalized() + direction2.Normalized();
+   return direction1.normalized() + direction2.normalized();
 }
 
-Vertex2 jm::angleBisector(const Vertex2 &direction1, const Vertex2 &direction2)
+Vertex2 jm::angleBisector(const Vertex2& direction1, const Vertex2& direction2)
 {
-   return direction1.Normalized() + direction2.Normalized();
+   return direction1.normalized() + direction2.normalized();
 }
 
-jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2 &centre, double &radius,
-      const Vertex2 &p1,
-      const Vertex2 &p2,
-      const Vertex3 &p3)
+jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2& centre, double& radius,
+      const Vertex2& p1,
+      const Vertex2& p2,
+      const Vertex3& p3)
 {
    // Algorithm:
    // Given: 3 points <x1,y1>, <x2,y2>, <x3,y3>
@@ -695,7 +695,7 @@ jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2 &centre, double &radius,
 
    centre.x = x;
    centre.y = y;
-   radius = (p1 - centre).Abs();
+   radius = (p1 - centre).abs();
 
    return eOK;
 }

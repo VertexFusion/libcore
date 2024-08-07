@@ -131,7 +131,7 @@ namespace jm
          /*!
           \brief Sets the file for this document
           */
-         void setFile(const File &file);
+         void setFile(const File& file);
 
          /*!
           \brief Returns the File object of this document.

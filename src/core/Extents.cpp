@@ -84,5 +84,5 @@ bool Extents::isValid()const
 
 Vertex3 Extents::delta()const
 {
-   return mPtMax-mPtMin;
+   return mPtMax - mPtMin;
 }

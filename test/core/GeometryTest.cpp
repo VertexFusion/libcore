@@ -58,8 +58,8 @@ GeometryTest::GeometryTest(): Test()
 void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
 {
    Vertex2 pnt;
-   startAngle = DegToRad(startAngle);
-   endAngle = DegToRad(endAngle);
+   startAngle = degToRad(startAngle);
+   endAngle = degToRad(endAngle);
    double s2 = startAngle + M_PI;
    double e2 = endAngle + M_PI;
    const double DBL_PI = 2 * M_PI;
@@ -68,28 +68,29 @@ void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
    {
       //Schieße
       Vertex2 orig = Vertex2(2.0, 0.0);
-      orig.Rotate(a);
+      orig.rotate(a);
 
       Vertex2 result1 = Vertex2(1.0, 0.0);
-      result1.Rotate(a);
+      result1.rotate(a);
 
       Vertex2 result2 = Vertex2(-1.0, 0.0);
-      result2.Rotate(a);
+      result2.rotate(a);
 
       Vertex2 dir = Vertex2(-1.0, 0.0);
-      dir.Rotate(a);
+      dir.rotate(a);
 
       pnt = jm::extensionPointOnArc(orig, dir, Vertex2(0.0, 0.0), 1.0, startAngle, endAngle);
 
       //Es kann sein, dass die Winkel im Bereich 2pi - 4pi landen, daher wird das abgefragt...
 
-      if((IsGreaterEqual(a, startAngle) && IsLessEqual(a, endAngle)) ||
-            (IsGreaterEqual(a + DBL_PI, startAngle) && IsLessEqual(a + DBL_PI, endAngle)))
+      if((isGreaterEqual(a, startAngle) && isLessEqual(a, endAngle)) ||
+            (isGreaterEqual(a + DBL_PI, startAngle) && isLessEqual(a + DBL_PI, endAngle)))
       {
          TestEquals(pnt.x, result1.x, "ExtensionPointOnArc fails ANG (x)");
          TestEquals(pnt.y, result1.y, "ExtensionPointOnArc fails ANG (y)");
       }
-      else if((IsGreaterEqual(a, s2) && IsLessEqual(a, e2)) || (IsGreaterEqual(a + DBL_PI, s2) && IsLessEqual(a + DBL_PI, e2)))
+      else if((isGreaterEqual(a, s2) && isLessEqual(a, e2)) || (isGreaterEqual(a + DBL_PI, s2)
+              && isLessEqual(a + DBL_PI, e2)))
       {
          TestEquals(pnt.x, result2.x, "ExtensionPointOnArc fails ANG (x)");
          TestEquals(pnt.y, result2.y, "ExtensionPointOnArc fails ANG (y)");
@@ -97,8 +98,8 @@ void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
       else
       {
          //			std::cout << RadToDeg(a) << " " << RadToDeg(startAngle) << " " << RadToDeg(endAngle)<< " NAN \n";
-         TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
-         TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
+         TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
+         TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
       }
 
    }
@@ -107,25 +108,25 @@ void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
 void GeometryTest::ShootAway(double startAngle, double endAngle, double delta)
 {
    Vertex2 pnt;
-   startAngle = DegToRad(startAngle);
-   endAngle = DegToRad(endAngle);
+   startAngle = degToRad(startAngle);
+   endAngle = degToRad(endAngle);
 
    //Außerhalb
    for(double a = 0; a < 2 * M_PI ; a += 0.01)
    {
       //Schieße
       Vertex2 orig = Vertex2(2.0, 0.0);
-      orig.Rotate(a);
+      orig.rotate(a);
 
       Vertex2 dir = Vertex2(1.0, 0.0);
-      dir.Rotate(a);
+      dir.rotate(a);
 
       pnt = jm::extensionPointOnArc(orig, dir, Vertex2(0.0, 0.0), 1.0, startAngle, endAngle);
 
       //Es kann sein, dass die Winkel im Bereich 2pi - 4pi landen, daher wird das abgefragt...
 
-      TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
-      TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
+      TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
+      TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
    }
 
    //Vom Kreis
@@ -133,17 +134,17 @@ void GeometryTest::ShootAway(double startAngle, double endAngle, double delta)
    {
       //Schieße
       Vertex2 orig = Vertex2(1.0, 0.0);
-      orig.Rotate(a);
+      orig.rotate(a);
 
       Vertex2 dir = Vertex2(1.0, 0.0);
-      dir.Rotate(a);
+      dir.rotate(a);
 
       pnt = jm::extensionPointOnArc(orig, dir, Vertex2(0.0, 0.0), 1.0, startAngle, endAngle);
 
       //Es kann sein, dass die Winkel im Bereich 2pi - 4pi landen, daher wird das abgefragt...
 
-      TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
-      TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
+      TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
+      TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
    }
 
 }
@@ -151,28 +152,28 @@ void GeometryTest::ShootAway(double startAngle, double endAngle, double delta)
 void GeometryTest::ShootOut(double startAngle, double endAngle, double delta)
 {
    Vertex2 pnt;
-   startAngle = DegToRad(startAngle);
-   endAngle = DegToRad(endAngle);
+   startAngle = degToRad(startAngle);
+   endAngle = degToRad(endAngle);
    const double DBL_PI = 2 * M_PI;
 
    for(double a = 0; a < 2 * M_PI ; a += 0.01)
    {
       //Schieße
       Vertex2 orig = Vertex2(1.0, -1.0);
-      orig.Rotate(a);
+      orig.rotate(a);
 
       Vertex2 result1 = Vertex2(1.0, 0.0);
-      result1.Rotate(a);
+      result1.rotate(a);
 
       Vertex2 dir = Vertex2(0.0, 1.0);
-      dir.Rotate(a);
+      dir.rotate(a);
 
       pnt = jm::extensionPointOnArc(orig, dir, Vertex2(0.0, 0.0), 1.0, startAngle, endAngle);
 
       //Es kann sein, dass die Winkel im Bereich 2pi - 4pi landen, daher wird das abgefragt...
 
-      if((IsGreaterEqual(a, startAngle) && IsLessEqual(a, endAngle)) ||
-            (IsGreaterEqual(a + DBL_PI, startAngle) && IsLessEqual(a + DBL_PI, endAngle)))
+      if((isGreaterEqual(a, startAngle) && isLessEqual(a, endAngle)) ||
+            (isGreaterEqual(a + DBL_PI, startAngle) && isLessEqual(a + DBL_PI, endAngle)))
       {
          TestEquals(pnt.x, result1.x, "ExtensionPointOnArc fails ANG (x)");
          TestEquals(pnt.y, result1.y, "ExtensionPointOnArc fails ANG (y)");
@@ -180,8 +181,8 @@ void GeometryTest::ShootOut(double startAngle, double endAngle, double delta)
       else
       {
          //			std::cout << RadToDeg(a) << " " << RadToDeg(startAngle) << " " << RadToDeg(endAngle)<< " NAN \n";
-         TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
-         TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
+         TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
+         TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
       }
 
    }
@@ -190,8 +191,8 @@ void GeometryTest::ShootOut(double startAngle, double endAngle, double delta)
 void GeometryTest::ShootTangent(double startAngle, double endAngle, double delta)
 {
    Vertex2 pnt;
-   startAngle = DegToRad(startAngle);
-   endAngle = DegToRad(endAngle);
+   startAngle = degToRad(startAngle);
+   endAngle = degToRad(endAngle);
    const double DBL_PI = 2 * M_PI;
 
    //Schieße tangierend am Kreis vorbei
@@ -200,17 +201,17 @@ void GeometryTest::ShootTangent(double startAngle, double endAngle, double delta
    {
       //Schieße
       Vertex2 result1 = Vertex2(1.0, 0.0);
-      result1.Rotate(a);
+      result1.rotate(a);
 
       Vertex2 dir = Vertex2(11.0, 0.0);
-      dir.Rotate(a);
+      dir.rotate(a);
 
       pnt = jm::extensionPointOnArc(Vertex2(0.0, 0.0), dir, Vertex2(0.0, 0.0), 1.0, startAngle, endAngle);
 
       //Es kann sein, dass die Winkel im Bereich 2pi - 4pi landen, daher wird das abgefragt...
 
-      if((IsGreaterEqual(a, startAngle) && IsLessEqual(a, endAngle)) ||
-            (IsGreaterEqual(a + DBL_PI, startAngle) && IsLessEqual(a + DBL_PI, endAngle)))
+      if((isGreaterEqual(a, startAngle) && isLessEqual(a, endAngle)) ||
+            (isGreaterEqual(a + DBL_PI, startAngle) && isLessEqual(a + DBL_PI, endAngle)))
       {
          TestEquals(pnt.x, result1.x, "ExtensionPointOnArc fails ANG (x)");
          TestEquals(pnt.y, result1.y, "ExtensionPointOnArc fails ANG (y)");
@@ -218,8 +219,8 @@ void GeometryTest::ShootTangent(double startAngle, double endAngle, double delta
       else
       {
          //			std::cout << RadToDeg(a) << " " << RadToDeg(startAngle) << " " << RadToDeg(endAngle)<< " NAN \n";
-         TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
-         TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
+         TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails NAN (x)");
+         TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails NAN (y)");
       }
 
    }
@@ -449,57 +450,57 @@ void GeometryTest::DoTest()
    Vertex2 pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                          Vertex2(1.0, 0.0),
                                          Vertex2(5.0, 1.0),
-                                         1.0, 0, DegToRad(360));
+                                         1.0, 0, degToRad(360));
    TestEquals(pnt.x, 4.0, "ExtensionPointOnArc fails (1x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (1y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0, DegToRad(360));
+                                 1.5, 0, degToRad(360));
    TestEquals(pnt.x, 3.5, "ExtensionPointOnArc fails (2x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (2y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.5),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0, DegToRad(360));
+                                 1.5, 0, degToRad(360));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (3x)");
    TestEquals(pnt.y, 2.5, "ExtensionPointOnArc fails (3y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.51),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0, DegToRad(360));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (4x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (4y)");
+                                 1.5, 0, degToRad(360));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (4x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (4y)");
 
    //Strahl startet im Kreis
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
+                                 1.0, 0, degToRad(360));
    TestEquals(pnt.x, 2.0, "ExtensionPointOnArc fails (5x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (5y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, 1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
+                                 1.0, 0, degToRad(360));
    TestEquals(pnt.x, 1.0, "ExtensionPointOnArc fails (6x)");
    TestEquals(pnt.y, 2.0, "ExtensionPointOnArc fails (6y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(-1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
+                                 1.0, 0, degToRad(360));
    TestEquals(pnt.x, 0.0, "ExtensionPointOnArc fails (7x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (7y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, -1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
+                                 1.0, 0, degToRad(360));
    TestEquals(pnt.x, 1.0, "ExtensionPointOnArc fails (8x)");
    TestEquals(pnt.y, 0.0, "ExtensionPointOnArc fails (8y)");
 
@@ -507,24 +508,24 @@ void GeometryTest::DoTest()
    pnt = jm::extensionPointOnArc(Vertex2(3.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (9x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (9y)");
+                                 1.0, 0, degToRad(360));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (9x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (9y)");
 
    //Strahl startet auf Kreis
    pnt = jm::extensionPointOnArc(Vertex2(0.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
+                                 1.0, 0, degToRad(360));
    TestEquals(pnt.x, 2.0, "ExtensionPointOnArc fails (10x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (10y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(2.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, 0, DegToRad(360));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (11x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (11y)");
+                                 1.0, 0, degToRad(360));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (11x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (11y)");
 
    //
    // Teste nun die Methode mit Kreisabschnitten
@@ -540,84 +541,84 @@ void GeometryTest::DoTest()
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, 0, DegToRad(90));
+                                 1.0, 0, degToRad(90));
    TestEquals(pnt.x, 6.0, "ExtensionPointOnArc fails (12x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (12y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0,  DegToRad(90));
+                                 1.5, 0,  degToRad(90));
    TestEquals(pnt.x, 6.5, "ExtensionPointOnArc fails (13x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (13y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.5),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0,  DegToRad(90));
+                                 1.5, 0,  degToRad(90));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (14x)");
    TestEquals(pnt.y, 2.5, "ExtensionPointOnArc fails (14y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.51),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0,  DegToRad(90));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (15x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (15y)");
+                                 1.5, 0,  degToRad(90));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (15x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (15y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 0.99),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, 0,  DegToRad(90));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (16x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (16y)");
+                                 1.5, 0,  degToRad(90));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (16x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (16y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(270), DegToRad(90));
+                                 1.0, degToRad(270), degToRad(90));
    TestEquals(pnt.x, 6.0, "ExtensionPointOnArc fails (17x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (17y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.5, DegToRad(270), DegToRad(90));
+                                 1.5, degToRad(270), degToRad(90));
    TestEquals(pnt.x, 6.5, "ExtensionPointOnArc fails (18x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (18y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(270), DegToRad(90));
+                                 1.0, degToRad(270), degToRad(90));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (19x)");
    TestEquals(pnt.y, 2.0, "ExtensionPointOnArc fails (19y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(270), DegToRad(90));
+                                 1.0, degToRad(270), degToRad(90));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (20x)");
    TestEquals(pnt.y, 0.0, "ExtensionPointOnArc fails (20y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(90), DegToRad(270));
+                                 1.0, degToRad(90), degToRad(270));
    TestEquals(pnt.x, 4.0, "ExtensionPointOnArc fails (21x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (21y)");
 
-   pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.0), 
+   pnt = jm::extensionPointOnArc(Vertex2(1.0, 2.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(90), DegToRad(270));
+                                 1.0, degToRad(90), degToRad(270));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (22x)");
    TestEquals(pnt.y, 2.0, "ExtensionPointOnArc fails (22y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(5.0, 1.0),
-                                 1.0, DegToRad(90), DegToRad(270));
+                                 1.0, degToRad(90), degToRad(270));
    TestEquals(pnt.x, 5.0, "ExtensionPointOnArc fails (23x)");
    TestEquals(pnt.y, 0.0, "ExtensionPointOnArc fails (23y)");
 
@@ -625,112 +626,113 @@ void GeometryTest::DoTest()
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(315), DegToRad(45));
+                                 1.0, degToRad(315), degToRad(45));
    TestEquals(pnt.x, 2.0, "ExtensionPointOnArc fails (24x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (24y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, 1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(315), DegToRad(45));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (25x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (25y)");
+                                 1.0, degToRad(315), degToRad(45));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (25x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (25y)");
 
    pnt = jm:: extensionPointOnArc(Vertex2(1.0, 1.0),
                                   Vertex2(-1.0, 0.0),
                                   Vertex2(1.0, 1.0),
-                                  1.0, DegToRad(315), DegToRad(45));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (26x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (26y)");
+                                  1.0, degToRad(315), degToRad(45));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (26x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (26y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, -1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(315), DegToRad(45));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (27x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (27y)");
+                                 1.0, degToRad(315), degToRad(45));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (27x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (27y)");
 
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(45), DegToRad(135));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (28x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (28y)");
+                                 1.0, degToRad(45), degToRad(135));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (28x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (28y)");
 
-   pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0), Vertex2(0.0, 1.0), Vertex2(1.0, 1.0), 1.0, DegToRad(45), DegToRad(135));
+   pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0), Vertex2(0.0, 1.0), Vertex2(1.0, 1.0), 1.0,
+                                 degToRad(45), degToRad(135));
    TestEquals(pnt.x, 1.0, "ExtensionPointOnArc fails (29x)");
    TestEquals(pnt.y, 2.0, "ExtensionPointOnArc fails (29y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(-1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(45), DegToRad(135));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (30x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (30y)");
+                                 1.0, degToRad(45), degToRad(135));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (30x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (30y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, -1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(45), DegToRad(135));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (31x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (31y)");
+                                 1.0, degToRad(45), degToRad(135));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (31x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (31y)");
 
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(135), DegToRad(225));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (32x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (33y)");
+                                 1.0, degToRad(135), degToRad(225));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (32x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (33y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, 1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(135), DegToRad(225));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (34x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (34y)");
+                                 1.0, degToRad(135), degToRad(225));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (34x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (34y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(-1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(135), DegToRad(225));
+                                 1.0, degToRad(135), degToRad(225));
    TestEquals(pnt.x, 0.0, "ExtensionPointOnArc fails (35x)");
    TestEquals(pnt.y, 1.0, "ExtensionPointOnArc fails (35y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, -1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(135), DegToRad(225));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (36x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (36y)");
+                                 1.0, degToRad(135), degToRad(225));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (36x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (36y)");
 
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(225), DegToRad(315));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (37x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (37y)");
+                                 1.0, degToRad(225), degToRad(315));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (37x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (37y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, 1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(225), DegToRad(315));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (38x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (38y)");
+                                 1.0, degToRad(225), degToRad(315));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (38x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (38y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(-1.0, 0.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(225), DegToRad(315));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnArc fails (39x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnArc fails (39y)");
+                                 1.0, degToRad(225), degToRad(315));
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnArc fails (39x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnArc fails (39y)");
 
    pnt = jm::extensionPointOnArc(Vertex2(1.0, 1.0),
                                  Vertex2(0.0, -1.0),
                                  Vertex2(1.0, 1.0),
-                                 1.0, DegToRad(225), DegToRad(315));
+                                 1.0, degToRad(225), degToRad(315));
    TestEquals(pnt.x, 1.0, "ExtensionPointOnArc fails (40x)");
    TestEquals(pnt.y, 0.0, "ExtensionPointOnArc fails (40y)");
 
@@ -783,8 +785,8 @@ void GeometryTest::DoTest()
                                   Vertex2(1.0, 0.0),
                                   Vertex2(5.0, 0.0),
                                   Vertex2(5.0, 10.0));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnLine fails (1x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnLine fails (1y)");
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnLine fails (1x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnLine fails (1y)");
 
    //Startpunkt
    pnt = jm::extensionPointOnLine(Vertex2(1.0, 0.0),
@@ -815,8 +817,8 @@ void GeometryTest::DoTest()
                                   Vertex2(1.0, 0.0),
                                   Vertex2(5.0, 0.0),
                                   Vertex2(5.0, 10.0));
-   TestTrue(IsNaN(pnt.x), "ExtensionPointOnLine fails (5x)");
-   TestTrue(IsNaN(pnt.y), "ExtensionPointOnLine fails (5y)");
+   TestTrue(isNaN(pnt.x), "ExtensionPointOnLine fails (5x)");
+   TestTrue(isNaN(pnt.y), "ExtensionPointOnLine fails (5y)");
 
 
    //Schuss nach Diagonal Rechts...
@@ -824,16 +826,16 @@ void GeometryTest::DoTest()
    {
       Vertex2 beg = Vertex2(-1.0, 0.0);
       Vertex2 end = Vertex2(1.0, 0.0);
-      Double ang = jm::DegToRad(a /Double(3600.0));
-      beg.Rotate(ang);
-      end.Rotate(ang);
+      Double ang = jm::degToRad(a / Double(3600.0));
+      beg.rotate(ang);
+      end.rotate(ang);
       beg.y += 2.0;
       end.y += 2.0;
       pnt = jm::extensionPointOnLine(Vertex2(-100.0, 0.0), Vertex2(100.0, 2.0), beg, end);
-      if(jm::IsEqual(ang, 0.01999733397))
+      if(jm::isEqual(ang, 0.01999733397))
       {
-         TestTrue(IsNaN(pnt.x), "ExtensionPointOnLine fails (6x nan)");
-         TestTrue(IsNaN(pnt.y), "ExtensionPointOnLine fails (6y nan)");
+         TestTrue(isNaN(pnt.x), "ExtensionPointOnLine fails (6x nan)");
+         TestTrue(isNaN(pnt.y), "ExtensionPointOnLine fails (6y nan)");
       }
       else
       {

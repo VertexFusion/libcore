@@ -83,7 +83,7 @@ void XMLWriter::EndIndent()
    mIndent -= 3;
 }
 
-void XMLWriter::StartElement(const jm::String &name)
+void XMLWriter::StartElement(const jm::String& name)
 {
 
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
@@ -130,7 +130,7 @@ void XMLWriter::EndElement()
    mLastIndent = false;
 }
 
-void XMLWriter::WriteCDATA(const jm::String &cdata, bool xmlencode)
+void XMLWriter::WriteCDATA(const jm::String& cdata, bool xmlencode)
 {
    if(mOpenElements->Size() > 0 && mOpenElements->Top().hasContent == false)
    {
@@ -158,7 +158,7 @@ void XMLWriter::WriteCDATA(const jm::String &cdata, bool xmlencode)
    mLastIndent = false;
 }
 
-jm::String XMLWriter::Encode(const jm::String &input)
+jm::String XMLWriter::Encode(const jm::String& input)
 {
    jm::String encoded;
    jm::StringTokenizer st = jm::StringTokenizer(input, "&<>\"'", true);
@@ -194,7 +194,7 @@ void XMLWriter::WriteBase64(uint8* data, Integer length)
 }
 
 
-void XMLWriter::WriteAttribute(const jm::String &name, const jm::String &content)
+void XMLWriter::WriteAttribute(const jm::String& name, const jm::String& content)
 {
    if(mOpenElements->Size() == 0 || mOpenElements->Top().hasContent == true)
    {
@@ -209,12 +209,12 @@ void XMLWriter::WriteAttribute(const jm::String &name, const jm::String &content
    mLastIndent = false;
 }
 
-void XMLWriter::WriteAttribute(const jm::String &name, int32 content)
+void XMLWriter::WriteAttribute(const jm::String& name, int32 content)
 {
    WriteAttribute(name, jm::String::valueOf(content));
 }
 
-void XMLWriter::WriteAttribute(const jm::String &name, uint32 content)
+void XMLWriter::WriteAttribute(const jm::String& name, uint32 content)
 {
    WriteAttribute(name, jm::String::valueOf(content));
 }
@@ -224,7 +224,7 @@ void XMLWriter::WriteAttribute(const jm::String& name, Integer content)
    WriteAttribute(name, jm::String::valueOf(content));
 }
 
-void XMLWriter::WriteAttribute(const jm::String &name, float content)
+void XMLWriter::WriteAttribute(const jm::String& name, float content)
 {
    WriteAttribute(name, jm::String::valueOf(content));
 }

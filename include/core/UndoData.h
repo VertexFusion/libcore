@@ -98,7 +98,7 @@ namespace jm
    {
       public:
 
-         UndoChangeBool(Object* object, bool *ptr);
+         UndoChangeBool(Object* object, bool* ptr);
          void swap();
 
       private:
@@ -115,7 +115,7 @@ namespace jm
    {
       public:
 
-         UndoChangeInt8(Object* object, int8 *ptr);
+         UndoChangeInt8(Object* object, int8* ptr);
          void swap();
 
       private:
@@ -129,7 +129,7 @@ namespace jm
    {
       public:
 
-         UndoChangeUInt8(Object* object, uint8 *ptr);
+         UndoChangeUInt8(Object* object, uint8* ptr);
          void swap();
 
       private:
@@ -143,7 +143,7 @@ namespace jm
    {
       public:
 
-         UndoChangeInt16(Object* object, int16 *ptr);
+         UndoChangeInt16(Object* object, int16* ptr);
          void swap();
 
       private:
@@ -157,7 +157,7 @@ namespace jm
    {
       public:
 
-         UndoChangeUInt16(Object* object, uint16 *ptr);
+         UndoChangeUInt16(Object* object, uint16* ptr);
          void swap();
 
       private:
@@ -171,7 +171,7 @@ namespace jm
    {
       public:
 
-         UndoChangeInt32(Object* object, int32 *ptr);
+         UndoChangeInt32(Object* object, int32* ptr);
          void swap();
 
       private:
@@ -185,7 +185,7 @@ namespace jm
    {
       public:
 
-         UndoChangeUInt32(Object* object, uint32 *ptr);
+         UndoChangeUInt32(Object* object, uint32* ptr);
          void swap();
 
       private:
@@ -213,7 +213,7 @@ namespace jm
    {
       public:
 
-         UndoChangeInt64(Object* object, int64 *ptr);
+         UndoChangeInt64(Object* object, int64* ptr);
          void swap();
 
       private:
@@ -227,7 +227,7 @@ namespace jm
    {
       public:
 
-         UndoChangeUInt64(Object* object, uint64 *ptr);
+         UndoChangeUInt64(Object* object, uint64* ptr);
          void swap();
 
       private:
@@ -241,7 +241,7 @@ namespace jm
    {
       public:
 
-         UndoChangeFloat(Object* object, float *ptr);
+         UndoChangeFloat(Object* object, float* ptr);
          void swap();
 
       private:
@@ -255,7 +255,7 @@ namespace jm
    {
       public:
 
-         UndoChangeDouble(Object* object, double *ptr);
+         UndoChangeDouble(Object* object, double* ptr);
          void swap();
 
       private:
@@ -283,7 +283,7 @@ namespace jm
    {
       public:
 
-         UndoChangeString(Object* object, String *ptr);
+         UndoChangeString(Object* object, String* ptr);
          void swap();
 
       private:
@@ -311,7 +311,7 @@ namespace jm
    {
       public:
 
-         UndoChangeVertex3(Object* object, Vertex3 *ptr);
+         UndoChangeVertex3(Object* object, Vertex3* ptr);
          void swap();
 
       private:
@@ -325,7 +325,7 @@ namespace jm
    {
       public:
 
-         UndoChangeDate(Object* object, Date *ptr);
+         UndoChangeDate(Object* object, Date* ptr);
          void swap();
 
       private:
@@ -339,7 +339,7 @@ namespace jm
    {
       public:
 
-         UndoChangeColour(Object* object, Color *ptr);
+         UndoChangeColour(Object* object, Color* ptr);
          void swap();
 
       private:
@@ -353,7 +353,7 @@ namespace jm
    {
       public:
 
-         UndoChangeObjectRef(Object* object, Object **ptr);
+         UndoChangeObjectRef(Object* object, Object** ptr);
          ~UndoChangeObjectRef();
          void swap();
 
@@ -368,7 +368,7 @@ namespace jm
    {
       public:
 
-         UndoChangeBuffer(Object* object, uint8 **ptr, uint64 length);
+         UndoChangeBuffer(Object* object, uint8** ptr, uint64 length);
          void swap();
 
       private:

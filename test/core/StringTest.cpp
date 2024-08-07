@@ -18,7 +18,7 @@ StringTest::StringTest(): Test()
 
 void StringTest::DoTest()
 {
-   TestEquals((int)sizeof(Char),2, "Size of jm::Char must be 2");
+   TestEquals((int)sizeof(Char), 2, "Size of jm::Char must be 2");
    TestTrue(Char('0').isDigit(), "Char('0').IsDigit() fails");
    TestFalse(Char('A').isDigit(), "Char('A').IsDigit() fails");
 
@@ -44,10 +44,10 @@ void StringTest::DoTest()
    TestFalse(str1.equals(str3), "String.Equals fails");
    TestFalse(str1.equals(str4), "String.Equals fails");
    TestFalse(str4.equals(str1), "String.Equals fails");
-   TestTrue(str1==str2, "String.Equals fails");
-   TestTrue(str1!=str3, "String.Equals fails");
-   TestFalse(str1==str4, "String.Equals fails");
-   TestFalse(str4==str1, "String.Equals fails");
+   TestTrue(str1 == str2, "String.Equals fails");
+   TestTrue(str1 != str3, "String.Equals fails");
+   TestFalse(str1 == str4, "String.Equals fails");
+   TestFalse(str4 == str1, "String.Equals fails");
 
    //EqualsIgnoreCase
    TestTrue(str1.equalsIgnoreCase(str3), "String.EqualsIgnoreCase fails");
@@ -119,53 +119,53 @@ void StringTest::DoTest()
    TestEquals(str1.lastIndexOf("en"), 72, "String.lastIndexOf() fails. (5)");
 
    // Teste to lower/upper case
-   str1="alles ok.äöü";
-   str2="ALLES OK.ÄÖÜ";
-   TestEquals(str1.toUpperCase(),str2, "String.toUpperCase() fails.");
-   TestEquals(str2.toLowerCase(),str1, "String.ToLowerCase() fails.");
+   str1 = "alles ok.äöü";
+   str2 = "ALLES OK.ÄÖÜ";
+   TestEquals(str1.toUpperCase(), str2, "String.toUpperCase() fails.");
+   TestEquals(str2.toLowerCase(), str1, "String.ToLowerCase() fails.");
 
    // Test arg Integer
-   Integer i=25;
-   str1=String("The number is %1!").arg(i);
-   str2=String("The number is 25!");
-   TestEquals(str1,str2, "String.arg(Integer) fails. (1)");
+   Integer i = 25;
+   str1 = String("The number is %1!").arg(i);
+   str2 = String("The number is 25!");
+   TestEquals(str1, str2, "String.arg(Integer) fails. (1)");
 
-   str1=String("[%1]").arg(i,8);
-   str2=String("[      25]");
-   TestEquals(str1,str2, "String.arg(Integer) fails. (2)");
+   str1 = String("[%1]").arg(i, 8);
+   str2 = String("[      25]");
+   TestEquals(str1, str2, "String.arg(Integer) fails. (2)");
 
-   str1=String("[%1]").arg(i,-8);
-   str2=String("[25      ]");
-   TestEquals(str1,str2, "String.arg(Integer) fails. (3)");
+   str1 = String("[%1]").arg(i, -8);
+   str2 = String("[25      ]");
+   TestEquals(str1, str2, "String.arg(Integer) fails. (3)");
 
    // Test arg Double
-   Double d=24.6666;
-   str1=String("The number is %1!").arg(d);
-   str2=String("The number is 24,6666!");
-   TestEquals(str1,str2, "String.arg(Double) fails. (1)");
+   Double d = 24.6666;
+   str1 = String("The number is %1!").arg(d);
+   str2 = String("The number is 24,6666!");
+   TestEquals(str1, str2, "String.arg(Double) fails. (1)");
 
-   str1=String("[%1]").arg(d,8);
-   str2=String("[ 24,6666]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (2)");
+   str1 = String("[%1]").arg(d, 8);
+   str2 = String("[ 24,6666]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (2)");
 
-   str1=String("[%1]").arg(d,-8);
-   str2=String("[24,6666 ]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (3)");
+   str1 = String("[%1]").arg(d, -8);
+   str2 = String("[24,6666 ]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (3)");
 
-   str1=String("[%1]").arg(d,8,2);
-   str2=String("[   24,67]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (4)");
+   str1 = String("[%1]").arg(d, 8, 2);
+   str2 = String("[   24,67]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (4)");
 
-   str1=String("[%1]").arg(d,-8,2);
-   str2=String("[24,67   ]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (5)");
+   str1 = String("[%1]").arg(d, -8, 2);
+   str2 = String("[24,67   ]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (5)");
 
-   str1=String("[%1]").arg(d,8,3,'.');
-   str2=String("[..24,667]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (6)");
+   str1 = String("[%1]").arg(d, 8, 3, '.');
+   str2 = String("[..24,667]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (6)");
 
-   str1=String("[%1]").arg(d,-8,3,'.');
-   str2=String("[24,667..]");
-   TestEquals(str1,str2, "String.arg(Double) fails. (7)");
+   str1 = String("[%1]").arg(d, -8, 3, '.');
+   str2 = String("[24,667..]");
+   TestEquals(str1, str2, "String.arg(Double) fails. (7)");
 
 }

@@ -80,8 +80,8 @@ Double::Double(Integer value)
 
 int32 Double::compareTo(const Double& another) const
 {
-   if (mValue > another.mValue)return 1;
-   if (mValue < another.mValue)return -1;
+   if(mValue > another.mValue)return 1;
+   if(mValue < another.mValue)return -1;
    return 0;
 }
 
@@ -112,7 +112,7 @@ Integer Double::ceil() const
 
 bool Double::IsNaN() const
 {
-   return jm::IsNaN(mValue);
+   return jm::isNaN(mValue);
 }
 
 
@@ -136,7 +136,7 @@ Double::operator double() const
 
 Double& Double::operator=(const Double& another)
 {
-   if (this != &another)
+   if(this != &another)
    {
       mValue = another.mValue;
    }

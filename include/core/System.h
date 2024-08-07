@@ -89,7 +89,7 @@ namespace jm
           Objekte eingerichtet werden
           \note Beim Beenden ist \c init() aufzurufen
           */
-         static void init(const jm::String &bundleId);
+         static void init(const jm::String& bundleId);
 
          /*!
           \brief Diese Methode räumt statische Systemobjekte auf. Nach dieser Methode muss das
@@ -114,7 +114,7 @@ namespace jm
          /*!
           \brief Loggt eine Nachricht mit...
           */
-         static void log(const String &message, LogLevel logLevel);
+         static void log(const String& message, LogLevel logLevel);
 
          /*!
           \brief Gibt die letzte Fehlermeldung zurück
@@ -139,7 +139,7 @@ namespace jm
           \param library Referenz auf die Bilbiothek, in der gesucht werden soll.
           \param name Name des Symbols
           */
-         static void* findSymbol(void* library, const String &name);
+         static void* findSymbol(void* library, const String& name);
 
          static AutoreleasePool* autoreleasePool();
 

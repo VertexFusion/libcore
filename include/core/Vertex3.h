@@ -85,14 +85,14 @@ namespace jm
           \brief Copy constructor
           \param another The other vector
           */
-         Vertex3(const Vertex3 &another);
+         Vertex3(const Vertex3& another);
 
          /*!
          \brief Calculates the cross-product of this vector with the other.
          \param another The other vector.
          \return The result of "this x another".
          */
-         Vertex3 crossProduct(const Vertex3 &another) const;
+         Vertex3 crossProduct(const Vertex3& another) const;
 
          /*!
           \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück.
@@ -104,19 +104,19 @@ namespace jm
           \param another The other vector.
           \return The result of "this * other".
           */
-         double DotProduct(const Vertex3 &another) const;
+         double DotProduct(const Vertex3& another) const;
 
          /*!
           \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
             Also ob beide Vektoren parallel sind.
           */
-         bool IsCollinear(const Vertex3 &another) const;
+         bool IsCollinear(const Vertex3& another) const;
 
          /*!
           \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
           Also ob sie senktrecht aufeinander stehen
           */
-         bool IsOrthogonal(const Vertex3 &another) const;
+         bool IsOrthogonal(const Vertex3& another) const;
 
          /*!
           \brief Diese Methode prüft, ob der Vektor der Nullvektor ist (unter Berücksichtigung von
@@ -133,7 +133,7 @@ namespace jm
          /*!
          \brief Gibt den Winkel von einem zum anderen Winkel zurück
          */
-         double AngleTo(const Vertex3 &another) const;
+         double AngleTo(const Vertex3& another) const;
 
          /*!
           \brief Diese Methode gibt den Betrag des Vektors zurück. Der Betrag entspricht der Länge.
@@ -163,97 +163,106 @@ namespace jm
           \param angle Der Rotationswinkel. Der Winkel wird im Bogenmaß angegeben
           \param axis Die Rotationsachse
           */
-         void Rotate(double angle, const Vertex3 &axis);
+         void Rotate(double angle, const Vertex3& axis);
 
          /*!
           \brief  This method normalises the vector. A normalised vector has a length of 1 and the
           reference to this vector is returned.
           \note If this vector has the length (nearly) 0, it is returned unchanged.
           */
-         Vertex3& Normalize();
+         Vertex3& normalize();
 
          /*!
           \brief This method returns a normalised vector. A normalised vector has a length of 1.
           This vector is not changed in the process.
           \note If this vector has the length (nearly) 0, it is returned unchanged.
          */
-         Vertex3 Normalized() const;
+         Vertex3 normalized() const;
 
          /*!
-          \brief Diese Methode multipliziert diesen Vector zeilenweise mit dem Anderen.
-          \return Gibt das Ergebnis der Berechnung zurück. Dieser Vektor bleibt unverändert.
+          \brief This method multiplies this vector line by line with the other vector.
+          \return Returns the result of the calculation. This vector remains unchanged.
           */
-         Vertex3 Scale(const Vertex3 &another) const;
+         Vertex3 scale(const Vertex3& another) const;
 
          /*!
-          \brief Diese Methode gibt die größte Komponente von x,y,z aus diesem Vektor zurück
+          \brief This method returns the largest component of x,y,z from this vector.
           */
-         double Biggest() const;
+         double biggest() const;
 
          /*!
-          \brief Implementierung des Operators +=
+          \brief Implementation of the operator +=
           */
-         Vertex3 &operator+=(const Vertex3 &v);
+         Vertex3& operator+=(const Vertex3& v);
 
          /*!
-          \brief Implementierung des Operators -=
+          \brief Implementation of the operator -=
           */
-         Vertex3 &operator-=(const Vertex3 &v);
+         Vertex3& operator-=(const Vertex3& v);
 
          /*!
-          \brief Implementierung des Operators *
+          \brief Implementation of the operator *
           */
          Vertex3 operator*(double b) const;
 
          /*!
-          \brief Implementierung des Operators *
+          \brief Implementation of the operator /
           */
          Vertex3 operator/(double b) const;
 
          /*!
-          \brief Implementierung des Operators +
+          \brief Implementation of the operator +
           */
-         Vertex3 operator+(const Vertex3 &v1) const;
+         Vertex3 operator+(const Vertex3& v1) const;
 
          /*!
-          \brief Implementierung des Operators -
+          \brief Implementation of the operator -
           */
-         Vertex3 operator-(const Vertex3 &v1) const;
+         Vertex3 operator-(const Vertex3& v1) const;
 
+         /*!
+         \brief Implementation of the operator ==
+         */
          DllExport
-         friend const Vertex3 operator*(const double &d, const Vertex3 &b);
+         friend const Vertex3 operator*(const double& d, const Vertex3& b);
 
+         /*!
+         \brief Implementation of the operator ==
+         */
          DllExport
          friend std::ostream& operator<< (std::ostream& out, const Vertex3& vertex);
 
+         /*!
+         \brief Implementation of the operator ==
+         */
          DllExport
          friend String& operator<< (String& out, const Vertex3& vertex);
 
-         Vertex3& operator=(const Vertex3 &another);
+         Vertex3& operator=(const Vertex3& another);
 
    };
 
    /*!
-    \brief Diese Methode prüft, ob die drei Vektoren linear unabhängig sind.
-    Die Vektoren sind linear unabhängig, wenn die Determinante einer 3x3 Matrix, in der die 3
-    Vektoren die Spalten sind, ungleich 0 ist.
-    \return true, wenn die Vektoren linear unabhängig sind.
+    \brief This method checks whether the three vectors are linearly independent.
+    The vectors are linearly independent if the determinant of a 3x3 matrix in which the 3
+    vectors are the columns, is not equal to 0.
+    \return true if the vectors are linearly independent.
     */
    DllExport
-   bool isLinearIndependent(const Vertex3 &v1, const Vertex3 &v2, const Vertex3 &v3);
+   bool isLinearIndependent(const Vertex3& v1, const Vertex3& v2, const Vertex3& v3);
 
 
    /*!
-    \brief Implementierung des Operators ==
+    \brief Implementation of the operator ==
     */
    DllExport
-   bool operator==(Vertex3 const &v1, Vertex3 const &v2);
+   bool operator==(Vertex3 const& v1, Vertex3 const& v2);
 
    /*!
-    \brief Implementierung des Operators !=
+    \brief Implementation of the operator !=
     */
    DllExport
-   bool operator!=(Vertex3 const &v1, Vertex3 const &v2);
+   bool operator!=(Vertex3 const& v1, Vertex3 const& v2);
 
 
    /*!
@@ -263,9 +272,9 @@ namespace jm
    {
       public:
 
-      /*!
-       \brief Constructor.
-       */
+         /*!
+          \brief Constructor.
+          */
          Extents();
 
          /*!

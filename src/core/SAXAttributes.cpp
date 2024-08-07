@@ -45,7 +45,7 @@ SAXAttributes::~SAXAttributes()
    delete mValues;
 }
 
-SAXAttributes::SAXAttributes(const SAXAttributes &other)
+SAXAttributes::SAXAttributes(const SAXAttributes& other)
 {
    mNames->clear();
    mValues->clear();
@@ -57,7 +57,7 @@ SAXAttributes::SAXAttributes(const SAXAttributes &other)
    }
 }
 
-SAXAttributes &SAXAttributes::operator=(const SAXAttributes &other)
+SAXAttributes& SAXAttributes::operator=(const SAXAttributes& other)
 {
    if(this == &other) return *this;
    mNames->clear();
@@ -135,30 +135,30 @@ String SAXAttributes::GetValue(uint32 index) const
    return mValues->at(index);
 }
 
-String SAXAttributes::GetValue(const String &qname) const
+String SAXAttributes::GetValue(const String& qname) const
 {
    int32 index = GetIndex(qname);
    if(index > -1)return mValues->at(index);
    return kEmptyString;
 }
 
-int32 SAXAttributes::GetIntValue(const String &qname) const
+int32 SAXAttributes::GetIntValue(const String& qname) const
 {
    return Integer::valueOf(GetValue(qname)).Int32();
 }
 
-float SAXAttributes::GetFloatValue(const String &qname) const
+float SAXAttributes::GetFloatValue(const String& qname) const
 {
    return (float)Double::valueOf(GetValue(qname));
 }
 
-bool SAXAttributes::GetBoolValue(const String &qname)const
+bool SAXAttributes::GetBoolValue(const String& qname)const
 {
    return GetValue(qname).equalsIgnoreCase("true");
 }
 
 
-bool SAXAttributes::HasValue(const String &qname) const
+bool SAXAttributes::HasValue(const String& qname) const
 {
    int32 index = GetIndex(qname);
    if(index > -1)return true;

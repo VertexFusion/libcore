@@ -64,7 +64,7 @@ CharArray RawDecoder::Decode(const char* cstring)
    return array;
 }
 
-ByteArray RawDecoder::Encode(const CharArray &string)
+ByteArray RawDecoder::Encode(const CharArray& string)
 {
    ByteArray cstring = ByteArray(string.length, 0);
 

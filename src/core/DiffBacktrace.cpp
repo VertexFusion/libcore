@@ -43,7 +43,7 @@ DiffBacktrace::DiffBacktrace()
    next = NULL;
 }
 
-DiffBacktrace::DiffBacktrace(const DiffBacktrace &another)
+DiffBacktrace::DiffBacktrace(const DiffBacktrace& another)
 {
    size = another.size;
    operation = another.operation;

@@ -42,7 +42,7 @@ Property::Property()
    mType = kPropertyTypeString;
 }
 
-Property::Property(const String &id)
+Property::Property(const String& id)
 {
    mReadOnly = false;
    mId = id;
@@ -53,11 +53,11 @@ Property::Property(const String &id)
 }
 
 
-Property::Property(const String &id,
-                   const String &group,
-                   const String &name,
-                   const String &hint,
-                   const String &editor,
+Property::Property(const String& id,
+                   const String& group,
+                   const String& name,
+                   const String& hint,
+                   const String& editor,
                    bool readOnly,
                    PropertyChangeMode changeMode,
                    bool allowEmpty)
@@ -74,7 +74,7 @@ Property::Property(const String &id,
    mType = kPropertyTypeString;
 }
 
-Bool Property::is(const String &id)const
+Bool Property::is(const String& id)const
 {
    return mId.equals(id);
 }
@@ -114,7 +114,7 @@ const String& Property::group() const
    return mGroup;
 }
 
-void Property::setIcon(const String &iconname)
+void Property::setIcon(const String& iconname)
 {
    mIcon = iconname;
 }
@@ -139,14 +139,14 @@ PropertyChangeMode Property::changeMode() const
    return mChangeMode;
 }
 
-VxfErrorStatus Property::setStringValue(const String &value)
+VxfErrorStatus Property::setStringValue(const String& value)
 {
    mTextValue = value;
    mType = kPropertyTypeString;
    return eOK;
 }
 
-VxfErrorStatus Property::setUnitValue(double value, const String &unit)
+VxfErrorStatus Property::setUnitValue(double value, const String& unit)
 {
    mTextValue = unit;
    mNumberValue.doubleValue = value;
@@ -207,21 +207,21 @@ Bool Property::boolValue() const
    return mNumberValue.boolValue;
 }
 
-void Property::setValue(const Property &other)
+void Property::setValue(const Property& other)
 {
    mTextValue = other.mTextValue;
    mNumberValue = other.mNumberValue;
    mType = other.mType;
 }
 
-bool Property::isValueEquals(const Property &other)const
+bool Property::isValueEquals(const Property& other)const
 {
    if(mTextValue.equals(other.mTextValue) == false)return false;
    if(mNumberValue.intValue != other.mNumberValue.intValue)return false;
    return true;
 }
 
-bool jm::operator==(Property const &v1, Property const &v2)
+bool jm::operator==(Property const& v1, Property const& v2)
 {
    // Actually we do not check mType, because if values are equal, but type different
    // (like for compoboxes), they are supposed to be equal anyway.
@@ -229,10 +229,10 @@ bool jm::operator==(Property const &v1, Property const &v2)
    if(v1.mId.equals(v2.mId) == false)return false;
    if(v1.mEditor.equals(v2.mEditor) == false)return false;
 
-   if (v1.type() == kPropertyTypeValue)
+   if(v1.type() == kPropertyTypeValue)
    {
-      return v1.stringValue()==v2.stringValue() &&
-         jm::IsEqual(v1.doubleValue(),v2.doubleValue());
+      return v1.stringValue() == v2.stringValue() &&
+             jm::isEqual(v1.doubleValue(), v2.doubleValue());
    }
 
    String editor = v1.mEditor;
@@ -258,7 +258,7 @@ bool jm::operator==(Property const &v1, Property const &v2)
    }
    else if(editor.equals("value"))
    {
-      return v1.stringValue().equals(v2.stringValue()) && jm::IsEqual(v1.doubleValue(),
+      return v1.stringValue().equals(v2.stringValue()) && jm::isEqual(v1.doubleValue(),
              v2.doubleValue());
    }
    else if(editor.equals("dwgcolour"))

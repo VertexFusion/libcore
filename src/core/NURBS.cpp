@@ -92,12 +92,12 @@ double Nurbs::N(uint32 i, uint32 k, double t)
    double N1 = 0;
    double N2 = 0;
 
-   if(!IsEqual(b, 0.0))
+   if(!isEqual(b, 0.0))
    {
       N1 = N(i, k - 1, t) * a / b;
    }
 
-   if(!IsEqual(d, 0.0))
+   if(!isEqual(d, 0.0))
    {
       N2 = N(i + 1, k - 1, t) * c / d;
    }

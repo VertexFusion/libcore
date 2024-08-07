@@ -62,7 +62,7 @@ void UndoChange::swap()
 // Bool
 //
 
-UndoChangeBool::UndoChangeBool(Object* object, bool *ptr): UndoChange(object)
+UndoChangeBool::UndoChangeBool(Object* object, bool* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -80,7 +80,7 @@ void UndoChangeBool::swap()
 // Int8
 //
 
-UndoChangeInt8::UndoChangeInt8(Object* object, int8 *ptr): UndoChange(object)
+UndoChangeInt8::UndoChangeInt8(Object* object, int8* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -98,7 +98,7 @@ void UndoChangeInt8::swap()
 // UInt8
 //
 
-UndoChangeUInt8::UndoChangeUInt8(Object* object, uint8 *ptr): UndoChange(object)
+UndoChangeUInt8::UndoChangeUInt8(Object* object, uint8* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -116,7 +116,7 @@ void UndoChangeUInt8::swap()
 // Int16
 //
 
-UndoChangeInt16::UndoChangeInt16(Object* object, int16 *ptr): UndoChange(object)
+UndoChangeInt16::UndoChangeInt16(Object* object, int16* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -134,7 +134,7 @@ void UndoChangeInt16::swap()
 // Uint16
 //
 
-UndoChangeUInt16::UndoChangeUInt16(Object* object, uint16 *ptr): UndoChange(object)
+UndoChangeUInt16::UndoChangeUInt16(Object* object, uint16* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -152,7 +152,7 @@ void UndoChangeUInt16::swap()
 // Int32
 //
 
-UndoChangeInt32::UndoChangeInt32(Object* object, int32 *ptr): UndoChange(object)
+UndoChangeInt32::UndoChangeInt32(Object* object, int32* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -170,7 +170,7 @@ void UndoChangeInt32::swap()
 // Uint32
 //
 
-UndoChangeUInt32::UndoChangeUInt32(Object* object, uint32 *ptr): UndoChange(object)
+UndoChangeUInt32::UndoChangeUInt32(Object* object, uint32* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -206,7 +206,7 @@ void UndoChangeInteger::swap()
 // Int64
 //
 
-UndoChangeInt64::UndoChangeInt64(Object* object, int64 *ptr): UndoChange(object)
+UndoChangeInt64::UndoChangeInt64(Object* object, int64* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -224,7 +224,7 @@ void UndoChangeInt64::swap()
 // Uint64
 //
 
-UndoChangeUInt64::UndoChangeUInt64(Object* object, uint64 *ptr): UndoChange(object)
+UndoChangeUInt64::UndoChangeUInt64(Object* object, uint64* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -242,7 +242,7 @@ void UndoChangeUInt64::swap()
 // Float
 //
 
-UndoChangeFloat::UndoChangeFloat(Object* object, float *ptr): UndoChange(object)
+UndoChangeFloat::UndoChangeFloat(Object* object, float* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -260,7 +260,7 @@ void UndoChangeFloat::swap()
 // Double
 //
 
-UndoChangeDouble::UndoChangeDouble(Object* object, double *ptr): UndoChange(object)
+UndoChangeDouble::UndoChangeDouble(Object* object, double* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -296,7 +296,7 @@ void UndoChangeDouble2::swap()
 // String
 //
 
-UndoChangeString::UndoChangeString(Object* object, String *ptr): UndoChange(object)
+UndoChangeString::UndoChangeString(Object* object, String* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -332,7 +332,7 @@ void UndoChangeVertex2::swap()
 // Vertex3
 //
 
-UndoChangeVertex3::UndoChangeVertex3(Object* object, Vertex3 *ptr): UndoChange(object)
+UndoChangeVertex3::UndoChangeVertex3(Object* object, Vertex3* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -350,7 +350,7 @@ void UndoChangeVertex3::swap()
 // Date
 //
 
-UndoChangeDate::UndoChangeDate(Object* object, Date *ptr): UndoChange(object)
+UndoChangeDate::UndoChangeDate(Object* object, Date* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -368,7 +368,7 @@ void UndoChangeDate::swap()
 // Colour
 //
 
-UndoChangeColour::UndoChangeColour(Object* object, Color *ptr): UndoChange(object)
+UndoChangeColour::UndoChangeColour(Object* object, Color* ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -386,7 +386,7 @@ void UndoChangeColour::swap()
 // ObjectRef
 //
 
-UndoChangeObjectRef::UndoChangeObjectRef(Object* object, Object **ptr): UndoChange(object)
+UndoChangeObjectRef::UndoChangeObjectRef(Object* object, Object** ptr): UndoChange(object)
 {
    mPointer = ptr;
    mValue = *ptr;
@@ -423,7 +423,8 @@ void UndoChangeObjectRef::swap()
 // Buffer
 //
 
-UndoChangeBuffer::UndoChangeBuffer(Object* object, uint8** pointer, uint64 length): UndoChange(object)
+UndoChangeBuffer::UndoChangeBuffer(Object* object, uint8** pointer,
+                                   uint64 length): UndoChange(object)
 {
    mLength = length;
    if(length <= 8)

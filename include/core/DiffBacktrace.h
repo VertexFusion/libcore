@@ -60,7 +60,7 @@ namespace jm
          /*!
           \brief Copykonstruktor
           */
-         DiffBacktrace(const DiffBacktrace &another);
+         DiffBacktrace(const DiffBacktrace& another);
 
          /*!
           \brief Destructor

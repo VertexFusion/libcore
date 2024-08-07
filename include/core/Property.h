@@ -71,24 +71,24 @@ namespace jm
    {
       Variant()
       {
-         mType=kPropertyTypeInteger;
-         mNumberValue.intValue=0;
+         mType = kPropertyTypeInteger;
+         mNumberValue.intValue = 0;
       }
 
       Variant(const Variant& another)
       {
-         mType=another.mType;
-         mNumberValue=another.mNumberValue;
-         if(mType==kPropertyTypeString)mTextValue=another.mTextValue;
+         mType = another.mType;
+         mNumberValue = another.mNumberValue;
+         if(mType == kPropertyTypeString)mTextValue = another.mTextValue;
       };
 
-      Variant& operator=(const Variant &another)
+      Variant& operator=(const Variant& another)
       {
          if(this != &another)
          {
-            mType=another.mType;
-            mNumberValue=another.mNumberValue;
-            if(mType==kPropertyTypeString)mTextValue=another.mTextValue;
+            mType = another.mType;
+            mNumberValue = another.mNumberValue;
+            if(mType == kPropertyTypeString)mTextValue = another.mTextValue;
          }
 
          return *this;
@@ -96,20 +96,20 @@ namespace jm
 
       Variant(int64 number)
       {
-         mType=kPropertyTypeInteger;
-         mNumberValue.intValue=number;
+         mType = kPropertyTypeInteger;
+         mNumberValue.intValue = number;
       }
 
       Variant(double number)
       {
-         mType=kPropertyTypeDouble;
-         mNumberValue.doubleValue=number;
+         mType = kPropertyTypeDouble;
+         mNumberValue.doubleValue = number;
       }
 
-      Variant(const jm::String &string)
+      Variant(const jm::String& string)
       {
-         mType=kPropertyTypeString;
-         mTextValue=string;
+         mType = kPropertyTypeString;
+         mTextValue = string;
       }
 
       int64 toInt64() const
@@ -133,26 +133,26 @@ namespace jm
       }
 
 
-         /*!
-          \brief Type of Property
-          */
-         PropertyType mType;
+      /*!
+       \brief Type of Property
+       */
+      PropertyType mType;
 
-         /*!
-          \brief Der Wert des Properties wird normalerweise durch den Anwender in der GUI festgelegt. Also ist der Wert üblicherweise ein String, Bool oder Zahl.
-          Sollte ein anderer Typ vorhanden sein, ist klug zu überlegen, ob die Übergabe nicht als Text passiert, oder ob das hier erweitert werden soll.
-          Es würde aber immer besser ein, einen Text zu parsen. Wie gesagt: Es kommt aus der Oberfläche und nicht von anderen Daten
-          */
-         union
-         {
-            bool boolValue;
-            uint64 uintValue;
-            int64 intValue;
-            float floatValue;
-            double doubleValue;
-         } mNumberValue;
+      /*!
+       \brief Der Wert des Properties wird normalerweise durch den Anwender in der GUI festgelegt. Also ist der Wert üblicherweise ein String, Bool oder Zahl.
+       Sollte ein anderer Typ vorhanden sein, ist klug zu überlegen, ob die Übergabe nicht als Text passiert, oder ob das hier erweitert werden soll.
+       Es würde aber immer besser ein, einen Text zu parsen. Wie gesagt: Es kommt aus der Oberfläche und nicht von anderen Daten
+       */
+      union
+      {
+         bool boolValue;
+         uint64 uintValue;
+         int64 intValue;
+         float floatValue;
+         double doubleValue;
+      } mNumberValue;
 
-         String mTextValue;
+      String mTextValue;
    };
 
    /*!
@@ -173,7 +173,7 @@ namespace jm
          /*!
           \brief Constructor with the property id
           */
-         Property(const String &id);
+         Property(const String& id);
 
          /*!
           \brief Constructor with parameters
@@ -186,11 +186,11 @@ namespace jm
           \param changeMode Mode of change infulence
           \param allowEmpty Status, if property can be empty
           */
-         Property(const String &id,
-                  const String &group,
-                  const String &name,
-                  const String &hint,
-                  const String &editor,
+         Property(const String& id,
+                  const String& group,
+                  const String& name,
+                  const String& hint,
+                  const String& editor,
                   bool readOnly = false,
                   PropertyChangeMode changeMode = kPropertyChangeItself,
                   bool allowEmpty = true);
@@ -215,7 +215,7 @@ namespace jm
           \brief Short call for checking is. Same as: GetId().IsEqual()
           \param id The unique id of the property.
           */
-         Bool is(const String &id)const;
+         Bool is(const String& id)const;
 
          /*!
           \brief Returns the id of the property
@@ -246,7 +246,7 @@ namespace jm
           \brief Set the name of an icon of this property.
           \param iconname The name of the icon.
           */
-         void setIcon(const String &iconname);
+         void setIcon(const String& iconname);
 
          /*!
           \brief Returns the icon name of this property.
@@ -257,14 +257,14 @@ namespace jm
           \brief Set the string value of this property.
           \param value The string value.
           */
-         VxfErrorStatus setStringValue(const String &value);
+         VxfErrorStatus setStringValue(const String& value);
 
          /*!
           \brief Set unit value.
           \param value The number.
           \param unit The unit.
           */
-         VxfErrorStatus setUnitValue(double value, const String &unit);
+         VxfErrorStatus setUnitValue(double value, const String& unit);
 
          /*!
           \brief Returns the string value of this property.
@@ -316,18 +316,18 @@ namespace jm
          /*!
           \brief Übernimmt den Wert aus dem anderen Property
           */
-         void setValue(const Property &other);
+         void setValue(const Property& other);
 
          /*!
           \brief Prüfe, ob Werte gleich sind
           */
-         bool isValueEquals(const Property &other)const;
+         bool isValueEquals(const Property& other)const;
 
          /*!
           \brief Implementierung des Operators ==
           */
          DllExport
-         friend bool operator==(Property const &v1, Property const &v2);
+         friend bool operator==(Property const& v1, Property const& v2);
 
       private:
 
@@ -501,7 +501,7 @@ namespace jm
 
          virtual VxfErrorStatus setMember(bool* pointer, bool value);
 
-      virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
+         virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
 
          /*!
           \brief Begins an editing tansaction;

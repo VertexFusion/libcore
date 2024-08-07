@@ -34,7 +34,8 @@
 
 using namespace jm;
 
-DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v, Integer offset)
+DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v,
+                   Integer offset)
 {
    mU = u;
    mV = v;

@@ -54,7 +54,7 @@ namespace jm
           \param retDelim Status, ob die Trennzeichen als eigene Tokens betrachtet und zurückgegeben
           werden oder nicht.
           */
-         StringTokenizer(const String &str, const String &delimiter, Bool retDelim);
+         StringTokenizer(const String& str, const String& delimiter, Bool retDelim);
 
          /*!
           \brief Gibt zurück, ob noch weitere Tokens in der Zeichenkette vorhanden sind.

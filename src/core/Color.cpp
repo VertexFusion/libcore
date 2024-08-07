@@ -52,7 +52,7 @@ Color::Color()
    mAlpha = 255;
 }
 
-Color::Color(const Color &other)
+Color::Color(const Color& other)
 {
    mMode = other.mMode;
    col.cmyk.cyan = other.col.cmyk.cyan;
@@ -64,7 +64,7 @@ Color::Color(const Color &other)
 
 namespace jm
 {
-   Color& Color::operator=(const Color &other)
+   Color& Color::operator=(const Color& other)
    {
       if(this != &other)
       {
@@ -265,7 +265,7 @@ bool Color::isWhite() const
    return false;
 }
 
-void Color::hsvModel(float &hue, float &saturation, float &value) const
+void Color::hsvModel(float& hue, float& saturation, float& value) const
 {
    Color tmp = *this;
    tmp.toRgb();
@@ -280,8 +280,10 @@ void Color::hsvModel(float &hue, float &saturation, float &value) const
    //
    if(MAX == MIN)hue = 0.0;
    else if(MAX == tmp.red())hue = 60.0f * static_cast<float>(tmp.green() - tmp.blue()) / MAX_MIN;
-   else if(MAX == tmp.green())hue = 60.0f * (2.0f + static_cast<float>(tmp.blue() - tmp.red()) / MAX_MIN);
-   else if(MAX == tmp.blue())hue = 60.0f * (4.0f + static_cast<float>(tmp.red() - tmp.green()) / MAX_MIN);
+   else if(MAX == tmp.green())hue = 60.0f * (2.0f + static_cast<float>(tmp.blue() - tmp.red()) /
+                                       MAX_MIN);
+   else if(MAX == tmp.blue())hue = 60.0f * (4.0f + static_cast<float>(tmp.red() - tmp.green()) /
+                                      MAX_MIN);
 
    if(hue < 0.0)hue += 360.0f;
 
@@ -402,27 +404,33 @@ Color Color::FromHsv(float hue, float saturation, float value, float alpha)
    {
       case 0:
       case 6:
-         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(t * 255), static_cast<uint8>(p * 255));
+         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(t * 255),
+                     static_cast<uint8>(p * 255));
          break;
 
       case 1:
-         c = fromRgb(static_cast<uint8>(q * 255), static_cast<uint8>(value * 255), static_cast<uint8>(p * 255));
+         c = fromRgb(static_cast<uint8>(q * 255), static_cast<uint8>(value * 255),
+                     static_cast<uint8>(p * 255));
          break;
 
       case 2:
-         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(value * 255), static_cast<uint8>(t * 255));
+         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(value * 255),
+                     static_cast<uint8>(t * 255));
          break;
 
       case 3:
-         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(q * 255), static_cast<uint8>(value * 255));
+         c = fromRgb(static_cast<uint8>(p * 255), static_cast<uint8>(q * 255),
+                     static_cast<uint8>(value * 255));
          break;
 
       case 4:
-         c = fromRgb(static_cast<uint8>(t * 255), static_cast<uint8>(p * 255), static_cast<uint8>(value * 255));
+         c = fromRgb(static_cast<uint8>(t * 255), static_cast<uint8>(p * 255),
+                     static_cast<uint8>(value * 255));
          break;
 
       case 5:
-         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(p * 255), static_cast<uint8>(q * 255));
+         c = fromRgb(static_cast<uint8>(value * 255), static_cast<uint8>(p * 255),
+                     static_cast<uint8>(q * 255));
          break;
    }
 
@@ -443,8 +451,10 @@ uint8 PorterDuffAlpha(uint8 alphaBackground, uint8 alphaForeground)
    return (uint8) alphaC;
 }
 
-uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colourForeground, uint8 alphaForeground);
-uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colourForeground, uint8 alphaForeground)
+uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colourForeground,
+                       uint8 alphaForeground);
+uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colourForeground,
+                       uint8 alphaForeground)
 {
    float alphaA = alphaForeground / 255.0f;
    float alphaB = alphaBackground / 255.0f;
@@ -464,16 +474,21 @@ Color jm::blend(Color background, Color foreground, uint8 alpha)
    {
       Color ret;
       ret.col.rgb.red = (alpha * foreground.col.rgb.red + (255 - alpha) * background.col.rgb.red) / 255;
-      ret.col.rgb.green = (alpha * foreground.col.rgb.green + (255 - alpha) * background.col.rgb.green) / 255;
-      ret.col.rgb.blue = (alpha * foreground.col.rgb.blue + (255 - alpha) * background.col.rgb.blue) / 255;
+      ret.col.rgb.green = (alpha * foreground.col.rgb.green + (255 - alpha) * background.col.rgb.green) /
+                          255;
+      ret.col.rgb.blue = (alpha * foreground.col.rgb.blue + (255 - alpha) * background.col.rgb.blue) /
+                         255;
       return ret;
    }
 
    //Blending nach Porter Duff Algorithmus
    Color ret;
-   ret.col.rgb.red = PorterDuffColour(background.col.rgb.red, background.mAlpha, foreground.col.rgb.red, foreground.mAlpha);
-   ret.col.rgb.green = PorterDuffColour(background.col.rgb.green, background.mAlpha, foreground.col.rgb.green, foreground.mAlpha);
-   ret.col.rgb.blue = PorterDuffColour(background.col.rgb.blue, background.mAlpha, foreground.col.rgb.blue, foreground.mAlpha);
+   ret.col.rgb.red = PorterDuffColour(background.col.rgb.red, background.mAlpha,
+                                      foreground.col.rgb.red, foreground.mAlpha);
+   ret.col.rgb.green = PorterDuffColour(background.col.rgb.green, background.mAlpha,
+                                        foreground.col.rgb.green, foreground.mAlpha);
+   ret.col.rgb.blue = PorterDuffColour(background.col.rgb.blue, background.mAlpha,
+                                       foreground.col.rgb.blue, foreground.mAlpha);
    ret.mAlpha = PorterDuffAlpha(background.mAlpha, foreground.mAlpha);
    return ret;
 }
@@ -481,15 +496,18 @@ Color jm::blend(Color background, Color foreground, uint8 alpha)
 Color jm::interpolate(Color colour1, Color colour2, float percent)
 {
    Color ret;
-   ret.col.rgb.red = static_cast<uint8>(colour1.col.rgb.red + (colour2.col.rgb.red - colour1.col.rgb.red) * percent);
-   ret.col.rgb.green = static_cast<uint8>(colour1.col.rgb.green + (colour2.col.rgb.green - colour1.col.rgb.green) * percent);
-   ret.col.rgb.blue = static_cast<uint8>(colour1.col.rgb.blue + (colour2.col.rgb.blue - colour1.col.rgb.blue) * percent);
+   ret.col.rgb.red = static_cast<uint8>(colour1.col.rgb.red + (colour2.col.rgb.red -
+                                        colour1.col.rgb.red) * percent);
+   ret.col.rgb.green = static_cast<uint8>(colour1.col.rgb.green + (colour2.col.rgb.green -
+                                          colour1.col.rgb.green) * percent);
+   ret.col.rgb.blue = static_cast<uint8>(colour1.col.rgb.blue + (colour2.col.rgb.blue -
+                                         colour1.col.rgb.blue) * percent);
    ret.mAlpha = static_cast<uint8>(colour1.mAlpha + (colour2.mAlpha - colour1.mAlpha) * percent);
    return ret;
 }
 
 
-bool jm::operator==(Color const &c1, Color const &c2)
+bool jm::operator==(Color const& c1, Color const& c2)
 {
    if(c1.mMode != c2.mMode) return false;
 
@@ -518,12 +536,12 @@ bool jm::operator==(Color const &c1, Color const &c2)
    return true;
 }
 
-bool jm::operator!=(Color const &c1, Color const &c2)
+bool jm::operator!=(Color const& c1, Color const& c2)
 {
    return !(c1 == c2);
 }
 
-const Color jm::operator-(Color const &c1, Color const &c2)
+const Color jm::operator-(Color const& c1, Color const& c2)
 {
    Color ret = c1;
    switch(c1.mMode)
@@ -550,7 +568,7 @@ const Color jm::operator-(Color const &c1, Color const &c2)
    return ret;
 }
 
-const Color jm::operator+(Color const &c1, Color const &c2)
+const Color jm::operator+(Color const& c1, Color const& c2)
 {
    Color ret = c1;
    switch(c1.mMode)

@@ -43,7 +43,7 @@ SAXParser::~SAXParser()
 
 }
 
-void SAXParser::Parse(File &file)
+void SAXParser::Parse(File& file)
 {
    if(!file.exists())return;
    if(!file.canRead())return;
@@ -56,7 +56,7 @@ void SAXParser::Parse(File &file)
    Parse(content);
 }
 
-void SAXParser::Parse(const String &xml)
+void SAXParser::Parse(const String& xml)
 {
    String token;
 
@@ -185,7 +185,7 @@ void SAXParser::Parse(const String &xml)
    EndDocument();
 }
 
-void SAXParser::ParseTagString(const String &xmlline)
+void SAXParser::ParseTagString(const String& xmlline)
 {
    String line = xmlline;
 

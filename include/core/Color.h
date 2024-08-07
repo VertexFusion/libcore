@@ -66,9 +66,9 @@ namespace jm
           \brief Copy construktur
           \param other The colour we became a copy of.
           */
-         Color(const Color &other);
+         Color(const Color& other);
 
-         Color &operator=(const Color &other);
+         Color& operator=(const Color& other);
 
          /*!
           \brief Converts the colour to the RGB colour space.
@@ -160,7 +160,7 @@ namespace jm
           \param saturation Output filled in with the saturation value.
           \param value Output filled in with the brightness value.
           */
-         void hsvModel(float &hue, float &saturation, float &value) const;
+         void hsvModel(float& hue, float& saturation, float& value) const;
 
          /*!
           \brief Sets the colour space directly.
@@ -288,10 +288,10 @@ namespace jm
 
          uint8 mAlpha;
 
-         DllExport friend bool operator==(Color const &c1, Color const &c2);
+         DllExport friend bool operator==(Color const& c1, Color const& c2);
          DllExport friend bool operator!=(Color const& c1, Color const& c2);
-         DllExport friend const Color operator-(Color const &c1, Color const &c2);
-         DllExport friend const Color operator+(Color const &c1, Color const &c2);
+         DllExport friend const Color operator-(Color const& c1, Color const& c2);
+         DllExport friend const Color operator+(Color const& c1, Color const& c2);
          DllExport friend Color blend(Color background, Color foreground, uint8 alpha);
          DllExport friend Color interpolate(Color colour1, Color colour2, float percent);
    };

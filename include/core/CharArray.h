@@ -44,76 +44,103 @@ namespace jm
    {
       public:
 
-      Char(){mChar=0;};
+         Char()
+         {
+            mChar = 0;
+         };
 
-     /* explicit */ Char(uint16 character){mChar=character;};
+         /* explicit */ Char(uint16 character)
+         {
+            mChar = character;
+         };
 
-      uint16 unicode() const {return mChar;};
+         uint16 unicode() const
+         {
+            return mChar;
+         };
 
-      //! \brief Returns the character as lower case (if possible).
-      Char toLowerCase() const;
+         //! \brief Returns the character as lower case (if possible).
+         Char toLowerCase() const;
 
-      //! \brief Returns the character as upper case (if possible).
-      Char toUpperCase() const;
+         //! \brief Returns the character as upper case (if possible).
+         Char toUpperCase() const;
 
-      //! \brief Returns true, if the character is a white space
-      bool isWhitespace() const;
+         //! \brief Returns true, if the character is a white space
+         bool isWhitespace() const;
 
-      //! \brief Returns true, if the character is a digit (0-9)
-      bool isDigit() const;
+         //! \brief Returns true, if the character is a digit (0-9)
+         bool isDigit() const;
 
-      //! \brief Returns true, if the character is a letter
-      bool isLetter() const;
+         //! \brief Returns true, if the character is a letter
+         bool isLetter() const;
 
-      //! \brief Returns true, if the character is upper case
-      bool isUpperCase() const;
+         //! \brief Returns true, if the character is upper case
+         bool isUpperCase() const;
 
-      //! \brief Returns true, if the character is lower case
-      bool isLowerCase() const;
+         //! \brief Returns true, if the character is lower case
+         bool isLowerCase() const;
 
-      //! \brief Returns the digit value (0-9) or -1 if the character is no digit
-      int32 digitValue()const;
+         //! \brief Returns the digit value (0-9) or -1 if the character is no digit
+         int32 digitValue()const;
 
-      /*!
-       \brief Implementation of ==
-       */
-      DllExport
-      friend bool operator==(Char ch1, Char ch2){ return ch1.mChar==ch2.mChar;};
+         /*!
+          \brief Implementation of ==
+          */
+         DllExport
+         friend bool operator==(Char ch1, Char ch2)
+         {
+            return ch1.mChar == ch2.mChar;
+         };
 
-      /*!
-       \brief Implementation of !=
-       */
-      DllExport
-      friend bool operator!=(Char ch1, Char ch2){ return ch1.mChar!=ch2.mChar;};
+         /*!
+          \brief Implementation of !=
+          */
+         DllExport
+         friend bool operator!=(Char ch1, Char ch2)
+         {
+            return ch1.mChar != ch2.mChar;
+         };
 
-      /*!
-       \brief Implementation of <
-       */
-      DllExport
-      friend bool operator<(Char ch1, Char ch2){ return ch1.mChar<ch2.mChar;};
+         /*!
+          \brief Implementation of <
+          */
+         DllExport
+         friend bool operator<(Char ch1, Char ch2)
+         {
+            return ch1.mChar < ch2.mChar;
+         };
 
-      /*!
-       \brief Implementation of <=
-       */
-      DllExport
-      friend bool operator<=(Char ch1, Char ch2){ return ch1.mChar<=ch2.mChar;};
+         /*!
+          \brief Implementation of <=
+          */
+         DllExport
+         friend bool operator<=(Char ch1, Char ch2)
+         {
+            return ch1.mChar <= ch2.mChar;
+         };
 
-      /*!
-       \brief Implementation of >
-       */
-      DllExport
-      friend bool operator>(Char ch1, Char ch2){ return ch1.mChar>ch2.mChar;};
+         /*!
+          \brief Implementation of >
+          */
+         DllExport
+         friend bool operator>(Char ch1, Char ch2)
+         {
+            return ch1.mChar > ch2.mChar;
+         };
 
-      /*!
-       \brief Implementation of >=
-       */
-      DllExport
-      friend bool operator>=(Char ch1, Char ch2){ return ch1.mChar>=ch2.mChar;};
+         /*!
+          \brief Implementation of >=
+          */
+         DllExport
+         friend bool operator>=(Char ch1, Char ch2)
+         {
+            return ch1.mChar >= ch2.mChar;
+         };
 
       private:
 
-      //! The character
-      uint16 mChar;
+         //! The character
+         uint16 mChar;
    };
 
    /*!
@@ -148,14 +175,14 @@ namespace jm
       /*!
        \brief Copy constructor
        */
-      CharArray(const CharArray &another);
+      CharArray(const CharArray& another);
 
       /*!
        \brief Destructor
        */
       virtual ~CharArray();
 
-      CharArray &operator=(const CharArray &another);
+      CharArray& operator=(const CharArray& another);
    };
 
 

@@ -102,8 +102,8 @@ namespace jm
           \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
           (EOF).
           */
-         virtual Integer readFully(ByteArray &buffer, Integer length) = 0;
-         Integer readFully(ByteArray &buffer)
+         virtual Integer readFully(ByteArray& buffer, Integer length) = 0;
+         Integer readFully(ByteArray& buffer)
          {
             return readFully(buffer, buffer.size());
          };
@@ -140,7 +140,7 @@ namespace jm
           (also UTF-8).
           NICHT ALS C_STRING
           */
-         Integer write(const String &string);
+         Integer write(const String& string);
 
    };
 }

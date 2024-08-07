@@ -49,7 +49,7 @@ CharArray UTF8Decoder::Decode(const char* cstring)
 
    //Prüfe auf Steuerzeichen am Anfang des cstring. Wenn vorhanden ignoriere
    if(cstring[0] == static_cast<char>(0xFE) &&
-      cstring[1] == static_cast<char>(0xFF))
+         cstring[1] == static_cast<char>(0xFF))
    {
       throw new Exception("UTF-16 (BE) encoding detected.");
    }
@@ -138,7 +138,8 @@ CharArray UTF8Decoder::Decode(const char* cstring)
          cntV++;
          cntC += 4;
       }
-      else if(c == 0xFF && ((uint8)cstring[cntC + 1]) == 0xFE)cntC += 2; //Steuerzeichen. erstmal ignorieren http://de.wikipedia.org/wiki/Unicodeblock_Spezielles
+      else if(c == 0xFF
+              && ((uint8)cstring[cntC + 1]) == 0xFE)cntC += 2; //Steuerzeichen. erstmal ignorieren http://de.wikipedia.org/wiki/Unicodeblock_Spezielles
       else
       {
          //Friss Encoding-Fehler
@@ -150,7 +151,7 @@ CharArray UTF8Decoder::Decode(const char* cstring)
    return ret;
 }
 
-ByteArray UTF8Decoder::Encode(const CharArray &string)
+ByteArray UTF8Decoder::Encode(const CharArray& string)
 {
    uint32 cntC = 0;
    for(uint32 a = 0; a < string.length; a++)

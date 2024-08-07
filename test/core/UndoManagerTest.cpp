@@ -80,7 +80,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->undo(), "Undo nicht ausgeführt (3)");
    str = jm::kEmptyString;
 
-   TestEquals(obj->referenceCount(), 2, "Referenzzähler muss 2 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 2,
+              "Referenzzähler muss 2 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 0, "Undostack not empty.(3)");
    TestEquals(undo->redoCount(), 1, "Redostack not empty.(3)");
 
@@ -90,7 +91,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->redo(), "Redo nicht ausgeführt. (4)");
    str = "Hallo Welt";
 
-   TestEquals(obj->referenceCount(), 2, "Referenzzähler muss 2 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 2,
+              "Referenzzähler muss 2 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 1, "Undostack not empty. (4)");
    TestEquals(undo->redoCount(), 0, "Redostack not empty.v(4)");
 
@@ -114,7 +116,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->undo(), "Undo nicht ausgeführt (3)");
    d = 0;
 
-   TestEquals(obj->referenceCount(), 3, "Referenzzähler muss 3 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 3,
+              "Referenzzähler muss 3 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 1, "Undostack not empty.(6)");
    TestEquals(undo->redoCount(), 1, "Redostack not empty.(6)");
 
@@ -124,7 +127,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->redo(), "Redo nicht ausgeführt. (4)");
    d = 24.08;
 
-   TestEquals(obj->referenceCount(), 3, "Referenzzähler muss 3 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 3,
+              "Referenzzähler muss 3 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 2, "Undostack not empty. (7)");
    TestEquals(undo->redoCount(), 0, "Redostack not empty.v(7)");
 
@@ -148,7 +152,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->undo(), "Undo nicht ausgeführt (3)");
    b1 = 0;
 
-   TestEquals(obj->referenceCount(), 4, "Referenzzähler muss 4 sein.");//Undo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 4,
+              "Referenzzähler muss 4 sein.");//Undo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 2, "Undostack not empty.(9)");
    TestEquals(undo->redoCount(), 1, "Redostack not empty.(9)");
 
@@ -158,7 +163,8 @@ void UndoManagerTest::DoTest()
    TestTrue(undo->redo(), "Redo nicht ausgeführt. (4)");
    b1 = 17;
 
-   TestEquals(obj->referenceCount(), 4, "Referenzzähler muss 4 sein.");//Redo ändert nichts am Referenzzähler...
+   TestEquals(obj->referenceCount(), 4,
+              "Referenzzähler muss 4 sein.");//Redo ändert nichts am Referenzzähler...
    TestEquals(undo->undoCount(), 3, "Undostack not empty. (10)");
    TestEquals(undo->redoCount(), 0, "Redostack not empty.v(10)");
 

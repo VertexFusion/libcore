@@ -82,7 +82,7 @@ bool jm::Char::isLetter() const
 
 int32 jm::Char::digitValue()const
 {
-   if(mChar >= '0' && mChar <= '9') return mChar-'0';
+   if(mChar >= '0' && mChar <= '9') return mChar - '0';
    return -1;
 }
 

@@ -45,7 +45,7 @@ namespace jm
          /*!
           \brief Constructor
           */
-         ZipEntry(const String &name);
+         ZipEntry(const String& name);
 
          /*!
           \brief Returns the name of the entry.
@@ -116,7 +116,7 @@ namespace jm
           \brief Gibt den Zip-Eintrag zurück, wenn er existiert, oder NULL, wenn er nicht
           existiert.
           */
-         ZipEntry* entry(const String &name);
+         ZipEntry* entry(const String& name);
 
          /*!
           \brief Gibt einen Iterator über die Zipeinträge zurück

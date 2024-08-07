@@ -62,7 +62,7 @@ namespace jm
             mData = new T[size];
          };
 
-         Array(const Array &other): Object()
+         Array(const Array& other): Object()
          {
             mSize = other.mSize;
             mData = new T[mSize];
@@ -97,7 +97,7 @@ namespace jm
                   Integer j = i + 1;
                   Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
                   Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
-                  if(a1->compareTo(*(T *)a2) > 0)
+                  if(a1->compareTo(*(T*)a2) > 0)
                   {
                      //Vertausche
                      T tmp = mData[i];
@@ -126,14 +126,14 @@ namespace jm
             mData[index] = item;
          };
 
-         inline T &operator[](const Integer index) const
+         inline T& operator[](const Integer index) const
          {
             if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             return mData[index];
          }
 
-         Array& operator=(const Array &another)
+         Array& operator=(const Array& another)
          {
             if(this != &another)
             {
@@ -304,7 +304,7 @@ namespace jm
             mData = new float[length];
          };
 
-         FloatArray(const FloatArray &other): Object()
+         FloatArray(const FloatArray& other): Object()
          {
             mLength = other.mLength;
             mData = new float[mLength];
@@ -379,14 +379,14 @@ namespace jm
             mData[index] = item;
          };
 
-         inline float &operator[](const uint32 index) const
+         inline float& operator[](const uint32 index) const
          {
             //if(index >= mLength)
             //	throw new Exception("Array index out of bounds.");
             return mData[index];
          }
 
-         FloatArray& operator=(const FloatArray &another)
+         FloatArray& operator=(const FloatArray& another)
          {
             if(this != &another)
             {
@@ -413,55 +413,55 @@ namespace jm
 
    };
 
-	/*!
-	 \class StringList
-	 \author Uwe Runtemund
-	 \brief This is a list of strings. It provides useful methods for manipulating string lists.
-	 */
-   class DllExport StringList:public Object
+   /*!
+    \class StringList
+    \author Uwe Runtemund
+    \brief This is a list of strings. It provides useful methods for manipulating string lists.
+    */
+   class DllExport StringList: public Object
    {
 
-   public:
+      public:
 
-      StringList();
+         StringList();
 
-      StringList(const StringList &other);
+         StringList(const StringList& other);
 
-      StringList(const jm::String &string);
+         StringList(const jm::String& string);
 
-      virtual ~StringList();
+         virtual ~StringList();
 
-      void append(const jm::String &string);
+         void append(const jm::String& string);
 
-      ::Integer size() const;
+         ::Integer size() const;
 
-      void sort();
+         void sort();
 
-      const String& get(::Integer index) const;
+         const String& get(::Integer index) const;
 
-      void set(::Integer index,const String& item);
+         void set(::Integer index, const String& item);
 
-      String &operator[](const ::Integer index) const;
+         String& operator[](const ::Integer index) const;
 
-      StringList& operator=(const StringList &another);
+         StringList& operator=(const StringList& another);
 
-      void clear();
+         void clear();
 
-      DllExport
-      friend StringList& operator<< (StringList &out, const String& str);
+         DllExport
+         friend StringList& operator<< (StringList& out, const String& str);
 
-   private:
+      private:
 
-      //! The length of the array.
-      ::Integer mLength;
+         //! The length of the array.
+         ::Integer mLength;
 
-      //! The data size (can be less then length
-      ::Integer mSize;
+         //! The data size (can be less then length
+         ::Integer mSize;
 
-      //! The data array itself.
-      String* mData;
+         //! The data array itself.
+         String* mData;
 
-      void checkSize(::Integer size);
+         void checkSize(::Integer size);
    };
 }
 

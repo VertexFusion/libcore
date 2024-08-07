@@ -100,7 +100,7 @@ void Document::setDocumentChanged(bool status)
    mChanged = status;
 }
 
-void Document::setFile(const File &file)
+void Document::setFile(const File& file)
 {
    mFile = file;
 }

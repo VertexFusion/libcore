@@ -195,7 +195,7 @@ namespace jm
           \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
           \param length Die Länge des Puffers
           */
-         void Inflate(uint8* &buffer, Integer &length);
+         void Inflate(uint8*& buffer, Integer& length);
 
          /*!
           \brief Setzt den Dekomprimierer zurück, damit ein neues Objekt dekomprimiert werden kann

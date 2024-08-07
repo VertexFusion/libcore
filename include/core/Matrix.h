@@ -56,22 +56,22 @@ namespace jm
    struct DllExport Matrix
    {
          DllExport
-         friend const Matrix operator*(const Matrix &A, const Matrix &B);
+         friend const Matrix operator*(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator*(const double &d, const Matrix &b);
+         friend const Matrix operator*(const double& d, const Matrix& b);
 
          DllExport
-         friend const Vertex3 operator*(const Matrix &A, const Vertex3 &b);
+         friend const Vertex3 operator*(const Matrix& A, const Vertex3& b);
 
          DllExport
-         friend const Matrix operator+(const Matrix &A, const Matrix &B);
+         friend const Matrix operator+(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator-(const Matrix &A, const Matrix &B);
+         friend const Matrix operator-(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator/(const Matrix &A, const double &d);
+         friend const Matrix operator/(const Matrix& A, const double& d);
 
       public:
 
@@ -100,9 +100,9 @@ namespace jm
           \param rowwise if \c true, then the matrix is filled row by row otherwise column by
           column.
           */
-         Matrix(const Vertex3 &c1,
-                const Vertex3 &c2,
-                const Vertex3 &c3,
+         Matrix(const Vertex3& c1,
+                const Vertex3& c2,
+                const Vertex3& c3,
                 bool rowwise);
 
          /*!
@@ -118,7 +118,7 @@ namespace jm
          /*!
           \brief Copy constructor
           */
-         Matrix(const Matrix &other);
+         Matrix(const Matrix& other);
 
          /*!
           \brief Copy constructor
@@ -167,13 +167,13 @@ namespace jm
           \brief This method inserts the contents of the other matrix into this matrix. Upper left
           element is 0,0
           */
-         void Insert(const Matrix &A);
+         void Insert(const Matrix& A);
 
          /*!
          \brief This method inserts the contents of the Other matrix into this matrix. Upper left
           element is r,c
          */
-         void Insert(const Matrix &A, Integer r, Integer c);
+         void Insert(const Matrix& A, Integer r, Integer c);
 
          /*!
           \brief This method sets all values on the diagonal elements to the desired value.
@@ -185,7 +185,7 @@ namespace jm
 
           This method is currently limited to a maximum of 4x4 matrices.
           */
-         VxfErrorStatus Det(double &det) const;
+         VxfErrorStatus Det(double& det) const;
 
          /*!
           \brief Inverts this matrix.
@@ -235,7 +235,7 @@ namespace jm
           \param angle Angle of rotation in radians
           \param axis Rotation axis (must be normalized)
           */
-         static Matrix Generate3x3RotationMatrix(double angle, const Vertex3 &axis);
+         static Matrix Generate3x3RotationMatrix(double angle, const Vertex3& axis);
 
          /*!
           \brief This static function generates a 3x3 rotation matrix for a rotation around the
@@ -258,7 +258,7 @@ namespace jm
           */
          static Matrix Generate3x3RotationZMatrix(double angle);
 
-         Matrix &operator=(const Matrix &A);
+         Matrix& operator=(const Matrix& A);
 
       private:
 
@@ -274,19 +274,19 @@ namespace jm
     \brief Implementierung des Operators M * M (Matrixmultiplikation)
     */
    DllExport
-   const Matrix operator*(const Matrix &A, const Matrix &B);
+   const Matrix operator*(const Matrix& A, const Matrix& B);
 
    /*!
     \brief Implementierung des Operators d * M (Skalare multiplikation)
     */
    DllExport
-   const Matrix operator*(const double &d, const Matrix &b);
+   const Matrix operator*(const double& d, const Matrix& b);
 
    /*!
     \brief Implementierung des Operators M * d (Skalare multiplikation)
     */
    DllExport
-   const Matrix operator*(const Matrix &b, const double &d);
+   const Matrix operator*(const Matrix& b, const double& d);
 
    /*!
     \brief Implementierung des Operators M * v (Maktrixmultiplikation mit einem Vektor) Die Matrix muss Quadratisch sein...
@@ -298,25 +298,25 @@ namespace jm
     \brief Implementierung des Operators M * v (Maktrixmultiplikation mit einem Vektor) Die Matrix muss 3x3 sein...
     */
    DllExport
-   const Vertex3 operator*(const Matrix &A, const Vertex3 &b);
+   const Vertex3 operator*(const Matrix& A, const Vertex3& b);
 
    /*!
     \brief Implementierung des Operators M / d (Skalare Division)
     */
    DllExport
-   const Matrix operator/(const Matrix &b, const double &d);
+   const Matrix operator/(const Matrix& b, const double& d);
 
    /*!
     \brief Implementierung des Operators M + M
     */
    DllExport
-   const Matrix operator+(const Matrix &A, const Matrix &B);
+   const Matrix operator+(const Matrix& A, const Matrix& B);
 
    /*!
     \brief Implementierung des Operators M - M
     */
    DllExport
-   const Matrix operator-(const Matrix &A, const Matrix &B);
+   const Matrix operator-(const Matrix& A, const Matrix& B);
 
 }
 #endif
