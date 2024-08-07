@@ -38,6 +38,7 @@
 
 namespace jm
 {
+   class Preferences;
 
    enum LogLevel
    {
