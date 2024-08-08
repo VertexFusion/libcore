@@ -50,13 +50,13 @@ namespace jm
       public:
 
          /*!
-          \brief Konstruktor
+          \brief Constructor 
           */
          Deflater();
 
          /*!
-          \brief Konstruktor
-          \param wrap Status, ob zlib-Header und CRC weggelassen wird
+          \brief Constructor
+          \param wrap Status, whether zlib header and CRC are omitted
           */
          //Deflater( bool wrap );
 
@@ -66,46 +66,46 @@ namespace jm
          ~Deflater();
 
          /*!
-          \brief Übergibt einen Block an Bytes zum Kompriemieren an diese Klasse.
-          \param buffer Die unkomprimierten Daten
-          \param length Die Länge der Daten
+          \brief Gives this class a block of bytes to compress. 
+          \param buffer Uncompressed data
+          \param length Data length 
           */
          void SetInput(uint8* buffer,
                        Integer length);
 
          /*!
-          \brief Diese Methode komprimiert die Daten in den Puffer
-          \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert.
-          Der Aufrufer muss das Array hinterher selbst aufräumen.
-          \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
-          \param length Die Länge des Puffers
+          \brief This method compresses the data in the buffer
+          \discussion Both parameters are output values and are initialised by this method.
+          The caller must clean up the array himself afterwards.
+          \param buffer The buffer into which the data is to be written.  
+          \param length Buffer length 
           */
          void Deflate(uint8*& buffer,
                       Integer& length);
 
          /*!
-          \brief Setzt den Komprimierer zurück, damit ein neues Objekt komprimiert werden kann
+          \brief Resets the compressor so that a new object can be compressed
           */
          void Reset();
 
          /*!
-          \brief Gibt die Gesamtanzahl der Bytes des unkomprimierten Inputs zurück
+          \brief Returns the total number of bytes of the uncompressed input
           */
          Integer GetTotalIn();
 
          /*!
-          \brief Gibt die Gesamtanzahl der Bytes des komprimierten Outputs zurück
+          \brief Returns the total number of bytes of the compressed output
           */
          Integer GetTotalOut();
 
       private:
 
-         //Aktueller Block
+         //Current block
          uint8* mUncompBytes;
          Integer mUncompLength;
          Integer mUncompIndex;
 
-         //Zählvariablen für verarbeitete Bytes
+         //Count variables for processed bytes
          Integer mTotalIn;
          Integer mTotalOut;
 
