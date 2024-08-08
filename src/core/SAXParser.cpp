@@ -43,7 +43,7 @@ SAXParser::~SAXParser()
 
 }
 
-void SAXParser::Parse(File& file)
+void SAXParser::parse(File& file)
 {
    if(!file.exists())return;
    if(!file.canRead())return;
@@ -53,10 +53,10 @@ void SAXParser::Parse(File& file)
    file.Stream::readFully(buffer);
    file.close();
    jm::String content = jm::String(buffer);
-   Parse(content);
+   parse(content);
 }
 
-void SAXParser::Parse(const String& xml)
+void SAXParser::parse(const String& xml)
 {
    String token;
 
@@ -64,7 +64,7 @@ void SAXParser::Parse(const String& xml)
    // binary data.
    token.checkCapacity(xml.size());
 
-   StartDocument();
+   startDocument();
 
    Integer length = xml.size(); // Length of XML-Code
    Integer pos = 0; // Position of pointer
@@ -130,9 +130,9 @@ void SAXParser::Parse(const String& xml)
             }
 
             // Call parsing methods
-            if(beginWhitespaces.size() > 0)IgnorableWhiteSpaces(beginWhitespaces);
-            if(token.size() > 0)Characters(token);
-            if(endWhiteSpaces.size() > 0)IgnorableWhiteSpaces(endWhiteSpaces);
+            if(beginWhitespaces.size() > 0)ignorableWhiteSpaces(beginWhitespaces);
+            if(token.size() > 0)characters(token);
+            if(endWhiteSpaces.size() > 0)ignorableWhiteSpaces(endWhiteSpaces);
          }
 
          token.zero();
@@ -159,7 +159,7 @@ void SAXParser::Parse(const String& xml)
       }
       else if(c == '>' && inTag == true && inValue == false)
       {
-         ParseTagString(token);
+         parseTagString(token);
          token.zero();
          inTag = false;
       }
@@ -182,10 +182,10 @@ void SAXParser::Parse(const String& xml)
       pos++;
    }
 
-   EndDocument();
+   endDocument();
 }
 
-void SAXParser::ParseTagString(const String& xmlline)
+void SAXParser::parseTagString(const String& xmlline)
 {
    String line = xmlline;
 
@@ -297,35 +297,35 @@ void SAXParser::ParseTagString(const String& xmlline)
    switch(tagType)
    {
       case 0:
-         StartElement(jm::kEmptyString, localName, qualifiedName, attribs);
+         startElement(jm::kEmptyString, localName, qualifiedName, attribs);
          break;
 
       case 1:
-         EndElement(jm::kEmptyString, localName, qualifiedName);
+         endElement(jm::kEmptyString, localName, qualifiedName);
          break;
 
       case 2:
-         StartElement(jm::kEmptyString, localName, qualifiedName, attribs);
-         EndElement(jm::kEmptyString, localName, qualifiedName);
+         startElement(jm::kEmptyString, localName, qualifiedName, attribs);
+         endElement(jm::kEmptyString, localName, qualifiedName);
          break;
 
    }
 
 }
 
-void SAXParser::Characters(const String& /*characters*/)
+void SAXParser::characters(const String& /*characters*/)
 {
    // Dummy method
    //	std::cout << "SAX: Characters: " << std::endl;
 }
 
-void SAXParser::EndDocument()
+void SAXParser::endDocument()
 {
    // Dummy method
    //	std::cout << "SAX: EndDocument" << std::endl;
 }
 
-void SAXParser::EndElement(const String& /*uri*/,
+void SAXParser::endElement(const String& /*uri*/,
                            const String& /*localName*/,
                            const String& /*qName*/)
 {
@@ -333,38 +333,38 @@ void SAXParser::EndElement(const String& /*uri*/,
    //	std::cout << "SAX: EndElement " << localName << std::endl;
 }
 
-void SAXParser::EndPrefixMapping(const String& /*prefix*/)
+void SAXParser::endPrefixMapping(const String& /*prefix*/)
 {
    // Dummy method
    //	std::cout << "SAX: EndPrefixMapping" << std::endl;
 }
 
-void SAXParser::IgnorableWhiteSpaces(const String& /*characters*/)
+void SAXParser::ignorableWhiteSpaces(const String& /*characters*/)
 {
    // Dummy method
    //	std::cout << "SAX: IgnorableWhitespaces" <<std::endl;
 }
 
-void SAXParser::ProcessingInstruction(const String& /*target*/,
+void SAXParser::processingInstruction(const String& /*target*/,
                                       const String& /*data*/)
 {
    // Dummy method
    //	std::cout << "SAX: ProcessingInstruxtion" << std::endl;
 }
 
-void SAXParser::SkippedEntity(const String& /*name*/)
+void SAXParser::skippedEntity(const String& /*name*/)
 {
    // Dummy method
    //	std::cout << "SAX: SkippedEntity" << std::endl;
 }
 
-void SAXParser::StartDocument()
+void SAXParser::startDocument()
 {
    // Dummy method
    //	std::cout << "SAX: StartDocument" << std::endl;
 }
 
-void SAXParser::StartElement(const String& /*uri*/,
+void SAXParser::startElement(const String& /*uri*/,
                              const String& /*localName*/,
                              const String& /*qName*/,
                              const SAXAttributes& /*attributes*/)

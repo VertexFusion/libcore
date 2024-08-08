@@ -56,42 +56,43 @@ namespace jm
             }
          };
 
-         //Das oberste Element auf dem Stack
+          //The top element on the stack
          StackElement* top;
 
-         //Die Anzahl der Elemente auf dem Stack
+          // The number of elements on the stack
          uint32 count;
 
       public:
 
-         /*!
-          \brief Konstruktor für den Haufen. Hier werden alle Variablen initialisiert
-          */
+          /*!
+           \brief Constructor for the stack. Initializes all variables.
+           */
          Stack()
          {
             top = NULL;
             count = 0;
          };
 
-         /*!
-          \brief Destructor für den Haufen. Hier werden alle Variabeln gelöscht
-          */
+          /*!
+           \brief Destructor for the stack. Here all variables are deleted.
+           */
          ~Stack()
          {
             Clear();
          }
 
-         /*!
-          \brief Diese Methode gibt wahr zurück, wenn der Stack nicht leer ist.
-          */
+          /*!
+           \brief This method returns true if the stack is not empty.
+           */
          inline bool HasElements()
          {
             return top != NULL;
          };
 
-         /*!
-          \brief Holt das oberste Element vom Stack und gibt es zurück
-          */
+          /*!
+           \brief Removes and returns the top element from the stack.
+           \return The top element of the stack.
+           */
          inline T Pop()
          {
             StackElement* pop = top;
@@ -102,41 +103,56 @@ namespace jm
             return ret;
          };
 
-         /*!
-          \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
-          */
+          /*!
+           \brief Returns the top element of the stack without removing it.
+           \return The top element of the stack.
+           */
          inline T& Top() const
          {
             return top->data;
          };
 
-         /*!
-          \brief Gibt das oberste Element vom Stack zurück, ohne es vom Stack zu löschen
-          */
+          /*!
+           \brief Returns the top element of the stack without removing it.
+           \return The top element of the stack.
+           */
          inline T* TopRef()
          {
             return &top->data;
          };
 
-         /*!
-          \brief Gibt das zweitoberste Element vom Stack zurück, ohne es vom Stack zu löschen
-          */
-         inline T Top2()
-         {
-            return top->prev->data;
-         };
+          /*!
+           \brief Returns the second top element of the stack without removing it.
+           \return The second top element of the stack.
+           */
+          inline T Top2()
+          {
+            if (top != NULL && top->prev != NULL) {
+               return top->prev->data;
+            }
 
-         /*!
-          \brief Gibt das drittoberste Element vom Stack zurück, ohne es vom Stack zu löschen
-          */
-         inline T Top3()
-         {
-            return top->prev->prev->data;
-         };
+            // Handle the case when there are not enough elements on the stack
+            throw new jm::Exception(Tr("Not enough elements on the stack"));
+          };
 
-         /*!
-          \brief Fügt ein Element auf dem Stack hinzu.
-          */
+          /*!
+           \brief Returns the third element from the top of the stack without removing it.
+           \return The third element from the top of the stack.
+           */
+          inline T Top3()
+          {
+            if (top != NULL && top->prev != NULL && top->prev->prev != NULL) {
+               return top->prev->prev->data;
+            }
+
+            // Handle the case when there are not enough elements on the stack
+            throw new jm::Exception(Tr("Not enough elements on the stack"));
+          };
+
+          /*!
+           \brief Adds an element to the stack.
+           \param data The data to be added to the stack.
+           */
          inline void Push(T data)
          {
             StackElement* item = new StackElement();
@@ -146,25 +162,26 @@ namespace jm
             count++;
          }
 
-         /*!
-          \brief Löscht alle Elemente auf dem Stack
-          */
+          /*!
+           \brief Deletes all elements on the stack.
+           */
          inline void Clear()
          {
             while(HasElements())Pop();
          };
 
-         /*!
-          \brief Gibt die Anzahl der Elemente auf dem Stack zurück
-          */
+          /*!
+           \brief Returns the number of elements on the stack.
+           \return The number of elements on the stack.
+           */
          inline uint32 Size()
          {
             return count;
          }
 
-         /*!
-          \brief Kehr die Reihenfolge des Stacks um. Das unterste Element ist nun das oberste
-          */
+          /*!
+           \brief Reverses the order of the stack. The bottom element becomes the top.
+           */
          inline void Reverse()
          {
             StackElement* pop = NULL;

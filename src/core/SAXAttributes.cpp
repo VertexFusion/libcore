@@ -80,7 +80,7 @@ void SAXAttributes::addAttribute(String /*uri*/, String localname, String /*qNam
    mValues->push_back(value);
 }
 
-int32 SAXAttributes::GetIndex(String qName) const
+int32 SAXAttributes::indexOf(String qName) const
 {
    for(uint32 a = 0; a < mNames->size(); a++)
    {
@@ -90,84 +90,84 @@ int32 SAXAttributes::GetIndex(String qName) const
    return -1;
 }
 
-int32 SAXAttributes::GetIndex(String /*uri*/, String localName) const
+int32 SAXAttributes::indexOf(String /*uri*/, String localName) const
 {
-   return GetIndex(localName);
+   return indexOf(localName);
 }
 
-uint32 SAXAttributes::GetLength() const
+uint32 SAXAttributes::count() const
 {
    return (uint32)mNames->size();
 }
 
-String SAXAttributes::GetLocalName(uint32 index) const
+String SAXAttributes::localName(uint32 index) const
 {
    return mNames->at(index);
 }
 
-String SAXAttributes::GetQName(uint32 index) const
+String SAXAttributes::qualifiedName(uint32 index) const
 {
    return mNames->at(index);
 }
 
-String SAXAttributes::GetType(uint32 /*index*/) const
+String SAXAttributes::type(uint32 /*index*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::GetType(String /*qname*/) const
+String SAXAttributes::type(String /*qname*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::GetType(String /*uri*/, String /*localName*/) const
+String SAXAttributes::type(String /*uri*/, String /*localName*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::GetURI(uint32 /*index*/) const
+String SAXAttributes::uri(uint32 /*index*/) const
 {
    return kEmptyString;
 }
 
-String SAXAttributes::GetValue(uint32 index) const
+String SAXAttributes::value(uint32 index) const
 {
    return mValues->at(index);
 }
 
-String SAXAttributes::GetValue(const String& qname) const
+String SAXAttributes::value(const String& qname) const
 {
-   int32 index = GetIndex(qname);
+   int32 index = indexOf(qname);
    if(index > -1)return mValues->at(index);
    return kEmptyString;
 }
 
-int32 SAXAttributes::GetIntValue(const String& qname) const
+int32 SAXAttributes::valueAsInt(const String& qname) const
 {
-   return Integer::valueOf(GetValue(qname)).Int32();
+   return Integer::valueOf(value(qname)).Int32();
 }
 
-float SAXAttributes::GetFloatValue(const String& qname) const
+float SAXAttributes::valueAsFloat(const String& qname) const
 {
-   return (float)Double::valueOf(GetValue(qname));
+   return (float)Double::valueOf(value(qname));
 }
 
-bool SAXAttributes::GetBoolValue(const String& qname)const
+bool SAXAttributes::valueAsBool(const String& qname)const
 {
-   return GetValue(qname).equalsIgnoreCase("true");
+   return value(qname).equalsIgnoreCase("true");
 }
 
 
-bool SAXAttributes::HasValue(const String& qname) const
+bool SAXAttributes::hasValue(const String& qname) const
 {
-   int32 index = GetIndex(qname);
+   int32 index = indexOf(qname);
    if(index > -1)return true;
    return false;
 }
 
-String SAXAttributes::GetValue(String uri, String localName) const
+String SAXAttributes::value(String uri, String localName) const
 {
-   int32 index = GetIndex(uri, localName);
+   int32 index = indexOf(uri, localName);
    if(index > -1)return mValues->at(index);
    return kEmptyString;
 }

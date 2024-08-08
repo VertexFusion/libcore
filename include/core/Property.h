@@ -139,9 +139,9 @@ namespace jm
       PropertyType mType;
 
       /*!
-       \brief Der Wert des Properties wird normalerweise durch den Anwender in der GUI festgelegt. Also ist der Wert üblicherweise ein String, Bool oder Zahl.
-       Sollte ein anderer Typ vorhanden sein, ist klug zu überlegen, ob die Übergabe nicht als Text passiert, oder ob das hier erweitert werden soll.
-       Es würde aber immer besser ein, einen Text zu parsen. Wie gesagt: Es kommt aus der Oberfläche und nicht von anderen Daten
+       \brief The value of the property is usually set by the user in the GUI. Therefore, the value is typically a string, boolean, or number.
+       If there is another type of value, it is wise to consider whether the transfer should be done as a text or if it should be extended here.
+       However, it is always better to parse it as a text. As mentioned, it comes from the interface and not from other data.
        */
       union
       {
@@ -181,7 +181,7 @@ namespace jm
           \param group The group of the property
           \param name The name of the property
           \param hint A hint/help string of the property for the user
-          \param editor Preffered editor widget for this property
+          \param editor Preferred editor widget for this property
           \param readOnly Status, if the property is read-only
           \param changeMode Mode of change infulence
           \param allowEmpty Status, if property can be empty
@@ -336,43 +336,43 @@ namespace jm
           */
          PropertyType mType;
 
-         /*!
-          \brief Identifier des Properties
-          */
+          /*!
+           \brief Identifier of the property.
+           */
          String mId;
 
-         /*!
-          \brief Gruppenname der Gruppe, in der die Eigenschaft automatisch am Ende einsortiert wird
-          */
+          /*!
+           \brief Name of the group where the property will be automatically sorted at the end
+           */
          String mGroup;
 
-         /*!
-          \brief Name der Eigenschaft, wie sie in der Oberfläche angezeigt wird
-          */
+          /*!
+           \brief Name of the property as displayed in the user interface.
+           */
          String mName;
 
-         /*!
-          \brief Hinweis
-          */
+          /*!
+           \brief Hint
+           */
          String mHint;
 
-         /*!
-          \brief Iconname für bestimmte GUI-Elemente
-          */
+          /*!
+           \brief Icon name for specific GUI elements.
+           */
          String mIcon;
 
-         /*!
-          \brief Editor, der zur Verwendung genommen werden soll. Dies muss ein registierter Editor im PropertyEditor sein.
-          folgende Standardeditoren gibt es:
-          textfield
-          checkbox
-          combobox
-          */
-         String mEditor;
+          /*!
+           \brief Editor that should be used. This must be a registered editor in the PropertyEditor.
+           The following standard editors are available:
+           - textfield
+           - checkbox
+           - combobox
+           */
+          String mEditor;
 
-         /*!
-          \brief Status, ob der Wert vom Anwender bearbeitet werden kann, oder nur "informativ" dargestellt wird, weil er z.B. berechnet wurde
-          */
+          /*!
+           \brief Indicates whether the value can be edited by the user or is only displayed as "informative" because it is calculated, for example.
+           */
          bool mReadOnly;
 
          /*!
@@ -380,17 +380,17 @@ namespace jm
           */
          bool mAllowEmpty;
 
-         /*!
-          \brief Status, ob eine Veränderung des Wertes Einfluss auf die sichtbare Eigenschaftsstruktur hat, beispielsweise weil ein Auswahlfeld verschiedenen andere Eigenschaften sichtbar oder unsichtbar macht.
-          Dies wird benötigt, um die Sichtbarkeit im Propertyeditor zu steuern.
-          */
+          /*!
+           \brief Indicates whether a change in the value has an impact on the visible property structure, for example, because a dropdown field makes different properties visible or invisible.
+           This is needed to control visibility in the Property Editor.
+           */
          PropertyChangeMode mChangeMode;
 
-         /*!
-          \brief Der Wert des Properties wird normalerweise durch den Anwender in der GUI festgelegt. Also ist der Wert üblicherweise ein String, Bool oder Zahl.
-          Sollte ein anderer Typ vorhanden sein, ist klug zu überlegen, ob die Übergabe nicht als Text passiert, oder ob das hier erweitert werden soll.
-          Es würde aber immer besser ein, einen Text zu parsen. Wie gesagt: Es kommt aus der Oberfläche und nicht von anderen Daten
-          */
+          /*!
+           \brief The value of the property is typically set by the user in the GUI. Therefore, the value is usually a string, boolean, or number.
+           If a different type is present, it is wise to consider whether the transfer should be done as text or if it should be extended here.
+           However, it is always better to parse it as text. As mentioned, it comes from the interface and not from other data.
+           */
          union
          {
             bool boolValue;
@@ -465,7 +465,7 @@ namespace jm
 
           \param pointer The pointer to the Integer member.
           \param value The new value for the member.
-          \param rangeMin Minium valid value. Default is INT64_MIN
+          \param rangeMin Minimum valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
           */
          virtual VxfErrorStatus setMember(Integer* pointer,
@@ -504,7 +504,7 @@ namespace jm
          virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
 
          /*!
-          \brief Begins an editing tansaction;
+          \brief Begins an editing transaction;
           */
          VxfErrorStatus openTransaction();
 

@@ -50,96 +50,125 @@ namespace jm
    };
 
    /*!
-    \brief Die Stream-Klasse ist eine Abstraktionsklasse, um Datenströme über eine einheitliche
-    Schnittstelle bearbeiten zu können. Der Stream selbst kann dabei eine Datei, ein Byte-Array,
-    eine Neztwerkschnittstelle, oder irgendetwas anderes sein.
+    \brief The Stream class is an abstraction class for manipulating data streams through a unified interface.
+    The stream itself can be a file, a byte array, a network interface, or anything else.
+    \details The Stream class provides methods for reading and writing data, as well as managing the stream's state.
     */
    class DllExport Stream: public Object
    {
 
       public:
 
-         /*!
-          \brief Konstruktor
-          */
+          /*!
+           \brief Constructor.
+           */
          Stream();
 
-         /*!
-          \brief Gibt die Länge des Streams zurück
-          */
+          /*!
+           \brief Returns the length of the stream.
+           \details This method returns the length of the stream in bytes.
+           \return The length of the stream.
+           */
          virtual Integer size() const = 0;
 
-         /*!
-          \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
-          \param mode Der Modus zum öffnen.
-          */
+          /*!
+           \brief Opens the stream for read or write operations.
+           \param mode The mode to open the stream.
+           \details This method opens the stream for read or write operations based on the specified mode.
+           \return The status of the operation.
+           */
          virtual VxfErrorStatus open(FileMode mode) = 0;
 
-         /*!
-          \brief Status, ob die Datei geöffnet ist
-          */
+          /*!
+           \brief Returns whether the file is open or not.
+           \details This method returns a boolean value indicating whether the file is currently open or not.
+           \return \c true if the file is open, \c false otherwise.
+           */
          virtual bool isOpen() = 0;
 
-         /*!
-          \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen
-          frei.
-          */
+          /*!
+           \brief Closes the stream if it was previously opened and releases any system resources.
+           \details This method closes the stream if it was previously opened and releases any system resources associated with it.
+           */
          virtual void close() = 0;
 
-         /*!
-          \brief Liest maximal length bytes in das Array.
-          \details Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
-          noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
-          zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man readFully()
-          aufrufen.
-          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-          (EOF).
-          */
+          /*!
+           \brief Reads a maximum of length bytes into the array.
+           \details For large blocks, it is possible that not all bytes are read because
+           it is still waiting for data. In this case, only a portion may be returned.
+           If you want to ensure that all data is read, you should call readFully().
+           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+           */
          virtual Integer read(uint8* buffer, Integer length) = 0;
 
-         /*!
-          \brief Liest maximal length bytes in das Array
-          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-          (EOF).
-          */
+          /*!
+           \brief Reads a maximum of length bytes into the array.
+           \details For large blocks, it is possible that not all bytes are read because
+           it is still waiting for data. In this case, only a portion may be returned.
+           If you want to ensure that all data is read, you should call readFully().
+           \param buffer The buffer to read the data from.
+            \param length The maximum number of bytes to read.
+           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+           */
          virtual Integer readFully(ByteArray& buffer, Integer length) = 0;
+
+            /*!
+            \brief Reads a maximum of length bytes into the array.
+            \param buffer The buffer to read the data from.
+            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+            */
          Integer readFully(ByteArray& buffer)
          {
             return readFully(buffer, buffer.size());
          };
 
-         /*!
-          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
-          (0-basierter Index).
-          \note Nicht jeder Stream unterstützt diese Methode.
-          */
+          /*!
+           \brief Moves the file cursor to the desired position, counted from the beginning of the file
+           (0-based index).
+           \note Not every stream supports this method.
+           \details This method moves the file cursor to the specified position, counted from the beginning of the file.
+           */
          virtual void seek(Integer position) = 0;
 
-         /*!
-          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
-          */
+          /*!
+           \brief Moves the file cursor to the desired position, counted from the current position.
+           \details This method moves the file cursor to the specified position, counted from the current position.
+           */
          virtual void move(Integer offset) = 0;
 
-         /*!
-          \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
-          Nicht jeder Stream unterstützt diese Methode.
-          */
+          /*!
+           \brief Returns the current cursor position in the file.
+           \note Not every stream supports this method.
+           \details This method returns the current cursor position in the file.
+           \return The current cursor position.
+           */
          virtual Integer position() = 0;
 
-         /*!
-          \brief Schreibt einen Buffer in die Ausgabedatei
-          */
+          /*!
+           \brief Writes a buffer to the output file.
+           \details This method writes the contents of the buffer to the output file.
+           \param buffer The buffer containing the data to be written.
+           \param length The number of bytes to write from the buffer.
+           \return The actual number of bytes written.
+           */
          virtual Integer write(const uint8* buffer, Integer length) = 0;
+
+          /*!
+           \brief Writes a buffer to the output file.
+           \details This method writes the contents of the buffer to the output file.
+           \param buffer The buffer containing the data to be written.
+           \param length The number of bytes to write from the buffer.
+           \return The actual number of bytes written.
+           */
          inline Integer write(const int8* buffer, Integer length)
          {
             return write((const uint8*)buffer, length);
          };
 
-         /*!
-          \brief Schreibt einen String in die Ausgabedatei. Kodierung ist die Standardkodierung
-          (also UTF-8).
-          NICHT ALS C_STRING
-          */
+          /*!
+           \brief Writes a string to the output file. The encoding is the default encoding (UTF-8). NOT AS A C-STRING!
+           \details This method writes the specified string to the output file using the default encoding, which is UTF-8. The string should not be passed as a C-string.
+           */
          Integer write(const String& string);
 
    };

@@ -81,7 +81,7 @@ namespace jm
          Integer m;
 
          /*!
-          \brief Number of columms.
+          \brief Number of columns.
           */
          Integer n;
 
@@ -271,49 +271,49 @@ namespace jm
 
 
    /*!
-    \brief Implementierung des Operators M * M (Matrixmultiplikation)
+    \brief Implementation of the operator M * M (matrix multiplication).
     */
    DllExport
    const Matrix operator*(const Matrix& A, const Matrix& B);
 
    /*!
-    \brief Implementierung des Operators d * M (Skalare multiplikation)
+    \brief Implementation of the operator d * M (scalar multiplication).
     */
    DllExport
    const Matrix operator*(const double& d, const Matrix& b);
 
    /*!
-    \brief Implementierung des Operators M * d (Skalare multiplikation)
+    \brief Implementation of the operator M * d (scalar multiplication).
     */
    DllExport
-   const Matrix operator*(const Matrix& b, const double& d);
+   const Matrix operator*(const Matrix& A, const double& d);
 
    /*!
-    \brief Implementierung des Operators M * v (Maktrixmultiplikation mit einem Vektor) Die Matrix muss Quadratisch sein...
+    \brief Implementation of the operator M * v (matrix multiplication with a vector). The matrix must be square.
     */
    DllExport
    const Vector operator*(const Matrix& A, const Vector& b);
 
    /*!
-    \brief Implementierung des Operators M * v (Maktrixmultiplikation mit einem Vektor) Die Matrix muss 3x3 sein...
+    \brief Implementation of the operator M * v (matrix multiplication with a vector). The matrix must be 3x3.
     */
    DllExport
    const Vertex3 operator*(const Matrix& A, const Vertex3& b);
 
    /*!
-    \brief Implementierung des Operators M / d (Skalare Division)
+    \brief Implementation of the operator M / d (scalar division).
     */
    DllExport
    const Matrix operator/(const Matrix& b, const double& d);
 
    /*!
-    \brief Implementierung des Operators M + M
+    \brief Implementation of the operator M + M (matrix addition).
     */
    DllExport
    const Matrix operator+(const Matrix& A, const Matrix& B);
 
    /*!
-    \brief Implementierung des Operators M - M
+    \brief Implementation of the operator M - M (matrix subtraction).
     */
    DllExport
    const Matrix operator-(const Matrix& A, const Matrix& B);

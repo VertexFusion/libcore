@@ -145,69 +145,66 @@ namespace jm
           */
          Integer size() const;
 
-         /*!
-          \brief Diese Methode erzeugt unter Berücksichtigung der Standardkodierung (UTF-8) einen
-          C-String aus der Zeichenkette.
-          \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
-          */
+          /*!
+           \brief This method generates a C-string from the string, taking into account the standard encoding (UTF-8).
+           \details The generated C-string must be freed by the application later (delete).
+           */
          ByteArray toCString()const;
 
-         /*!
-          \brief Diese Methode erzeugt unter Berücksichtigung der Unicode-Kodierung einen
-          C-String mit 16bit-Elementen. Defacto ist es eine Kopie des Buffers.
-          \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
-          */
+          /*!
+           \brief This method generates a C-string with 16-bit elements, taking into account the Unicode encoding. It is essentially a copy of the buffer.
+           \details The generated C-string must be freed by the application later (delete).
+           */
          uint16* toWString() const;
 
-         /*!
-          \brief Diese Methode erzeugt unter Berücksichtigung der Kodierung einen C-String aus
-          der Zeichenkette.
-          \param charset Die Zeichenkodierung, mit der die Zeichenkette im C-String kodiert werden
-          soll.
-          \discussion Der erzeugt C-String ist von der Anwendung später wieder freizugeben (delete).
-          */
+          /*!
+           \brief This method generates a C-string from the string, taking into account the specified character encoding.
+           \param charset The character encoding to use for encoding the string into the C-string.
+           \details The generated C-string must be freed by the application later (delete).
+           */
          ByteArray toCString(Charset* charset)const;
 
          /*!
-          \brief Count the occurences of the character in the string
+          \brief Count the occurrences of the character in the string
           */
          Integer count(Char character)const;
 
          /*!
-          \brief Diese Methode löscht den Inhalt der Zeichenkette. GGf. wird Speicher Freigegeben.
+          \brief This method clears the content of the string and releases any allocated memory.
           */
          void clear();
 
-         /*!
-          \brief Setzt die Länge auf 0, ohne Speicher freizugeben.
-          */
+          /*!
+           \brief This method sets the length to 0 without freeing any memory.
+           \details This method sets the length of the string to 0 without releasing any memory. It effectively clears the content of the string without deallocating the underlying buffer.
+           */
          void zero();
 
-         /*!
-          \brief Diese Methode hängt eine andere Zeichenkette an diese an.
-          \param another Die Zeichenkette, die an das Ende dieser Zeichenkette angehängt werden
-          soll.
-          */
+          /*!
+           \brief This method appends another string to this string.
+           \param another The string to be appended to the end of this string.
+           */
          void append(const String& another);
 
-         /*!
-          \brief Diese Methode hängt einen Buchstaben an diese Zeichenkette an.
-          \param unicodechar Der Unicode-Codepunkt, Buchstabe, der an diese Zeichenkette angehängt
-          werden soll.
-          */
+          /*!
+           \brief This method appends a character to this string.
+           \param unicodechar The Unicode code point, character, to be appended to this string.
+           \details The character is appended to the end of the string.
+           */
          void append(Char unicodechar);
 
-         /*!
-          \brief Diese Methode löscht einen Buchstaben aus dieser Zeichenkette heraus.
-          \param index Der 0-basierte Index der Position des Buchstabens.
-          */
+          /*!
+           \brief This method deletes a character from this string.
+           \param index The zero-based index of the position of the character.
+           */
          void deleteCharAt(Integer index);
 
-         /*!
-          \brief Diese Methode löscht einen Abschnitt aus dieser Zeichenkette heraus.
-          \param index Der 0-basierte Index der Position des Anfangs.
-          \param length Die Länge des Abschnitts
-          */
+          /*!
+           \brief This method deletes a section from this string.
+           \param index The zero-based index of the starting position.
+           \param length The length of the section to delete.
+           \details This method deletes a section of characters from this string, starting at the specified index and with the specified length.
+           */
          void deleteCharRangeAt(Integer index, Integer length);
 
          /*!
@@ -215,62 +212,56 @@ namespace jm
           */
          bool equals(const Object* other) const override;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Zeichenkette identisch zu einer anderen ist. Dabei
-          wird Buchstabe für Buchstabe geprüft, ob die Zeichen exakt übereinstimmen.
-          \param another Die Zeichenkette, mit der diese verglichen wird.
-          \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
-          Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist falsch.
-          */
+          /*!
+           \brief This method checks if this string is identical to another string. It compares each character to determine if the characters are exactly the same.
+           \param another The string to compare with.
+           \return Returns true if both strings are identical, otherwise false.
+           For example, "abc" == "abc" is true, but "aBc" == "abc" is false.
+           */
          bool equals(const String& another) const;
 
-         /*!
-          \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird streng
-          Zeichenweise von links nach rechts verglichen.
-          \param another Die Zeichenkette, mit der diese verglichen wird.
-          */
+          /*!
+           \brief This method compares the order of the strings. It compares character by character from left to right.
+           \param another The string to compare with.
+           \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
+           */
          int32 compareTo(const String& another) const override;
 
-         /*!
-          \brief Diese Methode vergleicht die Reihenfolge der Strings. Es wird unter
-          Berücksichtigung von Zahlen verglichen. Bestandteile, die als Zahl verstanden werden,
-          werden für sich verglichen. Aufgrund von Einschränkungen im MS-C++-Kompiler werden zur
-          Zeit aus Effizienzgründen nur maximal die ersten 256 Zeichen verglichen.
-          \param another Die Zeichenkette, mit der diese verglichen wird.
-          */
+          /*!
+           \brief This method compares the order of the strings, taking into account numbers. Components that can be interpreted as numbers are compared separately. Due to limitations in the MS C++ compiler, currently only the first 256 characters are compared for efficiency reasons.
+           \param another The string to compare with.
+           \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
+           */
          int32 compareFancyTo(const String& another) const;
 
-         /*!
-          \brief Diese Methode prüft unter vernachlässigung der Klein- und Großbuchstaben, ob
-          diese Zeichenkette mit der anderen identisch ist.
-          \param another Die Zeichenkette, mit der diese verglichen wird.
-          \return Gibt "wahr" zurück, wenn beide Zeichenketten identsich sind, ansonsten "falsch".
-          Z.B. "abc" == "abc" ist wahr, aber "aBc" == "abc" ist auch wahr.
-          */
+          /*!
+           \brief This method checks if this string is identical to another string, ignoring case.
+           \param another The string to compare with.
+           \return Returns true if both strings are identical, ignoring case, otherwise false.
+           For example, "abc" == "abc" is true, but "aBc" == "abc" is also true.
+           */
          bool equalsIgnoreCase(const String& another) const;
 
-         /*!
-          \brief Diese Methode prüft, ob der Anfang dieser Zeichenkette mit der anderen
-          Zeichenkette übereinstimmt.
-          \param another Die Zeichenkette mit der geprüft wird.
-          \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren beginnt.
-          Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
-          */
+          /*!
+           \brief This method checks if the beginning of this string matches another string.
+           \param another The string to be checked.
+           \return Returns true if this string starts with the specified string, otherwise false.
+           If the specified string is longer than this string, false is always returned.
+           */
          bool startsWith(const String& another) const;
 
-         /*!
-          \brief Diese Methode prüft, ob das Ende dieser Zeichenkette mit der anderen
-          Zeichenkette übereinstimmt.
-          \param another Die Zeichenkette mit der geprüft wird.
-          \return Diese Methode gibt wahr zurück, wenn diese Zeichenkette mit der andereren endet.
-          Sollte another länger sein, als diese Zeichenkette, wird immer falsch zurückgegeben.
-          */
+          /*!
+           \brief This method checks if the end of this string matches another string.
+           \param another The string to be checked.
+           \return Returns true if this string ends with the specified string, otherwise false.
+           If the specified string is longer than this string, false is always returned.
+           */
          bool endsWith(const String& another) const;
 
          /*!
           \brief This method checks, is the string at position is the same as the other string.
           \param position The position where another string is expected
-          \param another The comaring string
+          \param another The comparing string
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
@@ -279,200 +270,201 @@ namespace jm
          /*!
           \brief Same as atIs, but ignoring case.
           \param position The position where another string is expected
-          \param another The comaring string
+          \param another The comparing string
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
          bool atIsIgnoreCase(Integer position, const String& another);
 
-         /*!
-          \brief Diese Methode berechnet den Hashcode für diese Zeichenkette und gibt ihn zurück.
-          */
+          /*!
+           \brief This method calculates the hash code for this string and returns it.
+           \details The hash code is calculated based on the content of the string.
+           \return The hash code for this string.
+           */
          Integer hashCode();
+
+         /*!
+         \brief This method calculates the hash code for this string and returns it.
+         \details The hash code is calculated based on the content of the string.
+         \return The hash code for this string.
+         */
          Integer constHashCode() const;
 
-         /*!
-          \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Großbuchstaben durch
-          Kleinbuchstaben ersetzt wurden
-          */
+          /*!
+           \brief This method returns a string in which all uppercase letters have been replaced with lowercase letters.
+           \details The method creates a new string with all uppercase letters replaced by their lowercase counterparts.
+           \return A new string with all uppercase letters replaced by lowercase letters.
+           */
          String toLowerCase() const;
 
-         /*!
-          \brief Diese Methode gibt eine Zeichenkette zurück, in der alle Kleinbuchstaben durch
-          Großbuchstaben ersetzt wurden
-          */
+          /*!
+           \brief This method returns a string in which all lowercase letters have been replaced with uppercase letters.
+           \details The method creates a new string with all lowercase letters replaced by their uppercase counterparts.
+           \return A new string with all lowercase letters replaced by uppercase letters.
+           */
          String toUpperCase() const;
 
-         /*!
-          \brief Diese Methode erzeugt eine Zeichenkette, die nur auf einem Teil dieser
-          Zeichenkette besteht.
-          \param beginIndex Der 0-basierte Index auf den ersten Buchstaben, der in der neuen
-          Zeichenkette übernommen werden soll.
-          \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und bis zum Ende der
-          Zeichenkette geht.
-          */
+          /*!
+           \brief This method creates a substring that consists of a portion of this string.
+           \param beginIndex The zero-based index of the first character to be included in the new substring.
+           \return A new string that starts from the beginIndex and goes until the end of the string.
+           */
          String substring(Integer beginIndex)const;
 
-         /*!
-          \brief Diese Methode erzeugt eine Zeichenkette, die nur auf einem Teil dieser
-          Zeichenkette besteht.
-          \param beginIndex Der 0-basierte Index auf den ersten Buchstaben, der in der neuen
-          Zeichenkette übernommen werden soll.
-          \param endIndex Der 0-basierte Index auf den ersten Buchstaben, der in der neuen
-          Zeichenkette nicht übernommen werden soll.
-          \return Eine neue Zeichenkette, die ab dem beginIndex beginnt und einen Buchstaben vor dem
-          endIndex endet..
-          */
+          /*!
+           \brief This method creates a substring that consists of a portion of this string.
+           \param beginIndex The zero-based index of the first character to be included in the new substring.
+           \param endIndex The zero-based index of the first character that should not be included in the new substring.
+           \return A new string that starts from the beginIndex and ends one character before the endIndex.
+           \details This method creates a new string that contains a portion of the original string, starting from the character at the beginIndex and ending one character before the endIndex.
+           */
          String substring(Integer beginIndex, Integer endIndex) const;
 
-         /*!
-          \brief Diese Methode gibt eine neue Zeichenkette zurück, an der alle nicht sichtbaren
-          Textzeichen (Whitespaces) am Anfang und am Ende der Zeichenkette entfernt wurden.
-          */
+          /*!
+           \brief This method returns a new string with all non-visible text characters (whitespaces) removed from the beginning and end of the string.
+           \details The method creates a new string by removing all non-visible text characters (whitespaces) from the beginning and end of the original string.
+           \return A new string with all non-visible text characters (whitespaces) removed from the beginning and end.
+           */
          String trim() const;
 
-         /*!
-          \brief Diese Methode ersetzt Buchstaben in der Zeichenkette. Der "alte" Buchstabe wird
-          an allen Positionen durch den "neuen" Buchstaben ersetzt.
-          \param oldChar Der alte Buchstabe, der ersetzt werden soll.
-          \param newChar Der neue Buchstabe, mit dem der alte ersetzt werden soll.
-          \return Die Zeichenkette mit den Ersetzungen.
-          */
+          /*!
+           \brief This method replaces characters in the string. The "old" character is replaced with the "new" character at all positions.
+           \param oldChar The old character to be replaced.
+           \param newChar The new character to replace the old character.
+           \return The string with the replacements.
+           \details This method replaces occurrences of the "old" character with the "new" character in the string.
+           */
          String replace(Char oldChar, Char newChar) const;
 
-         /*!
-          \brief Diese Methode ersetzt Zeichenketten in der Zeichenkette. Die "alte" Zeichenkette
-          wird an allen Positionen durch die "neue" Zeichenkette ersetzt.
-          \param oldStr Die alte Zeichenkette, die ersetzt werden soll.
-          \param newStr Die neue Zeichenkette, mit der die alte ersetzt werden soll.
-          \return Die Zeichenkette mit den Ersetzungen.
-          */
+          /*!
+           \brief This method replaces substrings in the string. The "oldStr" substring is replaced with the "newStr" substring at all positions.
+           \param oldStr The substring to be replaced.
+           \param newStr The substring to replace the old substring.
+           \return The string with the replacements.
+           \details This method replaces occurrences of the "oldStr" substring with the "newStr" substring in the string.
+           */
          String replaceAll(String oldStr, String newStr) const;
 
-         /*!
-          \brief Diese Methode dreht die Reihenfolge der Zeichen um
-          */
+          /*!
+           \brief This method reverses the order of characters in the string.
+           \details This method reverses the order of characters in the string.
+           */
          String reverse() const;
 
-         /*!
-          \brief Splits the string into a list of strings, using the char as separator.
-          */
+          /*!
+           \brief Splits the string into a list of strings, using the specified character as a separator.
+           \param character The character to use as a separator.
+           \return A list of strings resulting from the split operation.
+           \details This method splits the string into multiple substrings based on the specified character. Each substring is added to a list of strings, which is then returned.
+           */
          StringList split(Char character);
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens des gewünschten
-          Zeichens in der Zeichenkette zurück.
-          \param character Das Zeichen, nach dem gesucht wird.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the first occurrence of the desired character in the string.
+           \param character The character to search for.
+           \return Returns the zero-based index, or -1 if the character is not found in the string.
+           \details This method searches for the first occurrence of the desired character in the string and returns its zero-based position.
+           */
          Integer indexOf(Char character) const;
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
-          Zeichenkette in der Zeichenkette zurück.
-          \param str Die Zeichenkette, nach der gesucht wird.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the first occurrence of the desired
+           string in the string.
+           \param str The string to search for.
+           \return Returns the zero-based index, or -1 if the string is not found in the string.
+           \details This method searches for the first occurrence of the desired string in the string and returns its zero-based position.
+           */
          Integer indexOf(const String& str) const;
 
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens des gewünschten
-          Zeichens in der Zeichenkette zurück.
-          \param character Das Zeichen, nach dem gesucht wird.
-          \param fromIndex Die 0-basierte Position, ab der nach dem Zeichen gesucht werden soll.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the first occurrence of the desired
+           character in the string.
+           \param character The character to search for.
+           \param fromIndex The zero-based position to start searching from.
+           \return Returns the zero-based index, or -1 if the character is not found in the string.
+           \details This method searches for the first occurrence of the desired character in the string starting from the specified position and returns its zero-based index.
+           */
          Integer indexOf(Char character, Integer fromIndex) const;
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des ersten Vorkommens der gewünschten
-          Zeichenkette in der Zeichenkette zurück.
-          \param str Die Zeichenkette, nach der gesucht wird.
-          \param fromIndex Die Position, ab der gesucht wird.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the first occurrence of the desired
+           string in the string.
+           \param str The string to search for.
+           \param fromIndex The position to start searching from.
+           \return Returns the zero-based index, or -1 if the string is not found in the string.
+           \details This method searches for the first occurrence of the desired string in the string starting from the specified position and returns its zero-based index.
+           */
          Integer indexOf(const String& str, Integer fromIndex) const;
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens des gewünschten
-          Zeichens in der Zeichenkette zurück.
-          \discussion Man kann diese Methode auch so verstehen, dass vom Ende der Zeichenkette nach
-          dem ersten Vorkommend des Zeichens gesucht wird.
-          \param character Das Zeichen, nach dem gesucht wird.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the last occurrence of the desired character in the string.
+           \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
+           \param character The character to search for.
+           \return Returns the zero-based index, or -1 if the character is not found in the string.
+           */
          Integer lastIndexOf(Char character) const;
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
-          Zeichenkette in der Zeichenkette zurück.
-          \discussion Man kann diese Methode auch so verstehen, dass vom Ende der Zeichenkette nach
-          dem ersten Vorkommend des Zeichens gesucht wird.
-          \param str Die Zeichenkette, nach der gesucht wird.
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the last occurrence of the desired
+           string in the string.
+           \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
+           \param str The string to search for.
+           \return Returns the zero-based index, or -1 if the string is not found in the string.
+           */
          Integer lastIndexOf(const String& str) const;
 
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens des gewünschten
-          Zeichens in der Zeichenkette zurück.
-          \discussion Man kann diese Methode auch so verstehen, dass vom Ende der Zeichenkette nach
-          dem ersten Vorkommend des Zeichens gesucht wird.
-          \param character Das Zeichen, nach dem gesucht wird.
-          \param fromIndex Der 0-basierte Index, ab dem (von hinten) gesucht wird
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the last occurrence of the desired
+           character in the string.
+           \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
+           \param character The character to search for.
+           \param fromIndex The zero-based index to start searching from (from the end).
+           \return Returns the zero-based index, or -1 if the character is not found in the string.
+           */
          Integer lastIndexOf(Char character, Integer fromIndex) const;
 
-         /*!
-          \brief Diese Methode gibt die 0-basiert Position des letzten Vorkommens der gewünschten
-          Zeichenkette in der Zeichenkette zurück.
-          \discussion Man kann diese Methode auch so verstehen, dass vom Ende der Zeichenkette nach
-          dem ersten Vorkommend des Zeichens gesucht wird.
-          \param str Die Zeichenkette, nach der gesucht wird.
-          \param fromIndex Der 0-basierte Index, ab dem (von hinten) gesucht wird
-          \return Gibt den 0-basierten Index zurück, oder -1, wenn das Zeichen in der Zeichenkette
-          nicht vorkommt.
-          */
+          /*!
+           \brief This method returns the zero-based position of the last occurrence of the desired
+           string in the string.
+           \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
+           \param str The string to search for.
+           \param fromIndex The zero-based index to start searching from (from the end).
+           \return Returns the zero-based index, or -1 if the string is not found in the string.
+           */
          Integer lastIndexOf(const String& str, Integer fromIndex) const;
 
-         /*!
-          \brief Diese Methode gibt das Zeichen an einer bestimmten Position in der Zeichenkette
-          zurück.
-          \param index Der 0-basierte Index, dessen Zeichen gewünscht ist.
-          */
+          /*!
+           \brief This method returns the character at a specific position in the string.
+           \param index The zero-based index of the desired character.
+           \return The character at the specified position.
+           \details This method returns the character at the specified position in the string.
+           */
          Char charAt(Integer index) const;
 
-         /*!
-          \brief Diese Methode ersetzt ein Zeichen in der Zeichenkette durch ein Neues.
-          \param index Der 0-basierte Index des Zeichens, der ersetzt werden soll.
-          \param character Das Zeichen, welches eingesetzt werden soll.
-          */
+          /*!
+           \brief This method replaces a character in the string with a new one.
+           \param index The zero-based index of the character to be replaced.
+           \param character The character to be inserted.
+           \details This method replaces the character at the specified index in the string with the new character.
+           */
          void setCharAt(Integer index, Char character);
 
-         /*!
-          \brief Diese Methode fügt ein Zeichen in die Zeichenkette an der Position index ein
-          und veschiebt alle Zeichen danach nach rechts
-          \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
-          \param character Das Zeichen, welches eingefügt werden soll
-          */
+          /*!
+           \brief This method inserts a character into the string at the specified index and shifts all subsequent characters to the right.
+           \param index The zero-based index of the character where the letter should be inserted.
+           \param character The character to be inserted.
+           \details This method inserts the character at the specified index in the string and shifts all subsequent characters to the right.
+           */
          void insert(Integer index, Char character);
 
-         /*!
-          \brief Diese Methode fügt eine Zeichenkette in die Zeichenkette an der Position index ein
-          und veschiebt alle Zeichen danach nach rechts
-          \param index Der 0-basierte Index des Zeichens, an dem der Buchstabe eingefügt werden soll
-          \param string Die Zeichenkette, welchee eingefügt werden soll
-          */
+          /*!
+           \brief This method inserts a string into the string at the specified index and shifts all subsequent characters to the right.
+           \param index The zero-based index of the character where the string should be inserted.
+           \param string The string to be inserted.
+           \details This method inserts the string at the specified index in the string and shifts all subsequent characters to the right.
+           */
          void insert(Integer index, const String& string);
 
          /*!
@@ -491,6 +483,10 @@ namespace jm
                     Integer fieldwidth = 0,
                     Char fillchar = Char(' '));
 
+         /*!   
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a character.
+          */         
          String arg(Char character,
                     Integer fieldwidth = 0,
                     Char fillchar = Char(' '));
@@ -510,6 +506,15 @@ namespace jm
                     Integer precision = -1,
                     Char fillchar = Char(' '));
 
+         /*!
+         \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+         replace it by a string representation of the number.
+          \param fieldwidth The (minimum) number of characters for the value. If fieldwidth is >0
+          the leading space is filled (right align). If fieldwidth is < 0 the trailing space is
+          filled (left align).
+          \param precision The number of digits after the descimal separator.
+          \param fillchar The character for filling the space, until fieldwidth chars are reached.
+         */
          String arg(double value,
                     Integer fieldwidth = 0,
                     Integer precision = -1,
@@ -517,7 +522,7 @@ namespace jm
          {
             return arg(Double(value), fieldwidth, precision, fillchar);
          };
-
+   
          static void setConsoleCharset(Charset* cs);
 
          // Operators

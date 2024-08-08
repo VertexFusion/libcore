@@ -82,14 +82,14 @@ struct DllExport Bool
          return mValue < 0;
       };
 
-      //Implizit conversion
+      // Implicit conversion
       operator bool() const
       {
          return isTrue();
       };
 
       /*!
-       \brief Implementierung des Operators ==
+       \brief Implementation of the equality operator.
        */
       DllExport
       friend bool operator==(Bool v1, Bool v2)
@@ -110,7 +110,7 @@ struct DllExport Bool
       };
 
       /*!
-       \brief Implementierung des Operators ==
+       \brief Implementation of the equality operator.
        */
       DllExport
       friend bool operator!=(Bool v1, Bool v2)
@@ -160,10 +160,9 @@ class DllExport Integer
       uint8 digits() const;
 
       /*!
-       \brief Methode wandelt einen String in einen Integer-Wert um.
-       \param string Die Zeichenkette, z.B. "1", die in eine Gleitkommazahl umgewandelt werden
-       soll.
-       \return Die gewünschte Integer-Zahl.
+       \brief Converts a string to an integer value.
+       \param string The string, e.g. "1", that should be converted to an integer.
+       \return The desired integer value.
        */
       static Integer valueOf(const jm::String& string);
 
@@ -184,23 +183,21 @@ class DllExport Integer
       static Integer fromHex(const jm::String& str, uint32 begin, uint32 size);
 
       /*!
-       \brief Methode wandelt einen eine Integer-Zahl in einen hexadezimalen String-Wert um.
-       \return Gibt die gewünschte Zahl als String zurück, der eine hexadezimale Darstellung ist.
-       Also z.B. "FF" für 255.
+       \brief Converts an integer number to a hexadecimal string value.
+       \return Returns the desired number as a string, which is a hexadecimal representation.
+       For example, "FF" for 255.
        */
       jm::String toHexString();
 
       /*!
-       \brief Methode wandelt eine Integer-Zahl in einen String um, der eine Römische Zahl
-       darstellt.
-       \return Gibt die gewünschte Zahl als String mit dem Wert einer Römischen Zahl zurück.
+       \brief Converts an integer number to a string representation of a Roman numeral.
+       \return The desired number as a string with the value of a Roman numeral.
        */
       jm::String toRomanString();
 
       /*!
-       \brief Methode wandelt eine Integer-Zahl in einen String um, der einm Großbuchstaben
-       entspricht. 1=A,2=C,3=C usw-
-       \return Gibt die gewünschte Zahl als String mit dem Wert eines Großbuchstaben zurück.
+       \brief Converts an integer number to a string representation of a capital letter.
+       \return The desired number as a string with the value of a capital letter.
        */
       jm::String toLatinAlphabetString();
 

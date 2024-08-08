@@ -70,7 +70,8 @@ namespace jm
 
          Object* next();
 
-         Object* seek();//Gibt das nächste Objekt zurück, ohne den Iterator zu bewegenn
+         // Return the next object without moving the iterator
+         Object* peekNext() const;
 
          ~LinkedListIterator();
 
@@ -94,39 +95,40 @@ namespace jm
    {
       public:
 
-         /*!
-          \brief Konstruktor für die Verkettete Liste. Hier werden alle Variablen initialisiert.
-          \param owner Der Besitzer der Liste. Bestenfalls ein Editable-Objekt. Dieses erhält
-          ggf. regenerate-Events bei Undo-Schritten.
-          */
+          /*!
+           \brief Constructor for the LinkedList. Initializes all variables.
+           \param owner The owner of the list. Ideally an Editable object. This object may receive
+           regenerate events during undo steps.
+           */
          LinkedList(Object* owner);
 
-         /*!
-          \brief Destructor für die verkettete Liste. Hier werden alle Variabeln gelöscht
-          \warning If you use the LinkedList together with UndoManager, you must call
-          LinkedList::clear() with the UndoManager object to erase the objects gracefully.
-          Alternatively you can call UndoManager::clearStacks() to get the same effect.
-          Otherwise memory errors occur.
-          */
+          /*!
+           \brief Destructor for the linked list. This function deletes all variables.
+           \warning If you are using the LinkedList together with UndoManager, you must call
+           LinkedList::clear() with the UndoManager object to gracefully erase the objects.
+           Alternatively, you can call UndoManager::clearStacks() to achieve the same effect.
+           Otherwise, memory errors may occur.
+           */
          ~LinkedList();
 
-         /*!
-          \brief Diese Methode gibt wahr zurück, wenn ein nächstes Element in der Liste vorhanden ist
-          */
+          /*!
+           \brief This method returns true if there is a next element in the list
+           */
          bool hasNext();
-         /*!
-          \brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-          Das nächste Element kann NULL sein, aber dann wird hasNext() falsch zurückgeben.
-          */
+
+          /*!
+           \brief Iterates to the next element in the list and returns the current one.
+           The next element can be NULL, but then hasNext() will return false.
+           */
          Object* next();
 
          /*!
-          \brief Gibt das erste Element der Liste zurück
+          \brief Returns the first element of the list.
           */
          Object* first() const;
 
          /*!
-          \brief Gibt das letzte Element der Liste zurück
+          \brief Returns the last element of the list.
           */
          Object* last() const;
 
@@ -170,10 +172,10 @@ namespace jm
 
          friend class LinkedListIterator;
 
-         /*!
-         	\brief Iteriert die Liste zu nächsten Element und gibt das aktuelle zurück.
-         	Das nächste Element kann NULL sein, aber dann wird hasNext() falsch zurückgeben.
-         	*/
+          /*!
+            \brief Iterates to the next element in the list and returns the current one.
+            The next element can be NULL, but then hasNext() will return false.
+            */
          LListElement* nextElement();
 
          void add(LListElement* item, UndoManager* um);

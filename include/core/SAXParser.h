@@ -72,75 +72,113 @@ namespace jm
           */
          void addAttribute(String uri, String localname, String qName, String value);
 
-         /*!
-          \brief Sucht nach dem Index eines Attributes
-          */
-         int32 GetIndex(String qName) const;
+          /*!
+           \brief This method searches for the index of an attribute.
+           \param qName The qualified name of the attribute.
+           \return The index of the attribute, or -1 if not found.
+           */
+         int32 indexOf(String qName) const;
+
+          /*!
+           \brief This method searches for the index of an attribute.
+           \param qName The qualified name of the attribute.
+           \param localName The local name of the attribute.
+           \return The index of the attribute, or -1 if not found.
+           */
+         int32 indexOf(String uri, String localName) const;
+
+          /*!
+           \brief Returns the number of attributes.
+           */
+         uint32 count() const;
+
+          /*!
+           \brief Returns the local name of an attribute.
+           \param index The 0-based index of the attribute.
+           \return The local name of the attribute.
+           */
+         String localName(uint32 index) const;
+
+          /*!
+           \brief Returns the qualified name.
+           \return The qualified name of the attribute.
+           */
+         String qualifiedName(uint32 index) const;
+
+          /*!
+           \brief Returns the attribute type.
+           \details The attribute type is one of the following strings: "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
+           \return The attribute type.
+           */
+         String type(uint32 index) const;
+
+          /*!
+           \brief Returns the attribute type.
+           \details The attribute type is one of the following strings: "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
+           \return The attribute type.
+           */
+         String type(String qname) const;
+
+          /*!
+           \brief Returns the attribute type.
+           \details The attribute type is one of the following strings: "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
+           \param uri The URI of the attribute.
+           \param localName The local name of the attribute.
+           \return The attribute type.
+           */
+         String type(String uri, String localName) const;
+
+          /*!
+           \brief Returns the URI.
+           \return The URI of the attribute.
+           */
+         String uri(uint32 index) const;
+
+          /*!
+           \brief Returns the value of the attribute.
+           \param index The 0-based index of the attribute.
+           \return The value of the attribute.
+           */
+         String value(uint32 index) const;
+
+          /*!
+           \brief Returns the value.
+           \param qname The qualified name of the attribute.
+
+           \return The value.
+           */
+         String value(const String& qname) const;
 
          /*!
-          \brief Sicht nach dem Index eines Attributes
+          \brief Returns the value as an integer.
+          \param qname The qualified name of the attribute.
           */
-         int32 GetIndex(String uri, String localName) const;
+         int32 valueAsInt(const String& qname)const;
 
          /*!
-          \brief Gibt die Anzahl der Attribute zurück
+          \brief Returns the value as a float.
+          \param qname The qualified name of the attribute.
           */
-         uint32 GetLength() const;
+         float valueAsFloat(const String& qname)const;
 
          /*!
-          \brief Gibt den LocalName eines Attributes zurück
+          \brief Returns the value as a boolean.
+          \param qname The qualified name of the attribute.
           */
-         String GetLocalName(uint32 index) const;
+         bool valueAsBool(const String& qname)const;
 
          /*!
-          \brief Gibt den qualifiedName zurück
+          \brief Checks if the attribute is contained
+          \param qname The qualified name of the attribute.
           */
-         String GetQName(uint32 index) const;
+         bool hasValue(const String& qname) const;
 
          /*!
-          \brief Gibt den Attribut-Type zurück
-          \discussion The attribute type is one of the strings "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
+          \brief Returns the value.
+          \param uri The URI of the attribute.
+          \param localName The local name of the attribute.
           */
-         String GetType(uint32 index) const;
-
-         /*!
-          \brief Gibt den Attribut-Type zurück
-          */
-         String GetType(String qname) const;
-
-         /*!
-          \brief Gibt den Attribut-Type zurück
-          */
-         String GetType(String uri, String localName) const;
-
-         /*!
-          \brief Gibt URI zurück
-          */
-         String GetURI(uint32 index) const;
-
-         /*!
-          \brief Gibt den Wert zurück
-          */
-         String GetValue(uint32 index) const;
-
-         /*!
-          \brief Gibt den Wert zurück
-          */
-         String GetValue(const String& qname) const;
-
-         int32 GetIntValue(const String& qname)const;
-         float GetFloatValue(const String& qname)const;
-         bool GetBoolValue(const String& qname)const;
-
-         /*!
-          \brief Prüft, ob das Attribut enthalten ist
-          */
-         bool HasValue(const String& qname) const;
-
-         /*!
-          \brief Gibt den Wert zurück
-          */
-         String GetValue(String uri, String localName) const;
+         String value(String uri, String localName) const;
 
       private:
 
@@ -152,18 +190,18 @@ namespace jm
 
 
    /*!
-    \brief Diese Klasse repräsentiert einen XML/HTML-Parser nach dem SAX-Prinzip (Simple API for XML).
-    Der Vorteil liegt in der Seriellen Verarbeitung der Tags.
-    Diese Abstrakte Vaterklasse muss von den Parsern abgeleitet werden. und einige Methode implementieren.
+    \brief This class represents an XML/HTML parser based on the SAX (Simple API for XML) principle.
+    The advantage lies in the serial processing of tags.
+    This abstract base class must be derived by the parsers and implement some methods.
     */
    class DllExport SAXParser: public Object
    {
 
       public:
 
-         /*!
-          \brief Konstruktor
-          */
+          /*!
+           \brief Constructor
+           */
          SAXParser();
 
          /*!
@@ -171,58 +209,72 @@ namespace jm
           */
          virtual ~SAXParser();
 
-         void Parse(File& file);
+         /*!
+          \brief This method parses the given file.
+          \param file The file to parse.
+          */
+         void parse(File& file);
+
+          /*!
+           \brief This method parses the given string, which should be XML code.
+           \param xml The XML code to parse.
+           */
+         void parse(const String& xml);
+
+          /*!
+           \brief This method is called by the parser when it encounters letters.
+           \param characters The characters.
+           */
+         virtual void characters(const String& characters);
+
+          /*!
+           \brief This method is called by the parser when the end of the document is reached.
+           */
+         virtual void endDocument();
 
          /*!
-          \brief Diese Methode parst die übergebene Zeichenkette, welche XML sein soll
-          \param xml Der XML-Code
-          */
-         void Parse(const String& xml);
-
-         /*!
-          \brief Diese Methode wird vom Parser aufgerufen, wenn er Buchstaben entdeckt hat.
-          */
-         virtual void Characters(const String& characters);
-
-         /*!
-          \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende des Dokumentes erreicht wurde.
-          */
-         virtual void EndDocument();
-
-         /*!
-          \brief Diese Methode wird vom Parser aufgerufen, wenn das Ende eines Elementes erreicht wurde.
-          */
-         virtual void EndElement(const String& uri, const String& localName, const String& qName);
+         \brief This method is called by the parser when the end of an element is reached.
+         \param uri The URI of the element.
+         \param localName The local name of the element.
+         \param qName The qualified name of the element.
+         */
+         virtual void endElement(const String& uri, const String& localName, const String& qName);
 
          /*!
           \brief End the scope of a prefix-URI mapping.
+          \param prefix The prefix that was being mapped.
           */
-         virtual void EndPrefixMapping(const String& prefix);
+         virtual void endPrefixMapping(const String& prefix);
 
-         /*!
-          \brief Diese Methode wird vom Parser aufgerufen, wenn ignorierbare Leerzeichen gefunden wurden
-          */
-         virtual void IgnorableWhiteSpaces(const String& characters);
+          /*!
+         \brief This method is called by the parser when ignorable white spaces are encountered. 
+         \param characters The characters.
+           */
+         virtual void ignorableWhiteSpaces(const String& characters);
 
          /*!
           \brief Receive notification of a processing instruction.
           */
-         virtual void ProcessingInstruction(const String& target, const String& data);
+         virtual void processingInstruction(const String& target, const String& data);
 
          /*!
           \brief Receive notification of a skipped entity.
           */
-         virtual void SkippedEntity(const String& name);
+         virtual void skippedEntity(const String& name);
 
-         /*!
-          \brief Diese Methode wird am Anfang des Dokuemntes aufgerufen
-          */
-         virtual void StartDocument();
+          /*!
+           \brief This method is called at the beginning of the document.
+           */
+         virtual void startDocument();
 
-         /*!
-          \brief Diese Methode wird beim Beginn eines Elementes aufgerufen.
-          */
-         virtual void StartElement(const String& uri,
+          /*!
+         \brief This method is called at the beginning of an element.
+         \param uri The URI of the element.
+         \param localName The local name of the element.
+         \param qName The qualified name of the element.
+         \param attributes The attributes of the element.
+           */
+         virtual void startElement(const String& uri,
                                    const String& localName,
                                    const String& qName,
                                    const SAXAttributes& attributes);
@@ -230,10 +282,10 @@ namespace jm
 
       private:
 
-         /*!
-          \brief Diese Helfermethode parst den Tagstring... Das ist der gesamte Teil zwischen < und >
-          */
-         void ParseTagString(const String& token);
+          /*!
+           \brief This helper method parses the tag string... This is the entire part between < and >
+           */
+         void parseTagString(const String& token);
 
    };
 

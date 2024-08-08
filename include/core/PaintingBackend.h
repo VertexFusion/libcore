@@ -43,22 +43,28 @@ namespace jm
 {
 
    /*!
-    \brief Interne Enumeration umd BufferElement genauer zu beschreiben
+    \brief Internal enumeration to provide a more detailed description of BufferElement
     */
    enum BufferMode
    {
-      kBmMoveTo,
-      kBmLineTo,
-      kBmBlindTo
+      kBmMoveTo,   // Move the pen to a new position
+      kBmLineTo,   // Draw a line to a new position
+      kBmBlindTo   // Move the pen to a new position without drawing
    };
 
    /*!
-    \brief Struktut speichert die Zeicheninformationen
+    \brief This struct stores the drawing information.
     */
    struct DllExport BufferElement
    {
-      Vertex3 point;
-      BufferMode mode; //0=move-To 1=line-To 2=Blind-To
+      Vertex3 point; // The point to be drawn
+      BufferMode mode; // The mode of drawing (move-to, line-to, blind-to)
+
+      /*!
+       \brief Constructor
+       \param point The point to be drawn
+       \param mode The mode of drawing
+       */
       BufferElement(Vertex3 point, BufferMode mode)
       {
          this->point = point;
@@ -83,135 +89,135 @@ namespace jm
           */
          virtual ~PaintingBackend();
 
-         /*!
-          \brief Wenn diese Methode aufgerufen wird, wird die Arbeit des Zeichnenden Threads
-          sobald wie möglich unterbrochen.
-          */
+          /*!
+           \brief This method is called to interrupt the work of the drawing thread as soon as possible.
+           \param status The status of the cancellation. If "true", the drawing thread should be interrupted.
+           */
          void CancelProcess(bool status);
 
-         /*!
-          \brief Diese Methode legt eine neue Transformation auf dem Transformationsstapel ab.
-          */
+          /*!
+           \brief This method pushes a new transformation onto the transformation stack.
+           \param t The transformation to be pushed onto the stack.
+           */
          void PushTransform(const Transform& t);
 
-         /*!
-          \brief Diese Methode löscht das obere Element auf dem Transformationsstapel.
-          */
+          /*!
+           \brief This method removes the top element from the transformation stack.
+           */
          void PopTransform();
 
-         /*!
-          \brief Diese Methode wechselt auf dem Zielkontext die Farbe mit der gezeichnet wird
-          \param colour Die RGB-Farbe, mit der gezeichnet wird.
-          */
-         virtual void SetColour(Color colour) = 0;
+          /*!
+           \brief This method changes the color used for drawing on the target context.
+           \param color The RGB color used for drawing.
+           */
+         virtual void SetColour(Color color) = 0;
 
+         /*!
+         \brief Returns the current color used for drawing on the target context.
+         */
          virtual Color GetColour() const = 0;
 
-         /*!
-          \brief Diese Methode legt die Strichstärke fest, mit der die Objekte gezeichnet werden
-          \param lineweight Die Strichstärke.
-          */
+          /*!
+           \brief This method sets the line weight used for drawing the objects.
+           \param lineweight The line weight.
+           */
          virtual void SetLineWeight(Double lineweight) = 0;
 
+         /*!
+          /brief  Returns the current line weight used for drawing on the target context.
+          */
          virtual double GetLineWeight() const = 0;
 
-         /*!
-          \brief Diese Methode bewegt den Stift von der aktuellen Position zur neuen Position,
-          ohne etwas zu zeichnen.
-          \param pt Die neue Position im WKS.
-          */
+          /*!
+           \brief This method moves the pen from the current position to the new position,
+           without drawing anything.
+           \param pt The new position in the WCS.
+           */
          void MoveTo(const Vertex3& pt);
 
-         /*!
-          \brief Diese Methode "zeichnet" eine unsichtbare Linie zum neuen Punkt. Das ist
-          notwendig, weil z.B. bei Schraffuren das Linienmuster positionsabhängig ist und Linien
-          ggf. unterbrochen gezeichnet werden. Hier wird also "nur" der Offset im Linienmuster
-          verändert.
-          \param pt Die neue Position im WKS.
-          */
+          /*!
+           \brief This method "draws" an invisible line to the new point. This is necessary because, for example, in hatching, the line pattern depends on the position and lines may be interrupted. Here, only the offset in the line pattern is changed.
+           \param pt The new position in the WCS.
+           */
          void BlindTo(const Vertex3& pt);
 
-         /*!
-          \brief Diese Methode bewegt den Stift von der aktuellen Position zur neuen Position,
-          und zeichnet dabei eine gerade Linie.
-          \param pt Die neue Position im WKS.
-          */
+          /*!
+           \brief This method moves the pen from the current position to the new position,
+           and draws a straight line in the process.
+           \param pt The new position in the WCS.
+           */
          void LineTo(const Vertex3& pt);
 
-         /*!
-          \brief Diese Methode schließt den aktuellen Pfad, zeichnet Ihn und öffnet einen neuen
-          Pfad implizit.
-          */
+          /*!
+           \brief This method closes the current path, draws it, and implicitly opens a new path.
+           */
          void Stroke();
 
-         /*!
-          \brief Diese Methode schließt den aktuellen Pfad, füllt die umschließende Fläche mit
-          der aktuellen Farbe aus und öffnet einen neuen Pfad implizit.
-          */
+          /*!
+           \brief This method closes the current path, fills the enclosed area with the current color, and implicitly opens a new path.
+           */
          virtual void Fill() = 0;
 
-         /*!
-          \brief Diese Methode schließt den aktuellen Pfad, füllt die umschließende Fläche,
-          zeichnet Ihn und öffnet einen neuen Pfad implizit.
-          */
+          /*!
+           \brief This method closes the current path, fills the enclosed area with the current color, draws it, and implicitly opens a new path.
+           */
          virtual void FillAndStroke() = 0;
 
-         /*!
-          \brief Diese Methode dient dazu, zum aktuellen Pfad das Grafikprimitiv Kreisbogen
-          hinzuzufügen.
-          \discussion Wenn der Endwinkel größer als der Startwinkel ist, wird entgegen des
-          Uhrzeigersinns gezeichnet, wenn der Endwinkel kleiner dem Startwinkel ist, wird in
-          Uhrzeigerrichtung gezeichnet
-          \param center Der Kreismittelpunkt in globalen WCS-Koordinaten
-          \param normal Der resultierende Richtungsvektor der Kreisebene.
-          \param radius Der skalierte Kreisradius.
-          \param startAngle Der Startwinkel im Gradmaß
-          \param endAngle Der Endwinkel im Gradmaß
-          */
+          /*!
+           \brief This method is used to add the graphics primitive Arc to the current path.
+           \details If the end angle is greater than the start angle, the arc is drawn in a counter-clockwise direction. If the end angle is less than the start angle, the arc is drawn in a clockwise direction.
+           \param center The center of the arc in global WCS coordinates.
+           \param normal The resulting direction vector of the arc plane.
+           \param radius The scaled radius of the arc.
+           \param startAngle The start angle in degrees.
+           \param endAngle The end angle in degrees.
+           */
          void Arc(const Vertex3& center,
                   const Vertex3& normal,
                   Double radius,
                   Double startAngle,
                   Double endAngle);
 
-         /*!
-          \brief Diese Methode dient dazu, zum aktuellen Pfad das Grafikprimitiv Ellipsenbogen
-          hinzuzufügen.
-          \param center Der Kreismittelpunkt in globalen WCS-Koordinaten
-          \param majorAxis Hauptachse der Ellipse
-          \param minorAxis Nebenachse der Ellipse
-          \param startAngle Der Startwinkel im Bogenmaß
-          \param endAngle Der Endwinkel im BOgenmaß
-          */
+          /*!
+           \brief This method is used to add the graphics primitive Elliptic to the current path.
+           \param center The center of the ellipse in global WCS coordinates.
+           \param majorAxis The major axis of the ellipse.
+           \param minorAxis The minor axis of the ellipse.
+           \param startAngle The start angle in radians.
+           \param endAngle The end angle in radians.
+           */
          void Elliptic(const Vertex3& center,
                        const Vertex3& majorAxis,
                        const Vertex3& minorAxis,
                        Double startAngle,
                        Double endAngle);
 
-         /*!
-          \brief Diese Methode zeichnet eine NURBS (Non-Uniform Rational Basis-Spline).
-          \param nurbs Das beschreibende Objekt für die Kurve.
-          */
+          /*!
+           \brief This method draws a NURBS (Non-Uniform Rational Basis-Spline) curve.
+           \param nurbs The object describing the curve.
+           */
          void Nurbs(Nurbs* nurbs);
 
-         /*!
-          \brief Diese Methode zeichnet eine gerade Linie zwischen zwei Punkten im Zielkontext
-          */
+          /*!
+           \brief This method draws a straight line between two points in the target context.
+           \param start The starting point of the line.
+           \param end The ending point of the line.
+           */
          virtual void DrawLineSegment(const Vertex3& start, const Vertex3& end) = 0;
 
          virtual void FinishStroke() = 0;
 
-         /*!
-          \brief Punkt zeichnen
-          */
+          /*!
+           \brief This method draws a point on the target context.
+           \param point The point to be drawn.
+           */
          virtual void DrawPoint(const Vertex3& point) = 0;
 
-         /*!
-          \brief Diese Methode setzt das Linienmuster zum Zeichnen zurück, damit beim Beginn
-          einer neuen Linie das Muster von vorne startet. Dies ist insbesondere bei Schraffuren
-          wichtig.
-          */
+          /*!
+           \brief This method resets the line pattern for drawing, so that when starting
+           a new line, the pattern starts from the beginning. This is particularly important
+           for hatching.
+           */
          virtual void ResetLinePatternOffset() = 0;
 
          bool WantCancel();
@@ -224,75 +230,69 @@ namespace jm
 
       private:
 
-         /*!
-          \brief Der Stack mit den Transformationseinstellungen... Notwendig bei Inserts
-          */
+          /*!
+           \brief The stack of transformation settings... necessary for inserts.
+           */
          std::vector<Transform>* transformstack;
 
-         /*!
-          \brief Der aktuelle Linienstil, mit dem Linien gezeichnet werden, oder NULL,
-          wenn eine durchgehende Linie gezeichnet wird.
-          \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
-          */
+          /*!
+           \brief The current line style used for drawing lines, or NULL if a solid line is being drawn.
+           \discussion All different line styles are manually drawn using strokes.
+           */
          //dwg::LineType* curLineType;
 
-         /*!
-          \brief Die aktuelle Skalierung des Linienmusters.
-          \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
-          */
+          /*!
+           \brief The current scaling factor of the line pattern.
+           \details All different line styles are manually drawn using strokes.
+           */
          Double curLineTypeScale;
 
-         /*!
-          \brief Position im gesamten Pattern, an dem man gerade steht (vom Anfang des Pattern).
-          IN PATTERNSKALIERUNG (also ohne curLineTypeScale)
-          \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
-          */
+          /*!
+           \brief Current position within the line pattern, relative to the beginning of the pattern.
+           IN PATTERN SCALE (without curLineTypeScale).
+           \details All different line styles are manually drawn using strokes.
+           */
          Double linePatternOffset;
 
-         /*!
-          \brief Position im aktuellen Element, an dem man gerade steht (vom Anfang des Elements)
-          IN PATTERNSKALIERUNG (also ohne curLineTypeScale)
-          \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
-          */
+          /*!
+           \brief The position within the current element, relative to the beginning of the element.
+           IN PATTERN SCALE (without curLineTypeScale).
+           \details All different line styles are manually drawn using strokes.
+           */
          Double linePatternSubOffset;
 
-         /*!
-          \brief 0-basierter Index des aktuellen Elementes
-          \discussion Alle verschiedenen Linienstile werden manuell aus Strichen gezeichnet.
-          */
+          /*!
+           \brief Zero-based index of the current element.
+           \details All different line styles are manually drawn using strokes.
+           */
          int linePatternIndex;
 
-         /*!
-          \brief Diese Variable speichert einen Flag, ob das Verarbeiten abgebrochen werden soll,
-          oder nicht. Standardmäßig ist dieser Wert "Falsch". Wenn aber extern dieser Wert auf
-          "Wahr" gesetzt wird, muss der Painter so schnell wie möglich seine Arbeit abbrechen und
-          zurückkehren. Das ist eine Hilfe für Multi-Thread-Anwendungen.
-          */
+          /*!
+           \brief This variable stores a flag indicating whether processing should be canceled or not.
+           By default, this value is "false". However, if this value is set to "true" externally,
+           the Painter must abort its work as soon as possible and return. This is useful for multi-threaded applications.
+           */
          bool cancel;
 
-         /*!
-          \brief Die Gesamte Transformationsmatrix. Muss nach jedem Push und Pop vom
-          Transformationsstack neu berechnet werden.
-          */
+          /*!
+           \brief The total transformation matrix. Needs to be recalculated after each Push and Pop operation on the transformation stack.
+           */
          Transform trans;
 
-         /*!
-          \brief Zwischenspeicher für die Punkte, die in einem Pfad gezeichnet werden müssen.
-          */
+          /*!
+           \brief Buffer for storing the points that need to be drawn in a path.
+           */
          std::vector<BufferElement>* buffer;
 
-         /*!
-          \brief Aktualisiert die Transofrmationsmatrix
-          */
+          /*!
+           \brief This method updates the transformation matrix.
+           */
          void UpdateTrans();
 
-         /*!
-          \brief Diese Methode dient dazu, einen Punkt in OCS-Koordinaten unter Berücksichtigung
-          der aktuellen Transformationseinstellungen in die globalen WCS-Koordinaten der Zeichnung
-          zu transponieren.
-          \discussion Wesentlicher Grund für die Veränderung der Transformationseinstellungen sind
-          Blockreferenzen und verschachtelte Blockreferenzen.
-          */
+          /*!
+           \brief This method transposes a point in OCS coordinates to the global WCS coordinates of the drawing, taking into account the current transformation settings.
+           \details The main reason for changing the transformation settings is block references and nested block references.
+           */
          Vertex3 Trans(const Vertex3& pt) const;
 
    };

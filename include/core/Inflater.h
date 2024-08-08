@@ -46,8 +46,7 @@ namespace jm
    {
       private:
 
-         //Der Baum wird analog zu RFC 1951 aufgebaut.
-         //
+          // The tree is constructed analogously to RFC 1951.
          struct HuffmanTree
          {
             HuffmanTree* node0;
@@ -61,69 +60,69 @@ namespace jm
             HuffmanTree* Find(uint16 code, uint16 bits);
          };
 
-         //Aktueller Block
+         // Current Block
          uint8* mCompBytes;
          Integer mCompLength;
          Integer mCompIndex;
 
-         //Aktueller Block
+         // Current Block
          uint8* mUncompBytes;
          Integer mUncompLength;
          Integer mUncompIndex;
 
-         //Zählvariablen für verarbeitete Bytes
+         // Counting variables for processed bytes.
          Integer mTotalIn;
          Integer mTotalOut;
 
-         int32 mBit;//index auf das aktuelle Bit im aktuellen byte.
+         int32 mBit; // Index of the current bit in the current byte.
 
-         //Status, ob der letzte Block eingelesen wurde
+         // Status indicating whether the last block has been read
          bool mLastBlock;
 
-         //Status, ob Ende des Streams erreicht wurde
+          // Status indicating whether the end of the stream has been reached
          bool mEof;
 
-         //Status, ob zlib-Header und CRC weggelassen wird
+         // Status, indicating whether the zlib header and CRC are omitted
          bool mWrap;
 
-         //Größte Bitanzahl im Aktuellen Hufmann tree
+          // Maximum number of bits in the current Huffman tree
          uint16 MAX_BITS;
 
-         /*!
-          \brief Liest nächstes Bit ein aus dem Eingabestrom ein.
-          */
+          /*!
+           \brief Reads the next bit from the input stream.
+           */
          uint8 NextBit();
 
-         /*!
-          \brief Überspringt alle Bits bis zum Ende des aktuellen Bytes im Eingabestrom und springt zum Anfang des nächsten Bytes.
-          Steht man bereits an einem Byteanfang, passiert nichts.
-          */
+          /*!
+           \brief Skips all bits until the end of the current byte in the input stream and jumps to the beginning of the next byte.
+           If already at the beginning of a byte, nothing happens.
+           */
          void SkipByteBits();
 
-         /*!
-          \brief Gibt das nächste "ausgerichtete" Byte zurück. Man muss am Byteanfang stehen.
-          @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
-          */
+          /*!
+           \brief Returns the next "aligned" byte. Must be at the beginning of a byte.
+           \throws If not at the beginning of a byte, an error occurs.
+           */
          uint8 NextAlignedUInt8();
 
-         /*!
-          \brief Liest ein UINT16 nach LE ein. Man muss am Byteanfang stehen.
-          @throws Wenn man nicht am Byteanfang steht, gibts einen Fehler.
-          */
+          /*!
+           \brief Reads a UINT16 in little-endian format. Must be at the beginning of a byte.
+           \throws If not at the beginning of a byte, an error occurs.
+           */
          uint16 NextAlignedUInt16();
 
-         /*!
-          \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert.
-          Das MSB (Most significant bit) wird als erstes eingelesen.
-          \param bits Die Anzahl der Bits
-          */
+          /*!
+           \brief Reads the next X bits as a number. Byte boundaries are ignored.
+           The MSB (Most Significant Bit) is read first.
+           \param bits The number of bits
+           */
          uint16 NextUIntX(uint8 bits);
 
-         /*!
-          \brief Liest die nächsten X bits als Zahl ein. Bytegrenzen werden ignoriert
-          Das LSB (Least significant bit) wird als erstes eingelesen.
-          \param bits Die Anzahl der Bits
-          */
+          /*!
+           \brief Reads the next X bits as a number. Byte boundaries are ignored.
+           The LSB (Least Significant Bit) is read first.
+           \param bits The number of bits
+           */
          uint16 NextUIntXR(uint8 bits);
 
          HuffmanTree* CreateTree(Array<uint16>* lengths, Array<uint16>* codes);
@@ -132,13 +131,13 @@ namespace jm
 
          Array<uint16>* GetHuffmanCodes(Array<uint16>* codelengths);
 
-         //Schreibt das Byte in den die Ausgabe
+         // Writes the byte to the output 
          void WriteUncompressed(uint8 byte);
 
-         /*!
-          \brief Diese Methode wird für die "BTYPE=01" Kodierung "Fixed Huffman Codes" gebraucht.
-          Sie liest den nächsten "Fixed Huffman Code" ein und dekodiert ihn zu dem gewünschten Zahlenwert.
-          */
+          /*!
+           \brief This method is used for the "BTYPE=01" encoding "Fixed Huffman Codes".
+           It reads the next "Fixed Huffman Code" and decodes it to the desired numerical value.
+           */
          uint16 NextFixedHuffmanCode();
 
          void HandleUncompressedBlock();
@@ -156,13 +155,13 @@ namespace jm
 
       public:
          /*!
-          \brief Konstruktor
+          \brief Constructor
           */
          Inflater();
 
          /*!
-          \brief Konstruktor
-          \param wrap Status, ob zlib-Header und CRC weggelassen wird
+          \brief Constructor
+          \param wrap Status, if zlib-Header and CRC is omitted.
           */
          Inflater(bool wrap);
 
@@ -171,50 +170,52 @@ namespace jm
           */
          ~Inflater();
 
-         /*!
-          \brief Übergibt einen Block an Bytes zum Dekomprimieren an diese Klasse.
-          \param buffer Die komprimierten Daten
-          \param length Die Länge der Daten
-          */
+          /*!
+           \brief Passes a block of bytes to this class for decompression.
+           \param buffer The compressed data
+           \param length The length of the data
+           */
          void SetInput(uint8* buffer, Integer length);
 
-         /*!
-          \brief Gibt "wahr" zurück, wenn das Ende des Inputblocks erreicht ist, aber das Ende des Eingabestroms
-          noch nicht erreicht wurde
-          */
+          /*!
+           \brief Returns true if the end of the input block has been reached, but the end of the input stream has not been reached yet.
+           */
          bool NeedsInput();
 
-         /*!
-          \brief Gibt "wahr" zurück, wenn das Ende des Eingabestroms erreicht wurde.
-          */
+          /*!
+           \brief Returns true if the end of the input stream has been reached.
+           */
          bool Finished();
 
-         /*!
-          \brief Diese Methode dekomprimiert die Daten in den Puffer
-          \discussion beide Parameter sind Ausgabewerte und werden durch diese Methode initialisiert. Der Aufrufer muss das Array hinterher selbst aufräumen.
-          \param buffer Der Puffer, in den die Daten geschrieben werden sollen.
-          \param length Die Länge des Puffers
-          */
+          /*!
+           \brief This method decompresses the data into the buffer.
+           \discussion Both parameters are output values and will be initialized by this method. The caller must clean up the array afterwards.
+           \param buffer The buffer to write the data into.
+           \param length The length of the buffer.
+           */
          void Inflate(uint8*& buffer, Integer& length);
 
-         /*!
-          \brief Setzt den Dekomprimierer zurück, damit ein neues Objekt dekomprimiert werden kann
-          */
+          /*!
+           \brief Resets the decompressor, allowing a new object to be decompressed.
+           */
          void Reset();
 
-         /*!
-          \brief Gibt die Anzahl der "übrig gebliebenen" Bytes im Inputpuffer zurück
-          */
+          /*!
+           \brief Returns the number of remaining bytes in the input buffer.
+           \return The number of remaining bytes.
+           */
          Integer GetRemaining();
 
-         /*!
-          \brief Gibt die Gesamtanzahl der Bytes des komprimierten Inputs zurück
-          */
+          /*!
+           \brief Returns the total number of bytes in the compressed input.
+           \return The total number of bytes.
+           */
          Integer GetTotalIn();
 
-         /*!
-          \brief Gibt die Gesamtanzahl der Bytes des dekomprimierten Outputs zurück
-          */
+          /*!
+           \brief Returns the total number of bytes of the decompressed output.
+           \return The total number of bytes.
+           */
          Integer GetTotalOut();
 
    };

@@ -54,7 +54,7 @@ namespace jm
       public:
 
          /*!
-          \brief Construktor
+          \brief Constructor
           \param language Language String in form: "de-DE"
           */
          I18nBundle(const String& language);

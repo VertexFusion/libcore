@@ -42,7 +42,7 @@
 
  \brief A collection of classes to provide unit tests.
 
- Jameo Core library provides simple ways to perform unit testing. The folling example code shows
+ Jameo Core library provides simple ways to perform unit testing. The following example code shows
  the minimum requirements for an test app:
 
 ~~~~~{.cpp}
@@ -59,7 +59,7 @@ class ExampleTest: public jm::Test
 			SetName("Example Test");
 		};
 
-		// Mandatory overidden test method. The heart of the test!
+		// Mandatory overridden test method. The heart of the test!
 		void DoTest() override
 		{
 			int32 a=2;
@@ -121,7 +121,7 @@ namespace jm
       public:
 
          /*!
-          \brief Konstructor
+          \brief Constructor
           */
          Test();
 
@@ -359,7 +359,7 @@ namespace jm
          ~TestVector();
 
          /*!
-          \brief Addds \p test to the test vector.
+          \brief Adds \p test to the test vector.
           \param test The test to be added.
           */
          void addTest(Test* test);

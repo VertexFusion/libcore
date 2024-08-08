@@ -38,87 +38,72 @@ namespace jm
 {
 
    /*!
-    \brief Der Strintokenizer ist eine Klasse, die dazu dient, eine Zeichenkette an bestimmten
-    Trennzeichen zu trennen und in einzelne Stücke zu zerlegen.
+    \brief The StringTokenizer class is used to tokenize a string based on specified delimiters.
+    It splits the string into individual pieces.
     */
    class DllExport StringTokenizer: public Object
    {
       public:
 
          /*!
-          \brief Konstruktor
-          \param str Die Zeichenkette, die untersucht werden soll.
-          \param delimiter Die Trennzeichen, an denen die Zeichenkette getrennt werden soll. Jedes
-          Zeichen wird als Trennzeichen angesehen. es geht nicht darum, dass die gesamte
-          Zeichenkette als Trenner dient.
-          \param retDelim Status, ob die Trennzeichen als eigene Tokens betrachtet und zurückgegeben
-          werden oder nicht.
-          */
+         \brief Constructor
+         \param str The string to be analyzed.
+         \param delimiter The delimiters used to split the string. Each character is considered as a delimiter.
+         \param retDelim Status indicating whether the delimiters should be treated as separate tokens and returned or not.
+         */
          StringTokenizer(const String& str, const String& delimiter, Bool retDelim);
 
-         /*!
-          \brief Gibt zurück, ob noch weitere Tokens in der Zeichenkette vorhanden sind.
-          */
+          /*!
+           \brief Returns whether there are more tokens in the string.
+           */
          Bool hasNext();
 
-         /*!
-          \brief Gibt das Nächste Token zurück.
-          @throw Exception, wenn kein Token mehr vorhanden ist.
-          */
+          /*!
+           \brief Returns the next token.
+           \throw Exception if no token is available.
+           */
          String next();
 
       private:
 
-         /*!
-          \brief Der String, der untersucht werden soll.
-          */
+         //! The string to be analyzed.
          String mStr;
 
-         /*!
-          \brief Die Trennzeichen, an denen der String unterteilt werden soll.
-          */
+         //! The delimiters used to split the string.
          String mDelimiters;
 
-         /*!
-          \brief Die aktuelle Zeigerposition.
-          */
+          //! The current pointer position.
          Integer mPosition;
 
-         /*!
-          \brief Die Zeigerposition des ersten Zeichens des nächsten Tokens)
-          */
+          //! The pointer position of the first character of the next token.
          Integer mNewStart;
 
-         /*!
-          \brief Status, ob auch die Trennzeichen als Token zurückgegeben werden sollen.
-          */
+         //! Status indicating whether the delimiters should be treated as separate tokens and returned or not.
          Bool mRetDelim;
 
          /*!
-          \brief Diese Methode prüft, ob das Zeichen an einer Stelle ein Trennzeichen ist
-          \param index Der 0-basierte Index des Zeichens im String, das untersucht werden soll.
-          \return "Wahr", wenn das Zeichen an der Stelle index ein definiertes Trennzeichen ist.
-          Andernfalls "falsch".
+          \brief This method checks if the character at a position is a delimiter
+          \param index The 0-based index of the character in the string to be examined.
+          \return "True" if the character at position index is a defined delimiter. Otherwise, "false".
           */
          Bool IsDelimiter(Integer index) const;
 
          /*!
-          \brief Diese Methode such ab einer gewünschten Position nach dem Ende eines Tokens,
-          also sucht den Index des ersten Delimiter-Zeichens
-          \param startPos Die Position, die gesucht werden soll.
-          \return Den Index im String str, an der das Tokenende gefunden wurde oder die Länge des
-          Tokens, wenn kein Delimiter mehr vorkommt.
+          \brief This method searches for the end of a token starting from a desired position,
+          i.e., it finds the index of the first delimiter character.
+          \param startPos The position to start searching from.
+          \return The index in the string str where the end of the token was found, or the length of
+          the token if no delimiter is found anymore.
           */
          Integer FindTokenEnd(Integer startPos) const;
 
          /*!
-          \brief Sucht nach dem Ende des Trennzeichens ab einer bestimmten Position. Wenn
-          retDelim "falsch" ist, dann wird die Position des ersten Nicht-Trennzeichens ab der
-          Startposition zurückgegeben. Wenn retDelim "wahr" ist, wird die startPosition
-          zurückgegeben.
-          \param startPos Die Position, die gesucht werden soll.
-          \return Den Index im String str, an der das Trennende gefunden wurde.
-          */
+          \brief This method searches for the end of the delimiter starting from a specific position. If
+          retDelim is "false", it returns the position of the first non-delimiter character starting from the
+          given position. If retDelim is "true", it returns the startPosition.
+          \param startPos The position to be searched.
+          \return The index in the string str where the end of the delimiter was found.
+         */
          Integer FindDelimEnd(Integer startPos) const;
    };
 

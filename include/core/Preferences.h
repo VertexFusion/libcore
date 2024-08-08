@@ -40,89 +40,94 @@ namespace jm
    class File;
 
    /*!
-    \brief Die Klasse Preferences abstrahiert das Lesen und Schreiben von Eigenschaften in einer Preferences-Datei.
-    Die Datei sollte die Endung .properties haben
+    \brief The Preferences class abstracts the reading and writing of properties in a preferences file.
+    The file should have the extension .properties.
     */
    class DllExport Preferences: public Hashtable
    {
       public:
 
-         /*!
-         \brief Konstruktor
-         */
+          /*!
+          \brief Constructor
+          */
          Preferences();
 
-         /*!
-         \brief Destructor Löscht alle Einträge in der Hashtabelle
-         */
+          /*!
+          \brief Destructor. Deletes all entries in the hashtable.
+          */
          virtual ~Preferences();
 
-         /*!
-          \brief Diese Methode liest die Daten aus der Datei ein
-          \param file Die Datei mit den Eigenschaften.
-          @throws Exception, wenn die Datei nicht gefunden wurde, oder fehlerhaft ist.
-          */
+          /*!
+           \brief This method reads the data from the file.
+           \param file The file containing the properties.
+           \throws Exception if the file is not found or is corrupted.
+           */
          void load(File file);
 
-         /*!
-          \brief Diese Methode schreibt die Preferences in die Datei.
-          \param file Name der Datei, in der die Eigenschaften gespeichert werden
-          @throws Exception, wenn die Datei nicht geschrieben werden kann
-          */
+          /*!
+           \brief This method writes the preferences to the file.
+           \param file The name of the file where the properties will be saved.
+           \throws Exception if the file cannot be written.
+           */
          void save(File file);
 
-         /*!
-          \brief This method check, if the property is present or not.
-          \param key The key of the property of interest.
-          */
+          /*!
+           \brief Check if the property is present.
+           \param key The key of the property to check.
+           \return true if the property is present, false otherwise.
+           */
          bool hasValue(const String& key)const;
 
-         /*!
-          \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
-          \param key Der Property-Schlüssel
-          \param value Der Wert
-          */
+          /*!
+           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+           \param key The property key.
+           \param value The value.
+           */
          void setValue(const String& key, const String& value);
 
-         /*!
-          \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
-          \param key Der Property-Schlüssel
-          \param value Der Wert
-          */
+          /*!
+           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+           \param key The property key.
+           \param value The value.
+           */
          void setValue(const String& key, int32 value);
 
-         /*!
-          \brief Legt die Eigenschaft fest. Ruft defacto Put() der Hashtable auf, stellt aber sicher, dass Strings verwendet werden.
-          \param key Der Property-Schlüssel
-          \param value Der Wert
-          */
+          /*!
+           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+           \param key The property key.
+           \param value The value.
+           */
          void setValue(const String& key, bool value);
 
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          */
+          /*!
+           \brief Returns the desired property.
+           \param key The property key.
+           \return The value of the property.
+           */
          String value(const String& key) const;
 
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-          */
+          /*!
+           \brief Returns the desired property.
+           \param key The property key.
+           \param defaultValue The value of the property if it is not found.
+           \return The value of the property.
+           */
          String value(const String& key, const String& defaultValue) const;
 
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-          */
+          /*!
+           \brief Returns the desired property.
+           \param key The property key.
+           \param defaultValue The value of the property if it is not found.
+           \return The value of the property.
+           */
          int32 valueInt(const String& key, int32 defaultValue) const;
 
-         /*!
-          \brief Gibt die gewünschte Eigenschaft zurück
-          \param key Die Eigenschaft
-          \param defaultValue Der Eigenschaftswert, wenn das Property nicht gefunden wurde.
-          */
+          /*!
+           \brief Returns the desired property.
+           \param key The property key.
+           \param defaultValue The value of the property if it is not found.
+           \return The value of the property.
+           */
          bool valueBool(const String& key, bool defaultValue) const;
    };
 
