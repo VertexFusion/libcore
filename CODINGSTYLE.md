@@ -35,6 +35,29 @@ Used in:
 - Status messages
 - Complete sentences
 
+## Naming Conventions
+
+- Our code lines have maximum 100 characters. For idention we use 3 spaces.
+
+- We use camel case syntax for common names like class names, function names, member names etc.
+  Example: `StringList`, `Vertex2`, `ExampleClass`
+
+- Class names and Enums starts with upper case, variable names and member functions with lower case.
+
+- We use `setSize(...)` as common setter method and `size()` as corresponding getter method. Avoid
+  using `getSize()`. In some rare cases using `getSize()` is the better solution, but in general: avoid.
+
+- Some names of variables have a prefix letter:
+  - Members of classes uses `m`. Example: `int32 mWidth;`
+  - Global variables uses `g`. Example: `int32 gCount;`
+  - Enum members uses `k` as first letter usually followed by a short word or abbreviation to
+    characterize the enum, whe the value comes from: Example: `kLnWt100`, `kVersionR14`
+
+- If possible, we do not use reference indicators like `int32 miWidth`. Avoid storing same value in 
+  different types of data.
+
+- We have defined short abbreviations for common data types. `int32` or `uint32` for `int` or 
+  `unsigned int`. Please use this.
 
 ## Artistic Style (astyle)
 
