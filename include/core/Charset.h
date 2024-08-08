@@ -57,10 +57,10 @@ namespace jm
          virtual ~CharsetDecoder();
 
          /*!
-          \brief This method decodes a C-String using the encoding implemented in the decoder
-          and converts it into a Unicode-encoded CharArray.          
+          \brief This method decodes a C-string using the encoding implemented in the decoder
+          and converts it into a Unicode-encoded chararray.          
           \param cString The C-string that is to be converted.
-          \return The CharArray, which contains the Unicode-encoded representation of the C-string.
+          \return The chararray, which contains the Unicode-encoded representation of the C-string.
           */
          virtual CharArray Decode(const char* cString) = 0;
 
@@ -85,7 +85,6 @@ namespace jm
 
          /*!
           \brief Special constructor for the static initialisation of the default decoder. This is always the UTF-8 encoding.
-          Spezialkonstruktor für die statische Initialisierung des DefaultDecoders. Das ist immer die UTF-8-Kodierung.
           */
          Charset(CharsetDecoder* decoder);
 
@@ -165,33 +164,32 @@ namespace jm
       private:
 
          /*!
-          \brief Anzahl der Zeichenkodierungen
+          \brief Number of character encodings
           */
          static uint16 gCharsetCount;
 
          /*!
-          \brief Array mit den Zeichenkodierungen
+          \brief Array with the character encodings
           */
          static Charset* gCharsets[];
 
          /*!
-         \brief Der Name dieses Zeichensatzes. Z.B. UTF-8
+         \brief The name of this character set. E.g. UTF-8 
          */
          String mName;
 
          /*!
-         \brief Ein Feld mit alternativen Namen, wenn dieser Zeichensatz mehrere gebräuchliche
-          Namen besitzt.
+         \brief An array with alternative names in the event that this character set has several common names. 
          */
          String* mAlternatives;
 
          /*!
-         \brief Anzahl der alternativen Namen.
+         \brief Number of alternative names. 
          */
          uint8 mAltCount;
 
          /*!
-         \brief Die Kodierfunktion für diesen Zeichensatz.
+         \brief The encoding function for this character set.
          */
          CharsetDecoder* mDecoder;
 
@@ -274,14 +272,14 @@ namespace jm
    };
 
    /*!
-   \brief Initialisisiert die Charsets.
-   \discussion Wird von System::init aufgerufen. Daher kein Export notwendig
+   \brief Initialises the charsets.
+   \discussion Called by System::init. Therefore no export necessary.
    */
    void InitCharsets();
 
    /*!
-   \brief Löscht die Charsetobjekte
-   \discussion Wird von System::quit aufgerufen. Dahr kein Export notwendig
+   \brief Deletes the charset objects.
+   \discussion Called by System::quit. Therefore no export necessary.
    */
    void QuitCharsets();
 
