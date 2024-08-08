@@ -56,7 +56,7 @@ namespace jm
       public:
 
          /*!
-          \brief Konstante gibt die Millisekunden pro Tag zurück
+          \brief Constant saves the millisecons of a day.
           */
          static const int64 MS_PER_DAY = 86400000;
 
@@ -67,7 +67,7 @@ namespace jm
          static const int64 MS_PER_MINUTE = 60000;
          static const int64 MS_PER_HOUR = 3600000;
 
-         //Konstanten für die Monate
+         // Constants for months
          static const int16 JANUARY = 0;
          static const int16 FEBRUARY = 1;
          static const int16 MARCH = 2;
