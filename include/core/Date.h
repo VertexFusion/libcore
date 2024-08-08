@@ -56,7 +56,7 @@ namespace jm
       public:
 
          /*!
-          \brief Konstante gibt die Millisekunden pro Tag zurück
+          \brief Constant saves the millisecons of a day.
           */
          static const int64 MS_PER_DAY = 86400000;
 
@@ -67,7 +67,7 @@ namespace jm
          static const int64 MS_PER_MINUTE = 60000;
          static const int64 MS_PER_HOUR = 3600000;
 
-         //Konstanten für die Monate
+         // Constants for months.
          static const int16 JANUARY = 0;
          static const int16 FEBRUARY = 1;
          static const int16 MARCH = 2;
@@ -81,7 +81,7 @@ namespace jm
          static const int16 NOVEMBER = 10;
          static const int16 DECEMBER = 11;
 
-         //Konstanten für Wochentage
+         // Constants for week days.
          static const int16 SUNDAY = 0;
          static const int16 MONDAY = 1;
          static const int16 TUESDAY = 2;
@@ -90,11 +90,11 @@ namespace jm
          static const int16 FRIDAY = 5;
          static const int16 SATURDAY = 6;
 
-         //Konstante für Null
+         // Constant for Null.
          static const int64 EMPTY = 0x8000000000000000;
 
          /*!
-          \brief Standardkonstruktor
+          \brief Standard default constructor
           */
          Date();
 
@@ -104,28 +104,28 @@ namespace jm
          Date(const Date& other);
 
          /*!
-          \brief Konstruktor
-          \param milliseconds Absolute Zeit (UTC) in Millisekunden ab dem 01.01.1970 00:00:00.000
+          \brief Constructor 
+          \param milliseconds Absolute time (UTC) passed in milliseconds since 01.01.1970 00:00:00.000.
           */
          Date(int64 milliseconds);
 
          /*!
-          \brief Konstruktor
-          \param year Die Jahreszahl
-          \param month Die Monatszahl (0-11)
-          \param day Die Tageszahl (1-31)
+          \brief Constructor 
+          \param year Year
+          \param month Month number (0-11)
+          \param day Day number (1-31)
           */
          Date(uint16 year, uint16 month, uint16 day);
 
          /*!
-          \brief Konstruktor
-          \param year Die Jahreszahl
-          \param month Die Monatszahl (0-11)
-          \param day Die Tageszahl (1-31)
-          \param hours Die Stunden (0-23)
-          \param minutes Die Minuten (0-59)
-          \param seconds Die Sekunden (0-59)
-          \param millis Die Millisekunden (0-999)
+          \brief Constructor 
+          \param year Year
+          \param month Month number (0-11)
+          \param day Day number (1-31)
+          \param hours Hours (0-23)
+          \param minutes Minutes (0-59)
+          \param seconds Seconds (0-59)
+          \param millis Milliseconds (0-999)
           */
          Date(uint16 year, uint16 month, uint16 day, uint16 hours, uint16 minutes, uint16 seconds,
               uint16 millis);
@@ -143,150 +143,150 @@ namespace jm
          ~Date();
 
          /*!
-          \brief Status, ob das Daten leer ist
+          \brief Status, whether the data is empty
          */
          bool isEmpty() const;
 
          /*!
-          \brief Gibt die Zeit in Millisekunden seit Mitternacht des 01.01.1970 in UTC zurück
+          \brief Returns the time passed in milliseconds, relative to 00:00:00 UTC on 1 January 1970.        
           */
          int64 time() const;
 
          /*!
-          \brief Legt die Zeit in Millisekunden seit Mitternach des 01.01.1970 in UTC fest.
-          \param t Neue Zeit in UTC
+          \brief Defines the time passed in milliseconds, relative to 00:00:00 UTC on 1 January 1970.
+          \param t New time in UTC.  
           */
          void setTime(int64 t);
 
          /*!
-          \brief Gibt das Jahr in lokaler Zeit zurück
+          \brief Returns the year in local time.
           */
          int64 year() const;
 
          /*!
-          \brief Gibt das Jahr in UTC-Zeit zurück
+          \brief Returns the year in UTC time. 
           */
          int64 utcYear() const;
 
          /*!
-          \brief Gibt den Monat in lokaler Zeit zurück.
-          \note Die Zahl ist im Bereich 0-11
+          \brief Returns the month in local time. 
+          \note The number ranges between 0 and 11
           */
          int64 month() const;
 
          /*!
-          \brief Gibt den Monat in UTC-Zeit zurück
+          \brief Returns the month in UTC time 
           */
          int64 utcMonth() const;
 
          /*!
-          \brief Gibt den Tag im Monat in lokaler Zeit zurück
+          \brief Returns the day of the month in local time
           */
          int64 date() const;
 
          /*!
-          \brief Gibt den Tag im Monat in UTC-Zeit zurück
+          \brief Returns the day of the month in UTC time
           */
          int64 utcDate() const;
 
          /*!
-          \brief Gibt den Tag in der Woche in lokaler Zeit zurück
+          \brief Returns the day of the week in local time
           */
          int64 day() const;
 
          /*!
-          \brief Gibt den Tag in der Woche in UTC-Zeit zurück
+          \brief Returns the day of the week in UTC time
           */
          int64 utcDay() const;
 
          /*!
-          \brief Gibt die Stunden des Tages in lokaler Zeit zurück
+          \brief Returns the hours of the day in local time 
           */
          int64 hours() const;
 
          /*!
-          \brief Gibt die Stunden des Tages in UTC-Zeit zurück
+          \brief Returns the hours of the day in UTC time
           */
          int64 utcHours() const;
 
          /*!
-          \brief Gibt die Minuten der Stunde in lokaler Zeit zurück
+          \brief Returns the minutes of the hour in local time 
           */
          int64 minutes() const;
 
          /*!
-          \brief Gibt die Minuten der Stunde in UTC-Zeit zurück
+          \brief Returns the minutes of the hour in UTC time
           */
          int64 utcMinutes() const;
 
          /*!
-          \brief Gibt die Sekunden der Minute in lokaler Zeit zurück
+          \brief Returns the seconds of the minute in local time
           */
          int64 seconds() const;
 
          /*!
-          \brief Gibt den Tag des Jahres zurück
+          \brief Returns the day of the year
           */
          int64 dayOfYear()const;
 
          /*!
-          \brief Gibt die Sekunden der Minute in UTC-Zeit zurück
+          \brief Returns the seconds of the minute in UTC time
           */
          int64 utcSeconds() const;
 
          /*!
-          \brief Gibt die Millisekunden der Sekunde in lokaler Zeit zurück
+          \brief Returns the milliseconds of the second in local time
           */
          int64 milliseconds() const;
 
          /*!
-          \brief Gibt die Millisekunden der Sekunde in UTC-Zeit zurück
+          \brief Returns the milliseconds of the second in UTC time
           */
          int64 utcMilliseconds() const;
 
          /*!
-          \brief Gibt das Datum im Standardformat zurück: YYYY-MM-DDThh:mm:ss.sssZ
+          \brief Returns the date in the default date format: YYYY-MM-DDThh:mm:ss.sssZ
           */
          String toString() const;
 
          /*!
-          \brief Diese Methode vergleicht die Reihenfolge der Daten.
-          \param another Das Datum, mit der dieses verglichen wird.
+          \brief This method compares the order of the data. 
+          \param another The date used for the comparison. 
           */
          int32 compareTo(const Date& another) const;
 
          /*!
-          \brief Implementierung des Operators <
+          \brief Implementing the operator <
          */
          DllExport
          friend bool operator<(Date const& v1, Date const& v2);
 
          /*!
-         	\brief Implementierung des Operators >
+         	\brief Implementing the operator >
            */
          DllExport
          friend bool operator>(Date const& v1, Date const& v2);
 
          /*!
-         	\brief Implementierung des Operators <=
+         	\brief Implementing the operator <=
            */
          DllExport
          friend bool operator<=(Date const& v1, Date const& v2);
 
          /*!
-         	\brief Implementierung des Operators >=
+         	\brief Implementing the operator >=
            */
          DllExport
          friend bool operator>=(Date const& v1, Date const& v2);
 
          /*!
-          \brief Implementierung des Operators ==
+          \brief Implementing the operator ==
           */
          DllExport
          friend bool operator==(Date const& v1, Date const& v2);
 
          /*!
-          \brief Implementierung des Operators !=
+          \brief Implementing the operator !=
           */
          DllExport
          friend bool operator!=(Date const& v1, Date const& v2);
@@ -294,140 +294,139 @@ namespace jm
       private:
 
          /*!
-         \brief Die absolute Zeit in n Millisekunden ab dem 01.01.1970 0:00 Uhr UTC
+         \brief The absolute time passed in n milliseconds, relative to 00:00:00 UTC on 1 January 1970
          */
          int64 mTime;
 
          /*!
-         \brief Helfermethode gibt die Tagesnummer zurück. Day(t)=floor(t/msPerDay)
+         \brief The helper method returns the day number. Day(t)=floor(t/msPerDay)
          msPerDay=86400 000
-         \param t absolute Zeit.
+         \param t absolute time.
          */
          int64 day(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Millisekungen im aktuellen Tag
-         \param t absolute Zeit.
+         \brief The helper method calculates the milliseconds in the current day 
+         \param t absolute time.
          */
          int64 timeWithinDay(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Anzahl der Tage im angebenen Jahr
-         \param y Das Jahr.
+         \brief The helper method calculates the number of days in the given year.
+         \param y The year.
          */
          int64 DaysInYear(int64 y) const;
 
          /*!
-         \brief Helfermethode gibt die Tagessnummer des ersten Tages im Jahr zurück
-         \param y Das Jahr.
+         \brief The helper method returns the number of the first day of the year
+         \param y The year.
          */
          int64 DayFromYear(int64 y) const;
 
          /*!
-         \brief Helfermethode gibt den Zeitwert des Jahresbeginns an
-         \param y Das Jahr.
+         \brief The helper method indicates the time value at the beginning of the year  
+         \param y The year.
          */
          int64 TimeFromYear(int64 y) const;
 
          /*!
-         \brief Helfermethode gibt das Jahr des angegebenen Zeitwertes an
-         \param t absolute Zeit.
+         \brief The helper method specifies the year to the given time value 
+         \param t absolute time.
          */
          int64 YearFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt 0 zurück, wenn man sich in einem normalen Jahr befindet und
-         1, wenn man sich in einem Schaltjahr befindet
-         \param t absolute Zeit.
+         \brief The helper method returns 0 if the year is a non-leap year and a 1 if it is a leap year.
+         \param t absolute time.
          */
          int16 InLeapYear(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Tag innerhalb eines Jahres an
-         \param t absolute Zeit.
+         \brief The helper method specifies the day within a year
+         \param t absolute time.
          */
          int64 DayWithinYear(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Monat der angegebenen Zeit zurück
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 11 (0 = Januar, 11=Dezember)
+         \brief The helper method returns the month of the specified time
+         \param t absolute time.
+         \return A number between (and including) 0 and (including) 11 (0 = January, 11 = December)
          */
          int64 MonthFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Tag in einem Monat zurück.
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 1 und (einschließlich) 31
+         \brief The helper method returns the day in a month. 
+         \param t absolute time.
+         \return A number between (and including) 1 and (including) 31 
          */
          int64 DateFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Wochentag der Zeit zurück
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 6 (0=Sonntag, 6=Sammstag)
+         \brief The helper method returns the week day of the specified time
+         \param t absolute time.
+         \return A number between (and including) 0 and (including) 6 (0=Sunday, 6=Saturday)
          */
          int64 WeekDay(int64 t) const;
 
          /*!
-         \brief Diese Helfermethode gibt die lokale Zeitzonenjustierung zurück
-         \return Differenz in ms
+         \brief This helper method returns the local time zone adjustment
+         \return Difference in ms
          */
          int64 LocalTimeZoneAdjustment() const;
 
          /*!
-         \brief Diese Helfermethode gibt die Justierung durch Winter-/Sommerzeit zurück
+         \brief This helper method returns the adjustment from daylight saving time to standard time or vice versa
          */
          int64 DaylightSavingTimeAdjustment() const;
 
          /*!
-         \brief Helfermethode wandelt die abolute Zeit (UTC) in lokale Zeit um
-         \param t absolute Zeit.
+         \brief The helper method converts absolute time (UTC) to local time
+         \param t absolute time.
          */
          int64 LocalTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die absolute Zeit (UTC) aus lokaler ZEit
-         \param t lokale Zeit.
+         \brief The helper method calculates the absolute time (UTC) from local time 
+         \param t local time.
          */
          int64 UTC(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Stunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the hour from the time 
+         \param t absolute time.
          */
          int64 HourFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Minute der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the minute from the time
+         \param t absolute time.
          */
          int64 MinuteFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Sekunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the second from the time
+         \param t absolute time.
          */
          int64 SecondFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Millisekunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the number millisecond from the time 
+         \param t absolute time.
          */
          int64 MilliFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Zeit in Millisekunden aus ihren Argumenten
+         \brief The helper method calculates the time in milliseconds from it's arguments
          */
          int64 MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
 
          /*!
-         \brief Helfermethode berechnet die Anzahl der Tage aus ihren Argumenten
+         \brief The helper method calculates the number of days from their arguments
          */
          int64 MakeDay(int64 year, int64 month, int64 date) const;
 
          /*!
-         \brief Die Helfermethode berechnet die Anzahl der Millisekunden aus ihren Argumenten
+         \brief The helper method calculates the number of milliseconds from their arguments
          */
          int64 MakeDate(int64 day, int64 millis) const;
 
@@ -435,30 +434,31 @@ namespace jm
    };
 
    /*!
-    \brief Gibt das Datum in einem formatierten String zurück. Dabei gibt es folgende Platzhalter:
-    y : Jahr : 2015; 15
-    M : Monat : Juli; Jul; 07; 7
-    w: Kalenderwoche : 42
-    W: Woche im Monat: 1
-    D: Tag im Jahr: 142
-    d: Tag im Monat: 24
-    F: Wochentag im Monat: 2
-    E: Wochentag: Dienstag; Di, D
-    a: AM/PM-Markierung: AM;
-    H: Stunde (0-23)
-    K: Stunde (0-11)
-    h: Stunde (1-12)
-    k: Stunde (1-24)
-    m: Minute der Stunde
-    s: Sekunde der Minute
-    S: Millisekunde
-    z: Zeitzone
+    \brief Returns the date in a formatted string. The following placeholders are available: 
+    y : year : 2015; 15
+    M : month : Juli; Jul; 07; 7
+    w: calendar week : 42
+    W: week of the month: 1
+    D: day of the year: 142
+    d: day of the month: 24
+    F: weekday of the month: 2
+    E: weekday: Dienstag; Di, D
+    a: AM/PM marker: AM;
+    H: hour (0-23)
+    K: hour (0-11)
+    h: hour (1-12)
+    k: hour (1-24)
+    m: minute of the hour
+    s: second of the minute 
+    S: millisecond
+    z: time zone
 
-    Ergänzungen:
-    Text: Wenn 4 oder mehr Buchstaben, Lange Form wird benutzt, andernfalls eine Kürze
-    Jahr: Wenn Pattern = yy, dann ist
+    
+    Additions:
+    text: the long form is used for 4 or more letters, otherwise a short one is used 
+    year: if pattern = yy, then    ?    Jahr: Wenn Pattern = yy, dann ist
 
-    Text kann durch ' ' markiert werden.
+    ' ' can be used to mark the text.  
     */
    class DllExport DateFormatter: public Object
    {
@@ -499,16 +499,16 @@ namespace jm
 
          struct Pattern
          {
-            //Verkettete Liste
+            //Linked list
             Pattern* next;
 
-            //Pattern-Typ
+            //Pattern type
             PatternType type;
 
-            //Länge der Pattern
+            //Pattern length
             uint8 length;
 
-            //Text (Wenn Text)
+            //Text (if any)
             String text;
 
             Pattern();

@@ -57,18 +57,17 @@ namespace jm
          virtual ~CharsetDecoder();
 
          /*!
-          \brief Diese Methode dekodiert einen C-String unter Verwendung der in dem Dekoder
-          implementierten Kodierung und wandelt ihn in ein Unicodecodiertes CharArray.
-          \param cString Der C-String, der umgewandelt werden soll.
-          \return Das CharArray, welches die Unicode-codierte Repräsentation des C-Strings enthält.
+          \brief This method decodes a C-string using the encoding implemented in the decoder
+          and converts it into a Unicode-encoded chararray.          
+          \param cString The C-string that is to be converted.
+          \return The chararray, which contains the Unicode-encoded representation of the C-string.
           */
          virtual CharArray Decode(const char* cString) = 0;
 
          /*!
-          \brief Diese Methode kodiert unter Verwendung der in dem Dekoder implementierten
-          Kodierung den übergebenen String in einen kodierten C-String.
-          \param string der Unicodecodierte String, der umgewandelt werden sollt.
-          \return Einen C-String, dessen Kodierung durch diesen Dekoder bestimmt ist.
+          \brief This Method encodes the given string into an encoded String using the encoding implemented in the decoder.
+          \param string The Unicode-encoded String be converted. 
+          \return A C-string whose coding is determined by this decoder.
           */
          virtual ByteArray Encode(const CharArray& string) = 0;
 
@@ -85,25 +84,24 @@ namespace jm
       public:
 
          /*!
-          \brief Spezialkonstruktor für die statische Initialisierung des DefaultDecoders. Das
-          ist immer die UTF-8-Kodierung.
+          \brief Special constructor for the static initialisation of the default decoder. This is always the UTF-8 encoding.
           */
          Charset(CharsetDecoder* decoder);
 
          /*!
-          \brief Konstruktor für statische Initialisierung (daher kein String)
-          \param name Name des Zeichensatzes
-          \param decoder Der Dekoder für diesen Zeichensatz
+          \brief Constructor for the static initialisation (therefore not a string).
+          \param name Name of the character set 
+          \param decoder The decoder for this character set 
           */
          Charset(const char* name,
                  CharsetDecoder* decoder);
 
          /*!
-          \brief Konstruktor
-          \param name Name des Zeichensatzes
-          \param alternatives Alternative Namen für den Zeichensatz
-          \param altCount Anzahl der Alternativen Namen für diesen Zeichensatz
-          \param decoder Der Dekoder für diesen Zeichensatz
+          \brief Constructor 
+          \param name Name of the character set
+          \param alternatives Alternative names for the character set 
+          \param altCount Number of alternative names for this character set
+          \param decoder The decoder for this character set 
           */
          Charset(const String& name,
                  const String* alternatives,
@@ -116,31 +114,26 @@ namespace jm
          virtual ~Charset();
 
          /*!
-          \brief Diese Methode gibt den Namen des Zeichensatzes zurück.
+          \brief This method returns the name of the character set.
           */
          String Name();
 
          /*!
-          \brief Diese Methode prüft, ob dieser Zeichensatz unter dem gewünschten Namen
-          angesprochen wird.
-          \param name der Name, nach dem geprüft werden soll.
-          \return Gibt wahr zurück, wenn entweder der Name des Zeichensatzes mit name übereinstimmt,
-          oder wenn einer der alternativen Namen mit name übereinstimmt. Andernfalls wird falsch
-          zurückgegebn.
+          \brief This method tests whether the character set is addressed under the desired name.
+          \param name The name that is to be checked using this method. 
+          \return Returns true if either the name of the character set or one of the alternative names matches \c name. Otherwise, return value is false.
           */
          bool HasName(const String& name);
 
          /*!
-          \brief Diese Methode dekodiert den C-String und erzeugt ein Chararray, welches durch
-          die Kodierung umgewandelt wurde.
-          \param cString Der C-String, welcher umgewandelt werden soll.
+          \brief This method decodes the C-string and generates a chararray that has been converted through the encoding.
+          \param cString The C-string that is to be converted. 
           */
          CharArray Decode(const char* cString);
 
          /*!
-          \brief Diese Methode erzeugt aus einem String den entsprechenden C-String unter
-          Verwendung dieses Zeichensatzes.
-          \param string Der String, welcher umgewandlet werden soll.
+          \brief This Method generates the corresponding C-string from a string using this character set.
+          \param string The C-string that is to be converted.
           */
          ByteArray Encode(const CharArray& string);
 
@@ -152,20 +145,18 @@ namespace jm
          static Charset* ForName(const String& name);
 
          /*!
-          \brief Diese Methode gibt das Standardcharset zurück (UTF-8)
+          \brief This method returns the default character set (UTF-8).
           */
          static Charset* GetDefault();
 
          /*!
-          \brief Diese Methode errät vom übergebenen Array die Zeichenkodierung und gibt den
-          erratenen Namen zurück. Wird kein Zeichensatz erkannt, wir je nach Betriebsyste der
-          Standardzeichensatz zurüclgegeben.
-          Dies ist unter
+          \brief This method guesses the character encoding from the given array and returns the guessed name.
+          If no character set is recognised, depending on the operating system, the default character set is returned. 
+          Corresponding to the operating system, those are the following:
           - Windows: Windows-1252
           - Mac: MacRoman
           - Linux: UTF-8
-          Es heißt aber nicht, dass automatisch Kein Zeichensatz erkannt wurde, wenn einer der
-          obigen Werte zurückgegeben wurde.
+          However, even if one of the values above is returned it does not automatically mean that no character set was recognised. 
           */
          static String Guess(const char* stream,
                              Integer length);
@@ -173,33 +164,32 @@ namespace jm
       private:
 
          /*!
-          \brief Anzahl der Zeichenkodierungen
+          \brief Number of character encodings
           */
          static uint16 gCharsetCount;
 
          /*!
-          \brief Array mit den Zeichenkodierungen
+          \brief Array with the character encodings
           */
          static Charset* gCharsets[];
 
          /*!
-         \brief Der Name dieses Zeichensatzes. Z.B. UTF-8
+         \brief The name of this character set. E.g. UTF-8 
          */
          String mName;
 
          /*!
-         \brief Ein Feld mit alternativen Namen, wenn dieser Zeichensatz mehrere gebräuchliche
-          Namen besitzt.
+         \brief An array with alternative names in the event that this character set has several common names. 
          */
          String* mAlternatives;
 
          /*!
-         \brief Anzahl der alternativen Namen.
+         \brief Number of alternative names. 
          */
          uint8 mAltCount;
 
          /*!
-         \brief Die Kodierfunktion für diesen Zeichensatz.
+         \brief The encoding function for this character set.
          */
          CharsetDecoder* mDecoder;
 
@@ -282,14 +272,14 @@ namespace jm
    };
 
    /*!
-   \brief Initialisisiert die Charsets.
-   \discussion Wird von System::init aufgerufen. Daher kein Export notwendig
+   \brief Initialises the charsets.
+   \discussion Called by System::init. Therefore no export necessary.
    */
    void InitCharsets();
 
    /*!
-   \brief Löscht die Charsetobjekte
-   \discussion Wird von System::quit aufgerufen. Dahr kein Export notwendig
+   \brief Deletes the charset objects.
+   \discussion Called by System::quit. Therefore no export necessary.
    */
    void QuitCharsets();
 
