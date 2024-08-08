@@ -342,91 +342,91 @@ namespace jm
          int16 InLeapYear(int64 t) const;
 
          /*!
-         \brief The helper method Helfermethode gibt den Tag innerhalb eines Jahres an
-         \param t absolute Zeit.
+         \brief The helper method specifies the day within a year
+         \param t absolute time.
          */
          int64 DayWithinYear(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Monat der angegebenen Zeit zurück
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 11 (0 = Januar, 11=Dezember)
+         \brief The helper method returns the month of the specified time
+         \param t absolute time.
+         \return A number between (and including) 0 and (including) 11 (0 = January, 11 = December)
          */
          int64 MonthFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Tag in einem Monat zurück.
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 1 und (einschließlich) 31
+         \brief The helper method returns the day in a month. 
+         \param t absolute time.
+         \return A number between (and including) 1 and (including) 31 
          */
          int64 DateFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode gibt den Wochentag der Zeit zurück
-         \param t absolute Zeit.
-         \return Eine Zahl zwischen (einschließlich) 0 und (einschließlich) 6 (0=Sonntag, 6=Sammstag)
+         \brief The helper method returns the week day of the specified time
+         \param t absolute time.
+         \return A number between (and including) 0 and (including) 6 (0=Sunday, 6=Saturday)
          */
          int64 WeekDay(int64 t) const;
 
          /*!
-         \brief Diese Helfermethode gibt die lokale Zeitzonenjustierung zurück
-         \return Differenz in ms
+         \brief This helper method returns the local time zone adjustment
+         \return Difference in ms
          */
          int64 LocalTimeZoneAdjustment() const;
 
          /*!
-         \brief Diese Helfermethode gibt die Justierung durch Winter-/Sommerzeit zurück
+         \brief This helper method returns the adjustment from daylight saving time to standard time or vice versa
          */
          int64 DaylightSavingTimeAdjustment() const;
 
          /*!
-         \brief Helfermethode wandelt die abolute Zeit (UTC) in lokale Zeit um
-         \param t absolute Zeit.
+         \brief The helper method converts absolute time (UTC) to local time
+         \param t absolute time.
          */
          int64 LocalTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die absolute Zeit (UTC) aus lokaler ZEit
-         \param t lokale Zeit.
+         \brief The helper method calculates the absolute time (UTC) from local time 
+         \param t local time.
          */
          int64 UTC(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Stunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the hour from the time 
+         \param t absolute time.
          */
          int64 HourFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Minute der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the minute from the time
+         \param t absolute time.
          */
          int64 MinuteFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Sekunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the second from the time
+         \param t absolute time.
          */
          int64 SecondFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Millisekunde der Zeit
-         \param t absolute Zeit.
+         \brief The helper method calculates the number millisecond from the time 
+         \param t absolute time.
          */
          int64 MilliFromTime(int64 t) const;
 
          /*!
-         \brief Helfermethode berechnet die Zeit in Millisekunden aus ihren Argumenten
+         \brief The helper method calculates the time in milliseconds from it's arguments
          */
          int64 MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
 
          /*!
-         \brief Helfermethode berechnet die Anzahl der Tage aus ihren Argumenten
+         \brief The helper method calculates the number of days from their arguments
          */
          int64 MakeDay(int64 year, int64 month, int64 date) const;
 
          /*!
-         \brief Die Helfermethode berechnet die Anzahl der Millisekunden aus ihren Argumenten
+         \brief The helper method calculates the number of milliseconds from their arguments
          */
          int64 MakeDate(int64 day, int64 millis) const;
 
@@ -434,30 +434,32 @@ namespace jm
    };
 
    /*!
-    \brief Gibt das Datum in einem formatierten String zurück. Dabei gibt es folgende Platzhalter:
-    y : Jahr : 2015; 15
-    M : Monat : Juli; Jul; 07; 7
-    w: Kalenderwoche : 42
-    W: Woche im Monat: 1
-    D: Tag im Jahr: 142
-    d: Tag im Monat: 24
-    F: Wochentag im Monat: 2
-    E: Wochentag: Dienstag; Di, D
-    a: AM/PM-Markierung: AM;
-    H: Stunde (0-23)
-    K: Stunde (0-11)
-    h: Stunde (1-12)
-    k: Stunde (1-24)
-    m: Minute der Stunde
-    s: Sekunde der Minute
-    S: Millisekunde
-    z: Zeitzone
+    \brief Returns the date in a formatted string. The following placeholders are available: 
+    Gibt das Datum in einem formatierten String zurück. Dabei gibt es folgende Platzhalter:
+    y : year : 2015; 15
+    M : month : Juli; Jul; 07; 7
+    w: calendar week : 42
+    W: week of the month: 1
+    D: day of the year: 142
+    d: day of the month       ?   Tag im Monat: 24
+    F: weekday of the month   ?  Wochentag im Monat: 2
+    E: weekday: Dienstag; Di, D
+    a: AM/PM marker: AM;
+    H: hour (0-23)
+    K: hour (0-11)
+    h: hour (1-12)
+    k: hour (1-24)
+    m: minute of the hour
+    s: second of the minute 
+    S: millisecond
+    z: time zone
 
-    Ergänzungen:
-    Text: Wenn 4 oder mehr Buchstaben, Lange Form wird benutzt, andernfalls eine Kürze
-    Jahr: Wenn Pattern = yy, dann ist
+    
+    Additions:
+    text: the long form is used for 4 or more letters, otherwise a short one is used 
+    year: if pattern = yy, then    ?    Jahr: Wenn Pattern = yy, dann ist
 
-    Text kann durch ' ' markiert werden.
+    ' ' can be used to mark the text.  
     */
    class DllExport DateFormatter: public Object
    {
