@@ -49,10 +49,10 @@ namespace jm
       public:
 
          /*!
-          \brief Führt die DIFF-Operation an den übergebenen Dateien aus.
-          \param f1 Die erste (linke) Datei, die zum Vergleich genommen wird.
-          \param f2 Die zweite (rechte) Datei, mit der die erste Datei verglichen wird.
-          \return Gibt die Anzahl der Unterschiede an. Wenn der Rückgabewert 0 ist, dann sind die Dateien identisch.
+          \brief Executes the DIFF operation on the given files.
+          \param f1 The first (left-hand side) file that is used for comparison. 
+          \param f2 The second (right-hand side) file with which the first file is compared. 
+          \return States the number of differences. Return value 0 means that the files are identical. 
           */
          /*static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
 
@@ -61,12 +61,12 @@ namespace jm
          */
       private:
          /*!
-          \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+          \brief This helping method resolves, where necessary, entities if they contain subelements
           */
          static void HandleObjectU(DiffDistance* dd, Object* e);
 
          /*!
-          \brief Diese Helfermethode löst Entitäten ggf. auf, wenn Sie Unterelemente enhalten
+          \brief This helping method resolves, where necessary, entities if they contain subelements 
           */
          static void HandleObjectV(DiffDistance* dd, Object* e);
 
