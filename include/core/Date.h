@@ -94,7 +94,7 @@ namespace jm
          static const int64 EMPTY = 0x8000000000000000;
 
          /*!
-          \brief Standard default constructor   ?       Standardkonstruktor
+          \brief Standard default constructor
           */
          Date();
 
@@ -435,14 +435,13 @@ namespace jm
 
    /*!
     \brief Returns the date in a formatted string. The following placeholders are available: 
-    Gibt das Datum in einem formatierten String zurück. Dabei gibt es folgende Platzhalter:
     y : year : 2015; 15
     M : month : Juli; Jul; 07; 7
     w: calendar week : 42
     W: week of the month: 1
     D: day of the year: 142
-    d: day of the month       ?   Tag im Monat: 24
-    F: weekday of the month   ?  Wochentag im Monat: 2
+    d: day of the month: 24
+    F: weekday of the month: 2
     E: weekday: Dienstag; Di, D
     a: AM/PM marker: AM;
     H: hour (0-23)
@@ -500,16 +499,16 @@ namespace jm
 
          struct Pattern
          {
-            //Verkettete Liste
+            //Linked list
             Pattern* next;
 
-            //Pattern-Typ
+            //Pattern type
             PatternType type;
 
-            //Länge der Pattern
+            //Pattern length
             uint8 length;
 
-            //Text (Wenn Text)
+            //Text (if any)
             String text;
 
             Pattern();
