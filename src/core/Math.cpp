@@ -53,7 +53,11 @@ int16 jm::sign(double d)
 
 int64 jm::round(double d)
 {
-   return (int64)((d > 0.0) ? std::floor(d + 0.5) : std::ceil(d - 0.5));
+   //TODO: We have issues with some negative values. What do?
+    if (d < 0)
+        return std::ceil(d - 0.5);
+    else
+        return std::floor(d + 0.5);
 }
 
 float jm::roundFrac(float f, int32 digits)
@@ -236,6 +240,7 @@ int64 jm::divFloor(int64 x, int64 y)
 
 int64 jm::modFloor(int64 x, int64 y)
 {
+   if(y==0)return 0;
    int64 r = x % y;
    if((r != 0) && ((r < 0) != (y < 0)))
    {

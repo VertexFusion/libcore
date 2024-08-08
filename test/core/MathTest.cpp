@@ -113,5 +113,128 @@ void MathTest::DoTest()
       TestEquals(interpolate(10, 20, begin, end, 4.0), 20.0, "Interpolate fails (6)");
 
    }
+
+
+   // Test degToRad function
+   TestEquals(jm::degToRad(180), M_PI, "degToRad(180) != M_PI");
+   TestEquals(jm::degToRad(90), M_PI / 2, "degToRad(90) != M_PI / 2");
+
+   // Test radToDeg function
+   TestEquals(jm::radToDeg(M_PI), 180.0, "radToDeg(M_PI) != 180");
+   TestEquals(jm::radToDeg(M_PI / 2), 90.0, "radToDeg(M_PI / 2) != 90");
+
+   // Test sign function
+   TestEquals(jm::sign(10),1, "sign(10) != 1");
+   TestEquals(jm::sign(-10),-1, "sign(-10) != -1");
+   TestEquals(jm::sign(0),0, "sign(0) != 0");
+
+   // Test round function
+   TestEquals(jm::round(10.5), (int64)11,"round(10.5) != 11");
+   TestEquals(jm::round(10.4), (int64)10,"round(10.4) != 10");
+   TestEquals(jm::round(-10.6), (int64)-11,"round(-10.6) != -11");
+   TestEquals(jm::round(-2.5), (int64)-3,"round(-2.5) != -3");
+   TestEquals(jm::round(-2.1), (int64)-2,"round(-2.1) != -2");
+
+   // Test roundFrac function
+   TestEquals(jm::roundFrac(10.555, 2), 10.56f,"roundFrac(10.555, 2) != 10.56");
+   TestEquals(jm::roundFrac(-10.554, 2), -10.55f,"roundFrac(-10.554, 2) != -10.55");
+
+   // Test isNaN function
+   TestEquals(jm::isNaN(NAN), true, "isNaN(NAN) should be true");
+   TestEquals(jm::isNaN(0.0), false, "isNaN(0.0) should be false");
+   TestEquals(jm::isNaN(1.0), false, "isNaN(1.0) should be false");
+
+   // Test swap for double
+   double a = 1.0, b = 2.0;
+   jm::swap(a, b);
+   TestEquals(a, 2.0, "SwapDouble: a should be 2.0 after swap");
+   TestEquals(b, 1.0, "SwapDouble: b should be 1.0 after swap");
+
+   // Test swap for int32
+   int32 c = 1, d = 2;
+   jm::swap(c, d);
+   TestEquals(c, 2, "SwapInt32: c should be 2 after swap");
+   TestEquals(d, 1, "SwapInt32: d should be 1 after swap");
+
+   // Test swap for uint32
+   uint32 e = 1, f = 2;
+   jm::swap(e, f);
+   TestEquals(e, 2u, "SwapUInt32: e should be 2 after swap");
+   TestEquals(f, 1u, "SwapUInt32: f should be 1 after swap");
+
+   // Test swap for uint16
+   uint16 g = 1, h = 2;
+   jm::swap(g, h);
+   TestEquals(g, 2u, "SwapUInt16: g should be 2 after swap");
+   TestEquals(h, 1u, "SwapUInt16: h should be 1 after swap");
+
+   // Test swap for uint8
+   uint8 i = 1, j = 2;
+   jm::swap(i, j);
+   TestEquals(i, 2u, "SwapUInt16: g should be 2 after swap");
+   TestEquals(j, 1u, "SwapUInt16: h should be 1 after swap");
+
+   // Test random function
+   TestEquals(jm::random() >= 0.0 && jm::random() <= 1.0, true, "random() should return a value between 0.0 and 1.0");
+
+   // Test random with range function
+   int32 randomInRange = jm::random(10, 20);
+   TestEquals(randomInRange >= 10 && randomInRange <= 20, true, "random(10, 20) should return a value between 10 and 20");
+
+   // Test probability function
+   // This test might be a bit tricky due to the randomness, but we can test edge cases
+   TestEquals(jm::probability(0.0), false, "probability(0.0) should always return false");
+   TestEquals(jm::probability(100.0), true, "probability(100.0) should always return true");
+
+   // Test interpolate function for float
+   float interpolatedFloat = jm::interpolate(0.0f, 10.0f, 0.5f);
+   TestEquals(interpolatedFloat, 5.0f, "interpolate(0.0f, 10.0f, 0.5f) should return 5.0f");
+
+   // Test interpolate function for double
+   double interpolatedDouble = jm::interpolate(0.0, 10.0, 0.5);
+   TestEquals(interpolatedDouble, 5.0, "interpolate(0.0, 10.0, 0.5) should return 5.0");
+
+   // Test interpolate with position function
+   double interpolatedPosition = jm::interpolate(0.0, 10.0, 0.0, 10.0, 5.0);
+   TestEquals(interpolatedPosition, 5.0, "interpolate(0.0, 10.0, 0.0, 10.0, 5.0) should return 5.0");
+
+   // Test powerOf2 function
+   TestEquals(jm::powerOf2(1), true, "powerOf2(1) should return true");
+   TestEquals(jm::powerOf2(2), true, "powerOf2(2) should return true");
+   TestEquals(jm::powerOf2(3), false, "powerOf2(3) should return false");
+   TestEquals(jm::powerOf2(4), true, "powerOf2(4) should return true");
+   TestEquals(jm::powerOf2(0), false, "powerOf2(0) should return false");
+
+   // Test ceilPowerOf2 function
+   TestEquals(jm::ceilPowerOf2(3), 4u, "ceilPowerOf2(3) should return 4");
+   TestEquals(jm::ceilPowerOf2(8), 8u, "ceilPowerOf2(8) should return 8");
+   TestEquals(jm::ceilPowerOf2(9), 16u, "ceilPowerOf2(9) should return 16");
+
+   // Test doubleMaschineEpsilon function
+   // Note: This test assumes the function calculates the machine epsilon correctly for double precision.
+   double expectedDoubleEpsilon = std::numeric_limits<double>::epsilon();
+   TestEquals(jm::doubleMaschineEpsilon(), expectedDoubleEpsilon, "doubleMaschineEpsilon() should return the correct machine epsilon for double");
+
+   // Test floatMaschineEpsilon function
+   // Note: This test assumes the function calculates the machine epsilon correctly for float precision.
+   float expectedFloatEpsilon = std::numeric_limits<float>::epsilon();
+   TestEquals(jm::floatMaschineEpsilon(), expectedFloatEpsilon, "floatMaschineEpsilon() should return the correct machine epsilon for float");
+
+   // Test divFloor function
+   TestEquals(jm::divFloor(10, 3), 3ll, "divFloor(10, 3) should return 3");
+   TestEquals(jm::divFloor(-10, 3), -4ll, "divFloor(-10, 3) should return -4");
+   TestEquals(jm::divFloor(10, -3), -4ll, "divFloor(10, -3) should return -4");
+   TestEquals(jm::divFloor(-10, -3), 3ll, "divFloor(-10, -3) should return 3");
+   TestEquals(jm::divFloor(10, 5), 2ll, "divFloor(10, 5) should return 2");
+
+   // Test modFloor function
+    TestEquals(jm::modFloor(10, 3), 1L,"modFloor(10, 3) should return 1");
+    TestEquals(jm::modFloor(-10, 3), 2L,"modFloor(-10, 3) should return 2");
+    TestEquals(jm::modFloor(10, -3), -2L,"modFloor(10, -3) should return -2");
+    TestEquals(jm::modFloor(-10, -3), -1L,"modFloor(-10, -3) should return -1");
+    TestEquals(jm::modFloor(0, 3), 0L,"modFloor(0, 3) should return 0");
+    TestEquals(jm::modFloor(10, 0), 0L,"modFloor(10, 0) should return 0");
+    TestEquals(jm::modFloor(0, 0), 0L,"modFloor(0, 0) should return 0"); 
+    
 }
 

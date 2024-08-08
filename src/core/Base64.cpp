@@ -88,22 +88,22 @@ uint8* Base64::encode(const uint8* data, Integer& length)
       b2 = data[i + 1];
       b3 = data[i + 2];
 
-      //1. Buchstabe
+      //1st letter
       c1 = (b1 >> 2) & 0x3f; //mask 00111111
 
-      //2. Buchstabe
+      //2nd letter
       c2 = (b1 << 4) & 0x3f; //mask 00111111
       if(i + 1 < len)
       {
          c2 |= (b2 >> 4) & 0x0f;//mask 00001111
 
-         //3. Buchstabe 00111100
+         //3rd letter
          c3 = (b2 << 2) & 0x3f;//mask 00111111
          if(i + 2 < len)
          {
             c3 |= (b3 >> 6) & 0x03;//mask 00000011
 
-            //4. Buchstabe
+            //4th letter
             c4 = b3 & 0x3f;//mask 00111111
          }
       }
