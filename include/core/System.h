@@ -65,19 +65,17 @@ namespace jm
           */
          static String language();
 
-         /*!
-          \brief Diese Methode gibt den Benutzernamen des aktuell angemeldeten Benutzers zurück.
-          Diese Funktion ermittelt dabei den "Systemnamen" BenutzerID. In der Regel ist dies der
-          Account-Name.
-          */
+          /*!
+           \brief This method returns the username of the currently logged-in user.
+           This function determines the "system name" UserID. Typically, this is the account name.
+           */
          static String userId();
 
-         /*!
-          \brief Diese Methode gibt den Benutzernamen des aktuell angemeldeten Benutzers zurück.
-          Diese Funktion ermittelt dabei den Namen in natürlicher Schreibweise. Er hat dann in der
-          Regel
-          Leerzeichen und ist nicht mit dem Accountnamen identisch.
-          */
+          /*!
+           \brief This method returns the username of the currently logged-in user.
+           This function determines the "natural language" user name. It usually contains spaces and
+           is not identical to the account name.
+           */
          static String userFullName();
 
          /*!
@@ -85,19 +83,18 @@ namespace jm
           */
          static const String& bundleId();
 
-         /*!
-          \brief Diese Methode muss als erstes aufgerufen werden, damit wichtige statische
-          Objekte eingerichtet werden
-          \note Beim Beenden ist \c init() aufzurufen
-          */
+          /*!
+           \brief This method must be called first to set up important static objects
+           \note When exiting, \c quit() must be called
+           */
          static void init(const jm::String& bundleId);
 
-         /*!
-          \brief Diese Methode räumt statische Systemobjekte auf. Nach dieser Methode muss das
-          Programm beendet werden, weil es sonst bei Verwendung von Objekten dieser Bibliothek zu
-          unerwünschten Nebeneffekte kommen kann.
-          \note Beim Starten ist \c init() aufzurufen
-          */
+          /*!
+           \brief This method cleans up static system objects. After calling this method, the program
+           must be terminated because otherwise unwanted side effects may occur when using objects
+           from this library.
+           \note \c init() must be called at startup
+           */
          static void quit();
 
          /*!
@@ -112,36 +109,38 @@ namespace jm
           */
          static void logEnableLabel(LogLevel logLevel);
 
-         /*!
-          \brief Loggt eine Nachricht mit...
-          */
+          /*!
+           \brief Logs a message.
+           */
          static void log(const String& message, LogLevel logLevel);
 
-         /*!
-          \brief Gibt die letzte Fehlermeldung zurück
-          */
+          /*!
+           \brief Returns the last error message
+           */
          static const String& lastErrorMessage();
 
-         /*!
-          \brief Diese Methode lädt eine dynamische Bibliothek. Unter macOS *.dylib, Windows *.dll
-          und Linus *.so
-          \param file Datei der Bibliothek.
-          \return Pointer auf die Bibliothek oder NULL, wenn sie nicht gefunden wurde.
-          */
+          /*!
+           \brief This method loads a dynamic library. On macOS *.dylib, Windows *.dll, and Linux *.so
+           \param file File of the library.
+           \return Pointer to the library or NULL if it was not found.
+           */
          static void* loadDynamicLibrary(File* file);
 
-         /*!
-          \brief Diese Methode gibt eine geladene dynamische Bibliothek wieder frei
-          */
+          /*!
+           \brief This method unloads a loaded dynamic library
+           */
          static void unloadDynamicLibrary(void* library);
 
-         /*!
-          \brief Diese Methode sicht nach Symbolen in der Bibliothekt
-          \param library Referenz auf die Bilbiothek, in der gesucht werden soll.
-          \param name Name des Symbols
-          */
+          /*!
+           \brief This method searches for symbols in the library.
+           \param library Reference to the library to search in.
+           \param name Name of the symbol.
+           */
          static void* findSymbol(void* library, const String& name);
 
+         /*!
+          \brief This method returns the path to the autoreleased objects pool.
+          */
          static AutoreleasePool* autoreleasePool();
 
    };

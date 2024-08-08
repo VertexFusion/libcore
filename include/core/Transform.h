@@ -40,112 +40,140 @@ namespace jm
 
 
    /*!
-    \brief Diese Methode rechnet WCS-Koordinaten in OCS-Koordinaten um
+    \brief This method converts World Coordinate System (WCS) coordinates to Object Coordinate System (OCS) coordinates.
+    \param wcs The input WCS coordinates.
+    \param extrusion The extrusion vector used for the transformation.
+    \return The corresponding OCS coordinates.
     */
    DllExport
    Vertex3 wcsToOcs(Vertex3 wcs,
                     Vertex3 extrusion);
 
    /*!
-    \brief Diese Methode rechnet OCS-Koordinaten in WCS-Koordinaten um
+    \brief This method converts Object Coordinate System (OCS) coordinates to World Coordinate System (WCS) coordinates.
+    \param ocs The input OCS coordinates.
+    \param extrusion The extrusion vector used for the transformation.
+    \return The corresponding WCS coordinates.
     */
    DllExport
    Vertex3 ocsToWcs(const Vertex3& ocs,
                     const Vertex3& extrusion);
 
    /*!
-    \brief Diese Methode berechnet die OCS-Transformationsmatrix.
-    Es wird der "Arbitrary Axis Algorithm" aus der DXF-Referenz angewendet.
+    \brief This method calculates the OCS transformation matrix using the "Arbitrary Axis Algorithm" from the DXF reference.
+    \param extrusion The extrusion vector used for the transformation.
     */
    DllExport
    Matrix ocsMatrix(const Vertex3& extrusion);
 
    /*!
-    \brief Diese Methode berechnet die WCS-Transformationsmatrix.
-    Es wird der "Arbitrary Axis Algorithm" aud der DXF-Referenz angewendet.
+    \brief This method calculates the WCS transformation matrix using the "Arbitrary Axis Algorithm" from the DXF reference.
+    \param extrusion The extrusion vector used for the transformation.
+    \return The WCS transformation matrix.
     */
    DllExport
    Matrix wcsMatrix(const Vertex3& extrusion);
 
    /*!
-    \brief Diese Klasse ist eine Abstrahierung der Matrix und erweitert sie um Funktionen
+    \brief This class is an abstraction of the Matrix class and extends it with additional functions.
+    \details The Transform class represents a transformation matrix used for coordinate system transformations.
+             It provides methods for translation, scaling, rotation, mirroring, and initialization of the matrix.
+             The matrix can be used to transform 3D points and angles in both World Coordinate System (WCS) and Object Coordinate System (OCS).
     */
    struct DllExport Transform : public Matrix
    {
 
       /*!
-       \brief Konstruktor
+       \brief Default constructor for the Transform class.
        */
       Transform();
 
       /*!
-       \brief Konstruktor
+       \brief Constructor for the Transform class.
        */
       Transform(const Matrix& m);
 
       /*!
-       \brief Diese Methode transformiert den Vektor mit der 4x4 Transformationsmatrix.
+       \brief This method transforms the vertex using the 4x4 transformation matrix.
+       \param vertex The input vertex to be transformed.
+       \return The transformed vertex.
        */
       Vertex3 Trans(const Vertex3& vertex) const;
 
       /*!
-       \brief Diese Methode transformiert die Zahl mit der 4x4 Transformationsmatrix.
-       (X-Faktor wird genommen...)
+       \brief This method transforms the number using the 4x4 transformation matrix.
+       X value is used.
+       \param value The input number to be transformed.
+       \return The transformed number.
        */
       double Trans(const double& value) const;
 
       /*!
-       \brief Transform a rotation angle about the Z-Axis of LCS as usually neede by arcs or texts .
-       \param angle Rotation angle in rad
+       \brief Transform a rotation angle about the Z-Axis of LCS as usually needed by arcs or texts.
+       \param angle Rotation angle in radians.
+       \return The transformed angle.
        */
       Double TransAngle(const Double& angle) const;
 
       /*!
-       \brief Initialisiert diese Transformation als Verschiebung
+       \brief Initializes this transformation as a translation.
+       \param distance The distance to translate by.
        */
       void InitMoving(const Vertex3& distance);
 
       /*!
-       \brief Initialisiert diese Transformation als Skalierung
-       (um Nullpunkt) x,y,z verschiedene Faktoren
+       \brief Initializes this transformation as scaling by different factors along the x, y, and z axes.
+       \param factors The scaling factors along the x, y, and z axes.
        */
       void InitScaling(const Vertex3& factors);
 
       /*!
-       \brief Initialisiert diese Transformation als Skalierung um einen Punkt
+       \brief Initializes this transformation as scaling around a base point.
+       \param basePoint The point around which the scaling is performed.
+       \param factor The scaling factor.
        */
       void InitScaling(const Vertex3& basePoint, double factor);
 
       /*!
-       \brief Initialisiert diese Transform als Rotationsmatrix um die Z-Achse
-       \param angle im Bogenmaß
+       \brief Initializes this Transform as a rotation matrix around the Z-axis.
+       \param angle The rotation angle in radians.
        */
       void InitRotationZ(double angle);
 
       /*!
-       \brief Initialisiert diese Transform als Rotationsmatrix
-       \param axisPoint Ortsvektor der Drehachse
-       \param axisDirection normalisierter Richtungsvektor der Drehachse
-       \param angle im Bogenmaß
+       \brief Initializes this Transform as a rotation matrix.
+       \param axisPoint The origin vector of the rotation axis.
+       \param axisDirection The normalized direction vector of the rotation axis.
+       \param angle The rotation angle in radians.
        */
       void InitRotation(const Vertex3& axisPoint,
                         const Vertex3& axisDirection,
                         double angle);
       /*!
-       \brief Initialisiert diese Transform als Reflektionsmatrix
-       \param planePoint Ortsvektor auf der Spiegelebene
-       \param planeNormal Normalenvektor der Spiegelebene
+       \brief Initializes this Transform as a mirroring matrix.
+       \param planePoint The point on the mirror plane.
+       \param planeNormal The normal vector of the mirror plane.
+       \details This method initializes the transformation matrix as a mirroring matrix, which reflects points across a mirror plane.
+             The mirror plane is defined by a point on the plane (planePoint) and the normal vector of the plane (planeNormal).
+             The resulting matrix can be used to mirror 3D points and objects.
        */
       void InitMirroring(const Vertex3& planePoint,
                          const Vertex3& planeNormal);
 
       /*!
-       \brief Initialisiert diese Transform als WCS.Matrix
+       \brief Initializes this Transform as a World Coordinate System (WCS) matrix.
+       \param extrusion The extrusion vector used for the transformation.
+       \details This method initializes the transformation matrix as a WCS matrix, which represents the coordinate system transformation from Object Coordinate System (OCS) to WCS.
+          The extrusion vector is used to define the direction of the Z-axis in the WCS.
+          The resulting matrix can be used to transform 3D points and angles from OCS to WCS.
        */
       void InitWCS(const Vertex3& extrusion);
 
       /*!
-       \brief Initialisiert diese Transformation als Einheitsmatrix
+       \brief Initializes this transformation as an identity matrix.
+       \details An identity matrix is a square matrix in which all the elements of the principal diagonal are ones and all other elements are zeros.
+             When a vector or point is multiplied by an identity matrix, the result is the same vector or point.
+             This method sets the transformation matrix to an identity matrix, effectively resetting any previous transformations applied.
        */
       void InitIdentity();
 

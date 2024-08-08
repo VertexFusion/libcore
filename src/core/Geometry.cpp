@@ -170,11 +170,10 @@ double jm::distancePointToPlane(const Vertex3& point,
                                 const Vertex3& position,
                                 const Vertex3& normal)
 {
-   //Vorgehen:
-   // 1. Berechne Lotpunkt auf der Ebene ( = loc)
-   // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
-   // 3. Betrag ist Abstand
-
+   // Approach:
+   // 1. Calculate the perpendicular point on the plane ( = loc)
+   // 2. Calculate the direction vector to the point ( = loc - point)
+   // 3. The magnitude is the distance
    Vertex3 loc = closestPointOnPlane(point, position, normal);
    loc = loc - point;
    return loc.abs();
@@ -199,10 +198,10 @@ double jm::distancePointToLine(const Vertex3& point,
                                const Vertex3& position,
                                const Vertex3& direction)
 {
-   //Vorgehen:
-   // 1. Berechne Lotpunkt auf der Geraden ( = loc)
-   // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
-   // 3. Betrag ist Abstand
+   // Approach:
+   // 1. Calculate the perpendicular point on the line ( = loc)
+   // 2. Calculate the direction vector to the point ( = loc - point)
+   // 3. The magnitude is the distance
 
    Vertex3 loc = closestPointOnLine(point, position, direction);
    loc = loc - point;
@@ -214,10 +213,10 @@ double jm::distancePointToLine(const Vertex3& point,
                                const Vertex3& lineEnd,
                                bool extend)
 {
-   //Vorgehen:
-   // 1. Berechne Lotpunkt auf der Geraden ( = loc)
-   // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
-   // 3. Betrag ist Abstand
+   // Approach:
+   // 1. Calculate the perpendicular point on the line ( = loc)
+   // 2. Calculate the direction vector to the point ( = loc - point)
+   // 3. The magnitude is the distance
 
    Vertex3 loc = closestPointOnLine(point, lineStart, lineEnd, extend);
    loc = loc - point;
@@ -229,11 +228,10 @@ double jm::distancePointToCircle(const Vertex3& point,
                                  double radius,
                                  const Vertex3& normal)
 {
-   //Vorgehen:
-   // 1. Berechne Lotpunkt auf dem Kreis ( = loc)
-   // 2. Berechne Richtungsvektor zum Punt ( = loc - point)
-   // 3. Betrag ist Abstand
-
+   // Approach:
+   // 1. Calculate the perpendicular point on the circle ( = loc)
+   // 2. Calculate the direction vector to the point ( = loc - point)
+   // 3. The magnitude is the distance
    Vertex3 loc = closestPointOnCircle(point, center, radius, normal);
    loc = loc - point;
    return loc.abs();
@@ -246,19 +244,19 @@ double jm::distanceLineToLine(const Vertex3& position1,
 {
    if(direction1.IsCollinear(direction2))
    {
-      //Vorgehen, wenn parallel
-      // 1. Bestimme die Differenz aus beiden Ortsvektoren
-      // 2. Bestimme Kreuzprodukt aus 1. Richtungsvektor und Differenz
-      // 3. Teile durch Betrag des 1. Richtungsvektor
+      // Approach when parallel
+      // 1. Calculate the difference between both position vectors
+      // 2. Calculate the cross product of the first direction vector and the difference
+      // 3. Divide by the magnitude of the first direction vector
       Vertex3 cross = direction1.crossProduct(position2 - position1);
       return cross.abs() / direction1.abs();
    }
    else
    {
-      //Vorgehen, wenn windschief
-      // 1. Berechne Lotpunkt auf der 2. Geraden
-      // 2. Berechne Lotpunkt auf der 1. Geraden
-      // 3. Bestimme Abstand der beiden Punkte
+      // Approach when skew
+      // 1. Calculate the perpendicular point on the second line
+      // 2. Calculate the perpendicular point on the first line
+      // 3. Determine the distance between the two points
 
       Vertex3 loc2 = closestPointOnLine(position1, direction1, position2, direction2);
       Vertex3 loc1 = closestPointOnLine(position2, direction2, position1, direction1);
@@ -329,34 +327,32 @@ Vertex3 jm::intersectionPoint(const Vertex3& position1,
                               const Vertex3& direction2)
 {
    //
-   // 1. Ermittle Abstand der Geraden.
+   // 1. Calculate the distance between the two lines.
    //
    double dist = distanceLineToLine(position1,
                                     direction1,
                                     position2,
                                     direction2);
-
    //
-   // 2. Ein Schnittpunkt ist vorhanden, wenn der Abstand 0 ist.
+   // 2. If the distance is less than or equal to 0, there is an intersection point.
    //
    if(isLessEqual(dist, 0.0))
    {
       //
-      // Welcher Punkt auf der 2. Geraden hat den kürzesten Abstand zur 1. Geraden ?
+      // Find the point on the second line that is closest to the first line.
       //
       Vertex3 inter = closestPointOnLine(position1,
                                          direction1,
                                          position2,
                                          direction2);
-
       //
-      // -> Genau dieser Punkt ist der Schnittpunkt der beiden Geraden.
+      // -> This point is the intersection point of the two lines.
       //
       return inter;
    }
 
    //
-   // Kein Schnittpunkt vorhanden
+   // No intersection point found.
    //
    return Vertex3(NAN, NAN, NAN);
 }
@@ -375,17 +371,6 @@ bool jm::crosses(const Vertex2& start1,
    double lambda1 = x.x;
    double lambda2 = x.y;
 
-   /*	Vertex2 intersection = intersectionPoint( start1, dir1, start2, dir2 );
-
-    if( IsNaN( intersection.x ) || IsNaN( intersection.y ) ) return false;
-
-    //Bestimme die Lambdas vom Start zum Endpunkt
-    Vertex2 dist1 = intersection - start1;
-    Vertex2 dist2 = intersection - start2;
-
-    double lambda1 = dist1.Abs() / dir1.Abs();
-    double lambda2 = dist2.Abs() / dir2.Abs();*/
-
    if(isLess(lambda1, 0) ||
          isGreater(lambda1, 1) ||
          isLess(lambda2, 0) ||
@@ -399,7 +384,8 @@ Vertex2 jm::extensionPointOnLine(const Vertex2& rayorigin,
                                  const Vertex2& start,
                                  const Vertex2& end)
 {
-   //Richtung der Linie vom Start zum Endpunkt
+
+   //Direction of the line from the start to the endpoint
    Vertex2 direction2 = end - start;
 
    double lambda = -1;
@@ -411,19 +397,19 @@ Vertex2 jm::extensionPointOnLine(const Vertex2& rayorigin,
    }
 
 
-   //Bekomme Schnittpunkt
+   // Get intersection point
    Vertex2 intersection = start + lambda * direction2;
    if(isNaN(intersection.x) || isNaN(intersection.y)) return intersection;
 
-   //Wenn Schnittpunkt == Startpunkt ist, dann gibt auf NAN zurück
+   // If the intersection point is equal to the starting point, return NAN
    if(isEqual(intersection.x, rayorigin.x) &&
          isEqual(intersection.y, rayorigin.y))
       return Vertex2(NAN, NAN);
 
-   //Wenn lambda nicht >= 0 und <=1 ist der Punkt außerhalb der Linie
+   // If lambda is not >= 0 and <= 1, the point is outside the line
    if(isLess(lambda, 0) || isGreater(lambda, 1))return Vertex2(NAN, NAN);
 
-   //Prüfe nun, ob der Schnittpunkt in Richtung des Strahls liegt
+   // Now check if the intersection point lies in the direction of the ray
    direction2 = intersection - rayorigin;
 
    Vertex2 ndir = direction;
@@ -431,16 +417,16 @@ Vertex2 jm::extensionPointOnLine(const Vertex2& rayorigin,
    Vertex2 ndir2 = direction2;
    ndir2.normalize();
 
-   //Wenn gleichgerichtet, dann ist der Punkt vor dem Strahl
+   // If the directions are the same, then the point is in front of the ray
    if(isEqual(ndir.x, ndir2.x) && isEqual(ndir.y, ndir2.y))return intersection;
 
-   //Entgegengesetzt, also kein Schnittpunkt
+   // Opposite, so no intersection point
    return Vertex2(NAN, NAN);
 }
 
 /*!
- \brief Diese Helfermethode prüft, ob der punkt p innerhalb des Start und Endwinkels liegt
- Start und Endwinkel im Bogenmaß
+ \brief This helper method checks if the point p lies within the start and end angles.
+ Start and end angles are in radians.
  */
 bool CheckAngle(const Vertex2& point,
                 const Vertex2& center,
@@ -458,14 +444,14 @@ bool CheckAngle(const Vertex2& point,
 
    double const DBL_PI = 2 * M_PI;
 
-   //Sorge dafür, dass Startwinkel im Bereich 0-2PI ist;
+   // Ensure that the start angle is in the range of 0-2PI
    while(isGreaterEqual(start, DBL_PI))start -= DBL_PI;
 
-   //Sroge dafür, dass er Startwinkel größer start ist, aber nicht um ein vielfaches größer
+   // Ensure that the start angle is greater than start, but not multiple times greater
    while(isGreaterEqual(end, DBL_PI))end -= DBL_PI;
    while(isLessEqual(end, start))end += DBL_PI;
 
-   //Sorge dafür, dass angle > start ist
+   // Ensure that angle is greater than start
    while(isLess(angle, start))angle += DBL_PI;
 
    if(isLessEqual(angle, end))return true;
@@ -474,8 +460,7 @@ bool CheckAngle(const Vertex2& point,
 }
 
 /*!
- \brief Diese Methode wird bei Kreisen und Ellipsen dazu verwendet, das Ergebnis der PQ-Formel zu
- interpretieren und gleichzeitig die Winkel zu Prüfen.
+ \brief This method is used for interpreting the result of the PQ formula and checking the angles in circles and ellipses.
  */
 Vertex2 PQCheck(double p,
                 double q,
@@ -495,8 +480,8 @@ Vertex2 PQCheck(double p,
    double p2 = 0.5 * p;
    double rt = p2 * p2 - q;
 
-   //Wenn rt < 0 ist, dann wird der Kreis nicht geschnitten.
-   //Wenn rt ~ 0 ist, setze es auf Null, damit die Wurzel auch berechnet wird.
+   // If rt < 0, then the circle is not intersected.
+   // If rt is approximately equal to 0, set it to zero to ensure the square root is computed.
    if(isLessEqual(rt, 0.0))
    {
       if(isLess(rt, 0.0)) return Vertex2(NAN, NAN);
@@ -530,7 +515,7 @@ Vertex2 PQCheck(double p,
       return Vertex2(NAN, NAN);
    }
 
-   //Ein Punkt liegt hinter der Strahlquelle
+   // A point is behind the ray source
    if(isLessEqual(n1, 0.0) && pt2ok)
    {
       return pt2;
@@ -541,7 +526,7 @@ Vertex2 PQCheck(double p,
    }
 
 
-   // Keine Lösung, aus welchen Grund auch immer...
+   // No solution, for whatever reason...
    return Vertex2(NAN, NAN);
 }
 
@@ -561,9 +546,9 @@ Vertex2 jm::extensionPointOnArc(const Vertex2& rayorigin,
    // r       : Radius
    // n       : lambda für Richtung (gesucht)
    //
-   // Kreisgleichung (p.x - c.x)^2 + (p.y-c.y)^2 = r^2
-   // Geradengleichung (vektoriell) o + n * d = p
-   // Einsetzen und quadratische Gleichung mit pq-Formel lösen führt zu:
+   // Circle equation (p.x - c.x)^2 + (p.y-c.y)^2 = r^2
+   // Line equation (vector form) o + n * d = p
+   // Substituting and solving the quadratic equation using the quadratic formula leads to:
 
    double dx2 = direction.x * direction.x;
    double dy2 = direction.y * direction.y;
@@ -610,19 +595,19 @@ Vertex2 jm::extensionPointOnEllipse(const Vertex2& rayorigin_,
    Vertex2 rayorigin = rayorigin_;
    rayorigin.rotate(-angle);
 
-   //Nun liegt die Ellipse mit der Hauptachse auf der X-Achse
+   //Now the ellipse is aligned with the major axis on the X-axis
 
    //GLS:
-   // o.x,o.y : Geradenursprung
-   // p.x,p.y : Punkt auf Ellipse, der gesucht wird
-   // c.x,c.y : Ellipsenmittelpunkt
-   // a       : Länge der Hauptachse (analogon Radius beim Kreis)
-   // b       : Länge der Nebenachse
-   // n       : lambda für Richtung (gesucht)
+   // o.x,o.y : Origin of the line
+   // p.x,p.y : Point on the ellipse being sought
+   // c.x,c.y : Center of the ellipse
+   // a       : Length of the major axis (analogous to radius for a circle)
+   // b       : Length of the minor axis
+   // n       : lambda for direction (to be found)
    //
-   // Ellipsengleichung (p.x - c.x)^2 / a^2 + (p.y-c.y)^2 / b^2 = 1
-   // Geradengleichung (vektoriell) o + n * d = p
-   // Einsetzen und quadratische Gleichung mit pq-Formel lösen führt zu:
+   // Ellipse equation (p.x - c.x)^2 / a^2 + (p.y-c.y)^2 / b^2 = 1
+   // Line equation (vector form) o + n * d = p
+   // Substituting and solving the quadratic equation using the pq-formula leads to:
 
    double a = mainAxis.abs();
    double b = a * minorAxisRatio;

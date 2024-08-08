@@ -47,21 +47,21 @@ namespace jm
 
          /*!
           \brief X component of vector.
-          \note We need fast acces to this value and other protection measures are not necessary.
+          \note We need fast access to this value and other protection measures are not necessary.
           So we leave it public.
           */
          double x;
 
          /*!
           \brief Y component of vector.
-          \note We need fast acces to this value and other protection measures are not necessary.
+          \note We need fast access to this value and other protection measures are not necessary.
           So we leave it public.
           */
          double y;
 
          /*!
           \brief Z component of vector.
-          \note We need fast acces to this value and other protection measures are not necessary.
+          \note We need fast access to this value and other protection measures are not necessary.
           So we leave it public.
           */
          double z;
@@ -94,40 +94,44 @@ namespace jm
          */
          Vertex3 crossProduct(const Vertex3& another) const;
 
-         /*!
-          \brief Gibt das Skalarprodukt eines Vektors mit einem anderen zurück.
-          - Wenn das Skalarprodukt 0 ist, dann stehen zwei Vektoren senkrecht aufeinander.
-          - Wenn das Skalarporduct > 0 ist, dann ist der eingeschlossene Winkel spitz
-          - Wenn das Skalarporduct < 0 ist, dann ist der eingeschlossene Winkel stumpf
-          - Bei normierten Vektoren entspricht das Skalarprodukt der Projektion eines Vektoren auf
-            den anderen.
-          \param another The other vector.
-          \return The result of "this * other".
-          */
+          /*!
+           \brief Calculates the dot product of this vector with another vector.
+           The dot product is defined as the sum of the products of the corresponding components of the two vectors.
+           - If the dot product is 0, then the two vectors are orthogonal (perpendicular) to each other.
+           - If the dot product is > 0, then the included angle between the two vectors is acute.
+           - If the dot product is < 0, then the included angle between the two vectors is obtuse.
+           - For normalized vectors, the dot product is equal to the projection of one vector onto the other.
+           \param another The other vector.
+           \return The result of "this dot another".
+           */
          double DotProduct(const Vertex3& another) const;
 
-         /*!
-          \brief Diese Methode berechnet, ob die beiden Vektoren kollinear sind.
-            Also ob beide Vektoren parallel sind.
-          */
+          /*!
+           \brief This method checks whether the two vectors are collinear.
+           Two vectors are collinear if they are parallel to each other.
+           \param another The other vector.
+           \return true if the vectors are collinear.
+           */
          bool IsCollinear(const Vertex3& another) const;
 
-         /*!
-          \brief Diese Methode berechnet, ob die beiden Vektoren orthogonal sind.
-          Also ob sie senktrecht aufeinander stehen
-          */
-         bool IsOrthogonal(const Vertex3& another) const;
+          /*!
+           \brief This method calculates whether the two vectors are orthogonal.
+           Two vectors are orthogonal if they are perpendicular to each other.
+           \param another The other vector.
+           \return true if the vectors are orthogonal.
+           */
+          bool IsOrthogonal(const Vertex3& another) const;
 
-         /*!
-          \brief Diese Methode prüft, ob der Vektor der Nullvektor ist (unter Berücksichtigung von
-          RESABS)
-          */
+          /*!
+           \brief This method checks if the vector is the zero vector (taking into account RESABS).
+           \return true if the vector is the zero vector.
+           */
          bool IsNull() const;
 
-         /*!
-          \brief Diese Methode prüft, ob der Vektor einen "NaN"-Eintrag hat. Wenn alle Einträge
-          definiert sind, wird wahr zurückgegeben.
-          */
+          /*!
+           \brief This method checks if the vector has any "NaN" entries. If all entries are defined, it returns true.
+           \return true if all entries are defined, false if any entry is "NaN".
+           */
          bool IsValid() const;
 
          /*!
@@ -142,43 +146,47 @@ namespace jm
           */
          double abs() const;
 
-         /*!
-          \brief Diese Methode rotiert den Vektor um die X-Achse um den angegebenen Winkel.
-          \param angle Der Rotationswinkel. Der Winkel wird im Bogenmaß angegeben
-          */
-         void RotateX(double angle);
+          /*!
+           \brief Rotates the vector around the X-axis by the specified angle.
+           \param angle The rotation angle in radians.
+           */
+          void RotateX(double angle);
 
-         /*!
-          \brief Diese Methode rotiert den Vektor um die Y-Achse um den angegebenen Winkel.
-          \param angle Der Rotationswinkel. Der Winkel wird im Bogenmaß angegeben
-          */
-         void RotateY(double angle);
+          /*!
+           \brief Rotates the vector around the Y-axis by the specified angle.
+           \param angle The rotation angle in radians.
+           */
+          void RotateY(double angle);
 
-         /*!
-          \brief Diese Methode rotiert den Vektor um die Z-Achse um den angegebenen Winkel.
-          \param angle Der Rotationswinkel. Der Winkel wird im Bogenmaß angegeben
-          */
+          /*!
+           \brief Rotates the vector around the Z-axis by the specified angle.
+           \param angle The rotation angle in radians.
+           */
          void RotateZ(double angle);
 
-         /*!
-          \brief Diese Methode rotiert den Vektor um die gegebene um den angegebenen Winkel.
-          \param angle Der Rotationswinkel. Der Winkel wird im Bogenmaß angegeben
-          \param axis Die Rotationsachse
-          */
+          /*!
+           \brief Rotates the vector around the given axis by the specified angle.
+           \param angle The rotation angle in radians.
+           \param axis The rotation axis.
+           */
          void Rotate(double angle, const Vertex3& axis);
 
-         /*!
-          \brief  This method normalises the vector. A normalised vector has a length of 1 and the
-          reference to this vector is returned.
-          \note If this vector has the length (nearly) 0, it is returned unchanged.
-          */
+          /*!
+           \brief  This method normalizes the vector. A normalized vector has a length of 1 and the
+           reference to this vector is returned.
+           \param none
+           \return Reference to this vector after normalization.
+           \note If this vector has a length close to 0, it is returned unchanged.
+           */
          Vertex3& normalize();
 
-         /*!
-          \brief This method returns a normalised vector. A normalised vector has a length of 1.
-          This vector is not changed in the process.
-          \note If this vector has the length (nearly) 0, it is returned unchanged.
-         */
+          /*!
+           \brief This method returns a normalized vector. A normalized vector has a length of 1.
+           This vector is not changed in the process.
+           \param none
+           \return The normalized vector.
+           \note If this vector has a length close to 0, it is returned unchanged.
+          */
          Vertex3 normalized() const;
 
          /*!

@@ -432,31 +432,31 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
             switch(date.month())
             {
                case Date::JANUARY:
-                  value.append("Januar");
+                  value.append(Tr("January"));
                   return;
 
                case Date::FEBRUARY:
-                  value.append("Februar");
+                  value.append(Tr("February"));
                   return;
 
                case Date::MARCH:
-                  value.append("März");
+                  value.append(Tr("March"));
                   return;
 
                case Date::APRIL:
-                  value.append("April");
+                  value.append(Tr("April"));
                   return;
 
                case Date::MAY:
-                  value.append("Mai");
+                  value.append(Tr("May"));
                   return;
 
                case Date::JUNE:
-                  value.append("Juni");
+                  value.append(Tr("June"));
                   return;
 
                case Date::JULY:
-                  value.append("Juli");
+                  value.append(Tr("July"));
                   return;
 
                case Date::AUGUST:
@@ -464,19 +464,19 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
                   return;
 
                case Date::SEPTEMBER:
-                  value.append("Septemper");
+                  value.append(Tr("Septemper"));
                   return;
 
                case Date::OCTOBER:
-                  value.append("Oktober");
+                  value.append(Tr("October"));
                   return;
 
                case Date::NOVEMBER:
-                  value.append("November");
+                  value.append(Tr("November"));
                   return;
 
                case Date::DECEMBER:
-                  value.append("Dezember");
+                  value.append(Tr("December"));
                   return;
             }
          }

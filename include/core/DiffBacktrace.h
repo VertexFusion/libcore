@@ -39,7 +39,7 @@
 namespace jm
 {
 
-   //Vorabdeklaration
+   // Forward declaration
    class DiffDistance;
    class DiffDiag;
 
@@ -52,14 +52,14 @@ namespace jm
    {
       public:
 
-         /*!
-          \brief Standardkonstruktor
-          */
+          /*!
+           \brief Default constructor
+           */
          DiffBacktrace();
 
-         /*!
-          \brief Copykonstruktor
-          */
+          /*!
+           \brief Copy constructor
+           */
          DiffBacktrace(const DiffBacktrace& another);
 
          /*!
@@ -67,54 +67,42 @@ namespace jm
           */
          ~DiffBacktrace();
 
-         /*!
-          \brief Schreibt das Ergebnis von Diff in den Standardausgabestrom, wenn etwas unterschiedlich ist
-          */
+          /*!
+           \brief Writes the result of Diff to the standard output stream if something is different
+           */
          void Print();
 
-         /*!
-          \brief Diese Methode führt das Backtracing durch, um den Pfad der Veränderungen zu bekommen.
-          \param dd Zeiger auf die Diagonale, aus der das Betrachtete Element stammt.
-          \param i 0-basierter Index auf das Element in der Diagonalen.
-          */
+          /*!
+           \brief This method performs the backtracing to obtain the path of changes.
+           \param dd Pointer to the diagonal from which the considered element originates.
+           \param i 0-based index of the element in the diagonal.
+           */
          static DiffBacktrace* Backtrace(DiffDiag* dd, uint32 i);
 
-         /*!
-          \brief Gibt die Diff-Operation zurück.
-          */
+          /*!
+           \brief Returns the diff operation.
+           */
          DiffOperation GetOperation();
 
       private:
 
-         /*!
-          \brief Die Länge des Pfades, der zurückgegangen wird
-          */
+         //! The length of the path being backtraced
          unsigned int size;
 
-         /*!
-          \brief Operation, die in diesem Schritt gemacht wurde
-          */
-         DiffOperation operation;
+          //! Operation performed in this step
+          DiffOperation operation;
 
-         /*!
-          \brief Zeiger auf das "linke" Objekt, wenn vorhanden
-          */
+         //! Pointer to the "left" object, if available
          Object* obj1;
 
-         /*!
-          \brief Zeiger auf das "rechte" Objekt, wenn vorhanden
-          */
+         //! Pointer to the "right" object, if available
          Object* obj2;
 
-         /*!
-          \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
-          */
+         //! Pointer to the previous element in the backtrace path
          DiffBacktrace* prev;
 
-         /*!
-          \brief Zeiger auf das vorangegangene Element in dem Backtrace-Pfad
-          */
-         DiffBacktrace* next;
+         //! Pointer to the next element in the backtrace path
+        DiffBacktrace* next;
 
    };
 

@@ -38,13 +38,17 @@
 namespace jm
 {
 
+   /*!
+   \brief Entry for a ZIP file.
+   */
    class DllExport ZipEntry: public Object
    {
       public:
 
-         /*!
-          \brief Constructor
-          */
+          /*!
+           \brief Constructor for the ZipEntry class.
+           \param name The name of the entry.
+           */
          ZipEntry(const String& name);
 
          /*!
@@ -52,9 +56,10 @@ namespace jm
           */
          String name()const;
 
-         /*!
-          \brief set the size of the uncompressed entry.
-          */
+          /*!
+           \brief Set the size of the uncompressed entry.
+           \param size The size of the uncompressed entry in bytes.
+           */
          void setUncompressedSize(uint32 size);
 
          /*!
@@ -84,134 +89,136 @@ namespace jm
    };
 
    /*!
-    \brief Diese Klasse repräsentiert eine ZIP-Datei zum Einlesen der Zip-Daten.
+    \brief This class represents a ZIP file for reading ZIP data.
     */
    class DllExport ZipFile: public Object
    {
 
       public:
 
-         /*!
-          \brief Konstruktor
-          */
-         ZipFile(File* file);
+           /*!
+            \brief Constructor for ZipFile class.
+            \param file A pointer to the File object representing the ZIP file.
+            */
+          ZipFile(File* file);
 
-         /*!
-          \brief Öffnet die Datei zum Lesen
-          */
+          /*!
+           \brief Opens the file for reading.
+           */
          void open();
 
-         /*!
-          \brief Schließt die Datei
-          */
-         void close();
+          /*!
+           \brief Closes the file.
+           */
+          void close();
 
-         /*!
-          \brief Gibt den Kommentar der ZIP-Datei zurück, oder leeren String, wenn kein Kommentar
-          existiert.
-          */
+          /*!
+           \brief Returns the comment of the ZIP file, or an empty string if no comment exists.
+           \return The comment of the ZIP file.
+           */
          String comment();
 
-         /*!
-          \brief Gibt den Zip-Eintrag zurück, wenn er existiert, oder NULL, wenn er nicht
-          existiert.
-          */
+          /*!
+           \brief Returns the ZipEntry object if it exists, or nullptr if it does not exist.
+           \param name The name of the ZipEntry to retrieve.
+           \return A pointer to the ZipEntry object if it exists, or NULL otherwise.
+           */
          ZipEntry* entry(const String& name);
 
-         /*!
-          \brief Gibt einen Iterator über die Zipeinträge zurück
-          */
+          /*!
+           \brief Returns an iterator over the Zip entries.
+           \return An iterator over the Zip entries.
+           */
          LinkedListIterator entryIterator();
 
-         /*!
-          \brief Gibt die Anzahl der Zipeinträge zurück.
-          */
+          /*!
+           \brief Returns the number of Zip entries in the ZipFile.
+           \return The number of Zip entries.
+           */
          uint32 entryCount() const;
 
-         /*!
-          \brief Gibt den Stream mit den unkomprimierten Daten des Eintrages zurück. Der Aufrufer
-          dieser Methode übernimmt den Stream und muss ihn selbst aufräumen. Der Stream ist nur
-          geeignet die Daten einer ZIP-Datei zu lesen. In den Stream kann nicht geschrieben werden.
-          */
+          /*!
+           \brief Returns the stream containing the uncompressed data of the entry. The caller
+           of this method takes ownership of the stream and is responsible for cleaning it up. 
+           The stream is read-only and can only be used to read the data from a ZIP file. 
+           Writing to the stream is not supported.
+           \param entry The ZipEntry object for which the stream is requested.
+           \return A pointer to the Stream object containing the uncompressed data, or nullptr if the entry does not exist.
+           */
          Stream* stream(const ZipEntry* entry);
 
       private:
 
-         /*!
-          \brief Die Datei.
-          */
-         File* mFile;
+          //! The file.
+          File* mFile;
 
-         /*!
-          \brief Die Einträge
-          */
+          //! The entries
          LinkedList mEntries;
 
    };
 
 
    /*!
-   \brief Diese Klasse repräsentiert eine ZIP-Datei zum Schreiben der Zip-Daten.
+   \brief This class represents a ZIP file for writing ZIP data.
    */
    class DllExport ZipOutputFile: public Object
    {
 
       public:
 
-         /*!
-         \brief Konstruktor
-         */
-         ZipOutputFile(File* file);
+          /*!
+          \brief Constructor for the ZipOutputFile class.
+          \param file A pointer to the File object representing the ZIP file.
+          */
+          ZipOutputFile(File* file);
 
-         /*!
-         \brief Öffnet die Datei zum Schreiben
-         */
+          /*!
+          \brief Opens the file for writing.
+          */
          void open();
 
-         /*!
-         \brief Schließt die Datei
-         */
+          /*!
+          \brief Closes the file and releases any resources associated with it.
+          */
          void close();
 
-         /*!
-         \brief Schließt den aktuellen Eintrag und bereitet die Datei auf das Schreiben des nächsten
-         Eintrages vor
-         */
-         void closeEntry();
+          /*!
+          \brief Closes the current entry and prepares the file for writing the next entry.
+          This method should be called after writing the data for the current entry is complete.
+          */
+          void closeEntry();
 
-         /*!
-         \brief Beginnt mit dem Schreiben eines neuen ZIP-Eintrags. Der Stream wartet nun an
-         korrekter Position auf Daten
-         */
-         void putNextEntry(ZipEntry* entry);
+          /*!
+          \brief Begins writing a new ZIP entry. The stream is now positioned correctly to receive data.
+          \param entry The ZipEntry object representing the new entry to be written.
+          */
+          void putNextEntry(ZipEntry* entry);
 
-         /*!
-         \brief Gibt den Stream für das Schreiben der Daten zurück.
-         */
-         void write(uint8* data, Integer offset, Integer length);
+          /*!
+          \brief Writes the specified data to the stream.
+          \param data A pointer to the data to be written.
+          \param offset The offset in the data buffer where writing should start.
+          \param length The number of bytes to write.
+          */
+          void write(uint8* data, Integer offset, Integer length);
 
-         /*!
-         \brief Schreibt den Inhalt der Datei in den Stream
-         */
-         void writeAndClose(File* file);
+          /*!
+          \brief Writes the content of the file to the stream and closes the file.
+          \param file A pointer to the File object representing the file to be written.
+          */
+          void writeAndClose(File* file);
 
 
       private:
 
-         /*!
-         \brief Die ZIP-Datei.
-         */
-         File* mFile;
+          //! The ZIP file.
+          File* mFile;
 
-         /*!
-         \brief Temporäre Datei für UNkomprimierte Daten
-         */
-         File* mTemp;
+          //! Temporary file for uncompressed data
+          File* mTemp;
 
-         /*!
-          \brief Die Einträge
-          */
-         LinkedList mEntries;
+          //! The entries
+          LinkedList mEntries;
 
    };
 

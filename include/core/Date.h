@@ -436,13 +436,13 @@ namespace jm
    /*!
     \brief Returns the date in a formatted string. The following placeholders are available: 
     y : year : 2015; 15
-    M : month : Juli; Jul; 07; 7
+    M : month : July; Jul; 07; 7
     w: calendar week : 42
     W: week of the month: 1
     D: day of the year: 142
     d: day of the month: 24
     F: weekday of the month: 2
-    E: weekday: Dienstag; Di, D
+    E: weekday: Tuesday; Tu, T
     a: AM/PM marker: AM;
     H: hour (0-23)
     K: hour (0-11)
@@ -456,7 +456,7 @@ namespace jm
     
     Additions:
     text: the long form is used for 4 or more letters, otherwise a short one is used 
-    year: if pattern = yy, then    ?    Jahr: Wenn Pattern = yy, dann ist
+    year: if pattern = yy, then ?Year: If pattern = yy, then it is displayed as 15, otherwise as 2015
 
     ' ' can be used to mark the text.  
     */
@@ -465,6 +465,9 @@ namespace jm
 
       public:
 
+         /*!
+         
+         */
          DateFormatter(const String& pattern);
 
          ~DateFormatter();
@@ -477,7 +480,7 @@ namespace jm
 
          enum PatternType
          {
-            kEmpty,//Platzhalter
+            kEmpty,//Placeholder for empty pattern
             kText,
             kYear,
             kMonthInYear,
