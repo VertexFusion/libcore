@@ -67,7 +67,7 @@ namespace jm
          static const int64 MS_PER_MINUTE = 60000;
          static const int64 MS_PER_HOUR = 3600000;
 
-         // Constants for months
+         // Constants for months.
          static const int16 JANUARY = 0;
          static const int16 FEBRUARY = 1;
          static const int16 MARCH = 2;
@@ -81,7 +81,7 @@ namespace jm
          static const int16 NOVEMBER = 10;
          static const int16 DECEMBER = 11;
 
-         //Konstanten für Wochentage
+         // Constants for week days.
          static const int16 SUNDAY = 0;
          static const int16 MONDAY = 1;
          static const int16 TUESDAY = 2;
@@ -90,7 +90,7 @@ namespace jm
          static const int16 FRIDAY = 5;
          static const int16 SATURDAY = 6;
 
-         //Konstante für Null
+         // Constant for Null.
          static const int64 EMPTY = 0x8000000000000000;
 
          /*!
