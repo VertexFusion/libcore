@@ -66,7 +66,7 @@ namespace jm
 
          /*!
           \brief This Method encodes the given string into an encoded String using the encoding implemented in the decoder.
-          \param string The Unicode-encoded String that is to be converted. 
+          \param string The Unicode-encoded String be converted. 
           \return A C-string whose coding is determined by this decoder.
           */
          virtual ByteArray Encode(const CharArray& string) = 0;
