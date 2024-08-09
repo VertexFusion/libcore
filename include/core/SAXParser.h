@@ -162,6 +162,12 @@ namespace jm
          float valueAsFloat(const String& qname)const;
 
          /*!
+          \brief Returns the value as a double.
+          \param qname The qualified name of the attribute.
+          */
+         double valueAsDouble(const String& qname)const;
+
+         /*!
           \brief Returns the value as a boolean.
           \param qname The qualified name of the attribute.
           */

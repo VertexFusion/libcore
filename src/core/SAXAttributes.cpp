@@ -152,6 +152,11 @@ float SAXAttributes::valueAsFloat(const String& qname) const
    return (float)Double::valueOf(value(qname));
 }
 
+double SAXAttributes::valueAsDouble(const String& qname) const
+{
+   return Double::valueOf(value(qname));
+}
+
 bool SAXAttributes::valueAsBool(const String& qname)const
 {
    return value(qname).equalsIgnoreCase("true");
