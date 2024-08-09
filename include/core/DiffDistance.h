@@ -56,13 +56,13 @@ namespace jm
    {
       public:
 
-         /*!
-          \brief Anzahl der berechneten Schritte für statistische Auswertung.
-          */
+          /*!
+           \brief Number of calculated steps.
+           */
          Integer calc;
 
          /*!
-          \brief Konstructor
+          \brief Constructor
           */
          DiffDistance();
 
@@ -71,9 +71,11 @@ namespace jm
           */
          ~DiffDistance();
 
-         /*!
-          \brief Räum auf, um neue Berechnung machen zu können
-          */
+          /*!
+           \brief Clears the internal state to prepare for a new calculation.
+
+           This method clears the internal state of the DiffDistance object in order to prepare for a new calculation.
+           */
          void Clear();
 
          /*!
@@ -86,45 +88,55 @@ namespace jm
           */
          void addV(Object* obj);
 
-         /*!
-          \brief Diese Methode berechnet die Levenshtein-Distanz
-          */
+          /*!
+           \brief This method calculates the Levenshtein distance between the two vectors.
+           */
          DiffBacktrace* Solve();
 
-         /*!
-          \brief Gibt die Levenshtein-Distanz zurück
-          */
+          /*!
+           \brief Returns the Levenshtein distance between the two vectors.
+
+           This method calculates the Levenshtein distance between the two vectors of objects.
+           The Levenshtein distance is a measure of the difference between two strings or vectors.
+           If the distance is 0, it means the objects are identical.
+
+           \return The Levenshtein distance between the two vectors.
+           */
          Integer GetDistance() const;
 
       private:
 
-         /*!
-          \brief Levenshtein-Distanz. Wenn 0, dann sind die Objekte gleicht.
-          */
+          /*!
+           \brief Calculates the Levenshtein distance between two vectors of objects.
+           
+           The Levenshtein distance is a measure of the difference between two strings. In this case,
+           it calculates the distance between two vectors of objects. If the distance is 0, it means
+           the objects are identical.
+           */
          Integer distance;
 
          /*!
-          \brief Berechnete Diagonale
+          \brief Calculated diagonal
           */
          DiffDiag* diagonal;
 
          /*!
-          \brief Anzahl der Zeilen
+          \brief Number of rows.
           */
          Integer m;
 
          /*!
-          \brief Anzahl der Spalten
+          \brief Number of columns
           */
          Integer n;
 
          /*!
-          \brief Vergleichsvektor 1
+          \brief Comparison vector 1
           */
          std::vector<Object*>* u;
 
          /*!
-          \brief Vergleichsvektor 2
+          \brief Comparison vector 2
           */
          std::vector<Object*>* v;
 

@@ -49,23 +49,26 @@ namespace jm
    {
       public:
 
-         /*!
-          \brief Standardkonstruktor
-          */
+          /*!
+           \brief Default constructor.
+           */
          DiffInfo();
 
-         /*!
-          \brief Copykonstruktor
-          */
+          /*!
+           \brief Copy constructor.
+           \param another The DiffInfo object to be copied.
+           */
          DiffInfo(const DiffInfo& another);
 
-         /*!
-          \brief Diese Methode schreibt die Diff-Info der beiden Objekte in die Kommandozeile.
-          */
+          /*!
+           \brief This method writes the diff information of the two objects to the command line.
+           \param operation The diff operation performed.
+           \param obj1 Pointer to the first object.
+           \param obj2 Pointer to the second object.
+           */
          void Print(DiffOperation operation, Object* obj1, Object* obj2);
 
          /*
-         	//Einzelne Werte
          	void Print(int obj1, int obj2,vxf::String label);
          	void Print(unsigned int obj1,unsigned int obj2,vxf::String label);*/
          static void Print(DiffOperation operation,
@@ -128,9 +131,9 @@ namespace jm
 
       private:
 
-         /*!
-          \brief Die aktuelle Operation, da einige Print-Methoden dies brauchen um die richtigen Informationen auszugeben
-          */
+          /*!
+           \brief The current operation, as some Print methods require this to output the correct information.
+           */
          DiffOperation mOperation;
 
    };

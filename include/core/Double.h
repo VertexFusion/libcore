@@ -69,17 +69,16 @@ class DllExport Double
       bool IsNaN() const;
 
       /*!
-       \brief  Diese Funktion rundet eine Zahl kaufmännisch auf die Ganze Zahl
-       \return Ganze Zahl.
+       \brief  This function rounds a number to the nearest integer.
+       \return Nearest integer.
        */
       Integer Round() const;
 
       /*!
-       \brief  Diese Funktion rundet eine Zahl auf die gewünschte Anzahl der Nachkommastellen.
-       \note Beachte, dass aufgrund der Maschinengenauigkeigt nicht immer der exakte Wert getroffen
-       werden kann.
-       \param digits Number of decimal places.
-       \return Gerundete Zahl
+       \brief  This function rounds a number to the desired number of decimal places.
+       \note Due to machine precision, the exact value may not always be achieved.
+       \param digits Number of decimal places to round to.
+       \return Rounded number.
        */
       Double RoundFrac(Integer digits) const;
 

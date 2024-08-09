@@ -51,16 +51,16 @@ namespace jm
    {
 
       public:
-         /*!
-          \brief Diese Methode prüft, ob die Liste noch ein weiteres Element enthält
-          \return "Wahr", wenn noch mindestens ein weiteres Element in der Liste existiert,
-          andernfalls "Falsch".
-          */
+          /*!
+           \brief This method checks if the list contains another element.
+           \return "true" if there is at least one more element in the list, otherwise "false".
+           */
          virtual bool hasNext() = 0;
 
-         /*!
-          \brief Diese Methode iteriert zum nächsten Element in der Liste und gibt es zurück.
-          */
+          /*!
+           \brief This method iterates to the next element in the list and returns it.
+           \return A pointer to the next element in the list.
+           */
          virtual Object* next() = 0;
 
          virtual ~Iterator();

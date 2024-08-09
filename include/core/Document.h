@@ -56,7 +56,7 @@ namespace jm
          /*!
           \brief Constructor
 
-          Shall create an empty not initalized document.
+          Shall create an empty not initialized document.
 
           In the constructor here, the UndoManager is already activated. This means that, for
           example, the entire process of reading a document from the hard disk is already "logged"
@@ -115,7 +115,7 @@ namespace jm
 
           This method is primary intended for internal use.
           Setting this value affects whether the file is "marked" as changed. Whenever the file is
-          saved, this value is set to false. In the undo machanism, this value is set automatically
+          saved, this value is set to false. In the undo mechanism, this value is set automatically
           and only needs to be changed manually if you do not use the undo mechanism.
 
           \param status status if whether the file hase been changed (\c true) or not (\ false)
@@ -206,7 +206,7 @@ namespace jm
          //! TODO: Change to URI???
          File mFile;
 
-         //! Status on wether the file is changed since last saving.
+         //! Status on whether the file is changed since last saving.
          bool mChanged;
 
 

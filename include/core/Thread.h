@@ -53,7 +53,7 @@ namespace jm
 {
    class DllExport Thread: public Object
    {
-         //Diese Methode wird für das Starten der Threads gebraucht
+         // This method is needed for starting the thread
          #if defined __APPLE__ || defined __linux__
          friend void* ::StartThread(void* arg);
          #elif defined _WIN32
@@ -80,83 +80,82 @@ namespace jm
 
          #endif
          /*!
-          \brief Status, wenn diese Thread aktiv ist und läuft. Wenn der Thread läuft und diese
-         Variable falsch wird, dann wird eine Exception auf diesem Thread ausgelöst.
+          \brief Status indicating whether this thread is active and running. 
+          If the thread is running and this variable becomes false, an exception will be thrown in this thread.
           */
          bool alive;
 
          /*!
-          \brief Diese Methode muss von den beerbten Klassen implementiert werden. Sie ist die
-         Hauptmethode auf dem neuen Thread. Sie wird ausfegührt, wenn der Thread gestartet wurde.
+          \brief This method must be implemented by derived classes. It is the main method 
+          that runs on the new thread. It is executed when the thread is started.
           */
          virtual void Run() = 0;
 
       protected:
 
          /*!
-          \brief Diese Methode block diesen Thread für Zugriffe auf anderen Threads, um einen
-         kritischen Abschnitt zu markieren, der nicht unterbrochen werden darf, oder um
-         Racingconditions zu vermeiden.
+          \brief  This method blocks this thread from accessing other threads to mark a critical section 
+         that must not be interrupted or to avoid race conditions.
           */
          void Lock();
 
          /*!
-          \brief Diese Methode beendet die Sperre dieses Threads für Zugriffe auf anderen Threads,
-         um einen Kritischen Abschnitt zu markieren, der nicht unterbrochen werden darf, oder um
-         Racingconditions zu vermeiden.
+          \brief This method releases the lock held by this thread, allowing other threads to access
+          the critical section. This is used to mark a critical section that must not be interrupted
+          or to avoid race conditions.
           */
          void Unlock();
 
       public:
 
          /*!
-          \brief Prüft. ob man auf dem Mainthread ist
+          \brief Checks if the current thread is the main thread.
           */
          static bool IsMainThread();
 
          /*!
-          \brief Standardkonstruktor
+          \brief Default constructor.
           */
          Thread();
 
          /*!
-          \brief Standarddestruktor
+          \brief Destructor
           */
          virtual ~Thread();
 
          /*!
-          \brief Diese Methode startet den Thread.
+          \brief This method starts the thread.
          */
          void Start();
 
          /*!
-          \brief Diese Methode legt den Thread schlafen und lässt ihn
-          nach Ablauf der Zeit wieder aufwachen.
-          Der Thread wacht auch auf, wenn er von extern aufgeweckt wird.
+          \brief This method puts the thread to sleep and wakes it up after the specified time has elapsed.
+          The thread can also be woken up externally before the time has elapsed.
+          \param duration The time duration (in milliseconds) for which the thread should sleep.
           */
-         void Sleep(int millis);
+         void Sleep(int duration);
 
          /*!
-          \brief Diese Methode legt den Thread schlafen.
-          Der Thread muss von extern neu aufgerwacht werden.
+          \brief This method puts the thread to sleep. The thread must be externally awakened.
           */
          void Sleep();
 
          /*!
-          \brief Wenn der Thread schläft, wird er mit dem Aufruf dieser Methode
+          \brief If the thread is sleeping, it will be woken up by calling this method.
           */
          void WakeUp();
 
          /*!
-         \brief Diese Methode beendet die Ausführung dieses Threads.
-         Es wird auf das Beenden gewartet?
+         \brief This method terminates the execution of this thread.
+         It waits for the thread to finish execution ??? 
          */
          void Interrupt();
 
          /*!
-         \brief Um einen Thread kontrolliert zu beenden, ist diese Methode regelmäßig abzufragen.
-          Wenn diese Methode falsch zurückgibt, soll der Thread beendet werden.
-         */
+          \brief This method should be called regularly to check if the thread should be terminated.
+          If this method returns false, the thread should be terminated.
+          \return Returns true if the thread should continue running.
+          */
          bool IsAlive();
 
          /*!

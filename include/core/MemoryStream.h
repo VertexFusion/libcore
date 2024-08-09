@@ -50,86 +50,84 @@ namespace jm
          Integer mWritelength;
 
 
-         /*!
-          \brief Konstruktor.
-          \param array Das Byte-Array auf dem die Streamoperationen angewendet werden sollen.
-          \param length Die Länge des Byte-Arrays
-          */
+          /*!
+           \brief Constructor.
+           \param array The byte array on which the stream operations will be applied.
+           \param length The length of the byte array.
+           */
          MemoryStream(uint8* array, Integer length);
 
-         /*!
-         \brief Öffnet den Stream um Lese- oder Schreiboperationen an ihm vorzunehmen.
-         \param mode Der Modus zum öffnen.
-         */
+          /*!
+          \copdoc Stream::open()
+          */
          VxfErrorStatus open(FileMode mode) override;
 
-         /*!
-          \brief Status, ob die Datei geöffnet ist
-          */
+          /*!
+           \copydoc Stream::isOpen()
+           */
          bool isOpen() override;
 
-         /*!
-         \brief Schließt den Stream, wenn sie vorher geöffnet war. Unf gibt ggf. Systemressourcen frei.
-         */
+          /*!
+          \copydoc Stream::close()
+          */
          void close() override;
 
          /*!
-         \brief Liest maximal length bytes in das Array
-         \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
+         \copydoc Stream::read()
          */
          Integer read(uint8* buffer, Integer length) override;
 
          /*!
-         \brief Liest maximal length bytes in das Array
-         \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden (EOF)
+         \copydoc Stream::readFully()
          */
          Integer readFully(ByteArray& buffer, Integer length) override;
 
          /*!
-         \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang (0-basierter Index)
+         \copydoc Stream::readByte()
          */
          void seek(Integer position) override;
 
          /*!
-          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
+          \copydoc Stream::move()
           */
          void move(Integer offset) override;
 
          /*!
-         \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
+         \copydoc Stream::position()
          */
          Integer position() override;
 
          /*!
-         \brief Schreibt einen Buffer in die Ausgabedatei
+         \copydoc Stream::write()
          */
          Integer write(const uint8* buffer, Integer length) override;
 
          /*!
-          \brief Gibt die Länge des Streams zurück
+          \copydoc Stream::size()
           */
          Integer size() const override;
 
-         /*!
-          \brief Gibt den Puffer zurück
-          */
+          /*!
+           \brief Returns the buffer of the MemoryStream.
+           \return A pointer to the byte array buffer.
+           */
          uint8* buffer();
 
       private:
 
-         /*!
-          \brief Das Byte-Array, welches als Quelle oder Ziel dient.
-          */
+          /*!
+           \brief The byte array that serves as the source or destination.
+           */
          uint8* mStream;
 
-         /*!
-          \brief Die Länge des Arrays.
-          */
+          /*!
+           \brief The length of the byte array.
+           */
          Integer mStreamlength;
 
-         /*!
-          \brief Die aktuelle Zeigerposition in dem Array.
-          */
+          /*!
+           \brief The current pointer position in the array.
+           */
          Integer mPosition;
 
    };

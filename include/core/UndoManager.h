@@ -85,22 +85,23 @@ namespace jm
           */
          ~UndoManager();
 
-         /*!
-          \brief Legt das Dokument fest, welches mit diesem Manager assoziiert wird.
-          Dadurch werden Änderungen automatisch verfolgt.
-          */
+          /*!
+           \brief Sets the document associated with this manager.
+           This enables automatic tracking of changes.
+           \param document The document to be associated with this manager.
+           */
          void setDocument(jm::Document* document);
 
-         /*!
-          \brief Legt fest, ob Änderungen verfolgt werden sollen, oder nicht
-          \param status Wahr, wenn Änderungen verfolgt werden sollen.
-          */
+          /*!
+           \brief Sets whether changes should be tracked or not.
+           \param status True if changes should be tracked.
+           */
          void setActive(bool status);
 
-         /*!
-          \brief Gibt den Statis zurück, ob der Manager aktiv ist.
-          \return wahr, wenn Änderungen verfolgt werden.
-          */
+          /*!
+           \brief Returns the status of the manager, indicating whether changes are being tracked.
+           \return True if changes are being tracked.
+           */
          bool isActive() const;
 
          /*!
@@ -108,277 +109,247 @@ namespace jm
           */
          bool hasOpenUndoStep() const;
 
-         /*!
-          \brief Diese Methode macht den letzten Bearbeitungsschritt an der Datei rückgängig. Und
-          schiebt die Änderung auf den RedoStack.
-          \return Gibt wahr zurück, wenn Undo durchgeführt wurde. Andernfalls falsch.
-          */
+          /*!
+           \brief Undoes the last editing step on the file and pushes the change to the RedoStack.
+           \return Returns true if Undo was performed successfully, otherwise false.
+           */
          bool undo();
 
-         /*!
-          \brief Diese Methode wiederholt den letzen Bearbeitungsschritt. Damit werden "Undos"
-          wieder rückgängig gemacht.
-          \return Gibt wahr zurück, wenn Redo durchgeführt wurde. Andernfalls falsch.
-          */
+          /*!
+           \brief Repeats the last editing step, undoing previous "undos".
+           \return True if redo was performed successfully, false otherwise.
+           */
          bool redo();
 
-         /*!
-          \brief Diese Methode schließt den aktuellen Bearbeitungsschritt ab.
-          Programmierer müssen den Abschluss eines Bearbeitungsschrittes, der als ganzes Rückgängig
-          gemacht werden soll, selbst festlegen.
-          - Nur wenn ein Schritt abgeschlossen ist, kann Rückgängig oder Wiederherstellen ausgeführt
-            werden.
-          - Nur wenn Änderungen vorhanden sind, wird der Schritt abgeschlossen.
-          */
+          /*!
+           \brief This method finalizes the current editing step.
+           Programmers must explicitly mark the completion of an editing step that should be undone as a whole.
+           - Only when a step is completed, undo or redo can be performed.
+           - The step is only completed if there are changes.
+           */
          //private:
          void close();
          friend class Document;
       public:
-         /*!
-          \brief Diese Methode löscht den Undo-Stack und den Redo-Stack manuell
-          */
+
+          /*!
+           \brief This method clears the Undo-Stack and the Redo-Stack manually.
+           */
          void clearStacks();
 
-         /*!
-          \brief Diese Methode löscht den Undo-Stack manuell
-          */
+          /*!
+           \brief This method clears the Undo-Stack manually.
+           */
          void clearUndoStack();
 
-         /*!
-          \brief Diese Methode löscht den Redo-Stack manuell
-          */
+          /*!
+           \brief This method clears the Redo-Stack manually.
+           */
          void clearRedoStack();
 
-         /*!
-          \brief Gibt die Anzahl der Elemente auf dem Undo-Stack zurück
-          */
+          /*!
+           \brief Returns the number of elements on the Undo-Stack.
+           */
          unsigned int undoCount();
 
-         /*!
-          \brief Gibt die Anzahl der Elemente auf dem Undo-Stack zurück
-          */
+          /*!
+           \brief Returns the number of elements on the Redo-Stack.
+           */
          unsigned int redoCount();
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein float-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a float value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, float* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein double-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a double value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, double* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein double-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a double value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Double* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein bool-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a boolean value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, bool* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
-          short-Wert eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist,
-          passiert gar nichts...
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an unsigned short value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, int8* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
-          short-Wert eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist,
-          passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an unsigned short value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, uint8* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
-          short-Wert eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist,
-          passiert gar nichts...
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an unsigned short value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           \param newValue The new value that will be assigned to the object.
+           */
          void registerChange(Object* object, int16* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein unsigned
-          short-Wert eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist,
-          passiert gar nichts...
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an unsigned short value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           \param newValue The new value that will be assigned to the object.
+           */
          void registerChange(Object* object, uint16* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein int-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an int32 value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, int32* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein int-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an uint32 value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, uint32* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a Integer value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Integer* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a int64 value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, int64* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein long-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a long value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, uint64* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Vertex3-Wert
-          eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar
-          nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a Vertex3 value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Vertex2* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Vertex3-Wert
-          eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar
-          nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a Vertex3 value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Vertex3* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein String-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a string value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, String* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Date-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a Date value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Date* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem ein Farb-Wert eines
-          Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where a color value of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Color* pointer);
 
-         /*!
-          \brief Diese Methode registriert eine allgemeine Änderung an der Datei. Diese Methode
-          wird gebraucht, wenn der Anwender eigene Änderungsschritte ableitet.
-          */
+          /*!
+           \brief This method registers a general change in the file. This method is used when the user derives their own custom change steps.
+           \param change The change to be registered.
+           */
          void registerChange(UndoChange* change);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem eine Objektreferenz
-          eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar
-          nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an object reference of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, Object** pointer);
 
-         /*!
-          \brief Diese Methode registriert eine Änderung an der Datei, bei dem eine Objektreferenz
-          eines Objektes verändert wird. Wenn der Rückgängigmanager nicht aktiv ist, passiert gar
-          nichts.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          \param pointer Der Zeiger auf den Wert, der Verändert werden soll, bevor er verändert
-          wird. Diese Methode sichert automatisch den alten Wert.
-          */
+          /*!
+           \brief This method registers a change in the file where an object reference of an object is modified.
+           If the UndoManager is not active, nothing happens.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object whose value is being modified.
+           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+           */
          void registerChange(Object* object, uint8** pointer, uint64 length);
 
-         /*!
-          \brief Diese Methode registriert einen Regenerations-Marker, der bei jedem
-          Undo/Redo-Schritt ausgelöst wird, damit Objekte in der Ansicht neu regenriert werden.
-          \discussion Diese Methode öffnen einen Rückgängigschritt und setzt ebenfalls den
-          Redo-Stack zurück.
-          */
+          /*!
+           \brief This method registers a regeneration marker that is triggered at every
+           undo/redo step to regenerate objects in the view.
+           \details This method opens an undo step and also resets the RedoStack.
+           \param object The object that needs to be regenerated in the view.
+           */
          void registerRegenerationMarker(EditableObject* object);
 
          void registerRelease(Object* object);
@@ -388,8 +359,8 @@ namespace jm
          /*!
           \brief Begin a transaction.
 
-          A transaction is used to change data on objects, which have a meaningfull relationship
-          and always shall be consistent. So after changing data, you have to decide of commiting
+          A transaction is used to change data on objects, which have a meaningful relationship
+          and always shall be consistent. So after changing data, you have to decide of committing
           a transaction or rollback the data to previous state.
 
           Each time this method is called, the transaction level increments.
@@ -405,7 +376,7 @@ namespace jm
           the commit of changes happens, whether the transaction status value.
 
           \warning Usually you not need to call this method, because closeTransaction() is doing
-          the necessary stuff. Propably we change this method to private in the future.
+          the necessary stuff. Probably we change this method to private in the future.
           */
          void commit();
 
@@ -418,14 +389,14 @@ namespace jm
           the rollback of changes happens, whether the transaction status value.
 
           \warning Usually you not need to call this method, because closeTransaction() is doing
-          the necessary stuff. Propably we change this method to private in the future.
+          the necessary stuff. Probably we change this method to private in the future.
           */
          void rollback();
 
          /*!
           \brief Closes the transaction.
 
-          Dependend on the value of the transaction status, this method decides to call Commit()
+          Dependent on the value of the transaction status, this method decides to call Commit()
           or Rollback();
 
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
@@ -461,43 +432,41 @@ namespace jm
          //! \brief Status, if changes shall be registered and logged.
          bool mActive;
 
-         /*!
-          \brief Status, ob der Undoprozess aktiv ist, damit durch den Manager durchgeführte
-          Änderungen nicht wiederholt registriert werden.
-          */
+          /*!
+           \brief Indicates whether the Undo process is active, preventing changes made by the manager from being re-registered.
+           */
          bool mUndoing;
 
-         /*!
-          \brief Status, ob ein Bearbeitungsschritt geöffnet ist, wenn dies der Fall ist, dann kann
-          kein Undo oder Redo erfolgen.
-          */
+          /*!
+           \brief Indicates whether a editing step is currently open. If an editing step is open, undo or redo operations cannot be performed.
+           */
          bool mOpen;
 
-         /*!
-          \brief Der Undostack an Undooperationen.
-          Letzter Undoschritt = Oben
-          */
+          /*!
+           \brief The Undo stack for storing Undo operations.
+           The topmost Undo step is the most recent one.
+           */
          UndoStep* mUndoStack;
 
-         /*!
-          \brief Der Aktuelle Bearbeitungsschritt
-          */
+          /*!
+           \brief The current editing step.
+           */
          UndoStep* mCurrent;
 
-         /*!
-          \brief Der Redostack an Redooperationen
-          Letzter Redoschritt = Oben
-          */
+          /*!
+           \brief The Redo stack for storing Redo operations.
+           The topmost Redo step is the most recent one.
+           */
          UndoStep* mRedoStack;
 
-         /*!
-          \brief Anzahl der Elemente auf dem Undo-Stack
-          */
+          /*!
+           \brief The number of elements on the Undo stack.
+           */
          uint32 mUndoCount;
 
-         /*!
-          \brief Anzahl der Elemente auf dem Redo-Stack
-          */
+          /*!
+           \brief The number of elements on the Redo stack.
+           */
          uint32 mRedoCount;
 
          //! If a transaction is used, this indicates the level of transaction

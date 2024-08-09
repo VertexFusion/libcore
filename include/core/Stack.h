@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Stack.h
 // Library:     Jameo Core Library
-// Purpose:     Collecting ojects on a stack "First in - Last Out"
+// Purpose:     Collecting objects on a stack "First in - Last Out"
 //
 // Author:      Uwe Runtemund (2015-today)
 // Modified by:
@@ -38,8 +38,9 @@ namespace jm
 {
 
    /*!
-    \brief Diese Klasse stellt einen Stack-Container zur Verfügung,
-    der Datenelemente nach dem Prinzip "Last in - First out" verarbeitet
+    \brief This class provides a stack container that processes data elements based on the "Last in - First out" principle.
+    \details The Stack class allows elements to be added and removed from the top of the stack, maintaining the order in which they were added.
+    \tparam T The type of data elements stored in the stack.
     */
    template <class T>
    class Stack

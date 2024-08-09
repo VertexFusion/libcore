@@ -74,37 +74,37 @@ namespace jm
 
       private:
 
-         /*!
-          \brief speichert den Offset der Diagonale.
-          Diagonalen beginnen bei u[0] , v[abs(offset)]
-          Diagonalen unterhalb der Mittleren haben negative offsets.
-          */
+          /*!
+           \brief This variable stores the offset of the diagonal.
+           Diagonals start at u[0], v[abs(offset)].
+           Diagonals below the middle have negative offsets.
+           */
          Integer offset;
 
-         /*!
-          \brief Zeiger auf Vergleichsvektor 1
-          */
+          /*!
+           \brief Pointer to the first vector for comparison.
+           */
          std::vector<Object*>* mU;
 
-         /*!
-          \brief Zeiger auf Vergleichsvektor 2
-          */
+          /*!
+           \brief Pointer to the second vector for comparison.
+           */
          std::vector<Object*>* mV;
 
          /*!
-          \brief Verkettete Liste
+          \brief Linked List
           */
          DiffDiag* below;
          DiffDiag* above;
 
-         /*!
-          \brief Vektor mit den Diagonalelementen
-          */
+          /*!
+           \brief This vector stores the elements of the diagonal.
+           */
          std::vector<Integer>* elements;
 
-         /*!
-          \brief Zeiger auf Diff-Distance, um Anzahl der berechneten Werte zu ermitteln.
-          */
+          /*!
+           \brief Pointer to DiffDistance object to determine the number of calculated values.
+           */
          DiffDistance* dist;
 
    };

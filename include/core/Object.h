@@ -115,7 +115,7 @@ namespace jm
          /*!
           \brief Reference counter for reference counting.
 
-          \note the highes bit is a modified flag for undo management
+          \note the highest bit is a modified flag for undo management
           */
          int32 mRefCount;
 

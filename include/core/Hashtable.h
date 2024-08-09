@@ -50,39 +50,38 @@ namespace jm
 
       public:
 
-         /*!
-          \brief Standardkonstruktor für die Hashtabelle
-          */
+          /*!
+           \brief Default constructor for the Hashtable class.
+           */
          Hashtable();
 
-         /*!
-          \brief Standarddestruktor für die Hashtabelle
-          */
+          /*!
+           \brief Destructor for the Hashtable class.
+           */
          ~Hashtable();
 
 
-         /*!
-          \brief Diese Methode fügt ein neues Element in die Hashtabelle ein.
-          \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
-          \param value Der Pointer auf das Objekt, welches hier eingeordnet werden soll.
-          \return Wenn ein altes Objekt dadurch ersetzt wird, wird dieses zurückgegeben.
-          */
+          /*!
+           \brief This method inserts a new element into the hash table.
+           \param key The key to which the object will be associated.
+           \param value The pointer to the object to be inserted.
+           \return If an old object is replaced, it is returned.
+           */
          void* put(String key, void* value);
 
-         /*!
-          \brief Diese Methode gibt das Objekt zurück, welches zu dem gesuchten Key zugeordnet
-          ist.
-          \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
-          \return Den Pointer auf das Objekt, welches gesucht wird, oder NULL, wenn das Objekt nicht
-          in der Hashtabelle vorhanden ist.
-          */
+          /*!
+           \brief This method returns the object associated with the specified key.
+           \param key The key to which the object is associated.
+           \return A pointer to the object associated with the key, or nullptr if the object is not
+           present in the hashtable.
+           */
          void* get(const String& key) const;
 
-         /*!
-          \brief Diese Methode entfernt das Objekt, welches zu dem gesuchten Key zugeordnet ist.
-          \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
-          \return Den Pointer auf das Objekt, welches entfernt wurde.
-          */
+          /*!
+           \brief This method removes the object associated with the specified key.
+           \param key The key to which the object is associated.
+           \return A pointer to the object that was removed, or nullptr if the object was not found.
+           */
          void* remove(const String& key);
 
          /*!
@@ -90,109 +89,123 @@ namespace jm
           */
          Integer size() const;
 
-         /*!
-          \brief Diese Methode gibt "wahr" zurück, wenn die Hashtabelle leer ist.
-          */
+          /*!
+           \brief This method returns true if the hashtable is empty.
+           \return true if the hashtable is empty, false otherwise.
+           */
          bool isEmpty() const;
 
-         /*!
-          \brief Diese Methode gibt "wahr" zurück, wenn zu dem Schlüssel ein Objekt zugeordnet
-          ist.
-          \param key Der Schlüssel, zu dem das Objekt zugeordnet wird
-          */
+          /*!
+           \brief This method returns true if an object is associated with the specified key.
+           \param key The key for which the object is being checked.
+           \return true if an object is associated with the key, false otherwise.
+           */
          bool containsKey(const String& key) const;
 
-         /*!
-          \brief Diese Methode gibt "wahr" zurück, wenn zu dem Schlüssel ein Objekt zugeordnet
-          ist.
-          \param value Dert Wert,nach dem gesucht wird
-          */
+          /*!
+           \brief This method returns true if the hashtable contains an object associated with the specified value.
+           \param value The value to search for.
+           \return true if an object is associated with the value, false otherwise.
+           */
          bool containsValue(void* value) const;
 
-         /*!
-          \brief Diese Methode gibt ein Objekt der Klasse "Iterator" zurück, welches sich durch
-          die Schlüssel dieser Tabelle iteriert.
-          */
+          /*!
+           \brief This method returns an object of the "Iterator" class that iterates through
+           the keys of this table.
+           \return An Iterator object that iterates through the keys of this table.
+           */
          Iterator* keys();
 
-         /*!
-          \brief Diese Methode gibt ein Objekt der Klasse "Iterator" zurück, welches sich durch
-         die Werte dieser Tabelle iteriert.
-          */
+          /*!
+           \brief This method returns an object of the "Iterator" class that iterates through
+           the values of this table.
+           \return An Iterator object that iterates through the values of this table.
+           */
          Iterator* values();
 
-         /*!
-          \brief Diese Methode entfernt alle Elemente aus der Hashtable
-          */
+          /*!
+           \brief This method removes all elements from the Hashtable.
+           */
          void clear();
 
       protected:
 
-         /*!
-         \brief Diese Methode erhöhte die Kapazität der Hashtabelle
-         */
+          /*!
+           \brief This method increases the capacity of the Hashtable.
+           */
          void rehash();
 
       private:
 
-         /*!
-          \brief Diese pricate Typendeklaration erleichtert das Einsortierend der Daten in das
-          Datenarray. Es handelt sich aus Geschwindigkeitsgründen um eine Verkettete Liste
-          */
+          /*!
+           \brief This private typedef simplifies the sorting of data into the data array.
+           It is a linked list for performance reasons.
+           \param hash The hash value of the entry.
+           \param key The key associated with the entry.
+           \param value The value associated with the entry.
+           \param next Pointer to the next entry in the linked list.
+           */
          struct HashtableEntry
          {
             Integer hash;
             String key;
             void* value;
-            HashtableEntry* next;//Verkettete liste :-)
-            HashtableEntry();//Konstruktor
-            ~HashtableEntry();//Destruktor
+            HashtableEntry* next;
+            HashtableEntry();
+            ~HashtableEntry();
          };
 
-         /*!
-          \brief Diese Feld speichert die Daten der Hashtabelle
-          */
+          //! \brief This field stores the data of the Hashtable.
          HashtableEntry** mData;
 
-         /*!
-          \brief Diese Variable speichert die tatsächliche Länge des Speicherarrays.
-          */
+          //! \brief This variable stores the actual length of the storage array.
          Integer mArrLength;
 
-         /*!
-          \brief Diese Variable speichert die Anzahl der Einträge in der Hashtabelle.
-          */
+          //! \brief This variable stores the number of entries in the hashtable.
          Integer mDataLength;
 
-         /*!
-          \brief Dieser Schwellwert definiert, ab welchen "Füllstand" das Speicherarray für die
-          Daten vergrößert werden soll. Es ist die absolute Zahl an Einträgen, ab der eine
-          Speicherneusortierung vorgenommen wird.
-          */
+          //! \brief This threshold defines the number of entries at which the storage array for 
+          //! the data should be resized. It is the absolute number of entries at which a storage
+          //! reorganization is performed.
          Integer mThreshold;
 
-         /*!
-          \brief Diese Variable speichert den prozentualen Schwellwert, ab dem neu sortiert wird.
-          0 bedeutet 0%, 1 bedeutet 100%
-          */
+          //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
+          //! A value of 0 means 0%, while a value of 1 means 100%.
          Double mLoadfactor;
 
-         /*!
-          \brief Diese Unterklasse implementiert einen Iterator, mit dem durch die Hashtabelle
-          iteriert werden kann.
-          */
+          /*!
+           \brief This subclass implements an iterator that allows iterating through the hashtable.
+           */
          class HashtableIterator: public Iterator
          {
+            public:
+
+               /*!
+                \brief Constructor for the HashtableIterator class.
+                \param table A pointer to the Hashtable object being iterated.
+                \patam retKey A boolean value indicating whether the iterator should return keys or values.
+                */
+               HashtableIterator(Hashtable* table, Bool retKey);
+
+               /*!
+                \copydoc Iterator::hasNext()
+                */
+               bool hasNext() override;
+               
+               /*!
+                \copydoc Iterator::next()
+                */
+               Object* next() override;
+
             private:
+               //! retKey A boolean value indicating whether the iterator should return keys or values.
                Bool retKey;
+              
+               //!param table A pointer to the Hashtable object being iterated.
                Hashtable* table;
                HashtableEntry* entry;
                HashtableEntry* last;
                Integer index;
-            public:
-               HashtableIterator(Hashtable* table, Bool retKey);
-               bool hasNext();
-               Object* next();
          };
 
    };

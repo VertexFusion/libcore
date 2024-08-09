@@ -43,7 +43,7 @@ namespace jm
 {
 
    /*!
-    \brief Dieses Feld speichert je nach Betriebssystem das Trennzeichen für Verzeichnisse
+    \brief This field stores the directory separator character based on the operating system.
     */
    #ifdef __APPLE__//macOS, iOS
    const Char DIR_SEP = Char('/');
@@ -138,158 +138,184 @@ namespace jm
           */
          bool exists() const;
 
-         /*!
-          \brief Diese Methode löscht die Datei (endgültig). Ein Verzeichnis nur, wenn es leer
-          ist.
-          */
+          /*!
+           \brief This method deletes the file permanently. If it is a directory, it will only be deleted if it is empty.
+           \return true if the file was successfully deleted, false otherwise.
+           */
          bool Delete();
 
-         /*!
-          \brief Diese Methode verschiebt die Datei in den System-Papierkorb.
-          */
+          /*!
+           \brief Moves the file to the system trash.
+           */
          bool moveToTrash();
 
-         /*!
-          \brief Benennt die Datei um
-          */
+          /*!
+           \brief Renames the file to a new name.
+           \param newPath The new path and name for the file.
+           */
          bool renameTo(const String& newPath);
 
-         /*!
-          \brief Gibt den Namen der Datei zurück. Dies ist der reine Name ohne Pfadangabe usw.
-          */
+          /*!
+           \brief Returns the name of the file. This is the pure name without any path information.
+           \return The name of the file.
+           */
          String name() const;
 
-         /*!
-          \brief Gibt den Pfadnamen zu der Datei an, Also ohne den Dateinamen selbst.
-          Es entspricht dem Verzeichnis, in dem diese Datei liegt.
-          */
+          /*!
+           \brief Returns the directory path of the file, excluding the file name itself.
+           It corresponds to the directory in which this file is located.
+           \return The directory path of the file.
+           */
          String parent() const;
 
-         /*!
-          \brief Gibt den absoluten Dateinamen von der Wurzel des Dateisystems an zurück
-          */
+          /*!
+           \brief Returns the absolute path of the file from the root of the file system.
+           \return The absolute path of the file.
+           */
          const String& absolutePath() const;
 
-         /*!
-          \brief Gibt den vollständigen Pfad dieser Datei an. Dieser kann relativ sein, wenn er
-          relativ ist,
-          oder auch absolut, wenn er absolut ist.
-          */
+          /*!
+           \brief Returns the full path of this file. The path can be relative or absolute.
+           \param includeFileName If true, includes the file name in the path. If false, only includes the directory path.
+           \return The full path of the file.
+           */
          String path() const;
 
-         /*!
-          \brief Diese Methode gibt die Dateiendund der Datei zurück. Wenn die Datei keine
-          Dateiendung besitzt, dann ist der Rückgabewert ein leerer String. Eine Dateiendung ist
-          duch einen Punkt gekennzeichnet. Für ".tar.gz" wird nur "gz" zurückgegeben.
-          */
+          /*!
+           \brief This method returns the file extension of the file. If the file does not have
+           an extension, the return value is an empty string. An extension is indicated by a dot.
+           For ".tar.gz", only "gz" is returned.
+           \return The file extension.
+           */
          String extension() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei absolut ist
-          */
+          /*!
+           \brief Checks if this file is an absolute path.
+           \return true if the file is an absolute path, false otherwise.
+           */
          bool isAbsolute() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei ein Verzeichnis ist
-          */
+          /*!
+           \brief Checks if this file is a directory.
+           \return true if the file is a directory, false otherwise.
+           */
          bool isDirectory() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei eine gewöhnliche Datei ist
-          */
+          /*!
+           \brief Checks if this file is a regular file.
+           \return true if the file is a regular file, false otherwise.
+           */
          bool isFile() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei eine Verknüpfung ist
-          */
+          /*!
+           \brief Checks if this file is a symbolic link.
+           \return true if the file is a symbolic link, false otherwise.
+           */
          bool isLink() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei eine FIFO ist.
-          */
+          /*!
+           \brief Checks if this file is a named pipe (FIFO).
+           \return true if the file is a named pipe, false otherwise.
+           */
          bool isPipe() const;
 
-         /*!
-          \brief Diese Methode prüft, ob diese Datei versteckt ist
-          */
+          /*!
+           \brief Checks if this file is hidden.
+           \return true if the file is hidden, false otherwise.
+           */
          bool isHidden() const;
 
-         /*!
-          \brief Methode macht eine Liste mit Allen Dateien im dem Verzeichnis.
-          */
+          /*!
+           \brief Retrieves a list of all files in the directory.
+           \return A dynamically allocated array of File objects representing the files in the directory. The caller is responsible for deleting the array.
+           */
          Array<File>* listFiles()const;
 
-         /*!
-          \brief Gibt die Größe der Datei in Bytes zurück
-          */
+          /*!
+           \brief Returns the size of the file in bytes.
+           \return The size of the file in bytes.
+           */
          Integer size() const override;
 
-         /*!
-          \brief Gibt das Datum der letzten Änderung zurück
-          */
+          /*!
+           \brief Returns the date of the last modification.
+           \return The date of the last modification.
+           */
          Date lastModified() const;
 
-         /*!
-          \brief Öffnet die Datei um Lese- oder Schreiboperationen an ihr vorzunehmen
-          \param mode Der Modus zum öffnen.
-          */
+          /*!
+           \brief Opens the file for read or write operations.
+           \param mode The mode for opening the file.
+           */
          VxfErrorStatus open(FileMode mode) override;
 
-         /*!
-          \brief Status, ob die Datei geöffnet ist
-          */
+          /*!
+           \brief Checks if the file is open.
+           \return true if the file is open, false otherwise.
+           */
          bool isOpen() override;
 
-         /*!
-          \brief Schließt die Datei, wenn sie vorher geöffnet war
-          */
+          /*!
+           \brief Closes the file if it was previously opened.
+           */
          void close() override;
 
-         /*!
-          \brief Liest maximal length bytes in das Array
-          \discussion Bei Großen Blocken kann es sein, dass nicht alle Bytes eingelesen werden, weil
-          noch auf Daten gewartet werden. In diesem Fall kann es sein, dass nur ein Teil
-          zurückgegeben wird. Will man in jedem Fall alle Daten haben, muss man "readFully"
-          aufrufen.
-          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-          (EOF)
-          */
+          /*!
+           \brief Reads a maximum of length bytes into the array.
+           \discussion For large blocks, it is possible that not all bytes are read because
+           it is still waiting for data. In this case, only a portion may be returned.
+           If you want to ensure that all data is read, you should call "readFully".
+           \param buffer The buffer to read the data into.
+           \param length The maximum number of bytes to read.
+           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+           */
          Integer read(unsigned char* buffer,
                       Integer length) override;
 
-         /*!
-          \brief Liest maximal length bytes in das Array
-          \return Die tatsächlich eingelesene Menge an Bytes, oder 0 wenn keine Bytes gelesen wurden
-          (EOF)
-          */
+          /*!
+           \brief Reads a maximum of length bytes into the array.
+           \param buffer The buffer to read the data into.
+           \param length The maximum number of bytes to read.
+           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+           */
          Integer readFully(ByteArray& buffer, Integer length) override;
 
 
 
-         /*!
-          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt vom Dateianfang
-          (0-basierter Index)
-          */
+          /*!
+           \brief Moves the file cursor to the desired position, counted from the beginning of the file.
+           \param position The desired position to move the file cursor to (0-based index).
+           */
          void seek(Integer position) override;
 
-         /*!
-          \brief Bewegt den Dateicursor an die gewünschte Stelle, gezählt von der aktuellen Position
-          */
+          /*!
+           \brief Moves the file cursor to the desired position, relative to the current position.
+           \param offset The offset to move the file cursor by.
+           */
          void move(Integer offset) override;
 
-         /*!
-          \brief Diese Methode gibt die aktuelle Cursorposition in der Datei zurück
-          */
+          /*!
+           \brief Returns the current cursor position in the file.
+           \return The current cursor position.
+           */
          Integer position() override;
 
-         /*!
-          \brief Schreibt einen Buffer in die Ausgabedatei
-          */
+          /*!
+           \brief Writes a buffer to the output file.
+           \param buffer The buffer containing the data to be written.
+           \param length The number of bytes to write from the buffer.
+           \return The number of bytes actually written, or 0 if an error occurred.
+           */
          Integer write(const uint8* buffer, Integer length) override;
 
-         /*!
-          \brief Vergleichsmethode vergleicht den absoluten Dateipfad miteinander
-          */
+          /*!
+           \brief Compares the absolute file path with another file's absolute path.
+           \param other The file to compare with.
+           \return An integer value indicating the result of the comparison:
+                 - 0 if the file paths are equal.
+                 - a negative value if this file path is lexicographically less than the other file path.
+                 - a positive value if this file path is lexicographically greater than the other file path.
+           */
          int32 compareTo(const File& other) const override;
 
          /*!
@@ -313,82 +339,80 @@ namespace jm
          File& operator=(const File& another);
 
       private:
-         /*!
-          \brief Der Pfadname der Datei. Er ist normalisiert, das heißt er benutzt die auf dem
-          System verwendeten Verzeichnisseparatoren und keine Duplikate usw.
-          */
+
+         //! The pathname of the file. It is normalized, meaning it uses the directory separators and does not contain duplicates, etc.
          String mPathname;
 
-         /*!
-          \brief Die C-String Repräsentation des Pfadnamen. Wird bei Bedarf angelegt und gehalten
-          */
+         //! The C-String representation of the pathname. It is created and held when needed.
          ByteArray mCstr;
 
-         /*!
-          \brief Filehandle im Betriebssystem
-          */
+          //! Filehandle in operating system
          FILE* mHandle;
 
-         /*!
-          \brief Diese Methode normalisiert den Pfadnamen.
-          \discussion Unter Unix enthält ein normalisierter Pfadname keine doppelten Schrägstriche
-          und endet nicht mit einem Schrägstrich.
-          */
+          /*!
+           \brief This method normalizes the pathname.
+           \details On Unix, a normalized pathname does not contain duplicate slashes
+           and does not end with a slash.
+           \param pathname The pathname to be normalized.
+           \return The normalized pathname.
+           */
          String normalize(const String& pathnames);
 
-         /*!
-          \brief Diese Methode kombiniert den Vaternamen mit dem Childnamen
-          Achtung: parent und child müssen normalisiert sein.
-          \param parent Der Pfadname der "Vaterdatei".
-          \param child Der Pfadname der "Kinddatei"
-          */
+          /*!
+           \brief This method combines the parent name with the child name.
+           Note: Both parent and child paths must be normalized.
+           \param parent The pathname of the parent file.
+           \param child The pathname of the child file.
+           \return The combined pathname of the parent and child files.
+           */
          String resolve(String parent,
                         String child);
 
-         /*!
-          \brief Diese Helfermethode setzt den C-String, mit dem dann im Betriebssystem der
-          Dateiname aufgelöst wird
-          */
+          /*!
+           \brief This helper method sets the C-string used to resolve the filename in the operating system.
+           \param cstr The C-string representation of the filename.
+           */
          void setCString();
    };
 
-
-
    /*!
-    \brief Diese Methode gibt den Pfad der ausführenden Anwendung zurück. Er besteht aus
-    Verzeichnisname und Anwendungsname
+    \brief This method returns the path of the executing application. It consists of
+    the directory name and the application name.
+    \return The path of the executing application.
     */
    extern DllExport
    String ExecPath();
 
    /*!
-    \brief Diese Methode gibt das Verzeichnis zurück, in dem die Anwendung ausgeführt wird
+    \brief This method returns the directory where the application is being executed.
+    \return The directory where the application is being executed.
     */
    extern DllExport
    String ExecDir();
 
    /*!
-    \brief Diese Methode gibt das Verzeichnis zurück, in dem die Anwendung ausgeführt wird
+      \brief This method returns the name of the current application.
     */
    extern DllExport
    String ExecName();
 
    /*!
-    Diese Methode gibt das Verzeichnis zurück, in dem die aktuelle Anwendung nach Ressourcen suchen
-    soll
+    \brief This method returns the directory where the current application should search for resources.
+    \param bundleId The identifier of the application bundle (same as Bundle-Id for macOS).
+    \return The directory where the application should search for resources.
     */
    extern DllExport
-   File ResourceDir(const String& bundleId);   //Unter MAC mit Bundle-ID...
+   File ResourceDir(const String& bundleId);
 
    /*!
-    Diese Methode gibt das Verzeichnis zurück, in dem ide aktuelle Anwendung ihre Einstellungen
-    speichern.
+    \brief This method returns the directory where the current application stores its settings.
+    \return The directory where the application's settings are stored.
     */
    extern DllExport
    File PropertyDir();
 
    /*!
-    Diese Methode gibt das Benutzer-Verzeichnis zurück.
+    \brief This method returns the user directory.
     */
    extern DllExport
    File UserDir();

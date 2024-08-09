@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Name:        Geometry.h
 // Library:     Jameo Core Library
-// Purpose:     Usefull CAD and geometry functions
+// Purpose:     Useful CAD and geometry functions
 //
 // Author:      Uwe Runtemund (2012-today)
 // Modified by:
@@ -38,20 +38,20 @@
 namespace jm
 {
    /*!
-    \brief Diese Methode berechnet den Schnittpunkt einer Geraden mit einer Ebene, wobei die
-    Normalenform benutzt wird.
-    \param planePosition Ortsvektor der Ebene
-    \param normal Normalenvektor der Ebene
-    \param linePosition Ortsvektor der Geraden.
-    \param direction Richtungsvektor der Geraden,
-    \param extend Die Geradengleichung kann ein Liniensegment definieren, wenn man annnimmt, dass
-    linePosition, der Anfangspunkt einer Linie und (linePosittion+direction) der Endpunkt der Linie
-    ist. Wenn extend = true ist, dann wird der Schnittpunkt auf der mathematischen Gerade berechnet,
-    Wenn das falsch ist, wird der Schnittpunkt auf dem Geradenstück nur gewählt. Das heißt, wenn der
-    Punkt außerhalb liegt, wird einer der Endpunkte dann als "Schnittpunkt" angegeben. Dieses
-    "Feature" wird vor allem benötigt, wenn man den kürzesten Abstand zu Liniensegmenten haben
-    möchte. Wenn es keinen Schnittpunkt gibt, wird ein ungültiver Vektor zurückgegeben.
-    */
+   \brief This method calculates the intersection point of a line and a plane using the normal 
+   form.
+   \param planePosition The position vector of the plane.
+   \param normal The normal vector of the plane.
+   \param linePosition The position vector of the line.
+   \param direction The direction vector of the line.
+   \param extend The line equation can define a line segment if we assume that linePosition is the
+    starting point of the line and (linePosition+direction) is the end point of the line. If extend
+    = true, then the intersection point is calculated on the mathematical line. If false, the 
+    intersection point is chosen only on the line segment. That means if the point is outside, one
+    of the end points is returned as the "intersection point". This "feature" is especially useful
+    when you want to find the shortest distance to line segments. If there is no intersection 
+    point, an invalid vector is returned.
+   */
    DllExport
    Vertex3 intersectionPointLineAndPlane(const Vertex3& planePosition,
                                          const Vertex3& normal,
@@ -60,12 +60,11 @@ namespace jm
                                          bool extend);
 
    /*!
-    \brief Diese Methode berechnet den Punkt auf der Ebene mit dem minimalen Abstand zwischen dem
-    Punkt und der Ebene.
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param position Ortsvektor bzw. beliebiger Punkt auf der Ebene
-    \param normal Normalenvektor, senkrecht auf der Ebene
-    \return Den Punkt auf der Ebene mit dem minimalen (lotrechten) Abstand vom Punkt zur Ebene
+    \brief This method calculates the point on the plane that has the minimum distance to the given point.
+    \param point The 3D point from which the distance is to be determined.
+    \param position Any point on the plane.
+    \param normal The normal vector, perpendicular to the plane.
+    \return The point on the plane with the minimum distance (perpendicular distance) to the given point.
     */
    DllExport
    Vertex3 closestPointOnPlane(const Vertex3& point,
@@ -73,13 +72,12 @@ namespace jm
                                const Vertex3& normal);
 
    /*!
-    \brief Diese Methode berechnet den Punkt auf der Geraden mit dem minimalen Abstand zwischen
-    dem Punkt und der Geraden. Der Verbindungslinie zwischen point und dem Ergebnis steht senkrecht
-    auf der Linie.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param position Ortsvektor bzw. beliebiger Punkt auf der Geraden
-    \param direction Richtungsvektor der Geradem
-    \return Den Punkt auf der Geraden mit dem kürzesten Abstand zwischen Linie und Punkt
+    \brief This method calculates the point on the line that has the minimum distance to the given point.
+    The connecting line between the point and the result is perpendicular to the line.
+    \param point The 3D point from which the distance is to be determined.
+    \param position The position vector or any point on the line.
+    \param direction The direction vector of the line.
+    \return The point on the line with the minimum distance to the given point.
     */
    DllExport
    Vertex3 closestPointOnLine(const Vertex3& point,
@@ -87,14 +85,13 @@ namespace jm
                               const Vertex3& direction);
 
    /*!
-    \brief Diese Methode berechnet den Punkt auf der 2. Geraden mit dem minimalen Abstand
-    zwischen beiden Geraden. Der Verbindungslinie zwischen point und dem Ergebnis steht senkrecht
-    auf der Linie.
-    \param position1 Ortsvektor bzw. beliebiger Punkt auf der 1. Geraden
-    \param direction1 Richtungsvektor der 1. Geraden
-    \param position2 Ortsvektor bzw. beliebiger Punkt auf der 2. Geraden
-    \param direction2 Richtungsvektor der 2. Geraden
-    \return Den Punkt auf der 2. Geraden mit dem kürzesten Abstand zwischen Linie und Linie
+    \brief This method calculates the point on the second line that has the minimum distance to the first line.
+    The connecting line between the point and the result is perpendicular to the line.
+    \param position1 The position vector or any point on the first line.
+    \param direction1 The direction vector of the first line.
+    \param position2 The position vector or any point on the second line.
+    \param direction2 The direction vector of the second line.
+    \return The point on the second line with the shortest distance between the lines.
     */
    DllExport
    Vertex3 closestPointOnLine(const Vertex3& position1,
@@ -103,14 +100,13 @@ namespace jm
                               const Vertex3& direction2);
 
    /*!
-    \brief Diese Methode berechnet den Punkt auf der Geraden mit dem minimalen Abstand zwischen
-    dem Punkt und der Geraden.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param lineStart Startpunkt der Linie
-    \param lineEnd Endpunkt der Linie
-    \param extend Status, ob der Schnittpunkt auch über die Linienenden hinaus bestimmt werden soll?
-    Bei "Falsch" wird NAN zurückgegeben
-    \return Den Punkt auf der Geraden mit dem kürzesten Abstand zwischen Linie und Punkt
+    \brief This method calculates the point on the line that has the minimum distance to the given point.
+    \param point The 3D point from which the distance is to be determined.
+    \param lineStart The starting point of the line.
+    \param lineEnd The end point of the line.
+    \param extend If set to "true", the intersection point can be determined even if it lies beyond
+    the line segment. If set to "false", NAN is returned if the point is outside the line segment.
+    \return The point on the line with the minimum distance to the given point.
     */
    DllExport
    Vertex3 closestPointOnLine(const Vertex3& point,
@@ -119,12 +115,12 @@ namespace jm
                               bool extend);
 
    /*!
-    \brief Diese Methode berechnet minimalen Abstand vom gegebenen Punkt auf den Kreis
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param center Der Mittelpunkt des Kreises
-    \param radius Der Radius des Kreises
-    \param normal Der Normalenvektor. Steht senkrecht auf Kreisebene
-    \return Den Punkt auf dem Kreios mit dem kürzesten Abstand zwischen Linie und Kreis
+    \brief This method calculates the minimum distance from the given point to the circle.
+    \param point The 3D point from which the distance is to be determined.
+    \param center The center point of the circle.
+    \param radius The radius of the circle.
+    \param normal The normal vector of the circle's plane. It is perpendicular to the plane.
+    \return The shortest distance between the point and the circle.
     */
    DllExport
    Vertex3 closestPointOnCircle(const Vertex3& point,
@@ -133,12 +129,11 @@ namespace jm
                                 const Vertex3& normal);
 
    /*!
-    \brief Diese Methode berechnet den Punkt auf der Geraden mit dem  minimalen Abstand zwischen
-    dem Punkt und der Ebene.
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param position Ortsvektor bzw. beliebiger Punkt auf der Ebene
-    \param normal Normalenvektor, senkrecht auf der Ebene
-    \return Den minimalen (lotrechten) Abstand vom Punkt zur Ebene
+    \brief This method calculates the point on the line that has the minimum distance to the plane.
+    \param point The 3D point from which the distance is to be determined.
+    \param position Any point on the plane.
+    \param normal The normal vector of the plane.
+    \return The point on the line with the minimum distance to the plane.
     */
    DllExport
    double distancePointToPlane(const Vertex3& point,
@@ -146,31 +141,31 @@ namespace jm
                                const Vertex3& normal);
 
    /*!
-    \brief Diese Methode berechnet den minimalen Abstand zwischen den beiden Punkten.
-    \param point1 Der erste Punkt.
-    \param point2 Der zweite Punkt
-    \return Den Abstand vom ersten zum zweiten Punkt
+    \brief This method calculates the minimum distance between the two points in 3D space.
+    \param point1 The first point.
+    \param point2 The second point.
+    \return The distance between the first and second point.
     */
    DllExport
    double distancePointToPoint(const Vertex3& point1,
                                const Vertex3& point2);
 
    /*!
-    \brief Diese Methode berechnet den minimalen Abstand zwischen den beiden Punkten.
-    \param point1 Der erste Punkt.
-    \param point2 Der zweite Punkt
-    \return Den Abstand vom ersten zum zweiten Punkt
+    \brief This method calculates the minimum distance between two points in 3D space.
+    \param point1 The first point.
+    \param point2 The second point.
+    \return The distance between the first and second point.
     */
    DllExport
    double distancePointToPoint(const Vertex2& point1,
                                const Vertex2& point2);
 
    /*!
-    \brief Diese Methode berechnet den minimalen Abstand zwischen dem Punkt und der Geraden.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param  position Ortsvektor bzw. beliebiger Punkt auf der Geraden
-    \param direction Richtungsvektor der Geradem
-    \return Den kürzesten Abstand zwischen Linie und Punkt
+    \brief This method calculates the minimum distance between the given point and the line.
+    \param point The 3D point from which the distance is to be determined.
+    \param position The position vector or any point on the line.
+    \param direction The direction vector of the line.
+    \return The shortest distance between the line and the point.
     */
    DllExport
    double distancePointToLine(const Vertex3& point,
@@ -178,14 +173,14 @@ namespace jm
                               const Vertex3& direction);
 
    /*!
-    \brief Diese Methode berechnet den minimalen Abstand zwischen dem Punkt und dem
-    Linienelement.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param lineStart Startpunkt der Linie
-    \param lineEnd Endpunkt der Linie
-    \param extend Status, ob der Schnittpunkt auch über die Linienenden hinaus bestimmt werden soll?
-    Bei "Falsch" wird ggf. ein Endpunkt der Linie genommen
-    \return Den kürzesten Abstand zwischen Linie und Punkt
+    \brief This method calculates the minimum distance between a point and a line segment.
+    \param point The 3D point from which the distance is to be determined.
+    \param lineStart The starting point of the line segment.
+    \param lineEnd The end point of the line segment.
+    \param extend If set to "true", the intersection point can be determined even if it lies beyond
+    the line segment. If set to "false", one of the end points of the line segment is returned as 
+    the "intersection point" if the point is outside the line segment.
+    \return The shortest distance between the line segment and the point.
     */
    DllExport
    double distancePointToLine(const Vertex3& point,
@@ -194,12 +189,12 @@ namespace jm
                               bool extend);
 
    /*!
-    \brief Diese Methode berechnet minimalen Abstand vom gegebenen Punkt auf den Kreis
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param center Der Mittelpunkt des Kreises
-    \param radius Der Radius des Kreises
-    \param normal Der Normalenvektor. Steht senkrecht auf Kreisebene
-    \return Den kürzesten Abstand zwischen Linie und Kreis
+    \brief This method calculates the minimum distance from the given point to the circle.
+    \param point The 3D point from which the distance is to be determined.
+    \param center The center point of the circle.
+    \param radius The radius of the circle.
+    \param normal The normal vector of the circle's plane. It is perpendicular to the plane.
+    \return The shortest distance between the line and the circle.
     */
    DllExport
    double distancePointToCircle(const Vertex3& point,
@@ -208,12 +203,12 @@ namespace jm
                                 const Vertex3& normal);
 
    /*!
-    \brief Diese Methode berechnet den minimalen Abstand zwischen den Geraden.
-    \param  position1 Ortsvektor bzw. beliebiger Punkt auf der 1. Geraden
-    \param direction1 Richtungsvektor der 1. Geraden
-    \param  position2 Ortsvektor bzw. beliebiger Punkt auf der 2. Geraden
-    \param direction2 Richtungsvektor der 2. Geraden
-    \return Den kürzesten Abstand zwischen den Geraden
+    \brief This method calculates the minimum distance between two lines in 3D space.
+    \param position1 The position vector or any point on the first line.
+    \param direction1 The direction vector of the first line.
+    \param position2 The position vector or any point on the second line.
+    \param direction2 The direction vector of the second line.
+    \return The shortest distance between the two lines.
     */
    DllExport
    double distanceLineToLine(const Vertex3& position1,
@@ -222,13 +217,12 @@ namespace jm
                              const Vertex3& direction2);
 
    /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der Punkt auf der Ebene
-    liegt.
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param  position Ortsvektor bzw. beliebiger Punkt auf der Ebene
-    \param normal Normalenvektor, senkrecht auf der Ebene
-    \param maxDistance Der max. tolerierte Abstand zur Ebene
-    \return "wahr", wenn der Punkt auf der Ebene liegt
+    \brief This method checks if the given point lies on the plane, taking into account the specified tolerance.
+    \param point The 3D point for which the distance is to be determined.
+    \param position The position vector or any point on the plane.
+    \param normal The normal vector, perpendicular to the plane.
+    \param maxDistance The maximum tolerated distance to the plane.
+    \return "true" if the point lies on the plane, within the specified tolerance, otherwise "false".
     */
    DllExport
    bool isPointOnPlane(const Vertex3& point,
@@ -237,12 +231,11 @@ namespace jm
                        double maxDistance = 0.0);
 
    /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der Punkt auf der Geraden
-    liegt.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param  position Ortsvektor bzw. beliebiger Punkt auf der Geraden
-    \param direction Richtungsvektor der Geradem
-    \return "wahr", wenn der Punkt auf der Geraden liegt
+    \brief This method checks whether a given point lies on the line, taking into account a specified tolerance.
+    \param point The 3D point for which the distance is to be determined.
+    \param position The position vector or any point on the line.
+    \param direction The direction vector of the line.
+    \return "true" if the point lies on the line, within the specified tolerance, otherwise "false".
     */
    DllExport
    bool isPointOnLine(const Vertex3& point,
@@ -250,14 +243,15 @@ namespace jm
                       const Vertex3& direction);
 
    /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der Punkt auf dem
-    Linienelement liegt.
-    \param point  Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param lineStart Startpunkt der Linie
-    \param lineEnd Endpunkt der Linie
-    \param extend Status, ob der Schnittpunkt auch über die Linienenden hinaus bestimmt werden soll?
-    Bei "Falsch" wird ggf. ein Endpunkt der Linie genommen
-    \return "wahr", wenn der Punkt auf dem Linienelement liegt
+    \brief This method checks whether a given point lies on the line segment, taking into account a
+    specified tolerance.
+    \param point The 3D point for which the distance is to be determined.
+    \param lineStart The starting point of the line segment.
+    \param lineEnd The end point of the line segment.
+    \param extend Flag indicating whether the intersection point should be determined even if it 
+    lies beyond the line segment ends. If set to "false", NaN will be returned.
+    \return "true" if the point lies on the line segment, within the specified tolerance and 
+    considering the extend flag, otherwise "false".
     */
    DllExport
    bool isPointOnLine(const Vertex3& point,
@@ -266,13 +260,12 @@ namespace jm
                       bool extend);
 
    /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob der Punkt auf dem Kreis
-    liegt.
-    \param point Der 3D-Raumpunkt, von dem der Abstand bestimmt werden soll
-    \param center Der Mittelpunkt des Kreises
-    \param radius Der Radius des Kreises
-    \param normal Der Normalenvektor. Steht senkrecht auf Kreisebene
-    \return "wahr", wenn der Punkt auf dem Kreis liegt
+    \brief This method checks if a given point lies on a circle, taking into account a specified tolerance.
+    \param point The 3D point for which the distance is to be determined.
+    \param center The center point of the circle.
+    \param radius The radius of the circle.
+    \param normal The normal vector, perpendicular to the plane of the circle.
+    \return "true" if the point lies on the circle, within the specified tolerance, otherwise "false".
     */
    DllExport
    bool isPointOnCircle(const Vertex3& point,
@@ -281,25 +274,26 @@ namespace jm
                         const Vertex3& normal);
 
    /*!
-    \brief Diese Methode prüft unter Berücksichtigung von resabs, ob beide Punkte identisch sind.
-    \discussion Die Punkte sind identisch, wenn der Abstand beider kleiner resabs ist.
-    \param point1 Der 1. 3D-Raumpunkt.
-    \param point2 Der 2. 3D-Raumpunkt.
-    \return "wahr", wenn beide Punkte aufeinander liegen
+    \brief This method checks if both points are identical, taking into account a specified tolerance.
+    \details The points are considered identical if the distance between them is smaller than the tolerance.
+    \param point1 The first 3D point.
+    \param point2 The second 3D point.
+    \param tolerance The tolerance value for comparing the distance between the points.
+    \return "true" if both points are identical within the specified tolerance, otherwise "false".
     */
    DllExport
    bool isSamePoint(const Vertex3& point1,
                     const Vertex3& point2);
 
    /*!
-    \brief Diese Methode berechnet den zweidimensionalen Schnittpunkt der beiden Geraden,
-    die durch die Anfangspunkte und Richtungsvektoren definiert sind.
-    \param position1 Ortsvektor der ersten Gerade.
-    \param direction1 Richtungsvektor der ersten Geraden.
-    \param position2 Ortsvektor der zweiten Geraden.
-    \param direction2 Richtungsvektor der zweiten Geraden.
-    \return Den Schnittpunkt der beiden Geraden. Im Falle der Kolinearität (parallele Linien) hat
-    der Punkt die Werte NAN
+    \brief This method calculates the two-dimensional intersection point of two lines defined by
+    their starting points and direction vectors.
+    \param position1 The starting point of the first line.
+    \param direction1 The direction vector of the first line.
+    \param position2 The starting point of the second line.
+    \param direction2 The direction vector of the second line.
+    \return The intersection point of the two lines. If the lines are parallel or collinear, the point 
+    has NaN values.
     */
    DllExport
    Vertex2 intersectionPoint(const Vertex2& position1,
@@ -308,14 +302,14 @@ namespace jm
                              const Vertex2& direction2);
 
    /*!
-    \brief Diese Methode berechnet den dreidimensionalen Schnittpunkt der beiden Geraden,
-    die durch die Anfangspunkte und Richtungsvektoren definiert sind.
-    \param position1 Ortsvektor der ersten Gerade.
-    \param direction1 Richtungsvektor der ersten Geraden.
-    \param position2 Ortsvektor der zweiten Geraden.
-    \param direction2 Richtungsvektor der zweiten Geraden.
-    \return Den Schnittpunkt der beiden Geraden. Im Falle der Kolinearität (parallele Linien), oder
-    windschiefer Geraten hat der Punkt die Werte NAN
+    \brief This method calculates the three-dimensional intersection point of two lines defined by
+    their starting points and direction vectors.
+    \param position1 The starting point of the first line.
+    \param direction1 The direction vector of the first line.
+    \param position2 The starting point of the second line.
+    \param direction2 The direction vector of the second line.
+    \return The intersection point of the two lines. If the lines are parallel or skew, the point 
+    has NaN values.
     */
    DllExport
    Vertex3 intersectionPoint(const Vertex3& position1,
@@ -324,13 +318,13 @@ namespace jm
                              const Vertex3& direction2);
 
    /*!
-    \brief Diese Methode prüft, ob sich zwei Linien zwischen Ihren Endpunkten schneiden/kreuzen.
-    Es handelt sich um ein ebenes Problem
-    \param start1 Startpunkt der ersten Gerade.
-    \param end1 Endpunkt der ersten Geraden.
-    \param start2 Startpunkt der zweiten Geraden.
-    \param end2 Endpunkt der zweiten Geraden.
-    \return "wahr", wenn sich die Linien zwischen den Endpunkten schneiden. Andernfalls "falsch".
+    \brief This method checks if two lines intersect/cross between their endpoints. It is a planar
+    problem.
+    \param start1 The start point of the first line.
+    \param end1 The end point of the first line.
+    \param start2 The start point of the second line.
+    \param end2 The end point of the second line.
+    \return "true" if the lines intersect between their endpoints, otherwise "false".
     */
    DllExport
    bool crosses(const Vertex2& start1,
@@ -339,18 +333,19 @@ namespace jm
                 const Vertex2& end2);
 
    /*!
-    \brief Diese Methode prüft, ob ein Strahl (Linie) eine Linie zwischen oder auf Ihren
-    Endpunkten schneidet. Dabei ist entscheidend in welche Richtung der Strahl zeigt. Diese Methode
-    wird verwendet, um Linien zu Dehnen, zu Kürzen, Schraffuren zu zeichnen usw. Daher ist dies eine
-    essentielle Methode für CAD-Arbeiten. Wenn der Strahl die Linie zwischen oder auf den Endpunkten
-    schneidet, wird der Schnittpunkt zurückgegeben.
-    \param rayorigin Die Strahlquelle. Also der Punkt, ab dem geschaut werden soll, ob sich die
-    Linien kreuzen. (Ortsvektor der Geraden)
-    \param direction Der Richtungsvektor, in die der Strahl zeigt.
-    \param start Startpunkt der Linie, mit der verglichen wird.
-    \param end Endpunkt der Linie, mit der verglichen wird.
-    \return Den definierten Vektor, wenn der Schnittpunkt exitiert. Wenn der Schnittpunkt nicht
-    existiert, hat der Vektor NaN als Einträge.
+    \brief This method checks if a ray (line) intersects with a line between or on its endpoints.
+    The direction of the ray is crucial.
+   
+    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
+    Hence, it is an essential method for CAD work. If the ray intersects with the line between or 
+    on the endpoints, the intersection point is returned.
+    \param rayorigin The origin point of the ray. This is the point from which we check if the lines
+    intersect. (Position vector of the line)
+    \param direction The direction vector in which the ray points.
+    \param start The start point of the line to be compared.
+    \param end The end point of the line to be compared.
+    \return The defined vector if the intersection point exists. If the intersection point does not 
+    exist, the vector has NaN entries.
     */
    DllExport
    Vertex2 extensionPointOnLine(const Vertex2& rayorigin,
@@ -359,20 +354,21 @@ namespace jm
                                 const Vertex2& end);
 
    /*!
-    \brief Diese Methode prüft, ob ein Strahl (Linie) einen Kreisbogen schneidet. Dabei
-    ist entscheidend in welche Richtung der Strahl zeigt. Diese Methode wird verwendet, um Linien zu
-    Dehnen, zu Kürzen, Schraffuren zu zeichnen usw. Daher ist dies eine essentielle Methode für
-    CAD-Arbeiten. Wenn der Strahl den Kreisbogen zwischen oder auf den Endpunkten schneidet, wird
-    der Schnittpunkt zurückgegeben. Es wird der nächste Schnittpunkt zurückgegeben, sollte der
-    Strahl den Kreisbogen zweimal schneiden.
-    \param rayorigin Die Strahlquelle. Also der Punkt, ab dem geschaut werden soll, ob sich die
-    Linien kreuzen. (Ortsvektor der Geraden)
-    \param direction Der Richtungsvektor, in die der Strahl zeigt.
-    \param center Kreismittelpunkt
-    \param start Der Startwinkel des Kreisbogens im Bogenmaß
-    \param end Der Endwinkel des Kreisbogens im Bogenmaß
-    \return Den definierten Vektor, wenn der Schnittpunkt exitiert. Wenn der Schnittpunkt nicht
-    existiert, hat der Vektor NaN als Einträge.
+    \brief This method checks if a ray (line) intersects with a circular arc. The direction of 
+    the ray is crucial.
+   
+    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
+    Hence, it is an essential method for CAD work. If the ray intersects with the circular arc
+    between or on the endpoints, the intersection point is returned. If the ray intersects the 
+    circular arc twice, the closest intersection point is returned.
+    \param rayorigin The origin point of the ray. This is the point from which we check if the lines
+    intersect. (Position vector of the line)
+    \param direction The direction vector in which the ray points.
+    \param center The center point of the circular arc.
+    \param start The start angle of the circular arc in radians.
+    \param end The end angle of the circular arc in radians.
+    \return The defined vector if the intersection point exists. If the intersection point does not 
+    exist, the vector has NaN entries.
     */
    DllExport
    Vertex2 extensionPointOnArc(const Vertex2& rayorigin,
@@ -383,23 +379,24 @@ namespace jm
                                double end);
 
    /*!
-    \brief Diese Methode prüft, ob ein Strahl (Linie) einen Ellipsenbogen schneidet. Dabei
-    ist entscheidend in welche Richtung der Strahl zeigt. Diese Methode wird verwendet, um Linien zu
-    Dehnen, zu Kürzen, Schraffuren zu zeichnen usw. Daher ist dies eine essentielle Methode für
-    CAD-Arbeiten. Wenn der Strahl den Ellipsenbogen zwischen oder auf den Endpunkten schneidet, wird
-    der Schnittpunkt zurückgegeben. Es wird der nächste Schnittpunkt zurückgegeben, sollte der
-    Strahl den Ellipsenbogen zweimal schneiden.
-    \param rayorigin Die Strahlquelle. Also der Punkt, ab dem geschaut werden soll, ob sich die
-    Linien kreuzen. (Ortsvektor der Geraden)
-    \param direction Der Richtungsvektor, in die der Strahl zeigt.
-    \param center Ellipsenmittelpunkt
-    \param mainAxis Haupachsenrichtung und Länge der Hauptachse (vom Mittelpunkt aus)
-    \param minorAxisRatio Nebenachsenfaktor
-    \param start Der Startwinkel des Kreisbogens im Bogenmaß
-    \param end Der Endwinkel des Kreisbogens im Bogenmaß
-    \return Den definierten Vektor, wenn der Schnittpunkt exitiert. Wenn der Schnittpunkt nicht
-    existiert, hat der Vektor NaN als Einträge.
-    */
+   \brief This method checks if a ray (line) intersects with an elliptical arc. The direction of 
+   the ray is crucial.
+   
+   This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
+   Hence, it is an essential method for CAD work. If the ray intersects with the elliptical arc
+   between or on the endpoints, the intersection point is returned. If the ray intersects the 
+   elliptical arc twice, the closest intersection point is returned.
+   \param rayorigin The origin point of the ray. This is the point from which we check if the lines
+    intersect. (Position vector of the line)
+   \param direction The direction vector in which the ray points.
+   \param center The center point of the ellipse.
+   \param mainAxis The direction and length of the major axis (from the center).
+   \param minorAxisRatio The ratio of the minor axis to the major axis.
+   \param start The start angle of the elliptical arc in radians.
+   \param end The end angle of the elliptical arc in radians.
+   \return The defined vector if the intersection point exists. If the intersection point does not 
+   exist, the vector has NaN entries.
+   */
    DllExport
    Vertex2 extensionPointOnEllipse(const Vertex2& rayorigin,
                                    const Vertex2& direction,
@@ -410,16 +407,22 @@ namespace jm
                                    double end);
 
    /*!
-    \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
-    Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
+    \brief This method calculates the angle bisector between the two direction vectors around a common
+    central point. The length of the resulting vector is not normalized.
+    \param direction1 The first direction vector.
+    \param direction2 The second direction vector.
+    \return The angle bisector vector.
     */
    DllExport
    Vertex3 angleBisector(const Vertex3& direction1,
                          const Vertex3& direction2);
    /*!
-    \brief Diese Methode berechnet die Winkelhalbierende zwischen den beiden Richtungsvektoren um einen gemeinsamen
-    Zentralpunkt. Die Länge der Resultierenden ist nicht norrmiert.
-    */
+   \brief This method calculates the angle bisector between the two direction vectors around a common
+   central point. The length of the resulting vector is not normalized.
+   \param direction1 The first direction vector.
+   \param direction2 The second direction vector.
+   \return The angle bisector vector.
+   */
    DllExport
    Vertex2 angleBisector(const Vertex2& direction1,
                          const Vertex2& direction2);

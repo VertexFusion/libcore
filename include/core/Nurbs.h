@@ -40,37 +40,35 @@ namespace jm
 {
 
    /*!
-    \brief NURBS (nonuniform rational basis splines) sind eine verallgemeinerte Form der B-Splines.
-    Mit ihnen ist es möglich viele Kurven auch in projezierter Form zu modellieren. Die DXF-Splines
-    z.B. basieren auf diesen NURBS. Diese Klasse stellt Funktionen und Methoden zur Verfügung, um
-    mit NURBS arbeiten zu können.
-    Vorteile von NURBS (http://www-lehre.inf.uos.de/~cg/2006/PDF/kap-07.pdf)
+    \brief NURBS (nonuniform rational basis splines) are a generalized form of B-Splines.
+    They allow for modeling many curves, including projected forms. DXF splines, for example, are based on NURBS.
+    This class provides functions and methods to work with NURBS.
 
-    - NURBS sind eine Verallgemeinerung der B-Splines. Für hi = 1 ∀i reduziert sich die NURBS-Kurve
-      zur entsprechenden B-Spline-Kurve.
-    - NURBS sind invariant bzgl. perspektivischer Projektion. Dies bedeutet, dass zur Projektion
-      einer Kurve nicht alle Kurvenpunkte projeziert werden müssen, sondern es reicht, die
-   	Stützpunkte zu projezieren und dann zu einer Kurve zu verbinden.
-    - NURBS sind (im Gegensatz zu nicht-rationalen B-Splines) in der Lage, Kreise zu beschreiben.
+    Advantages of NURBS (http://www-lehre.inf.uos.de/~cg/2006/PDF/kap-07.pdf):
+
+    - NURBS are a generalization of B-Splines. When hi = 1 for all i, the NURBS curve reduces to the corresponding B-Spline curve.
+    - NURBS are invariant under perspective projection. This means that not all curve points need to be projected, only the control points need to be projected and then connected to form a curve.
+    - NURBS are capable of describing circles (unlike non-rational B-Splines).
     */
    class DllExport Nurbs: public Object
    {
       public:
-         /*!
-          \brief Standardkonstruktor
-          */
+
+          /*!
+           \brief Default constructor for the Nurbs class.
+           */
          Nurbs();
 
-         /*!
-          \brief Konstruktor
-          \param degree Grad des Polynoms
-          \param controlpoints Feld mit den Kontrollpunkten
-          \param controlCount Länge des Feldes controlpoints
-          \param knots Feld mit den Knoten
-          \param knotCount Länge des Feldes knots
-          \param weights Feld mit den Gewichtungen
-          \param weightCount Länge des Feldes weights
-          */
+          /*!
+           \brief Constructor for the Nurbs class.
+           \param degree The degree of the polynomial.
+           \param controlpoints An array of control points.
+           \param controlCount The length of the controlpoints array.
+           \param knots An array of knots.
+           \param knotCount The length of the knots array.
+           \param weights An array of weights.
+           \param weightCount The length of the weights array.
+           */
          Nurbs(uint32 degree,
                Vertex3* controlpoints,
                uint32 controlCount,
@@ -84,28 +82,26 @@ namespace jm
           */
          ~Nurbs();
 
-         /*!
-          \brief Gibt einen beliebigen Punkt auf der Kurve zurück.
-          \param t Die Laufvariable auf der Kurve. Im Intervall zwischen 0 und t_max
-          */
+          /*!
+           \brief Returns a point on the curve at a given parameter value.
+           \param t The parameter value on the curve. Should be in the range [0, t_max].
+           \return The point on the curve at the given parameter value.
+           */
          Vertex3 GetPoint(double t);
 
-         /*!
-          \brief Diese Methode gibt den kleinen Wert von t zurück. Also 0
-          */
+          /*!
+           \brief This method returns the smallest value of t. In this case, it returns 0.
+           */
          double GetStart();
 
-         /*!
-          \brief Diese Methode gibt den größten Wert von t zurück.
-           // Warum mal so und mal so???
-           // - n−k+2
-           // - max von knot
-          */
+      /*!
+        \brief This method returns the maximum value of t.
+        */
          double GetEnd();
 
-         /*!
-          \brief Gibt die Anzahl der Kontrollpunkte zurück
-          */
+          /*!
+           \brief Returns the number of control points.
+           */
          uint32 GetControlPointCount();
 
          /*!
@@ -120,18 +116,18 @@ namespace jm
 
       private:
 
-         /*!
-          \brief Grad des Polynoms der NURBS
-          */
+          /*!
+           \brief Degree of the polynomial for the NURBS curve.
+           */
          uint32 mDegree;
 
          /*!
-          \brief Kontrollpunkte der Kurve
+          \brief Control points of curve.
           */
          Vertex3* mControlpoints;
 
          /*!
-          \brief Anzahl der Kontrollpunkte
+          \brief Number of control points.
           */
          uint32 mControlCount;
 
@@ -141,31 +137,32 @@ namespace jm
          //! Knot count.
          uint32 mKnotCount;
 
-         /*!
-          \brief Die Gewichtungen. Für B-Splines sind alle 1.
-          */
+          /*!
+           \brief The weights of the control points. For B-Splines, all weights are 1.
+           */
          double* mWeights;
 
-         /*!
-          \brief Anzahl der Gewichtungen
-          */
+          /*!
+           \brief The number of weights.
+           */
          uint32 mWeightCount;
 
-         /*!
-          \brief Diese Methode gibt den Wert N_i,k(t) zurück
-          \param i Die Laufvariable in den Vektoren
-          \param k Der Grad des Polynoms, für den N zurückgegeben werden soll. (Ist nicht
-                   zwangsläufig der Grad der NURBS)
-          \param t Die Laufvariable über die Kurve
-          */
+          /*!
+           \brief This method returns the value of N_i,k(t).
+           \param i The index of the control point.
+           \param k The degree of the polynomial for which N is returned. (Not necessarily the degree of the NURBS)
+           \param t The parameter value along the curve.
+           \return The value of N_i,k(t) at the given parameter value.
+           */
          double N(uint32 i, uint32 k, double t);
 
-         /*!
-          \brief Diese Methode gibt die Gewichtung der Kontrollpunkte R_i,k(t) zurück
-          \param i Die Laufvariable in den Vektoren
-          \param k Der Grad des Polynoms, für den R zurückgegeben werden soll.
-          \param t Die Laufvariable über die Kurve
-          */
+          /*!
+           \brief This method returns the weight of the control points R_i,k(t).
+           \param i The index of the control point.
+           \param k The degree of the polynomial for which R is returned.
+           \param t The parameter value along the curve.
+           \return The weight of the control point at the given parameter value.
+           */
          double R(uint32 i, uint32 k, double t);
    };
 
