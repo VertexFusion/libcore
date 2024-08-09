@@ -163,7 +163,7 @@ int64 jm::DeserializeBEInt64(uint8* buffer, uint32 offset)
    return (p1 << 32 | p2);
 }
 
-uint16 jm::DeserializeLEUInt16(uint8* buffer, uint32 offset)
+uint16 jm::DeserializeLEUInt16(const uint8* buffer, uint32 offset)
 {
    return (buffer[offset + 1] << 8 | buffer[offset]);
 }

@@ -73,7 +73,7 @@ void ZipOutputFile::close()
    mEntries.rewind();
    while(mEntries.hasNext())
    {
-      ZipEntry* entry = (ZipEntry*)mEntries.next();
+      ZipEntry* entry = static_cast<ZipEntry*>(mEntries.next());
 
       ByteArray cname = entry->mName.toCString();
       ByteArray cextra = entry->mExtra.toCString();
@@ -99,9 +99,9 @@ void ZipOutputFile::close()
       jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
 
       mFile->write(cdfh, 46);
-      if(cname.size() > 0)mFile->write((uint8*)cname.constData(), cname.size());
-      if(cextra.size() > 0)mFile->write((uint8*)cextra.constData(), cextra.size());
-      if(ccomment.size() > 0)mFile->write((uint8*)ccomment.constData(), ccomment.size());
+      if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());
+      if(cextra.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cextra.constData()), cextra.size());
+      if(ccomment.size() > 0)mFile->write(reinterpret_cast<const uint8*>(ccomment.constData()), ccomment.size());
 
    }
 
@@ -126,7 +126,7 @@ void ZipOutputFile::close()
 
 void ZipOutputFile::closeEntry()
 {
-   ZipEntry* entry = (ZipEntry*)mEntries.last();
+   ZipEntry* entry = static_cast<ZipEntry*>(mEntries.last());
 
    entry->mUncompressedSize = static_cast<uint32>(mTemp->position());
    mTemp->seek(0);
@@ -143,7 +143,7 @@ void ZipOutputFile::closeEntry()
    //Schreibe unkomprimiert
    entry->mCompressedSize = entry->mUncompressedSize;
 
-   mFile->write((uint8*)buffer.constData(), entry->mUncompressedSize);
+   mFile->write(reinterpret_cast<const uint8*>(buffer.constData()), entry->mUncompressedSize);
    uint32 pos = static_cast<uint32>(mFile->position());
 
    //Aktualisiere Header
@@ -178,7 +178,7 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    //Schreibe unkomprimiert
    entry->mCompressedSize = entry->mUncompressedSize;
 
-   mFile->write((uint8*)buffer.constData(), entry->mUncompressedSize);
+   mFile->write(reinterpret_cast<const uint8*>(buffer.constData()), entry->mUncompressedSize);
    uint32 pos = static_cast<uint32>(mFile->position());
 
    //Aktualisiere Header
@@ -214,8 +214,8 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    jm::SerializeLEInt16(lfh, 28, cextra.size().Int16());//Extra field length
 
    mFile->write(lfh, 30);
-   if(cname.size() > 0)mFile->write((uint8*)cname.constData(), cname.size());
-   if(cextra.size() > 0)mFile->write((uint8*)cextra.constData(), cextra.size());
+   if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());
+   if(cextra.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cextra.constData()), cextra.size());
 
    entry->mDataOffset = static_cast<uint32>(mFile->position());
 

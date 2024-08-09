@@ -168,9 +168,9 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
 
    if(signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
 
-   uint16 cm = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 8);
-   uint32 fl = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 26);
-   uint32 el = jm::DeserializeLEUInt16((uint8*)localHeader.constData(), 28);
+   uint16 cm = jm::DeserializeLEUInt16(localHeader, 8);
+   uint32 fl = jm::DeserializeLEUInt16(localHeader, 26);
+   uint32 el = jm::DeserializeLEUInt16(localHeader, 28);
 
 
    mFile->seek(entry->mHeaderOffset + 30 + fl + el);
@@ -184,7 +184,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    {
       Inflater inf = Inflater(true);
       Integer control;
-      inf.SetInput((uint8*)input.constData(), entry->mCompressedSize);
+      inf.SetInput(reinterpret_cast<uint8*>(input.data()), entry->mCompressedSize);
       inf.Inflate(buffer, control);
    }
 

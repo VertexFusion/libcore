@@ -47,7 +47,7 @@ ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
 
 ByteArray::ByteArray(const uint8* buffer, Integer size) : Object()
 {
-   init((const int8*)buffer, size);
+   init(reinterpret_cast<const int8*>(buffer), size);
 }
 
 void ByteArray::init(const int8* buffer, Integer size)
