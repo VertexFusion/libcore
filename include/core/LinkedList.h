@@ -71,7 +71,7 @@ namespace jm
          Object* next();
 
          // Return the next object without moving the iterator
-         Object* peekNext() const;
+         Object* seek() const;
 
          ~LinkedListIterator();
 
