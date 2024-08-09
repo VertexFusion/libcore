@@ -358,6 +358,7 @@ void jm::System::init(const jm::String& bundleId)
    I18nBundle::initDefault();
 
    // Load default preferences, if any
+   if(bundleId.size() == 0)return; // No preferences for this bundle
    jm::File propDir = jm::PropertyDir();
    gPreferences = new jm::Preferences();
    gPrefFile  = new jm::File(propDir, bundleId + ".properties");
@@ -368,11 +369,20 @@ void jm::System::init(const jm::String& bundleId)
 void jm::System::quit()
 {
    // save preferences
-   gPreferences->save(*gPrefFile);
-   delete gPreferences;
-   delete gPrefFile;
+   if(gPreferences != NULL)
+   {
+      gPreferences->save(*gPrefFile);
+      delete gPreferences;
+      delete gPrefFile;
+      gPreferences=NULL;
+      gPrefFile=NULL;
+   }
 
-   if(gMainThreadPool != NULL)delete gMainThreadPool;
+   if(gMainThreadPool != NULL)
+   {
+      delete gMainThreadPool;
+      gMainThreadPool = NULL;
+   }
 
    // Finally
    QuitCharsets();
