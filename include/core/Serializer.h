@@ -252,7 +252,6 @@ namespace jm
     */
    DllExport
    float DeserializeLEFloat(uint8* buffer, uint32 offset);
-   DllExport
 
 }
 
