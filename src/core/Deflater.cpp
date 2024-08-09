@@ -61,9 +61,9 @@ void Deflater::Deflate(uint8*& buffer, Integer& length)
    defstream.opaque = Z_NULL;
    // setup "a" as the input and "b" as the compressed output
    defstream.avail_in = (uInt) mUncompLength; // size of input, string + terminator
-   defstream.next_in = (Bytef*)mUncompBytes;  // input char array
+   defstream.next_in = reinterpret_cast<Bytef*>(mUncompBytes);  // input char array
    defstream.avail_out = (uInt)mUncompLength; // size of output
-   defstream.next_out = (Bytef*)buffer;  // output char array
+   defstream.next_out = reinterpret_cast<Bytef*>(buffer);  // output char array
 
    // the actual compression work.
    deflateInit(&defstream, Z_BEST_COMPRESSION);

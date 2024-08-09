@@ -191,7 +191,7 @@ namespace jm
     \return Returns the deserialized number as uint16.
     */
    DllExport
-   uint16 DeserializeLEUInt16(uint8* buffer, uint32 offset);
+   uint16 DeserializeLEUInt16(const uint8* buffer, uint32 offset);
    uint16 DeserializeLEUInt16(const jm::ByteArray& buffer, uint32 offset);
 
    /*!
