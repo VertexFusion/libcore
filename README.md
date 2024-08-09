@@ -14,9 +14,6 @@ This includes the following basic data types or enhancements:
 - Diff algorithm
 - Addition random stuff
 
-Currently we are in the process of translating a source code originally commented in German into 
-English and uploading it here.
-
 One of our interests in this project is the restriction to the C++ language. Unfortunately, there 
 are a number of similar projects, which are a mixture of heavy dependencies and languages, which makes
 it difficult to integrate them into other projects. We shall reduce external dependencies to a minimum 
