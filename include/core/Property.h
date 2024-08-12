@@ -37,6 +37,7 @@
 #include "Types.h"
 #include "String.h"
 #include "Integer.h"
+#include "Vertex3.h"
 
 namespace jm
 {
