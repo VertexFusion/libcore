@@ -503,6 +503,10 @@ namespace jm
 
          virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
 
+         virtual VxfErrorStatus setMember(int16* pointer, int16 value);
+
+         virtual VxfErrorStatus setMember(Vertex3* pointer, const Vertex3 &value);
+
          /*!
           \brief Begins an editing transaction;
           */
