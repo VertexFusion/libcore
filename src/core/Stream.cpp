@@ -45,3 +45,7 @@ Integer Stream::write(const String& string)
    return ret;
 }
 
+Integer Stream::readFully(ByteArray& buffer)
+{
+   return readFully(buffer, buffer.size());
+};

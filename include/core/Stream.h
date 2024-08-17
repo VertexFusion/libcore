@@ -117,10 +117,7 @@ namespace jm
             \param buffer The buffer to read the data from.
             \return The actual number of bytes read, or 0 if no bytes were read (EOF).
             */
-         Integer readFully(ByteArray& buffer)
-         {
-            return readFully(buffer, buffer.size());
-         };
+         Integer readFully(ByteArray& buffer);
 
           /*!
            \brief Moves the file cursor to the desired position, counted from the beginning of the file

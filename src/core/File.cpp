@@ -647,7 +647,7 @@ Integer File::position()
 
 Integer File::read(uint8* buffer, Integer length)
 {
-   return (uint32)fread(buffer, 1, length, mHandle);
+   return fread(buffer, 1, length, mHandle);
 }
 
 Integer File::readFully(ByteArray& buffer, Integer length)
@@ -655,7 +655,7 @@ Integer File::readFully(ByteArray& buffer, Integer length)
    Integer rest = length;
    Integer count = 0;
    Integer step;
-   uint8* buf = (uint8*)buffer.data();
+   uint8* buf = reinterpret_cast<uint8*>(buffer.data());
 
    while((rest > 0) && ((step = read(&buf[count], rest)) > 0))
    {
