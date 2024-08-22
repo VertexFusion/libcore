@@ -852,6 +852,41 @@ Matrix Matrix::generate3x3RotationZMatrix(double angle)
    return r;
 }
 
+Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3& v)
+{
+    // Normalize both vectors
+    jm::Vertex3 u_norm = u.normalized();
+    jm::Vertex3 v_norm = v.normalized();
+
+    // Calculate the cross product
+    jm::Vertex3 axis = u_norm.crossProduct(v_norm);
+
+    // Calculate the dot product
+    double cosTheta = u_norm.DotProduct(v_norm);
+
+    // Calculate the sine of the angle
+    double sinTheta = axis.abs();
+
+    // Normalize the axis
+    axis.normalize();
+
+    // Construct the rotation matrix using Rodrigues' rotation formula
+    jm::Matrix rotationMatrix=jm::Matrix(3,3);
+    rotationMatrix.set(0, 0, cosTheta + axis.x * axis.x * (1 - cosTheta));
+    rotationMatrix.set(0, 1, axis.x * axis.y * (1 - cosTheta) - axis.z * sinTheta);
+    rotationMatrix.set(0, 2, axis.x * axis.z * (1 - cosTheta) + axis.y * sinTheta);
+
+    rotationMatrix.set(1, 0, axis.y * axis.x * (1 - cosTheta) + axis.z * sinTheta);
+    rotationMatrix.set(1, 1, cosTheta + axis.y * axis.y * (1 - cosTheta));
+    rotationMatrix.set(1, 2, axis.y * axis.z * (1 - cosTheta) - axis.x * sinTheta);
+
+    rotationMatrix.set(2, 0, axis.z * axis.x * (1 - cosTheta) - axis.y * sinTheta);
+    rotationMatrix.set(2, 1, axis.z * axis.y * (1 - cosTheta) + axis.x * sinTheta);
+    rotationMatrix.set(2, 2, cosTheta + axis.z * axis.z * (1 - cosTheta));
+
+    return rotationMatrix;
+}
+
 
 const Vector jm::operator*(Matrix const& A, Vector const& b)
 {

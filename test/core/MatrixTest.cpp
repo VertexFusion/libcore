@@ -381,4 +381,54 @@ void MatrixTest::DoTest()
    TestEquals(norm, 6.0, "Norm_inf not 6");
 
 
+   //
+   // Test rotation matrix
+   //
+   jm::Vertex3 xAxis(1, 0, 0);
+   jm::Vertex3 yAxis(0, 1, 0);
+
+   // Align X to y
+
+   jm::Matrix rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, yAxis);
+
+   // Apply the rotation matrix to the x-axis
+   jm::Vertex3 rotatedXAxis = rotationMatrix * xAxis;
+
+   // Check if the rotated x-axis aligns with the y-axis
+   TestEquals(rotatedXAxis.x, 0.0, "rotatedXAxis.x not 0");
+   TestEquals(rotatedXAxis.y, 1.0, "rotatedXAxis.y not 1");
+   TestEquals(rotatedXAxis.z, 0.0, "rotatedXAxis.z not 0");
+
+   // Align X to Z
+
+    jm::Vertex3 zAxis(0, 0, 1);
+
+    rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, zAxis);
+
+    // Apply the rotation matrix to the x-axis
+    rotatedXAxis = rotationMatrix * xAxis;
+
+    // Check if the rotated x-axis aligns with the z-axis
+    TestEquals(rotatedXAxis.x, 0.0, "rotatedXAxis.x not 0");
+    TestEquals(rotatedXAxis.y, 0.0, "rotatedXAxis.y not 0");
+    TestEquals(rotatedXAxis.z, 1.0, "rotatedXAxis.z not 1");
+
+    // Align arbitrary
+
+    jm::Vertex3 u(1, 2, 3);
+    jm::Vertex3 v(4, 5, 6);
+
+    rotationMatrix = Matrix::generate3x3RotationMatrix(u, v);
+
+    // Apply the rotation matrix to the vector u
+    jm::Vertex3 rotatedU = rotationMatrix * u;
+
+    // Normalize both vectors for comparison
+    jm::Vertex3 v_norm = v.normalized();
+    jm::Vertex3 rotatedU_norm = rotatedU.normalized();
+
+    // Check if the rotated u aligns with v
+    TestEquals(rotatedU_norm.x, v_norm.x, "rotatedU_norm.x not v_norm.x");
+    TestEquals(rotatedU_norm.y, v_norm.y, "rotatedU_norm.y not v_norm.y");
+    TestEquals(rotatedU_norm.z, v_norm.z, "rotatedU_norm.z not v_norm.z");
 }
