@@ -259,7 +259,7 @@ namespace jm
          static Matrix generate3x3RotationZMatrix(double angle);
 
          /*!
-          \brief This static function generates a 3x3 rotation matric for a rotation from vector u to vector v
+          \brief This static function generates a 3x3 rotation matrix for a rotation from vector u to vector v.
           \param u The start vector
           \param v The end vector
           */
