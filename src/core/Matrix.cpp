@@ -858,17 +858,40 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
     jm::Vertex3 u_norm = u.normalized();
     jm::Vertex3 v_norm = v.normalized();
 
-    // Calculate the cross product
-    jm::Vertex3 axis = u_norm.crossProduct(v_norm);
-
     // Calculate the dot product
     double cosTheta = u_norm.DotProduct(v_norm);
 
-    // Calculate the sine of the angle
-    double sinTheta = axis.abs();
+    // Check if the angle is π (cosTheta is -1)
+   if (jm::isEqual(cosTheta , -1.0))
+   {
+    // Special case for 180 degree rotation
+   // Find an orthogonal vector to u_norm
+   jm::Vertex3 orthogonal = (std::abs(u_norm.x) > std::abs(u_norm.y)) ? jm::Vertex3(-u_norm.z, 0, u_norm.x) : jm::Vertex3(0, -u_norm.z, u_norm.y);
+   orthogonal = orthogonal.normalized();
+    
+    // Construct the rotation matrix for 180 degree rotation around the orthogonal axis
+    jm::Matrix rotationMatrix=jm::Matrix(3,3);
+    rotationMatrix.set(0, 0, -1 + 2 * orthogonal.x * orthogonal.x);
+    rotationMatrix.set(0, 1, 2 * orthogonal.x * orthogonal.y);
+    rotationMatrix.set(0, 2, 2 * orthogonal.x * orthogonal.z);
 
-    // Normalize the axis
-    axis.normalize();
+    rotationMatrix.set(1, 0, 2 * orthogonal.y * orthogonal.x);
+    rotationMatrix.set(1, 1, -1 + 2 * orthogonal.y * orthogonal.y);
+    rotationMatrix.set(1, 2, 2 * orthogonal.y * orthogonal.z);
+
+    rotationMatrix.set(2, 0, 2 * orthogonal.z * orthogonal.x);
+    rotationMatrix.set(2, 1, 2 * orthogonal.z * orthogonal.y);
+    rotationMatrix.set(2, 2, -1 + 2 * orthogonal.z * orthogonal.z);
+
+    return rotationMatrix;
+}
+else
+{
+   // Calculate the cross product
+   jm::Vertex3 axis = u.crossProduct(v).normalized();
+
+    // Calculate the sine of the angle
+   double sinTheta = std::sqrt(1 - cosTheta * cosTheta); // sinTheta = sqrt(1 - cosTheta^2)
 
     // Construct the rotation matrix using Rodrigues' rotation formula
     jm::Matrix rotationMatrix=jm::Matrix(3,3);
@@ -885,6 +908,8 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
     rotationMatrix.set(2, 2, cosTheta + axis.z * axis.z * (1 - cosTheta));
 
     return rotationMatrix;
+
+}
 }
 
 

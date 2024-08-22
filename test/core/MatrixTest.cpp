@@ -431,4 +431,29 @@ void MatrixTest::DoTest()
     TestEquals(rotatedU_norm.x, v_norm.x, "rotatedU_norm.x not v_norm.x");
     TestEquals(rotatedU_norm.y, v_norm.y, "rotatedU_norm.y not v_norm.y");
     TestEquals(rotatedU_norm.z, v_norm.z, "rotatedU_norm.z not v_norm.z");
+
+    //
+    // 180 degree rotation
+    //
+
+    // Define the x-axis
+    xAxis= jm::Vertex3(1, 0, 0);
+
+    // Define the axis of rotation (y-axis in this case)
+    yAxis = jm::Vertex3(-1, 0, 0);
+
+    // Define the expected result after 180-degree rotation around the y-axis
+    jm::Vertex3 expectedRotatedXAxis(-1, 0, 0);
+
+    // Create a rotation matrix for 180 degrees (π radians)
+    rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, yAxis);
+
+    // Apply the rotation matrix to the x-axis
+    rotatedXAxis = rotationMatrix * xAxis;
+
+    // Check if the rotated x-axis aligns with the expected result
+    TestEquals(rotatedXAxis.x, expectedRotatedXAxis.x, "rotatedXAxis.x not -1");
+    TestEquals(rotatedXAxis.y, expectedRotatedXAxis.y, "rotatedXAxis.y not 0");
+    TestEquals(rotatedXAxis.z, expectedRotatedXAxis.z, "rotatedXAxis.z not 0");
+
 }
