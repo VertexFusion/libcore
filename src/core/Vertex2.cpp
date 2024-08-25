@@ -110,6 +110,11 @@ Vertex2& Vertex2::rotate(double angle)
    return *this;
 }
 
+Vertex2 Vertex2::scale(const Vertex2& another) const
+{
+   return Vertex2(x * another.x, y * another.y);
+}
+
 
 Vertex2::Vertex2()
 {

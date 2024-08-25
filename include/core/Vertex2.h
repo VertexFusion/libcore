@@ -148,6 +148,12 @@ namespace jm
           */
          Vertex2& rotate(double angle);
 
+         /*!
+          \brief This method multiplies this vector line by line with the other vector.
+          \return Returns the result of the calculation. This vector remains unchanged.
+          */
+         Vertex2 scale(const Vertex2& another) const;
+
          Vertex2& operator+=(const Vertex2& another);
 
          Vertex2& operator-=(const Vertex2& another);
