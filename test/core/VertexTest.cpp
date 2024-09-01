@@ -64,6 +64,35 @@ void VertexTest::DoTest()
    TestEquals(v.x, 1.0 / 2.0, "Vertex2.Rotate 60° (x) fails");
    TestEquals(v.y, sqrt(3.0) / 2.0, "Vertex2.Rotate 60° (y) fails");
 
+    // Test case 1: Angle between (1, 0) and (0, 1) should be 90 degrees
+    Vertex2 v1(1.0, 0.0);
+    Vertex2 v2(0.0, 1.0);
+    double expectedAngle = degToRad(90);
+    TestEquals(v1.angleTo(v2), expectedAngle, "Vertex2.angleTo 90° fails");
+
+    // Test case 2: Angle between (1, 0) and (-1, 0) should be 180 degrees
+    v1 = Vertex2(1.0, 0.0);
+    v2 = Vertex2(-1.0, 0.0);
+    expectedAngle = degToRad(-180);
+    TestEquals(v1.angleTo(v2), expectedAngle, "Vertex2.angleTo 180° fails");
+
+    // Test case 3: Angle between (1, 0) and (1, 0) should be 0 degrees
+    v1 = Vertex2(1.0, 0.0);
+    v2 = Vertex2(1.0, 0.0);
+    expectedAngle = degToRad(0);
+    TestEquals(v1.angleTo(v2), expectedAngle, "Vertex2.angleTo 0° fails");
+
+    // Test case 4: Angle between (1, 0) and (0, -1) should be -90 degrees
+    v1 = Vertex2(1.0, 0.0);
+    v2 = Vertex2(0.0, -1.0);
+    expectedAngle = degToRad(-90);
+    TestEquals(v1.angleTo(v2), expectedAngle, "Vertex2.angleTo -90° fails");
+
+    // Test case 5: Angle between (1, 0) and (sqrt(3)/2, 1/2) should be 30 degrees
+    v1 = Vertex2(1.0, 0.0);
+    v2 = Vertex2(sqrt(3.0) / 2.0, 1.0 / 2.0);
+    expectedAngle = degToRad(30);
+    TestEquals(v1.angleTo(v2), expectedAngle, "Vertex2.angleTo 30° fails");
 
    //
    // V3
