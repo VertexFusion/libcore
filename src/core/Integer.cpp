@@ -786,24 +786,24 @@ Integer operator*(ulong left, Integer right)
 }
 #endif
 
-Double operator*(Integer left, double right)
+double operator*(Integer left, double right)
 {
-   return Double(left.mValue * right);
+   return left.mValue * right;
 }
 
-Double operator*(double left, Integer right)
+double operator*(double left, Integer right)
 {
-   return Double(left * right.mValue);
+   return left * right.mValue;
 }
 
-Double operator*(Integer left, float right)
+double operator*(Integer left, float right)
 {
-   return Double(left.mValue * right);
+   return left.mValue * right;
 }
 
-Double operator*(float left, Integer right)
+double operator*(float left, Integer right)
 {
-   return Double(left * right.mValue);
+   return left * right.mValue;
 }
 
 Integer operator/(Integer left, Integer right)

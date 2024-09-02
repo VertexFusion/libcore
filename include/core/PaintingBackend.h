@@ -121,7 +121,7 @@ namespace jm
            \brief This method sets the line weight used for drawing the objects.
            \param lineweight The line weight.
            */
-         virtual void SetLineWeight(Double lineweight) = 0;
+         virtual void SetLineWeight(double lineweight) = 0;
 
          /*!
           /brief  Returns the current line weight used for drawing on the target context.
@@ -174,9 +174,9 @@ namespace jm
            */
          void Arc(const Vertex3& center,
                   const Vertex3& normal,
-                  Double radius,
-                  Double startAngle,
-                  Double endAngle);
+                  double radius,
+                  double startAngle,
+                  double endAngle);
 
           /*!
            \brief This method is used to add the graphics primitive Elliptic to the current path.
@@ -189,8 +189,8 @@ namespace jm
          void Elliptic(const Vertex3& center,
                        const Vertex3& majorAxis,
                        const Vertex3& minorAxis,
-                       Double startAngle,
-                       Double endAngle);
+                       double startAngle,
+                       double endAngle);
 
           /*!
            \brief This method draws a NURBS (Non-Uniform Rational Basis-Spline) curve.
@@ -245,21 +245,21 @@ namespace jm
            \brief The current scaling factor of the line pattern.
            \details All different line styles are manually drawn using strokes.
            */
-         Double curLineTypeScale;
+         double curLineTypeScale;
 
           /*!
            \brief Current position within the line pattern, relative to the beginning of the pattern.
            IN PATTERN SCALE (without curLineTypeScale).
            \details All different line styles are manually drawn using strokes.
            */
-         Double linePatternOffset;
+         double linePatternOffset;
 
           /*!
            \brief The position within the current element, relative to the beginning of the element.
            IN PATTERN SCALE (without curLineTypeScale).
            \details All different line styles are manually drawn using strokes.
            */
-         Double linePatternSubOffset;
+         double linePatternSubOffset;
 
           /*!
            \brief Zero-based index of the current element.

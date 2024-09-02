@@ -106,14 +106,14 @@ namespace jm
        \param value The input number to be transformed.
        \return The transformed number.
        */
-      double Trans(const double& value) const;
+      double Trans(double value) const;
 
       /*!
        \brief Transform a rotation angle about the Z-Axis of LCS as usually needed by arcs or texts.
        \param angle Rotation angle in radians.
        \return The transformed angle.
        */
-      Double TransAngle(const Double& angle) const;
+      double TransAngle(double angle) const;
 
       /*!
        \brief Initializes this transformation as a translation.

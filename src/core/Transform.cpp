@@ -43,7 +43,7 @@ jm::Vertex3 Transform::Trans(const jm::Vertex3& vertex) const
    return jm::Vertex3(output.data[0], output.data[1], output.data[2]);
 }
 
-double Transform::Trans(const double& value) const
+double Transform::Trans(double value) const
 {
    //!\todo  Gibt es eine bessere Lösung?
    jm::Vertex3 p1 = Trans(jm::Vertex3(0, 0, 0));
@@ -51,7 +51,7 @@ double Transform::Trans(const double& value) const
    return (p2 - p1).abs();
 }
 
-Double Transform::TransAngle(const Double& angle) const
+double Transform::TransAngle(double angle) const
 {
    jm::Vertex3 center = jm::Vertex3(0, 0, 0);
    jm::Vertex3 x = jm::Vertex3(1.0, 0, 0);
@@ -65,7 +65,7 @@ Double Transform::TransAngle(const Double& angle) const
 
    direction -= center;
 
-   Double newrotation = direction.angleTo(x);
+   double newrotation = direction.angleTo(x);
 
    return newrotation;
 }

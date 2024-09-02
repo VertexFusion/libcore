@@ -90,7 +90,7 @@ Integer TestVector::execute()
              << kTxtReset << std::endl;
 
    std::cout <<
-             Tr("Duration: %1 sec").arg(Double((double)(et - bt) / CLOCKS_PER_SEC), 1, 3)
+             Tr("Duration: %1 sec").arg(((double)(et - bt) / CLOCKS_PER_SEC), 1, 3)
              << std::endl;
 
    return gTotalErrorCount;

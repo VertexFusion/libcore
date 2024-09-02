@@ -139,7 +139,7 @@ void StringTest::DoTest()
    TestEquals(str1, str2, "String.arg(Integer) fails. (3)");
 
    // Test arg Double
-   Double d = 24.6666;
+   double d = 24.6666;
    str1 = String("The number is %1!").arg(d);
    str2 = String("The number is 24,6666!");
    TestEquals(str1, str2, "String.arg(Double) fails. (1)");

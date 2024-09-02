@@ -83,17 +83,6 @@ VxfErrorStatus EditableObject::setMember(Integer* pointer,
    return eOK;
 }
 
-VxfErrorStatus EditableObject::setMember(Double* pointer, const Double value)
-{
-   if(value.IsNaN())return eInvalidInput;
-   if(value == *pointer)return eNotChanged;
-
-   UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
-   *pointer = value;
-   return eOK;
-}
-
 VxfErrorStatus EditableObject::setMember(double* pointer, double value)
 {
    if(isNaN(value))return eInvalidInput;

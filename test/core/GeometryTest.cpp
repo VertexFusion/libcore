@@ -822,11 +822,11 @@ void GeometryTest::DoTest()
 
 
    //Schuss nach Diagonal Rechts...
-   for(Integer a = 0; a < 3600; a++)
+   for(int64 a = 0; a < 3600; a++)
    {
       Vertex2 beg = Vertex2(-1.0, 0.0);
       Vertex2 end = Vertex2(1.0, 0.0);
-      Double ang = jm::degToRad(a / Double(3600.0));
+      double ang = jm::degToRad(a / 3600.0);
       beg.rotate(ang);
       end.rotate(ang);
       beg.y += 2.0;

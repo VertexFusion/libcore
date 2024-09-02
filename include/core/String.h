@@ -501,27 +501,10 @@ namespace jm
           \param precision The number of digits after the descimal separator.
           \param fillchar The character for filling the space, until fieldwidth chars are reached.
           */
-         String arg(Double value,
-                    Integer fieldwidth = 0,
-                    Integer precision = -1,
-                    Char fillchar = Char(' '));
-
-         /*!
-         \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
-         replace it by a string representation of the number.
-          \param fieldwidth The (minimum) number of characters for the value. If fieldwidth is >0
-          the leading space is filled (right align). If fieldwidth is < 0 the trailing space is
-          filled (left align).
-          \param precision The number of digits after the descimal separator.
-          \param fillchar The character for filling the space, until fieldwidth chars are reached.
-         */
          String arg(double value,
                     Integer fieldwidth = 0,
                     Integer precision = -1,
-                    Char fillchar = Char(' '))
-         {
-            return arg(Double(value), fieldwidth, precision, fillchar);
-         };
+                    Char fillchar = Char(' '));
    
          static void setConsoleCharset(Charset* cs);
 

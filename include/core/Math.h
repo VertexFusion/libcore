@@ -140,12 +140,6 @@ namespace jm
     \brief This method swaps the two variables in place.
     */
    DllExport
-   void swap(Double& v1, Double& v2);
-
-   /*!
-    \brief This method swaps the two variables in place.
-    */
-   DllExport
    void swap(double& v1, double& v2);
 
    /*!
@@ -272,5 +266,16 @@ namespace jm
    DllExport
    int64 modFloor(int64 x, int64 y);
 
+   template<typename T>
+   T min(T a,T b)
+   {
+      return (a < b) ? a : b;
+   }
+
+   template<typename T>
+   T max(T a,T b)
+   {
+      return (a > b) ? a : b;
+   }
 }
 #endif

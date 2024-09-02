@@ -143,7 +143,7 @@ namespace jm
            \warning This method must be called before writing any content to an element.
            \note The content of the attribute should be a string.
            */
-         void WriteAttribute(const String& name, Double content);
+         void WriteAttribute(const String& name, double content);
 
           /*!
            \brief This method closes the currently open XML element. If the element has no content, a <.../> element is written.

@@ -902,7 +902,7 @@ String String::arg(const String& value,
 }
 
 
-String String::arg(Double value,
+String String::arg(double value,
                    Integer fieldWidth,
                    Integer precision,
                    Char fillchar)

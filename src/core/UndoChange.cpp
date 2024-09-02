@@ -275,24 +275,6 @@ void UndoChangeDouble::swap()
 }
 
 //
-// Double2
-//
-
-UndoChangeDouble2::UndoChangeDouble2(Object* object, Double* ptr) : UndoChange(object)
-{
-   mPointer = ptr;
-   mValue = *ptr;
-}
-
-void UndoChangeDouble2::swap()
-{
-   Double tmp = *mPointer;
-   *mPointer = mValue;
-   mValue = tmp;
-   UndoChange::swap();
-}
-
-//
 // String
 //
 

@@ -411,32 +411,6 @@ namespace jm
 
     \ingroup undo
     */
-   class DllExport UndoChangeDouble2 : public UndoChange
-   {
-      public:
-
-         UndoChangeDouble2(Object* object, Double* ptr);
-
-         /*!
-          \copydoc UndoChange::swap()
-          */
-         void swap() override;
-
-      private:
-
-         Double* mPointer;
-         Double mValue;
-
-   };
-
-   /*!
-    \brief This class encapsulates the step when a double value is modified.
-
-    \details This class is responsible for managing the undo/redo functionality for double values.
-    It is used to store the changes made to a double value and perform the undo/redo operation.
-
-    \ingroup undo
-    */
    class DllExport UndoChangeString: public UndoChange
    {
       public:

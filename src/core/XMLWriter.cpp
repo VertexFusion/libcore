@@ -229,7 +229,7 @@ void XMLWriter::WriteAttribute(const jm::String& name, float content)
    WriteAttribute(name, jm::String::valueOf(content));
 }
 
-void XMLWriter::WriteAttribute(const jm::String& name, Double content)
+void XMLWriter::WriteAttribute(const jm::String& name, double content)
 {
    WriteAttribute(name, jm::String::valueOf(content));
 }

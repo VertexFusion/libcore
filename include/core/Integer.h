@@ -338,16 +338,16 @@ class DllExport Integer
       friend Integer operator*(ulong left, Integer right);
 
       DllExport
-      friend Double operator*(Integer left, double right);
+      friend double operator*(Integer left, double right);
 
       DllExport
-      friend Double operator*(double left, Integer right);
+      friend double operator*(double left, Integer right);
 
       DllExport
-      friend Double operator*(Integer left, float right);
+      friend double operator*(Integer left, float right);
 
       DllExport
-      friend Double operator*(float left, Integer right);
+      friend double operator*(float left, Integer right);
 
       DllExport
       friend Integer operator/(Integer left, Integer right);
@@ -357,12 +357,6 @@ class DllExport Integer
 
       DllExport
       friend Integer operator/(Integer left, uint32 right);
-
-      DllExport
-      friend Double operator/(Double left, Integer right);
-
-      DllExport
-      friend Double operator/(Integer left, Double right);
 
       DllExport
       friend bool operator<(Integer left, Integer right);
@@ -410,13 +404,7 @@ class DllExport Integer
       friend bool operator<(uint64 left, Integer right);
 
       DllExport
-      friend bool operator<(Integer left, Double right);
-
-      DllExport
       friend bool operator<(Integer left, float right);
-
-      DllExport
-      friend bool operator<(Double left, Integer right);
 
       DllExport
       friend bool operator<=(Integer left, Integer right);
@@ -471,12 +459,6 @@ class DllExport Integer
 
       DllExport
       friend bool operator>(uint32 left, Integer right);
-
-      DllExport
-      friend bool operator>(Double left, Integer right);
-
-      DllExport
-      friend bool operator>(Integer left, Double right);
 
       DllExport
       friend bool operator>=(Integer left, Integer right);

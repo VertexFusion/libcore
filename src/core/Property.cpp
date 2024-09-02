@@ -183,14 +183,14 @@ Integer Property::integerValue() const
    return mNumberValue.intValue;
 }
 
-VxfErrorStatus Property::setDoubleValue(Double value)
+VxfErrorStatus Property::setDoubleValue(double value)
 {
    mNumberValue.doubleValue = value;
    mType = kPropertyTypeDouble;
    return eOK;
 }
 
-Double Property::doubleValue() const
+double Property::doubleValue() const
 {
    return mNumberValue.doubleValue;
 }

@@ -40,7 +40,7 @@ Hashtable::Hashtable(): Object()
    for(Integer a = 0; a < mArrLength; a++)mData[a] = NULL;
    mDataLength = 0;
    mLoadfactor = 0.75f;
-   mThreshold = (mArrLength * mLoadfactor).Round();
+   mThreshold = Double::round(mArrLength * mLoadfactor);
 }
 
 Hashtable::~Hashtable()
@@ -159,19 +159,19 @@ Integer Hashtable::size() const
 
 void Hashtable::rehash()
 {
-   Integer oldLength = mArrLength;
+   int64 oldLength = mArrLength;
    HashtableEntry** oldData = mData;
 
-   Integer newLength = oldLength * 2 + 1;
+   int64 newLength = oldLength * 2 + 1;
 
    HashtableEntry** newData = new HashtableEntry*[newLength];
 
-   for(Integer a = 0; a < newLength; a++)newData[a] = NULL;
+   for(int64 a = 0; a < newLength; a++)newData[a] = NULL;
 
    mArrLength = newLength;
-   mThreshold = (newLength * mLoadfactor).ceil();
+   mThreshold = std::ceil(newLength * mLoadfactor);
 
-   for(Integer a = 0 ; a < oldLength ; a++)
+   for(int64 a = 0 ; a < oldLength ; a++)
    {
       HashtableEntry* old = oldData[a];
 
@@ -179,7 +179,7 @@ void Hashtable::rehash()
       {
          HashtableEntry* next = old->next;
 
-         Integer index = (old->hash & 0x7FFFFFFF) % mArrLength;
+         int64 index = (old->hash & 0x7FFFFFFF) % mArrLength;
          old->next = newData[index];
          newData[index] = old;
 

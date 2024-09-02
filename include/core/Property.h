@@ -298,12 +298,12 @@ namespace jm
           \brief Set the Double value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus setDoubleValue(Double value);
+         VxfErrorStatus setDoubleValue(double value);
 
          /*!
           \brief Returns the Dool Value of this property.
           */
-         Double doubleValue() const;
+         double doubleValue() const;
 
          /*!
           \brief Returns the type of the last value which was set. It is assumed that this is the
@@ -473,19 +473,6 @@ namespace jm
                                           Integer value,
                                           Integer rangeMin = INT64_MIN,
                                           Integer rangeMax = INT64_MAX);
-
-         /*!
-          \brief The method set the \p value to the member the \p pointer references.
-
-          The pointer must point to an member which is part of this or derived object. Here also the
-          Undo-Manager is called for registering the change.
-
-          \param pointer The pointer to the Double member.
-          \param value The new value for the member.
-          \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
-          and eOK if set successfully.
-          */
-         virtual VxfErrorStatus setMember(Double* pointer, const Double value);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
