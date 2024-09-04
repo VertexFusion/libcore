@@ -87,6 +87,8 @@
 		C64322EA2B9BB90E00D75F5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C64DDBFE2B768F01008ED3A4 /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */; };
 		C65510DC2C22294D00480B5E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65510DB2C22294D00480B5E /* CoreFoundation.framework */; };
+		C66B3D172C4C1C4300ECB692 /* StringList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C66B3D162C4C1C4300ECB692 /* StringList.cpp */; };
+		C66B3D182C4C1C4300ECB692 /* StringList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C66B3D162C4C1C4300ECB692 /* StringList.cpp */; };
 		C68CE9AD2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
 		C68CE9AE2C1B8F8400A2B981 /* Double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C68CE9AC2C1B8F8400A2B981 /* Double.cpp */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
@@ -442,7 +444,7 @@
 		C62B910B2AEEFC6A0085300B /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = include/core/Vector.h; sourceTree = SOURCE_ROOT; };
 		C62B910C2AEEFC6A0085300B /* Inflater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Inflater.h; path = include/core/Inflater.h; sourceTree = SOURCE_ROOT; };
 		C62B91432AEEFC740085300B /* Precompiled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Precompiled.cpp; path = prec/Precompiled.cpp; sourceTree = "<group>"; };
-		C62B91442AEEFC740085300B /* Precompiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Precompiled.h; path = prec/Precompiled.h; sourceTree = "<group>"; };
+		C62B91442AEEFC740085300B /* Precompiled.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Precompiled.hpp; path = prec/Precompiled.hpp; sourceTree = "<group>"; };
 		C62B914B2AEEFFFC0085300B /* CoreTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CoreTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C62B919B2AEF006B0085300B /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C62B919D2AEF008A0085300B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -456,6 +458,7 @@
 		C651C3132B97D9C90043D289 /* ByteArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByteArray.h; path = include/core/ByteArray.h; sourceTree = "<group>"; };
 		C65510DB2C22294D00480B5E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C66B3D162C4C1C4300ECB692 /* StringList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringList.cpp; path = src/core/StringList.cpp; sourceTree = "<group>"; };
 		C68CE9AC2C1B8F8400A2B981 /* Double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Double.cpp; path = src/core/Double.cpp; sourceTree = "<group>"; };
 		C68DF4F82C236B8C005F1DB6 /* Double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Double.h; path = include/core/Double.h; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -530,7 +533,7 @@
 			isa = PBXGroup;
 			children = (
 				C62B91432AEEFC740085300B /* Precompiled.cpp */,
-				C62B91442AEEFC740085300B /* Precompiled.h */,
+				C62B91442AEEFC740085300B /* Precompiled.hpp */,
 			);
 			name = prec;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 		C62B905D2AEEFC4B0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C66B3D162C4C1C4300ECB692 /* StringList.cpp */,
 				C68CE9AC2C1B8F8400A2B981 /* Double.cpp */,
 				C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */,
 				C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */,
@@ -811,7 +815,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					C62B914A2AEEFFFC0085300B = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -875,6 +879,7 @@
 				C64321E92B9BB75000D75F5E /* Base64.cpp in Sources */,
 				C64321EA2B9BB75000D75F5E /* Character.cpp in Sources */,
 				C64321EB2B9BB75000D75F5E /* Charset.cpp in Sources */,
+				C66B3D182C4C1C4300ECB692 /* StringList.cpp in Sources */,
 				C64321EC2B9BB75000D75F5E /* CharsetDecoder.cpp in Sources */,
 				C64321ED2B9BB75000D75F5E /* Color.cpp in Sources */,
 				C64321EE2B9BB75000D75F5E /* CRC.cpp in Sources */,
@@ -946,6 +951,7 @@
 				C699224D2AF7AA660099AEC0 /* Character.cpp in Sources */,
 				C69922432AF7AA660099AEC0 /* EditableObject.cpp in Sources */,
 				C699224C2AF7AA660099AEC0 /* Windows1252Decoder.cpp in Sources */,
+				C66B3D172C4C1C4300ECB692 /* StringList.cpp in Sources */,
 				C69922352AF7AA660099AEC0 /* System.cpp in Sources */,
 				C69922522AF7AA660099AEC0 /* TestVector.cpp in Sources */,
 				C699223F2AF7AA660099AEC0 /* Object.cpp in Sources */,
@@ -1052,6 +1058,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1120,6 +1127,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1150,6 +1158,7 @@
 		C62B91502AEEFFFC0085300B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1158,6 +1167,7 @@
 		C62B91512AEEFFFC0085300B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1167,6 +1177,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				EXECUTABLE_PREFIX = lib;
 				ONLY_ACTIVE_ARCH = NO;
@@ -1180,6 +1191,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1193,12 +1205,13 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = prec/Precompiled.h;
+				GCC_PREFIX_HEADER = prec/Precompiled.hpp;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1228,12 +1241,13 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = prec/Precompiled.h;
+				GCC_PREFIX_HEADER = prec/Precompiled.hpp;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

@@ -81,7 +81,6 @@ namespace jm
 
           /*!
            \brief This method searches for the index of an attribute.
-           \param qName The qualified name of the attribute.
            \param localName The local name of the attribute.
            \return The index of the attribute, or -1 if not found.
            */

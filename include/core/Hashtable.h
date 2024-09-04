@@ -140,16 +140,19 @@ namespace jm
           /*!
            \brief This private typedef simplifies the sorting of data into the data array.
            It is a linked list for performance reasons.
-           \param hash The hash value of the entry.
-           \param key The key associated with the entry.
-           \param value The value associated with the entry.
-           \param next Pointer to the next entry in the linked list.
            */
          struct HashtableEntry
          {
+            //! The hash value of the entry.
             Integer hash;
+
+            //! The key associated with the entry.
             String key;
+
+            //! The value associated with the entry.
             void* value;
+
+            //! Pointer to the next entry in the linked list.
             HashtableEntry* next;
             HashtableEntry();
             ~HashtableEntry();

@@ -170,11 +170,10 @@ install:
 test: $(TESTOBJECTS)
 	$(CXX) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS) $(PATH_BIN)/libcore.a
 
-prec/Precompiled.pch: prec/Precompiled.h
-	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.h -o prec/Precompiled.pch
+prec/Precompiled.pch: prec/Precompiled.hpp
+	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.hpp -o prec/Precompiled.pch
 
 %.o: %.c
-	mkdir -p $(PATH_BUILD)
 	$(C__) $(ZLIBFLAGS) -c $< -o $@
 
 %.o: %.mm

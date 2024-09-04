@@ -14,10 +14,10 @@
 class GeometryTest : public jm::Test
 {
    private:
-      void ShootAround(double startAngle, double endAngle, double delta);
-      void ShootAway(double startAngle, double endAngle, double delta);
-      void ShootOut(double startAngle, double endAngle, double delta);
-      void ShootTangent(double startAngle, double endAngle, double delta);
+      void shootAround(double startAngle, double endAngle);
+      void shootAway(double startAngle, double endAngle);
+      void shootOut(double startAngle, double endAngle);
+      void shootTangent(double startAngle, double endAngle);
 
    public:
       GeometryTest();

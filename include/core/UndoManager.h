@@ -207,7 +207,6 @@ namespace jm
            \details This method opens an undo step and also resets the RedoStack.
            \param object The object whose value is being modified.
            \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           \param newValue The new value that will be assigned to the object.
            */
          void registerChange(Object* object, int16* pointer);
 
@@ -217,7 +216,6 @@ namespace jm
            \details This method opens an undo step and also resets the RedoStack.
            \param object The object whose value is being modified.
            \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           \param newValue The new value that will be assigned to the object.
            */
          void registerChange(Object* object, uint16* pointer);
 

@@ -82,8 +82,6 @@ namespace jm
 
           /*!
            \brief This method performs an undo/redo step by swapping the stored value (here) with the value pointed to by the pointer.
-           \param None
-           \return None
            \note This method also triggers a regenerate() in EditableObjects.
            */
          virtual void swap();

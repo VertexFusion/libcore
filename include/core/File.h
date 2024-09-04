@@ -176,7 +176,6 @@ namespace jm
 
           /*!
            \brief Returns the full path of this file. The path can be relative or absolute.
-           \param includeFileName If true, includes the file name in the path. If false, only includes the directory path.
            \return The full path of the file.
            */
          String path() const;
@@ -356,7 +355,7 @@ namespace jm
            \param pathname The pathname to be normalized.
            \return The normalized pathname.
            */
-         String normalize(const String& pathnames);
+         String normalize(const String& pathname);
 
           /*!
            \brief This method combines the parent name with the child name.
@@ -370,7 +369,6 @@ namespace jm
 
           /*!
            \brief This helper method sets the C-string used to resolve the filename in the operating system.
-           \param cstr The C-string representation of the filename.
            */
          void setCString();
    };

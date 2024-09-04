@@ -27,7 +27,7 @@ struct timespec orwl_gettime(void)
    // be more careful in a multithreaded environement
    if(!orwl_timestart)
    {
-      mach_timebase_info_data_t tb = { 0 };
+      mach_timebase_info_data_t tb = { 0 , 0 };
       mach_timebase_info(&tb);
       orwl_timebase = tb.numer;
       orwl_timebase /= tb.denom;
@@ -55,7 +55,7 @@ GeometryTest::GeometryTest(): Test()
    SetName("Test Geometry");
 }
 
-void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
+void GeometryTest::shootAround(double startAngle, double endAngle)
 {
    Vertex2 pnt;
    startAngle = degToRad(startAngle);
@@ -66,7 +66,7 @@ void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
 
    for(double a = 0; a < 2 * M_PI ; a += 0.01)
    {
-      //Schieße
+      // Shoot
       Vertex2 orig = Vertex2(2.0, 0.0);
       orig.rotate(a);
 
@@ -105,7 +105,7 @@ void GeometryTest::ShootAround(double startAngle, double endAngle, double delta)
    }
 }
 
-void GeometryTest::ShootAway(double startAngle, double endAngle, double delta)
+void GeometryTest::shootAway(double startAngle, double endAngle)
 {
    Vertex2 pnt;
    startAngle = degToRad(startAngle);
@@ -149,7 +149,7 @@ void GeometryTest::ShootAway(double startAngle, double endAngle, double delta)
 
 }
 
-void GeometryTest::ShootOut(double startAngle, double endAngle, double delta)
+void GeometryTest::shootOut(double startAngle, double endAngle)
 {
    Vertex2 pnt;
    startAngle = degToRad(startAngle);
@@ -188,7 +188,7 @@ void GeometryTest::ShootOut(double startAngle, double endAngle, double delta)
    }
 }
 
-void GeometryTest::ShootTangent(double startAngle, double endAngle, double delta)
+void GeometryTest::shootTangent(double startAngle, double endAngle)
 {
    Vertex2 pnt;
    startAngle = degToRad(startAngle);
@@ -737,45 +737,45 @@ void GeometryTest::DoTest()
    TestEquals(pnt.y, 0.0, "ExtensionPointOnArc fails (40y)");
 
 
-   ShootAround(0, 90, 0.01);
-   ShootAround(90, 180, 0.01);
-   ShootAround(180, 270, 0.01);
-   ShootAround(270, 360, 0.01);
+   shootAround(0, 90);
+   shootAround(90, 180);
+   shootAround(180, 270);
+   shootAround(270, 360);
 
-   ShootAround(45, 135, 0.01);
-   ShootAround(135, 225, 0.01);
-   ShootAround(225, 315, 0.01);
-   ShootAround(315, 405, 0.01);
+   shootAround(45, 135);
+   shootAround(135, 225);
+   shootAround(225, 315);
+   shootAround(315, 405);
 
-   ShootAway(0, 90, 0.01);
-   ShootAway(90, 180, 0.01);
-   ShootAway(180, 270, 0.01);
-   ShootAway(270, 360, 0.01);
+   shootAway(0, 90);
+   shootAway(90, 180);
+   shootAway(180, 270);
+   shootAway(270, 360);
 
-   ShootAway(45, 135, 0.01);
-   ShootAway(135, 225, 0.01);
-   ShootAway(225, 315, 0.01);
-   ShootAway(315, 405, 0.01);
+   shootAway(45, 135);
+   shootAway(135, 225);
+   shootAway(225, 315);
+   shootAway(315, 405);
 
-   ShootOut(0, 90, 0.01);
-   ShootOut(90, 180, 0.01);
-   ShootOut(180, 270, 0.01);
-   ShootOut(270, 360, 0.01);
+   shootOut(0, 90);
+   shootOut(90, 180);
+   shootOut(180, 270);
+   shootOut(270, 360);
 
-   ShootOut(45, 135, 0.01);
-   ShootOut(135, 225, 0.01);
-   ShootOut(225, 315, 0.01);
-   ShootOut(315, 405, 0.01);
+   shootOut(45, 135);
+   shootOut(135, 225);
+   shootOut(225, 315);
+   shootOut(315, 405);
 
-   ShootTangent(0, 90, 0.01);
-   ShootTangent(90, 180, 0.01);
-   ShootTangent(180, 270, 0.01);
-   ShootTangent(270, 360, 0.01);
+   shootTangent(0, 90);
+   shootTangent(90, 180);
+   shootTangent(180, 270);
+   shootTangent(270, 360);
 
-   ShootTangent(45, 135, 0.01);
-   ShootTangent(135, 225, 0.01);
-   ShootTangent(225, 315, 0.01);
-   ShootTangent(315, 405, 0.01);
+   shootTangent(45, 135);
+   shootTangent(135, 225);
+   shootTangent(225, 315);
+   shootTangent(315, 405);
 
 
    /*! Teste Extensionpoint on Line */

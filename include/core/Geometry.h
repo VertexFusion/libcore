@@ -278,7 +278,6 @@ namespace jm
     \details The points are considered identical if the distance between them is smaller than the tolerance.
     \param point1 The first 3D point.
     \param point2 The second 3D point.
-    \param tolerance The tolerance value for comparing the distance between the points.
     \return "true" if both points are identical within the specified tolerance, otherwise "false".
     */
    DllExport

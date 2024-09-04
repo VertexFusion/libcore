@@ -29,7 +29,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "Precompiled.h"
+#include "Precompiled.hpp"
 
 
 int16 jm::SerializeBEInt16(uint8* buffer, uint32 offset, int16 value)

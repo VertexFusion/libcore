@@ -174,7 +174,6 @@ namespace jm
           /*!
            \brief  This method normalizes the vector. A normalized vector has a length of 1 and the
            reference to this vector is returned.
-           \param none
            \return Reference to this vector after normalization.
            \note If this vector has a length close to 0, it is returned unchanged.
            */
@@ -183,7 +182,6 @@ namespace jm
           /*!
            \brief This method returns a normalized vector. A normalized vector has a length of 1.
            This vector is not changed in the process.
-           \param none
            \return The normalized vector.
            \note If this vector has a length close to 0, it is returned unchanged.
           */
