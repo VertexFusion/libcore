@@ -362,7 +362,6 @@ void jm::System::init(const jm::String& bundleId)
    jm::File propDir = jm::PropertyDir();
    gPreferences = new jm::Preferences();
    gPrefFile  = new jm::File(propDir, bundleId + ".properties");
-   std::cout << gPrefFile->absolutePath() << std::endl;
    if(gPrefFile->exists())gPreferences->load(*gPrefFile);
 }
 

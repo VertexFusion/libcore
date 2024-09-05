@@ -44,7 +44,7 @@ void I18nBundle::appendMo(File file)
 {
    if(!file.exists())
    {
-      String appID, name;
+      if(System::bundleId().size() > 0)
       System::log(Tr("Cannot find translation file: %1 %2")
                   .arg(file.path())
                   .arg(mLanguage),
