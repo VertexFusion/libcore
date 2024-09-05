@@ -45,7 +45,7 @@ void* StartThread(void* arg)
 
    t->Run();
    pthread_exit(nullptr);
-   return nullptr;
+   //return nullptr;
 }
 
 #elif defined _WIN32
