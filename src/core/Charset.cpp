@@ -46,7 +46,7 @@ Charset* Charset::gCharsets[7] = { new Charset(new UTF8Decoder()),
 CharArray::CharArray()
 {
    length = 0;
-   buffer = NULL;
+   buffer = nullptr;
 }
 
 CharArray::CharArray(const CharArray& another)
@@ -65,10 +65,10 @@ CharArray::CharArray(Integer alength)
 CharArray::~CharArray()
 {
    length = 0;
-   if(buffer != NULL)
+   if(buffer != nullptr)
    {
       delete[] buffer;
-      buffer = NULL;
+      buffer = nullptr;
    }
 }
 
@@ -77,7 +77,7 @@ namespace jm
    CharArray& CharArray::operator=(const CharArray& another)
    {
       if(this == &another) return *this;
-      if(buffer != NULL)delete[] buffer;
+      if(buffer != nullptr)delete[] buffer;
       length = another.length;
       buffer = new Char[length];
       memcpy(buffer, another.buffer, length * 2);
@@ -93,7 +93,7 @@ Charset::Charset(CharsetDecoder* decoder): Object()
    mName.append('F');
    mName.append('-');
    mName.append('8');
-   mAlternatives = NULL;
+   mAlternatives = nullptr;
    mAltCount = 0;
    mDecoder = decoder;
 }
@@ -103,7 +103,7 @@ Charset::Charset(const char* name, CharsetDecoder* decoder): Object()
    uint32 index = 0;
    while(name[index] != 0)mName.append(name[index++]);
 
-   mAlternatives = NULL;
+   mAlternatives = nullptr;
    mAltCount = 0;
    mDecoder = decoder;
 }
@@ -121,9 +121,9 @@ Charset::Charset(const String& name, const String* alternatives, uint8 altCount,
 Charset::~Charset()
 {
    delete mDecoder;
-   if(mAlternatives != NULL)delete [] mAlternatives;
-   mDecoder = NULL;
-   mAlternatives = NULL;
+   if(mAlternatives != nullptr)delete [] mAlternatives;
+   mDecoder = nullptr;
+   mAlternatives = nullptr;
    mAltCount = 0;
 }
 
@@ -160,7 +160,7 @@ Charset* Charset::ForName(const String& name)
    {
       if(Charset::gCharsets[a]->HasName(name))return Charset::gCharsets[a];
    }
-   return NULL;
+   return nullptr;
 }
 
 String Charset::Guess(const char* stream, Integer length)

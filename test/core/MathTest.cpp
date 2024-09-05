@@ -234,7 +234,6 @@ void MathTest::DoTest()
     TestEquals(jm::modFloor(-10, -3), -1L,"modFloor(-10, -3) should return -1");
     TestEquals(jm::modFloor(0, 3), 0L,"modFloor(0, 3) should return 0");
     TestEquals(jm::modFloor(10, 0), 0L,"modFloor(10, 0) should return 0");
-    TestEquals(jm::modFloor(0, 0), 0L,"modFloor(0, 0) should return 0"); 
-    
+    TestEquals(jm::modFloor(0, 0), 0L,"modFloor(0, 0) should return 0");
 }
 

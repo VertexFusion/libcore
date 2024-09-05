@@ -88,7 +88,7 @@ Matrix::Matrix()
 {
    m = 0;
    n = 0;
-   data = NULL;
+   data = nullptr;
 }
 
 Matrix::Matrix(double value)
@@ -116,7 +116,7 @@ Matrix::Matrix(const Matrix& other)
       }
 
    }
-   else data = NULL;
+   else data = nullptr;
 }
 
 Matrix::Matrix(const Matrix* other)
@@ -133,10 +133,10 @@ Matrix::Matrix(const Matrix* other)
 
 Matrix::~Matrix()
 {
-   if(data != NULL)
+   if(data != nullptr)
    {
       delete [] data;
-      data = NULL;
+      data = nullptr;
    }
 }
 
@@ -613,7 +613,7 @@ namespace jm
       if(this == &A) return *this;
       m = A.m;
       n = A.n;
-      if(data != NULL)delete[] data;
+      if(data != nullptr)delete[] data;
 
       if(m * n > 0)
       {
@@ -625,7 +625,7 @@ namespace jm
          }
 
       }
-      else data = NULL;
+      else data = nullptr;
 
       return *this;
    }
@@ -868,7 +868,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
    // Find an orthogonal vector to u_norm
    jm::Vertex3 orthogonal = (std::abs(u_norm.x) > std::abs(u_norm.y)) ? jm::Vertex3(-u_norm.z, 0, u_norm.x) : jm::Vertex3(0, -u_norm.z, u_norm.y);
    orthogonal = orthogonal.normalized();
-    
+
     // Construct the rotation matrix for 180 degree rotation around the orthogonal axis
     jm::Matrix rotationMatrix=jm::Matrix(3,3);
     rotationMatrix.set(0, 0, -1 + 2 * orthogonal.x * orthogonal.x);

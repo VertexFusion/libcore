@@ -36,11 +36,11 @@ using namespace jm;
 Nurbs::Nurbs(): Object()
 {
    mDegree = 1;
-   mControlpoints = NULL;
+   mControlpoints = nullptr;
    mControlCount = 0;
-   mKnots = NULL;
+   mKnots = nullptr;
    mKnotCount = 0;
-   mWeights = NULL;
+   mWeights = nullptr;
    mWeightCount = 0;
 }
 
@@ -70,9 +70,9 @@ Nurbs::Nurbs(uint32 degree,
 
 Nurbs::~Nurbs()
 {
-   if(mControlpoints != NULL)delete[] mControlpoints;
-   if(mKnots != NULL)delete[] mKnots;
-   if(mWeights != NULL)delete[] mWeights;
+   if(mControlpoints != nullptr)delete[] mControlpoints;
+   if(mKnots != nullptr)delete[] mKnots;
+   if(mWeights != nullptr)delete[] mWeights;
 }
 
 double Nurbs::N(uint32 i, uint32 k, double t)

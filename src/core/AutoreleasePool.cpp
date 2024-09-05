@@ -38,8 +38,8 @@ AutoreleasePool::AutoreleasePool(): Object()
 {
    //1st Entry is a dummy to avoid if-queries with AddObject
    mPool = new PoolEntry();
-   mPool->object = NULL;
-   mPool->next = NULL;
+   mPool->object = nullptr;
+   mPool->next = nullptr;
 
    mTop = mPool;
 }
@@ -57,7 +57,7 @@ void AutoreleasePool::drain()
 {
    PoolEntry* pool = mPool->next;
 
-   while(pool != NULL)
+   while(pool != nullptr)
    {
       //Release objects
       pool->object->release();
@@ -68,14 +68,14 @@ void AutoreleasePool::drain()
    }
 
    mTop = mPool;
-   mPool->next = NULL;
+   mPool->next = nullptr;
 }
 
 void AutoreleasePool::add(Object* object)
 {
    PoolEntry* entry = new PoolEntry();
    entry->object = object;
-   entry->next = NULL;
+   entry->next = nullptr;
    mTop->next = entry;
    mTop = entry;
 }

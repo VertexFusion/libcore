@@ -23,7 +23,7 @@ int64 l1 = 0;
 uint64 l2 = 0;
 float f = 0;
 double d = 0;
-UndoTestObject* o = NULL;
+UndoTestObject* o = nullptr;
 
 void UndoManagerTest::TestRef(UndoTestObject* obj)
 {
@@ -469,7 +469,7 @@ void UndoManagerTest::DoTest()
 
    //Einfügen Rückgängig machen
    TestTrue(undo->undo(), "Undo nicht ausgeführt (3)");
-   o = NULL;
+   o = nullptr;
 
    //-1 Zähler für obj
    //(+1 Zähler für UndoManager) NEIN AKTUELL NICHT (2023-11-05) WAR 3

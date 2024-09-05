@@ -50,7 +50,7 @@ namespace jm
       public:
 
          /*!
-          \brief Constructor 
+          \brief Constructor
           */
          Deflater();
 
@@ -66,9 +66,9 @@ namespace jm
          ~Deflater();
 
          /*!
-          \brief Gives this class a block of bytes to compress. 
+          \brief Gives this class a block of bytes to compress.
           \param buffer Uncompressed data
-          \param length Data length 
+          \param length Data length
           */
          void SetInput(uint8* buffer,
                        Integer length);
@@ -77,8 +77,8 @@ namespace jm
           \brief This method compresses the data in the buffer
           \discussion Both parameters are output values and are initialised by this method.
           The caller must clean up the array himself afterwards.
-          \param buffer The buffer into which the data is to be written.  
-          \param length Buffer length 
+          \param buffer The buffer into which the data is to be written.
+          \param length Buffer length
           */
          void Deflate(uint8*& buffer,
                       Integer& length);

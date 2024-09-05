@@ -39,11 +39,11 @@ Date::Date(): Comparable<Date>()
 {
    #ifdef __APPLE__
    struct timeval tp;
-   gettimeofday(&tp, NULL);
+   gettimeofday(&tp, nullptr);
    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
    #elif defined __linux__//Linux
    struct timeval tp;
-   gettimeofday(&tp, NULL);
+   gettimeofday(&tp, nullptr);
    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
    #elif defined _WIN32
    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>

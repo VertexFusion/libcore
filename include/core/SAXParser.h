@@ -252,7 +252,7 @@ namespace jm
          virtual void endPrefixMapping(const String& prefix);
 
           /*!
-         \brief This method is called by the parser when ignorable white spaces are encountered. 
+         \brief This method is called by the parser when ignorable white spaces are encountered.
          \param characters The characters.
            */
          virtual void ignorableWhiteSpaces(const String& characters);

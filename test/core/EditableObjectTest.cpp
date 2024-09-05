@@ -88,7 +88,7 @@ class Address : public EditableObject
       {
          mHouseNumber = 0;
          mCountry = kUnknown;
-         mPartner = NULL;
+         mPartner = nullptr;
       };
 
       VxfErrorStatus SetName(const String& name)
@@ -150,8 +150,8 @@ void EditableObjectTest::DoTest()
 {
 
    AddressBook* book = new AddressBook();
-   book->initNewDocument(
-      NULL); // From API side, this shall be called first, though we have not implementation hier. Just as reminder
+   // From API side, this shall be called first, though we have not implementation hier. Just as reminder
+   book->initNewDocument(nullptr);
 
    UndoManager* um = book->undoManager();//Get reference for later
 

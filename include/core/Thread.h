@@ -80,13 +80,13 @@ namespace jm
 
          #endif
          /*!
-          \brief Status indicating whether this thread is active and running. 
+          \brief Status indicating whether this thread is active and running.
           If the thread is running and this variable becomes false, an exception will be thrown in this thread.
           */
          bool alive;
 
          /*!
-          \brief This method must be implemented by derived classes. It is the main method 
+          \brief This method must be implemented by derived classes. It is the main method
           that runs on the new thread. It is executed when the thread is started.
           */
          virtual void Run() = 0;
@@ -94,7 +94,7 @@ namespace jm
       protected:
 
          /*!
-          \brief  This method blocks this thread from accessing other threads to mark a critical section 
+          \brief  This method blocks this thread from accessing other threads to mark a critical section
          that must not be interrupted or to avoid race conditions.
           */
          void Lock();
@@ -147,7 +147,7 @@ namespace jm
 
          /*!
          \brief This method terminates the execution of this thread.
-         It waits for the thread to finish execution ??? 
+         It waits for the thread to finish execution ???
          */
          void Interrupt();
 

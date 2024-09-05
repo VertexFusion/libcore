@@ -37,14 +37,14 @@ using namespace jm;
 File::File(): Stream(), Comparable<File>()
 {
    mCstr = ByteArray();
-   mHandle = NULL;
+   mHandle = nullptr;
 }
 
 File::File(const String& pathname): Stream(), Comparable<File>()
 {
    mPathname = normalize(pathname);
    setCString();
-   mHandle = NULL;
+   mHandle = nullptr;
 }
 
 File::File(String parent, String child): Stream(), Comparable<File>()
@@ -52,7 +52,7 @@ File::File(String parent, String child): Stream(), Comparable<File>()
    if(child.size() < 1)throw new Exception(Tr("Child is empty."));
    mPathname = resolve(normalize(parent), normalize(child));
    setCString();
-   mHandle = NULL;
+   mHandle = nullptr;
 }
 
 File::File(const File& parent, String child): Stream(), Comparable<File>()
@@ -60,7 +60,7 @@ File::File(const File& parent, String child): Stream(), Comparable<File>()
    if(child.size() < 1)throw new Exception(Tr("Child is empty."));
    mPathname = resolve(parent.absolutePath(), normalize(child));
    setCString();
-   mHandle = NULL;
+   mHandle = nullptr;
 }
 
 File::File(const File& other): Stream(), Comparable<File>()
@@ -428,7 +428,7 @@ bool File::renameTo(const String& newPath)
 Array<File>* File::listFiles()const
 {
    if(!isDirectory())return
-         NULL;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
+         nullptr;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
 
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
@@ -437,7 +437,7 @@ Array<File>* File::listFiles()const
    struct dirent* dirp;
    dp = opendir(mCstr.constData());
 
-   if(dp == NULL)
+   if(dp == nullptr)
    {
       throw new Exception(Tr("Cannot open directory"));
    }
@@ -445,7 +445,7 @@ Array<File>* File::listFiles()const
    uint32 fileCount = 0;
 
    //Zähle Einträge
-   while(readdir(dp) != NULL)fileCount++;
+   while(readdir(dp) != nullptr)fileCount++;
 
    //Zum Anfang
    rewinddir(dp);
@@ -454,7 +454,7 @@ Array<File>* File::listFiles()const
    Array<File>* list = new Array<File>(fileCount);
    uint32 cnt = 0;
 
-   while((dirp = readdir(dp)) != NULL)
+   while((dirp = readdir(dp)) != nullptr)
    {
       String filename = String(dirp->d_name);
       list->set(cnt++, File(*this, filename));
@@ -555,7 +555,7 @@ bool File::createNewFile()
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    mHandle = fopen(mCstr.constData(), "wb");
-   Integer ret = mHandle != NULL;
+   Integer ret = mHandle != nullptr;
    #elif defined _WIN32 //Windows
    Integer ret = fopen_s(&mHandle, mCstr.constData(), "wb");
    #endif
@@ -598,7 +598,7 @@ VxfErrorStatus File::open(FileMode mode)
    }
    #endif
 
-   if(mHandle == NULL)
+   if(mHandle == nullptr)
    {
       String msg = Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(Integer(errno));
       jm::System::log(msg, jm::kLogError);
@@ -614,15 +614,15 @@ VxfErrorStatus File::open(FileMode mode)
 
 bool File::isOpen()
 {
-   return mHandle != NULL;
+   return mHandle != nullptr;
 }
 
 void File::close()
 {
-   if(mHandle == NULL)return;
+   if(mHandle == nullptr)return;
    int32 eof = fclose(mHandle);
    if(eof == EOF)throw new Exception(Tr("Error while closing file!"));
-   mHandle = NULL;
+   mHandle = nullptr;
 }
 
 void File::seek(Integer position)
@@ -700,17 +700,17 @@ StringList File::getTags()const
                      isDirectory());
 
    // Query tags
-   CFArrayRef tags = NULL;
+   CFArrayRef tags = nullptr;
    Boolean result = CFURLCopyResourcePropertyForKey(urlref,
                     kCFURLTagNamesKey,
                     &tags,
-                    NULL);
+                    nullptr);
 
    // Clean unnecessary stuff
    CFRelease(cfstr);
    CFRelease(urlref);
 
-   if(result == true && tags != NULL)
+   if(result == true && tags != nullptr)
    {
       // Extract the tags to our string list
       StringList taglist;
@@ -730,7 +730,7 @@ StringList File::getTags()const
       }
    }
 
-   if(tags != NULL)CFRelease(tags);
+   if(tags != nullptr)CFRelease(tags);
 
    #endif
 
@@ -774,7 +774,7 @@ VxfErrorStatus File::addTag(const String& tag)
 
    strs[newsize - 1] = tag.toCFString();
 
-   CFArrayRef newtags = CFArrayCreate(NULL, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
+   CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
    //
    //
@@ -793,7 +793,7 @@ VxfErrorStatus File::addTag(const String& tag)
    Boolean result = CFURLSetResourcePropertyForKey(urlref,
                     kCFURLTagNamesKey,
                     newtags,
-                    NULL);
+                    nullptr);
 
    // Clean unnecessary stuff
 
@@ -844,7 +844,7 @@ VxfErrorStatus File::removeTag(const String& tag)
       }
    }
 
-   CFArrayRef newtags = CFArrayCreate(NULL, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
+   CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
    //
    //
@@ -863,7 +863,7 @@ VxfErrorStatus File::removeTag(const String& tag)
    Boolean result = CFURLSetResourcePropertyForKey(urlref,
                     kCFURLTagNamesKey,
                     newtags,
-                    NULL);
+                    nullptr);
 
    // Clean unnecessary stuff
 
@@ -915,11 +915,11 @@ String jm::ExecPath()
    const uint32 size = MAX_PATH;
    uint16 path[size];
 
-   HMODULE hModule = GetModuleHandle(NULL);
-   if(hModule != NULL)
+   HMODULE hModule = GetModuleHandle(nullptr);
+   if(hModule != nullptr)
    {
 
-      // When passing NULL to GetModuleHandle, it returns handle of exe itself
+      // When passing nullptr to GetModuleHandle, it returns handle of exe itself
       GetModuleFileNameW(hModule, (LPWSTR)path, size);
 
       path[size - 1] = '\0';
@@ -960,7 +960,7 @@ File jm::ResourceDir(const String& bundleId)
 
    //Erzeuge Referenzen auf das Bundle, die BundleURL und die Ressourcen-URL
    CFBundleRef thisBundle = CFBundleGetBundleWithIdentifier(cfstr);
-   if(thisBundle == NULL)
+   if(thisBundle == nullptr)
    {
       //Aufräumen
       CFRelease(cfstr);
@@ -1048,7 +1048,7 @@ File jm::PropertyDir()
    return UserDir();
    /*	uint16* path[MAX_PATH];
 
-   	if (SUCCEEDED(SHGetKnownFolderPath(NULL, CSIDL_PROFILE, NULL, 0,(WCHAR*)path)))
+   	if (SUCCEEDED(SHGetKnownFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0,(WCHAR*)path)))
    	{
    		uint32 textlength = 0;
    		while (path[textlength] != 0)textlength++;
@@ -1059,7 +1059,7 @@ File jm::PropertyDir()
    		return new ShxFile(ret);
    	}
 
-   	return NULL;
+   	return nullptr;
    	*/
    #endif
 
@@ -1081,7 +1081,7 @@ File jm::UserDir()
 
    uint16 path[MAX_PATH];
 
-   if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0, (WCHAR*)&path)))
+   if(SUCCEEDED(SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0, (WCHAR*)&path)))
    {
       uint32 textlength = 0;
       while(path[textlength] != 0)textlength++;
@@ -1097,7 +1097,7 @@ File jm::UserDir()
 
 }
 
-File jm::CurrentDir()
+File jm::currentDir()
 {
    #ifdef __APPLE__ //macOS and ios
    char cwd[PATH_MAX];

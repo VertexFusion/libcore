@@ -419,7 +419,7 @@ namespace jm
     \brief This method returns the current directory.
     */
    extern DllExport
-   File CurrentDir();
+   File currentDir();
 
 }
 

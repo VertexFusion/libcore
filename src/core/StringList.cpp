@@ -64,7 +64,7 @@ StringList::~StringList()
 {
    mLength = 0;
    mSize = 0;
-   if(mData != NULL)delete[] mData;
+   if(mData != nullptr)delete[] mData;
 }
 
 void StringList::append(const jm::String& string)
@@ -124,6 +124,16 @@ void StringList::clear()
 {
    mSize = 0;
 }
+
+bool StringList::contains(const String& str) const
+{
+   for(int64 index=0;index<mSize;index++)
+   {
+      if(mData[index] == str)return true;
+   }
+   return false;
+}
+
 
 void StringList::checkSize(Integer size)
 {

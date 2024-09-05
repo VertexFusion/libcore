@@ -44,10 +44,10 @@ const uint16 DIST_OFFSET[30] = {1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97,
 Inflater::Inflater(): Object()
 {
    mWrap = false;
-   mCompBytes = NULL;
+   mCompBytes = nullptr;
    mCompLength = 0;
    mCompIndex = 0;
-   mUncompBytes = NULL;
+   mUncompBytes = nullptr;
    mUncompLength = 1024;
    mUncompIndex = 0;
    mTotalIn = 0;
@@ -59,7 +59,7 @@ Inflater::Inflater(): Object()
 
 Inflater::Inflater(bool wrap): Object()
 {
-   mUncompBytes = NULL;
+   mUncompBytes = nullptr;
    Reset();
    mWrap = wrap;
 }
@@ -132,10 +132,10 @@ void Inflater::Inflate(uint8*& buffer, Integer& length)
 
 void Inflater::Reset()
 {
-   mCompBytes = NULL;
+   mCompBytes = nullptr;
    mCompLength = 0;
    mCompIndex = 0;
-   mUncompBytes = NULL;
+   mUncompBytes = nullptr;
    mUncompBytes = new uint8[1024];
    mUncompLength = 1024;
    mUncompIndex = 0;
@@ -231,7 +231,7 @@ void Inflater::CheckCapacity()
    double ratio = mCompIndex.Int64() / (double)mCompLength.Int64();
    Integer newLength = mUncompLength + max(4096, (int32)(mUncompLength.Int64() / ratio));
    uint8* tmp = new uint8[newLength];
-   if(tmp == NULL)throw new Exception("Cannot allocate memory!");
+   if(tmp == nullptr)throw new Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
    delete[] mUncompBytes;
    mUncompBytes = tmp;
@@ -465,7 +465,7 @@ uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
 
       HuffmanTree* symbol = tree->Find(ret, bits);
 
-      if(symbol != NULL)return symbol->symbol;
+      if(symbol != nullptr)return symbol->symbol;
 
    }
    while(bits <= MAX_BITS);
@@ -766,8 +766,8 @@ uint16 Inflater::NextFixedHuffmanCode()
 
 Inflater::HuffmanTree::HuffmanTree()
 {
-   node0 = NULL; // If there is a sub-node and this bit is 0, the system branches to it
-   node1 = NULL; // If there is a sub-node and this bit is 1, the system branches to it
+   node0 = nullptr; // If there is a sub-node and this bit is 0, the system branches to it
+   node1 = nullptr; // If there is a sub-node and this bit is 1, the system branches to it
    symbol = 0;   // If there is no sub-node, then it is this node and the symbol must match
    length = 0;   // Number of bits that are
    code = 0;     // The code that belongs to this
@@ -775,26 +775,26 @@ Inflater::HuffmanTree::HuffmanTree()
 
 Inflater::HuffmanTree::~HuffmanTree()
 {
-   if(node0 != NULL)delete node0;
-   if(node1 != NULL)delete node1;
+   if(node0 != nullptr)delete node0;
+   if(node1 != nullptr)delete node1;
 }
 
 
 Inflater::HuffmanTree* Inflater::HuffmanTree::Find(uint16 _code, uint16 bits)
 {
    // If it is this node, then give it back
-   if(length == bits && code == _code && node0 == NULL && node1 == NULL)return this;
+   if(length == bits && code == _code && node0 == nullptr && node1 == nullptr)return this;
 
    if(bits > this->length)
    {
       uint16 msk = 0x0001 << (bits - this->length - 1);
       uint16 target = msk & _code;
-      if(target == 0 && this->node0 != NULL)return this->node0->Find(_code, bits);
-      else if(target != 0 && this->node1 != NULL)return this->node1->Find(_code, bits);
+      if(target == 0 && this->node0 != nullptr)return this->node0->Find(_code, bits);
+      else if(target != 0 && this->node1 != nullptr)return this->node1->Find(_code, bits);
       else throw new Exception("Huffman Tree Error");
    }
 
-   return NULL;
+   return nullptr;
 }
 
 

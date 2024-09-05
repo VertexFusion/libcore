@@ -37,7 +37,7 @@ ByteArray::ByteArray() : Object()
 {
    mArrSize = 0;
    mRawSize = 0;
-   mData = NULL;
+   mData = nullptr;
 };
 
 ByteArray::ByteArray(const int8* buffer, Integer size) : Object()
@@ -52,11 +52,11 @@ ByteArray::ByteArray(const uint8* buffer, Integer size) : Object()
 
 void ByteArray::init(const int8* buffer, Integer size)
 {
-   if(buffer == NULL)
+   if(buffer == nullptr)
    {
       mArrSize = 0;
       mRawSize = 0;
-      mData = NULL;
+      mData = nullptr;
       return;
    }
 
@@ -116,7 +116,7 @@ ByteArray::~ByteArray()
 {
    mArrSize = 0;
    mRawSize = 0;
-   if(mData != NULL)delete[] mData;
+   if(mData != nullptr)delete[] mData;
 };
 
 Integer ByteArray::size() const
@@ -126,7 +126,7 @@ Integer ByteArray::size() const
 
 bool ByteArray::isNull() const
 {
-   return mData == NULL;
+   return mData == nullptr;
 }
 
 bool ByteArray::isEmpty() const

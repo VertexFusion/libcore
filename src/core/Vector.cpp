@@ -36,7 +36,7 @@ using namespace jm;
 jm::Vector::Vector()
 {
    m = 0;
-   data = NULL;
+   data = nullptr;
 }
 
 jm::Vector::Vector(Integer rows)
@@ -54,13 +54,13 @@ jm::Vector::Vector(const Vector& another)
       data = new double[m];
       for(Integer a = 0; a < m; a++)data[a] = another.data[a];
    }
-   else data = NULL;
+   else data = nullptr;
 }
 
 jm::Vector::~Vector()
 {
-   if(data != NULL)delete[] data;
-   data = NULL;
+   if(data != nullptr)delete[] data;
+   data = nullptr;
    m = 0;
 }
 
@@ -114,14 +114,14 @@ jm::Vector& jm::Vector::operator=(const jm::Vector& another)
 {
    if(this != &another)
    {
-      if(data != NULL)delete[] data;
+      if(data != nullptr)delete[] data;
       m = another.m;
       if(m > 0)
       {
          data = new double[m];
          for(Integer a = 0; a < m; a++)data[a] = another.data[a];
       }
-      else data = NULL;
+      else data = nullptr;
    }
 
    return *this;

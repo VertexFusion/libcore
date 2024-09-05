@@ -59,7 +59,7 @@ VxfErrorStatus EditableObject::setMember(String* pointer, const String& value)
    if(value.equals(*pointer))return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -75,10 +75,10 @@ VxfErrorStatus EditableObject::setMember(Integer* pointer,
    if(!(value >= rangeMin && value <= rangeMax))
    {
       VxfErrorStatus status = eInvalidInput;
-      if(um != NULL)um->registerTransactionStatus(status);
+      if(um != nullptr)um->registerTransactionStatus(status);
       return status;
    }
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -89,7 +89,7 @@ VxfErrorStatus EditableObject::setMember(double* pointer, double value)
    if(value == *pointer)return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -99,7 +99,7 @@ VxfErrorStatus EditableObject::setMember(bool* pointer, bool value)
    if(value == *pointer)return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -109,7 +109,7 @@ VxfErrorStatus EditableObject::setMember(uint8* pointer, uint8 value)
    if(value == *pointer)return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -119,7 +119,7 @@ VxfErrorStatus EditableObject::setMember(int16* pointer, int16 value)
    if(value == *pointer)return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -129,7 +129,7 @@ VxfErrorStatus EditableObject::setMember(Vertex3* pointer, const Vertex3 &value)
    if(value == *pointer)return eNotChanged;
 
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->registerChange(this, pointer);
+   if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return eOK;
 }
@@ -137,14 +137,14 @@ VxfErrorStatus EditableObject::setMember(Vertex3* pointer, const Vertex3 &value)
 VxfErrorStatus EditableObject::openTransaction()
 {
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)um->openTransaction();
+   if(um != nullptr)um->openTransaction();
    return eOK;
 }
 
 VxfErrorStatus EditableObject::closeTransaction()
 {
    UndoManager* um = mDocument->undoManager();
-   if(um != NULL)
+   if(um != nullptr)
    {
       return um->closeTransaction();
    }

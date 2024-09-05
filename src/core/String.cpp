@@ -90,7 +90,7 @@ String::String(const char* buffer, Integer size, Charset* charset): Object(), Co
 String::String(const char* cstring): Object(), Comparable<String>()
 {
    mHash = 0;
-   if(cstring != NULL)
+   if(cstring != nullptr)
    {
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
       // strings. (Initialization sequence not predictable)
@@ -147,7 +147,7 @@ String::~String()
    mStrLength = 0;
    mArrLength = 0;
    delete[] mValue;
-   mValue = NULL;
+   mValue = nullptr;
 }
 
 void String::copy(const CharArray& array)
@@ -180,7 +180,7 @@ void String::checkCapacity(Integer more)
 String String::fromCFString(CFStringRef cfstring)
 {
    // NULL string?
-   if(cfstring == NULL)return kEmptyString;
+   if(cfstring == nullptr)return kEmptyString;
 
    // Empty string?
    CFIndex length = CFStringGetLength(cfstring);
@@ -188,7 +188,7 @@ String String::fromCFString(CFStringRef cfstring)
 
    // C-String
    const char* ccstr = CFStringGetCStringPtr(cfstring, kCFStringEncodingUTF8);
-   if(ccstr != NULL)return String(ccstr);
+   if(ccstr != nullptr)return String(ccstr);
 
    // Fallback
    char* cstr = new char[length *
@@ -620,7 +620,7 @@ void String::zero()
 bool String::equals(const Object* other) const
 {
    const String* str = dynamic_cast<const String*>(other);
-   if(str == NULL)return false;
+   if(str == nullptr)return false;
 
    return str->equals(*this);
 }
@@ -1077,7 +1077,7 @@ String String::lineSeparator()
    #endif
 }
 
-Charset* gConsoleCharset = NULL;
+Charset* gConsoleCharset = nullptr;
 
 void jm::String::setConsoleCharset(Charset* cs)
 {
@@ -1101,7 +1101,7 @@ namespace jm
    ostream& operator << (ostream& out, const String& str)
    {
       //\todo It is best to set and get the charset globally. It's inefficient that way
-      if(gConsoleCharset == NULL)gConsoleCharset = Charset::ForName("Windows-1252");
+      if(gConsoleCharset == nullptr)gConsoleCharset = Charset::ForName("Windows-1252");
       String s = str;
       ByteArray cstr = s.toCString(gConsoleCharset);
       out << cstr.constData();

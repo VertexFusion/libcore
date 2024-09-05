@@ -36,8 +36,8 @@ jm::String gSystemError;
 
 bool gSystemLogDate = true;
 jm::LogLevel mSystemLogLabel = jm::kLogDebug;
-jm::Preferences*  gPreferences = NULL;
-jm::File* gPrefFile = NULL;
+jm::Preferences*  gPreferences = nullptr;
+jm::File* gPrefFile = nullptr;
 
 jm::String jm::System::language()
 {
@@ -202,7 +202,7 @@ jm::String jm::System::userFullName()
    #elif defined __linux__//Linux
 
    uid_t uid = geteuid();
-   struct passwd* pw = NULL;
+   struct passwd* pw = nullptr;
    pw = getpwuid(uid);
    if(pw)
    {
@@ -257,7 +257,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
+   if(libptr == nullptr) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
                                    std::endl << dlerror() << std::endl;
    return libptr;
 
@@ -265,7 +265,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
-   if(libptr == NULL) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
+   if(libptr == nullptr) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
                                    std::endl << dlerror() << std::endl;
    return libptr;
 
@@ -274,7 +274,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
    uint16* wstr = file->absolutePath().toWString();
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
    delete[] wstr;
-   if(libptr == NULL) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!"
+   if(libptr == nullptr) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!"
                                    << /*std::endl << dlerror() <<*/ std::endl;
    return libptr;
 
@@ -308,7 +308,7 @@ void* jm::System::findSymbol(void* library, const String& name)
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
+   if(symptr == nullptr) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
                                    " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
@@ -316,7 +316,7 @@ void* jm::System::findSymbol(void* library, const String& name)
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
-   if(symptr == NULL) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
+   if(symptr == nullptr) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
                                    " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
@@ -331,7 +331,7 @@ void* jm::System::findSymbol(void* library, const String& name)
 }
 
 // Global AutoreleasePool...
-jm::AutoreleasePool* gMainThreadPool = NULL;
+jm::AutoreleasePool* gMainThreadPool = nullptr;
 jm::String gBundleId;
 
 jm::AutoreleasePool* jm::System::autoreleasePool()
@@ -352,7 +352,7 @@ void jm::System::init(const jm::String& bundleId)
    gBundleId = bundleId;
 
    // Start autorelease pool
-   if(gMainThreadPool == NULL)gMainThreadPool = new AutoreleasePool();
+   if(gMainThreadPool == nullptr)gMainThreadPool = new AutoreleasePool();
 
    // Load default translation
    I18nBundle::initDefault();
@@ -369,19 +369,19 @@ void jm::System::init(const jm::String& bundleId)
 void jm::System::quit()
 {
    // save preferences
-   if(gPreferences != NULL)
+   if(gPreferences != nullptr)
    {
       gPreferences->save(*gPrefFile);
       delete gPreferences;
       delete gPrefFile;
-      gPreferences=NULL;
-      gPrefFile=NULL;
+      gPreferences=nullptr;
+      gPrefFile=nullptr;
    }
 
-   if(gMainThreadPool != NULL)
+   if(gMainThreadPool != nullptr)
    {
       delete gMainThreadPool;
-      gMainThreadPool = NULL;
+      gMainThreadPool = nullptr;
    }
 
    // Finally

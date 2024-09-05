@@ -98,7 +98,7 @@ Integer TestVector::execute()
 
 void TestVector::testrun(Test* test)
 {
-   if(test == NULL)return;
+   if(test == nullptr)return;
 
    System::log(Tr("Execute %1...").arg(test->GetName()), kLogInformation);
 

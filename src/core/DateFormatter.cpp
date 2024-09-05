@@ -95,7 +95,7 @@ DateFormatter::DateFormatter(const String& pattern): Object()
 DateFormatter::~DateFormatter()
 {
    Pattern* p = mPatterns;
-   while(p != NULL)
+   while(p != nullptr)
    {
       Pattern* tmp = p;
       p = p->next;
@@ -108,7 +108,7 @@ String DateFormatter::Format(const Date& date) const
    String value;
 
    Pattern* p = mPatterns;
-   while(p != NULL)
+   while(p != nullptr)
    {
       p->AppendPattern(value, date);
       p = p->next;
@@ -127,12 +127,12 @@ String DateFormatter::Format(const String& format, const Date& date)
 
 DateFormatter::Pattern::Pattern()
 {
-   next = NULL;
+   next = nullptr;
 }
 
 DateFormatter::Pattern::Pattern(const String& value, bool isText)
 {
-   next = NULL;
+   next = nullptr;
 
    if(isText)
    {

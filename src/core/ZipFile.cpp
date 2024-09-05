@@ -112,7 +112,7 @@ void ZipFile::open()
       entry->mCompressedSize = compressedSize;
       entry->mHeaderOffset = offset;
 
-      mEntries.add(entry, NULL);
+      mEntries.add(entry, nullptr);
 
       //Lies nächsten Eintrag
       index += 46 + fileNameLength + extraFieldLength + commentLength;
@@ -142,7 +142,7 @@ ZipEntry* ZipFile::entry(const String& name)
       if(entry->mName.equals(name))return entry;
    }
 
-   return NULL;
+   return nullptr;
 }
 
 LinkedListIterator ZipFile::entryIterator()

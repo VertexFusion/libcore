@@ -39,8 +39,8 @@ DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Obje
 {
    mU = u;
    mV = v;
-   below = NULL;
-   above = NULL;
+   below = nullptr;
+   above = nullptr;
    this->offset = offset;
    elements = new std::vector<Integer>();
    elements->push_back(std::abs(offset));
@@ -56,7 +56,7 @@ DiffDiag::~DiffDiag()
 
 DiffDiag* DiffDiag::GetAbove()
 {
-   if(above == NULL)
+   if(above == nullptr)
    {
       above = new DiffDiag(dist, mU, mV, offset >= 0 ? offset + 1 : offset - 1);
       above->below = this;
@@ -66,7 +66,7 @@ DiffDiag* DiffDiag::GetAbove()
 
 DiffDiag* DiffDiag::GetBelow()
 {
-   if(below == NULL)
+   if(below == nullptr)
    {
       // lower half has a, b switched, so see themselves
       // as the upper half of the transpose

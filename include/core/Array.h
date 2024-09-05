@@ -75,7 +75,7 @@ namespace jm
          virtual ~Array()
          {
             mSize = 0;
-            if(mData != NULL)delete[] mData;
+            if(mData != nullptr)delete[] mData;
          };
 
          inline Integer size() const
@@ -86,7 +86,7 @@ namespace jm
          inline void sort()
          {
             if(mSize < 1)return;
-            if(dynamic_cast<Comparable<T>*>(&mData[0]) == NULL)return;
+            if(dynamic_cast<Comparable<T>*>(&mData[0]) == nullptr)return;
 
             Integer n = mSize;
             do
@@ -198,7 +198,7 @@ namespace jm
          virtual ~Array()
          {
             mLength = 0;
-            if(mData != NULL)delete[] mData;
+            if(mData != nullptr)delete[] mData;
          };
 
          inline uint32 Length() const
@@ -209,7 +209,7 @@ namespace jm
          inline void sort()
          {
             if(mLength < 1)return;
-            if(mData[0] == NULL)return;
+            if(mData[0] == nullptr)return;
 
             uint32 n = mLength;
             do
@@ -329,7 +329,7 @@ namespace jm
          virtual ~FloatArray()
          {
             mLength = 0;
-            if(mData != NULL)delete[] mData;
+            if(mData != nullptr)delete[] mData;
          };
 
          inline uint32 Length() const
@@ -446,6 +446,8 @@ namespace jm
          StringList& operator=(const StringList& another);
 
          void clear();
+
+         bool contains(const String& str) const;
 
          DllExport
          friend StringList& operator<< (StringList& out, const String& str);

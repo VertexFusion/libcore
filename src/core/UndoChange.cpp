@@ -35,8 +35,8 @@ using namespace jm;
 
 UndoChange::UndoChange(Object* object)
 {
-   mPrev = NULL;
-   mNext = NULL;
+   mPrev = nullptr;
+   mNext = nullptr;
    mObject = object;
    mObject->retain();
    objname = mObject->displayName();
@@ -55,7 +55,7 @@ UndoChange::~UndoChange()
 void UndoChange::swap()
 {
    EditableObject* eo = dynamic_cast<EditableObject*>(mObject);
-   if(eo != NULL)eo->regenerate();
+   if(eo != nullptr)eo->regenerate();
 }
 
 //
@@ -374,12 +374,12 @@ UndoChangeObjectRef::UndoChangeObjectRef(Object* object, Object** ptr): UndoChan
    mValue = *ptr;
 
    //Wenn "alter" Pointer einen Wert enthält, erhöhe Referenzzähler um 1.
-   if(mValue != NULL)mValue->retain();
+   if(mValue != nullptr)mValue->retain();
 }
 
 UndoChangeObjectRef::~UndoChangeObjectRef()
 {
-   if(mValue != NULL)mValue->release();
+   if(mValue != nullptr)mValue->release();
 }
 
 

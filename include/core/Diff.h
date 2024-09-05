@@ -50,9 +50,9 @@ namespace jm
 
          /*!
           \brief Executes the DIFF operation on the given files.
-          \param f1 The first (left-hand side) file that is used for comparison. 
-          \param f2 The second (right-hand side) file with which the first file is compared. 
-          \return States the number of differences. Return value 0 means that the files are identical. 
+          \param f1 The first (left-hand side) file that is used for comparison.
+          \param f2 The second (right-hand side) file with which the first file is compared.
+          \return States the number of differences. Return value 0 means that the files are identical.
           */
          /*static unsigned int MakeDiff(dwg::Drawing* c1, dwg::Drawing* c2);
 
@@ -66,7 +66,7 @@ namespace jm
          static void HandleObjectU(DiffDistance* dd, Object* e);
 
          /*!
-          \brief This helping method resolves, where necessary, entities if they contain subelements 
+          \brief This helping method resolves, where necessary, entities if they contain subelements
           */
          static void HandleObjectV(DiffDistance* dd, Object* e);
 

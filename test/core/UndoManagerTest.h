@@ -43,12 +43,12 @@ class UndoTestObject: public jm::Object
          l2 = 0;
          f = 0;
          d = 0;
-         obj = NULL;
+         obj = nullptr;
       }
 
       ~UndoTestObject()
       {
-         if(obj != NULL)obj->release();
+         if(obj != nullptr)obj->release();
       }
 
       void SetStr(jm::String value)
@@ -120,13 +120,13 @@ class UndoTestObject: public jm::Object
       void SetObject(UndoTestObject* other)
       {
          undo->registerChange(this, (jm::Object**)&obj);
-         if(obj != NULL)
+         if(obj != nullptr)
          {
             undo->registerRelease(obj);
             obj->release();
          }
          obj = other;
-         if(obj != NULL)
+         if(obj != nullptr)
          {
             undo->registerRetain(obj);
             obj->retain();

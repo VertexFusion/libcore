@@ -35,32 +35,32 @@ using namespace jm;
 
 LListElement::LListElement(): Object()
 {
-   next = NULL;
-   prev = NULL;
-   data = NULL;
+   next = nullptr;
+   prev = nullptr;
+   data = nullptr;
 }
 
 LinkedList::LinkedList(Object* owner): Object()
 {
-   listStart = NULL;
-   listEnd = NULL;
-   current = NULL;
+   listStart = nullptr;
+   listEnd = nullptr;
+   current = nullptr;
    count = 0;
    mOwner = owner;
-   if(mOwner == NULL)
+   if(mOwner == nullptr)
    {
-      System::log("Owner of LinkedList must not be NULL!", kLogWarning);
+      System::log("Owner of LinkedList must not be nullptr!", kLogWarning);
    }
 }
 
 LinkedList::~LinkedList()
 {
-   clear(NULL);
+   clear(nullptr);
 }
 
 bool LinkedList::hasNext()
 {
-   return current != NULL;
+   return current != nullptr;
 }
 
 LListElement* LinkedList::nextElement()
@@ -79,13 +79,13 @@ Object* LinkedList::next()
 
 Object* LinkedList::first() const
 {
-   if(count == 0)return NULL;
+   if(count == 0)return nullptr;
    return listStart->data;
 }
 
 Object* LinkedList::last() const
 {
-   if(count == 0)return NULL;
+   if(count == 0)return nullptr;
    return listEnd->data;
 }
 
@@ -96,9 +96,9 @@ void LinkedList::rewind()
 
 void LinkedList::clear(UndoManager* um)
 {
-   if(um != NULL)
+   if(um != nullptr)
    {
-      while(listStart != NULL)
+      while(listStart != nullptr)
       {
          LListElement* victim = listStart;
          remove(victim, um); //Here undo magic is done
@@ -110,34 +110,34 @@ void LinkedList::clear(UndoManager* um)
       while(hasNext())nextElement()->release();
    }
 
-   listStart = NULL;
-   listEnd = NULL;
-   current = NULL;
+   listStart = nullptr;
+   listEnd = nullptr;
+   current = nullptr;
    count = 0;
 }
 
 void LinkedList::add(Object* data, UndoManager* um)
 {
    LListElement* item = new LListElement();
-   if(um != NULL)um->registerChange(item, reinterpret_cast<Object * *>(&(item->data)));
+   if(um != nullptr)um->registerChange(item, reinterpret_cast<Object * *>(&(item->data)));
    item->data = data;
    add(item, um);
 }
 
 void LinkedList::add(LListElement* item, UndoManager* um)
 {
-   if(um != NULL)
+   if(um != nullptr)
    {
       um->registerChange(item, reinterpret_cast<Object**>(& (item->prev)));
-      if(listEnd != NULL)um->registerChange(listEnd, reinterpret_cast<Object * *>(& (listEnd->next)));
-      if(listStart == NULL)um->registerChange(this, reinterpret_cast<Object * *>(&listStart));
+      if(listEnd != nullptr)um->registerChange(listEnd, reinterpret_cast<Object * *>(& (listEnd->next)));
+      if(listStart == nullptr)um->registerChange(this, reinterpret_cast<Object * *>(&listStart));
       um->registerChange(this, reinterpret_cast<Object**>(&listEnd));
       um->registerChange(this, &count);
    }
 
    item->prev = listEnd;
 
-   if(listEnd != NULL)
+   if(listEnd != nullptr)
    {
       listEnd->next = item;
       item->prev = listEnd;
@@ -145,7 +145,7 @@ void LinkedList::add(LListElement* item, UndoManager* um)
 
    listEnd = item;
 
-   if(listStart == NULL)
+   if(listStart == nullptr)
    {
       listStart = item;
    }
@@ -154,7 +154,7 @@ void LinkedList::add(LListElement* item, UndoManager* um)
 
 void LinkedList::addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um)
 {
-   LListElement* before = NULL;
+   LListElement* before = nullptr;
 
    rewind();
    while(hasNext())
@@ -167,10 +167,10 @@ void LinkedList::addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager
       }
    }
 
-   if(before != NULL)
+   if(before != nullptr)
    {
       LListElement* item = new LListElement();
-      if(um != NULL)um->registerChange(item, (Object* *) & (item->data));
+      if(um != nullptr)um->registerChange(item, (Object* *) & (item->data));
       item->data = itemToAdd;
 
       addBefore(before, item, um);
@@ -181,13 +181,13 @@ void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
 {
    LListElement* addAfterThis = addBeforeThis->prev;
 
-   if(um != NULL)
+   if(um != nullptr)
    {
       um->registerChange(itemToAdd, (Object**) & (itemToAdd->prev));
       um->registerChange(itemToAdd, (Object**) & (itemToAdd->next));
       if(listStart == addBeforeThis)um->registerChange(this, (Object* *)&listStart);
       um->registerChange(addBeforeThis, (Object**) & (addBeforeThis->prev));
-      if(addBeforeThis->prev != NULL)um->registerChange(addBeforeThis,
+      if(addBeforeThis->prev != nullptr)um->registerChange(addBeforeThis,
                (Object* *) & (addAfterThis->next));
       um->registerChange(this, &count);
    }
@@ -200,7 +200,7 @@ void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
    itemToAdd->next = addBeforeThis;
 
    //Vorgänger anpassen
-   if(addAfterThis != NULL)addAfterThis->next = itemToAdd;
+   if(addAfterThis != nullptr)addAfterThis->next = itemToAdd;
 
    //Nachfolger anpassen
    addBeforeThis->prev = itemToAdd;
@@ -215,10 +215,10 @@ VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
    LListElement* prev = element->prev;
    LListElement* next = element->next;
 
-   if(um != NULL)
+   if(um != nullptr)
    {
-      if(prev != NULL)um->registerChange(prev, (Object* *) & (prev->next));
-      if(next != NULL)um->registerChange(next, (Object* *) & (next->prev));
+      if(prev != nullptr)um->registerChange(prev, (Object* *) & (prev->next));
+      if(next != nullptr)um->registerChange(next, (Object* *) & (next->prev));
       if(listStart == element)um->registerChange(this, (Object* *) &listStart);
       if(listEnd == element)um->registerChange(this, (Object* *) &listEnd);
       um->registerChange(element, reinterpret_cast<Object**>(&element->prev));
@@ -227,23 +227,23 @@ VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
       um->registerRelease(element);
    }
 
-   if(prev != NULL)prev->next = next;
-   if(next != NULL)next->prev = prev;
+   if(prev != nullptr)prev->next = next;
+   if(next != nullptr)next->prev = prev;
 
    if(listStart == element)
    {
-      if(listStart->next != NULL)listStart = listStart->next;
-      else listStart = NULL;
+      if(listStart->next != nullptr)listStart = listStart->next;
+      else listStart = nullptr;
    }
 
    if(listEnd == element)
    {
-      if(listEnd->prev != NULL)listEnd = listEnd->prev;
-      else listEnd = NULL;
+      if(listEnd->prev != nullptr)listEnd = listEnd->prev;
+      else listEnd = nullptr;
    }
 
-   element->prev = NULL;
-   element->next = NULL;
+   element->prev = nullptr;
+   element->next = nullptr;
    element->release();
    count--;
 
@@ -273,8 +273,8 @@ uint32 LinkedList::size() const
 
 void LinkedList::swapData(Object* data1, Object* data2, UndoManager* um)
 {
-   LListElement* elem1 = NULL;
-   LListElement* elem2 = NULL;
+   LListElement* elem1 = nullptr;
+   LListElement* elem2 = nullptr;
 
    rewind();
    while(hasNext())
@@ -282,12 +282,12 @@ void LinkedList::swapData(Object* data1, Object* data2, UndoManager* um)
       LListElement* elem = nextElement();
       if(elem->data == data1)elem1 = elem;
       if(elem->data == data2)elem2 = elem;
-      if(elem1 != NULL && elem2 != NULL)break;
+      if(elem1 != nullptr && elem2 != nullptr)break;
    }
 
-   if(elem1 != NULL && elem2 != NULL)
+   if(elem1 != nullptr && elem2 != nullptr)
    {
-      if(um != NULL)
+      if(um != nullptr)
       {
          um->registerChange(elem1, (Object**) & (elem1->data));
          um->registerChange(elem2, (Object**) & (elem2->data));
@@ -304,11 +304,11 @@ LinkedListIterator LinkedList::iterator() const
 
 LinkedListIterator::LinkedListIterator(const LinkedList* list)
 {
-   if(list == NULL)
+   if(list == nullptr)
    {
-      listStart = NULL;
-      listEnd = NULL;
-      current = NULL;
+      listStart = nullptr;
+      listEnd = nullptr;
+      current = nullptr;
       count = 0;
       return;
    }
@@ -329,7 +329,7 @@ LinkedListIterator::LinkedListIterator(const LinkedListIterator& other)
 
 bool LinkedListIterator::hasNext()
 {
-   return current != NULL;
+   return current != nullptr;
 }
 
 Object* LinkedListIterator::next()

@@ -43,12 +43,12 @@ Object::Object()
 
 Object::~Object()
 {
-   mPool = NULL;
+   mPool = nullptr;
 }
 
 void Object::release()
 {
-   if(mPool == NULL)return;
+   if(mPool == nullptr)return;
 
    int32 count;
    Mutex* mutex = mPool->mutex();

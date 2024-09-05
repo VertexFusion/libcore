@@ -36,9 +36,9 @@ using namespace jm;
 
 UndoStep::UndoStep()
 {
-   prev = NULL;
-   recent = NULL;
-   eldest = NULL;
+   prev = nullptr;
+   recent = nullptr;
+   eldest = nullptr;
    count = 0;
 }
 
@@ -46,16 +46,16 @@ UndoStep::~UndoStep()
 {
    UndoChange* change = recent;
 
-   while(change != NULL)
+   while(change != nullptr)
    {
       UndoChange* victim = change;
       change = change->mPrev;
       delete victim;
    }
 
-   prev = NULL;
-   recent = NULL;
-   eldest = NULL;
+   prev = nullptr;
+   recent = nullptr;
+   eldest = nullptr;
    count = 0;
 }
 
@@ -63,11 +63,11 @@ void UndoStep::add(UndoChange* change)
 {
    //Verkette
    change->mPrev = recent;
-   if(recent != NULL)recent->mNext = change;
+   if(recent != nullptr)recent->mNext = change;
    recent = change;
 
    //Setze eldest, wenn er noch nicht gesetzt wurde
-   if(eldest == NULL)eldest = recent;
+   if(eldest == nullptr)eldest = recent;
 
    count++;
 }

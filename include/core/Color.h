@@ -71,7 +71,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Color(){};
+         ~Color()=default;
 
          Color& operator=(const Color& other);
 
@@ -266,13 +266,13 @@ namespace jm
 
          union
          {
-            //Mode = grey;
+            // Mode grey
             struct
             {
                uint8 grey;
             } g;
 
-            //Mode = rgb
+            //Mode rgb
             struct
             {
                uint8 red;
@@ -280,7 +280,7 @@ namespace jm
                uint8 blue;
             } rgb;
 
-            //Mode = cmyk;
+            // Mode cmyk
             struct
             {
                uint8 cyan;

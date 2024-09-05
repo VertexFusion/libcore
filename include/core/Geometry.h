@@ -38,7 +38,7 @@
 namespace jm
 {
    /*!
-   \brief This method calculates the intersection point of a line and a plane using the normal 
+   \brief This method calculates the intersection point of a line and a plane using the normal
    form.
    \param planePosition The position vector of the plane.
    \param normal The normal vector of the plane.
@@ -46,10 +46,10 @@ namespace jm
    \param direction The direction vector of the line.
    \param extend The line equation can define a line segment if we assume that linePosition is the
     starting point of the line and (linePosition+direction) is the end point of the line. If extend
-    = true, then the intersection point is calculated on the mathematical line. If false, the 
+    = true, then the intersection point is calculated on the mathematical line. If false, the
     intersection point is chosen only on the line segment. That means if the point is outside, one
     of the end points is returned as the "intersection point". This "feature" is especially useful
-    when you want to find the shortest distance to line segments. If there is no intersection 
+    when you want to find the shortest distance to line segments. If there is no intersection
     point, an invalid vector is returned.
    */
    DllExport
@@ -178,7 +178,7 @@ namespace jm
     \param lineStart The starting point of the line segment.
     \param lineEnd The end point of the line segment.
     \param extend If set to "true", the intersection point can be determined even if it lies beyond
-    the line segment. If set to "false", one of the end points of the line segment is returned as 
+    the line segment. If set to "false", one of the end points of the line segment is returned as
     the "intersection point" if the point is outside the line segment.
     \return The shortest distance between the line segment and the point.
     */
@@ -248,9 +248,9 @@ namespace jm
     \param point The 3D point for which the distance is to be determined.
     \param lineStart The starting point of the line segment.
     \param lineEnd The end point of the line segment.
-    \param extend Flag indicating whether the intersection point should be determined even if it 
+    \param extend Flag indicating whether the intersection point should be determined even if it
     lies beyond the line segment ends. If set to "false", NaN will be returned.
-    \return "true" if the point lies on the line segment, within the specified tolerance and 
+    \return "true" if the point lies on the line segment, within the specified tolerance and
     considering the extend flag, otherwise "false".
     */
    DllExport
@@ -291,7 +291,7 @@ namespace jm
     \param direction1 The direction vector of the first line.
     \param position2 The starting point of the second line.
     \param direction2 The direction vector of the second line.
-    \return The intersection point of the two lines. If the lines are parallel or collinear, the point 
+    \return The intersection point of the two lines. If the lines are parallel or collinear, the point
     has NaN values.
     */
    DllExport
@@ -307,7 +307,7 @@ namespace jm
     \param direction1 The direction vector of the first line.
     \param position2 The starting point of the second line.
     \param direction2 The direction vector of the second line.
-    \return The intersection point of the two lines. If the lines are parallel or skew, the point 
+    \return The intersection point of the two lines. If the lines are parallel or skew, the point
     has NaN values.
     */
    DllExport
@@ -334,16 +334,16 @@ namespace jm
    /*!
     \brief This method checks if a ray (line) intersects with a line between or on its endpoints.
     The direction of the ray is crucial.
-   
-    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
-    Hence, it is an essential method for CAD work. If the ray intersects with the line between or 
+
+    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc.
+    Hence, it is an essential method for CAD work. If the ray intersects with the line between or
     on the endpoints, the intersection point is returned.
     \param rayorigin The origin point of the ray. This is the point from which we check if the lines
     intersect. (Position vector of the line)
     \param direction The direction vector in which the ray points.
     \param start The start point of the line to be compared.
     \param end The end point of the line to be compared.
-    \return The defined vector if the intersection point exists. If the intersection point does not 
+    \return The defined vector if the intersection point exists. If the intersection point does not
     exist, the vector has NaN entries.
     */
    DllExport
@@ -353,12 +353,12 @@ namespace jm
                                 const Vertex2& end);
 
    /*!
-    \brief This method checks if a ray (line) intersects with a circular arc. The direction of 
+    \brief This method checks if a ray (line) intersects with a circular arc. The direction of
     the ray is crucial.
-   
-    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
+
+    This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc.
     Hence, it is an essential method for CAD work. If the ray intersects with the circular arc
-    between or on the endpoints, the intersection point is returned. If the ray intersects the 
+    between or on the endpoints, the intersection point is returned. If the ray intersects the
     circular arc twice, the closest intersection point is returned.
     \param rayorigin The origin point of the ray. This is the point from which we check if the lines
     intersect. (Position vector of the line)
@@ -366,7 +366,7 @@ namespace jm
     \param center The center point of the circular arc.
     \param start The start angle of the circular arc in radians.
     \param end The end angle of the circular arc in radians.
-    \return The defined vector if the intersection point exists. If the intersection point does not 
+    \return The defined vector if the intersection point exists. If the intersection point does not
     exist, the vector has NaN entries.
     */
    DllExport
@@ -378,12 +378,12 @@ namespace jm
                                double end);
 
    /*!
-   \brief This method checks if a ray (line) intersects with an elliptical arc. The direction of 
+   \brief This method checks if a ray (line) intersects with an elliptical arc. The direction of
    the ray is crucial.
-   
-   This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc. 
+
+   This method is used for tasks such as extending lines, trimming lines, drawing hatches, etc.
    Hence, it is an essential method for CAD work. If the ray intersects with the elliptical arc
-   between or on the endpoints, the intersection point is returned. If the ray intersects the 
+   between or on the endpoints, the intersection point is returned. If the ray intersects the
    elliptical arc twice, the closest intersection point is returned.
    \param rayorigin The origin point of the ray. This is the point from which we check if the lines
     intersect. (Position vector of the line)
@@ -393,7 +393,7 @@ namespace jm
    \param minorAxisRatio The ratio of the minor axis to the major axis.
    \param start The start angle of the elliptical arc in radians.
    \param end The end angle of the elliptical arc in radians.
-   \return The defined vector if the intersection point exists. If the intersection point does not 
+   \return The defined vector if the intersection point exists. If the intersection point does not
    exist, the vector has NaN entries.
    */
    DllExport

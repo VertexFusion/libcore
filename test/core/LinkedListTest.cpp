@@ -38,11 +38,11 @@ void LinkedListTest::DoTest1()
    Object o6;
 
    LinkedList* l = new LinkedList(this);
-   l->add(&o1, NULL);
-   l->add(&o2, NULL);
-   l->add(&o3, NULL);
-   l->add(&o4, NULL);
-   l->add(&o5, NULL);
+   l->add(&o1, nullptr);
+   l->add(&o2, nullptr);
+   l->add(&o3, nullptr);
+   l->add(&o4, nullptr);
+   l->add(&o5, nullptr);
 
    Object* i;
 

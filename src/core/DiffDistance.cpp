@@ -38,7 +38,7 @@ DiffDistance::DiffDistance()
 {
    m = 0;
    n = 0;
-   diagonal = NULL;
+   diagonal = nullptr;
    distance = 0;
    calc = 0;
    u = new std::vector<Object*>();
@@ -54,10 +54,10 @@ DiffDistance::~DiffDistance()
 
 void DiffDistance::Clear()
 {
-   if(diagonal != NULL)
+   if(diagonal != nullptr)
    {
       delete diagonal;
-      diagonal = NULL;
+      diagonal = nullptr;
    }
    u->clear();
    v->clear();

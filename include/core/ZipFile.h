@@ -121,7 +121,7 @@ namespace jm
           /*!
            \brief Returns the ZipEntry object if it exists, or nullptr if it does not exist.
            \param name The name of the ZipEntry to retrieve.
-           \return A pointer to the ZipEntry object if it exists, or NULL otherwise.
+           \return A pointer to the ZipEntry object if it exists, or nullptr otherwise.
            */
          ZipEntry* entry(const String& name);
 
@@ -139,8 +139,8 @@ namespace jm
 
           /*!
            \brief Returns the stream containing the uncompressed data of the entry. The caller
-           of this method takes ownership of the stream and is responsible for cleaning it up. 
-           The stream is read-only and can only be used to read the data from a ZIP file. 
+           of this method takes ownership of the stream and is responsible for cleaning it up.
+           The stream is read-only and can only be used to read the data from a ZIP file.
            Writing to the stream is not supported.
            \param entry The ZipEntry object for which the stream is requested.
            \return A pointer to the Stream object containing the uncompressed data, or nullptr if the entry does not exist.

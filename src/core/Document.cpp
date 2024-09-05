@@ -35,7 +35,7 @@ using namespace jm;
 
 Document::Document(): Object()
 {
-   mUndoManager = NULL;
+   mUndoManager = nullptr;
    mChanged = false;
    mRegenerate = false;
    setUndoManager(true);
@@ -47,16 +47,16 @@ Document::~Document()
 
 
    // We own the undo manage. We delete it.
-   if(mUndoManager != NULL)
+   if(mUndoManager != nullptr)
    {
       delete mUndoManager;
-      mUndoManager = NULL;
+      mUndoManager = nullptr;
    }
 }
 
 void Document::closeUndoStep()
 {
-   if(mUndoManager != NULL)mUndoManager->close();
+   if(mUndoManager != nullptr)mUndoManager->close();
 }
 
 UndoManager* Document::undoManager()
@@ -68,7 +68,7 @@ void Document::setUndoManager(bool status)
 {
    if(status)
    {
-      if(mUndoManager == NULL)
+      if(mUndoManager == nullptr)
       {
          mUndoManager = new UndoManager();
          mUndoManager->setDocument(this);
@@ -77,17 +77,17 @@ void Document::setUndoManager(bool status)
    }
    else
    {
-      if(mUndoManager != NULL)
+      if(mUndoManager != nullptr)
       {
          mUndoManager->release();
-         mUndoManager = NULL;
+         mUndoManager = nullptr;
       }
    }
 }
 
 bool Document::hasUndoManager() const
 {
-   return mUndoManager != NULL;
+   return mUndoManager != nullptr;
 }
 
 bool Document::isDocumentChanged() const

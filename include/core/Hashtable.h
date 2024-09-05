@@ -167,7 +167,7 @@ namespace jm
           //! \brief This variable stores the number of entries in the hashtable.
          int64 mDataLength;
 
-          //! \brief This threshold defines the number of entries at which the storage array for 
+          //! \brief This threshold defines the number of entries at which the storage array for
           //! the data should be resized. It is the absolute number of entries at which a storage
           //! reorganization is performed.
          int64 mThreshold;
@@ -194,7 +194,7 @@ namespace jm
                 \copydoc Iterator::hasNext()
                 */
                bool hasNext() override;
-               
+
                /*!
                 \copydoc Iterator::next()
                 */
@@ -203,7 +203,7 @@ namespace jm
             private:
                //! retKey A boolean value indicating whether the iterator should return keys or values.
                Bool retKey;
-              
+
                //!param table A pointer to the Hashtable object being iterated.
                Hashtable* table;
                HashtableEntry* entry;

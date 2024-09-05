@@ -53,7 +53,7 @@ namespace jm
 
             StackElement()
             {
-               prev = NULL;
+               prev = nullptr;
             }
          };
 
@@ -70,7 +70,7 @@ namespace jm
            */
          Stack()
          {
-            top = NULL;
+            top = nullptr;
             count = 0;
          };
 
@@ -87,7 +87,7 @@ namespace jm
            */
          inline bool HasElements()
          {
-            return top != NULL;
+            return top != nullptr;
          };
 
           /*!
@@ -128,7 +128,7 @@ namespace jm
            */
           inline T Top2()
           {
-            if (top != NULL && top->prev != NULL) {
+            if (top != nullptr && top->prev != nullptr) {
                return top->prev->data;
             }
 
@@ -142,7 +142,7 @@ namespace jm
            */
           inline T Top3()
           {
-            if (top != NULL && top->prev != NULL && top->prev->prev != NULL) {
+            if (top != nullptr && top->prev != nullptr && top->prev->prev != nullptr) {
                return top->prev->prev->data;
             }
 
@@ -185,10 +185,10 @@ namespace jm
            */
          inline void Reverse()
          {
-            StackElement* pop = NULL;
-            StackElement* push = NULL;
+            StackElement* pop = nullptr;
+            StackElement* push = nullptr;
 
-            while(top != NULL)
+            while(top != nullptr)
             {
                //Pop
                pop = top;

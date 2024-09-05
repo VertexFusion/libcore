@@ -624,7 +624,7 @@ namespace jm
           \copydoc UndoChange::swap()
           */
          void swap() override;
-         
+
       private:
          bool mReleased;
          Object* mObject;

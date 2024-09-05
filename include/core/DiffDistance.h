@@ -108,7 +108,7 @@ namespace jm
 
           /*!
            \brief Calculates the Levenshtein distance between two vectors of objects.
-           
+
            The Levenshtein distance is a measure of the difference between two strings. In this case,
            it calculates the distance between two vectors of objects. If the distance is 0, it means
            the objects are identical.

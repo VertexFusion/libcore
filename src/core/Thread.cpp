@@ -44,8 +44,8 @@ void* StartThread(void* arg)
    pthread_mutex_unlock(&t->criticalSection);
 
    t->Run();
-   pthread_exit(NULL);
-   return NULL;
+   pthread_exit(nullptr);
+   return nullptr;
 }
 
 #elif defined _WIN32
@@ -97,12 +97,12 @@ void Thread::Start()
    #if defined __APPLE__ || defined __linux__
    void* arg = (void*)this;
 
-   int ret = pthread_create(&thread, NULL, StartThread, arg);
+   int ret = pthread_create(&thread, nullptr, StartThread, arg);
    if(ret != 0)throw new Exception("Error on starting Thread");
    #elif defined _WIN32
    void* arg = (void*)this;
    mHandle = CreateThread(0, 0, StartThread, arg, 0, &mThreadID);
-   if(mHandle == NULL)throw new Exception("Error on starting Thread");
+   if(mHandle == nullptr)throw new Exception("Error on starting Thread");
 
    #endif
 }
@@ -113,7 +113,7 @@ void Thread::Sleep(int millis)
    #if defined __APPLE__ || defined __linux__
    timespec   ts;
    timeval    now;
-   gettimeofday(&now, NULL);
+   gettimeofday(&now, nullptr);
 
    //Konversion machen, damit es keinen overflow gibt, der dann in einer falschen Zeit resultiert.
    uint64 m = millis;
@@ -180,7 +180,7 @@ void Thread::Interrupt()
    alive = false;
    pthread_mutex_unlock(&criticalSection);
    pthread_cond_signal(&cond);
-   pthread_join(thread, NULL);
+   pthread_join(thread, nullptr);
    #elif defined _WIN32
    TerminateThread(mHandle, 0);
    #endif

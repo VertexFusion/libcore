@@ -211,7 +211,7 @@ void Test::TestNull(void* actual, const String& failmessage)
    jm::gTotalTestCount++;
    jm::gTestCount++;
 
-   if(actual == NULL) return;
+   if(actual == nullptr) return;
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
@@ -223,7 +223,7 @@ void Test::TestNotNull(void* actual, const String& failmessage)
    jm::gTotalTestCount++;
    jm::gTestCount++;
 
-   if(actual != NULL) return;
+   if(actual != nullptr) return;
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;

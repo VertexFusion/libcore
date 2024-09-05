@@ -28,7 +28,7 @@ Exception::Exception(String _message): Object()
    addrlen = backtrace(taddrlist, sizeof(taddrlist) / sizeof(void*));
 
    // Löse die Adressen in Namen auf
-   char** symbols = NULL;
+   char** symbols = nullptr;
    symbols = backtrace_symbols(taddrlist, addrlen);
    symbollist = new String[addrlen];
    for(uint32 a = 0; a < addrlen; a++)
@@ -42,14 +42,14 @@ Exception::Exception(String _message): Object()
 
    #elif defined _WIN32//Windows
    //Keine Threadbib
-   symbollist = NULL;
+   symbollist = nullptr;
    #endif
 
 }
 
 Exception::~Exception()
 {
-   if(symbollist != NULL)delete []symbollist;
+   if(symbollist != nullptr)delete []symbollist;
 }
 
 String Exception::GetErrorMessage() const

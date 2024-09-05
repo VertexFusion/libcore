@@ -99,11 +99,6 @@
 #define INT64_MAX 0x7FFFFFFFFFFFFFFF
 #endif
 
-
-#ifndef NULL
-#define NULL 0
-#endif
-
 #ifndef NAN
 static const unsigned long __jmnan[2] = {0xffffffff, 0x7fffffff};
 #define NAN (*(const double *) __jmnan)

@@ -131,7 +131,7 @@ namespace jm
 
          Array<uint16>* GetHuffmanCodes(Array<uint16>* codelengths);
 
-         // Writes the byte to the output 
+         // Writes the byte to the output buffer.
          void WriteUncompressed(uint8 byte);
 
           /*!

@@ -178,7 +178,7 @@ void Preferences::save(File file)
 
 bool Preferences::hasValue(const String& key)const
 {
-   return get(key) != NULL;
+   return get(key) != nullptr;
 }
 
 void Preferences::setValue(const String& key, const String& value)
@@ -189,7 +189,7 @@ void Preferences::setValue(const String& key, const String& value)
    tmp = tmp.replaceAll("\n", "\\n");
    String* actual = new String(tmp);
    String* old = static_cast<String*>(put(key, actual));
-   if(old != NULL)delete old;
+   if(old != nullptr)delete old;
 }
 
 void Preferences::setValue(const String& key, int32 value)
@@ -206,14 +206,14 @@ void Preferences::setValue(const String& key, bool value)
 String Preferences::value(const String& key) const
 {
    String* result = (String*)get(key);
-   if(result == NULL)return kEmptyString;
+   if(result == nullptr)return kEmptyString;
    return *result;
 }
 
 String Preferences::value(const String& key, String const& defaultValue) const
 {
    String* result = static_cast<String*>(get(key));
-   if(result == NULL)return defaultValue;
+   if(result == nullptr)return defaultValue;
    return *result;
 }
 

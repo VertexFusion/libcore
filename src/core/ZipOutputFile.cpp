@@ -56,7 +56,7 @@ ZipOutputFile::ZipOutputFile(File* file): jm::Object(),
    mEntries(this)
 {
    mFile = file;
-   mTemp = NULL;
+   mTemp = nullptr;
 }
 
 void ZipOutputFile::open()
@@ -135,7 +135,7 @@ void ZipOutputFile::closeEntry()
    mTemp->close();
    mTemp->Delete();
    delete mTemp;
-   mTemp = NULL;
+   mTemp = nullptr;
 
    //CRC berechnen
    entry->mCRC = CRC32(buffer.constData(), entry->mUncompressedSize);
@@ -170,7 +170,7 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    mTemp->close();
    mTemp->Delete();
    delete mTemp;
-   mTemp = NULL;
+   mTemp = nullptr;
 
    //CRC berechnen
    entry->mCRC = CRC32(buffer.constData(), entry->mUncompressedSize);
@@ -223,7 +223,7 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    mTemp->createNewFile();
    mTemp->open(kFmReadWrite);
 
-   mEntries.add(entry, NULL);
+   mEntries.add(entry, nullptr);
 }
 
 void ZipOutputFile::write(uint8* data, Integer offset, Integer length)

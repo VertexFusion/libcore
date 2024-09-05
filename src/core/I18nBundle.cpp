@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-I18nBundle* gDefaultTranslation = NULL;
+I18nBundle* gDefaultTranslation = nullptr;
 
 I18nBundle::I18nBundle(const String& language)
 {

@@ -58,7 +58,7 @@ namespace jm
 
          /*!
           \brief This method decodes a C-string using the encoding implemented in the decoder
-          and converts it into a Unicode-encoded chararray.          
+          and converts it into a Unicode-encoded chararray.
           \param cString The C-string that is to be converted.
           \return The chararray, which contains the Unicode-encoded representation of the C-string.
           */
@@ -66,7 +66,7 @@ namespace jm
 
          /*!
           \brief This Method encodes the given string into an encoded String using the encoding implemented in the decoder.
-          \param string The Unicode-encoded String be converted. 
+          \param string The Unicode-encoded String be converted.
           \return A C-string whose coding is determined by this decoder.
           */
          virtual ByteArray Encode(const CharArray& string) = 0;
@@ -90,18 +90,18 @@ namespace jm
 
          /*!
           \brief Constructor for the static initialisation (therefore not a string).
-          \param name Name of the character set 
-          \param decoder The decoder for this character set 
+          \param name Name of the character set
+          \param decoder The decoder for this character set
           */
          Charset(const char* name,
                  CharsetDecoder* decoder);
 
          /*!
-          \brief Constructor 
+          \brief Constructor
           \param name Name of the character set
-          \param alternatives Alternative names for the character set 
+          \param alternatives Alternative names for the character set
           \param altCount Number of alternative names for this character set
-          \param decoder The decoder for this character set 
+          \param decoder The decoder for this character set
           */
          Charset(const String& name,
                  const String* alternatives,
@@ -120,14 +120,14 @@ namespace jm
 
          /*!
           \brief This method tests whether the character set is addressed under the desired name.
-          \param name The name that is to be checked using this method. 
+          \param name The name that is to be checked using this method.
           \return Returns true if either the name of the character set or one of the alternative names matches \c name. Otherwise, return value is false.
           */
          bool HasName(const String& name);
 
          /*!
           \brief This method decodes the C-string and generates a chararray that has been converted through the encoding.
-          \param cString The C-string that is to be converted. 
+          \param cString The C-string that is to be converted.
           */
          CharArray Decode(const char* cString);
 
@@ -151,12 +151,12 @@ namespace jm
 
          /*!
           \brief This method guesses the character encoding from the given array and returns the guessed name.
-          If no character set is recognised, depending on the operating system, the default character set is returned. 
+          If no character set is recognised, depending on the operating system, the default character set is returned.
           Corresponding to the operating system, those are the following:
           - Windows: Windows-1252
           - Mac: MacRoman
           - Linux: UTF-8
-          However, even if one of the values above is returned it does not automatically mean that no character set was recognised. 
+          However, even if one of the values above is returned it does not automatically mean that no character set was recognised.
           */
          static String Guess(const char* stream,
                              Integer length);
@@ -174,17 +174,17 @@ namespace jm
          static Charset* gCharsets[];
 
          /*!
-         \brief The name of this character set. E.g. UTF-8 
+         \brief The name of this character set. E.g. UTF-8
          */
          String mName;
 
          /*!
-         \brief An array with alternative names in the event that this character set has several common names. 
+         \brief An array with alternative names in the event that this character set has several common names.
          */
          String* mAlternatives;
 
          /*!
-         \brief Number of alternative names. 
+         \brief Number of alternative names.
          */
          uint8 mAltCount;
 

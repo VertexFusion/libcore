@@ -104,13 +104,13 @@ namespace jm
          Date(const Date& other);
 
          /*!
-          \brief Constructor 
+          \brief Constructor
           \param milliseconds Absolute time (UTC) passed in milliseconds since 01.01.1970 00:00:00.000.
           */
          Date(int64 milliseconds);
 
          /*!
-          \brief Constructor 
+          \brief Constructor
           \param year Year
           \param month Month number (0-11)
           \param day Day number (1-31)
@@ -118,7 +118,7 @@ namespace jm
          Date(uint16 year, uint16 month, uint16 day);
 
          /*!
-          \brief Constructor 
+          \brief Constructor
           \param year Year
           \param month Month number (0-11)
           \param day Day number (1-31)
@@ -148,13 +148,13 @@ namespace jm
          bool isEmpty() const;
 
          /*!
-          \brief Returns the time passed in milliseconds, relative to 00:00:00 UTC on 1 January 1970.        
+          \brief Returns the time passed in milliseconds, relative to 00:00:00 UTC on 1 January 1970.
           */
          int64 time() const;
 
          /*!
           \brief Defines the time passed in milliseconds, relative to 00:00:00 UTC on 1 January 1970.
-          \param t New time in UTC.  
+          \param t New time in UTC.
           */
          void setTime(int64 t);
 
@@ -164,18 +164,18 @@ namespace jm
          int64 year() const;
 
          /*!
-          \brief Returns the year in UTC time. 
+          \brief Returns the year in UTC time.
           */
          int64 utcYear() const;
 
          /*!
-          \brief Returns the month in local time. 
+          \brief Returns the month in local time.
           \note The number ranges between 0 and 11
           */
          int64 month() const;
 
          /*!
-          \brief Returns the month in UTC time 
+          \brief Returns the month in UTC time
           */
          int64 utcMonth() const;
 
@@ -200,7 +200,7 @@ namespace jm
          int64 utcDay() const;
 
          /*!
-          \brief Returns the hours of the day in local time 
+          \brief Returns the hours of the day in local time
           */
          int64 hours() const;
 
@@ -210,7 +210,7 @@ namespace jm
          int64 utcHours() const;
 
          /*!
-          \brief Returns the minutes of the hour in local time 
+          \brief Returns the minutes of the hour in local time
           */
          int64 minutes() const;
 
@@ -250,8 +250,8 @@ namespace jm
          String toString() const;
 
          /*!
-          \brief This method compares the order of the data. 
-          \param another The date used for the comparison. 
+          \brief This method compares the order of the data.
+          \param another The date used for the comparison.
           */
          int32 compareTo(const Date& another) const;
 
@@ -306,7 +306,7 @@ namespace jm
          int64 day(int64 t) const;
 
          /*!
-         \brief The helper method calculates the milliseconds in the current day 
+         \brief The helper method calculates the milliseconds in the current day
          \param t absolute time.
          */
          int64 timeWithinDay(int64 t) const;
@@ -324,13 +324,13 @@ namespace jm
          int64 DayFromYear(int64 y) const;
 
          /*!
-         \brief The helper method indicates the time value at the beginning of the year  
+         \brief The helper method indicates the time value at the beginning of the year
          \param y The year.
          */
          int64 TimeFromYear(int64 y) const;
 
          /*!
-         \brief The helper method specifies the year to the given time value 
+         \brief The helper method specifies the year to the given time value
          \param t absolute time.
          */
          int64 YearFromTime(int64 t) const;
@@ -355,9 +355,9 @@ namespace jm
          int64 MonthFromTime(int64 t) const;
 
          /*!
-         \brief The helper method returns the day in a month. 
+         \brief The helper method returns the day in a month.
          \param t absolute time.
-         \return A number between (and including) 1 and (including) 31 
+         \return A number between (and including) 1 and (including) 31
          */
          int64 DateFromTime(int64 t) const;
 
@@ -386,13 +386,13 @@ namespace jm
          int64 LocalTime(int64 t) const;
 
          /*!
-         \brief The helper method calculates the absolute time (UTC) from local time 
+         \brief The helper method calculates the absolute time (UTC) from local time
          \param t local time.
          */
          int64 UTC(int64 t) const;
 
          /*!
-         \brief The helper method calculates the hour from the time 
+         \brief The helper method calculates the hour from the time
          \param t absolute time.
          */
          int64 HourFromTime(int64 t) const;
@@ -410,7 +410,7 @@ namespace jm
          int64 SecondFromTime(int64 t) const;
 
          /*!
-         \brief The helper method calculates the number millisecond from the time 
+         \brief The helper method calculates the number millisecond from the time
          \param t absolute time.
          */
          int64 MilliFromTime(int64 t) const;
@@ -434,7 +434,7 @@ namespace jm
    };
 
    /*!
-    \brief Returns the date in a formatted string. The following placeholders are available: 
+    \brief Returns the date in a formatted string. The following placeholders are available:
     y : year : 2015; 15
     M : month : July; Jul; 07; 7
     w: calendar week : 42
@@ -449,16 +449,16 @@ namespace jm
     h: hour (1-12)
     k: hour (1-24)
     m: minute of the hour
-    s: second of the minute 
+    s: second of the minute
     S: millisecond
     z: time zone
 
-    
+
     Additions:
-    text: the long form is used for 4 or more letters, otherwise a short one is used 
+    text: the long form is used for 4 or more letters, otherwise a short one is used
     year: if pattern = yy, then ?Year: If pattern = yy, then it is displayed as 15, otherwise as 2015
 
-    ' ' can be used to mark the text.  
+    ' ' can be used to mark the text.
     */
    class DllExport DateFormatter: public Object
    {
@@ -466,7 +466,8 @@ namespace jm
       public:
 
          /*!
-         
+          \brief Constructor
+          \param pattern The pattern for the date format
          */
          DateFormatter(const String& pattern);
 

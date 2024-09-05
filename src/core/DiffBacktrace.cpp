@@ -37,10 +37,10 @@ DiffBacktrace::DiffBacktrace()
 {
    size = 0;
    operation = kDiffStart;
-   obj1 = NULL;
-   obj2 = NULL;
-   prev = NULL;
-   next = NULL;
+   obj1 = nullptr;
+   obj2 = nullptr;
+   prev = nullptr;
+   next = nullptr;
 }
 
 DiffBacktrace::DiffBacktrace(const DiffBacktrace& another)
@@ -56,10 +56,10 @@ DiffBacktrace::DiffBacktrace(const DiffBacktrace& another)
 DiffBacktrace::~DiffBacktrace()
 {
 
-   if(next != NULL)
+   if(next != nullptr)
    {
       delete next;
-      next = NULL;
+      next = nullptr;
    }
 
 }
@@ -76,7 +76,7 @@ void DiffBacktrace::Print()
       di.Print(step->operation, step->obj1, step->obj2);
       step = step->next;
    }
-   while(step != NULL);
+   while(step != nullptr);
 }
 
 DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)

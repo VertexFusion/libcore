@@ -41,16 +41,16 @@ UndoManager::UndoManager(): Object()
    mOpen = false;
 
    mCurrent = new UndoStep();
-   mUndoStack = NULL;
-   mRedoStack = NULL;
+   mUndoStack = nullptr;
+   mRedoStack = nullptr;
 
    mUndoCount = 0;
    mRedoCount = 0;
 
-   mDocument = NULL;
+   mDocument = nullptr;
 
    mTransactionLevel = 0;
-   mTransaction = NULL;
+   mTransaction = nullptr;
    mTransactionStatus = eOK;
 }
 
@@ -83,7 +83,7 @@ bool UndoManager::hasOpenUndoStep() const
 bool UndoManager::undo()
 {
    if(mOpen)return false;
-   if(mUndoStack == NULL)return false;
+   if(mUndoStack == nullptr)return false;
    mUndoing = true;
 
    //Hole Schritt vom Undo-Stack
@@ -93,7 +93,7 @@ bool UndoManager::undo()
    //Mache Undo-Step rückgängig und wandle ihn zum Redo-Step
    //Druchlaufe die Schritte rückwärts, damit doppelte Änderungen sich nicht überschreiben
    UndoChange* change = step->recent;
-   while(change != NULL)
+   while(change != nullptr)
    {
       change->swap();
       change = change->mPrev;
@@ -108,14 +108,14 @@ bool UndoManager::undo()
 
    mUndoing = false;
 
-   if(mDocument != NULL)mDocument->setDocumentChanged(true);
+   if(mDocument != nullptr)mDocument->setDocumentChanged(true);
    return true;
 }
 
 bool UndoManager::redo()
 {
    if(mOpen) return false;
-   if(mRedoStack == NULL)return false;
+   if(mRedoStack == nullptr)return false;
    mUndoing = true;
 
    //Hole Schritt vom Redo-Stack
@@ -125,7 +125,7 @@ bool UndoManager::redo()
    //Mache Redo-Step rückgängig und wandle ihn zum Undo-Step
    //Druchlaufe die Schritte vorwärts, damit doppelte Änderungen sich nicht überschreiben
    UndoChange* change = step->eldest;
-   while(change != NULL)
+   while(change != nullptr)
    {
       change->swap();
       change = change->mNext;
@@ -140,7 +140,7 @@ bool UndoManager::redo()
 
    mUndoing = false;
 
-   if(mDocument != NULL)mDocument->setDocumentChanged(true);
+   if(mDocument != nullptr)mDocument->setDocumentChanged(true);
    return true;
 }
 
@@ -154,7 +154,7 @@ void UndoManager::close()
    mCurrent = new UndoStep();
    mOpen = false;
    mUndoCount++;
-   if(mDocument != NULL)mDocument->setDocumentChanged(true);
+   if(mDocument != nullptr)mDocument->setDocumentChanged(true);
 }
 
 void UndoManager::clearStacks()
@@ -167,26 +167,26 @@ void UndoManager::clearStacks()
 void UndoManager::clearUndoStack()
 {
    UndoStep* step = mUndoStack;
-   while(step != NULL)
+   while(step != nullptr)
    {
       UndoStep* victim = step;
       step = step->prev;
       delete victim;
    }
-   mUndoStack = NULL;
+   mUndoStack = nullptr;
    mUndoCount = 0;
 }
 
 void UndoManager::clearRedoStack()
 {
    UndoStep* step = mRedoStack;
-   while(step != NULL)
+   while(step != nullptr)
    {
       UndoStep* prev = step->prev;
       delete step;
       step = prev;
    }
-   mRedoStack = NULL;
+   mRedoStack = nullptr;
    mRedoCount = 0;
 }
 
@@ -369,23 +369,23 @@ void UndoManager::commit()
 
       // Move all steps to the change step
       UndoChange* change = step->eldest;
-      while(change != NULL)
+      while(change != nullptr)
       {
          UndoChange* trans = change;
          change = change->mNext;
-         trans->mPrev = NULL;
-         trans->mNext = NULL;
+         trans->mPrev = nullptr;
+         trans->mNext = nullptr;
          registerChange(trans);
       }
 
       // Set all to null, to prevent deletion in next step.
-      mTransaction->prev = NULL;
-      mTransaction->recent = NULL;
-      mTransaction->eldest = NULL;
+      mTransaction->prev = nullptr;
+      mTransaction->recent = nullptr;
+      mTransaction->eldest = nullptr;
       mTransaction->count = 0;
 
       delete mTransaction;
-      mTransaction = NULL;
+      mTransaction = nullptr;
       mTransactionStatus = eOK;
    }
 }
@@ -403,14 +403,14 @@ void UndoManager::rollback()
 
       // Undo all changes
       UndoChange* change = step->recent;
-      while(change != NULL)
+      while(change != nullptr)
       {
          change->swap();
          change = change->mPrev;
       }
 
       delete mTransaction;
-      mTransaction = NULL;
+      mTransaction = nullptr;
       mTransactionStatus = eOK;
    }
 }

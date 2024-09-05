@@ -75,7 +75,7 @@ void Deflater::Deflate(uint8*& buffer, Integer& length)
 
 void Deflater::Reset()
 {
-   mUncompBytes = NULL;
+   mUncompBytes = nullptr;
    mUncompLength = 0;
    mUncompIndex = 0;
    mTotalIn = 0;
