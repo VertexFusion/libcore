@@ -68,6 +68,11 @@ namespace jm
           */
          Color(const Color& other);
 
+         /*!
+          \brief Destructor
+          */
+         ~Color(){};
+
          Color& operator=(const Color& other);
 
          /*!
