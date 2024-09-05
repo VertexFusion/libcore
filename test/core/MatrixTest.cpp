@@ -374,10 +374,10 @@ void MatrixTest::DoTest()
    A.set(1, 1, 3);
    A.set(1, 2, 1);
 
-   double norm = A.norm(jm::kMatrixNorm1);
+   double norm = A.norm(jm::MatrixNorm::kNorm1);
    TestEquals(norm, 5.0, "Norm_1 not 5");
 
-   norm = A.norm(jm::kMatrixNormInf);
+   norm = A.norm(jm::MatrixNorm::kNormInf);
    TestEquals(norm, 6.0, "Norm_inf not 6");
 
 

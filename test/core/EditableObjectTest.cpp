@@ -72,7 +72,7 @@ class AddressBook : public Document
       LinkedList mEntries;
 };
 
-enum Country
+enum class Country
 {
    kUnknown = 0,
    kGermany = 1,
@@ -87,7 +87,7 @@ class Address : public EditableObject
       Address(AddressBook* book) : EditableObject(book)
       {
          mHouseNumber = 0;
-         mCountry = kUnknown;
+         mCountry = Country::kUnknown;
          mPartner = nullptr;
       };
 

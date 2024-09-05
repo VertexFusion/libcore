@@ -454,7 +454,7 @@ double Matrix::norm(MatrixNorm nm) const
    switch(nm)
    {
       // Column sum norm
-      case kMatrixNorm1:
+      case MatrixNorm::kNorm1:
          for(uint32 col = 0; col < n; col++)
          {
             sum = 0;
@@ -467,7 +467,7 @@ double Matrix::norm(MatrixNorm nm) const
          break;
 
       // Row sum norm
-      case kMatrixNormInf:
+      case MatrixNorm::kNormInf:
          for(uint32 row = 0; row < m; row++)
          {
             sum = 0;

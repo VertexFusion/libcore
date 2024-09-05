@@ -43,10 +43,10 @@ namespace jm
    /*!
     \brief List of available matrix norms
     */
-   enum MatrixNorm
+   enum class MatrixNorm
    {
-      kMatrixNorm1,//!< Column Sum Norm
-      kMatrixNormInf//!< Row Sum Norm
+      kNorm1,//!< Column Sum Norm
+      kNormInf//!< Row Sum Norm
    };
 
    /*!

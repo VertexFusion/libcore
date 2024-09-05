@@ -41,11 +41,11 @@ namespace jm
     \note Compile with -fshort-enums
     \ingroup core
     */
-   enum ColourMode
+   enum class ColourMode
    {
-      kColourModeGrey = 0, /*!< Grey Scale */
-      kColourModeRGB = 1, /*!< RGB Color Space */
-      kColourModeCMYK = 2 /*!< CMYK Color Space */
+      kGrey = 0, /*!< Grey Scale */
+      kRgb = 1, /*!< RGB Color Space */
+      kCmyk = 2 /*!< CMYK Color Space */
    };
 
    /*!
