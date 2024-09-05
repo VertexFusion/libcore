@@ -479,7 +479,7 @@ namespace jm
 
       private:
 
-         enum PatternType
+         enum class PatternType
          {
             kEmpty,//Placeholder for empty pattern
             kText,

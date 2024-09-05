@@ -51,12 +51,12 @@ void DiffInfo::Print(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": " << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(obj1 != obj2)
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " <<
@@ -76,12 +76,12 @@ void DiffInfo::Print(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": " << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(isNotEqual(obj1, obj2))
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " <<
@@ -101,12 +101,12 @@ void DiffInfo::Print(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": " << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(!obj1.equals(obj2))
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << std::endl;
@@ -125,12 +125,12 @@ void DiffInfo::PrintIC(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": " << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(!obj1.equalsIgnoreCase(obj2))
          {
             std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << std::endl;
@@ -149,13 +149,13 @@ void DiffInfo::Print(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": ";
          std::cout << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(obj1 != obj2)
          {
             std::cout << "  " << label << ": ";
@@ -175,13 +175,13 @@ void DiffInfo::Print(DiffOperation operation,
 {
    switch(operation)
    {
-      case kDiffAdd:
-      case kDiffDelete:
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
          std::cout << "  " << label << ": ";
          std::cout << obj1 << std::endl;
          break;
 
-      case kDiffModified:
+      case DiffOperation::kDiffModified:
          if(obj1 != obj2)
          {
             std::cout << "  " << label << ": ";
@@ -478,7 +478,7 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
    if(obj1 != nullptr &&
          obj2 != nullptr &&
          typeid(*obj1) != typeid(*obj2) &&
-         operation == kDiffModified)
+         operation == DiffOperation::kDiffModified)
    {
       std::cout << "R " << obj1->displayName() << " -> " << obj2->displayName() << ":" << std::endl;
       return;
@@ -491,15 +491,15 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
    }
 
    //Gib Überschrift aus:
-   if(operation == kDiffAdd)
+   if(operation == DiffOperation::kDiffAdd)
    {
       std::cout << "A " << obj1->displayName() << std::endl;
    }
-   else if(operation == kDiffDelete)
+   else if(operation == DiffOperation::kDiffDelete)
    {
       std::cout << "D " << obj1->displayName() << std::endl;
    }
-   else if(operation == kDiffModified)
+   else if(operation == DiffOperation::kDiffModified)
    {
       std::cout << "M " << obj1->displayName() << std::endl;
    }
@@ -507,7 +507,7 @@ void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
 
    // Output details. Object1 is not nullptr in any case
    // Only for Modified, otherwise there is too much information. TODO Make it optional?
-   if(operation == kDiffModified)obj1->printDiffInfo(operation, obj2);
+   if(operation == DiffOperation::kDiffModified)obj1->printDiffInfo(operation, obj2);
    //else if(operation == kDiffAdd)obj1->printDiffInfo(operation, nullptr);
 
 }

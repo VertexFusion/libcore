@@ -38,7 +38,7 @@ namespace jm
     \brief Enumeration for the operations available in the diff algorithm.
     \ingroup diff
     */
-   enum DiffOperation
+   enum class DiffOperation
    {
       kDiffAdd,      /*!< An element was added. */
       kDiffDelete,   /*!< An element was deleted. */

@@ -36,7 +36,7 @@ using namespace jm;
 DateFormatter::DateFormatter(const String& pattern): Object()
 {
    mPatterns = new Pattern();
-   mPatterns->type = kEmpty;
+   mPatterns->type = DateFormatter::PatternType::kEmpty;
    mLast = mPatterns;
 
    if(pattern.size() < 1)return;
@@ -137,7 +137,7 @@ DateFormatter::Pattern::Pattern(const String& value, bool isText)
    if(isText)
    {
       text = value;
-      type = kText;
+      type = DateFormatter::PatternType::kText;
    }
    else
    {
@@ -146,39 +146,39 @@ DateFormatter::Pattern::Pattern(const String& value, bool isText)
       switch(value.charAt(0).unicode())
       {
          case 'y':
-            type = kYear;
+            type = DateFormatter::PatternType::kYear;
             break;
 
          case 'm':
-            type = kMinute;
+            type = DateFormatter::PatternType::kMinute;
             break;
 
          case 'M':
-            type = kMonthInYear;
+            type = DateFormatter::PatternType::kMonthInYear;
             break;
 
          case 'd':
-            type = kDayInMonth;
+            type = DateFormatter::PatternType::kDayInMonth;
             break;
 
          case 'H':
-            type = kHourInDay0;
+            type = DateFormatter::PatternType::kHourInDay0;
             break;
 
          case 'E':
-            type = kDayInWeek;
+            type = DateFormatter::PatternType::kDayInWeek;
             break;
 
          case 's':
-            type = kSecond;
+            type = DateFormatter::PatternType::kSecond;
             break;
 
          case 'S':
-            type = kMillisecond;
+            type = DateFormatter::PatternType::kMillisecond;
             break;
 
          default:
-            type = kText;
+            type = DateFormatter::PatternType::kText;
             text = value;
             break;
       }
@@ -190,15 +190,15 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
 {
    switch(type)
    {
-      case kEmpty:
+      case DateFormatter::PatternType::kEmpty:
          //Hier kommt nichts dazu...
          return;
 
-      case kText:
+      case DateFormatter::PatternType::kText:
          value.append(text);
          return;
 
-      case kYear:
+      case DateFormatter::PatternType::kYear:
          if(length == 2)
          {
             int64 y = date.year() % 100;
@@ -208,7 +208,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.year()));
          return;
 
-      case kHourInDay0:
+      case DateFormatter::PatternType::kHourInDay0:
          if(length == 2)
          {
             int64 d = date.hours();
@@ -218,7 +218,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.hours()));
          return;
 
-      case kMinute:
+      case DateFormatter::PatternType::kMinute:
          if(length == 2)
          {
             int64 d = date.minutes();
@@ -229,7 +229,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.minutes()));
          return;
 
-      case kSecond:
+      case DateFormatter::PatternType::kSecond:
          if(length == 2)
          {
             int64 s = date.seconds();
@@ -239,7 +239,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.seconds()));
          return;
 
-      case kMillisecond:
+      case DateFormatter::PatternType::kMillisecond:
          if(length > 1)
          {
             int64 s = date.milliseconds() ;
@@ -250,7 +250,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.milliseconds()));
          return;
 
-      case kDayInMonth:
+      case DateFormatter::PatternType::kDayInMonth:
          if(length == 2)
          {
             int64 d = date.date();
@@ -261,7 +261,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          else value.append(String::valueOf(date.date()));
          return;
 
-      case kDayInWeek:
+      case DateFormatter::PatternType::kDayInWeek:
          if(length == 1)
          {
             switch(date.day())
@@ -363,7 +363,7 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          }
          return;
 
-      case kMonthInYear:
+      case DateFormatter::PatternType::kMonthInYear:
          if(length == 1)
          {
             value.append(String::valueOf(date.month() + 1));
@@ -482,29 +482,29 @@ void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) cons
          }
          return;
 
-      case kDayInYear:
+      case DateFormatter::PatternType::kDayInYear:
          value.append(String::valueOf(date.dayOfYear() + 1));
          return;
 
-      case kWeekInYear:
+      case DateFormatter::PatternType::kWeekInYear:
          break;
 
-      case kDayOfWeekInMonth:
+      case DateFormatter::PatternType::kDayOfWeekInMonth:
          break;
 
-      case kAmPmMarker:
+      case DateFormatter::PatternType::kAmPmMarker:
          break;
 
-      case kHourInDay1:
+      case DateFormatter::PatternType::kHourInDay1:
          break;
 
-      case kHourInAmPm0:
+      case DateFormatter::PatternType::kHourInAmPm0:
          break;
 
-      case kHourInAmPm1:
+      case DateFormatter::PatternType::kHourInAmPm1:
          break;
 
-      case kTimezone:
+      case DateFormatter::PatternType::kTimezone:
          break;
    }
 

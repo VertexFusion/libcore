@@ -45,7 +45,7 @@ namespace jm
    /*!
     \brief Internal enumeration to provide a more detailed description of BufferElement
     */
-   enum BufferMode
+   enum class BufferMode
    {
       kBmMoveTo,   // Move the pen to a new position
       kBmLineTo,   // Draw a line to a new position

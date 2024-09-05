@@ -221,4 +221,5 @@ void EditableObjectTest::DoTest()
    TestFalse(um->hasOpenUndoStep(), "Undo Step is open (28)");
 
    delete book;
+   delete adr;
 }

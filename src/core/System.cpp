@@ -383,6 +383,8 @@ void jm::System::quit()
       gMainThreadPool = nullptr;
    }
 
+   delete I18nBundle::getDefault();
+
    // Finally
    QuitCharsets();
 }

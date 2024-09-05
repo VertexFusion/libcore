@@ -36,7 +36,7 @@ using namespace jm;
 DiffBacktrace::DiffBacktrace()
 {
    size = 0;
-   operation = kDiffStart;
+   operation = DiffOperation::kDiffStart;
    obj1 = nullptr;
    obj2 = nullptr;
    prev = nullptr;
@@ -94,20 +94,20 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
       {
          if(diag->GetOffset() == 0)
          {
-            op = kDiffStart;
+            op = DiffOperation::kDiffStart;
          }
          else if(diag->GetOffset() > 0)
          {
-            op = kDiffAdd;
+            op = DiffOperation::kDiffAdd;
          }
          else
          {
-            op = kDiffDelete;
+            op = DiffOperation::kDiffDelete;
          }
       }
       else if(diag->GetObjU(i)->equals(diag->GetObjV(i)))
       {
-         op = kDiffEqual;
+         op = DiffOperation::kDiffEqual;
       }
       else
       {
@@ -119,26 +119,26 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
          {
             if(diag->GetOffset() >= 0)
             {
-               op = kDiffAdd;
+               op = DiffOperation::kDiffAdd;
             }
             else
             {
-               op = kDiffDelete;
+               op = DiffOperation::kDiffDelete;
             }
          }
          else if(me == 1 + nw)
          {
-            op = kDiffModified;
+            op = DiffOperation::kDiffModified;
          }
          else
          {
             if(diag->GetOffset() >= 0)
             {
-               op = kDiffDelete;
+               op = DiffOperation::kDiffDelete;
             }
             else
             {
-               op = kDiffAdd;
+               op = DiffOperation::kDiffAdd;
             }
          }
       }
@@ -148,19 +148,19 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
       ret->operation = op;
       switch(op)
       {
-         case kDiffEqual:
+         case DiffOperation::kDiffEqual:
             //			ret->last=Backtrace(diag,i-1);
             i--;
             break;
 
-         case kDiffModified:
+         case DiffOperation::kDiffModified:
             //			ret->last=Backtrace(diag,i-1);
             ret->obj1 = diag->GetObjU(i);
             ret->obj2 = diag->GetObjV(i);
             i--;
             break;
 
-         case kDiffAdd:
+         case DiffOperation::kDiffAdd:
             if(diag->GetOffset() == 0)
             {
                //				ret->last=Backtrace(diag->GetBelow(),i-1);
@@ -183,7 +183,7 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
             }
             break;
 
-         case kDiffDelete:
+         case DiffOperation::kDiffDelete:
             if(diag->GetOffset() == 0)
             {
                //				ret->last =Backtrace(diag->GetAbove(),i-1);
@@ -206,7 +206,7 @@ DiffBacktrace* DiffBacktrace::Backtrace(DiffDiag* diag, uint32 i)
             }
             break;
 
-         case kDiffStart:
+         case DiffOperation::kDiffStart:
             loop = false;
             break;
 
