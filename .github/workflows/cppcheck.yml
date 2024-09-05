@@ -1,0 +1,37 @@
+name: cpp-check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    name: Cpp-Check
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: cppcheck-action
+         uses: deep5050/cppcheck-action@v3.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+            
