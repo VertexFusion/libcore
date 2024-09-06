@@ -206,11 +206,11 @@ Iterator* Hashtable::values()
 */
 
 Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey): Iterator(),
-table(_table),
 retKey(_retKey),
-index(0),
+table(_table),
 entry(nullptr),
-last(nullptr)
+last(nullptr),
+index(0)
 {}
 
 bool Hashtable::HashtableIterator::hasNext()
@@ -245,6 +245,7 @@ Object* Hashtable::HashtableIterator::next()
 
 Hashtable::HashtableEntry::HashtableEntry():
 hash(0),
+key(jm::kEmptyString),
 value(nullptr),
 next(nullptr)
 {}

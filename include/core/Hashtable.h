@@ -167,14 +167,14 @@ namespace jm
           //! \brief This variable stores the number of entries in the hashtable.
          int64 mDataLength;
 
+          //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
+          //! A value of 0 means 0%, while a value of 1 means 100%.
+         double mLoadfactor;
+
           //! \brief This threshold defines the number of entries at which the storage array for
           //! the data should be resized. It is the absolute number of entries at which a storage
           //! reorganization is performed.
          int64 mThreshold;
-
-          //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
-          //! A value of 0 means 0%, while a value of 1 means 100%.
-         double mLoadfactor;
 
           /*!
            \brief This subclass implements an iterator that allows iterating through the hashtable.

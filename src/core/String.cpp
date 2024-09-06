@@ -35,9 +35,9 @@ using namespace std;
 using namespace jm;
 
 String::String(): Object(), Comparable<String>(),
-mHash(0),
+mArrLength(16),
 mStrLength(0),
-mArrLength(16)
+mHash(0)
 {
    mValue = new Char[mArrLength];
 }
@@ -51,9 +51,9 @@ mHash(0)
 }
 
 String::String(const String& another): Object(), Comparable<String>(),
-mHash(another.mHash),
+mArrLength(another.mArrLength),
 mStrLength(another.mStrLength),
-mArrLength(another.mArrLength)
+mHash(another.mHash)
 {
    mValue = new Char[mArrLength];
    memcpy(mValue, another.mValue, sizeof(Char) * mStrLength);

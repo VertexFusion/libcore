@@ -38,9 +38,9 @@ StringTokenizer::StringTokenizer(const String& str,
                                  bool retDelim): Object(),
 mStr(str),
 mDelimiters(delimiters),
-mRetDelim(retDelim),
 mPosition(0),
-mNewStart(-1)
+mNewStart(-1),
+mRetDelim(retDelim)
 {}
 
 bool StringTokenizer::IsDelimiter(Integer index) const
