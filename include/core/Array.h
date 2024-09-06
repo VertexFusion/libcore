@@ -55,7 +55,8 @@ namespace jm
             mData = new T[0];
          };
 
-         Array(int64 size): Object()
+         explicit Array(int64 size): Object(),
+         mSize(size)
          {
             mSize = size;
             mData = new T[size];

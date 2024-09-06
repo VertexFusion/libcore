@@ -10,9 +10,9 @@
 
 using namespace jm;
 
-Exception::Exception(String _message): Object()
+Exception::Exception(const String& message): Object()
 {
-   mMessage = _message;
+   mMessage = message;
    System::log(mMessage, kLogError);
 
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
@@ -45,6 +45,18 @@ Exception::Exception(String _message): Object()
    #endif
 
 }
+
+Exception::Exception(const Exception& other): Object(),
+   mMessage(other.mMessage),
+   mSymbolList(other.mSymbolList)
+{
+   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+   tid = other.tid;
+   #elif defined _WIN32//Windows
+   //Keine Threadbib
+   #endif
+}
+
 
 String Exception::GetErrorMessage() const
 {
