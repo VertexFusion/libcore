@@ -34,6 +34,21 @@
 using namespace jm;
 
 
+Vertex2::Vertex2():
+   x(0.0),
+   y(0.0)
+{}
+
+Vertex2::Vertex2(double xx, double yy):
+   x(xx),
+   y(yy)
+{}
+
+Vertex2::Vertex2(const Vertex3& v3):
+   x(v3.x),
+   y(v3.y)
+{}
+
 double Vertex2::abs() const
 {
    return sqrt(x * x + y * y);
@@ -113,25 +128,6 @@ Vertex2& Vertex2::rotate(double angle)
 Vertex2 Vertex2::scale(const Vertex2& another) const
 {
    return Vertex2(x * another.x, y * another.y);
-}
-
-
-Vertex2::Vertex2()
-{
-   x = 0.0;
-   y = 0.0;
-}
-
-Vertex2::Vertex2(double xx, double yy)
-{
-   x = xx;
-   y = yy;
-}
-
-Vertex2::Vertex2(const Vertex3& v3)
-{
-   x = v3.x;
-   y = v3.y;
 }
 
 bool Vertex2::isValid() const

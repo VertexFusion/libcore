@@ -35,7 +35,6 @@
 
 #include "Types.h"
 #include "String.h"
-#include "Integer.h"
 #include "Exception.h"
 
 namespace jm
@@ -50,13 +49,13 @@ namespace jm
    {
       public:
 
-         Array(): Object()
+         Array():Object(),
+         mSize(0)
          {
-            mSize = 0;
             mData = new T[0];
          };
 
-         Array(Integer size): Object()
+         Array(int64 size): Object()
          {
             mSize = size;
             mData = new T[size];
@@ -66,7 +65,7 @@ namespace jm
          {
             mSize = other.mSize;
             mData = new T[mSize];
-            for(Integer a = 0; a < mSize; a++)
+            for(int64 a = 0; a < mSize; a++)
             {
                mData[a] = other.mData[a];
             }
@@ -78,7 +77,7 @@ namespace jm
             if(mData != nullptr)delete[] mData;
          };
 
-         inline Integer size() const
+         inline int64 size() const
          {
             return mSize;
          };
@@ -88,13 +87,13 @@ namespace jm
             if(mSize < 1)return;
             if(dynamic_cast<Comparable<T>*>(&mData[0]) == nullptr)return;
 
-            Integer n = mSize;
+            int64 n = mSize;
             do
             {
-               Integer newn = 1;
-               for(Integer i = 0; i < n - 1; ++i)
+               int64 newn = 1;
+               for(int64 i = 0; i < n - 1; ++i)
                {
-                  Integer j = i + 1;
+                  int64 j = i + 1;
                   Comparable<T>* a1 = static_cast<Comparable<T>*>(&mData[i]);
                   Comparable<T>* a2 = static_cast<Comparable<T>*>(&mData[j]);
                   if(a1->compareTo(*(T*)a2) > 0)
@@ -112,21 +111,21 @@ namespace jm
             while(n > 1);
          }
 
-         inline T get(Integer index) const
+         inline T get(int64 index) const
          {
             if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             return mData[index];
          };
 
-         inline void set(Integer index, T item)
+         inline void set(int64 index, T item)
          {
             if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
-         inline T& operator[](const Integer index) const
+         inline T& operator[](const int64 index) const
          {
             if(index < 0 || index >= mSize)
                throw new Exception("Array index out of bounds.");
@@ -141,7 +140,7 @@ namespace jm
 
                mSize = another.mSize;
                mData = new T[mSize];
-               for(Integer a = 0; a < mSize; a++)
+               for(int64 a = 0; a < mSize; a++)
                {
                   mData[a] = another.mData[a];
                }
@@ -155,7 +154,7 @@ namespace jm
          /*!
           The length of the array.
           */
-         Integer mSize;
+         int64 mSize;
 
          /*!
           \brief The data array itself.
@@ -411,59 +410,6 @@ namespace jm
          //! The data of the array
          float* mData;
 
-   };
-
-   /*!
-    \class StringList
-    \author Uwe Runtemund
-    \brief This is a list of strings. It provides useful methods for manipulating string lists.
-    */
-   class DllExport StringList: public Object
-   {
-
-      public:
-
-         StringList();
-
-         StringList(const StringList& other);
-
-         StringList(const jm::String& string);
-
-         virtual ~StringList();
-
-         void append(const jm::String& string);
-
-         ::Integer size() const;
-
-         void sort();
-
-         const String& get(::Integer index) const;
-
-         void set(::Integer index, const String& item);
-
-         String& operator[](const ::Integer index) const;
-
-         StringList& operator=(const StringList& another);
-
-         void clear();
-
-         bool contains(const String& str) const;
-
-         DllExport
-         friend StringList& operator<< (StringList& out, const String& str);
-
-      private:
-
-         //! The length of the array.
-         ::Integer mLength;
-
-         //! The data size (can be less then length
-         ::Integer mSize;
-
-         //! The data array itself.
-         String* mData;
-
-         void checkSize(::Integer size);
    };
 }
 

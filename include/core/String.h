@@ -508,6 +508,11 @@ namespace jm
 
          static void setConsoleCharset(Charset* cs);
 
+         /*!
+          \brief Returns a boolean representation of the string.
+          */
+         bool toBool() const;
+
          // Operators
          String& operator=(const String& another);
          String& operator+=(const String& another);
@@ -678,6 +683,60 @@ namespace jm
    String URLEncode(const String& str);
 
    static String kEmptyString = "";
+
+
+   /*!
+    \class StringList
+    \author Uwe Runtemund
+    \brief This is a list of strings. It provides useful methods for manipulating string lists.
+    */
+   class DllExport StringList: public Object
+   {
+
+      public:
+
+         StringList();
+
+         StringList(const StringList& other);
+
+         StringList(const jm::String& string);
+
+         virtual ~StringList();
+
+         void append(const jm::String& string);
+
+         ::Integer size() const;
+
+         void sort();
+
+         const String& get(::Integer index) const;
+
+         void set(::Integer index, const String& item);
+
+         String& operator[](const ::Integer index) const;
+
+         StringList& operator=(const StringList& another);
+
+         void clear();
+
+         bool contains(const String& str) const;
+
+         DllExport
+         friend StringList& operator<< (StringList& out, const String& str);
+
+      private:
+
+         //! The length of the array.
+         ::Integer mLength;
+
+         //! The data size (can be less then length
+         ::Integer mSize;
+
+         //! The data array itself.
+         String* mData;
+
+         void checkSize(::Integer size);
+   };
 }
 
 #endif

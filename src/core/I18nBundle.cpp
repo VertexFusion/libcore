@@ -35,9 +35,9 @@ using namespace jm;
 
 I18nBundle* gDefaultTranslation = nullptr;
 
-I18nBundle::I18nBundle(const String& language)
+I18nBundle::I18nBundle(const String& language):
+   mLanguage(language)
 {
-   mLanguage = language;
 }
 
 void I18nBundle::appendMo(File file)

@@ -33,11 +33,10 @@
 
 using namespace jm;
 
-Extents::Extents()
-{
-   mPtMin = Vertex3(1E90, 1E90, 1E90);
-   mPtMax = Vertex3(-1E90, -1E90, -1E90);
-}
+Extents::Extents():
+   mPtMin(1E90, 1E90, 1E90),
+   mPtMax(-1E90, -1E90, -1E90)
+{}
 
 void Extents::add(const Vertex2& pt)
 {

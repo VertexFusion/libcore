@@ -43,7 +43,7 @@ using std::max;
 #endif
 
 
-Color::Color()
+Color::Color():
 {
    mMode = ColourMode::kRgb;
    col.rgb.red = 0;

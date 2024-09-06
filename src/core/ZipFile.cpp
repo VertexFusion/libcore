@@ -159,6 +159,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
 {
    ByteArray input = ByteArray(entry->mCompressedSize, 0);
    uint8* buffer = new uint8[entry->mUncompressedSize];
+   memset(buffer, 0, entry->mUncompressedSize);
 
    //Local Header
    ByteArray localHeader = ByteArray(30, 0);
@@ -166,7 +167,11 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    mFile->Stream::readFully(localHeader);
    uint32 signature = jm::DeserializeLEUInt32((uint8*)localHeader.constData(), 0);
 
-   if(signature != 0x04034b50)throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
+   if(signature != 0x04034b50)
+   {
+      delete[] buffer;
+      throw new jm::Exception("ZIP file Error. Signature of Entry wrong.");
+   }
 
    uint16 cm = jm::DeserializeLEUInt16(localHeader, 8);
    uint32 fl = jm::DeserializeLEUInt16(localHeader, 26);

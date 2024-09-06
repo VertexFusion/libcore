@@ -199,12 +199,12 @@ namespace jm
          /*!
           \brief Status, if property is read-only.
           */
-         Bool isReadOnly() const;
+         bool isReadOnly() const;
 
          /*!
           \brief Status, if property can be empty.
           */
-         Bool allowEmpty() const;
+         bool allowEmpty() const;
 
          /*!
           \brief Status, how the change of one property will effect other properties of the
@@ -216,7 +216,7 @@ namespace jm
           \brief Short call for checking is. Same as: GetId().IsEqual()
           \param id The unique id of the property.
           */
-         Bool is(const String& id)const;
+         bool is(const String& id)const;
 
          /*!
           \brief Returns the id of the property
@@ -287,12 +287,12 @@ namespace jm
           \brief Set the Bool value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus setBoolValue(Bool value);
+         VxfErrorStatus setBoolValue(bool value);
 
          /*!
           \brief Returns the Bool Value of this property.
           */
-         Bool boolValue() const;
+         bool boolValue() const;
 
          /*!
           \brief Set the Double value of this Property

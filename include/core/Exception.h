@@ -61,7 +61,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Exception();
+         ~Exception()=default;
 
          /*!
           \brief Returns the error message.
@@ -81,7 +81,7 @@ namespace jm
       private:
 
          //! The error message.
-         String message;
+         String mMessage;
 
          //! The thread id
          #ifdef __APPLE__ //macOS
@@ -95,7 +95,7 @@ namespace jm
          // retrieve current stack addresses
          uint32 addrlen;
 
-         String* symbollist;
+         StringList mSymbolList;
 
    };
 

@@ -12,8 +12,8 @@ using namespace jm;
 
 Exception::Exception(String _message): Object()
 {
-   message = _message;
-   System::log(message, kLogError);
+   mMessage = _message;
+   System::log(mMessage, kLogError);
 
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    tid = pthread_self();
@@ -30,10 +30,10 @@ Exception::Exception(String _message): Object()
    // Löse die Adressen in Namen auf
    char** symbols = nullptr;
    symbols = backtrace_symbols(taddrlist, addrlen);
-   symbollist = new String[addrlen];
+
    for(uint32 a = 0; a < addrlen; a++)
    {
-      symbollist[a] = String(symbols[a]);
+      mSymbolList.append(String(symbols[a]));
    }
 
    // Free is acc. to the docs (web find) the correct way to free the memory. delete / delete[] is
@@ -42,19 +42,13 @@ Exception::Exception(String _message): Object()
 
    #elif defined _WIN32//Windows
    //Keine Threadbib
-   symbollist = nullptr;
    #endif
 
 }
 
-Exception::~Exception()
-{
-   if(symbollist != nullptr)delete []symbollist;
-}
-
 String Exception::GetErrorMessage() const
 {
-   return message;
+   return mMessage;
 }
 
 void Exception::PrintStackTrace() const
@@ -63,10 +57,11 @@ void Exception::PrintStackTrace() const
 
    //1. Zeile
    std::cerr << "Exception in thread \"" << tid  << "\"";
-   if(message.size() > 0)std::cerr << " : " << message;
+   if(mMessage.size() > 0)std::cerr << " : " << mMessage;
    std::cerr << std::endl;
 
    char* buffer = new char[1024];
+   memset(buffer, 0, 1024);
 
    for(uint32 i = 1; i < addrlen; i++)
    {
@@ -104,7 +99,7 @@ void Exception::PrintStackTrace() const
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" <<
                  std::endl;
       #elif defined __linux__//Linux
-      String line = symbollist[i];
+      String line = mSymbolList[i];
       std::cerr << "\ta" << line << std::endl;
       #elif defined _WIN32//Windows
       //Bisher nix
@@ -127,10 +122,11 @@ String Exception::GetStrackTrace() const
 
    //1. Zeile
    ret << "Exception in thread \"" << /* reinterpret_cast<int64>(tid)  << */ "\"";
-   if(message.size() > 0)ret << " : " << message;
+   if(mMessage.size() > 0)ret << " : " << mMessage;
    ret << '\r' << '\n';
 
    char* buffer = new char[1024];
+   memset(buffer, 0, 1024);
 
    for(uint32 i = 1; i < addrlen; i++)
    {
@@ -168,7 +164,7 @@ String Exception::GetStrackTrace() const
       ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r'
           << '\n';
       #elif defined __linux__//Linux
-      String line = symbollist[i];
+      String line = mSymbolList[i];
       ret << "\ta" << line << "\r\n";
       #elif defined _WIN32//Windows
       //Bisher nix

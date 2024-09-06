@@ -188,7 +188,7 @@ namespace jm
                 \param table A pointer to the Hashtable object being iterated.
                 \patam retKey A boolean value indicating whether the iterator should return keys or values.
                 */
-               HashtableIterator(Hashtable* table, Bool retKey);
+               HashtableIterator(Hashtable* table, bool retKey);
 
                /*!
                 \copydoc Iterator::hasNext()
@@ -202,7 +202,7 @@ namespace jm
 
             private:
                //! retKey A boolean value indicating whether the iterator should return keys or values.
-               Bool retKey;
+               bool retKey;
 
                //!param table A pointer to the Hashtable object being iterated.
                Hashtable* table;

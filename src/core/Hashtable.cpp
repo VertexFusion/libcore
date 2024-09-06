@@ -33,14 +33,14 @@
 
 using namespace jm;
 
-Hashtable::Hashtable(): Object()
+Hashtable::Hashtable(): Object(),
+mArrLength(7),
+mDataLength(0),
+mLoadfactor(0.75f),
+mThreshold(mArrLength * mLoadfactor)
 {
-   mArrLength = 7;
    mData = new HashtableEntry*[mArrLength]; // Array for data
-   for(Integer a = 0; a < mArrLength; a++)mData[a] = nullptr;
-   mDataLength = 0;
-   mLoadfactor = 0.75f;
-   mThreshold = Double::round(mArrLength * mLoadfactor);
+   memset(mData, 0, sizeof(HashtableEntry*) * mArrLength);
 }
 
 Hashtable::~Hashtable()
@@ -205,14 +205,13 @@ Iterator* Hashtable::values()
  HashtableIterator
 */
 
-Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, Bool _retKey): Iterator()
-{
-   table = _table;
-   retKey = _retKey;
-   index = 0;
-   entry = nullptr;
-   last = nullptr;
-}
+Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey): Iterator(),
+table(_table),
+retKey(_retKey),
+index(0),
+entry(nullptr),
+last(nullptr)
+{}
 
 bool Hashtable::HashtableIterator::hasNext()
 {
@@ -244,12 +243,11 @@ Object* Hashtable::HashtableIterator::next()
  HASHTABLE_ENTRY
  */
 
-Hashtable::HashtableEntry::HashtableEntry()
-{
-   hash = 0;
-   value = nullptr;
-   next = nullptr;
-}
+Hashtable::HashtableEntry::HashtableEntry():
+hash(0),
+value(nullptr),
+next(nullptr)
+{}
 
 Hashtable::HashtableEntry::~HashtableEntry()
 {

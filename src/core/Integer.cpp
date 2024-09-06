@@ -35,13 +35,6 @@ const uint16 gMask[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', '
 const int32 gArabic[] = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
 const jm::String gRoman[] = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
 
-
-Bool Bool::valueOf(const jm::String& value)
-{
-   return value.equalsIgnoreCase("true");
-}
-
-
 Integer::Integer()
 {
    mValue = 0;

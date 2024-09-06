@@ -34,34 +34,34 @@
 using namespace std;
 using namespace jm;
 
-String::String(): Object(), Comparable<String>()
+String::String(): Object(), Comparable<String>(),
+mHash(0),
+mStrLength(0),
+mArrLength(16)
 {
-   mHash = 0;
-   mStrLength = 0;
-   mArrLength = 16;
    mValue = new Char[mArrLength];
 }
 
-String::String(const uint16* buffer, Integer size): Object(), Comparable<String>()
+String::String(const uint16* buffer, Integer size): Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    CharArray array = CharArray(size);
    memcpy(array.buffer, buffer, sizeof(Char) * size);
    copy(array);
 }
 
-String::String(const String& another): Object(), Comparable<String>()
+String::String(const String& another): Object(), Comparable<String>(),
+mHash(another.mHash),
+mStrLength(another.mStrLength),
+mArrLength(another.mArrLength)
 {
-   mHash = 0;
-   mStrLength = another.mStrLength;
-   mArrLength = another.mArrLength;
    mValue = new Char[mArrLength];
    memcpy(mValue, another.mValue, sizeof(Char) * mStrLength);
 }
 
-String::String(const char* buffer, Integer size): Object(), Comparable<String>()
+String::String(const char* buffer, Integer size): Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    char* cstring = new char[size + 1];
    memcpy(cstring, buffer, size);
    cstring[size] = 0;
@@ -75,9 +75,9 @@ String::String(const char* buffer, Integer size): Object(), Comparable<String>()
    delete[] cstring;
 }
 
-String::String(const char* buffer, Integer size, Charset* charset): Object(), Comparable<String>()
+String::String(const char* buffer, Integer size, Charset* charset): Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    char* cstring = new char[size + 2];
    memcpy(cstring, buffer, size);
    cstring[size] = 0;
@@ -87,9 +87,9 @@ String::String(const char* buffer, Integer size, Charset* charset): Object(), Co
    delete[] cstring;
 }
 
-String::String(const char* cstring): Object(), Comparable<String>()
+String::String(const char* cstring): Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    if(cstring != nullptr)
    {
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
@@ -100,16 +100,15 @@ String::String(const char* cstring): Object(), Comparable<String>()
    }
    else
    {
-      mHash = 0;
       mStrLength = 0;
       mArrLength = 16;
       mValue = new Char[mArrLength];
    }
 }
 
-String::String(const ByteArray& buffer) : Object(), Comparable<String>()
+String::String(const ByteArray& buffer) : Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    if(buffer.size() > 0)
    {
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
@@ -120,23 +119,22 @@ String::String(const ByteArray& buffer) : Object(), Comparable<String>()
    }
    else
    {
-      mHash = 0;
       mStrLength = 0;
       mArrLength = 16;
       mValue = new Char[mArrLength];
    }
 }
 
-String::String(const char* cstring, Charset* charset): Object(), Comparable<String>()
+String::String(const char* cstring, Charset* charset): Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    CharArray array = charset->Decode(cstring);
    copy(array);
 }
 
-String::String(const ByteArray& buffer, Charset* charset) : Object(), Comparable<String>()
+String::String(const ByteArray& buffer, Charset* charset) : Object(), Comparable<String>(),
+mHash(0)
 {
-   mHash = 0;
    CharArray array = charset->Decode(buffer.constData());
    copy(array);
 }
@@ -811,7 +809,7 @@ String String::arg(Char character,
                    Char fillchar)
 {
    Integer first, second;
-   Bool found = argIndicies(first, second);
+   bool found = argIndicies(first, second);
    if(!found)return *this;
 
    String result = substring(0, first);
@@ -842,7 +840,7 @@ String String::arg(Integer value,
                    Char fillchar)
 {
    Integer first, second;
-   Bool found = argIndicies(first, second);
+   bool found = argIndicies(first, second);
    if(!found)return *this;
 
    String result = substring(0, first);
@@ -874,7 +872,7 @@ String String::arg(const String& value,
                    Char fillchar)
 {
    Integer first, second;
-   Bool found = argIndicies(first, second);
+   bool found = argIndicies(first, second);
    if(!found)return *this;
 
    String result = substring(0, first);
@@ -908,7 +906,7 @@ String String::arg(double value,
                    Char fillchar)
 {
    Integer first, second;
-   Bool found = argIndicies(first, second);
+   bool found = argIndicies(first, second);
    if(!found)return *this;
 
    String result = substring(0, first);
@@ -1064,6 +1062,11 @@ String String::valueOf(double number, Integer precision, bool trunc)
 String String::valueOf(bool value)
 {
    return value ? "true" : "false";
+}
+
+bool String::toBool() const
+{
+   return equalsIgnoreCase("true");
 }
 
 String String::lineSeparator()

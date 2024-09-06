@@ -1109,6 +1109,7 @@ File jm::currentDir()
    return File(cwd);
    #elif defined _WIN32 //Windows
    uint16 path[MAX_PATH];
+   memset(path, 0, MAX_PATH * sizeof(uint16));
    LPWSTR ptr = (LPWSTR) & path[0];
    uint32 size = GetCurrentDirectory(MAX_PATH, ptr);
    String name = String((uint16*)path, size);

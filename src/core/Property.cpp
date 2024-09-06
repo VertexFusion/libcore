@@ -74,7 +74,7 @@ Property::Property(const String& id,
    mType = kPropertyTypeString;
 }
 
-Bool Property::is(const String& id)const
+bool Property::is(const String& id)const
 {
    return mId.equals(id);
 }
@@ -124,12 +124,12 @@ const  String& Property::icon() const
    return mIcon;
 }
 
-Bool Property::isReadOnly() const
+bool Property::isReadOnly() const
 {
    return mReadOnly;
 }
 
-Bool Property::allowEmpty() const
+bool Property::allowEmpty() const
 {
    return mAllowEmpty;
 }
@@ -195,14 +195,14 @@ double Property::doubleValue() const
    return mNumberValue.doubleValue;
 }
 
-VxfErrorStatus Property::setBoolValue(Bool value)
+VxfErrorStatus Property::setBoolValue(bool value)
 {
    mNumberValue.boolValue = value;
    mType = kPropertyTypeBoolean;
    return eOK;
 }
 
-Bool Property::boolValue() const
+bool Property::boolValue() const
 {
    return mNumberValue.boolValue;
 }

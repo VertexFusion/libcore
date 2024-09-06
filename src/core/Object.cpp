@@ -33,10 +33,10 @@
 
 using namespace jm;
 
-Object::Object()
+Object::Object():
+   mRefCount(1),
+   mPool(System::autoreleasePool())
 {
-   mRefCount = 1;
-   mPool = System::autoreleasePool();
    // Find Zombie
    //mRefCount=2;
 }

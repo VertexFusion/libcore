@@ -69,8 +69,8 @@ void SAXParser::parse(const String& xml)
    Integer length = xml.size(); // Length of XML-Code
    Integer pos = 0; // Position of pointer
 
-   Bool inTag = false;   // Status, if tag is open
-   Bool inValue = false; // Status, if value is open
+   bool inTag = false;   // Status, if tag is open
+   bool inValue = false; // Status, if value is open
    Char opener = '\"'; // Character for begin and end of tag. ' or "
    Char c;
 

@@ -123,18 +123,6 @@ typedef unsigned short      uint16;
 typedef int                 int32;
 typedef unsigned int        uint32;
 
-#ifndef indet
-#define indet -1
-#endif
-
-#ifndef BoolFalse
-#define BoolFalse 0
-#endif
-
-#ifndef BoolTrue
-#define BoolTrue 1
-#endif
-
 #ifdef __APPLE__
 
 #define DllExport

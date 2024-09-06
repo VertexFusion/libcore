@@ -33,26 +33,23 @@
 
 using namespace jm;
 
-Vertex3::Vertex3(double x_, double y_, double z_)
-{
-   x = x_;
-   y = y_;
-   z = z_;
-}
+Vertex3::Vertex3(double x_, double y_, double z_):
+   x(x_),
+   y(y_),
+   z(z_)
+{}
 
-Vertex3::Vertex3(const Vertex3& another)
-{
-   x = another.x;
-   y = another.y;
-   z = another.z;
-}
+Vertex3::Vertex3(const Vertex3& another):
+   x(another.x),
+   y(another.y),
+   z(another.z)
+{}
 
-Vertex3::Vertex3(const Vertex2 xy, double z_)
-{
-   x = xy.x;
-   y = xy.y;
-   z = z_;
-}
+Vertex3::Vertex3(const Vertex2 xy, double z_):
+   x(xy.x),
+   y(xy.y),
+   z(z_)
+{}
 
 Vertex3 Vertex3::crossProduct(const Vertex3& another) const
 {

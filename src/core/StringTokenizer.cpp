@@ -33,18 +33,17 @@
 
 using namespace jm;
 
-StringTokenizer::StringTokenizer(const String& str, const String& delimiters,
-                                 Bool retDelim): Object()
-{
-   mStr = str;
-   mDelimiters = delimiters;
-   mRetDelim = retDelim;
-   mPosition = 0;
-   mNewStart = -1;
-}
+StringTokenizer::StringTokenizer(const String& str, 
+                                 const String& delimiters,
+                                 bool retDelim): Object(),
+mStr(str),
+mDelimiters(delimiters),
+mRetDelim(retDelim),
+mPosition(0),
+mNewStart(-1)
+{}
 
-
-Bool StringTokenizer::IsDelimiter(Integer index) const
+bool StringTokenizer::IsDelimiter(Integer index) const
 {
    Integer cnt = 0;
    Integer l = mDelimiters.size();
@@ -85,7 +84,7 @@ Integer StringTokenizer::FindDelimEnd(Integer startPos) const
    return pos;
 }
 
-Bool StringTokenizer::hasNext()
+bool StringTokenizer::hasNext()
 {
    if(mNewStart < 0)mNewStart = FindDelimEnd(mPosition);
 

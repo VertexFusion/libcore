@@ -51,12 +51,12 @@ namespace jm
          \param delimiter The delimiters used to split the string. Each character is considered as a delimiter.
          \param retDelim Status indicating whether the delimiters should be treated as separate tokens and returned or not.
          */
-         StringTokenizer(const String& str, const String& delimiter, Bool retDelim);
+         StringTokenizer(const String& str, const String& delimiter, bool retDelim);
 
           /*!
            \brief Returns whether there are more tokens in the string.
            */
-         Bool hasNext();
+         bool hasNext();
 
           /*!
            \brief Returns the next token.
@@ -79,14 +79,14 @@ namespace jm
          Integer mNewStart;
 
          //! Status indicating whether the delimiters should be treated as separate tokens and returned or not.
-         Bool mRetDelim;
+         bool mRetDelim;
 
          /*!
           \brief This method checks if the character at a position is a delimiter
           \param index The 0-based index of the character in the string to be examined.
           \return "True" if the character at position index is a defined delimiter. Otherwise, "false".
           */
-         Bool IsDelimiter(Integer index) const;
+         bool IsDelimiter(Integer index) const;
 
          /*!
           \brief This method searches for the end of a token starting from a desired position,
