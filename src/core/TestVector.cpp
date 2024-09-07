@@ -66,7 +66,7 @@ int64 TestVector::execute()
    {
       try
       {
-         single = Integer::valueOf(mArg);
+         single = mArg.toInt();
       }
       catch(jm::Exception& e)
       {}

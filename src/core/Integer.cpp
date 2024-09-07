@@ -123,29 +123,6 @@ uint8 Integer::digits()const
    return i;
 }
 
-Integer Integer::valueOf(const jm::String& string)
-{
-   int32 val = 0;
-   bool neg = false;
-
-   for(Integer a = 0; a < string.size(); a++)
-   {
-      jm::Char c = string.charAt(a);
-
-      if(c.isDigit())
-      {
-         val *= 10;
-         val += c.digitValue();
-      }
-      else if(c == '-')neg = true;
-      else throw jm::Exception("Number format exception for input string: \"" + string + "\"");
-   }
-
-   if(neg)val *= -1;
-   return val;
-}
-
-
 Integer Integer::fromHex(const jm::String& str)
 {
    return fromHex(str, 0, str.size());

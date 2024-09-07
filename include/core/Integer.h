@@ -68,13 +68,6 @@ class DllExport Integer
       uint8 digits() const;
 
       /*!
-       \brief Converts a string to an integer value.
-       \param string The string, e.g. "1", that should be converted to an integer.
-       \return The desired integer value.
-       */
-      static Integer valueOf(const jm::String& string);
-
-      /*!
        \brief Method converts a hexadecimal string value into an integer number.
        \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
        \return Returns the desired number as an integer value.

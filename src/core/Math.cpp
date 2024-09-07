@@ -51,13 +51,14 @@ int16 jm::sign(double d)
    return (0 < d) - (d < 0);
 }
 
-int64 jm::round(double d)
+int64 jm::round(double number)
 {
    //TODO: We have issues with some negative values. What do?
-    if (d < 0)
+   /* if (d < 0)
         return std::ceil(d - 0.5);
     else
-        return std::floor(d + 0.5);
+        return std::floor(d + 0.5);*/
+   return ((number > 0.0) ? std::floor(number + 0.5) : std::ceil(number - 0.5));
 }
 
 float jm::roundFrac(float f, int32 digits)
@@ -67,6 +68,14 @@ float jm::roundFrac(float f, int32 digits)
    int64 result = round(value);
    value = static_cast<double>(result);
    return static_cast<float>(value / factor);
+}
+
+double jm::roundFrac(double value,int64 digits)
+{
+   double factor = std::pow(10, digits);
+   double result = value * factor;
+   result = round(result);
+   return result / factor;
 }
 
 bool jm::isEqual(double v1, double v2)

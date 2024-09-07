@@ -85,6 +85,15 @@ namespace jm
    float roundFrac(float f, int32 digits);
 
    /*!
+    \brief This function rounds a number to the desired number of decimal places.
+    \note Please note that the exact value cannot always be determined due to the accuracy of the machine.
+    \param f Number to be rounded.
+    \return Rounded number
+    */
+   DllExport
+   double roundFrac(double f, int64 digits);
+
+   /*!
     \brief This method checks whether the two values are identical, taking resabs into account,
     are identical. Therefore |v2-v1| < RESABS applies. So if RESABS is the different, then the value is already
     is no longer the same. IT MUST BE LESS THAN EPSILON

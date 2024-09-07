@@ -1086,6 +1086,39 @@ bool String::toBool() const
    return equalsIgnoreCase("true");
 }
 
+double String::toDouble() const
+{
+   jm::ByteArray cstr = toCString();
+   std::stringstream ss;
+   double d = 0.0;
+   ss << cstr.constData();
+   ss >> d;
+   return d;
+}
+
+
+int64 String::toInt() const
+{
+   int64 val = 0;
+   bool neg = false;
+
+   for(int64 a = 0; a < size(); a++)
+   {
+      jm::Char c = charAt(a);
+
+      if(c.isDigit())
+      {
+         val *= 10;
+         val += c.digitValue();
+      }
+      else if(c == '-')neg = true;
+      else throw jm::Exception("Number format exception for input string: \"" + *this + "\"");
+   }
+
+   if(neg)val *= -1;
+   return val;
+}
+
 String String::lineSeparator()
 {
    #ifdef __APPLE__//macOS, iOS
@@ -1282,7 +1315,7 @@ double jm::ConvertToDouble(String str)
    {
       if(str.charAt(a) == ',') str.setCharAt(a, '.');
    }
-   return Double::valueOf(str);
+   return str.toDouble();
 }
 
 String jm::URLDecode(const String& str)

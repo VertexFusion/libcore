@@ -136,8 +136,8 @@ void MathTest::doTest()
    TestEquals(jm::round(-2.1), (int64)-2,"round(-2.1) != -2");
 
    // Test roundFrac function
-   TestEquals(jm::roundFrac(10.555, 2), 10.56f,"roundFrac(10.555, 2) != 10.56");
-   TestEquals(jm::roundFrac(-10.554, 2), -10.55f,"roundFrac(-10.554, 2) != -10.55");
+   TestEquals(jm::roundFrac(10.555, 2l), 10.56f,"roundFrac(10.555, 2) != 10.56");
+   TestEquals(jm::roundFrac(-10.554, 2l), -10.55f,"roundFrac(-10.554, 2) != -10.55");
 
    // Test isNaN function
    TestEquals(jm::isNaN(NAN), true, "isNaN(NAN) should be true");

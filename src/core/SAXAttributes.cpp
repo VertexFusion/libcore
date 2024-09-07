@@ -144,17 +144,17 @@ String SAXAttributes::value(const String& qname) const
 
 int32 SAXAttributes::valueAsInt(const String& qname) const
 {
-   return Integer::valueOf(value(qname)).Int32();
+   return value(qname).toInt();
 }
 
 float SAXAttributes::valueAsFloat(const String& qname) const
 {
-   return (float)Double::valueOf(value(qname));
+   return (float)value(qname).toDouble();
 }
 
 double SAXAttributes::valueAsDouble(const String& qname) const
 {
-   return Double::valueOf(value(qname));
+   return value(qname).toDouble();
 }
 
 bool SAXAttributes::valueAsBool(const String& qname)const

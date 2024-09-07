@@ -39,7 +39,6 @@
 #include "Object.h"
 #include "ByteArray.h"
 #include "CharArray.h"
-#include "Double.h"
 
 namespace jm
 {
@@ -527,6 +526,16 @@ namespace jm
           \brief Returns a boolean representation of the string.
           */
          bool toBool() const;
+
+         /*!
+          \brief Returns a double representation of the string.
+          */
+         double toDouble() const;
+
+         /*!
+          \brief Returns a int representation of the string.
+          */
+         int64 toInt() const;
 
          // Operators
          String& operator=(const String& another);

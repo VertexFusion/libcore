@@ -225,7 +225,7 @@ int32 Preferences::valueInt(const String& key, int32 defaultValue) const
    int32 value = defaultValue;
    try
    {
-      value = static_cast<int32>(Integer::valueOf(result));
+      value = static_cast<int32>(result.toInt());
    }
    catch(Exception& e)
    {}

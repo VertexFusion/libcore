@@ -65,7 +65,6 @@ SOURCES =\
  $(PATH_CORE)/DiffDistance.cpp\
  $(PATH_CORE)/DiffInfo.cpp\
  $(PATH_CORE)/Document.cpp\
- $(PATH_CORE)/Double.cpp\
  $(PATH_CORE)/EditableObject.cpp\
  $(PATH_CORE)/Exception.cpp\
  $(PATH_CORE)/Extents.cpp\
