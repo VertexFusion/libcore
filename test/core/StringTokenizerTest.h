@@ -15,7 +15,7 @@ class StringTokenizerTest : public jm::Test
 {
    public:
       StringTokenizerTest();
-      void DoTest();
+      void doTest();
 
 };
 

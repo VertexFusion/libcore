@@ -421,7 +421,7 @@ UndoChangeBuffer::UndoChangeBuffer(Object* object, uint8** pointer,
       mValue = new uint8[length];
       memcpy(mValue, *pointer, length);
    }
-   throw new Exception("Undo not implemented");
+   throw Exception("Undo not implemented");
 
 }
 
@@ -436,7 +436,7 @@ void UndoChangeBuffer::swap()
    delete[] tmpValue;
 
    UndoChange::swap();
-   throw new Exception("Undo not implemented");
+   throw Exception("Undo not implemented");
 
 }
 

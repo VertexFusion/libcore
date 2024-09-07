@@ -86,7 +86,7 @@ void Mutex::sleep()
 
    #elif defined _WIN32//Windows
 
-   throw new jm::Exception("jm::Mutex::Sleep() Not implemented");
+   throw jm::Exception("jm::Mutex::Sleep() Not implemented");
 
    #endif
 }
@@ -98,7 +98,7 @@ void Mutex::wakeUp()
 
    #elif defined _WIN32//Windows
 
-   throw new jm::Exception("jm::Mutex::WakeUp() Not implemented");
+   throw jm::Exception("jm::Mutex::WakeUp() Not implemented");
 
    #endif
 }

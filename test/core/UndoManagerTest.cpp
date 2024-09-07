@@ -47,7 +47,7 @@ UndoManagerTest::UndoManagerTest(): Test()
    SetName("Test Undo Manager");
 }
 
-void UndoManagerTest::DoTest()
+void UndoManagerTest::doTest()
 {
    UndoManager* undo = new UndoManager();
    undo->setActive(true);

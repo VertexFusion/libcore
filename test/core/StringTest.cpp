@@ -16,7 +16,7 @@ StringTest::StringTest(): Test()
    SetName("Test String");
 }
 
-void StringTest::DoTest()
+void StringTest::doTest()
 {
    TestEquals((int)sizeof(Char), 2, "Size of jm::Char must be 2");
    TestTrue(Char('0').isDigit(), "Char('0').IsDigit() fails");

@@ -30,7 +30,7 @@ VertexTest::VertexTest(): Test()
    SetName("Test Vertex");
 }
 
-void VertexTest::DoTest()
+void VertexTest::doTest()
 {
 
 

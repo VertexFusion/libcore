@@ -96,7 +96,7 @@ String StringTokenizer::next()
    mPosition = (mNewStart > -1) ? mNewStart : FindDelimEnd(mPosition);
    mNewStart = -1;
 
-   if(mPosition >= mStr.size())throw new Exception(Tr("No such element."));
+   if(mPosition >= mStr.size())throw Exception(Tr("No such element."));
 
    if(mRetDelim && IsDelimiter(mPosition))
    {

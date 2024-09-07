@@ -51,12 +51,12 @@ CharArray UTF8Decoder::Decode(const char* cstring)
    if(cstring[0] == static_cast<char>(0xFE) &&
          cstring[1] == static_cast<char>(0xFF))
    {
-      throw new Exception("UTF-16 (BE) encoding detected.");
+      throw Exception("UTF-16 (BE) encoding detected.");
    }
    else if(cstring[0] == static_cast<char>(0xFF) &&
            cstring[1] == static_cast<char>(0xFE))
    {
-      throw new Exception("UTF-16 (LE) encoding detected.");
+      throw Exception("UTF-16 (LE) encoding detected.");
    }
    else if(cstring[0] == static_cast<char>(0xEF) &&
            cstring[1] == static_cast<char>(0xBB) &&

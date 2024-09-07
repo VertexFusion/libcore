@@ -228,7 +228,7 @@ void GeometryTest::shootTangent(double startAngle, double endAngle)
 
 
 
-void GeometryTest::DoTest()
+void GeometryTest::doTest()
 {
 
    /*

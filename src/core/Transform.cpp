@@ -25,7 +25,7 @@ Transform::Transform(): jm::Matrix(4, 4)
 
 Transform::Transform(const jm::Matrix& m): jm::Matrix(m)
 {
-   if(m.m != m.n && m.m != 4)throw new jm::Exception("Matrix must be 4");
+   if(m.m != m.n && m.m != 4)throw jm::Exception("Matrix must be 4");
 }
 
 

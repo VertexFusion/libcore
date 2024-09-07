@@ -115,21 +115,21 @@ namespace jm
          inline T get(int64 index) const
          {
             if(index < 0 || index >= mSize)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             return mData[index];
          };
 
          inline void set(int64 index, T item)
          {
             if(index < 0 || index >= mSize)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
          inline T& operator[](const int64 index) const
          {
             if(index < 0 || index >= mSize)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             return mData[index];
          }
 
@@ -238,21 +238,21 @@ namespace jm
          inline T* Get(uint32 index) const
          {
             if(index >= mLength)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             return mData[index];
          };
 
          inline void Set(uint32 index, T* item)
          {
             if(index >= mLength)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
          inline T*& operator[](const uint32 index) const
          {
             if(index >= mLength)
-               throw new Exception("Array index out of bounds.");
+               throw Exception("Array index out of bounds.");
             return mData[index];
          }
 

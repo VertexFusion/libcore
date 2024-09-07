@@ -399,7 +399,7 @@ Integer String::lastIndexOf(const String& str) const
 Integer String::lastIndexOf(Char character, Integer fromIndex) const
 {
    if(fromIndex >= mStrLength)
-      throw new Exception("Index out of Bounds: " + String::valueOf(fromIndex));
+      throw Exception(Tr("Index out of Bounds: %1").arg(fromIndex));
    if(fromIndex < 0)fromIndex = 0;
    if(fromIndex > mStrLength - 1)fromIndex = mStrLength - 1;
 
@@ -504,14 +504,14 @@ StringList String::split(Char character)
 Char String::charAt(Integer index) const
 {
    if(index < 0 || index >= mStrLength)
-      throw new Exception("Index out of Bounds: " + String::valueOf(index));
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
    return mValue[index];
 }
 
 void String::setCharAt(Integer index, Char character)
 {
    if(index < 0 || index >= mStrLength)
-      throw new Exception("Index out of Bounds: " + String::valueOf(index));
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
    mValue[index] = character;
    mHash = 0;
 }
@@ -534,8 +534,8 @@ void String::append(Char utf8char)
 
 void String::insert(Integer index, Char character)
 {
-   if(index < 0
-         || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0 || index >= mStrLength)
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
    checkCapacity(1);
    for(Integer a = mStrLength; a > index; a--)mValue[a] = mValue[a - 1];
    mValue[index] = character;
@@ -545,8 +545,8 @@ void String::insert(Integer index, Char character)
 
 void String::insert(Integer index, const String& str)
 {
-   if(index < 0
-         || index > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0 || index >= mStrLength)
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
 
    Integer len = str.size();
    checkCapacity(len);
@@ -561,8 +561,9 @@ void String::insert(Integer index, const String& str)
 
 void String::deleteCharAt(Integer index)
 {
-   if(index < 0
-         || index >= mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(index));
+   if(index < 0 || index >= mStrLength)
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
+
    for(Integer a = index ; a < mStrLength - 1; a++)
    {
       mValue[a] = mValue[a + 1];
@@ -573,9 +574,9 @@ void String::deleteCharAt(Integer index)
 
 void String::deleteCharRangeAt(Integer index, Integer length)
 {
-   if(index < 0
-         || index + length > mStrLength)throw new Exception("Index out of Bounds: " + String::valueOf(
-                     index));
+   if(index < 0 || index >= mStrLength)
+      throw Exception(Tr("Index out of Bounds: %1").arg(index));
+
    for(Integer a = index ; a < mStrLength - length; a++)
    {
       mValue[a] = mValue[a + length];
@@ -754,7 +755,7 @@ int32 String::compareFancyTo(const String& another) const
 String String::substring(Integer beginIndex, Integer endIndex) const
 {
 
-   if(endIndex < beginIndex)throw new Exception("End index is before start index.");
+   if(endIndex < beginIndex)throw Exception(Tr("End index is before start index."));
    if(beginIndex < 0)beginIndex = 0;
    if(endIndex > mStrLength) endIndex = mStrLength;
    Integer sublength = endIndex - beginIndex;

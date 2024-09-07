@@ -16,7 +16,7 @@ StringTokenizerTest::StringTokenizerTest(): Test()
    SetName("Test StringTokenizer");
 }
 
-void StringTokenizerTest::DoTest()
+void StringTokenizerTest::doTest()
 {
 
    //0 Token

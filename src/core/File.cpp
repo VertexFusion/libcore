@@ -49,7 +49,7 @@ File::File(const String& pathname): Stream(), Comparable<File>()
 
 File::File(String parent, String child): Stream(), Comparable<File>()
 {
-   if(child.size() < 1)throw new Exception(Tr("Child is empty."));
+   if(child.size() < 1)throw Exception(Tr("Child is empty."));
    mPathname = resolve(normalize(parent), normalize(child));
    setCString();
    mHandle = nullptr;
@@ -57,7 +57,7 @@ File::File(String parent, String child): Stream(), Comparable<File>()
 
 File::File(const File& parent, String child): Stream(), Comparable<File>()
 {
-   if(child.size() < 1)throw new Exception(Tr("Child is empty."));
+   if(child.size() < 1)throw Exception(Tr("Child is empty."));
    mPathname = resolve(parent.absolutePath(), normalize(child));
    setCString();
    mHandle = nullptr;
@@ -439,7 +439,7 @@ Array<File>* File::listFiles()const
 
    if(dp == nullptr)
    {
-      throw new Exception(Tr("Cannot open directory"));
+      throw Exception(Tr("Cannot open directory"));
    }
 
    uint32 fileCount = 0;
@@ -505,7 +505,7 @@ Array<File>* File::listFiles()const
    else
    {
       delete wstr;
-      throw new Exception(Tr("Cannot open directory"));
+      throw Exception(Tr("Cannot open directory"));
    }
 
    #endif
@@ -518,7 +518,7 @@ Integer File::size() const
    int32 result = stat(mCstr.constData(), &filestat);
 
    // If it doesn't exist, then I can't read it.
-   if(result != 0)throw new Exception(Tr("File \"%1\" does not exist.").arg(absolutePath()));
+   if(result != 0)throw Exception(Tr("File \"%1\" does not exist.").arg(absolutePath()));
 
    return Integer((uint64)filestat.st_size);
 }
@@ -607,7 +607,7 @@ VxfErrorStatus File::open(FileMode mode)
       if(errno == ENOENT)return  eNotFound;
       if(errno == ETIMEDOUT)return eTimeout;
       if(errno == ENOTDIR)return eNoDirectory;
-      throw new Exception(msg);
+      throw Exception(msg);
    }
    return eOK;
 }
@@ -621,7 +621,7 @@ void File::close()
 {
    if(mHandle == nullptr)return;
    int32 eof = fclose(mHandle);
-   if(eof == EOF)throw new Exception(Tr("Error while closing file!"));
+   if(eof == EOF)throw Exception(Tr("Error while closing file!"));
    mHandle = nullptr;
 }
 
@@ -629,14 +629,14 @@ void File::seek(Integer position)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)position, SEEK_SET);
-   if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
+   if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
 void File::move(Integer offset)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)offset, SEEK_CUR);
-   if(res != 0)throw new Exception(Tr("Error while moving file reading pointer!"));
+   if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
 Integer File::position()
@@ -893,7 +893,7 @@ String jm::ExecPath()
    int ok = _NSGetExecutablePath(path, &size);
    if(ok < 0)
    {
-      throw new Exception(Tr("Cannot determinate executable Path"));
+      throw Exception(Tr("Cannot determinate executable Path"));
    }
    path[size - 1] = '\0';
    String ret = String(path);
@@ -930,7 +930,7 @@ String jm::ExecPath()
 
       return ret;
    }
-   throw new Exception(Tr("Cannot determinate executable Path"));
+   throw Exception(Tr("Cannot determinate executable path"));
    #endif
 
 }

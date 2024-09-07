@@ -21,7 +21,7 @@ MatrixTest::MatrixTest(): Test()
    SetName("Test Matrix");
 }
 
-void MatrixTest::DoTest()
+void MatrixTest::doTest()
 {
 
    Matrix A = Matrix(1, 1);

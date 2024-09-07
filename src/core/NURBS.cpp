@@ -53,7 +53,7 @@ Nurbs::Nurbs(uint32 degree,
              uint32 weightcount): Object()
 {
    mDegree = degree;
-   if(mDegree < 1)throw new Exception("Degree of NURBS must be greater 0.");
+   if(mDegree < 1)throw Exception(Tr("Degree of NURBS must be greater 0."));
 
    mControlCount = controlCount;
    mControlpoints = new Vertex3[mControlCount];

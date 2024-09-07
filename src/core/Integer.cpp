@@ -138,7 +138,7 @@ Integer Integer::valueOf(const jm::String& string)
          val += c.digitValue();
       }
       else if(c == '-')neg = true;
-      else throw new jm::Exception("Number format exception for input string: \"" + string + "\"");
+      else throw jm::Exception("Number format exception for input string: \"" + string + "\"");
    }
 
    if(neg)val *= -1;

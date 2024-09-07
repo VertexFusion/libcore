@@ -16,7 +16,7 @@ DateTest::DateTest(): Test()
    SetName("Test Date");
 }
 
-void DateTest::DoTest()
+void DateTest::doTest()
 {
    /*
     y : Jahr : 2015; 15

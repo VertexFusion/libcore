@@ -97,11 +97,11 @@ void Thread::Start()
    void* arg = (void*)this;
 
    int ret = pthread_create(&thread, nullptr, StartThread, arg);
-   if(ret != 0)throw new Exception("Error on starting Thread");
+   if(ret != 0)throw Exception("Error on starting Thread");
    #elif defined _WIN32
    void* arg = (void*)this;
    mHandle = CreateThread(0, 0, StartThread, arg, 0, &mThreadID);
-   if(mHandle == nullptr)throw new Exception("Error on starting Thread");
+   if(mHandle == nullptr)throw Exception("Error on starting Thread");
 
    #endif
 }

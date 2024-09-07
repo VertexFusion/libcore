@@ -16,7 +16,7 @@ DeflateTest::DeflateTest(): Test()
    SetName("Test Deflate");
 }
 
-void DeflateTest::DoTest()
+void DeflateTest::doTest()
 {
    jm::String test =
       "Hat der alte Hexenmeister\n"

@@ -71,12 +71,12 @@ namespace jm
          /*!
           \brief Returns the error message.
           */
-         String GetErrorMessage() const;
+         String errorMessage() const;
 
          /*!
           \brief Writes the stack trace into the std::cout
           */
-         void PrintStackTrace() const;
+         void printStackTrace() const;
 
          /*!
           \brief Returns the stack trace of the exception. Useful to find the origin of the exception.

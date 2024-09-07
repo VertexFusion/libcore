@@ -115,7 +115,7 @@ uint8* Base64::encode(const uint8* data, Integer& length)
 
    }
    length = index;
-   if(index > lenb64)throw new Exception("Array overflow! Algorithm wrong");
+   if(index > lenb64)throw Exception("Array overflow! Algorithm wrong");
    return ret;
 }
 

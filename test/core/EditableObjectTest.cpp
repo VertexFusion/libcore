@@ -146,7 +146,7 @@ EditableObjectTest::EditableObjectTest() : Test()
    SetName("Test Document & Editable Object");
 }
 
-void EditableObjectTest::DoTest()
+void EditableObjectTest::doTest()
 {
 
    AddressBook* book = new AddressBook();

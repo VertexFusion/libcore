@@ -19,7 +19,7 @@ MathTest::MathTest(): Test()
    SetName("Test Math");
 }
 
-void MathTest::DoTest()
+void MathTest::doTest()
 {
    double values[7] = {-10E+6, -12.3456789, -2, 0, 2, 12.3456789, 10E+6};
 

@@ -21,7 +21,7 @@ class GeometryTest : public jm::Test
 
    public:
       GeometryTest();
-      void DoTest();
+      void doTest();
 
 };
 

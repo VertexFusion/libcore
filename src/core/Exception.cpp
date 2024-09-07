@@ -58,12 +58,12 @@ Exception::Exception(const Exception& other): Object(),
 }
 
 
-String Exception::GetErrorMessage() const
+String Exception::errorMessage() const
 {
    return mMessage;
 }
 
-void Exception::PrintStackTrace() const
+void Exception::printStackTrace() const
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
 
@@ -82,7 +82,7 @@ void Exception::PrintStackTrace() const
       //Formatierung 0   libjameo.dylib                      0x00000001005d7dec _ZN2jm9ExceptionC1ENS_6StringE + 184
 
       //Schneide Index (o) ab
-      String line = symbollist[i];
+      String line = mSymbolList[i];
       line = line.trim();
       Integer pos = line.indexOf(' ');
       line = line.substring(pos).trim();
@@ -147,7 +147,7 @@ String Exception::GetStrackTrace() const
       //Formatierung 0   libjameo.dylib                      0x00000001005d7dec _ZN2jm9ExceptionC1ENS_6StringE + 184
 
       //Schneide Index (o) ab
-      String line = symbollist[i];
+      String line = mSymbolList[i];
       line = line.trim();
       Integer pos = line.indexOf(' ');
       line = line.substring(pos).trim();

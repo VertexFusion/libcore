@@ -62,7 +62,7 @@ void Preferences::load(File file)
    file.close();
    String data = String(buffer);
 
-   if(check != l)throw new Exception("Property file incomplete loaded.");
+   if(check != l)throw Exception("Property file incomplete loaded.");
 
    StringTokenizer* st = new StringTokenizer(data, "\r\n", false);
 
@@ -168,11 +168,10 @@ void Preferences::save(File file)
 
       file.close();
    }
-   catch(Exception* e)
+   catch(Exception& e)
    {
-      e->PrintStackTrace();
-      System::log("Cannot save property file: " + file.absolutePath(), kLogError);
-      delete e;
+      e.printStackTrace();
+      System::log(Tr("Cannot save property file: %1").arg(file.absolutePath()), kLogError);
    }
 }
 
@@ -228,10 +227,8 @@ int32 Preferences::valueInt(const String& key, int32 defaultValue) const
    {
       value = static_cast<int32>(Integer::valueOf(result));
    }
-   catch(Exception* e)
-   {
-      delete e;
-   }
+   catch(Exception& e)
+   {}
 
    return value;
 }

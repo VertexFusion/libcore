@@ -15,7 +15,7 @@ class VertexTest : public jm::Test
 {
    public:
       VertexTest();
-      void DoTest();
+      void doTest();
 
 };
 

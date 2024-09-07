@@ -93,7 +93,7 @@ void Inflater::Inflate(uint8*& buffer, Integer& length)
    if(mTotalIn == 0 && mWrap == false)
    {
       // Check compression header
-      if(mCompLength < 2)throw new Exception("No compressed data found!");
+      if(mCompLength < 2)throw Exception("No compressed data found!");
 
       //cmf: Compression Method and flag
       //flg: Flags
@@ -102,20 +102,20 @@ void Inflater::Inflate(uint8*& buffer, Integer& length)
 
       int8 compressionMethod = cmf & 0x0F;
       int8 compressionInfo = (cmf >> 4) & 0x0F;
-      if(compressionMethod != 8)throw new
+      if(compressionMethod != 8)throw
          Exception("Compression method must be deflate with 32k window. (" + String::valueOf(
                       compressionMethod) + ")");
-      if(compressionInfo > 7)throw new Exception("png window size is only for 32k implemented.");
+      if(compressionInfo > 7)throw Exception("png window size is only for 32k implemented.");
 
       //int8 fcheck = flg & 0x1F; Does not have to be calculated explicitly for decompression, as fcheck must be set so that the following check is successful.
       int8 fdict = (flg >> 5) & 0x01;
       // int8 flevel = ( flg >> 6 ) & 0x03; Not needed for decompression. For information purposes only
-      if(fdict != 0)throw new Exception("Inflater need Dictionary. Currently not implemented.");
+      if(fdict != 0)throw Exception("Inflater need Dictionary. Currently not implemented.");
 
       // Check Fcheck
       uint16 check1 = cmf * 256 + flg;
       uint16 check2 = check1 % 31;
-      if(check2 != 0)throw new Exception("Wrong checksum for compressed zlib data stream");
+      if(check2 != 0)throw Exception("Wrong checksum for compressed zlib data stream");
 
       // Prepare the read-in
       mCompIndex = 2;
@@ -186,7 +186,7 @@ void Inflater::SkipByteBits()
 
 uint8 Inflater::NextAlignedUInt8()
 {
-   if(mBit != 0)throw new Exception("Incorrect bit order for uint8!");
+   if(mBit != 0)throw Exception("Incorrect bit order for uint8!");
    uint8 ret = mCompBytes[mCompIndex++];
    mTotalIn++;
    return ret;
@@ -231,7 +231,7 @@ void Inflater::CheckCapacity()
    double ratio = mCompIndex.Int64() / (double)mCompLength.Int64();
    Integer newLength = mUncompLength + max(4096, (int32)(mUncompLength.Int64() / ratio));
    uint8* tmp = new uint8[newLength];
-   if(tmp == nullptr)throw new Exception("Cannot allocate memory!");
+   if(tmp == nullptr)throw Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
    delete[] mUncompBytes;
    mUncompBytes = tmp;
@@ -256,7 +256,7 @@ void Inflater::HandleUncompressedBlock()
    uint16 len = NextAlignedUInt16();
    uint16 nlen = NextAlignedUInt16();//Komplement von len
 
-   if((nlen & len) != 0)throw new Exception("Length of uncompressed block is corrupted.");
+   if((nlen & len) != 0)throw Exception("Length of uncompressed block is corrupted.");
 
    for(int32 a = 0; a < len; a++)
    {
@@ -308,7 +308,7 @@ void Inflater::HandleCompressedFixHuffman()
          //position to the output stream.
 
          Integer src = (mUncompIndex - distance) & 32767;
-         if(src < 0)throw new Exception("Distance in fix hufmann refer before output stream beginning.");
+         if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
          for(Integer a = 0; a < length; a++)
          {
             WriteUncompressed(mUncompBytes[src + a]);
@@ -353,7 +353,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
 
    do
    {
-      if(maxBits < 0)throw new Exception("Mööp");
+      if(maxBits < 0)throw Exception("Mööp");
 
       //2. Take all elements with the highest number of bits
       std::vector<Inflater::HuffmanTree*> focus;
@@ -385,7 +385,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
       // Check for duplicate entries
       for(uint32 a = 1; a < focus.size(); a++)
       {
-         if(focus[a - 1]->code == focus[a]->code)throw  new Exception("Mööp");
+         if(focus[a - 1]->code == focus[a]->code)throw Exception("Mööp");
       }
 
       //4. Remove bit in tmp
@@ -440,7 +440,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
          focus.erase(focus.begin());
       }
 
-      if(focus.size() != 0)throw new Exception("Mööp");
+      if(focus.size() != 0)throw Exception("Mööp");
       maxBits--;
 
    }
@@ -470,7 +470,7 @@ uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
    }
    while(bits <= MAX_BITS);
 
-   throw new Exception("No Huffman symbol found.");
+   throw Exception("No Huffman symbol found.");
 }
 
 //Erzeugt die Huffmancodes für eine gegebenes Array aus Codelängen
@@ -675,13 +675,13 @@ void Inflater::HandleCompressedDynamicHuffman()
          //position to the output stream.
 
          Integer src = mUncompIndex - distance;
-         if(src < 0)throw new Exception("Distance in fix hufmann refer before output stream beginning.");
+         if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
          for(int32 a = 0; a < length; a++)
          {
             WriteUncompressed(mUncompBytes[src + a]);
          }
       }
-      else throw Exception("Code has unexpected value: " + String::valueOf(value));
+      else Exception("Code has unexpected value: " + String::valueOf(value));
 
 
    }
@@ -722,7 +722,7 @@ void Inflater::Inflate()
       {
          HandleCompressedDynamicHuffman();
       }
-      else throw new Exception("Error in decompression process. Corrupt Block header");
+      else new Exception("Error in decompression process. Corrupt Block header");
 
    }
    while(!mLastBlock);
@@ -757,7 +757,7 @@ uint16 Inflater::NextFixedHuffmanCode()
          if(code >= 0x190
                && code <= 0x1FF)  // (9 bit) 1 1001 0000 - 1 1111 1111 ( 400 - 511 | 0x190 - 0x1FF ) -> 144 - 255: -256 =-0x100
             code -= 0x100;
-         else throw new Exception("Wrong code");
+         else new Exception("Wrong code");
       }
    }
    return code;
@@ -791,7 +791,7 @@ Inflater::HuffmanTree* Inflater::HuffmanTree::Find(uint16 _code, uint16 bits)
       uint16 target = msk & _code;
       if(target == 0 && this->node0 != nullptr)return this->node0->Find(_code, bits);
       else if(target != 0 && this->node1 != nullptr)return this->node1->Find(_code, bits);
-      else throw new Exception("Huffman Tree Error");
+      else new Exception("Huffman Tree Error");
    }
 
    return nullptr;

@@ -63,7 +63,7 @@ CharArray UTF16Decoder::Decode(const char* cstring)
            cstring[1] == static_cast<char>(0xBB) &&
            cstring[2] == static_cast<char>(0xBF))
    {
-      throw new Exception("UTF-8 Encoding detected.");
+      throw Exception("UTF-8 Encoding detected.");
    }
 
 

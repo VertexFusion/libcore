@@ -109,14 +109,14 @@ void StringList::sort()
 const String& StringList::get(Integer index) const
 {
    if(index < 0 || index >= mSize)
-      throw new Exception("Array index out of bounds.");
+      throw Exception("Array index out of bounds.");
    return mData[index];
 }
 
 void StringList::set(Integer index, const String& item)
 {
    if(index < 0 || index >= mSize)
-      throw new Exception("Array index out of bounds.");
+      throw Exception("Array index out of bounds.");
    mData[index] = item;
 }
 
@@ -148,7 +148,7 @@ void StringList::checkSize(Integer size)
 String& jm::StringList::operator[](const Integer index) const
 {
    if(index < 0 || index >= mSize)
-      throw new Exception("Array index out of bounds.");
+      throw Exception("Array index out of bounds.");
    return mData[index];
 }
 

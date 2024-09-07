@@ -16,7 +16,7 @@ HashtableTest::HashtableTest(): Test()
    SetName("Test Hashtable");
 }
 
-void HashtableTest::DoTest()
+void HashtableTest::doTest()
 {
 
    //Hashtable

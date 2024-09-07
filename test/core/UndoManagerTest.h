@@ -140,7 +140,7 @@ class UndoManagerTest : public jm::Test
 
    public:
       UndoManagerTest();
-      void DoTest();
+      void doTest();
       void TestRef(UndoTestObject* obj);
 };
 

@@ -17,7 +17,7 @@ LinkedListTest::LinkedListTest(): Test()
    SetName("Test LinkedList");
 }
 
-void LinkedListTest::DoTest()
+void LinkedListTest::doTest()
 {
    DoTest1();
    DoTest2(false);

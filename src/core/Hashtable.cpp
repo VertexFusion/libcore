@@ -235,7 +235,7 @@ Object* Hashtable::HashtableIterator::next()
       entry = entry->next;
       return reinterpret_cast<Object*>((retKey) ? & (last->key) : last->value);
    }
-   else throw new Exception("No such element in hashtable iterator.");
+   else throw Exception("No such element in hashtable iterator.");
 
 }
 

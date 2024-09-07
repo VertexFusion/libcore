@@ -53,14 +53,14 @@ void TestVector::addTest(Test* test)
    mTests->push_back(test);
 }
 
-Integer TestVector::execute()
+int64 TestVector::execute()
 {
    jm::gTotalTestCount = 0;
    jm::gTotalErrorCount = 0;
 
    clock_t bt = clock();
 
-   Integer single = -1;
+   int64 single = -1;
 
    if(mArg.size() > 0)
    {
@@ -68,13 +68,11 @@ Integer TestVector::execute()
       {
          single = Integer::valueOf(mArg);
       }
-      catch(jm::Exception* e)
-      {
-         delete e;
-      }
+      catch(jm::Exception& e)
+      {}
    }
 
-   for(Integer a = 0; a < mTests->size(); a++)
+   for(int64 a = 0; a < mTests->size(); a++)
    {
       if(single < 0 || single == a)testrun(mTests->at(a));
    }
@@ -104,16 +102,14 @@ void TestVector::testrun(Test* test)
 
    try
    {
-      test->DoTest();
+      test->doTest();
    }
-   catch(jm::Exception* e)
+   catch(jm::Exception& e)
    {
-      e->PrintStackTrace();
-
-      test->TestUnexpectedException(e->GetErrorMessage());
-
-      delete e;
+      e.printStackTrace();
+      test->TestUnexpectedException(e.errorMessage());
    }
+
 
    System::log(Tr("Test finished! %1 Tests, %2 Errors.")
                .arg(gTestCount)

@@ -16,7 +16,7 @@ class MathTest : public jm::Test
 
    public:
       MathTest();
-      void DoTest();
+      void doTest();
 
 };
 

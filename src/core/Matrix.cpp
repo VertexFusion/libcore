@@ -532,7 +532,7 @@ double Matrix::trace() const
 
 Vector Matrix::eigen() const
 {
-   if(m != n)throw new Exception("Matrix must be square");
+   if(m != n)throw Exception(Tr("Matrix must be square"));
 
    // See: https://en.wikipedia.org/wiki/Eigenvalue_algorithm
 
@@ -603,7 +603,7 @@ Vector Matrix::eigen() const
       return v;
    }
 
-   throw new Exception("Matrix is greater than 3x3");
+   throw Exception(Tr("Matrix is greater than 3x3"));
 }
 
 namespace jm

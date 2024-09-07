@@ -60,7 +60,7 @@ class ExampleTest: public jm::Test
 		};
 
 		// Mandatory overridden test method. The heart of the test!
-		void DoTest() override
+		void doTest() override
 		{
 			int32 a=2;
 			int32 b=5;
@@ -145,7 +145,7 @@ namespace jm
           \brief This is the main test method, which must be implemented by every derived test
           class.
           */
-         virtual void DoTest() = 0;
+         virtual void doTest() = 0;
 
          /*!
           \brief This method shall be called in the catch clause of an jm::Exception.
@@ -368,7 +368,7 @@ namespace jm
           \brief Executes the test vector.
           \return The number or errors. 0, if everything is ok.
           */
-         Integer execute();
+         int64 execute();
 
       private:
 
