@@ -73,10 +73,10 @@ namespace jm
          String mDelimiters;
 
           //! The current pointer position.
-         Integer mPosition;
+         int64 mPosition;
 
           //! The pointer position of the first character of the next token.
-         Integer mNewStart;
+         int64 mNewStart;
 
          //! Status indicating whether the delimiters should be treated as separate tokens and returned or not.
          bool mRetDelim;
@@ -86,7 +86,7 @@ namespace jm
           \param index The 0-based index of the character in the string to be examined.
           \return "True" if the character at position index is a defined delimiter. Otherwise, "false".
           */
-         bool IsDelimiter(Integer index) const;
+         bool isDelimiter(int64 index) const;
 
          /*!
           \brief This method searches for the end of a token starting from a desired position,
@@ -95,7 +95,7 @@ namespace jm
           \return The index in the string str where the end of the token was found, or the length of
           the token if no delimiter is found anymore.
           */
-         Integer FindTokenEnd(Integer startPos) const;
+         int64 findTokenEnd(int64 startPos) const;
 
          /*!
           \brief This method searches for the end of the delimiter starting from a specific position. If
@@ -104,7 +104,7 @@ namespace jm
           \param startPos The position to be searched.
           \return The index in the string str where the end of the delimiter was found.
          */
-         Integer FindDelimEnd(Integer startPos) const;
+         int64 findDelimiterEnd(int64 startPos) const;
    };
 
 

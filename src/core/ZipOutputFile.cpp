@@ -90,9 +90,9 @@ void ZipOutputFile::close()
       jm::SerializeLEInt32(cdfh, 16, entry->mCRC);//CRC
       jm::SerializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
       jm::SerializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
-      jm::SerializeLEInt16(cdfh, 28, cname.size().Int16());//ShxFile name Length
-      jm::SerializeLEInt16(cdfh, 30, cextra.size().Int16());//Extra field length
-      jm::SerializeLEInt16(cdfh, 32, ccomment.size().Int16());//Comment field length
+      jm::SerializeLEInt16(cdfh, 28, cname.size());//ShxFile name Length
+      jm::SerializeLEInt16(cdfh, 30, cextra.size());//Extra field length
+      jm::SerializeLEInt16(cdfh, 32, ccomment.size());//Comment field length
       jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
       jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
       jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
@@ -210,8 +210,8 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    jm::SerializeLEInt32(lfh, 14, 0);//CRC
    jm::SerializeLEInt32(lfh, 18, 0);//Compressed Size
    jm::SerializeLEInt32(lfh, 22, 0);//Uncompressed Size
-   jm::SerializeLEInt16(lfh, 26, cname.size().Int16());//File name Length
-   jm::SerializeLEInt16(lfh, 28, cextra.size().Int16());//Extra field length
+   jm::SerializeLEInt16(lfh, 26, cname.size());//File name Length
+   jm::SerializeLEInt16(lfh, 28, cextra.size());//Extra field length
 
    mFile->write(lfh, 30);
    if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());
@@ -226,7 +226,7 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    mEntries.add(entry, nullptr);
 }
 
-void ZipOutputFile::write(uint8* data, Integer offset, Integer length)
+void ZipOutputFile::write(uint8* data, int64 offset, int64 length)
 {
    mTemp->write(&data[offset], length);
 }

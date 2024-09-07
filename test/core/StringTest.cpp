@@ -125,7 +125,7 @@ void StringTest::doTest()
    TestEquals(str2.toLowerCase(), str1, "String.ToLowerCase() fails.");
 
    // Test arg Integer
-   Integer i = 25;
+   int64 i = 25;
    str1 = String("The number is %1!").arg(i);
    str2 = String("The number is 25!");
    TestEquals(str1, str2, "String.arg(Integer) fails. (1)");
@@ -168,4 +168,59 @@ void StringTest::doTest()
    str2 = String("[24,667..]");
    TestEquals(str1, str2, "String.arg(Double) fails. (7)");
 
+
+   // Test startsWith
+   str1 = "abcdef";
+   TestTrue(str1.startsWith("ab"), "String.startsWith() fails. (1)");
+   TestFalse(str1.startsWith("bc"), "String.startsWith() fails. (2)");
+
+   // Test endsWith
+   TestTrue(str1.endsWith("ef"), "String.endsWith() fails. (1)");
+   TestFalse(str1.endsWith("de"), "String.endsWith() fails. (2)");
+
+   // Test clear
+   str1.clear();
+   TestEquals(str1.size(),0l, "String.clear() fails");
+
+   // Test reverse
+   str1 = "abcdef";
+   str1=str1.reverse();
+   TestEquals(str1, String("fedcba"), "String.reverse() fails");
+
+   // Test insert
+   str1 = "abcdef";
+   str1.insert(3, "123");
+   TestEquals(str1, String("abc123def"), "String.insert(String) fails");
+
+   str1.insert(6, Char('4'));
+   TestEquals(str1, String("abc1234def"), "String.insert(Char) fails");
+
+   str1.clear();
+   str1.insert(0, "123");
+   TestEquals(str1, String("123"), "String.insert(String) fails");
+
+   str1.clear();
+   str1.insert(0, Char('x'));
+   TestEquals(str1, String("x"), "String.insert(Char) fails");
+
+   // Test deleteCharRangeAt
+   str1 = "abcdef";
+   str1.deleteCharRangeAt(2, 3);
+   TestEquals(str1, String("abf"), "String.deleteCharRangeAt() fails");
+
+   str1 = "abcdef";
+   str1.deleteCharRangeAt(0, 3);
+   TestEquals(str1, String("def"), "String.deleteCharRangeAt() fails");
+
+   str1 = "abcdef";
+   str1.deleteCharRangeAt(3, 3);
+   TestEquals(str1, String("abc"), "String.deleteCharRangeAt() fails");
+
+   str1 = "abcdef";
+   str1.deleteCharRangeAt(0, 6);
+   TestEquals(str1, String(""), "String.deleteCharRangeAt() fails");
+
+   str1 = "abcdef";
+   str1.deleteCharRangeAt(6, 0);
+   TestEquals(str1, String("abcdef"), "String.deleteCharRangeAt() fails");
 }

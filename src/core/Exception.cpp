@@ -48,6 +48,7 @@ Exception::Exception(const String& message): Object()
 
 Exception::Exception(const Exception& other): Object(),
    mMessage(other.mMessage),
+   addrlen(other.addrlen),
    mSymbolList(other.mSymbolList)
 {
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux

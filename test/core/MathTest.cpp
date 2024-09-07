@@ -221,11 +221,11 @@ void MathTest::doTest()
    TestEquals(jm::floatMaschineEpsilon(), expectedFloatEpsilon, "floatMaschineEpsilon() should return the correct machine epsilon for float");
 
    // Test divFloor function
-   TestEquals(jm::divFloor(10, 3), 3ll, "divFloor(10, 3) should return 3");
-   TestEquals(jm::divFloor(-10, 3), -4ll, "divFloor(-10, 3) should return -4");
-   TestEquals(jm::divFloor(10, -3), -4ll, "divFloor(10, -3) should return -4");
-   TestEquals(jm::divFloor(-10, -3), 3ll, "divFloor(-10, -3) should return 3");
-   TestEquals(jm::divFloor(10, 5), 2ll, "divFloor(10, 5) should return 2");
+   TestEquals(jm::divFloor(10, 3), 3l, "divFloor(10, 3) should return 3");
+   TestEquals(jm::divFloor(-10, 3), -4l, "divFloor(-10, 3) should return -4");
+   TestEquals(jm::divFloor(10, -3), -4l, "divFloor(10, -3) should return -4");
+   TestEquals(jm::divFloor(-10, -3), 3l, "divFloor(-10, -3) should return 3");
+   TestEquals(jm::divFloor(10, 5), 2l, "divFloor(10, 5) should return 2");
 
    // Test modFloor function
     TestEquals(jm::modFloor(10, 3), 1L,"modFloor(10, 3) should return 1");

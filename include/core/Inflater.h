@@ -62,17 +62,17 @@ namespace jm
 
          // Current Block
          uint8* mCompBytes;
-         Integer mCompLength;
-         Integer mCompIndex;
+         int64 mCompLength;
+         int64 mCompIndex;
 
          // Current Block
          uint8* mUncompBytes;
-         Integer mUncompLength;
-         Integer mUncompIndex;
+         int64 mUncompLength;
+         int64 mUncompIndex;
 
          // Counting variables for processed bytes.
-         Integer mTotalIn;
-         Integer mTotalOut;
+         int64 mTotalIn;
+         int64 mTotalOut;
 
          int32 mBit; // Index of the current bit in the current byte.
 
@@ -175,7 +175,7 @@ namespace jm
            \param buffer The compressed data
            \param length The length of the data
            */
-         void SetInput(uint8* buffer, Integer length);
+         void SetInput(uint8* buffer, int64 length);
 
           /*!
            \brief Returns true if the end of the input block has been reached, but the end of the input stream has not been reached yet.
@@ -193,7 +193,7 @@ namespace jm
            \param buffer The buffer to write the data into.
            \param length The length of the buffer.
            */
-         void Inflate(uint8*& buffer, Integer& length);
+         void Inflate(uint8*& buffer, int64& length);
 
           /*!
            \brief Resets the decompressor, allowing a new object to be decompressed.
@@ -204,19 +204,19 @@ namespace jm
            \brief Returns the number of remaining bytes in the input buffer.
            \return The number of remaining bytes.
            */
-         Integer GetRemaining();
+         int64 GetRemaining();
 
           /*!
            \brief Returns the total number of bytes in the compressed input.
            \return The total number of bytes.
            */
-         Integer GetTotalIn();
+         int64 GetTotalIn();
 
           /*!
            \brief Returns the total number of bytes of the decompressed output.
            \return The total number of bytes.
            */
-         Integer GetTotalOut();
+         int64 GetTotalOut();
 
    };
 

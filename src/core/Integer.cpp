@@ -148,7 +148,7 @@ Integer Integer::valueOf(const jm::String& string)
 
 Integer Integer::fromHex(const jm::String& str)
 {
-   return fromHex(str, 0, str.size().Uint32());
+   return fromHex(str, 0, str.size());
 }
 
 Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)

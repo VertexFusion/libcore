@@ -54,7 +54,7 @@ void I18nBundle::appendMo(File file)
    }
 
    // Read file from disk
-   Integer length = file.size();
+   int64 length = file.size();
    ByteArray buf = ByteArray(length, 0);
    VxfErrorStatus status = file.open(kFmRead);
    if(status != eOK)
@@ -62,7 +62,7 @@ void I18nBundle::appendMo(File file)
       System::log(Tr("Cannot open file: %1").arg(file.path()), kLogError);
       return;
    }
-   Integer check = file.Stream::readFully(buf);
+   int64 check = file.Stream::readFully(buf);
    file.close();
 
    if(check != length)
@@ -116,7 +116,7 @@ void I18nBundle::appendMo(File file)
    }
 
    // Process the records
-   for(Integer index = 0; index < stringCount; index++)
+   for(int64 index = 0; index < stringCount; index++)
    {
       const Record rec = records[index];
       const jm::String orig = jm::String((char*)&buffer[rec.origOffset], rec.origLength);
@@ -144,6 +144,15 @@ void I18nBundle::initDefault()
    // Append Data
    gDefaultTranslation->appendMo(transFileByBundleId(jm::kEmptyString,
                                  gDefaultTranslation->mLanguage));
+}
+
+void I18nBundle::quitDefault()
+{
+   if(gDefaultTranslation != nullptr)
+   {
+      delete gDefaultTranslation;
+      gDefaultTranslation = nullptr;
+   }
 }
 
 jm::File I18nBundle::transFileByBundleId(const String& filename,

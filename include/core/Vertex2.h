@@ -50,14 +50,14 @@ namespace jm
           \note We need fast access to this value and other protection measures are not necessary.
           So we leave it public.
           */
-         double x;
+         double x=0.0;
 
          /*!
           \brief Y component of vector.
         	 \note We need fast access to this value and other protection measures are not necessary.
         	 So we leave it public.
           */
-         double y;
+         double y=0.0;
 
 
          /*!

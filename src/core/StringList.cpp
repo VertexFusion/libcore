@@ -54,7 +54,7 @@ StringList::StringList(const StringList& other): Object()
    mSize = other.mSize;
    mLength = other.mLength;
    mData = new String[mLength];
-   for(Integer a = 0; a < mSize; a++)
+   for(int64 a = 0; a < mSize; a++)
    {
       mData[a] = other.mData[a];
    }
@@ -73,7 +73,7 @@ void StringList::append(const jm::String& string)
    mData[mSize++] = string;
 }
 
-Integer StringList::size() const
+int64 StringList::size() const
 {
    return mSize;
 }
@@ -82,13 +82,13 @@ void StringList::sort()
 {
    if(mSize < 1)return;
 
-   Integer n = mSize;
+   int64 n = mSize;
    do
    {
-      Integer newn = 1;
-      for(Integer i = 0; i < n - 1; ++i)
+      int64 newn = 1;
+      for(int64 i = 0; i < n - 1; ++i)
       {
-         Integer j = i + 1;
+         int64 j = i + 1;
          String* a1 = &mData[i];
          String* a2 = &mData[j];
          if(a1->compareTo(*a2) > 0)
@@ -106,14 +106,14 @@ void StringList::sort()
    while(n > 1);
 }
 
-const String& StringList::get(Integer index) const
+const String& StringList::get(int64 index) const
 {
    if(index < 0 || index >= mSize)
       throw Exception("Array index out of bounds.");
    return mData[index];
 }
 
-void StringList::set(Integer index, const String& item)
+void StringList::set(int64 index, const String& item)
 {
    if(index < 0 || index >= mSize)
       throw Exception("Array index out of bounds.");
@@ -135,17 +135,17 @@ bool StringList::contains(const String& str) const
 }
 
 
-void StringList::checkSize(Integer size)
+void StringList::checkSize(int64 size)
 {
    if(mSize + size < mLength)return;
    while(mLength < mSize + size)mLength += 8;
    String* tmp = new String[mLength];
-   for(Integer index = 0; index < mSize; index++)tmp[index] = mData[index];
+   for(int64 index = 0; index < mSize; index++)tmp[index] = mData[index];
    delete[] mData;
    mData = tmp;
 }
 
-String& jm::StringList::operator[](const Integer index) const
+String& jm::StringList::operator[](const int64 index) const
 {
    if(index < 0 || index >= mSize)
       throw Exception("Array index out of bounds.");
@@ -161,7 +161,7 @@ StringList& jm::StringList::operator=(const StringList& another)
       mLength = another.mLength;
       mSize = another.mSize;
       mData = new String[mLength];
-      for(Integer a = 0; a < mSize; a++)
+      for(int64 a = 0; a < mSize; a++)
       {
          mData[a] = another.mData[a];
       }

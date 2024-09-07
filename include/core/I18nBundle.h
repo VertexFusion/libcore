@@ -79,6 +79,11 @@ namespace jm
          static void initDefault();
 
          /*!
+            \brief This method is called on shutdown from jm::System to free the default language.
+          */
+         static void quitDefault();
+
+         /*!
           \brief Try to examine the language file for given bundle-id
           */
          static jm::File transFileByBundleId(const String& filename,

@@ -34,7 +34,6 @@
 #define jm_ByteArray_h
 
 #include "Object.h"
-#include "Integer.h"
 
 namespace jm
 {
@@ -57,13 +56,13 @@ namespace jm
           We make a copy of buffer.
           If buffer is NULL a NULL array is created.
           */
-         ByteArray(const int8* buffer, Integer size = -1);
-         ByteArray(const uint8* buffer, Integer size = -1);
+         ByteArray(const int8* buffer, int64 size = -1);
+         ByteArray(const uint8* buffer, int64 size = -1);
 
          /*!
           \brief Creates a byte array of size and fills every byte with ch.
          */
-         ByteArray(Integer size, uint8 ch);
+         ByteArray(int64 size, uint8 ch);
 
          ByteArray(const ByteArray& other);
 
@@ -87,7 +86,7 @@ namespace jm
          /*!
           \brief Returns the size of the array.
           */
-         Integer size() const;
+         int64 size() const;
 
          /*!
           \brief Returns true, if the array is NULL.
@@ -114,23 +113,23 @@ namespace jm
           the bytes beyond the new size are excluded, but the array will have the same size.
          \param newSize The new size of the array.
           */
-         void resize(Integer newSize);
+         void resize(int64 newSize);
 
-         uint8 get(Integer index) const;
+         uint8 get(int64 index) const;
 
-         void set(Integer index, uint8 item);
+         void set(int64 index, uint8 item);
 
          /*!
           \brief Replaces the content of this array with the content of the other array
           */
-         void replace(Integer tgtOffset, Integer srcOffset, const ByteArray& buffer, Integer length);
+         void replace(int64 tgtOffset, int64 srcOffset, const ByteArray& buffer, int64 length);
 
          /*!
           \brief Replaces every byte of oldValue by the newValue.
           */
          void replace(uint8 oldValue, uint8 newValue);
 
-         uint8& operator[](const Integer index) const;
+         uint8& operator[](const int64 index) const;
 
          ByteArray& operator=(const ByteArray& another);
 
@@ -139,15 +138,15 @@ namespace jm
       private:
 
          //! The size of array. Can be less than the size of mData.
-         Integer mArrSize;
+         int64 mArrSize;
 
          //! The size of the mData array.
-         Integer  mRawSize;
+         int64  mRawSize;
 
          //! The array itself.
          uint8* mData;
 
-         void init(const int8* buffer, Integer size);
+         void init(const int8* buffer, int64 size);
 
 
    };

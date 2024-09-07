@@ -121,6 +121,18 @@ void Test::TestEquals(int64 actual, int64 expected, const String& failmessage)
    jm::gErrorCount++;
 }
 
+void Test::TestEquals(int64 actual, int32 expected, const String& failmessage)
+{
+   jm::gTotalTestCount++;
+   jm::gTestCount++;
+
+   if(actual == expected) return;
+   System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
+
+   jm::gTotalErrorCount++;
+   jm::gErrorCount++;
+}
+
 void Test::TestEquals(uint64 actual, uint64 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;

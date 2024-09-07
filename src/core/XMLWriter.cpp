@@ -219,11 +219,15 @@ void XMLWriter::WriteAttribute(const jm::String& name, uint32 content)
    WriteAttribute(name, jm::String::valueOf(content));
 }
 
-void XMLWriter::WriteAttribute(const jm::String& name, Integer content)
+void XMLWriter::WriteAttribute(const jm::String& name, int64 content)
 {
    WriteAttribute(name, jm::String::valueOf(content));
 }
 
+void XMLWriter::WriteAttribute(const jm::String& name, uint64 content)
+{
+   WriteAttribute(name, jm::String::valueOf(content));
+}
 void XMLWriter::WriteAttribute(const jm::String& name, float content)
 {
    WriteAttribute(name, jm::String::valueOf(content));

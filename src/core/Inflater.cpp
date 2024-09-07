@@ -68,7 +68,7 @@ Inflater::~Inflater()
 {
 }
 
-void Inflater::SetInput(uint8* buffer, Integer length)
+void Inflater::SetInput(uint8* buffer, int64 length)
 {
    mCompBytes = buffer;
    mCompLength = length;
@@ -85,7 +85,7 @@ bool Inflater::Finished()
    return mEof;
 }
 
-void Inflater::Inflate(uint8*& buffer, Integer& length)
+void Inflater::Inflate(uint8*& buffer, int64& length)
 {
    mUncompIndex = 0;
 
@@ -146,17 +146,17 @@ void Inflater::Reset()
    mEof = false;
 }
 
-Integer Inflater::GetRemaining()
+int64 Inflater::GetRemaining()
 {
    return mCompLength - mCompIndex;
 }
 
-Integer Inflater::GetTotalIn()
+int64 Inflater::GetTotalIn()
 {
    return mTotalIn;
 }
 
-Integer Inflater::GetTotalOut()
+int64 Inflater::GetTotalOut()
 {
    return mTotalOut;
 }
@@ -228,8 +228,8 @@ void Inflater::CheckCapacity()
    if(mUncompIndex < mUncompLength)return;
 
    // Increase
-   double ratio = mCompIndex.Int64() / (double)mCompLength.Int64();
-   Integer newLength = mUncompLength + max(4096, (int32)(mUncompLength.Int64() / ratio));
+   double ratio = mCompIndex / (double)mCompLength;
+   int64 newLength = mUncompLength + max(4096l, (int64)(mUncompLength / ratio));
    uint8* tmp = new uint8[newLength];
    if(tmp == nullptr)throw Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
@@ -307,9 +307,9 @@ void Inflater::HandleCompressedFixHuffman()
          //stream, and copy length bytes from this
          //position to the output stream.
 
-         Integer src = (mUncompIndex - distance) & 32767;
+         int64 src = (mUncompIndex - distance) & 32767;
          if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
-         for(Integer a = 0; a < length; a++)
+         for(int64 a = 0; a < length; a++)
          {
             WriteUncompressed(mUncompBytes[src + a]);
          }
@@ -336,14 +336,14 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
    //1. Determine maxBits at the same time
    std::vector<Inflater::HuffmanTree*> nodes;
    int32 maxBits = 0;
-   for(Integer a = 0; a < lengths->size(); a++)
+   for(int64 a = 0; a < lengths->size(); a++)
    {
       // Only insert the elements that exist (i.e. length>0)
       if((*lengths)[a] != 0)
       {
          HuffmanTree* node = new HuffmanTree();
          node->length = (*lengths)[a];
-         node->symbol = a.Int16();
+         node->symbol = a;
          node->code = (*codes)[a];
          nodes.push_back(node);
 
@@ -674,7 +674,7 @@ void Inflater::HandleCompressedDynamicHuffman()
          //stream, and copy length bytes from this
          //position to the output stream.
 
-         Integer src = mUncompIndex - distance;
+         int64 src = mUncompIndex - distance;
          if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
          for(int32 a = 0; a < length; a++)
          {

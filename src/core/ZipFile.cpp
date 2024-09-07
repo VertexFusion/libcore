@@ -188,7 +188,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    if(cm == 8) //Deflate
    {
       Inflater inf = Inflater(true);
-      Integer control;
+      int64 control;
       inf.SetInput(reinterpret_cast<uint8*>(input.data()), entry->mCompressedSize);
       inf.Inflate(buffer, control);
    }

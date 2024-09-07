@@ -42,14 +42,14 @@ Deflater::~Deflater()
 {
 }
 
-void Deflater::SetInput(uint8* buffer, Integer length)
+void Deflater::SetInput(uint8* buffer, int64 length)
 {
    mUncompBytes = buffer;
    mUncompLength = length;
    mUncompIndex = 0;
 }
 
-void Deflater::Deflate(uint8*& buffer, Integer& length)
+void Deflater::Deflate(uint8*& buffer, int64& length)
 {
    mUncompIndex = 0;
 
@@ -82,12 +82,12 @@ void Deflater::Reset()
    mTotalOut = 0;
 }
 
-Integer Deflater::GetTotalIn()
+int64 Deflater::GetTotalIn()
 {
    return mTotalIn;
 }
 
-Integer Deflater::GetTotalOut()
+int64 Deflater::GetTotalOut()
 {
    return mTotalOut;
 }

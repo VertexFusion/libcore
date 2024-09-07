@@ -72,7 +72,7 @@ int64 TestVector::execute()
       {}
    }
 
-   for(int64 a = 0; a < mTests->size(); a++)
+   for(int64 a = 0; a < static_cast<int64>(mTests->size()); a++)
    {
       if(single < 0 || single == a)testrun(mTests->at(a));
    }
