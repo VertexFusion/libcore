@@ -729,9 +729,13 @@ namespace jm
 
          void append(const jm::String& string);
 
+         void remove(const jm::String& string);
+
          int64 size() const;
 
          void sort();
+
+         jm::String join(Char divider) const;
 
          const String& get(int64 index) const;
 

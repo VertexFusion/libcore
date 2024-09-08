@@ -371,6 +371,10 @@ namespace jm
            \brief This helper method sets the C-string used to resolve the filename in the operating system.
            */
          void setCString();
+
+         //! Helper for storing tag list
+         VxfErrorStatus setTags(const jm::StringList& tags);
+
    };
 
    /*!

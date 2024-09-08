@@ -127,7 +127,7 @@ void Test::TestEquals(int64 actual, int32 expected, const String& failmessage)
    jm::gTestCount++;
 
    if(actual == expected) return;
-   System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
+   System::log(jm::String("%1 %2!=%3").arg(failmessage).arg(actual).arg(expected), kLogError);
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;

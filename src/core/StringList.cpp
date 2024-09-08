@@ -73,6 +73,22 @@ void StringList::append(const jm::String& string)
    mData[mSize++] = string;
 }
 
+void StringList::remove(const jm::String& string)
+{
+   for(int64 index=0;index<mSize;index++)
+   {
+      if(mData[index]==string)
+      {
+         for(int64 index2=index+1;index2<mSize;index2++)
+         {
+            mData[index2-1]=mData[index2];
+         }
+         mSize--;
+         index--;
+      }
+   }
+}
+
 int64 StringList::size() const
 {
    return mSize;
@@ -104,6 +120,23 @@ void StringList::sort()
       n = newn;
    }
    while(n > 1);
+}
+
+jm::String StringList::join(Char divider) const
+{
+   int64 stringSize=mSize-1;
+   for(int64 index=0;index<mSize;index++)stringSize+=mData[index].size();
+
+   jm::String result;
+   result.checkCapacity(stringSize);
+
+   for(int64 index=0;index<mSize;index++)
+   {
+      if(index>0)result<<divider;
+      result<<mData[index];
+   }
+
+   return result;
 }
 
 const String& StringList::get(int64 index) const

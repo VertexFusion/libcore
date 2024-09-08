@@ -137,18 +137,20 @@ OBJECTS = $(ZLIB:.c=.o) $(SOURCES:.cpp=.o) $(MMSOURCES:.mm=.o)
 # Liste der Testdateien
 TEST =\
  $(PATH_TEST)/Main.cpp\
+ $(PATH_TEST)/core/DateTest.cpp\
+ $(PATH_TEST)/core/DeflateTest.cpp\
  $(PATH_TEST)/core/EditableObjectTest.cpp\
+ $(PATH_TEST)/core/FileTest.cpp\
  $(PATH_TEST)/core/GeometryTest.cpp\
  $(PATH_TEST)/core/HashtableTest.cpp\
  $(PATH_TEST)/core/LinkedListTest.cpp\
  $(PATH_TEST)/core/MathTest.cpp\
- $(PATH_TEST)/core/DateTest.cpp\
- $(PATH_TEST)/core/StringTest.cpp\
- $(PATH_TEST)/core/VertexTest.cpp\
- $(PATH_TEST)/core/StringTokenizerTest.cpp\
  $(PATH_TEST)/core/MatrixTest.cpp\
- $(PATH_TEST)/core/DeflateTest.cpp\
- $(PATH_TEST)/core/UndoManagerTest.cpp
+ $(PATH_TEST)/core/StringTest.cpp\
+ $(PATH_TEST)/core/StringListTest.cpp\
+ $(PATH_TEST)/core/StringTokenizerTest.cpp\
+ $(PATH_TEST)/core/UndoManagerTest.cpp\
+ $(PATH_TEST)/core/VertexTest.cpp\
 
 
 TESTOBJECTS =  $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o)

@@ -20,6 +20,8 @@
 #include "core/UndoManagerTest.h"
 #include "core/DateTest.h"
 #include "core/EditableObjectTest.h"
+#include "core/FileTest.h"
+#include "core/StringListTest.h"
 
 using namespace jm;
 
@@ -32,6 +34,7 @@ int main(int argc, const char* argv[])
 
    //CORE
    vec->addTest(new StringTest());
+   vec->addTest(new StringListTest());
    vec->addTest(new StringTokenizerTest());
    vec->addTest(new HashtableTest());
    vec->addTest(new LinkedListTest());
@@ -44,6 +47,7 @@ int main(int argc, const char* argv[])
    vec->addTest(new DateTest());
    vec->addTest(new DateTest());
    vec->addTest(new EditableObjectTest());
+   vec->addTest(new FileTest());
 
    Integer result = vec->execute();
 

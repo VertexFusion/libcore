@@ -224,6 +224,25 @@ bool File::canWrite() const
 
 }
 
+bool File::canExecute() const
+{
+
+   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+
+   return access(mCstr.constData(), X_OK) == 0;
+
+   #elif defined _WIN32//Windows
+
+   struct stat filestat;
+   int32 result = stat(mCstr.constData(), &filestat);
+   if(result != 0)return false;  //Existiert nicht
+   if(filestat.st_mode & _S_IEXEC) return true;
+   return false;
+
+   #endif
+
+}
+
 bool File::isDirectory() const
 {
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
@@ -416,6 +435,8 @@ bool File::renameTo(const String& newPath)
    if(result == 0)
    {
       mCstr = newname;
+      mPathname=mCstr;
+
       return true;
    }
    else
@@ -551,17 +572,24 @@ String File::extension() const
    return mPathname.substring(mPathname.lastIndexOf('.') + 1);
 }
 
+bool File::isAbsolute() const
+{
+   return true;
+}
+
+
 bool File::createNewFile()
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    mHandle = fopen(mCstr.constData(), "wb");
-   Integer ret = mHandle != nullptr;
+   bool exist = (mHandle != nullptr);
+   close();
+   return exist;
    #elif defined _WIN32 //Windows
    Integer ret = fopen_s(&mHandle, mCstr.constData(), "wb");
-   #endif
-
    close();
    return ret == 0;
+   #endif
 }
 
 VxfErrorStatus File::open(FileMode mode)
@@ -753,26 +781,17 @@ StringList File::getTags()const
    return StringList();
 }
 
-VxfErrorStatus File::addTag(const String& tag)
+VxfErrorStatus File::setTags(const jm::StringList& tags)
 {
-   #ifdef __APPLE__ //macOS
-   StringList oldtags = getTags();
-
-   //Check is tag is present, if yes, just return
-   for(Integer index = 0; index < oldtags.size(); index++)
-   {
-      if(oldtags[index].equalsIgnoreCase(tag))return eOK;
-   }
+      #ifdef __APPLE__ //macOS
 
    //Create new array and append tag
-   Integer newsize = oldtags.size() + 1;
+   Integer newsize = tags.size();
    CFStringRef* strs = new CFStringRef[newsize];
    for(Integer index = 0; index < newsize - 1; index++)
    {
-      strs[index] = oldtags[index].toCFString();;
+      strs[index] = tags[index].toCFString();
    }
-
-   strs[newsize - 1] = tag.toCFString();
 
    CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
 
@@ -810,76 +829,53 @@ VxfErrorStatus File::addTag(const String& tag)
    else return eNo;
 
    #endif
+
+   #ifdef __linux__
+
+   String string(tags.join(Char(',')));
+   ByteArray buffer=string.toCString();
+
+   int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(),0);
+
+   return (result==0)?jm::eOK:jm::eNo;
+
+   #endif
+
+   return eNotImplemented;
+}
+
+
+VxfErrorStatus File::addTag(const String& tag)
+{
+   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
+
+   StringList tags=getTags();
+   if(!tags.contains(tag))
+   {
+      tags.append(tag);
+      return setTags(tags);
+   }
+   else return eOK;
+
+   #endif
+
    return eNotImplemented;
 }
 
 VxfErrorStatus File::removeTag(const String& tag)
 {
-   #ifdef __APPLE__ //macOS
-   StringList oldtags = getTags();
+   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
-   //Check is tag is present, if not, just return
-   bool found = false;
-   for(Integer index = 0; index < oldtags.size(); index++)
+   StringList tags=getTags();
+   if(tags.contains(tag))
    {
-      if(oldtags[index].equalsIgnoreCase(tag))
-      {
-         found = true;
-         break;
-      }
+      tags.remove(tag);
+      return setTags(tags);
    }
-   if(!found)return eOK;
-
-   //Create new array and remove tag
-   Integer newsize = oldtags.size() - 1;
-   CFStringRef* strs = new CFStringRef[newsize];
-   Integer cnt = 0;
-   for(Integer index = 0; index < newsize + 1; index++)
-   {
-      if(oldtags[index].equalsIgnoreCase(tag) == false)
-      {
-         CFStringRef cfstr = oldtags[index].toCFString();
-         strs[cnt] = cfstr;
-         cnt++;
-      }
-   }
-
-   CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
-
-   //
-   //
-   //
-
-   // Create necessary system related objects
-   CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
-                       mCstr.constData(),
-                       kCFStringEncodingUTF8);
-   CFURLRef urlref = CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
-                     cfstr,
-                     kCFURLPOSIXPathStyle,
-                     isDirectory());
-
-   // Query tags
-   Boolean result = CFURLSetResourcePropertyForKey(urlref,
-                    kCFURLTagNamesKey,
-                    newtags,
-                    nullptr);
-
-   // Clean unnecessary stuff
-
-   for(Integer index = 0; index < newsize; index++)
-   {
-      CFRelease(strs[index]);
-   }
-
-   CFRelease(cfstr);
-   CFRelease(urlref);
-   CFRelease(newtags);
-
-   if(result == true)return eOK;
-   else return eNo;
+   else return eOK;
 
    #endif
+
    return eNotImplemented;
 }
 
