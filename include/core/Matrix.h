@@ -78,19 +78,19 @@ namespace jm
          /*!
           \brief Number of rows.
           */
-         Integer m;
+         int64 m;
 
          /*!
           \brief Number of columns.
           */
-         Integer n;
+         int64 n;
 
          /*!
           \brief This constructor creates a matrix and initializes it with zeros.
           \param rows Number of rows.
           \param cols Number of columns.
           */
-         Matrix(Integer rows, Integer cols);
+         Matrix(int64 rows, int64 cols);
 
          /*!
           \brief Special constructor for a 3x3 matrix.
@@ -136,7 +136,7 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value of the cell.
           */
-         void set(Integer row, Integer col, double value);
+         void set(int64 row, int64 col, double value);
 
          /*!
           \brief Adds to the value of a cell the passed value.
@@ -144,14 +144,14 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value to be added to the cell.
           */
-         void add(Integer row, Integer col, double value);
+         void add(int64 row, int64 col, double value);
 
          /*!
           \brief Returns the value of a cell.
           \param row The 0-based index of the row.
           \param col The 0-based index of the column.
           */
-         double get(Integer row, Integer col) const;
+         double get(int64 row, int64 col) const;
 
          /*!
           \brief This method fills all elements of the matrix with 0.
@@ -173,7 +173,7 @@ namespace jm
          \brief This method inserts the contents of the Other matrix into this matrix. Upper left
           element is r,c
          */
-         void insert(const Matrix& A, Integer r, Integer c);
+         void insert(const Matrix& A, int64 r, int64 c);
 
          /*!
           \brief This method sets all values on the diagonal elements to the desired value.

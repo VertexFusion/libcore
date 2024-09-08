@@ -13,7 +13,7 @@
 
 DeflateTest::DeflateTest(): Test()
 {
-   SetName("Test Deflate");
+   setName("Test Deflate");
 }
 
 void DeflateTest::doTest()
@@ -57,9 +57,9 @@ void DeflateTest::doTest()
    uint8* compressed = NULL;
    int64 compressedLength = 0;
    jm::Deflater deflater = jm::Deflater();
-   deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
-   deflater.Deflate(compressed, compressedLength);
+   deflater.reset();
+   deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
+   deflater.deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
@@ -74,13 +74,13 @@ void DeflateTest::doTest()
    std::cout << "Restored Length: " << restoredLength << std::endl;
 
    //Vergleiche uncompressed und restored...
-   TestEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
+   testEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
 
    int64 l = std::min(uncompressedLength, restoredLength);
 
    for(int64 a = 0; a < l; a++)
    {
-      TestEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
+      testEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
    }
 
    delete[] compressed;
@@ -647,9 +647,9 @@ void DeflateTest::doTest()
    //Komprimieren
    compressed = NULL;
    compressedLength = 0;
-   deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
-   deflater.Deflate(compressed, compressedLength);
+   deflater.reset();
+   deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
+   deflater.deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
@@ -663,13 +663,13 @@ void DeflateTest::doTest()
    std::cout << "Restored Length: " << restoredLength << std::endl;
 
    //Vergleiche uncompressed und restored...
-   TestEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
+   testEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
 
    l = std::min(uncompressedLength, restoredLength);
 
    for(uint32 a = 0; a < l; a++)
    {
-      TestEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
+      testEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
    }
 
    delete[] compressed;
@@ -687,9 +687,9 @@ void DeflateTest::doTest()
    //Komprimieren
    compressed = NULL;
    compressedLength = 0;
-   deflater.Reset();
-   deflater.SetInput((uint8*)uncompressed.data(), uncompressedLength);
-   deflater.Deflate(compressed, compressedLength);
+   deflater.reset();
+   deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
+   deflater.deflate(compressed, compressedLength);
 
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
@@ -703,13 +703,13 @@ void DeflateTest::doTest()
    std::cout << "Restored Length: " << restoredLength << std::endl;
 
    //Vergleiche uncompressed und restored...
-   TestEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
+   testEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
 
    l = std::min(uncompressedLength, restoredLength);
 
    for(uint32 a = 0; a < l; a++)
    {
-      TestEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
+      testEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
    }
 
    delete[] compressed;

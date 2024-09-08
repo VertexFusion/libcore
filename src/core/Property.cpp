@@ -159,7 +159,7 @@ const String& Property::stringValue() const
    return mTextValue;
 }
 
-VxfErrorStatus Property::setIntegerValue(Integer value)
+VxfErrorStatus Property::setIntegerValue(int64 value)
 {
    mNumberValue.intValue = value;
    mType = kPropertyTypeInteger;
@@ -178,7 +178,7 @@ dwg::Color Property::GetDwgColourValue() const
 	return mDwgColourValue;
 }*/
 
-Integer Property::integerValue() const
+int64 Property::integerValue() const
 {
    return mNumberValue.intValue;
 }

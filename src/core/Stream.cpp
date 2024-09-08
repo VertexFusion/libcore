@@ -38,14 +38,14 @@ Stream::Stream(): Object()
 
 }
 
-Integer Stream::write(const String& string)
+int64 Stream::write(const String& string)
 {
    ByteArray cstr = string.toCString();
-   Integer ret = write((const uint8*)cstr.constData(), cstr.size());
+   int64 ret = write((const uint8*)cstr.constData(), cstr.size());
    return ret;
 }
 
-Integer Stream::readFully(ByteArray& buffer)
+int64 Stream::readFully(ByteArray& buffer)
 {
    return readFully(buffer, buffer.size());
 };

@@ -124,7 +124,7 @@ void Inflater::Inflate(uint8*& buffer, int64& length)
    }
 
 
-   Inflate();
+   inflate();
 
    buffer = mUncompBytes;
    length = mUncompIndex;
@@ -162,7 +162,7 @@ int64 Inflater::GetTotalOut()
 }
 
 
-uint8 Inflater::NextBit()
+uint8 Inflater::nextBit()
 {
    uint8 ret = ((0x01 << mBit) & mCompBytes[mCompIndex]) >> mBit;
 
@@ -176,7 +176,7 @@ uint8 Inflater::NextBit()
    return ret;
 }
 
-void Inflater::SkipByteBits()
+void Inflater::skipByteBits()
 {
    if(mBit == 0)return;
    mBit = 0;
@@ -184,7 +184,7 @@ void Inflater::SkipByteBits()
    mTotalIn++;
 }
 
-uint8 Inflater::NextAlignedUInt8()
+uint8 Inflater::nextAlignedUInt8()
 {
    if(mBit != 0)throw Exception("Incorrect bit order for uint8!");
    uint8 ret = mCompBytes[mCompIndex++];
@@ -192,38 +192,38 @@ uint8 Inflater::NextAlignedUInt8()
    return ret;
 }
 
-uint16 Inflater::NextAlignedUInt16()
+uint16 Inflater::nextAlignedUInt16()
 {
    uint8 sub[2];
-   sub[0] = NextAlignedUInt8();
-   sub[1] = NextAlignedUInt8();
+   sub[0] = nextAlignedUInt8();
+   sub[1] = nextAlignedUInt8();
 
-   uint16 ret = DeserializeLEUInt16(sub, 0);
+   uint16 ret = deserializeLEUInt16(sub, 0);
    return ret;
 }
 
-uint16 Inflater::NextUIntX(uint8 bits)
+uint16 Inflater::nextUIntX(uint8 bits)
 {
    uint16 ret = 0;
    for(uint8 a = 0; a < bits; a++)
    {
       ret <<= 1;
-      ret |= NextBit();
+      ret |= nextBit();
    }
    return ret;
 }
 
-uint16 Inflater::NextUIntXR(uint8 bits)
+uint16 Inflater::nextUIntXR(uint8 bits)
 {
    uint16 ret = 0;
    for(uint8 a = 0; a < bits; a++)
    {
-      ret |= (NextBit() << a);
+      ret |= (nextBit() << a);
    }
    return ret;
 }
 
-void Inflater::CheckCapacity()
+void Inflater::checkCapacity()
 {
    if(mUncompIndex < mUncompLength)return;
 
@@ -238,46 +238,46 @@ void Inflater::CheckCapacity()
    mUncompLength = newLength;
 }
 
-void Inflater::WriteUncompressed(uint8 byte)
+void Inflater::writeUncompressed(uint8 byte)
 {
-   CheckCapacity();
+   checkCapacity();
    mUncompBytes[mUncompIndex++] = byte;
    mTotalOut++;
 }
 
 
-void Inflater::HandleUncompressedBlock()
+void Inflater::handleUncompressedBlock()
 {
    //	std::cout << "UNCOMPRESSED BLOCK\n";
 
    //read LEN and NLEN (see next section)
    //copy LEN bytes of data to output
-   SkipByteBits();
-   uint16 len = NextAlignedUInt16();
-   uint16 nlen = NextAlignedUInt16();//Komplement von len
+   skipByteBits();
+   uint16 len = nextAlignedUInt16();
+   uint16 nlen = nextAlignedUInt16();//Komplement von len
 
    if((nlen & len) != 0)throw Exception("Length of uncompressed block is corrupted.");
 
    for(int32 a = 0; a < len; a++)
    {
-      uint8 b = NextAlignedUInt8();
-      WriteUncompressed(b);
+      uint8 b = nextAlignedUInt8();
+      writeUncompressed(b);
    }
 }
 
 
-void Inflater::HandleCompressedFixHuffman()
+void Inflater::handleCompressedFixHuffman()
 {
    //std::cout << "COMPRESSED BLOCK FIX HUFFMAN\n";
    bool endOfBlock = false;
 
    while(!endOfBlock)
    {
-      uint16 value = NextFixedHuffmanCode();
+      uint16 value = nextFixedHuffmanCode();
 
       if(value < 256)
       {
-         WriteUncompressed((uint8) value);
+         writeUncompressed((uint8) value);
       }
       else if(value == 256)
       {
@@ -287,7 +287,7 @@ void Inflater::HandleCompressedFixHuffman()
       {
          //Length
          uint8 extrabits = LENGTH_EXTRA[value - 257];
-         uint16 length = NextUIntXR((uint8) extrabits);
+         uint16 length = nextUIntXR((uint8) extrabits);
          length += LENGTH_OFFSET[value - 257];
 
 
@@ -297,10 +297,10 @@ void Inflater::HandleCompressedFixHuffman()
          //codes, with possible additional bits as shown in the table
          //shown in Paragraph 3.2.5, above.
 
-         uint16 code = NextUIntX(5);
+         uint16 code = nextUIntX(5);
 
          extrabits = DIST_EXTRA[code];
-         uint16 distance = NextUIntXR(extrabits);
+         uint16 distance = nextUIntXR(extrabits);
          distance += DIST_OFFSET[code];
 
          //move backwards distance bytes in the output
@@ -311,7 +311,7 @@ void Inflater::HandleCompressedFixHuffman()
          if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
          for(int64 a = 0; a < length; a++)
          {
-            WriteUncompressed(mUncompBytes[src + a]);
+            writeUncompressed(mUncompBytes[src + a]);
          }
       }
       else throw Exception("Code has unexpected value: " + String::valueOf(value));
@@ -320,7 +320,7 @@ void Inflater::HandleCompressedFixHuffman()
    }
 }
 
-Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16>* codes)
+Inflater::HuffmanTree* Inflater::createTree(Array<uint16>* lengths, Array<uint16>* codes)
 {
    // Algorithm:
    //1. Determine maximum number of bits
@@ -451,7 +451,7 @@ Inflater::HuffmanTree* Inflater::CreateTree(Array<uint16>* lengths, Array<uint16
 
 
 // Reads the next Huffman value from the stream and returns the code
-uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
+uint16 Inflater::decodeHuffmanSymbol(Inflater::HuffmanTree* tree)
 {
    int16 bits = 0;
    uint16  ret = 0;
@@ -460,7 +460,7 @@ uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
    {
       //Nächstes Bit einlesen
       ret <<= 1;
-      ret |= NextBit();
+      ret |= nextBit();
       bits++;
 
       HuffmanTree* symbol = tree->Find(ret, bits);
@@ -474,7 +474,7 @@ uint16 Inflater::DecodeHuffmanSymbol(Inflater::HuffmanTree* tree)
 }
 
 //Erzeugt die Huffmancodes für eine gegebenes Array aus Codelängen
-Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
+Array<uint16>* Inflater::huffmanCodes(Array<uint16>* codelengths)
 {
    //Größte Codelänge
    MAX_BITS = 0;
@@ -537,7 +537,7 @@ Array<uint16>* Inflater::GetHuffmanCodes(Array<uint16>* codelengths)
 }
 
 
-void Inflater::ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count)
+void Inflater::readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count)
 {
    int32 cnt = 0;
 
@@ -546,14 +546,14 @@ void Inflater::ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tre
 
    while(cnt < count)
    {
-      length = DecodeHuffmanSymbol(tree);
+      length = decodeHuffmanSymbol(tree);
 
 
       switch(length)
       {
          //16: Copy the previous code length 3 - 6 times.
          case 16:
-            repeat = NextUIntXR(2) + 3;
+            repeat = nextUIntXR(2) + 3;
             for(uint16 a = 0; a < repeat; a++)
             {
                (*target)[cnt] = (*target)[cnt - 1];
@@ -563,7 +563,7 @@ void Inflater::ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tre
 
          //17: Repeat a code length of 0 for 3 - 10 times.
          case 17:
-            repeat = NextUIntXR(3) + 3;
+            repeat = nextUIntXR(3) + 3;
             for(uint16 a = 0; a < repeat; a++)
             {
                (*target)[cnt] = 0;
@@ -573,7 +573,7 @@ void Inflater::ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tre
 
          //18: Repeat a code length of 0 for 11 - 138 times
          case 18:
-            repeat = NextUIntXR(7) + 11;
+            repeat = nextUIntXR(7) + 11;
             for(uint16 a = 0; a < repeat; a++)
             {
                (*target)[cnt] = 0;
@@ -592,14 +592,14 @@ void Inflater::ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tre
 
 
 
-void Inflater::HandleCompressedDynamicHuffman()
+void Inflater::handleCompressedDynamicHuffman()
 {
    //std::cout << "COMPRESSED BLOCK DYNAMIC HUFFMAN\n";
 
    //Lies die Längenangaben ein
-   uint16 HLIT = NextUIntXR(5) + 257;
-   uint16 HDIST = NextUIntXR(5) + 1;
-   uint16 HCLEN = NextUIntXR(4) + 4;
+   uint16 HLIT = nextUIntXR(5) + 257;
+   uint16 HDIST = nextUIntXR(5) + 1;
+   uint16 HCLEN = nextUIntXR(4) + 4;
 
    //Positionierhilfe für die Codelängen
    const uint16 CODELENTH_ALPHABET[19] = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
@@ -611,41 +611,41 @@ void Inflater::HandleCompressedDynamicHuffman()
    //Einlesen der definierten Codelängen (3 Bit feste Breite)
    for(uint16 a = 0; a < HCLEN; a++)
    {
-      uint16 codelength = NextUIntXR(3);
+      uint16 codelength = nextUIntXR(3);
       (*codelengths)[CODELENTH_ALPHABET[a]] = codelength;
    }
 
    //Erzeuge aus den Codelängen die HuffmanCodes
-   Array<uint16>* codes = GetHuffmanCodes(codelengths);
+   Array<uint16>* codes = huffmanCodes(codelengths);
 
-   HuffmanTree* intermediate = CreateTree(codelengths, codes);
+   HuffmanTree* intermediate = createTree(codelengths, codes);
 
    Array<uint16>* lengths2 = new Array<uint16>(HLIT);
-   ReadLengthDists(lengths2, intermediate, HLIT);
+   readLengthDists(lengths2, intermediate, HLIT);
 
    Array<uint16>* distances2 = new Array<uint16>(HDIST);
-   ReadLengthDists(distances2, intermediate, HDIST);
+   readLengthDists(distances2, intermediate, HDIST);
 
-   Array<uint16>* lengthcodes2 = GetHuffmanCodes(lengths2);
+   Array<uint16>* lengthcodes2 = huffmanCodes(lengths2);
 
-   Array<uint16>* distcodes2 = GetHuffmanCodes(distances2);
+   Array<uint16>* distcodes2 = huffmanCodes(distances2);
 
    //Workaround
    MAX_BITS = 15;
 
-   HuffmanTree* htvallen = CreateTree(lengths2, lengthcodes2);
-   HuffmanTree* htdist = CreateTree(distances2, distcodes2);
+   HuffmanTree* htvallen = createTree(lengths2, lengthcodes2);
+   HuffmanTree* htdist = createTree(distances2, distcodes2);
 
    bool endOfBlock = false;
    while(!endOfBlock)
    {
       uint16 value ;
 
-      value = DecodeHuffmanSymbol(htvallen);
+      value = decodeHuffmanSymbol(htvallen);
 
       if(value < 256)
       {
-         WriteUncompressed((uint8) value);
+         writeUncompressed((uint8) value);
       }
       else if(value == 256)
       {
@@ -655,7 +655,7 @@ void Inflater::HandleCompressedDynamicHuffman()
       {
          //Length
          uint8 extrabits = LENGTH_EXTRA[value - 257];
-         uint16 length = NextUIntXR(extrabits);
+         uint16 length = nextUIntXR(extrabits);
          length += LENGTH_OFFSET[value - 257];
 
          //Distance
@@ -664,10 +664,10 @@ void Inflater::HandleCompressedDynamicHuffman()
          //codes, with possible additional bits as shown in the table
          //shown in Paragraph 3.2.5, above.
 
-         uint16 code = DecodeHuffmanSymbol(htdist);
+         uint16 code = decodeHuffmanSymbol(htdist);
 
          extrabits = DIST_EXTRA[code];
-         uint16 distance = NextUIntXR(extrabits);
+         uint16 distance = nextUIntXR(extrabits);
          distance += DIST_OFFSET[code];
 
          //move backwards distance bytes in the output
@@ -678,7 +678,7 @@ void Inflater::HandleCompressedDynamicHuffman()
          if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
          for(int32 a = 0; a < length; a++)
          {
-            WriteUncompressed(mUncompBytes[src + a]);
+            writeUncompressed(mUncompBytes[src + a]);
          }
       }
       else Exception("Code has unexpected value: " + String::valueOf(value));
@@ -698,29 +698,29 @@ void Inflater::HandleCompressedDynamicHuffman()
 }
 
 
-void Inflater::Inflate()
+void Inflater::inflate()
 {
 
    do
    {
       //Blockheader lesen
-      int8 bfinal = NextBit();
-      int8 btype = NextBit() + NextBit() * 2;
+      int8 bfinal = nextBit();
+      int8 btype = nextBit() + nextBit() * 2;
       if(bfinal == 1)mLastBlock = true;
 
       //stored with no compression BTYPE = 00
       if(btype == 0)
       {
-         HandleUncompressedBlock();
+         handleUncompressedBlock();
       }
       // Compression with fixed Huffman codes (BTYPE=01)
       else if(btype == 1)
       {
-         HandleCompressedFixHuffman();
+         handleCompressedFixHuffman();
       }
       else if(btype == 2)
       {
-         HandleCompressedDynamicHuffman();
+         handleCompressedDynamicHuffman();
       }
       else new Exception("Error in decompression process. Corrupt Block header");
 
@@ -730,10 +730,10 @@ void Inflater::Inflate()
    mEof = true;
 }
 
-uint16 Inflater::NextFixedHuffmanCode()
+uint16 Inflater::nextFixedHuffmanCode()
 {
    // Siehe RFC 1951 3.2.6
-   uint16 code = NextUIntX(7);
+   uint16 code = nextUIntX(7);
 
    //Mit 7 Bit wird der Bereich 256-279 kodiert:
    // (7 bit) 000 0000 - 001 0111 das entspricht (0 - 23 | 0x00 - 0x17 )
@@ -742,7 +742,7 @@ uint16 Inflater::NextFixedHuffmanCode()
    else
    {
       code <<= 1;
-      code |= NextBit();
+      code |= nextBit();
 
       if(code >= 0xC0
             && code <= 0xC7)  // (8 bit) 1100 0000 - 1100 0111 ( 192 - 199 | 0xC0 - 0xC7 ) -> 280 - 287: +88 = +0x58
@@ -753,7 +753,7 @@ uint16 Inflater::NextFixedHuffmanCode()
       else
       {
          code <<= 1;
-         code |= NextBit();
+         code |= nextBit();
          if(code >= 0x190
                && code <= 0x1FF)  // (9 bit) 1 1001 0000 - 1 1111 1111 ( 400 - 511 | 0x190 - 0x1FF ) -> 144 - 255: -256 =-0x100
             code -= 0x100;

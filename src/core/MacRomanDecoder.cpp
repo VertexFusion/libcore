@@ -64,12 +64,12 @@ MacRomanDecoder::~MacRomanDecoder()
    delete[] codepage;
 }
 
-Char MacRomanDecoder::DecodeCharacter(uint8 macencode)
+Char MacRomanDecoder::decodeCharacter(uint8 macencode)
 {
    return codepage[macencode];
 }
 
-uint8 MacRomanDecoder::EncodeCharacter(uint16 unicode)
+uint8 MacRomanDecoder::encodeCharacter(uint16 unicode)
 {
    switch(unicode)
    {
@@ -610,7 +610,7 @@ uint8 MacRomanDecoder::EncodeCharacter(uint16 unicode)
 }
 
 
-CharArray MacRomanDecoder::Decode(const char* cstring)
+CharArray MacRomanDecoder::decode(const char* cstring)
 {
    // Determine length
    uint32 length = 0;
@@ -620,20 +620,20 @@ CharArray MacRomanDecoder::Decode(const char* cstring)
 
    for(uint32 a = 0; a < length; a++)
    {
-      array.buffer[a] = DecodeCharacter(cstring[a]);
+      array.buffer[a] = decodeCharacter(cstring[a]);
    }
 
    return array;
 }
 
-ByteArray MacRomanDecoder::Encode(const CharArray& string)
+ByteArray MacRomanDecoder::encode(const CharArray& string)
 {
    // The number of encoded bytes remains the same.
    ByteArray cstring = ByteArray(string.length, 0);
 
-   for(Integer a = 0; a < string.length; a++)
+   for(int64 a = 0; a < string.length; a++)
    {
-      cstring[a] = EncodeCharacter(string.buffer[a].unicode());
+      cstring[a] = encodeCharacter(string.buffer[a].unicode());
    }
 
    return cstring;

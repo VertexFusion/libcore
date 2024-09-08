@@ -39,11 +39,11 @@ jm::Vector::Vector()
    data = nullptr;
 }
 
-jm::Vector::Vector(Integer rows)
+jm::Vector::Vector(int64 rows)
 {
    m = rows;
    data = new double[rows];
-   for(Integer a = 0; a < m; a++)data[a] = 0.0;
+   for(int64 a = 0; a < m; a++)data[a] = 0.0;
 }
 
 jm::Vector::Vector(const Vector& another)
@@ -52,7 +52,7 @@ jm::Vector::Vector(const Vector& another)
    if(m > 0)
    {
       data = new double[m];
-      for(Integer a = 0; a < m; a++)data[a] = another.data[a];
+      for(int64 a = 0; a < m; a++)data[a] = another.data[a];
    }
    else data = nullptr;
 }
@@ -68,7 +68,7 @@ double jm::Vector::abs() const
 {
    double ret = 0;
 
-   for(Integer a = 0; a < m; a++)ret += data[a] * data[a];
+   for(int64 a = 0; a < m; a++)ret += data[a] * data[a];
 
    ret = std::sqrt(ret);
 
@@ -79,23 +79,23 @@ void jm::Vector::normalize()
 {
    double v = abs();
 
-   for(Integer a = 0; a < m; a++)data[a] /= v;
+   for(int64 a = 0; a < m; a++)data[a] /= v;
 }
 
 void jm::Vector::zeros()
 {
-   for(Integer a = 0; a < m; a++)data[a] = 0.0;
+   for(int64 a = 0; a < m; a++)data[a] = 0.0;
 }
 
 void jm::Vector::ones()
 {
-   for(Integer a = 0; a < m; a++)data[a] = 1.0;
+   for(int64 a = 0; a < m; a++)data[a] = 1.0;
 }
 
 double jm::Vector::dotProduct(const Vector& another) const
 {
    double prod = 0.0;
-   for(Integer a = 0; a < m; a++)
+   for(int64 a = 0; a < m; a++)
    {
       prod += data[a] * another.data[a];
    }
@@ -105,7 +105,7 @@ double jm::Vector::dotProduct(const Vector& another) const
 std::ostream& jm::operator<< (std::ostream& out, const Vector& vec)
 {
    out << "[ ";
-   for(Integer a = 0; a < vec.m; a++)out << vec.data[a] << ' ' ;
+   for(int64 a = 0; a < vec.m; a++)out << vec.data[a] << ' ' ;
    out << " ]";
    return out;
 }
@@ -119,7 +119,7 @@ jm::Vector& jm::Vector::operator=(const jm::Vector& another)
       if(m > 0)
       {
          data = new double[m];
-         for(Integer a = 0; a < m; a++)data[a] = another.data[a];
+         for(int64 a = 0; a < m; a++)data[a] = another.data[a];
       }
       else data = nullptr;
    }
@@ -132,7 +132,7 @@ const jm::Vector jm::operator+(const jm::Vector& v1, const jm::Vector& v2)
    if(v1.m != v2.m) throw Exception("Dimensions don't match");
    jm::Vector v = jm::Vector(v1.m);
 
-   for(Integer a = 0; a < v.m; a++)v.data[a] = v1.data[a] + v2.data[a];
+   for(int64 a = 0; a < v.m; a++)v.data[a] = v1.data[a] + v2.data[a];
 
    return v;
 }
@@ -143,7 +143,7 @@ const jm::Vector jm::operator-(const jm::Vector& v1, const jm::Vector& v2)
 
    Vector v = Vector(v1.m);
 
-   for(Integer a = 0; a < v.m; a++)v.data[a] = v1.data[a] - v2.data[a];
+   for(int64 a = 0; a < v.m; a++)v.data[a] = v1.data[a] - v2.data[a];
 
    return v;
 }
@@ -152,7 +152,7 @@ const jm::Vector jm::operator*(const double& d, const jm::Vector& v)
 {
    jm::Vector r = jm::Vector(v.m);
 
-   for(Integer a = 0; a < v.m; a++)r.data[a] = d * v.data[a];
+   for(int64 a = 0; a < v.m; a++)r.data[a] = d * v.data[a];
 
    return r;
 

@@ -65,7 +65,7 @@ class AddressBook : public Document
 
       void AddAddress(Address* adr);
 
-      Integer GetAddressCount() const;
+      int64 GetAddressCount() const;
 
    private:
 
@@ -101,7 +101,7 @@ class Address : public EditableObject
          return mName;
       };
 
-      VxfErrorStatus SetStreetAddress(const String& street, Integer housenumber)
+      VxfErrorStatus SetStreetAddress(const String& street, int64 housenumber)
       {
          openTransaction();
          setMember(&mStreetName, street);
@@ -114,7 +114,7 @@ class Address : public EditableObject
          return mStreetName;
       }
 
-      Integer GetHouseNumber()const
+      int64 GetHouseNumber()const
       {
          return mHouseNumber;
       }
@@ -123,7 +123,7 @@ class Address : public EditableObject
 
       String mName;
       String mStreetName;
-      Integer mHouseNumber;
+      int64 mHouseNumber;
       String mLocation;
       Country mCountry;
       Date mBirthdate;
@@ -135,7 +135,7 @@ void AddressBook::AddAddress(Address* adr)
    mEntries.add(adr, undoManager());
 }
 
-Integer AddressBook::GetAddressCount() const
+int64 AddressBook::GetAddressCount() const
 {
    return mEntries.size();
 }
@@ -143,7 +143,7 @@ Integer AddressBook::GetAddressCount() const
 
 EditableObjectTest::EditableObjectTest() : Test()
 {
-   SetName("Test Document & Editable Object");
+   setName("Test Document & Editable Object");
 }
 
 void EditableObjectTest::doTest()
@@ -162,63 +162,63 @@ void EditableObjectTest::doTest()
    // Set "wrong" name, test undo and correct.
    adr->SetName("UweRuntemund");
    um->close();
-   TestEquals(adr->GetName(), "UweRuntemund", "Name wrong (1)");
+   testEquals(adr->GetName(), "UweRuntemund", "Name wrong (1)");
 
    um->undo();
 
    adr->SetName("Uwe Runtemund");
    um->close();
-   TestEquals(adr->GetName(), "Uwe Runtemund", "Name wrong (2)");
+   testEquals(adr->GetName(), "Uwe Runtemund", "Name wrong (2)");
 
-   TestEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (3)");
+   testEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (3)");
    book->AddAddress(adr);
    um->close();
-   TestEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (4)");
+   testEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (4)");
    um->undo();
-   TestEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (5)");
+   testEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (5)");
    um->redo();
-   TestEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (6)");
+   testEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (6)");
 
    // Check simple Transaction
-   TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (7)");
-   TestEquals(adr->GetHouseNumber(), 0, "House number wrong (8)");
+   testEquals(adr->GetStreet(), kEmptyString, "Street name wrong (7)");
+   testEquals(adr->GetHouseNumber(), 0, "House number wrong (8)");
    adr->SetStreetAddress("Waldstraße", 51);
    um->close();
-   TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (9)");
-   TestEquals(adr->GetHouseNumber(), 51, "House number wrong (10)");
+   testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (9)");
+   testEquals(adr->GetHouseNumber(), 51, "House number wrong (10)");
    um->undo();
-   TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (11)");
-   TestEquals(adr->GetHouseNumber(), 0, "House number wrong (12)");
+   testEquals(adr->GetStreet(), kEmptyString, "Street name wrong (11)");
+   testEquals(adr->GetHouseNumber(), 0, "House number wrong (12)");
    um->redo();
-   TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (13)");
-   TestEquals(adr->GetHouseNumber(), 51, "House number wrong (14)");
+   testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (13)");
+   testEquals(adr->GetHouseNumber(), 51, "House number wrong (14)");
 
    // Check transaction with expected data failure. As result, we expect no data changes.
    VxfErrorStatus status = adr->SetStreetAddress("Teststraße", -19);
-   TestEquals(status, eInvalidInput, "VxfErrorStatus wrong (15)");
-   TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (16)");
-   TestEquals(adr->GetHouseNumber(), 51, "House number wrong (17)");
-   TestFalse(um->hasOpenTransaction(), "Transaction is open (18)");
-   TestFalse(um->hasOpenUndoStep(), "Undo Step is open (19)");
+   testEquals(status, eInvalidInput, "VxfErrorStatus wrong (15)");
+   testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (16)");
+   testEquals(adr->GetHouseNumber(), 51, "House number wrong (17)");
+   testFalse(um->hasOpenTransaction(), "Transaction is open (18)");
+   testFalse(um->hasOpenUndoStep(), "Undo Step is open (19)");
 
    // Undo shall happen with previous data, as nothing should happened
    um->undo();
-   TestEquals(adr->GetStreet(), kEmptyString, "Street name wrong (20)");
-   TestEquals(adr->GetHouseNumber(), 0, "House number wrong (21)");
+   testEquals(adr->GetStreet(), kEmptyString, "Street name wrong (20)");
+   testEquals(adr->GetHouseNumber(), 0, "House number wrong (21)");
    um->redo();
-   TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (22)");
-   TestEquals(adr->GetHouseNumber(), 51, "House number wrong (23)");
+   testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (22)");
+   testEquals(adr->GetHouseNumber(), 51, "House number wrong (23)");
 
    // Changing just the house number should not have any effect, though calling setMember with
    // the street will return eNotChanged, which should not have any effect on the transaction
    status = adr->SetStreetAddress("Waldstraße", 7);
-   TestEquals(status, eOK, "VxfErrorStatus wrong (24)");
-   TestEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");
-   TestEquals(adr->GetHouseNumber(), 7, "House number wrong (26)");
-   TestFalse(um->hasOpenTransaction(), "Transaction is open (27)");
-   TestTrue(um->hasOpenUndoStep(), "Undo Step is closed (28)");
+   testEquals(status, eOK, "VxfErrorStatus wrong (24)");
+   testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");
+   testEquals(adr->GetHouseNumber(), 7, "House number wrong (26)");
+   testFalse(um->hasOpenTransaction(), "Transaction is open (27)");
+   testTrue(um->hasOpenUndoStep(), "Undo Step is closed (28)");
    um->close();
-   TestFalse(um->hasOpenUndoStep(), "Undo Step is open (28)");
+   testFalse(um->hasOpenUndoStep(), "Undo Step is open (28)");
 
    delete book;
    delete adr;

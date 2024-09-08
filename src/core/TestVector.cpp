@@ -98,7 +98,7 @@ void TestVector::testrun(Test* test)
 {
    if(test == nullptr)return;
 
-   System::log(Tr("Execute %1...").arg(test->GetName()), kLogInformation);
+   System::log(Tr("Execute %1...").arg(test->name()), kLogInformation);
 
    try
    {
@@ -107,7 +107,7 @@ void TestVector::testrun(Test* test)
    catch(jm::Exception& e)
    {
       e.printStackTrace();
-      test->TestUnexpectedException(e.errorMessage());
+      test->testUnexpectedException(e.errorMessage());
    }
 
 

@@ -315,120 +315,120 @@ namespace jm
          \brief The helper method calculates the number of days in the given year.
          \param y The year.
          */
-         int64 DaysInYear(int64 y) const;
+         int64 daysInYear(int64 y) const;
 
          /*!
          \brief The helper method returns the number of the first day of the year
          \param y The year.
          */
-         int64 DayFromYear(int64 y) const;
+         int64 dayFromYear(int64 y) const;
 
          /*!
          \brief The helper method indicates the time value at the beginning of the year
          \param y The year.
          */
-         int64 TimeFromYear(int64 y) const;
+         int64 timeFromYear(int64 y) const;
 
          /*!
          \brief The helper method specifies the year to the given time value
          \param t absolute time.
          */
-         int64 YearFromTime(int64 t) const;
+         int64 yearFromTime(int64 t) const;
 
          /*!
          \brief The helper method returns 0 if the year is a non-leap year and a 1 if it is a leap year.
          \param t absolute time.
          */
-         int16 InLeapYear(int64 t) const;
+         int16 inLeapYear(int64 t) const;
 
          /*!
          \brief The helper method specifies the day within a year
          \param t absolute time.
          */
-         int64 DayWithinYear(int64 t) const;
+         int64 dayWithinYear(int64 t) const;
 
          /*!
          \brief The helper method returns the month of the specified time
          \param t absolute time.
          \return A number between (and including) 0 and (including) 11 (0 = January, 11 = December)
          */
-         int64 MonthFromTime(int64 t) const;
+         int64 monthFromTime(int64 t) const;
 
          /*!
          \brief The helper method returns the day in a month.
          \param t absolute time.
          \return A number between (and including) 1 and (including) 31
          */
-         int64 DateFromTime(int64 t) const;
+         int64 dateFromTime(int64 t) const;
 
          /*!
          \brief The helper method returns the week day of the specified time
          \param t absolute time.
          \return A number between (and including) 0 and (including) 6 (0=Sunday, 6=Saturday)
          */
-         int64 WeekDay(int64 t) const;
+         int64 weekDay(int64 t) const;
 
          /*!
          \brief This helper method returns the local time zone adjustment
          \return Difference in ms
          */
-         int64 LocalTimeZoneAdjustment() const;
+         int64 localTimeZoneAdjustment() const;
 
          /*!
          \brief This helper method returns the adjustment from daylight saving time to standard time or vice versa
          */
-         int64 DaylightSavingTimeAdjustment() const;
+         int64 daylightSavingTimeAdjustment() const;
 
          /*!
          \brief The helper method converts absolute time (UTC) to local time
          \param t absolute time.
          */
-         int64 LocalTime(int64 t) const;
+         int64 localTime(int64 t) const;
 
          /*!
          \brief The helper method calculates the absolute time (UTC) from local time
          \param t local time.
          */
-         int64 UTC(int64 t) const;
+         int64 utc(int64 t) const;
 
          /*!
          \brief The helper method calculates the hour from the time
          \param t absolute time.
          */
-         int64 HourFromTime(int64 t) const;
+         int64 hourFromTime(int64 t) const;
 
          /*!
          \brief The helper method calculates the minute from the time
          \param t absolute time.
          */
-         int64 MinuteFromTime(int64 t) const;
+         int64 minuteFromTime(int64 t) const;
 
          /*!
          \brief The helper method calculates the second from the time
          \param t absolute time.
          */
-         int64 SecondFromTime(int64 t) const;
+         int64 secondFromTime(int64 t) const;
 
          /*!
          \brief The helper method calculates the number millisecond from the time
          \param t absolute time.
          */
-         int64 MilliFromTime(int64 t) const;
+         int64 milliFromTime(int64 t) const;
 
          /*!
          \brief The helper method calculates the time in milliseconds from it's arguments
          */
-         int64 MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
+         int64 makeTime(int64 hour, int64 minute, int64 second, int64 milli) const;
 
          /*!
          \brief The helper method calculates the number of days from their arguments
          */
-         int64 MakeDay(int64 year, int64 month, int64 date) const;
+         int64 makeDay(int64 year, int64 month, int64 date) const;
 
          /*!
          \brief The helper method calculates the number of milliseconds from their arguments
          */
-         int64 MakeDate(int64 day, int64 millis) const;
+         int64 makeDate(int64 day, int64 millis) const;
 
 
    };
@@ -473,9 +473,9 @@ namespace jm
 
          ~DateFormatter();
 
-         String Format(const Date& date)const;
+         String format(const Date& date)const;
 
-         static String Format(const String& format, const Date& date);
+         static String format(const String& format, const Date& date);
 
       private:
 
@@ -519,7 +519,7 @@ namespace jm
 
             Pattern(const String& value, bool text = false);
 
-            void AppendPattern(String& value, const Date& date) const;
+            void appendPattern(String& value, const Date& date) const;
          };
 
          Pattern* mPatterns;

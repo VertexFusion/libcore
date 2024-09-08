@@ -62,14 +62,14 @@ namespace jm
           \param cString The C-string that is to be converted.
           \return The chararray, which contains the Unicode-encoded representation of the C-string.
           */
-         virtual CharArray Decode(const char* cString) = 0;
+         virtual CharArray decode(const char* cString) = 0;
 
          /*!
           \brief This Method encodes the given string into an encoded String using the encoding implemented in the decoder.
           \param string The Unicode-encoded String be converted.
           \return A C-string whose coding is determined by this decoder.
           */
-         virtual ByteArray Encode(const CharArray& string) = 0;
+         virtual ByteArray encode(const CharArray& string) = 0;
 
    };
 
@@ -116,38 +116,38 @@ namespace jm
          /*!
           \brief This method returns the name of the character set.
           */
-         String Name();
+         String name() const;
 
          /*!
           \brief This method tests whether the character set is addressed under the desired name.
           \param name The name that is to be checked using this method.
           \return Returns true if either the name of the character set or one of the alternative names matches \c name. Otherwise, return value is false.
           */
-         bool HasName(const String& name);
+         bool hasName(const String& name);
 
          /*!
           \brief This method decodes the C-string and generates a chararray that has been converted through the encoding.
           \param cString The C-string that is to be converted.
           */
-         CharArray Decode(const char* cString);
+         CharArray decode(const char* cString);
 
          /*!
           \brief This Method generates the corresponding C-string from a string using this character set.
           \param string The C-string that is to be converted.
           */
-         ByteArray Encode(const CharArray& string);
+         ByteArray encode(const CharArray& string);
 
          /*!
           \brief This method returns the desired charset by name.
           \param name The name of the charset.
           \return The charset, or NULL, if the charset for name was not found.
           */
-         static Charset* ForName(const String& name);
+         static Charset* forName(const String& name);
 
          /*!
           \brief This method returns the default character set (UTF-8).
           */
-         static Charset* GetDefault();
+         static Charset* getDefault();
 
          /*!
           \brief This method guesses the character encoding from the given array and returns the guessed name.
@@ -158,8 +158,8 @@ namespace jm
           - Linux: UTF-8
           However, even if one of the values above is returned it does not automatically mean that no character set was recognised.
           */
-         static String Guess(const char* stream,
-                             Integer length);
+         static String guess(const char* stream,
+                             int64 length);
 
       private:
 
@@ -193,7 +193,7 @@ namespace jm
          */
          CharsetDecoder* mDecoder;
 
-         friend void QuitCharsets();
+         friend void quitCharsets();
    };
 
    /*!
@@ -205,8 +205,8 @@ namespace jm
    {
       public:
          RawDecoder();
-         CharArray Decode(const char* cString)override;
-         ByteArray Encode(const CharArray& string) override;
+         CharArray decode(const char* cString)override;
+         ByteArray encode(const CharArray& string) override;
    };
 
    /*!
@@ -217,8 +217,8 @@ namespace jm
    {
       public:
          UTF8Decoder();
-         CharArray Decode(const char* cString)override;
-         ByteArray Encode(const CharArray& string) override;
+         CharArray decode(const char* cString)override;
+         ByteArray encode(const CharArray& string) override;
    };
 
 
@@ -232,8 +232,8 @@ namespace jm
          bool be;
       public:
          UTF16Decoder(bool isBE);
-         CharArray Decode(const char* cString)override;
-         ByteArray Encode(const CharArray& string) override;
+         CharArray decode(const char* cString)override;
+         ByteArray encode(const CharArray& string) override;
    };
 
    /*!
@@ -248,8 +248,8 @@ namespace jm
       public:
          Windows1252Decoder();
          ~Windows1252Decoder();
-         CharArray Decode(const char* cString)override;
-         ByteArray Encode(const CharArray& string) override;
+         CharArray decode(const char* cString)override;
+         ByteArray encode(const CharArray& string) override;
    };
 
    /*!
@@ -264,24 +264,24 @@ namespace jm
       public:
          MacRomanDecoder();
          ~MacRomanDecoder();
-         CharArray Decode(const char* cString)override;
-         ByteArray Encode(const CharArray& string) override;
+         CharArray decode(const char* cString)override;
+         ByteArray encode(const CharArray& string) override;
 
-         Char DecodeCharacter(uint8 macencode);
-         uint8 EncodeCharacter(uint16 unicode);
+         Char decodeCharacter(uint8 macencode);
+         uint8 encodeCharacter(uint16 unicode);
    };
 
    /*!
    \brief Initialises the charsets.
    \discussion Called by System::init. Therefore no export necessary.
    */
-   void InitCharsets();
+   void initCharsets();
 
    /*!
    \brief Deletes the charset objects.
    \discussion Called by System::quit. Therefore no export necessary.
    */
-   void QuitCharsets();
+   void quitCharsets();
 
 }
 

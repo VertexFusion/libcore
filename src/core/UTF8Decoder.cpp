@@ -38,7 +38,7 @@ UTF8Decoder::UTF8Decoder(): CharsetDecoder()
 
 }
 
-CharArray UTF8Decoder::Decode(const char* cstring)
+CharArray UTF8Decoder::decode(const char* cstring)
 {
    //Bestimme Länge
    uint32 strLength = 0;
@@ -151,7 +151,7 @@ CharArray UTF8Decoder::Decode(const char* cstring)
    return ret;
 }
 
-ByteArray UTF8Decoder::Encode(const CharArray& string)
+ByteArray UTF8Decoder::encode(const CharArray& string)
 {
    uint32 cntC = 0;
    for(uint32 a = 0; a < string.length; a++)
@@ -173,7 +173,7 @@ ByteArray UTF8Decoder::Encode(const CharArray& string)
 
    ByteArray cstring = ByteArray(cntC, 0);
    cntC = 0;
-   for(Integer a = 0; a < string.length; a++)
+   for(int64 a = 0; a < string.length; a++)
    {
       uint16 character = string.buffer[a].unicode();
       if(character < 0x80)   //1 Zeichen

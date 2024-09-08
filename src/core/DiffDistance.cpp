@@ -36,10 +36,10 @@ using namespace jm;
 
 DiffDistance::DiffDistance()
 {
-   m = 0;
-   n = 0;
-   diagonal = nullptr;
-   distance = 0;
+   mRows = 0;
+   mCols = 0;
+   mDiagonal = nullptr;
+   mDistance = 0;
    calc = 0;
    u = new std::vector<Object*>();
    v = new std::vector<Object*>();
@@ -47,21 +47,21 @@ DiffDistance::DiffDistance()
 
 DiffDistance::~DiffDistance()
 {
-   Clear();
+   clear();
    delete u;
    delete v;
 }
 
-void DiffDistance::Clear()
+void DiffDistance::clear()
 {
-   if(diagonal != nullptr)
+   if(mDiagonal != nullptr)
    {
-      delete diagonal;
-      diagonal = nullptr;
+      delete mDiagonal;
+      mDiagonal = nullptr;
    }
    u->clear();
    v->clear();
-   distance = 0;
+   mDistance = 0;
    calc = 0;
 }
 
@@ -75,10 +75,10 @@ void DiffDistance::addV(Object* obj)
    v->push_back(obj);
 }
 
-DiffBacktrace* DiffDistance::Solve()
+DiffBacktrace* DiffDistance::solve()
 {
-   m = u->size();
-   n = v->size();
+   mRows = u->size();
+   mCols = v->size();
 
 
    //Speed-Up: Durch Betrachtung der Diagonalen....
@@ -91,42 +91,42 @@ DiffBacktrace* DiffDistance::Solve()
 
 
    // which is the diagonal containing the bottom R.H. element?
-   Integer lba = v->size() - u->size();
+   int64 lba = v->size() - u->size();
 
    DiffDiag* main = new DiffDiag(this, u, v, 0);
 
 
    if(lba >= 0)
    {
-      diagonal = main;
-      for(Integer i = 0; i < lba; i++)
-         diagonal = diagonal->GetAbove();
+      mDiagonal = main;
+      for(int64 i = 0; i < lba; i++)
+         mDiagonal = mDiagonal->above();
    }
    else
    {
-      diagonal = main->GetBelow();
-      for(Integer i = 0; i < ~lba; i++)
-         diagonal = diagonal->GetAbove();
+      mDiagonal = main->below();
+      for(int64 i = 0; i < ~lba; i++)
+         mDiagonal = mDiagonal->above();
    }
 
-   distance = diagonal->GetEntry(Min(m, n));
+   mDistance = mDiagonal->entry(Min(mRows, mCols));
 
-   Integer sz = m * n;
-   std::cout << Tr("Distance %1").arg(distance) << std::endl;
+   int64 sz = mRows * mCols;
+   std::cout << Tr("Distance %1").arg(mDistance) << std::endl;
    std::cout << Tr("Calculated %1/%2: %3%")
              .arg(calc)
              .arg(sz)
-             .arg(calc * 100.0 / sz.Dbl())
+             .arg(calc * 100.0 / double(sz))
              << std::endl;
 
-   int i = (int) std::min(m, n);
-   return DiffBacktrace::Backtrace(diagonal, i);
+   int i = (int) std::min(mRows, mCols);
+   return DiffBacktrace::backtrace(mDiagonal, i);
 }
 
 
-Integer DiffDistance::GetDistance() const
+int64 DiffDistance::distance() const
 {
-   return distance;
+   return mDistance;
 }
 
 

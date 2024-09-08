@@ -54,8 +54,8 @@ Hashtable::~Hashtable()
 void* Hashtable::put(String key, void* value)
 {
    // Make sure that no entry already exists in the hash table.
-   Integer hash = key.hashCode();
-   Integer index = (hash & 0x7FFFFFFF) % mArrLength;
+   int64 hash = key.hashCode();
+   int64 index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry* e = mData[index] ; e != nullptr ; e = e->next)
    {
       if((e->hash == hash) && e->key.equals(key))
@@ -87,9 +87,9 @@ void* Hashtable::put(String key, void* value)
 
 void* Hashtable::get(const String& key) const
 {
-   Integer hash = key.constHashCode();
+   int64 hash = key.constHashCode();
 
-   Integer index = (hash & 0x7FFFFFFF) % mArrLength;
+   int64 index = (hash & 0x7FFFFFFF) % mArrLength;
    for(HashtableEntry* e = mData[index] ; e != nullptr ; e = e->next)
    {
       if((e->hash == hash) && e->key.equals(key))
@@ -103,8 +103,8 @@ void* Hashtable::get(const String& key) const
 
 void* Hashtable::remove(const String& key)
 {
-   Integer hash = key.constHashCode();
-   Integer index = (hash & 0x7FFFFFFF) % mArrLength;
+   int64 hash = key.constHashCode();
+   int64 index = (hash & 0x7FFFFFFF) % mArrLength;
 
    HashtableEntry* prev = nullptr;
    HashtableEntry* e = mData[index];
@@ -138,7 +138,7 @@ void* Hashtable::remove(const String& key)
 
 void Hashtable::clear()
 {
-   for(Integer index = 0; index < mArrLength; index++)
+   for(int64 index = 0; index < mArrLength; index++)
    {
       HashtableEntry* e = mData[index];
       while(e != nullptr)
@@ -152,7 +152,7 @@ void Hashtable::clear()
    mDataLength = 0;
 }
 
-Integer Hashtable::size() const
+int64 Hashtable::size() const
 {
    return mDataLength;
 }

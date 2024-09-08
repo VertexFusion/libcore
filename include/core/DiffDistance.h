@@ -59,7 +59,7 @@ namespace jm
           /*!
            \brief Number of calculated steps.
            */
-         Integer calc;
+         int64 calc;
 
          /*!
           \brief Constructor
@@ -76,7 +76,7 @@ namespace jm
 
            This method clears the internal state of the DiffDistance object in order to prepare for a new calculation.
            */
-         void Clear();
+         void clear();
 
          /*!
           \brief Adds an element to the u vector.
@@ -91,7 +91,7 @@ namespace jm
           /*!
            \brief This method calculates the Levenshtein distance between the two vectors.
            */
-         DiffBacktrace* Solve();
+         DiffBacktrace* solve();
 
           /*!
            \brief Returns the Levenshtein distance between the two vectors.
@@ -102,7 +102,7 @@ namespace jm
 
            \return The Levenshtein distance between the two vectors.
            */
-         Integer GetDistance() const;
+         int64 distance() const;
 
       private:
 
@@ -113,22 +113,22 @@ namespace jm
            it calculates the distance between two vectors of objects. If the distance is 0, it means
            the objects are identical.
            */
-         Integer distance;
+         int64 mDistance;
 
          /*!
           \brief Calculated diagonal
           */
-         DiffDiag* diagonal;
+         DiffDiag* mDiagonal;
 
          /*!
           \brief Number of rows.
           */
-         Integer m;
+         int64 mRows;
 
          /*!
           \brief Number of columns
           */
-         Integer n;
+         int64 mCols;
 
          /*!
           \brief Comparison vector 1

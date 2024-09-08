@@ -42,14 +42,14 @@ Deflater::~Deflater()
 {
 }
 
-void Deflater::SetInput(uint8* buffer, int64 length)
+void Deflater::setInput(uint8* buffer, int64 length)
 {
    mUncompBytes = buffer;
    mUncompLength = length;
    mUncompIndex = 0;
 }
 
-void Deflater::Deflate(uint8*& buffer, int64& length)
+void Deflater::deflate(uint8*& buffer, int64& length)
 {
    mUncompIndex = 0;
 
@@ -67,13 +67,13 @@ void Deflater::Deflate(uint8*& buffer, int64& length)
 
    // the actual compression work.
    deflateInit(&defstream, Z_BEST_COMPRESSION);
-   deflate(&defstream, Z_FINISH);
+   ::deflate(&defstream, Z_FINISH);
    deflateEnd(&defstream);
 
    length = (uint32)defstream.total_out;
 }
 
-void Deflater::Reset()
+void Deflater::reset()
 {
    mUncompBytes = nullptr;
    mUncompLength = 0;
@@ -82,12 +82,12 @@ void Deflater::Reset()
    mTotalOut = 0;
 }
 
-int64 Deflater::GetTotalIn()
+int64 Deflater::totalInSize()
 {
    return mTotalIn;
 }
 
-int64 Deflater::GetTotalOut()
+int64 Deflater::totalOutSize()
 {
    return mTotalOut;
 }

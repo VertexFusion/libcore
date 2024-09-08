@@ -173,11 +173,11 @@ const Vertex2 jm::operator*(double const& d, Vertex2 const& v)
    return r;
 }
 
-const Vertex2 jm::operator*(const Integer& i, const Vertex2& v)
+const Vertex2 jm::operator*(const int64& i, const Vertex2& v)
 {
    Vertex2 r;
-   r.x = i.Dbl() * v.x;
-   r.y = i.Dbl() * v.y;
+   r.x = i * v.x;
+   r.y = i * v.y;
    return r;
 }
 

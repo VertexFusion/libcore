@@ -89,7 +89,7 @@ namespace jm
           \brief This method must be implemented by derived classes. It is the main method
           that runs on the new thread. It is executed when the thread is started.
           */
-         virtual void Run() = 0;
+         virtual void run() = 0;
 
       protected:
 
@@ -97,21 +97,21 @@ namespace jm
           \brief  This method blocks this thread from accessing other threads to mark a critical section
          that must not be interrupted or to avoid race conditions.
           */
-         void Lock();
+         void lock();
 
          /*!
           \brief This method releases the lock held by this thread, allowing other threads to access
           the critical section. This is used to mark a critical section that must not be interrupted
           or to avoid race conditions.
           */
-         void Unlock();
+         void unlock();
 
       public:
 
          /*!
           \brief Checks if the current thread is the main thread.
           */
-         static bool IsMainThread();
+         static bool isMainThread();
 
          /*!
           \brief Default constructor.
@@ -126,43 +126,43 @@ namespace jm
          /*!
           \brief This method starts the thread.
          */
-         void Start();
+         void start();
 
          /*!
           \brief This method puts the thread to sleep and wakes it up after the specified time has elapsed.
           The thread can also be woken up externally before the time has elapsed.
           \param duration The time duration (in milliseconds) for which the thread should sleep.
           */
-         void Sleep(int duration);
+         void sleep(int duration);
 
          /*!
           \brief This method puts the thread to sleep. The thread must be externally awakened.
           */
-         void Sleep();
+         void sleep();
 
          /*!
           \brief If the thread is sleeping, it will be woken up by calling this method.
           */
-         void WakeUp();
+         void wakeUp();
 
          /*!
          \brief This method terminates the execution of this thread.
          It waits for the thread to finish execution ???
          */
-         void Interrupt();
+         void interrupt();
 
          /*!
           \brief This method should be called regularly to check if the thread should be terminated.
           If this method returns false, the thread should be terminated.
           \return Returns true if the thread should continue running.
           */
-         bool IsAlive();
+         bool isAlive();
 
          /*!
           \brief Set the name of the thread.
           \note This method is intended for help debugging.
           */
-         void SetName(const String& name);
+         void setName(const String& name);
 
    };
 

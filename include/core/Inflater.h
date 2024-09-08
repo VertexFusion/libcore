@@ -91,66 +91,66 @@ namespace jm
           /*!
            \brief Reads the next bit from the input stream.
            */
-         uint8 NextBit();
+         uint8 nextBit();
 
           /*!
            \brief Skips all bits until the end of the current byte in the input stream and jumps to the beginning of the next byte.
            If already at the beginning of a byte, nothing happens.
            */
-         void SkipByteBits();
+         void skipByteBits();
 
           /*!
            \brief Returns the next "aligned" byte. Must be at the beginning of a byte.
            \throws If not at the beginning of a byte, an error occurs.
            */
-         uint8 NextAlignedUInt8();
+         uint8 nextAlignedUInt8();
 
           /*!
            \brief Reads a UINT16 in little-endian format. Must be at the beginning of a byte.
            \throws If not at the beginning of a byte, an error occurs.
            */
-         uint16 NextAlignedUInt16();
+         uint16 nextAlignedUInt16();
 
           /*!
            \brief Reads the next X bits as a number. Byte boundaries are ignored.
            The MSB (Most Significant Bit) is read first.
            \param bits The number of bits
            */
-         uint16 NextUIntX(uint8 bits);
+         uint16 nextUIntX(uint8 bits);
 
           /*!
            \brief Reads the next X bits as a number. Byte boundaries are ignored.
            The LSB (Least Significant Bit) is read first.
            \param bits The number of bits
            */
-         uint16 NextUIntXR(uint8 bits);
+         uint16 nextUIntXR(uint8 bits);
 
-         HuffmanTree* CreateTree(Array<uint16>* lengths, Array<uint16>* codes);
+         HuffmanTree* createTree(Array<uint16>* lengths, Array<uint16>* codes);
 
-         uint16 DecodeHuffmanSymbol(Inflater::HuffmanTree* tree);
+         uint16 decodeHuffmanSymbol(Inflater::HuffmanTree* tree);
 
-         Array<uint16>* GetHuffmanCodes(Array<uint16>* codelengths);
+         Array<uint16>* huffmanCodes(Array<uint16>* codelengths);
 
          // Writes the byte to the output buffer.
-         void WriteUncompressed(uint8 byte);
+         void writeUncompressed(uint8 byte);
 
           /*!
            \brief This method is used for the "BTYPE=01" encoding "Fixed Huffman Codes".
            It reads the next "Fixed Huffman Code" and decodes it to the desired numerical value.
            */
-         uint16 NextFixedHuffmanCode();
+         uint16 nextFixedHuffmanCode();
 
-         void HandleUncompressedBlock();
+         void handleUncompressedBlock();
 
-         void HandleCompressedFixHuffman();
+         void handleCompressedFixHuffman();
 
-         void HandleCompressedDynamicHuffman();
+         void handleCompressedDynamicHuffman();
 
-         void ReadLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count);
+         void readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count);
 
-         void Inflate();
+         void inflate();
 
-         void CheckCapacity();
+         void checkCapacity();
 
 
       public:

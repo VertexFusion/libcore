@@ -469,7 +469,7 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-         String arg(int64 valueint64,
+         String arg(int64 value,
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' '));
 
@@ -477,7 +477,7 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-         String arg(int32 valueint64,
+         String arg(int32 value,
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' '));
 
@@ -485,7 +485,15 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
-         String arg(uint32 valueint64,
+         String arg(uint32 value,
+                    int64 fieldwidth = 0,
+                    Char fillchar = Char(' '));
+
+         /*!
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a string representation of the number
+          */
+         String arg(uint64 value,
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' '));
 

@@ -70,39 +70,39 @@ namespace jm
           /*!
            \brief Writes the result of Diff to the standard output stream if something is different
            */
-         void Print();
+         void print();
 
           /*!
            \brief This method performs the backtracing to obtain the path of changes.
            \param dd Pointer to the diagonal from which the considered element originates.
            \param i 0-based index of the element in the diagonal.
            */
-         static DiffBacktrace* Backtrace(DiffDiag* dd, uint32 i);
+         static DiffBacktrace* backtrace(DiffDiag* dd, int64 i);
 
           /*!
            \brief Returns the diff operation.
            */
-         DiffOperation GetOperation();
+         DiffOperation operation() const;
 
       private:
 
          //! The length of the path being backtraced
-         unsigned int size;
+         int64 mSize;
 
           //! Operation performed in this step
-          DiffOperation operation;
+          DiffOperation mOperation;
 
          //! Pointer to the "left" object, if available
-         Object* obj1;
+         Object* mObj1;
 
          //! Pointer to the "right" object, if available
-         Object* obj2;
+         Object* mObj2;
 
          //! Pointer to the previous element in the backtrace path
-         DiffBacktrace* prev;
+         DiffBacktrace* mPrev;
 
          //! Pointer to the next element in the backtrace path
-        DiffBacktrace* next;
+        DiffBacktrace* mNext;
 
    };
 

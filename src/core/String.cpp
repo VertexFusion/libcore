@@ -69,7 +69,7 @@ mHash(0)
    // Intentionally not used Charset::GetDefault, since this leads to problems with global strings.
    // (Initialization sequence not predictable)
    UTF8Decoder dec = UTF8Decoder();
-   CharArray array = dec.Decode(cstring);
+   CharArray array = dec.decode(cstring);
    copy(array);
 
    delete[] cstring;
@@ -82,7 +82,7 @@ mHash(0)
    memcpy(cstring, buffer, size);
    cstring[size] = 0;
    cstring[size + 1] = 0; //For UTF16 required
-   CharArray array = charset->Decode(cstring);
+   CharArray array = charset->decode(cstring);
    copy(array);
    delete[] cstring;
 }
@@ -95,7 +95,7 @@ mHash(0)
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
       // strings. (Initialization sequence not predictable)
       UTF8Decoder dec = UTF8Decoder();
-      CharArray array = dec.Decode(cstring);
+      CharArray array = dec.decode(cstring);
       copy(array);
    }
    else
@@ -114,7 +114,7 @@ mHash(0)
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
       // strings. (Initialization sequence not predictable)
       UTF8Decoder dec = UTF8Decoder();
-      CharArray array = dec.Decode(buffer.constData());
+      CharArray array = dec.decode(buffer.constData());
       copy(array);
    }
    else
@@ -128,14 +128,14 @@ mHash(0)
 String::String(const char* cstring, Charset* charset): Object(), Comparable<String>(),
 mHash(0)
 {
-   CharArray array = charset->Decode(cstring);
+   CharArray array = charset->decode(cstring);
    copy(array);
 }
 
 String::String(const ByteArray& buffer, Charset* charset) : Object(), Comparable<String>(),
 mHash(0)
 {
-   CharArray array = charset->Decode(buffer.constData());
+   CharArray array = charset->decode(buffer.constData());
    copy(array);
 }
 
@@ -216,14 +216,14 @@ int64 String::size() const
 
 ByteArray String::toCString() const
 {
-   return toCString(Charset::GetDefault());
+   return toCString(Charset::getDefault());
 }
 
 ByteArray String::toCString(Charset* charset) const
 {
    CharArray array = CharArray(mStrLength);
    memcpy(array.buffer, mValue, mStrLength * 2);
-   return charset->Encode(array);
+   return charset->encode(array);
 }
 
 
@@ -884,6 +884,13 @@ String String::arg(uint32 value,
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
+String String::arg(uint64 value,
+                   int64 fieldWidth,
+                   Char fillchar)
+{
+   return arg(static_cast<int64>(value), fieldWidth, fillchar);
+}
+
 String String::arg(const String& value,
                    int64 fieldwidth,
                    Char fillchar)
@@ -1154,7 +1161,7 @@ namespace jm
    ostream& operator << (ostream& out, const String& str)
    {
       //\todo It is best to set and get the charset globally. It's inefficient that way
-      if(gConsoleCharset == nullptr)gConsoleCharset = Charset::ForName("Windows-1252");
+      if(gConsoleCharset == nullptr)gConsoleCharset = Charset::forName("Windows-1252");
       String s = str;
       ByteArray cstr = s.toCString(gConsoleCharset);
       out << cstr.constData();

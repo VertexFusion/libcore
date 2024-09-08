@@ -101,7 +101,7 @@ void File::setCString()
    // Under 10.10 umlauts are transferred correctly...
    mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
    #elif defined __linux__ //Linux
-   mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
+   mCstr = mPathname.toCString(Charset::forName("UTF-8"));
    #elif defined _WIN32 //Windows
    // Must be under Windows Windows-1252 for fopen
    mCstr = mPathname.toCString(Charset::ForName("Windows-1252"));
@@ -133,10 +133,10 @@ String File::resolve(String parent, String child)
 String File::normalize(const String& path)
 {
    String pathname = path;
-   Integer length = pathname.size();
+   int64 length = pathname.size();
    Char prev = 0;
 
-   for(Integer a = 0; a < length; a++)
+   for(int64 a = 0; a < length; a++)
    {
       Char character = pathname.charAt(a);
 
@@ -533,7 +533,7 @@ Array<File>* File::listFiles()const
 }
 
 
-Integer File::size() const
+int64 File::size() const
 {
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -541,7 +541,7 @@ Integer File::size() const
    // If it doesn't exist, then I can't read it.
    if(result != 0)throw Exception(Tr("File \"%1\" does not exist.").arg(absolutePath()));
 
-   return Integer((uint64)filestat.st_size);
+   return int64((uint64)filestat.st_size);
 }
 
 
@@ -557,7 +557,7 @@ String File::path() const
 
 String File::parent() const
 {
-   Integer idx = mPathname.lastIndexOf(DIR_SEP);
+   int64 idx = mPathname.lastIndexOf(DIR_SEP);
    if(idx < 0)idx = 0;
    return mPathname.substring(0, idx);
 }
@@ -586,7 +586,7 @@ bool File::createNewFile()
    close();
    return exist;
    #elif defined _WIN32 //Windows
-   Integer ret = fopen_s(&mHandle, mCstr.constData(), "wb");
+   int64 ret = fopen_s(&mHandle, mCstr.constData(), "wb");
    close();
    return ret == 0;
    #endif
@@ -628,7 +628,7 @@ VxfErrorStatus File::open(FileMode mode)
 
    if(mHandle == nullptr)
    {
-      String msg = Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(Integer(errno));
+      String msg = Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(int64(errno));
       jm::System::log(msg, jm::kLogError);
 
       if(errno == EACCES)return eNotAllowed;
@@ -653,36 +653,36 @@ void File::close()
    mHandle = nullptr;
 }
 
-void File::seek(Integer position)
+void File::seek(int64 position)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)position, SEEK_SET);
    if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
-void File::move(Integer offset)
+void File::move(int64 offset)
 {
    //Data type is long int in fseek
    size_t res = fseek(mHandle, (long int)offset, SEEK_CUR);
    if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
-Integer File::position()
+int64 File::position()
 {
-   return Integer((uint64)ftell(mHandle));
+   return int64((uint64)ftell(mHandle));
 }
 
 
-Integer File::read(uint8* buffer, Integer length)
+int64 File::read(uint8* buffer, int64 length)
 {
    return fread(buffer, 1, length, mHandle);
 }
 
-Integer File::readFully(ByteArray& buffer, Integer length)
+int64 File::readFully(ByteArray& buffer, int64 length)
 {
-   Integer rest = length;
-   Integer count = 0;
-   Integer step;
+   int64 rest = length;
+   int64 count = 0;
+   int64 step;
    uint8* buf = reinterpret_cast<uint8*>(buffer.data());
 
    while((rest > 0) && ((step = read(&buf[count], rest)) > 0))
@@ -694,7 +694,7 @@ Integer File::readFully(ByteArray& buffer, Integer length)
    return count;
 }
 
-Integer File::write(const uint8* buffer, Integer length)
+int64 File::write(const uint8* buffer, int64 length)
 {
    return fwrite(buffer, 1, length, mHandle);
 }
@@ -742,10 +742,10 @@ StringList File::getTags()const
    {
       // Extract the tags to our string list
       StringList taglist;
-      Integer count = (uint32) CFArrayGetCount(tags);
+      int64 count = (uint32) CFArrayGetCount(tags);
       if(count > 0)
       {
-         for(Integer index = 0; index < count; index++)
+         for(int64 index = 0; index < count; index++)
          {
             CFStringRef str = (CFStringRef)CFArrayGetValueAtIndex(tags, index);
             taglist << String::fromCFString(str);
@@ -786,9 +786,9 @@ VxfErrorStatus File::setTags(const jm::StringList& tags)
       #ifdef __APPLE__ //macOS
 
    //Create new array and append tag
-   Integer newsize = tags.size();
+   int64 newsize = tags.size();
    CFStringRef* strs = new CFStringRef[newsize];
-   for(Integer index = 0; index < newsize - 1; index++)
+   for(int64 index = 0; index < newsize - 1; index++)
    {
       strs[index] = tags[index].toCFString();
    }
@@ -816,7 +816,7 @@ VxfErrorStatus File::setTags(const jm::StringList& tags)
 
    // Clean unnecessary stuff
 
-   for(Integer index = 0; index < newsize; index++)
+   for(int64 index = 0; index < newsize; index++)
    {
       CFRelease(strs[index]);
    }
@@ -934,14 +934,14 @@ String jm::ExecPath()
 String jm::ExecName()
 {
    String exec = ExecPath();
-   Integer pos = exec.lastIndexOf(DIR_SEP);
+   int64 pos = exec.lastIndexOf(DIR_SEP);
    return exec.substring(pos + 1);
 }
 
 String jm::ExecDir()
 {
    String exec = ExecPath();
-   Integer pos = exec.lastIndexOf(DIR_SEP);
+   int64 pos = exec.lastIndexOf(DIR_SEP);
    if(exec.charAt(pos - 1) == '.' && exec.charAt(pos - 2) == DIR_SEP)pos -= 2;
    return exec.substring(0, pos);
 }

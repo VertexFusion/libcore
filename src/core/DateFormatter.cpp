@@ -103,14 +103,14 @@ DateFormatter::~DateFormatter()
    }
 }
 
-String DateFormatter::Format(const Date& date) const
+String DateFormatter::format(const Date& date) const
 {
    String value;
 
    Pattern* p = mPatterns;
    while(p != nullptr)
    {
-      p->AppendPattern(value, date);
+      p->appendPattern(value, date);
       p = p->next;
    }
 
@@ -118,10 +118,10 @@ String DateFormatter::Format(const Date& date) const
 }
 
 
-String DateFormatter::Format(const String& format, const Date& date)
+String DateFormatter::format(const String& format, const Date& date)
 {
    DateFormatter df = DateFormatter(format);
-   return df.Format(date);
+   return df.format(date);
 }
 
 
@@ -186,7 +186,7 @@ DateFormatter::Pattern::Pattern(const String& value, bool isText)
 }
 
 
-void DateFormatter::Pattern::AppendPattern(String& value, const Date& date) const
+void DateFormatter::Pattern::appendPattern(String& value, const Date& date) const
 {
    switch(type)
    {

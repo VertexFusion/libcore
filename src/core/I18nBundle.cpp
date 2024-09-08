@@ -73,11 +73,11 @@ void I18nBundle::appendMo(File file)
    uint8* buffer = (uint8*)buf.constData();
 
    // Process content
-   uint32 magic = jm::DeserializeLEUInt32(buffer, 0);
-   uint32 version = jm::DeserializeLEUInt32(buffer, 4);
-   uint32 stringCount = jm::DeserializeLEUInt32(buffer, 8);
-   uint32 origOffset = jm::DeserializeLEUInt32(buffer, 12);
-   uint32 transOffset = jm::DeserializeLEUInt32(buffer, 16);
+   uint32 magic = jm::deserializeLEUInt32(buffer, 0);
+   uint32 version = jm::deserializeLEUInt32(buffer, 4);
+   uint32 stringCount = jm::deserializeLEUInt32(buffer, 8);
+   uint32 origOffset = jm::deserializeLEUInt32(buffer, 12);
+   uint32 transOffset = jm::deserializeLEUInt32(buffer, 16);
 
    if(magic != 0x950412de)
    {
@@ -105,10 +105,10 @@ void I18nBundle::appendMo(File file)
    for(uint32 a = 0; a < stringCount; a++)
    {
       Record rec;
-      rec.origLength = jm::DeserializeLEUInt32(buffer, origOffset + offset);
-      rec.origOffset = jm::DeserializeLEUInt32(buffer, origOffset + offset + 4);
-      rec.transLength = jm::DeserializeLEUInt32(buffer, transOffset + offset);
-      rec.transOffset = jm::DeserializeLEUInt32(buffer, transOffset + offset + 4);
+      rec.origLength = jm::deserializeLEUInt32(buffer, origOffset + offset);
+      rec.origOffset = jm::deserializeLEUInt32(buffer, origOffset + offset + 4);
+      rec.transLength = jm::deserializeLEUInt32(buffer, transOffset + offset);
+      rec.transOffset = jm::deserializeLEUInt32(buffer, transOffset + offset + 4);
 
       offset += 8;
 

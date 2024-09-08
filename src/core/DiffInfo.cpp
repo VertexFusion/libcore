@@ -44,9 +44,25 @@ DiffInfo::DiffInfo(const DiffInfo& another)
    mOperation = another.mOperation;
 }
 
-void DiffInfo::Print(DiffOperation operation,
-                     Integer obj1,
-                     Integer obj2,
+void DiffInfo::print(DiffOperation operation,
+                     int32 obj1,
+                     int32 obj2,
+                     const String& label)
+{
+	print(operation,int64(obj1),int64(obj2),label);
+}
+
+void DiffInfo::print(DiffOperation operation,
+                     uint32 obj1,
+                     uint32 obj2,
+                     const String& label)
+{
+	print(operation,uint64(obj1),uint64(obj2),label);
+}
+
+void DiffInfo::print(DiffOperation operation,
+                     uint64 obj1,
+                     uint64 obj2,
                      const String& label)
 {
    switch(operation)
@@ -69,7 +85,32 @@ void DiffInfo::Print(DiffOperation operation,
    }
 }
 
-void DiffInfo::Print(DiffOperation operation,
+void DiffInfo::print(DiffOperation operation,
+                     int64 obj1,
+                     int64 obj2,
+                     const String& label)
+{
+   switch(operation)
+   {
+      case DiffOperation::kDiffAdd:
+      case DiffOperation::kDiffDelete:
+         std::cout << "  " << label << ": " << obj1 << std::endl;
+         break;
+
+      case DiffOperation::kDiffModified:
+         if(obj1 != obj2)
+         {
+            std::cout << "  " << label << ": " << obj1 << " -> " << obj2 << " delta: " <<
+                      (obj2 - obj1) << std::endl;
+         }
+         break;
+
+      default:
+         break;
+   }
+}
+
+void DiffInfo::print(DiffOperation operation,
                      double obj1,
                      double obj2,
                      const String& label)
@@ -94,7 +135,7 @@ void DiffInfo::Print(DiffOperation operation,
    }
 }
 
-void DiffInfo::Print(DiffOperation operation,
+void DiffInfo::print(DiffOperation operation,
                      const String& obj1,
                      const String& obj2,
                      const String& label)
@@ -118,7 +159,7 @@ void DiffInfo::Print(DiffOperation operation,
    }
 }
 
-void DiffInfo::PrintIC(DiffOperation operation,
+void DiffInfo::printIgnoreCase(DiffOperation operation,
                        const String& obj1,
                        const String& obj2,
                        const String& label)
@@ -142,7 +183,7 @@ void DiffInfo::PrintIC(DiffOperation operation,
    }
 }
 
-void DiffInfo::Print(DiffOperation operation,
+void DiffInfo::print(DiffOperation operation,
                      const Vertex2& obj1,
                      const Vertex2& obj2,
                      const String& label)
@@ -168,7 +209,7 @@ void DiffInfo::Print(DiffOperation operation,
    }
 }
 
-void DiffInfo::Print(DiffOperation operation,
+void DiffInfo::print(DiffOperation operation,
                      const Vertex3& obj1,
                      const Vertex3& obj2,
                      const String& label)
@@ -461,7 +502,7 @@ void DiffInfo::Print( dxf::DwgXRecord* obj1, dxf::DwgXRecord* obj2 )
 }
 */
 
-void DiffInfo::Print(DiffOperation operation, Object* obj1, Object* obj2)
+void DiffInfo::print(DiffOperation operation, Object* obj1, Object* obj2)
 {
 
    mOperation = operation;

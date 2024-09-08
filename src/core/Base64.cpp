@@ -72,17 +72,17 @@ const uint8 gBase64rcvt[] =
    66, 66, 66, 66, 66, 66
 };//250
 
-uint8* Base64::encode(const uint8* data, Integer& length)
+uint8* Base64::encode(const uint8* data, int64& length)
 {
    uint8 c1 = 0, c2 = 0, c3 = 0, c4 = 0, b1, b2, b3;
-   Integer len = length;
-   Integer lenb64 = ((len / 3) + 1) * 4;
+   int64 len = length;
+   int64 lenb64 = ((len / 3) + 1) * 4;
 
    uint8* ret = new uint8[lenb64];
 
-   Integer index = 0;
+   int64 index = 0;
 
-   for(Integer i = 0; i < len; i += 3)
+   for(int64 i = 0; i < len; i += 3)
    {
       b1 = data[i];
       b2 = data[i + 1];

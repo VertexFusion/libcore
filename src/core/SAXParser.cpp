@@ -47,7 +47,7 @@ void SAXParser::parse(File& file)
 {
    if(!file.exists())return;
    if(!file.canRead())return;
-   Integer length = file.size();
+   int64 length = file.size();
    ByteArray buffer = ByteArray(length, 0);
    file.open(jm::kFmRead);
    file.Stream::readFully(buffer);
@@ -66,8 +66,8 @@ void SAXParser::parse(const String& xml)
 
    startDocument();
 
-   Integer length = xml.size(); // Length of XML-Code
-   Integer pos = 0; // Position of pointer
+   int64 length = xml.size(); // Length of XML-Code
+   int64 pos = 0; // Position of pointer
 
    bool inTag = false;   // Status, if tag is open
    bool inValue = false; // Status, if value is open
@@ -88,7 +88,7 @@ void SAXParser::parse(const String& xml)
             String endWhiteSpaces;
 
             // Cut whitespaces at the beginning
-            Integer sub = 0;
+            int64 sub = 0;
             while(sub < token.size() && token.charAt(sub).isWhitespace())
             {
                beginWhitespaces.append(token.charAt(sub));
@@ -191,13 +191,13 @@ void SAXParser::parseTagString(const String& xmlline)
 
    line.append(' ');// Whitespace at the end makes parsing easier because code is saved.
 
-   Integer pos = 0; //Position of pointer
-   Integer length = line.size(); // Length
+   int64 pos = 0; //Position of pointer
+   int64 length = line.size(); // Length
    bool inValue = false; // Status, if in value
    Char c;
    Char opener = 0;
-   Integer tagType = 0; //0: Open, 1: Close 2: Open/Close
-   Integer step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
+   int64 tagType = 0; //0: Open, 1: Close 2: Open/Close
+   int64 step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
 
    // Check for '/' at the end
    pos = line.size() - 1;
@@ -322,7 +322,7 @@ void SAXParser::characters(const String& /*characters*/)
 void SAXParser::endDocument()
 {
    // Dummy method
-   //	std::cout << "SAX: EndDocument" << std::endl;
+   //	std::cout << "SAX: endDocument" << std::endl;
 }
 
 void SAXParser::endElement(const String& /*uri*/,
@@ -330,7 +330,7 @@ void SAXParser::endElement(const String& /*uri*/,
                            const String& /*qName*/)
 {
    // Dummy method
-   //	std::cout << "SAX: EndElement " << localName << std::endl;
+   //	std::cout << "SAX: endElement " << localName << std::endl;
 }
 
 void SAXParser::endPrefixMapping(const String& /*prefix*/)
@@ -361,7 +361,7 @@ void SAXParser::skippedEntity(const String& /*name*/)
 void SAXParser::startDocument()
 {
    // Dummy method
-   //	std::cout << "SAX: StartDocument" << std::endl;
+   //	std::cout << "SAX: startDocument" << std::endl;
 }
 
 void SAXParser::startElement(const String& /*uri*/,
@@ -370,5 +370,5 @@ void SAXParser::startElement(const String& /*uri*/,
                              const SAXAttributes& /*attributes*/)
 {
    // Dummy method
-   //	std::cout << "SAX: StartElement " << localName  << " " << attributes.GetLength() << std::endl;
+   //	std::cout << "SAX: startElement " << localName  << " " << attributes.GetLength() << std::endl;
 }

@@ -54,22 +54,22 @@ namespace jm
          DiffDiag(DiffDistance* dist,
                   std::vector<Object*>* u,
                   std::vector<Object*>* v,
-                  Integer offset);
+                  int64 offset);
 
          ~DiffDiag();
 
-         DiffDiag* GetAbove();
-         DiffDiag* GetBelow();
+         DiffDiag* above();
+         DiffDiag* below();
 
-         Integer GetUpperEntry(Integer i);
-         Integer GetLeftEntry(Integer i);
+         int64 upperEntry(int64 i);
+         int64 leftEntry(int64 i);
 
-         Integer GetEntry(Integer j);
+         int64 entry(int64 j);
 
-         Object* GetObjU(Integer i);
-         Object* GetObjV(Integer i);
+         Object* objectU(int64 i);
+         Object* objectV(int64 i);
 
-         Integer GetOffset();
+         int64 offset();
 
 
       private:
@@ -79,7 +79,7 @@ namespace jm
            Diagonals start at u[0], v[abs(offset)].
            Diagonals below the middle have negative offsets.
            */
-         Integer offset;
+         int64 mOffset;
 
           /*!
            \brief Pointer to the first vector for comparison.
@@ -94,18 +94,18 @@ namespace jm
          /*!
           \brief Linked List
           */
-         DiffDiag* below;
-         DiffDiag* above;
+         DiffDiag* mBelow;
+         DiffDiag* mAbove;
 
           /*!
            \brief This vector stores the elements of the diagonal.
            */
-         std::vector<Integer>* elements;
+         std::vector<int64>* mElements;
 
           /*!
            \brief Pointer to DiffDistance object to determine the number of calculated values.
            */
-         DiffDistance* dist;
+         DiffDistance* mDistance;
 
    };
 

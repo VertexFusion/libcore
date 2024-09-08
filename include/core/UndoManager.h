@@ -459,7 +459,7 @@ namespace jm
          uint32 mRedoCount;
 
          //! If a transaction is used, this indicates the level of transaction
-         Integer mTransactionLevel;
+         int64 mTransactionLevel;
 
          //! If a transaction is active, this is the content of the transaction.
          UndoStep* mTransaction;

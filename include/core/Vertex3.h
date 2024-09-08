@@ -104,7 +104,7 @@ namespace jm
            \param another The other vector.
            \return The result of "this dot another".
            */
-         double DotProduct(const Vertex3& another) const;
+         double dotProduct(const Vertex3& another) const;
 
           /*!
            \brief This method checks whether the two vectors are collinear.
@@ -112,7 +112,7 @@ namespace jm
            \param another The other vector.
            \return true if the vectors are collinear.
            */
-         bool IsCollinear(const Vertex3& another) const;
+         bool isCollinear(const Vertex3& another) const;
 
           /*!
            \brief This method calculates whether the two vectors are orthogonal.
@@ -120,19 +120,19 @@ namespace jm
            \param another The other vector.
            \return true if the vectors are orthogonal.
            */
-          bool IsOrthogonal(const Vertex3& another) const;
+          bool isOrthogonal(const Vertex3& another) const;
 
           /*!
            \brief This method checks if the vector is the zero vector (taking into account RESABS).
            \return true if the vector is the zero vector.
            */
-         bool IsNull() const;
+         bool isNull() const;
 
           /*!
            \brief This method checks if the vector has any "NaN" entries. If all entries are defined, it returns true.
            \return true if all entries are defined, false if any entry is "NaN".
            */
-         bool IsValid() const;
+         bool isValid() const;
 
          /*!
           \brief Returns the angle between this vector and another vector.
@@ -150,26 +150,26 @@ namespace jm
            \brief Rotates the vector around the X-axis by the specified angle.
            \param angle The rotation angle in radians.
            */
-          void RotateX(double angle);
+          void rotateX(double angle);
 
           /*!
            \brief Rotates the vector around the Y-axis by the specified angle.
            \param angle The rotation angle in radians.
            */
-          void RotateY(double angle);
+          void rotateY(double angle);
 
           /*!
            \brief Rotates the vector around the Z-axis by the specified angle.
            \param angle The rotation angle in radians.
            */
-         void RotateZ(double angle);
+         void rotateZ(double angle);
 
           /*!
            \brief Rotates the vector around the given axis by the specified angle.
            \param angle The rotation angle in radians.
            \param axis The rotation axis.
            */
-         void Rotate(double angle, const Vertex3& axis);
+         void rotate(double angle, const Vertex3& axis);
 
           /*!
            \brief  This method normalizes the vector. A normalized vector has a length of 1 and the

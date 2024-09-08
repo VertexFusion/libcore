@@ -234,7 +234,7 @@ namespace jm
            \brief Returns the size of the file in bytes.
            \return The size of the file in bytes.
            */
-         Integer size() const override;
+         int64 size() const override;
 
           /*!
            \brief Returns the date of the last modification.
@@ -268,8 +268,8 @@ namespace jm
            \param length The maximum number of bytes to read.
            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
            */
-         Integer read(unsigned char* buffer,
-                      Integer length) override;
+         int64 read(unsigned char* buffer,
+                      int64 length) override;
 
           /*!
            \brief Reads a maximum of length bytes into the array.
@@ -277,7 +277,7 @@ namespace jm
            \param length The maximum number of bytes to read.
            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
            */
-         Integer readFully(ByteArray& buffer, Integer length) override;
+         int64 readFully(ByteArray& buffer, int64 length) override;
 
 
 
@@ -285,19 +285,19 @@ namespace jm
            \brief Moves the file cursor to the desired position, counted from the beginning of the file.
            \param position The desired position to move the file cursor to (0-based index).
            */
-         void seek(Integer position) override;
+         void seek(int64 position) override;
 
           /*!
            \brief Moves the file cursor to the desired position, relative to the current position.
            \param offset The offset to move the file cursor by.
            */
-         void move(Integer offset) override;
+         void move(int64 offset) override;
 
           /*!
            \brief Returns the current cursor position in the file.
            \return The current cursor position.
            */
-         Integer position() override;
+         int64 position() override;
 
           /*!
            \brief Writes a buffer to the output file.
@@ -305,7 +305,7 @@ namespace jm
            \param length The number of bytes to write from the buffer.
            \return The number of bytes actually written, or 0 if an error occurred.
            */
-         Integer write(const uint8* buffer, Integer length) override;
+         int64 write(const uint8* buffer, int64 length) override;
 
           /*!
            \brief Compares the absolute file path with another file's absolute path.

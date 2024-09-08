@@ -34,10 +34,10 @@
 using namespace jm;
 
 // Under macOS 10.9 namespaces added
-Integer jm::gErrorCount;
-Integer jm::gTestCount;
-Integer jm::gTotalErrorCount;
-Integer jm::gTotalTestCount;
+int64 jm::gErrorCount;
+int64 jm::gTestCount;
+int64 jm::gTotalErrorCount;
+int64 jm::gTotalTestCount;
 
 Test::Test()
 {}
@@ -47,17 +47,17 @@ Test::~Test()
 
 }
 
-void Test::SetErrorCode(const String& error)
+void Test::setErrorCode(const String& error)
 {
    mError = error;
 }
 
-const String& Test::GetErrorCode() const
+const String& Test::errorCode() const
 {
    return mError;
 }
 
-void Test::TestFail(const String& message)
+void Test::testFail(const String& message)
 {
    System::log(message, kLogError);
    jm::gTotalErrorCount++;
@@ -66,7 +66,7 @@ void Test::TestFail(const String& message)
    jm::gTestCount++;
 }
 
-void Test::TestEquals(const double actual, const double expected, const String& failmessage)
+void Test::testEquals(const double actual, const double expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -79,7 +79,7 @@ void Test::TestEquals(const double actual, const double expected, const String& 
                kLogError);
 }
 
-void Test::TestEquals(Integer actual, Integer expected, const String& failmessage)
+void Test::testEquals(int64 actual, int64 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -94,7 +94,7 @@ void Test::TestEquals(Integer actual, Integer expected, const String& failmessag
    jm::gErrorCount++;
 }
 
-void Test::TestEquals(Integer actual, int32 expected, const String& failmessage)
+void Test::testEquals(int64 actual, int32 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -109,31 +109,7 @@ void Test::TestEquals(Integer actual, int32 expected, const String& failmessage)
    jm::gErrorCount++;
 }
 
-void Test::TestEquals(int64 actual, int64 expected, const String& failmessage)
-{
-   jm::gTotalTestCount++;
-   jm::gTestCount++;
-
-   if(actual == expected) return;
-   System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
-
-   jm::gTotalErrorCount++;
-   jm::gErrorCount++;
-}
-
-void Test::TestEquals(int64 actual, int32 expected, const String& failmessage)
-{
-   jm::gTotalTestCount++;
-   jm::gTestCount++;
-
-   if(actual == expected) return;
-   System::log(jm::String("%1 %2!=%3").arg(failmessage).arg(actual).arg(expected), kLogError);
-
-   jm::gTotalErrorCount++;
-   jm::gErrorCount++;
-}
-
-void Test::TestEquals(uint64 actual, uint64 expected, const String& failmessage)
+void Test::testEquals(uint64 actual, uint64 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -147,7 +123,7 @@ void Test::TestEquals(uint64 actual, uint64 expected, const String& failmessage)
    System::log(msg, kLogError);
 }
 
-void Test::TestEquals(void* actual, void* expected, const String& failmessage)
+void Test::testEquals(void* actual, void* expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -161,37 +137,37 @@ void Test::TestEquals(void* actual, void* expected, const String& failmessage)
    System::log(msg, kLogError);
 }
 
-void Test::TestEquals(uint64 actual, int32 expected, const String& failmessage)
+void Test::testEquals(uint64 actual, int32 expected, const String& failmessage)
 {
-   TestEquals(actual, (uint64)expected, failmessage);
+   testEquals(actual, (uint64)expected, failmessage);
 }
 
-void Test::TestEquals(uint64 actual, uint32 expected, const String& failmessage)
+void Test::testEquals(uint64 actual, uint32 expected, const String& failmessage)
 {
-   TestEquals(actual, (uint64)expected, failmessage);
+   testEquals(actual, (uint64)expected, failmessage);
 }
 
-void Test::TestEquals(int32 actual, int32 expected, const String& failmessage)
+void Test::testEquals(int32 actual, int32 expected, const String& failmessage)
 {
-   TestEquals((int64)actual, (int64)expected, failmessage);
+   testEquals((int64)actual, (int64)expected, failmessage);
 }
 
-void Test::TestEquals(uint32 actual, uint32 expected, const String& failmessage)
+void Test::testEquals(uint32 actual, uint32 expected, const String& failmessage)
 {
-   TestEquals((uint64)actual, (uint64)expected, failmessage);
+   testEquals((uint64)actual, (uint64)expected, failmessage);
 }
 
-void Test::TestEquals(uint32 actual, int32 expected, const String& failmessage)
+void Test::testEquals(uint32 actual, int32 expected, const String& failmessage)
 {
-   TestEquals((int64)actual, (int64)expected, failmessage);
+   testEquals((int64)actual, (int64)expected, failmessage);
 }
 
-void Test::TestEquals(int32 actual, uint32 expected, const String& failmessage)
+void Test::testEquals(int32 actual, uint32 expected, const String& failmessage)
 {
-   TestEquals((int64)actual, (int64)expected, failmessage);
+   testEquals((int64)actual, (int64)expected, failmessage);
 }
 
-void Test::TestEqualsIgnoreCase(const String& actual,
+void Test::testEqualsIgnoreCase(const String& actual,
                                 const String& expected,
                                 const String& failmessage)
 {
@@ -206,7 +182,7 @@ void Test::TestEqualsIgnoreCase(const String& actual,
 }
 
 
-void Test::TestEquals(const String& actual, const String& expected, const String& failmessage)
+void Test::testEquals(const String& actual, const String& expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -218,7 +194,7 @@ void Test::TestEquals(const String& actual, const String& expected, const String
    System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
 }
 
-void Test::TestNull(void* actual, const String& failmessage)
+void Test::testNull(void* actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -230,7 +206,7 @@ void Test::TestNull(void* actual, const String& failmessage)
    System::log(failmessage, kLogError);
 }
 
-void Test::TestNotNull(void* actual, const String& failmessage)
+void Test::testNotNull(void* actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -242,7 +218,7 @@ void Test::TestNotNull(void* actual, const String& failmessage)
    System::log(failmessage, kLogError);
 }
 
-void Test::TestTrue(bool actual, const String& failmessage)
+void Test::testTrue(bool actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -254,7 +230,7 @@ void Test::TestTrue(bool actual, const String& failmessage)
    System::log(failmessage, kLogError);
 }
 
-void Test::TestFalse(bool actual, const String& failmessage)
+void Test::testFalse(bool actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -266,17 +242,17 @@ void Test::TestFalse(bool actual, const String& failmessage)
    System::log(failmessage, kLogError);
 }
 
-void Test::TestUnexpectedException(const String& failmessage)
+void Test::testUnexpectedException(const String& failmessage)
 {
-   TestFail(failmessage);
+   testFail(failmessage);
 }
 
-const String& Test::GetName() const
+const String& Test::name() const
 {
    return mName;
 }
 
-void Test::SetName(const String& name)
+void Test::setName(const String& name)
 {
    mName = name;
 }

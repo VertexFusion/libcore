@@ -58,24 +58,24 @@ Vertex3 Vertex3::crossProduct(const Vertex3& another) const
                   x * another.y - y * another.x);
 }
 
-double Vertex3::DotProduct(const Vertex3& another) const
+double Vertex3::dotProduct(const Vertex3& another) const
 {
    return x * another.x + y * another.y + z * another.z;
 }
 
-bool Vertex3::IsCollinear(const Vertex3& another) const
+bool Vertex3::isCollinear(const Vertex3& another) const
 {
    return isEqual(crossProduct(another).abs(), 0.0);
 }
 
-bool Vertex3::IsOrthogonal(const Vertex3& another) const
+bool Vertex3::isOrthogonal(const Vertex3& another) const
 {
-   return isEqual(DotProduct(another), 0.0);
+   return isEqual(dotProduct(another), 0.0);
 }
 
 double Vertex3::angleTo(const Vertex3& another) const
 {
-   double angle = this->DotProduct(another) / (this->abs() * another.abs());
+   double angle = this->dotProduct(another) / (this->abs() * another.abs());
    return acos(angle);
 }
 
@@ -84,18 +84,18 @@ double Vertex3::abs() const
    return std::sqrt(x * x + y * y + z * z);
 }
 
-bool Vertex3::IsNull() const
+bool Vertex3::isNull() const
 {
    return (isEqual(x, 0.0) && isEqual(y, 0.0) && isEqual(z, 0.0));
 }
 
-bool Vertex3::IsValid() const
+bool Vertex3::isValid() const
 {
    return  !(isNaN(x) || isNaN(y) || isNaN(z));
 }
 
 
-void Vertex3::RotateX(double angle)
+void Vertex3::rotateX(double angle)
 {
    Matrix r = Matrix::generate3x3RotationXMatrix(angle);
 
@@ -106,7 +106,7 @@ void Vertex3::RotateX(double angle)
    z = v.z;
 }
 
-void Vertex3::RotateY(double angle)
+void Vertex3::rotateY(double angle)
 {
    Matrix r = Matrix::generate3x3RotationYMatrix(angle);
 
@@ -117,7 +117,7 @@ void Vertex3::RotateY(double angle)
    z = v.z;
 }
 
-void Vertex3::RotateZ(double angle)
+void Vertex3::rotateZ(double angle)
 {
    Matrix r = Matrix::generate3x3RotationZMatrix(angle);
 
@@ -128,7 +128,7 @@ void Vertex3::RotateZ(double angle)
    z = v.z;
 }
 
-void Vertex3::Rotate(double angle, const Vertex3& axis)
+void Vertex3::rotate(double angle, const Vertex3& axis)
 {
    Matrix r = Matrix::generate3x3RotationMatrix(angle, axis);
    Vertex3 n = r * (*this);

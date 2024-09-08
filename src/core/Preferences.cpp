@@ -55,10 +55,10 @@ void Preferences::load(File file)
 {
    if(!file.exists())return;
 
-   Integer l = file.size();
+   int64 l = file.size();
    ByteArray buffer = ByteArray(l, 0);
    file.open(kFmRead);
-   Integer check = file.Stream::readFully(buffer);
+   int64 check = file.Stream::readFully(buffer);
    file.close();
    String data = String(buffer);
 
@@ -71,7 +71,7 @@ void Preferences::load(File file)
    {
       String line = st->next();
 
-      Integer pos = line.indexOf('=');
+      int64 pos = line.indexOf('=');
       if(pos > 0)
       {
          String key = line.substring(0, pos).trim();
@@ -84,7 +84,7 @@ void Preferences::load(File file)
          }
 
          //Ersetze
-         Integer index = 0;
+         int64 index = 0;
          while(index < value.size())
          {
             Char c = value.charAt(index);

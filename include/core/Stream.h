@@ -69,7 +69,7 @@ namespace jm
            \details This method returns the length of the stream in bytes.
            \return The length of the stream.
            */
-         virtual Integer size() const = 0;
+         virtual int64 size() const = 0;
 
           /*!
            \brief Opens the stream for read or write operations.
@@ -99,7 +99,7 @@ namespace jm
            If you want to ensure that all data is read, you should call readFully().
            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
            */
-         virtual Integer read(uint8* buffer, Integer length) = 0;
+         virtual int64 read(uint8* buffer, int64 length) = 0;
 
           /*!
            \brief Reads a maximum of length bytes into the array.
@@ -110,14 +110,14 @@ namespace jm
             \param length The maximum number of bytes to read.
            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
            */
-         virtual Integer readFully(ByteArray& buffer, Integer length) = 0;
+         virtual int64 readFully(ByteArray& buffer, int64 length) = 0;
 
             /*!
             \brief Reads a maximum of length bytes into the array.
             \param buffer The buffer to read the data from.
             \return The actual number of bytes read, or 0 if no bytes were read (EOF).
             */
-         Integer readFully(ByteArray& buffer);
+         int64 readFully(ByteArray& buffer);
 
           /*!
            \brief Moves the file cursor to the desired position, counted from the beginning of the file
@@ -125,13 +125,13 @@ namespace jm
            \note Not every stream supports this method.
            \details This method moves the file cursor to the specified position, counted from the beginning of the file.
            */
-         virtual void seek(Integer position) = 0;
+         virtual void seek(int64 position) = 0;
 
           /*!
            \brief Moves the file cursor to the desired position, counted from the current position.
            \details This method moves the file cursor to the specified position, counted from the current position.
            */
-         virtual void move(Integer offset) = 0;
+         virtual void move(int64 offset) = 0;
 
           /*!
            \brief Returns the current cursor position in the file.
@@ -139,7 +139,7 @@ namespace jm
            \details This method returns the current cursor position in the file.
            \return The current cursor position.
            */
-         virtual Integer position() = 0;
+         virtual int64 position() = 0;
 
           /*!
            \brief Writes a buffer to the output file.
@@ -148,7 +148,7 @@ namespace jm
            \param length The number of bytes to write from the buffer.
            \return The actual number of bytes written.
            */
-         virtual Integer write(const uint8* buffer, Integer length) = 0;
+         virtual int64 write(const uint8* buffer, int64 length) = 0;
 
           /*!
            \brief Writes a buffer to the output file.
@@ -157,7 +157,7 @@ namespace jm
            \param length The number of bytes to write from the buffer.
            \return The actual number of bytes written.
            */
-         inline Integer write(const int8* buffer, Integer length)
+         inline int64 write(const int8* buffer, int64 length)
          {
             return write((const uint8*)buffer, length);
          };
@@ -166,7 +166,7 @@ namespace jm
            \brief Writes a string to the output file. The encoding is the default encoding (UTF-8). NOT AS A C-STRING!
            \details This method writes the specified string to the output file using the default encoding, which is UTF-8. The string should not be passed as a C-string.
            */
-         Integer write(const String& string);
+         int64 write(const String& string);
 
    };
 }

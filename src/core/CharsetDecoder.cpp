@@ -48,7 +48,7 @@ RawDecoder::RawDecoder(): CharsetDecoder()
 {
 }
 
-CharArray RawDecoder::Decode(const char* cstring)
+CharArray RawDecoder::decode(const char* cstring)
 {
    //Länge bestimmen
    uint32 length = 0;
@@ -64,7 +64,7 @@ CharArray RawDecoder::Decode(const char* cstring)
    return array;
 }
 
-ByteArray RawDecoder::Encode(const CharArray& string)
+ByteArray RawDecoder::encode(const CharArray& string)
 {
    ByteArray cstring = ByteArray(string.length, 0);
 

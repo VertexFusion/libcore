@@ -201,7 +201,7 @@ namespace jm
             if(mData != nullptr)delete[] mData;
          };
 
-         inline uint32 Length() const
+         inline uint32 size() const
          {
             return mLength;
          };
@@ -235,14 +235,14 @@ namespace jm
             while(n > 1);
          }
 
-         inline T* Get(uint32 index) const
+         inline T* get(uint32 index) const
          {
             if(index >= mLength)
                throw Exception("Array index out of bounds.");
             return mData[index];
          };
 
-         inline void Set(uint32 index, T* item)
+         inline void set(uint32 index, T* item)
          {
             if(index >= mLength)
                throw Exception("Array index out of bounds.");

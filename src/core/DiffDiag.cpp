@@ -35,79 +35,79 @@
 using namespace jm;
 
 DiffDiag::DiffDiag(DiffDistance* dist, std::vector<Object*>* u, std::vector<Object*>* v,
-                   Integer offset)
+                   int64 offset)
 {
    mU = u;
    mV = v;
-   below = nullptr;
-   above = nullptr;
-   this->offset = offset;
-   elements = new std::vector<Integer>();
-   elements->push_back(std::abs(offset));
-   this->dist = dist;
+   mBelow = nullptr;
+   mAbove = nullptr;
+   this->mOffset = offset;
+   mElements = new std::vector<int64>();
+   mElements->push_back(std::abs(offset));
+   this->mDistance = dist;
 }
 
 DiffDiag::~DiffDiag()
 {
-   elements->clear();
-   delete elements;
+   mElements->clear();
+   delete mElements;
 }
 
 
-DiffDiag* DiffDiag::GetAbove()
+DiffDiag* DiffDiag::above()
 {
-   if(above == nullptr)
+   if(mAbove == nullptr)
    {
-      above = new DiffDiag(dist, mU, mV, offset >= 0 ? offset + 1 : offset - 1);
-      above->below = this;
+      mAbove = new DiffDiag(mDistance, mU, mV, mOffset >= 0 ? mOffset + 1 : mOffset - 1);
+      mAbove->mBelow = this;
    }
-   return above;
+   return mAbove;
 }
 
-DiffDiag* DiffDiag::GetBelow()
+DiffDiag* DiffDiag::below()
 {
-   if(below == nullptr)
+   if(mBelow == nullptr)
    {
       // lower half has a, b switched, so see themselves
       // as the upper half of the transpose
-      below = new DiffDiag(dist, mV, mU, -1);
-      below->below = this;
-      //		below = new DiffDiag(dist, u, v, offset - 1 );
+      mBelow = new DiffDiag(mDistance, mV, mU, -1);
+      mBelow->mBelow = this;
+      //		mBelow = new DiffDiag(dist, u, v, offset - 1 );
    }
-   return below;
+   return mBelow;
 }
 
-Integer DiffDiag::GetUpperEntry(Integer i)
+int64 DiffDiag::upperEntry(int64 i)
 {
-   return GetAbove()->GetEntry(i - 1);
+   return above()->entry(i - 1);
 }
 
-Integer DiffDiag::GetLeftEntry(Integer i)
+int64 DiffDiag::leftEntry(int64 i)
 {
-   // If diagonals are "below", then diagonal 1 is shorter
+   // If diagonals are "mBelow", then diagonal 1 is shorter
 
-   return GetBelow()->GetEntry((offset == 0) ? i - 1 : i);
+   return below()->entry((mOffset == 0) ? i - 1 : i);
    //	return GetBelow()->GetEntry( i-1 );
 }
 
-Integer DiffDiag::GetEntry(Integer j)
+int64 DiffDiag::entry(int64 j)
 {
-   if(j < elements->size())return elements->at(j);
+   if(j < int64(mElements->size()))return mElements->at(j);
 
-   Integer x = elements->at(elements->size() - 1);
+   int64 x = mElements->at(mElements->size() - 1);
 
-   while(elements->size() <= j)
+   while(int64(mElements->size()) <= j)
    {
-      Integer lu = x;
-      Integer i = elements->size();
+      int64 lu = x;
+      int64 i = mElements->size();
 
       //  \ \  \
       //   \ \  \
       //    \lu  u
       //     \  \
       //      l  x
-      Object* o1 = GetObjU(i);
-      Object* o2 = GetObjV(i);
+      Object* o1 = objectU(i);
+      Object* o2 = objectV(i);
 
       if(o1->equals(o2))
       {
@@ -121,35 +121,35 @@ Integer DiffDiag::GetEntry(Integer j)
          // but does not always evaluate n
          // this makes it O(|a|*D(a,b))
 
-         Integer l = GetLeftEntry(i);
+         int64 l = leftEntry(i);
          if(l < lu)
          {
             x = l + 1;
          }
          else
          {
-            Integer u = GetUpperEntry(i);
+            int64 u = upperEntry(i);
             x = (lu < u ? lu : u) + 1;
          }
       }
 
-      dist->calc++;
-      elements->push_back(x);
+      mDistance->calc++;
+      mElements->push_back(x);
    }
    return x;
 }
 
-Object* DiffDiag::GetObjU(Integer i)
+Object* DiffDiag::objectU(int64 i)
 {
    return mU->at(i - 1);
 }
 
-Object* DiffDiag::GetObjV(Integer i)
+Object* DiffDiag::objectV(int64 i)
 {
-   return mV->at(std::abs(offset) + i - 1);
+   return mV->at(std::abs(mOffset) + i - 1);
 }
 
-Integer DiffDiag::GetOffset()
+int64 DiffDiag::offset()
 {
-   return offset;
+   return mOffset;
 }

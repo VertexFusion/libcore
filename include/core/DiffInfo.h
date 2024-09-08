@@ -66,30 +66,36 @@ namespace jm
            \param obj1 Pointer to the first object.
            \param obj2 Pointer to the second object.
            */
-         void Print(DiffOperation operation, Object* obj1, Object* obj2);
+         void print(DiffOperation operation, Object* obj1, Object* obj2);
 
          /*
          	void Print(int obj1, int obj2,vxf::String label);
          	void Print(unsigned int obj1,unsigned int obj2,vxf::String label);*/
-         static void Print(DiffOperation operation,
-                           Integer obj1, Integer obj2, const String& label);
+         static void print(DiffOperation operation,
+                           int32 obj1, int32 obj2, const String& label);
+         static void print(DiffOperation operation,
+                           int64 obj1, int64 obj2, const String& label);
+         static void print(DiffOperation operation,
+                           uint32 obj1, uint32 obj2, const String& label);
+         static void print(DiffOperation operation,
+                           uint64 obj1, uint64 obj2, const String& label);
 
-         static void Print(DiffOperation operation,
+         static void print(DiffOperation operation,
                            double obj1, double obj2, const String& label);
 
-         static void Print(DiffOperation operation,
+         static void print(DiffOperation operation,
                            const String& obj1, const String& obj2, const String& label);
 
-         static void PrintIC(DiffOperation operation,
+         static void printIgnoreCase(DiffOperation operation,
                              const String& obj1, const String& obj2, const String& label);// Ignore Case
 
          //			static void Print(DiffOperation operation,
          //			                  const dwg::Color &obj1, const dwg::Color &obj2, const String &label);
 
-         static void Print(DiffOperation operation,
+         static void print(DiffOperation operation,
                            const Vertex2& obj1, const Vertex2& obj2, const String& label);
 
-         static void Print(DiffOperation operation,
+         static void print(DiffOperation operation,
                            const Vertex3& obj1, const Vertex3& obj2, const String& label);
 
          //			static void Print(DiffOperation operation,

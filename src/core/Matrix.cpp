@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-Matrix::Matrix(Integer rows, Integer cols)
+Matrix::Matrix(int64 rows, int64 cols)
 {
    m = rows;
    n = cols;
@@ -140,18 +140,18 @@ Matrix::~Matrix()
    }
 }
 
-void Matrix::set(Integer row, Integer col, double value)
+void Matrix::set(int64 row, int64 col, double value)
 {
    // It is saved column by column
    data[row + col * m] = value;
 }
 
-void Matrix::add(Integer row, Integer col, double value)
+void Matrix::add(int64 row, int64 col, double value)
 {
    data[row + col * m] += value;
 }
 
-double Matrix::get(Integer row, Integer col) const
+double Matrix::get(int64 row, int64 col) const
 {
    return data[row + col * m];
 }
@@ -389,13 +389,13 @@ VxfErrorStatus Matrix::inverse()
 void Matrix::transpose()
 {
    Matrix tmp = this;
-   Integer i = m;
+   int64 i = m;
    m = n;
    n = i;
 
-   for(Integer a = 0; a < tmp.m; a++)
+   for(int64 a = 0; a < tmp.m; a++)
    {
-      for(Integer b = 0; b < tmp.n; b++)
+      for(int64 b = 0; b < tmp.n; b++)
       {
          set(b, a, tmp.get(a, b));
       }
@@ -405,12 +405,12 @@ void Matrix::transpose()
 
 void Matrix::insert(const Matrix& A)
 {
-   Integer rows = std::min(m, A.m);
-   Integer cols = std::min(n, A.n);
+   int64 rows = std::min(m, A.m);
+   int64 cols = std::min(n, A.n);
 
-   for(Integer r = 0; r < rows; r++)
+   for(int64 r = 0; r < rows; r++)
    {
-      for(Integer c = 0; c < cols; c++)
+      for(int64 c = 0; c < cols; c++)
       {
          data[r + c * m] = A.data[r + c * A.m];
       }
@@ -418,14 +418,14 @@ void Matrix::insert(const Matrix& A)
 }
 
 
-void Matrix::insert(const Matrix& A, Integer _r, Integer _c)
+void Matrix::insert(const Matrix& A, int64 _r, int64 _c)
 {
-   Integer rows = std::min(m - _r, A.m);
-   Integer cols = std::min(n - _c, A.n);
+   int64 rows = std::min(m - _r, A.m);
+   int64 cols = std::min(n - _c, A.n);
 
-   for(Integer r = 0; r < rows; r++)
+   for(int64 r = 0; r < rows; r++)
    {
-      for(Integer c = 0; c < cols; c++)
+      for(int64 c = 0; c < cols; c++)
       {
          data[(r + _r) + (c + _c) * m] = A.data[r + c * A.m];
       }
@@ -434,9 +434,9 @@ void Matrix::insert(const Matrix& A, Integer _r, Integer _c)
 
 void Matrix::diag(double value)
 {
-   Integer cnt = std::min(m, n);
+   int64 cnt = std::min(m, n);
 
-   for(Integer i = 0; i < cnt; i++)
+   for(int64 i = 0; i < cnt; i++)
    {
       data[i * (m + 1)] = value;
    }
@@ -520,9 +520,9 @@ double Matrix::trace() const
    double sum = 0.0;
 
    // Just do ensure, that we make no error even if the matrix is not square.
-   Integer cnt = std::min(m, n);
+   int64 cnt = std::min(m, n);
 
-   for(Integer i = 0; i < cnt; i++)
+   for(int64 i = 0; i < cnt; i++)
    {
       sum += data[i * (m + 1)];
    }
@@ -660,16 +660,16 @@ const Matrix jm::operator*(Matrix const& A, Matrix const& B)
    // | 1 4 7 | * | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(Integer i = 0; i < A.m; i++)   // i: Left Rows
+   for(int64 i = 0; i < A.m; i++)   // i: Left Rows
    {
-      for(Integer j = 0; j < B.n; j++)   //j: RIght columns
+      for(int64 j = 0; j < B.n; j++)   //j: RIght columns
       {
-         Integer rIndex = i + j * A.m;
+         int64 rIndex = i + j * A.m;
 
-         for(Integer k = 0; k < A.n; k++)   // k: Left Cols = Right Cols
+         for(int64 k = 0; k < A.n; k++)   // k: Left Cols = Right Cols
          {
-            Integer aIndex = i + k * A.m;
-            Integer bIndex = k + j * B.m;
+            int64 aIndex = i + k * A.m;
+            int64 bIndex = k + j * B.m;
             R.data[rIndex] += A.data[aIndex] * B.data[bIndex];
          }
       }
@@ -691,11 +691,11 @@ const Matrix jm::operator+(Matrix const& A, Matrix const& B)
    // | 1 4 7 | + | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(Integer i = 0; i < A.m; i++)   // i: Zeilen der Linken
+   for(int64 i = 0; i < A.m; i++)   // i: Zeilen der Linken
    {
-      for(Integer j = 0; j < B.n; j++)   //j: Spalten der Rechten
+      for(int64 j = 0; j < B.n; j++)   //j: Spalten der Rechten
       {
-         Integer rIndex = i + j * A.m;
+         int64 rIndex = i + j * A.m;
          R.data[rIndex] = A.data[rIndex] + B.data[rIndex];
       }
    }
@@ -716,11 +716,11 @@ const Matrix jm::operator-(Matrix const& A, Matrix const& B)
    // | 1 4 7 | - | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(Integer i = 0; i < A.m; i++)   // i: Zeilen der Linken
+   for(int64 i = 0; i < A.m; i++)   // i: Zeilen der Linken
    {
-      for(Integer j = 0; j < B.n; j++)   //j: Spalten der Rechten
+      for(int64 j = 0; j < B.n; j++)   //j: Spalten der Rechten
       {
-         Integer  rIndex = i + j * A.m;
+         int64  rIndex = i + j * A.m;
          R.data[rIndex] = A.data[rIndex] - B.data[rIndex];
       }
    }
@@ -732,7 +732,7 @@ const Matrix jm::operator*(double const& d, Matrix const& A)
 {
    Matrix R = Matrix(A.m, A.n);
 
-   for(Integer i = 0; i < A.m * A.n; i++)
+   for(int64 i = 0; i < A.m * A.n; i++)
    {
       R.data[i] = d * A.data[i];
    }
@@ -749,7 +749,7 @@ const Matrix jm::operator/(Matrix const& A, double const& d)
 {
    Matrix R = Matrix(A.m, A.n);
 
-   for(Integer i = 0; i < A.m * A.n; i++)
+   for(int64 i = 0; i < A.m * A.n; i++)
    {
       R.data[i] = A.data[i] / d;
    }
@@ -859,7 +859,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
     jm::Vertex3 v_norm = v.normalized();
 
     // Calculate the dot product
-    double cosTheta = u_norm.DotProduct(v_norm);
+    double cosTheta = u_norm.dotProduct(v_norm);
 
     // Check if the angle is π (cosTheta is -1)
    if (jm::isEqual(cosTheta , -1.0))
@@ -923,10 +923,10 @@ const Vector jm::operator*(Matrix const& A, Vector const& b)
 
    Vector ret = Vector(A.m);
 
-   for(Integer r = 0; r < A.m; r++)
+   for(int64 r = 0; r < A.m; r++)
    {
       ret.data[r] = 0.0;
-      for(Integer c = 0; c < A.n; c++)
+      for(int64 c = 0; c < A.n; c++)
       {
          ret.data[r] += b.data[c] * A.get(r, c);
       }

@@ -47,7 +47,7 @@ namespace jm
 
          /*!
           */
-         Integer mWritelength;
+         int64 mWritelength;
 
 
           /*!
@@ -55,7 +55,7 @@ namespace jm
            \param array The byte array on which the stream operations will be applied.
            \param length The length of the byte array.
            */
-         MemoryStream(uint8* array, Integer length);
+         MemoryStream(uint8* array, int64 length);
 
           /*!
           \copdoc Stream::open()
@@ -75,37 +75,37 @@ namespace jm
          /*!
          \copydoc Stream::read()
          */
-         Integer read(uint8* buffer, Integer length) override;
+         int64 read(uint8* buffer, int64 length) override;
 
          /*!
          \copydoc Stream::readFully()
          */
-         Integer readFully(ByteArray& buffer, Integer length) override;
+         int64 readFully(ByteArray& buffer, int64 length) override;
 
          /*!
          \copydoc Stream::readByte()
          */
-         void seek(Integer position) override;
+         void seek(int64 position) override;
 
          /*!
           \copydoc Stream::move()
           */
-         void move(Integer offset) override;
+         void move(int64 offset) override;
 
          /*!
          \copydoc Stream::position()
          */
-         Integer position() override;
+         int64 position() override;
 
          /*!
          \copydoc Stream::write()
          */
-         Integer write(const uint8* buffer, Integer length) override;
+         int64 write(const uint8* buffer, int64 length) override;
 
          /*!
           \copydoc Stream::size()
           */
-         Integer size() const override;
+         int64 size() const override;
 
           /*!
            \brief Returns the buffer of the MemoryStream.
@@ -123,12 +123,12 @@ namespace jm
           /*!
            \brief The length of the byte array.
            */
-         Integer mStreamlength;
+         int64 mStreamlength;
 
           /*!
            \brief The current pointer position in the array.
            */
-         Integer mPosition;
+         int64 mPosition;
 
    };
 

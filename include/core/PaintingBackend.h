@@ -93,40 +93,40 @@ namespace jm
            \brief This method is called to interrupt the work of the drawing thread as soon as possible.
            \param status The status of the cancellation. If "true", the drawing thread should be interrupted.
            */
-         void CancelProcess(bool status);
+         void cancelProcess(bool status);
 
           /*!
            \brief This method pushes a new transformation onto the transformation stack.
            \param t The transformation to be pushed onto the stack.
            */
-         void PushTransform(const Transform& t);
+         void pushTransform(const Transform& t);
 
           /*!
            \brief This method removes the top element from the transformation stack.
            */
-         void PopTransform();
+         void popTransform();
 
           /*!
            \brief This method changes the color used for drawing on the target context.
            \param color The RGB color used for drawing.
            */
-         virtual void SetColour(Color color) = 0;
+         virtual void setColor(Color color) = 0;
 
          /*!
          \brief Returns the current color used for drawing on the target context.
          */
-         virtual Color GetColour() const = 0;
+         virtual Color color() const = 0;
 
           /*!
            \brief This method sets the line weight used for drawing the objects.
            \param lineweight The line weight.
            */
-         virtual void SetLineWeight(double lineweight) = 0;
+         virtual void setLineWeight(double lineweight) = 0;
 
          /*!
           /brief  Returns the current line weight used for drawing on the target context.
           */
-         virtual double GetLineWeight() const = 0;
+         virtual double lineWeight() const = 0;
 
           /*!
            \brief This method moves the pen from the current position to the new position,

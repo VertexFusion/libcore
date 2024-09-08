@@ -87,32 +87,32 @@ namespace jm
            \param t The parameter value on the curve. Should be in the range [0, t_max].
            \return The point on the curve at the given parameter value.
            */
-         Vertex3 GetPoint(double t);
+         Vertex3 point(double t);
 
           /*!
            \brief This method returns the smallest value of t. In this case, it returns 0.
            */
-         double GetStart();
+         double start();
 
       /*!
         \brief This method returns the maximum value of t.
         */
-         double GetEnd();
+         double end();
 
           /*!
            \brief Returns the number of control points.
            */
-         uint32 GetControlPointCount();
+         uint32 controlPointCount();
 
          /*!
           \brief Returns the knot count
           */
-         uint32 GetKnotCount()const;
+         uint32 knotCount()const;
 
          /*!
           \brief returns a knot
           */
-         double GetKnot(uint32 index)const;
+         double knot(uint32 index)const;
 
       private:
 

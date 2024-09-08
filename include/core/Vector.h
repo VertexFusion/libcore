@@ -46,7 +46,7 @@ namespace jm
       /*!
        \brief This variable stores the number of rows in the vector.
        */
-      Integer m;
+      int64 m;
 
       /*!
        \brief This field stores the data of the vector. The length must always be m.
@@ -67,7 +67,7 @@ namespace jm
        \brief Constructor creates an n-dimensional vector.
        \param rows Number of rows (dimensions) in the vector.
        */
-      Vector(Integer rows);
+      Vector(int64 rows);
 
       /*!
        \brief Destructor

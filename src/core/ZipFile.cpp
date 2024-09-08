@@ -66,7 +66,7 @@ void ZipFile::open()
    {
       mFile->seek(seek);
       mFile->Stream::readFully(eocd);
-      signature = jm::DeserializeLEInt32((uint8*)eocd.constData(), 0);
+      signature = jm::deserializeLEInt32((uint8*)eocd.constData(), 0);
       seek--;
 
       if(signature == 0x06054b50)
@@ -79,9 +79,9 @@ void ZipFile::open()
 
    if(!found)throw jm::Exception(Tr("ZIP-File is invalid."));
 
-   uint16 recordCount = jm::DeserializeLEUInt16((uint8*)eocd.constData(), 10);
-   uint32 dictSize = jm::DeserializeLEUInt32((uint8*)eocd.constData(), 12);
-   uint32 dictOffset = jm::DeserializeLEUInt32((uint8*)eocd.constData(), 16);
+   uint16 recordCount = jm::deserializeLEUInt16((uint8*)eocd.constData(), 10);
+   uint32 dictSize = jm::deserializeLEUInt32((uint8*)eocd.constData(), 12);
+   uint32 dictOffset = jm::deserializeLEUInt32((uint8*)eocd.constData(), 16);
 
    ByteArray dict = ByteArray(dictSize, 0);
    mFile->seek(dictOffset);
@@ -93,12 +93,12 @@ void ZipFile::open()
    while(count < recordCount)
    {
       //signature = jm::DeserializeLEInt32(dict, index);
-      uint32 compressedSize = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 20);
-      uint32 uncompressedSize = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 24);
-      uint32 fileNameLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 28);
-      uint32 extraFieldLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 30);
-      uint32 commentLength = jm::DeserializeLEUInt16((uint8*)dict.constData(), index + 32);
-      uint32 offset = jm::DeserializeLEUInt32((uint8*)dict.constData(), index + 42);
+      uint32 compressedSize = jm::deserializeLEUInt32((uint8*)dict.constData(), index + 20);
+      uint32 uncompressedSize = jm::deserializeLEUInt32((uint8*)dict.constData(), index + 24);
+      uint32 fileNameLength = jm::deserializeLEUInt16((uint8*)dict.constData(), index + 28);
+      uint32 extraFieldLength = jm::deserializeLEUInt16((uint8*)dict.constData(), index + 30);
+      uint32 commentLength = jm::deserializeLEUInt16((uint8*)dict.constData(), index + 32);
+      uint32 offset = jm::deserializeLEUInt32((uint8*)dict.constData(), index + 42);
 
       jm::String name = jm::String((char*)&dict[index + 46], fileNameLength);
       jm::String extra = jm::String((char*)&dict[index + 46 + fileNameLength], extraFieldLength);
@@ -165,7 +165,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    ByteArray localHeader = ByteArray(30, 0);
    mFile->seek(entry->mHeaderOffset);
    mFile->Stream::readFully(localHeader);
-   uint32 signature = jm::DeserializeLEUInt32((uint8*)localHeader.constData(), 0);
+   uint32 signature = jm::deserializeLEUInt32((uint8*)localHeader.constData(), 0);
 
    if(signature != 0x04034b50)
    {
@@ -173,9 +173,9 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
       throw jm::Exception(Tr("ZIP file Error. Signature of Entry wrong."));
    }
 
-   uint16 cm = jm::DeserializeLEUInt16(localHeader, 8);
-   uint32 fl = jm::DeserializeLEUInt16(localHeader, 26);
-   uint32 el = jm::DeserializeLEUInt16(localHeader, 28);
+   uint16 cm = jm::deserializeLEUInt16(localHeader, 8);
+   uint32 fl = jm::deserializeLEUInt16(localHeader, 26);
+   uint32 el = jm::deserializeLEUInt16(localHeader, 28);
 
 
    mFile->seek(entry->mHeaderOffset + 30 + fl + el);

@@ -98,7 +98,7 @@ namespace jm
        \param vertex The input vertex to be transformed.
        \return The transformed vertex.
        */
-      Vertex3 Trans(const Vertex3& vertex) const;
+      Vertex3 trans(const Vertex3& vertex) const;
 
       /*!
        \brief This method transforms the number using the 4x4 transformation matrix.
@@ -106,39 +106,39 @@ namespace jm
        \param value The input number to be transformed.
        \return The transformed number.
        */
-      double Trans(double value) const;
+      double trans(double value) const;
 
       /*!
        \brief Transform a rotation angle about the Z-Axis of LCS as usually needed by arcs or texts.
        \param angle Rotation angle in radians.
        \return The transformed angle.
        */
-      double TransAngle(double angle) const;
+      double transAngle(double angle) const;
 
       /*!
        \brief Initializes this transformation as a translation.
        \param distance The distance to translate by.
        */
-      void InitMoving(const Vertex3& distance);
+      void initMoving(const Vertex3& distance);
 
       /*!
        \brief Initializes this transformation as scaling by different factors along the x, y, and z axes.
        \param factors The scaling factors along the x, y, and z axes.
        */
-      void InitScaling(const Vertex3& factors);
+      void initScaling(const Vertex3& factors);
 
       /*!
        \brief Initializes this transformation as scaling around a base point.
        \param basePoint The point around which the scaling is performed.
        \param factor The scaling factor.
        */
-      void InitScaling(const Vertex3& basePoint, double factor);
+      void initScaling(const Vertex3& basePoint, double factor);
 
       /*!
        \brief Initializes this Transform as a rotation matrix around the Z-axis.
        \param angle The rotation angle in radians.
        */
-      void InitRotationZ(double angle);
+      void initRotationZ(double angle);
 
       /*!
        \brief Initializes this Transform as a rotation matrix.
@@ -146,7 +146,7 @@ namespace jm
        \param axisDirection The normalized direction vector of the rotation axis.
        \param angle The rotation angle in radians.
        */
-      void InitRotation(const Vertex3& axisPoint,
+      void initRotation(const Vertex3& axisPoint,
                         const Vertex3& axisDirection,
                         double angle);
       /*!
@@ -157,7 +157,7 @@ namespace jm
              The mirror plane is defined by a point on the plane (planePoint) and the normal vector of the plane (planeNormal).
              The resulting matrix can be used to mirror 3D points and objects.
        */
-      void InitMirroring(const Vertex3& planePoint,
+      void initMirroring(const Vertex3& planePoint,
                          const Vertex3& planeNormal);
 
       /*!
@@ -167,7 +167,7 @@ namespace jm
           The extrusion vector is used to define the direction of the Z-axis in the WCS.
           The resulting matrix can be used to transform 3D points and angles from OCS to WCS.
        */
-      void InitWCS(const Vertex3& extrusion);
+      void initWcs(const Vertex3& extrusion);
 
       /*!
        \brief Initializes this transformation as an identity matrix.
@@ -175,7 +175,7 @@ namespace jm
              When a vector or point is multiplied by an identity matrix, the result is the same vector or point.
              This method sets the transformation matrix to an identity matrix, effectively resetting any previous transformations applied.
        */
-      void InitIdentity();
+      void initIdentity();
 
    };
 

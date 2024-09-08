@@ -43,7 +43,7 @@ void* StartThread(void* arg)
    t->alive = true;
    pthread_mutex_unlock(&t->criticalSection);
 
-   t->Run();
+   t->run();
    pthread_exit(nullptr);
 }
 
@@ -91,7 +91,7 @@ Thread::~Thread()
    #endif
 }
 
-void Thread::Start()
+void Thread::start()
 {
    #if defined __APPLE__ || defined __linux__
    void* arg = (void*)this;
@@ -107,7 +107,7 @@ void Thread::Start()
 }
 
 
-void Thread::Sleep(int millis)
+void Thread::sleep(int millis)
 {
    #if defined __APPLE__ || defined __linux__
    timespec   ts;
@@ -132,7 +132,7 @@ void Thread::Sleep(int millis)
    #endif
 }
 
-void Thread::Lock()
+void Thread::lock()
 {
    #if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
@@ -141,7 +141,7 @@ void Thread::Lock()
    #endif
 }
 
-void Thread::Unlock()
+void Thread::unlock()
 {
    #if defined __APPLE__ || defined __linux__
    pthread_mutex_unlock(&criticalSection);
@@ -150,7 +150,7 @@ void Thread::Unlock()
    #endif
 }
 
-void Thread::Sleep()
+void Thread::sleep()
 {
    #if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
@@ -163,7 +163,7 @@ void Thread::Sleep()
    #endif
 }
 
-void Thread::WakeUp()
+void Thread::wakeUp()
 {
    #if defined __APPLE__ || defined __linux__
    pthread_cond_signal(&cond);
@@ -172,7 +172,7 @@ void Thread::WakeUp()
    #endif
 }
 
-void Thread::Interrupt()
+void Thread::interrupt()
 {
    #if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
@@ -185,7 +185,7 @@ void Thread::Interrupt()
    #endif
 }
 
-bool Thread::IsAlive()
+bool Thread::isAlive()
 {
    #if defined __APPLE__ || defined __linux__
    bool ret;
@@ -203,7 +203,7 @@ bool Thread::IsAlive()
 }
 
 
-void Thread::SetName(const jm::String& name)
+void Thread::setName(const jm::String& name)
 {
    #if defined __APPLE__
    pthread_setname_np(name.toCString().constData());
@@ -219,7 +219,7 @@ void Thread::SetName(const jm::String& name)
 
 
 
-bool Thread::IsMainThread()
+bool Thread::isMainThread()
 {
    #ifdef __APPLE__
    //Nur OS X?

@@ -87,7 +87,7 @@ namespace jm
          /*!
           \brief Returns the number of entries in this hash table.
           */
-         Integer size() const;
+         int64 size() const;
 
           /*!
            \brief This method returns true if the hashtable is empty.
@@ -144,7 +144,7 @@ namespace jm
          struct HashtableEntry
          {
             //! The hash value of the entry.
-            Integer hash;
+            int64 hash;
 
             //! The key associated with the entry.
             String key;

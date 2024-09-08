@@ -70,7 +70,7 @@ namespace jm
           \param buffer Uncompressed data
           \param length Data length
           */
-         void SetInput(uint8* buffer,
+         void setInput(uint8* buffer,
                        int64 length);
 
          /*!
@@ -80,23 +80,23 @@ namespace jm
           \param buffer The buffer into which the data is to be written.
           \param length Buffer length
           */
-         void Deflate(uint8*& buffer,
+         void deflate(uint8*& buffer,
                       int64& length);
 
          /*!
           \brief Resets the compressor so that a new object can be compressed
           */
-         void Reset();
+         void reset();
 
          /*!
           \brief Returns the total number of bytes of the uncompressed input
           */
-         int64 GetTotalIn();
+         int64 totalInSize();
 
          /*!
           \brief Returns the total number of bytes of the compressed output
           */
-         int64 GetTotalOut();
+         int64 totalOutSize();
 
       private:
 

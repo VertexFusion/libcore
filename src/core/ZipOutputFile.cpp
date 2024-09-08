@@ -80,23 +80,23 @@ void ZipOutputFile::close()
       ByteArray ccomment = entry->mComment.toCString();
 
       uint8 cdfh[46];
-      jm::SerializeLEInt32(cdfh, 0, 0x02014b50);//Signature
-      jm::SerializeLEInt16(cdfh, 4, 0);//Version made by. Auf 0 gesetzt
-      jm::SerializeLEInt16(cdfh, 6, 0);//Minimum Version needed. Auf 0 gesetzt
-      jm::SerializeLEInt16(cdfh, 8, 0);//General Purpose Bit Flag. Auf 0 gesetzt
-      jm::SerializeLEInt16(cdfh, 10, 0); //Compression Method
-      jm::SerializeLEInt16(cdfh, 12, 0);//ShxFile last modification time
-      jm::SerializeLEInt16(cdfh, 14, 0);//ShxFile last modification date
-      jm::SerializeLEInt32(cdfh, 16, entry->mCRC);//CRC
-      jm::SerializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
-      jm::SerializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
-      jm::SerializeLEInt16(cdfh, 28, cname.size());//ShxFile name Length
-      jm::SerializeLEInt16(cdfh, 30, cextra.size());//Extra field length
-      jm::SerializeLEInt16(cdfh, 32, ccomment.size());//Comment field length
-      jm::SerializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
-      jm::SerializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
-      jm::SerializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
-      jm::SerializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
+      jm::serializeLEInt32(cdfh, 0, 0x02014b50);//Signature
+      jm::serializeLEInt16(cdfh, 4, 0);//Version made by. Auf 0 gesetzt
+      jm::serializeLEInt16(cdfh, 6, 0);//Minimum Version needed. Auf 0 gesetzt
+      jm::serializeLEInt16(cdfh, 8, 0);//General Purpose Bit Flag. Auf 0 gesetzt
+      jm::serializeLEInt16(cdfh, 10, 0); //Compression Method
+      jm::serializeLEInt16(cdfh, 12, 0);//ShxFile last modification time
+      jm::serializeLEInt16(cdfh, 14, 0);//ShxFile last modification date
+      jm::serializeLEInt32(cdfh, 16, entry->mCRC);//CRC
+      jm::serializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
+      jm::serializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
+      jm::serializeLEInt16(cdfh, 28, cname.size());//ShxFile name Length
+      jm::serializeLEInt16(cdfh, 30, cextra.size());//Extra field length
+      jm::serializeLEInt16(cdfh, 32, ccomment.size());//Comment field length
+      jm::serializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
+      jm::serializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
+      jm::serializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
+      jm::serializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
 
       mFile->write(cdfh, 46);
       if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());
@@ -109,15 +109,15 @@ void ZipOutputFile::close()
 
    //Frilte End of Directory Record
    uint8 eof[22];
-   jm::SerializeLEInt32(eof, 0, 0x06054b50);//Signature
-   jm::SerializeLEInt16(eof, 4, 0);//Number of Disks
-   jm::SerializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
-   jm::SerializeLEInt16(eof, 8, (int16)
+   jm::serializeLEInt32(eof, 0, 0x06054b50);//Signature
+   jm::serializeLEInt16(eof, 4, 0);//Number of Disks
+   jm::serializeLEInt16(eof, 6, 0);//Disk where centra directory starts.
+   jm::serializeLEInt16(eof, 8, (int16)
                         mEntries.size()); //Number of Central directory records on this disk
-   jm::SerializeLEInt16(eof, 10, (int16)mEntries.size());//Total Number of Central directory records
-   jm::SerializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
-   jm::SerializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
-   jm::SerializeLEInt16(eof, 20, 0);//Comment Length.
+   jm::serializeLEInt16(eof, 10, (int16)mEntries.size());//Total Number of Central directory records
+   jm::serializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
+   jm::serializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
+   jm::serializeLEInt16(eof, 20, 0);//Comment Length.
 
    mFile->write(eof, 22);
 
@@ -148,9 +148,9 @@ void ZipOutputFile::closeEntry()
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
-   jm::SerializeLEInt32(lfhfragment, 0, entry->mCRC);
-   jm::SerializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
-   jm::SerializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
+   jm::serializeLEInt32(lfhfragment, 0, entry->mCRC);
+   jm::serializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
+   jm::serializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
 
    mFile->seek(entry->mHeaderOffset + 14);
    mFile->write(lfhfragment, 12);
@@ -183,9 +183,9 @@ void ZipOutputFile::writeAndClose(jm::File* file)
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
-   jm::SerializeLEInt32(lfhfragment, 0, entry->mCRC);
-   jm::SerializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
-   jm::SerializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
+   jm::serializeLEInt32(lfhfragment, 0, entry->mCRC);
+   jm::serializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
+   jm::serializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
 
    mFile->seek(entry->mHeaderOffset + 14);
    mFile->write(lfhfragment, 12);
@@ -201,17 +201,17 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
 
    //Schreibe Local FileHeader
    uint8 lfh[30];
-   jm::SerializeLEInt32(lfh, 0, 0x04034b50);//Signature
-   jm::SerializeLEInt16(lfh, 4, 0);//Minimum Version needed. Auf 0 gesetzt
-   jm::SerializeLEInt16(lfh, 6, 0);//General Purpose Bit Flag. Auf 0 gesetzt
-   jm::SerializeLEInt16(lfh, 8, 0);//Compression Method
-   jm::SerializeLEInt16(lfh, 10, 0);//File last modification time
-   jm::SerializeLEInt16(lfh, 12, 0);//File last modification date
-   jm::SerializeLEInt32(lfh, 14, 0);//CRC
-   jm::SerializeLEInt32(lfh, 18, 0);//Compressed Size
-   jm::SerializeLEInt32(lfh, 22, 0);//Uncompressed Size
-   jm::SerializeLEInt16(lfh, 26, cname.size());//File name Length
-   jm::SerializeLEInt16(lfh, 28, cextra.size());//Extra field length
+   jm::serializeLEInt32(lfh, 0, 0x04034b50);//Signature
+   jm::serializeLEInt16(lfh, 4, 0);//Minimum Version needed. Auf 0 gesetzt
+   jm::serializeLEInt16(lfh, 6, 0);//General Purpose Bit Flag. Auf 0 gesetzt
+   jm::serializeLEInt16(lfh, 8, 0);//Compression Method
+   jm::serializeLEInt16(lfh, 10, 0);//File last modification time
+   jm::serializeLEInt16(lfh, 12, 0);//File last modification date
+   jm::serializeLEInt32(lfh, 14, 0);//CRC
+   jm::serializeLEInt32(lfh, 18, 0);//Compressed Size
+   jm::serializeLEInt32(lfh, 22, 0);//Uncompressed Size
+   jm::serializeLEInt16(lfh, 26, cname.size());//File name Length
+   jm::serializeLEInt16(lfh, 28, cextra.size());//Extra field length
 
    mFile->write(lfh, 30);
    if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());

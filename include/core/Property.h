@@ -276,12 +276,12 @@ namespace jm
           \brief Set the Integer value of this Property
           \param value The Integer value
           */
-         VxfErrorStatus setIntegerValue(Integer value);
+         VxfErrorStatus setIntegerValue(int64 value);
 
          /*!
           \brief Returns the Integer Value of this property.
           */
-         Integer integerValue() const;
+         int64 integerValue() const;
 
          /*!
           \brief Set the Bool value of this Property
@@ -469,10 +469,10 @@ namespace jm
           \param rangeMin Minimum valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
           */
-         virtual VxfErrorStatus setMember(Integer* pointer,
-                                          Integer value,
-                                          Integer rangeMin = INT64_MIN,
-                                          Integer rangeMax = INT64_MAX);
+         virtual VxfErrorStatus setMember(int64* pointer,
+                                          int64 value,
+                                          int64 rangeMin = INT64_MIN,
+                                          int64 rangeMax = INT64_MAX);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.

@@ -64,7 +64,7 @@ Date::Date(int64 milliseconds): Comparable<Date>()
 
 Date::Date(uint16 year, uint16 month, uint16 day): Comparable<Date>()
 {
-   mTime = UTC(MakeDate(MakeDay(year, month, day), 0));
+   mTime = utc(makeDate(makeDay(year, month, day), 0));
 }
 
 Date::Date(uint16 year,
@@ -75,7 +75,7 @@ Date::Date(uint16 year,
            uint16 seconds,
            uint16 millis): Comparable<Date>()
 {
-   mTime = UTC(MakeDate(MakeDay(year, month, day), MakeTime(hours, minutes, seconds, millis)));
+   mTime = utc(makeDate(makeDay(year, month, day), makeTime(hours, minutes, seconds, millis)));
 }
 
 Date Date::fromNSDate(double nsdate)
@@ -104,7 +104,7 @@ int64 Date::timeWithinDay(int64 t) const
    return t % MS_PER_DAY;
 }
 
-int64 Date::DaysInYear(int64 y) const
+int64 Date::daysInYear(int64 y) const
 {
    if(y % 4 != 0)return 365;
    if(y % 100 != 0)return 366;
@@ -112,7 +112,7 @@ int64 Date::DaysInYear(int64 y) const
    return 366;
 }
 
-int64 Date::DayFromYear(int64 y) const
+int64 Date::dayFromYear(int64 y) const
 {
    return 365 * (y - 1970)
           + divFloor(y - 1969, 4)
@@ -120,18 +120,18 @@ int64 Date::DayFromYear(int64 y) const
           + divFloor(y - 1601, 400);
 }
 
-int64 Date::TimeFromYear(int64 y) const
+int64 Date::timeFromYear(int64 y) const
 {
-   return MS_PER_DAY * DayFromYear(y);
+   return MS_PER_DAY * dayFromYear(y);
 }
 
-int64 Date::YearFromTime(int64 t) const
+int64 Date::yearFromTime(int64 t) const
 {
    int64 startYear = 1970;
 
    if(t >= 0)
    {
-      while(TimeFromYear(startYear) <= t)
+      while(timeFromYear(startYear) <= t)
       {
          startYear++;
       }
@@ -139,7 +139,7 @@ int64 Date::YearFromTime(int64 t) const
    }
    else
    {
-      while(TimeFromYear(startYear) > t)
+      while(timeFromYear(startYear) > t)
       {
          startYear--;
       }
@@ -147,23 +147,23 @@ int64 Date::YearFromTime(int64 t) const
    }
 }
 
-int16 Date::InLeapYear(int64 t) const
+int16 Date::inLeapYear(int64 t) const
 {
-   int64 diy = DaysInYear(YearFromTime(t));
+   int64 diy = daysInYear(yearFromTime(t));
    if(diy == 365)return 0;
    if(diy == 366)return 1;
    return -1;
 }
 
-int64 Date::DayWithinYear(int64 t) const
+int64 Date::dayWithinYear(int64 t) const
 {
-   return day(t) - DayFromYear(YearFromTime(t));
+   return day(t) - dayFromYear(yearFromTime(t));
 }
 
-int64 Date::MonthFromTime(int64 t) const
+int64 Date::monthFromTime(int64 t) const
 {
-   int64 dwy = DayWithinYear(t);
-   int64 ily = InLeapYear(t);
+   int64 dwy = dayWithinYear(t);
+   int64 ily = inLeapYear(t);
 
    if(0 <= dwy && dwy < 31) return JANUARY;
    if(31 <= dwy && dwy < 59 + ily) return FEBRUARY;
@@ -181,11 +181,11 @@ int64 Date::MonthFromTime(int64 t) const
    return -1;
 }
 
-int64 Date::DateFromTime(int64 t) const
+int64 Date::dateFromTime(int64 t) const
 {
-   int64 dwy = DayWithinYear(t);
-   int64 ily = InLeapYear(t);
-   int64 mft = MonthFromTime(t);
+   int64 dwy = dayWithinYear(t);
+   int64 ily = inLeapYear(t);
+   int64 mft = monthFromTime(t);
 
    switch(mft)
    {
@@ -230,58 +230,58 @@ int64 Date::DateFromTime(int64 t) const
    }
 }
 
-int64 Date::WeekDay(int64 t) const
+int64 Date::weekDay(int64 t) const
 {
    //01.01.1970 = Donnerstag (=4)
    return (day(t) + 4) % 7;
 }
 
-int64 Date::LocalTimeZoneAdjustment() const
+int64 Date::localTimeZoneAdjustment() const
 {
    return 0;//\todo
 }
 
-int64 Date::DaylightSavingTimeAdjustment() const
+int64 Date::daylightSavingTimeAdjustment() const
 {
    return 0;//\todo
 }
 
-int64 Date::LocalTime(int64 t) const
+int64 Date::localTime(int64 t) const
 {
-   return t + LocalTimeZoneAdjustment() + DaylightSavingTimeAdjustment();//\todo
+   return t + localTimeZoneAdjustment() + daylightSavingTimeAdjustment();//\todo
 }
 
-int64 Date::UTC(int64 t) const
+int64 Date::utc(int64 t) const
 {
-   return t - LocalTimeZoneAdjustment() - DaylightSavingTimeAdjustment();//\todo
+   return t - localTimeZoneAdjustment() - daylightSavingTimeAdjustment();//\todo
 }
 
-int64 Date::HourFromTime(int64 t) const
+int64 Date::hourFromTime(int64 t) const
 {
    return modFloor(divFloor(t, MS_PER_HOUR), HOURS_PER_DAY);
 }
 
-int64 Date::MinuteFromTime(int64 t) const
+int64 Date::minuteFromTime(int64 t) const
 {
    return modFloor(divFloor(t, MS_PER_MINUTE), MINUTES_PER_HOUR);
 }
 
-int64 Date::SecondFromTime(int64 t) const
+int64 Date::secondFromTime(int64 t) const
 {
    return modFloor(divFloor(t, MS_PER_SECOND), SECONDS_PER_MINUTE);
 }
 
-int64 Date::MilliFromTime(int64 t) const
+int64 Date::milliFromTime(int64 t) const
 {
    return modFloor(t, MS_PER_SECOND);
 }
 
-int64 Date::MakeTime(int64 hour, int64 minute, int64 second, int64 milli) const
+int64 Date::makeTime(int64 hour, int64 minute, int64 second, int64 milli) const
 {
    return hour * MS_PER_HOUR + minute * MS_PER_MINUTE + second * MS_PER_SECOND + milli;
 }
 
-int64 Date::MakeDay(int64 year, int64 month, int64 date) const
+int64 Date::makeDay(int64 year, int64 month, int64 date) const
 {
    int64 theYear = year + divFloor(month, 12);
    int64 theMonth = month % 12;
@@ -292,10 +292,10 @@ int64 Date::MakeDay(int64 year, int64 month, int64 date) const
    //DateFromTime(t) ==1
 
    //Reverse YearFromTime
-   int64 tfy = TimeFromYear(theYear);
+   int64 tfy = timeFromYear(theYear);
 
    //Reverse MonthFromTime
-   int64 ily = InLeapYear(tfy);
+   int64 ily = inLeapYear(tfy);
    int64 tfm = 0;
    switch(theMonth)
    {
@@ -357,7 +357,7 @@ int64 Date::MakeDay(int64 year, int64 month, int64 date) const
    return day(r7) + date - 1;
 }
 
-int64 Date::MakeDate(int64 day, int64 millis) const
+int64 Date::makeDate(int64 day, int64 millis) const
 {
    return day * MS_PER_DAY + millis;
 }
@@ -379,87 +379,87 @@ void Date::setTime(int64 t)
 
 int64 Date::year() const
 {
-   return YearFromTime(LocalTime(mTime));
+   return yearFromTime(localTime(mTime));
 }
 
 int64 Date::utcYear() const
 {
-   return YearFromTime(mTime);
+   return yearFromTime(mTime);
 }
 
 int64 Date::month() const
 {
-   return MonthFromTime(LocalTime(mTime));
+   return monthFromTime(localTime(mTime));
 }
 
 int64 Date::utcMonth() const
 {
-   return MonthFromTime(mTime);
+   return monthFromTime(mTime);
 }
 
 int64 Date::date() const
 {
-   return DateFromTime(LocalTime(mTime));
+   return dateFromTime(localTime(mTime));
 }
 
 int64 Date::utcDate() const
 {
-   return DateFromTime(mTime);
+   return dateFromTime(mTime);
 }
 
 int64 Date::day() const
 {
-   return WeekDay(LocalTime(mTime));
+   return weekDay(localTime(mTime));
 }
 
 int64 Date::dayOfYear()const
 {
-   return DayWithinYear(LocalTime(mTime));
+   return dayWithinYear(localTime(mTime));
 }
 
 int64 Date::utcDay() const
 {
-   return WeekDay(mTime);
+   return weekDay(mTime);
 }
 
 int64 Date::hours() const
 {
-   return HourFromTime(LocalTime(mTime));
+   return hourFromTime(localTime(mTime));
 }
 
 int64 Date::utcHours() const
 {
-   return HourFromTime(mTime);
+   return hourFromTime(mTime);
 }
 
 int64 Date::minutes() const
 {
-   return MinuteFromTime(LocalTime(mTime));
+   return minuteFromTime(localTime(mTime));
 }
 
 int64 Date::utcMinutes() const
 {
-   return MinuteFromTime(mTime);
+   return minuteFromTime(mTime);
 }
 
 int64 Date::seconds() const
 {
-   return SecondFromTime(LocalTime(mTime));
+   return secondFromTime(localTime(mTime));
 }
 
 int64 Date::utcSeconds() const
 {
-   return SecondFromTime(mTime);
+   return secondFromTime(mTime);
 }
 
 int64 Date::milliseconds() const
 {
-   return MilliFromTime(LocalTime(mTime));
+   return milliFromTime(localTime(mTime));
 }
 
 int64 Date::utcMilliseconds() const
 {
-   return MilliFromTime(mTime);
+   return milliFromTime(mTime);
 }
 
 String Date::toString() const

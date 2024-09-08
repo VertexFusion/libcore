@@ -85,7 +85,7 @@ void Exception::printStackTrace() const
       //Schneide Index (o) ab
       String line = mSymbolList[i];
       line = line.trim();
-      Integer pos = line.indexOf(' ');
+      int64 pos = line.indexOf(' ');
       line = line.substring(pos).trim();
 
       //Name der Binärdatei
@@ -150,7 +150,7 @@ String Exception::GetStrackTrace() const
       //Schneide Index (o) ab
       String line = mSymbolList[i];
       line = line.trim();
-      Integer pos = line.indexOf(' ');
+      int64 pos = line.indexOf(' ');
       line = line.substring(pos).trim();
 
       //Name der Binärdatei

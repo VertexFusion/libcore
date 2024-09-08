@@ -14,7 +14,7 @@ using namespace jm;
 
 LinkedListTest::LinkedListTest(): Test()
 {
-   SetName("Test LinkedList");
+   setName("Test LinkedList");
 }
 
 void LinkedListTest::doTest()
@@ -47,106 +47,106 @@ void LinkedListTest::DoTest1()
    Object* i;
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (1a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (1a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (1b) ");
+   testEquals(i, &o1, "LinkedList fails (1b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (2a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (2a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (2b) ");
+   testEquals(i, &o2, "LinkedList fails (2b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (3a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (3a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (3b) ");
+   testEquals(i, &o3, "LinkedList fails (3b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (4a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (4a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (4b) ");
+   testEquals(i, &o4, "LinkedList fails (4b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (5a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (5a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (5b) ");
+   testEquals(i, &o5, "LinkedList fails (5b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (6)");
+   testEquals(l->hasNext(), false, "LinkedList fails (6)");
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (7a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (7a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (7b) ");
+   testEquals(i, &o1, "LinkedList fails (7b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (8a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (8a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (8b) ");
+   testEquals(i, &o2, "LinkedList fails (8b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (9a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (9a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (9b) ");
+   testEquals(i, &o3, "LinkedList fails (9b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (10a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (10a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (10b) ");
+   testEquals(i, &o4, "LinkedList fails (10b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (11a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (11a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (11b) ");
+   testEquals(i, &o5, "LinkedList fails (11b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (12)");
+   testEquals(l->hasNext(), false, "LinkedList fails (12)");
 
    //Addbefore
    l->addBefore(&o3, &o6, NULL);
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (13a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (13b) ");
+   testEquals(i, &o1, "LinkedList fails (13b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13c)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13c)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (13d) ");
+   testEquals(i, &o2, "LinkedList fails (13d) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13e)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13e)");
    i = l->next();
-   TestEquals(i, &o6, "LinkedList fails (13f) ");
+   testEquals(i, &o6, "LinkedList fails (13f) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13g)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13g)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (13h) ");
+   testEquals(i, &o3, "LinkedList fails (13h) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13i)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13i)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (13j) ");
+   testEquals(i, &o4, "LinkedList fails (13j) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13k)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13k)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (13l) ");
+   testEquals(i, &o5, "LinkedList fails (13l) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (13m)");
+   testEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
    //Remove
    l->remove(&o6, NULL);
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (13a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (13b) ");
+   testEquals(i, &o1, "LinkedList fails (13b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13c)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13c)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (13d) ");
+   testEquals(i, &o2, "LinkedList fails (13d) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13g)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13g)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (13h) ");
+   testEquals(i, &o3, "LinkedList fails (13h) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13i)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13i)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (13j) ");
+   testEquals(i, &o4, "LinkedList fails (13j) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13k)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13k)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (13l) ");
+   testEquals(i, &o5, "LinkedList fails (13l) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (13m)");
+   testEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
    delete l;
 }
@@ -175,106 +175,106 @@ void LinkedListTest::DoTest2(bool active)
    Object* i;
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (1a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (1a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (1b) ");
+   testEquals(i, &o1, "LinkedList fails (1b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (2a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (2a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (2b) ");
+   testEquals(i, &o2, "LinkedList fails (2b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (3a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (3a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (3b) ");
+   testEquals(i, &o3, "LinkedList fails (3b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (4a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (4a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (4b) ");
+   testEquals(i, &o4, "LinkedList fails (4b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (5a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (5a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (5b) ");
+   testEquals(i, &o5, "LinkedList fails (5b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (6)");
+   testEquals(l->hasNext(), false, "LinkedList fails (6)");
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (7a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (7a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (7b) ");
+   testEquals(i, &o1, "LinkedList fails (7b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (8a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (8a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (8b) ");
+   testEquals(i, &o2, "LinkedList fails (8b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (9a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (9a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (9b) ");
+   testEquals(i, &o3, "LinkedList fails (9b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (10a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (10a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (10b) ");
+   testEquals(i, &o4, "LinkedList fails (10b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (11a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (11a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (11b) ");
+   testEquals(i, &o5, "LinkedList fails (11b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (12)");
+   testEquals(l->hasNext(), false, "LinkedList fails (12)");
 
    //Addbefore
    l->addBefore(&o3, &o6, um);
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (13a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (13b) ");
+   testEquals(i, &o1, "LinkedList fails (13b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13c)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13c)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (13d) ");
+   testEquals(i, &o2, "LinkedList fails (13d) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13e)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13e)");
    i = l->next();
-   TestEquals(i, &o6, "LinkedList fails (13f) ");
+   testEquals(i, &o6, "LinkedList fails (13f) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13g)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13g)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (13h) ");
+   testEquals(i, &o3, "LinkedList fails (13h) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13i)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13i)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (13j) ");
+   testEquals(i, &o4, "LinkedList fails (13j) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13k)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13k)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (13l) ");
+   testEquals(i, &o5, "LinkedList fails (13l) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (13m)");
+   testEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
    //Remove
    l->remove(&o6, um);
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (13a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (13b) ");
+   testEquals(i, &o1, "LinkedList fails (13b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13c)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13c)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (13d) ");
+   testEquals(i, &o2, "LinkedList fails (13d) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13g)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13g)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (13h) ");
+   testEquals(i, &o3, "LinkedList fails (13h) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13i)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13i)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (13j) ");
+   testEquals(i, &o4, "LinkedList fails (13j) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (13k)");
+   testEquals(l->hasNext(), true, "LinkedList fails (13k)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (13l) ");
+   testEquals(i, &o5, "LinkedList fails (13l) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (13m)");
+   testEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
    um->clearStacks();
    l->release();
@@ -306,89 +306,89 @@ void LinkedListTest::DoTest3(bool active)
    Object* i;
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (1a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (1a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (1b) ");
+   testEquals(i, &o1, "LinkedList fails (1b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (2a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (2a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (2b) ");
+   testEquals(i, &o2, "LinkedList fails (2b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (3a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (3a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (3b) ");
+   testEquals(i, &o3, "LinkedList fails (3b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (4a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (4a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (4b) ");
+   testEquals(i, &o4, "LinkedList fails (4b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (5a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (5a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (5b) ");
+   testEquals(i, &o5, "LinkedList fails (5b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (6)");
+   testEquals(l->hasNext(), false, "LinkedList fails (6)");
 
    l->rewind();
-   TestEquals(l->hasNext(), true, "LinkedList fails (7a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (7a)");
    i = l->next();
-   TestEquals(i, &o1, "LinkedList fails (7b) ");
+   testEquals(i, &o1, "LinkedList fails (7b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (8a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (8a)");
    i = l->next();
-   TestEquals(i, &o2, "LinkedList fails (8b) ");
+   testEquals(i, &o2, "LinkedList fails (8b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (9a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (9a)");
    i = l->next();
-   TestEquals(i, &o3, "LinkedList fails (9b) ");
+   testEquals(i, &o3, "LinkedList fails (9b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (10a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (10a)");
    i = l->next();
-   TestEquals(i, &o4, "LinkedList fails (10b) ");
+   testEquals(i, &o4, "LinkedList fails (10b) ");
 
-   TestEquals(l->hasNext(), true, "LinkedList fails (11a)");
+   testEquals(l->hasNext(), true, "LinkedList fails (11a)");
    i = l->next();
-   TestEquals(i, &o5, "LinkedList fails (11b) ");
+   testEquals(i, &o5, "LinkedList fails (11b) ");
 
-   TestEquals(l->hasNext(), false, "LinkedList fails (12)");
+   testEquals(l->hasNext(), false, "LinkedList fails (12)");
 
    l->clear(um);
    um->close();
-   TestEquals(l->size(), 0, "LinkedList fails (13)");
+   testEquals(l->size(), 0, "LinkedList fails (13)");
 
    if(active)// Next test only works with enabled undo manager
    {
       um->undo();
-      TestEquals(l->size(), 5, "LinkedList fails (14)");
+      testEquals(l->size(), 5, "LinkedList fails (14)");
 
       l->rewind();
-      TestEquals(l->hasNext(), true, "LinkedList fails (15a)");
+      testEquals(l->hasNext(), true, "LinkedList fails (15a)");
       i = l->next();
-      TestEquals(i, &o1, "LinkedList fails (15b) ");
+      testEquals(i, &o1, "LinkedList fails (15b) ");
 
-      TestEquals(l->hasNext(), true, "LinkedList fails (16a)");
+      testEquals(l->hasNext(), true, "LinkedList fails (16a)");
       i = l->next();
-      TestEquals(i, &o2, "LinkedList fails (16b) ");
+      testEquals(i, &o2, "LinkedList fails (16b) ");
 
-      TestEquals(l->hasNext(), true, "LinkedList fails (17a)");
+      testEquals(l->hasNext(), true, "LinkedList fails (17a)");
       i = l->next();
-      TestEquals(i, &o3, "LinkedList fails (17b) ");
+      testEquals(i, &o3, "LinkedList fails (17b) ");
 
-      TestEquals(l->hasNext(), true, "LinkedList fails (18a)");
+      testEquals(l->hasNext(), true, "LinkedList fails (18a)");
       i = l->next();
-      TestEquals(i, &o4, "LinkedList fails (18b) ");
+      testEquals(i, &o4, "LinkedList fails (18b) ");
 
-      TestEquals(l->hasNext(), true, "LinkedList fails (19a)");
+      testEquals(l->hasNext(), true, "LinkedList fails (19a)");
       i = l->next();
-      TestEquals(i, &o5, "LinkedList fails (19b) ");
+      testEquals(i, &o5, "LinkedList fails (19b) ");
 
-      TestEquals(l->hasNext(), false, "LinkedList fails (20)");
+      testEquals(l->hasNext(), false, "LinkedList fails (20)");
 
       l->clear(um);
       um->close();
    }
-   TestEquals(l->size(), 0, "LinkedList fails (21)");
+   testEquals(l->size(), 0, "LinkedList fails (21)");
 
    delete um;
-   TestEquals(l->referenceCount(), 1, "LinkList ref fails(22)");
+   testEquals(l->referenceCount(), 1, "LinkList ref fails(22)");
    l->release();
 }

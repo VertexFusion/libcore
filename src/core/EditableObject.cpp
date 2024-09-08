@@ -64,10 +64,10 @@ VxfErrorStatus EditableObject::setMember(String* pointer, const String& value)
    return eOK;
 }
 
-VxfErrorStatus EditableObject::setMember(Integer* pointer,
-      Integer value,
-      Integer rangeMin,
-      Integer rangeMax)
+VxfErrorStatus EditableObject::setMember(int64* pointer,
+      int64 value,
+      int64 rangeMin,
+      int64 rangeMax)
 {
    if(value == *pointer)return eNotChanged;
 

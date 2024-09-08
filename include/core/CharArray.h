@@ -154,7 +154,7 @@ namespace jm
       /*!
        \brief The length of the array.
        */
-      Integer length;
+      int64 length;
 
       /*!
        \brief The array itself.
@@ -170,7 +170,7 @@ namespace jm
        \brief Constructor create an uninitialized array.
        \param length The length of the array
        */
-      CharArray(Integer length);
+      CharArray(int64 length);
 
       /*!
        \brief Copy constructor

@@ -38,7 +38,7 @@ UTF16Decoder::UTF16Decoder(bool isBE): CharsetDecoder()
    be = isBE;
 }
 
-CharArray UTF16Decoder::Decode(const char* cstring)
+CharArray UTF16Decoder::decode(const char* cstring)
 {
    //Bestimme Länge
    uint32 strLength = 0;
@@ -87,13 +87,13 @@ CharArray UTF16Decoder::Decode(const char* cstring)
    return ret;
 }
 
-ByteArray UTF16Decoder::Encode(const CharArray& string)
+ByteArray UTF16Decoder::encode(const CharArray& string)
 {
    //Länge bleibt gleich..
 
    ByteArray cstring = ByteArray(2 * string.length, 0);
 
-   Integer idx = 0;
+   int64 idx = 0;
    for(uint32 a = 0; a < string.length; a++)
    {
       uint16 character = string.buffer[a].unicode();

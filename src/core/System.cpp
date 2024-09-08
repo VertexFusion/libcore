@@ -347,7 +347,7 @@ const jm::String& jm::System::bundleId()
 void jm::System::init(const jm::String& bundleId)
 {
    // First of all, the charsets
-   InitCharsets();
+   initCharsets();
 
    gBundleId = bundleId;
 
@@ -386,7 +386,7 @@ void jm::System::quit()
    jm::I18nBundle::quitDefault();
 
    // Finally
-   QuitCharsets();
+   quitCharsets();
 }
 
 jm::Preferences* jm::System::preferences()

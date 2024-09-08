@@ -56,7 +56,7 @@ CharArray::CharArray(const CharArray& another)
    memcpy(buffer, another.buffer, length * 2);
 }
 
-CharArray::CharArray(Integer alength)
+CharArray::CharArray(int64 alength)
 {
    length = alength;
    buffer = new Char[length];
@@ -127,12 +127,12 @@ Charset::~Charset()
    mAltCount = 0;
 }
 
-String Charset::Name()
+String Charset::name() const
 {
    return mName;
 }
 
-bool Charset::HasName(const String& name)
+bool Charset::hasName(const String& name)
 {
    if(mName.equals(name))return true;
 
@@ -144,26 +144,26 @@ bool Charset::HasName(const String& name)
    return false;
 }
 
-CharArray Charset::Decode(const char* cString)
+CharArray Charset::decode(const char* cString)
 {
-   return mDecoder->Decode(cString);
+   return mDecoder->decode(cString);
 }
 
-ByteArray Charset::Encode(const CharArray& string)
+ByteArray Charset::encode(const CharArray& string)
 {
-   return mDecoder->Encode(string);
+   return mDecoder->encode(string);
 }
 
-Charset* Charset::ForName(const String& name)
+Charset* Charset::forName(const String& name)
 {
    for(uint16 a = 0; a < Charset::gCharsetCount; a++)
    {
-      if(Charset::gCharsets[a]->HasName(name))return Charset::gCharsets[a];
+      if(Charset::gCharsets[a]->hasName(name))return Charset::gCharsets[a];
    }
    return nullptr;
 }
 
-String Charset::Guess(const char* stream, Integer length)
+String Charset::guess(const char* stream, int64 length)
 {
 
    String encoding;
@@ -200,7 +200,7 @@ String Charset::Guess(const char* stream, Integer length)
 
    // It is possible that a UTF16 encoding without markers is present. The probability of this is
    // high if every second byte of "European" text is 0.
-   uint16 frame = (uint16) std::min(4096, length.Int32());
+   uint16 frame = (uint16) std::min(4096l, length);
    float count1 = 0;
    float count2 = 0;
    for(uint16 a = 0; a < frame; a++)
@@ -262,18 +262,18 @@ String Charset::Guess(const char* stream, Integer length)
 }
 
 
-Charset* Charset::GetDefault()
+Charset* Charset::getDefault()
 {
    return Charset::gCharsets[0];
 }
 
-void jm::InitCharsets()
+void jm::initCharsets()
 {
    // Nothing needs to be done. Charsets are initialized automatically when loading.
    // However, the order is not clear....
 }
 
-void jm::QuitCharsets()
+void jm::quitCharsets()
 {
    for(uint16 a = 0; a < Charset::gCharsetCount; a++)delete Charset::gCharsets[a];
 }

@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-MemoryStream::MemoryStream(uint8* stream, Integer length): Stream()
+MemoryStream::MemoryStream(uint8* stream, int64 length): Stream()
 {
    mStream = stream;
    mStreamlength = length;
@@ -58,9 +58,9 @@ void MemoryStream::close()
    mPosition = 0;
 }
 
-Integer MemoryStream::read(uint8* buffer, Integer length)
+int64 MemoryStream::read(uint8* buffer, int64 length)
 {
-   Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+   int64 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    if(available > 0)memcpy(buffer, &mStream[mPosition], available);
    else return 0;
 
@@ -68,37 +68,37 @@ Integer MemoryStream::read(uint8* buffer, Integer length)
    return available;
 }
 
-Integer MemoryStream::readFully(ByteArray& buffer, Integer length)
+int64 MemoryStream::readFully(ByteArray& buffer, int64 length)
 {
    return read((uint8*)buffer.data(), length);
 }
 
-void MemoryStream::seek(Integer newPosition)
+void MemoryStream::seek(int64 newPosition)
 {
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-void MemoryStream::move(Integer offset)
+void MemoryStream::move(int64 offset)
 {
-   Integer newPosition = mPosition + offset;
+   int64 newPosition = mPosition + offset;
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-Integer MemoryStream::position()
+int64 MemoryStream::position()
 {
    return mPosition;
 }
 
-Integer MemoryStream::write(const uint8* buffer, Integer length)
+int64 MemoryStream::write(const uint8* buffer, int64 length)
 {
-   Integer available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+   int64 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    memcpy(&mStream[mPosition], buffer, length);
    mPosition += available;
    if(mPosition > mWritelength) mWritelength = mPosition;
    return available;
 }
 
-Integer MemoryStream::size() const
+int64 MemoryStream::size() const
 {
    return mStreamlength;
 }

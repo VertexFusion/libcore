@@ -114,7 +114,7 @@ double Nurbs::R(uint32 i, uint32 k, double t)
    return a / b;
 }
 
-Vertex3 Nurbs::GetPoint(double t)
+Vertex3 Nurbs::point(double t)
 {
    Vertex3 P;
 
@@ -123,12 +123,12 @@ Vertex3 Nurbs::GetPoint(double t)
    return P;
 }
 
-double Nurbs::GetStart()
+double Nurbs::start()
 {
    return 0;
 }
 
-double Nurbs::GetEnd()
+double Nurbs::end()
 {
    if(mKnotCount < 1)return 0;
    double m = mControlCount - mDegree + 2;
@@ -136,17 +136,17 @@ double Nurbs::GetEnd()
    return m;
 }
 
-uint32 Nurbs::GetControlPointCount()
+uint32 Nurbs::controlPointCount()
 {
    return mControlCount;
 }
 
-uint32 Nurbs::GetKnotCount()const
+uint32 Nurbs::knotCount()const
 {
    return mKnotCount;
 }
 
-double Nurbs::GetKnot(uint32 index)const
+double Nurbs::knot(uint32 index)const
 {
    return mKnots[index];
 }
