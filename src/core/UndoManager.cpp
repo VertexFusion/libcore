@@ -51,7 +51,7 @@ UndoManager::UndoManager(): Object()
 
    mTransactionLevel = 0;
    mTransaction = nullptr;
-   mTransactionStatus = eOK;
+   mTransactionStatus = Status::eOK;
 }
 
 UndoManager::~UndoManager()
@@ -340,18 +340,18 @@ void UndoManager::openTransaction()
 {
    if(mTransactionLevel == 0)
    {
-      mTransactionStatus = eOK;
+      mTransactionStatus = Status::eOK;
       mTransaction = new UndoStep();
    }
 
    mTransactionLevel++;
 }
 
-VxfErrorStatus UndoManager::closeTransaction()
+Status UndoManager::closeTransaction()
 {
-   VxfErrorStatus status = transactionStatus();
+   Status status = transactionStatus();
 
-   if(status == eOK)commit();
+   if(status == Status::eOK)commit();
    else rollback();
 
    return status;
@@ -386,7 +386,7 @@ void UndoManager::commit()
 
       delete mTransaction;
       mTransaction = nullptr;
-      mTransactionStatus = eOK;
+      mTransactionStatus = Status::eOK;
    }
 }
 
@@ -411,7 +411,7 @@ void UndoManager::rollback()
 
       delete mTransaction;
       mTransaction = nullptr;
-      mTransactionStatus = eOK;
+      mTransactionStatus = Status::eOK;
    }
 }
 
@@ -420,13 +420,13 @@ bool UndoManager::hasOpenTransaction() const
    return mTransactionLevel > 0;
 }
 
-void UndoManager::registerTransactionStatus(VxfErrorStatus status)
+void UndoManager::registerTransactionStatus(Status status)
 {
-   if(status != eOK &&
-         status != eNotChanged)mTransactionStatus = status;
+   if(status != Status::eOK &&
+         status != Status::eNotChanged)mTransactionStatus = status;
 }
 
-VxfErrorStatus UndoManager::transactionStatus()const
+Status UndoManager::transactionStatus()const
 {
    return mTransactionStatus;
 }

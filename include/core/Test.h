@@ -75,7 +75,7 @@ int main( int argc, const char* argv[] )
 {
 	// init Jameo System
 	jm::System::init();
-	jm::System::log( "Example Test Suite" , jm::kLogInformation );
+	jm::System::log( "Example Test Suite" , jm::LogLevel::kInformation );
 
 	// init test vector
 	jm::TestVector* vec = new jm::TestVector(argc, argv);

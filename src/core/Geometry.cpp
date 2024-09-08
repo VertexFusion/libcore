@@ -638,7 +638,7 @@ Vertex2 jm::angleBisector(const Vertex2& direction1, const Vertex2& direction2)
    return direction1.normalized() + direction2.normalized();
 }
 
-jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2& centre, double& radius,
+jm::Status jm::circleParameterBy3Points(Vertex2& centre, double& radius,
       const Vertex2& p1,
       const Vertex2& p2,
       const Vertex3& p3)
@@ -668,12 +668,12 @@ jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2& centre, double& radius,
                        Vertex3(p2.x * p2.x + p2.y * p2.y, p2.x, 1.0),
                        Vertex3(p3.x * p3.x + p3.y * p3.y, p3.x, 1.0), true);
    double m11, m12, m13;
-   VxfErrorStatus status = M11.det(m11);
-   if(status != eOK)return status;
+   Status status = M11.det(m11);
+   if(status != Status::eOK)return status;
    status = M12.det(m12);
-   if(status != eOK)return status;
+   if(status != Status::eOK)return status;
    status = M13.det(m13);
-   if(status != eOK)return status;
+   if(status != Status::eOK)return status;
 
    double x = 0.5 * m12 / m11;
    double y = -0.5 * m13 / m11;
@@ -682,5 +682,5 @@ jm::VxfErrorStatus jm::circleParameterBy3Points(Vertex2& centre, double& radius,
    centre.y = y;
    radius = (p1 - centre).abs();
 
-   return eOK;
+   return Status::eOK;
 }

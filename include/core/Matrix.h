@@ -185,14 +185,14 @@ namespace jm
 
           This method is currently limited to a maximum of 4x4 matrices.
           */
-         VxfErrorStatus det(double& det) const;
+         Status det(double& det) const;
 
          /*!
           \brief Inverts this matrix.
 
           This method is currently limited to a maximum of 4x4 matrices.
           */
-         VxfErrorStatus inverse();
+         Status inverse();
 
          /*!
           \brief This method returns the reference to the data array.

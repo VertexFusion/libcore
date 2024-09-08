@@ -391,7 +391,7 @@ namespace jm
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
           the closing actions happens.
           */
-         VxfErrorStatus closeTransaction();
+         Status closeTransaction();
 
          /*!
           \brief Returns true, if a transaction is open.
@@ -404,12 +404,12 @@ namespace jm
           \brief This method registers the status of operations during a transaction. As long
           as status is eOK, nothing happens. If status is not eOk, we register a transaction error.
           */
-         void registerTransactionStatus(VxfErrorStatus status);
+         void registerTransactionStatus(Status status);
 
          /*!
           \brief Returns the transaction status.
           */
-         VxfErrorStatus transactionStatus() const;
+         Status transactionStatus() const;
 
          UndoStep* openStep();
 
@@ -465,7 +465,7 @@ namespace jm
          UndoStep* mTransaction;
 
          //! The transaction status
-         VxfErrorStatus mTransactionStatus;
+         Status mTransactionStatus;
    };
 
 }

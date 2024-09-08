@@ -57,7 +57,7 @@ void Preferences::load(File file)
 
    int64 l = file.size();
    ByteArray buffer = ByteArray(l, 0);
-   file.open(kFmRead);
+   file.open(FileMode::kRead);
    int64 check = file.Stream::readFully(buffer);
    file.close();
    String data = String(buffer);
@@ -122,10 +122,10 @@ void Preferences::save(File file)
          if(dir.exists() == false)dir.makeDirectory();
          file.createNewFile();
       }
-      VxfErrorStatus status = file.open(kFmWrite);
-      if(status != eOK)
+      Status status = file.open(FileMode::kWrite);
+      if(status != Status::eOK)
       {
-         jm::System::log(Tr("cannot store preferences in '%1'").arg(file.absolutePath()), jm::kLogError);
+         jm::System::log(Tr("cannot store preferences in '%1'").arg(file.absolutePath()), jm::LogLevel::kError);
          return;
       }
 
@@ -171,7 +171,7 @@ void Preferences::save(File file)
    catch(Exception& e)
    {
       e.printStackTrace();
-      System::log(Tr("Cannot save property file: %1").arg(file.absolutePath()), kLogError);
+      System::log(Tr("Cannot save property file: %1").arg(file.absolutePath()), LogLevel::kError);
    }
 }
 

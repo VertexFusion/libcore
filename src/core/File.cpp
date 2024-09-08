@@ -592,35 +592,35 @@ bool File::createNewFile()
    #endif
 }
 
-VxfErrorStatus File::open(FileMode mode)
+Status File::open(FileMode mode)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    switch(mode)
    {
-      case kFmRead:
+      case FileMode::kRead:
          mHandle = fopen(mCstr.constData(), "rb");
          break;
 
-      case kFmWrite:
+      case FileMode::kWrite:
          mHandle = fopen(mCstr.constData(), "wb");
          break;
 
-      case kFmReadWrite:
+      case FileMode::kReadWrite:
          mHandle = fopen(mCstr.constData(), "rb+");
          break;
    }
    #elif defined _WIN32 //Windows
    switch(mode)
    {
-      case kFmRead:
+      case kRead:
          fopen_s(&mHandle, mCstr.constData(), "rb");
          break;
 
-      case kFmWrite:
+      case kWrite:
          fopen_s(&mHandle, mCstr.constData(), "wb");
          break;
 
-      case kFmReadWrite:
+      case kReadWrite:
          fopen_s(&mHandle, mCstr.constData(), "rb+");
          break;
    }
@@ -629,15 +629,15 @@ VxfErrorStatus File::open(FileMode mode)
    if(mHandle == nullptr)
    {
       String msg = Tr("Cannot open file! \"%1\" Errno: %2").arg(mPathname).arg(int64(errno));
-      jm::System::log(msg, jm::kLogError);
+      jm::System::log(msg, jm::LogLevel::kError);
 
-      if(errno == EACCES)return eNotAllowed;
-      if(errno == ENOENT)return  eNotFound;
-      if(errno == ETIMEDOUT)return eTimeout;
-      if(errno == ENOTDIR)return eNoDirectory;
+      if(errno == EACCES)return Status::eNotAllowed;
+      if(errno == ENOENT)return  Status::eNotFound;
+      if(errno == ETIMEDOUT)return Status::eTimeout;
+      if(errno == ENOTDIR)return Status::eNoDirectory;
       throw Exception(msg);
    }
-   return eOK;
+   return Status::eOK;
 }
 
 bool File::isOpen()
@@ -781,7 +781,7 @@ StringList File::getTags()const
    return StringList();
 }
 
-VxfErrorStatus File::setTags(const jm::StringList& tags)
+Status File::setTags(const jm::StringList& tags)
 {
       #ifdef __APPLE__ //macOS
 
@@ -825,7 +825,7 @@ VxfErrorStatus File::setTags(const jm::StringList& tags)
    CFRelease(urlref);
    CFRelease(newtags);
 
-   if(result == true)return eOK;
+   if(result == true)return Status::eOK;
    else return eNo;
 
    #endif
@@ -837,15 +837,15 @@ VxfErrorStatus File::setTags(const jm::StringList& tags)
 
    int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(),0);
 
-   return (result==0)?jm::eOK:jm::eNo;
+   return (result==0)?jm::Status::eOK:jm::Status::eNo;
 
    #endif
 
-   return eNotImplemented;
+   return Status::eNotImplemented;
 }
 
 
-VxfErrorStatus File::addTag(const String& tag)
+Status File::addTag(const String& tag)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
@@ -855,14 +855,14 @@ VxfErrorStatus File::addTag(const String& tag)
       tags.append(tag);
       return setTags(tags);
    }
-   else return eOK;
+   else return Status::eOK;
 
    #endif
 
-   return eNotImplemented;
+   return Status::eNotImplemented;
 }
 
-VxfErrorStatus File::removeTag(const String& tag)
+Status File::removeTag(const String& tag)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
@@ -872,11 +872,11 @@ VxfErrorStatus File::removeTag(const String& tag)
       tags.remove(tag);
       return setTags(tags);
    }
-   else return eOK;
+   else return Status::eOK;
 
    #endif
 
-   return eNotImplemented;
+   return Status::eNotImplemented;
 }
 
 
@@ -962,7 +962,7 @@ File jm::ResourceDir(const String& bundleId)
       CFRelease(cfstr);
 
       System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
-                  kLogError);
+                  kError);
       return File("/");
    }
 

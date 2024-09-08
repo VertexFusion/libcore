@@ -13,7 +13,7 @@ using namespace jm;
 Exception::Exception(const String& message): Object()
 {
    mMessage = message;
-   System::log(mMessage, kLogError);
+   System::log(mMessage, LogLevel::kError);
 
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    tid = pthread_self();

@@ -98,7 +98,7 @@ void TestVector::testrun(Test* test)
 {
    if(test == nullptr)return;
 
-   System::log(Tr("Execute %1...").arg(test->name()), kLogInformation);
+   System::log(Tr("Execute %1...").arg(test->name()), LogLevel::kInformation);
 
    try
    {
@@ -114,7 +114,7 @@ void TestVector::testrun(Test* test)
    System::log(Tr("Test finished! %1 Tests, %2 Errors.")
                .arg(gTestCount)
                .arg(gErrorCount),
-               kLogInformation);
+               LogLevel::kInformation);
 
    gErrorCount = 0;
    gTestCount = 0;

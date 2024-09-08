@@ -144,7 +144,7 @@ namespace jm
           \brief removes the element from the list.
           \return eOK on success. eNotFound, if entry is not in the list.
           */
-         VxfErrorStatus remove(const Object* data, UndoManager* um);
+         Status remove(const Object* data, UndoManager* um);
 
          void swapData(Object* data1, Object* data2, UndoManager* um);
 
@@ -182,7 +182,7 @@ namespace jm
 
          void addBefore(LListElement* addBeforeThis, LListElement* itemToAdd, UndoManager* um);
 
-         VxfErrorStatus remove(LListElement* element, UndoManager* um);
+         Status remove(LListElement* element, UndoManager* um);
 
    };
 

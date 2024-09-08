@@ -49,7 +49,7 @@ bool XMLWriter::startDocument()
 {
    mIndent = 0;
    mLastIndent = false;
-   if(mOutput->isOpen() == false)mOutput->open(kFmWrite);
+   if(mOutput->isOpen() == false)mOutput->open(FileMode::kWrite);
 
    mOutput->write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
    return true;

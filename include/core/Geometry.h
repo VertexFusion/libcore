@@ -430,7 +430,7 @@ namespace jm
     \brief Calculates the circle parameters centre point and radius given by the 3 points.
     */
    DllExport
-   jm::VxfErrorStatus circleParameterBy3Points(Vertex2& centre, double& radius,
+   jm::Status circleParameterBy3Points(Vertex2& centre, double& radius,
          const Vertex2& p1,
          const Vertex2& p2,
          const Vertex3& p3);

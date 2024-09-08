@@ -37,9 +37,9 @@ Property::Property()
 {
    mReadOnly = false;
    mNumberValue.intValue = 0;
-   mChangeMode = kPropertyChangeItself;
+   mChangeMode = PropertyChangeMode::kItself;
    mAllowEmpty = true;
-   mType = kPropertyTypeString;
+   mType = PropertyType::kString;
 }
 
 Property::Property(const String& id)
@@ -47,9 +47,9 @@ Property::Property(const String& id)
    mReadOnly = false;
    mId = id;
    mNumberValue.intValue = 0;
-   mChangeMode = kPropertyChangeItself;
+   mChangeMode = PropertyChangeMode::kItself;
    mAllowEmpty = true;
-   mType = kPropertyTypeString;
+   mType = PropertyType::kString;
 }
 
 
@@ -71,7 +71,7 @@ Property::Property(const String& id,
    mChangeMode = changeMode;
    mNumberValue.intValue = 0;
    mAllowEmpty = allowEmpty;
-   mType = kPropertyTypeString;
+   mType = PropertyType::kString;
 }
 
 bool Property::is(const String& id)const
@@ -139,19 +139,19 @@ PropertyChangeMode Property::changeMode() const
    return mChangeMode;
 }
 
-VxfErrorStatus Property::setStringValue(const String& value)
+Status Property::setStringValue(const String& value)
 {
    mTextValue = value;
-   mType = kPropertyTypeString;
-   return eOK;
+   mType = PropertyType::kString;
+   return Status::eOK;
 }
 
-VxfErrorStatus Property::setUnitValue(double value, const String& unit)
+Status Property::setUnitValue(double value, const String& unit)
 {
    mTextValue = unit;
    mNumberValue.doubleValue = value;
-   mType = kPropertyTypeValue;
-   return eOK;
+   mType = PropertyType::kValue;
+   return Status::eOK;
 }
 
 const String& Property::stringValue() const
@@ -159,18 +159,18 @@ const String& Property::stringValue() const
    return mTextValue;
 }
 
-VxfErrorStatus Property::setIntegerValue(int64 value)
+Status Property::setIntegerValue(int64 value)
 {
    mNumberValue.intValue = value;
-   mType = kPropertyTypeInteger;
-   return eOK;
+   mType = PropertyType::kInteger;
+   return Status::eOK;
 }
 /*
 VxfErrorStatus Property::SetDwgColourValue(const dwg::Color& value)
 {
 	mDwgColourValue = value;
-	mType = kPropertyTypeDwgColour;
-	return eOK;
+	mType = PropertyType::kDwgColour;
+	return Status::eOK;
 }
 
 dwg::Color Property::GetDwgColourValue() const
@@ -183,11 +183,11 @@ int64 Property::integerValue() const
    return mNumberValue.intValue;
 }
 
-VxfErrorStatus Property::setDoubleValue(double value)
+Status Property::setDoubleValue(double value)
 {
    mNumberValue.doubleValue = value;
-   mType = kPropertyTypeDouble;
-   return eOK;
+   mType = PropertyType::kDouble;
+   return Status::eOK;
 }
 
 double Property::doubleValue() const
@@ -195,11 +195,11 @@ double Property::doubleValue() const
    return mNumberValue.doubleValue;
 }
 
-VxfErrorStatus Property::setBoolValue(bool value)
+Status Property::setBoolValue(bool value)
 {
    mNumberValue.boolValue = value;
-   mType = kPropertyTypeBoolean;
-   return eOK;
+   mType = PropertyType::kBoolean;
+   return Status::eOK;
 }
 
 bool Property::boolValue() const
@@ -229,7 +229,7 @@ bool jm::operator==(Property const& v1, Property const& v2)
    if(v1.mId.equals(v2.mId) == false)return false;
    if(v1.mEditor.equals(v2.mEditor) == false)return false;
 
-   if(v1.type() == kPropertyTypeValue)
+   if(v1.type() == PropertyType::kValue)
    {
       return v1.stringValue() == v2.stringValue() &&
              jm::isEqual(v1.doubleValue(), v2.doubleValue());
@@ -269,6 +269,6 @@ bool jm::operator==(Property const& v1, Property const& v2)
    {
       return v1.stringValue().equals(v2.stringValue());
    }
-   System::log(Tr("Property not comparable"), kLogDebug);
+   System::log(Tr("Property not comparable"), LogLevel::kDebug);
    return false;
 }

@@ -35,7 +35,7 @@ jm::Mutex gSystemMutex;
 jm::String gSystemError;
 
 bool gSystemLogDate = true;
-jm::LogLevel mSystemLogLabel = jm::kLogDebug;
+jm::LogLevel mSystemLogLabel = jm::LogLevel::kDebug;
 jm::Preferences*  gPreferences = nullptr;
 jm::File* gPrefFile = nullptr;
 
@@ -98,22 +98,22 @@ void jm::System::log(const String& message, LogLevel logLevel)
 
    switch(logLevel)
    {
-      case kLogError:
+      case LogLevel::kError:
          msg << kTxtBold << kTxtRed;
          if(logLevel >= mSystemLogLabel)msg << Tr("ERROR: ");
          gSystemError = message;
          break;
 
-      case 	kLogWarning:
+      case 	LogLevel::kWarning:
          msg << kTxtBold << kTxtYellow;
          if(logLevel >= mSystemLogLabel)msg << Tr("WARNING: ");
          break;
 
-      case kLogInformation:
+      case LogLevel::kInformation:
          if(logLevel >= mSystemLogLabel)msg << Tr("INFO: ");
          break;
 
-      case kLogDebug:
+      case LogLevel::kDebug:
          if(logLevel >= mSystemLogLabel)msg << Tr("DEBUG: ");
          break;
    }
@@ -121,8 +121,8 @@ void jm::System::log(const String& message, LogLevel logLevel)
 
    switch(logLevel)
    {
-      case kLogError:
-      case kLogWarning:
+      case LogLevel::kError:
+      case LogLevel::kWarning:
          msg << kTxtReset;
          break;
 
@@ -133,12 +133,12 @@ void jm::System::log(const String& message, LogLevel logLevel)
 
 
    // Output to console
-   if(logLevel > kLogDebug)std::cout << msg << std::endl;
+   if(logLevel > LogLevel::kDebug)std::cout << msg << std::endl;
 
    // Output to log file
    #ifdef __APPLE__ //macOS and iOS
 
-   if(logLevel == kLogError)
+   if(logLevel == kError)
    {
       //	setlogmask (LOG_UPTO (LOG_NOTICE));
 
@@ -156,7 +156,7 @@ void jm::System::log(const String& message, LogLevel logLevel)
 
    #elif defined _WIN32//Windows
 
-   if(logLevel == kLogError)
+   if(logLevel == kError)
    {
       gSystemError = message;
    }
@@ -296,7 +296,7 @@ void jm::System::unloadDynamicLibrary(void* library)
    #elif defined _WIN32//Windows
 
    bool res = (bool)FreeLibrary((HMODULE) library);
-   if(res == false) log("Closing dynamic library failed!", kLogError);
+   if(res == false) log("Closing dynamic library failed!", kError);
 
    #endif
 }

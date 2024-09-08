@@ -28,7 +28,7 @@ using namespace jm;
 int main(int argc, const char* argv[])
 {
    System::init("de.jameo.testsuite");
-   System::log("Test Suite for VertexFusion ", jm::kLogInformation);
+   System::log("Test Suite for VertexFusion ", jm::LogLevel::kInformation);
 
    TestVector* vec = new TestVector(argc, argv);
 

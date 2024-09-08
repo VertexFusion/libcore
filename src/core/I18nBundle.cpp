@@ -48,7 +48,7 @@ void I18nBundle::appendMo(File file)
       System::log(Tr("Cannot find translation file: %1 %2")
                   .arg(file.path())
                   .arg(mLanguage),
-                  kLogError);
+                  LogLevel::kError);
 
       return;
    }
@@ -56,10 +56,10 @@ void I18nBundle::appendMo(File file)
    // Read file from disk
    int64 length = file.size();
    ByteArray buf = ByteArray(length, 0);
-   VxfErrorStatus status = file.open(kFmRead);
-   if(status != eOK)
+   Status status = file.open(FileMode::kRead);
+   if(status != Status::eOK)
    {
-      System::log(Tr("Cannot open file: %1").arg(file.path()), kLogError);
+      System::log(Tr("Cannot open file: %1").arg(file.path()), LogLevel::kError);
       return;
    }
    int64 check = file.Stream::readFully(buf);
@@ -67,7 +67,7 @@ void I18nBundle::appendMo(File file)
 
    if(check != length)
    {
-      System::log(Tr("File not fully read: %1").arg(file.path()), kLogError);
+      System::log(Tr("File not fully read: %1").arg(file.path()), LogLevel::kError);
       return;
    }
    uint8* buffer = (uint8*)buf.constData();
@@ -81,12 +81,12 @@ void I18nBundle::appendMo(File file)
 
    if(magic != 0x950412de)
    {
-      System::log(Tr("File magic wrong: %1").arg(file.path()), kLogError);
+      System::log(Tr("File magic wrong: %1").arg(file.path()), LogLevel::kError);
       return;
    }
    if(version != 0)
    {
-      System::log(Tr("MO file version not supported: %1").arg(file.path()), kLogError);
+      System::log(Tr("MO file version not supported: %1").arg(file.path()), LogLevel::kError);
       return;
    }
 

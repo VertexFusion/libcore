@@ -165,7 +165,7 @@ void Matrix::zeros()
    }
 }
 
-VxfErrorStatus Matrix::det(double& det) const
+Status Matrix::det(double& det) const
 {
    if(m == n)
    {
@@ -173,7 +173,7 @@ VxfErrorStatus Matrix::det(double& det) const
       {
          det = data[0];
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 2)
       {
@@ -183,7 +183,7 @@ VxfErrorStatus Matrix::det(double& det) const
          // | 1 3 |
          det = data[0] * data[3] - data[1] * data[2];
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 3)
       {
@@ -201,7 +201,7 @@ VxfErrorStatus Matrix::det(double& det) const
 
          det = p1 + p2 + p3 - m1 - m2 - m3;
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 4)
       {
@@ -239,19 +239,19 @@ VxfErrorStatus Matrix::det(double& det) const
 
          det = p1 + p2 + p3 + p4 - m1 - m2 - m3 - m4;
 
-         return eOK;
+         return Status::eOK;
       }
       else
       {
-         return eError;
+         return Status::eError;
       }
    }
-   else return eError;
+   else return Status::eError;
 }
 
 
 
-VxfErrorStatus Matrix::inverse()
+Status Matrix::inverse()
 {
    // See http://de.wikipedia.org/wiki/Inverse
    // http://www.cg.info.hiroshima-cu.ac.jp/~miyazaki/knowledge/teche23.html
@@ -262,7 +262,7 @@ VxfErrorStatus Matrix::inverse()
       {
          data[0] = 1 / data[0];
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 2)
       {
@@ -283,7 +283,7 @@ VxfErrorStatus Matrix::inverse()
          data[1] = (-c) * determinant;
          data[3] = a * determinant;
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 3)
       {
@@ -315,7 +315,7 @@ VxfErrorStatus Matrix::inverse()
          data[5] = (b * g - a * h) * determinant;
          data[8] = (a * e - b * d) * determinant;
 
-         return eOK;
+         return Status::eOK;
       }
       else if(m == 4)
       {
@@ -379,11 +379,11 @@ VxfErrorStatus Matrix::inverse()
          data[15] = (a11 * a22 * a33 + a12 * a23 * a31 + a13 * a21 * a32 - a11 * a23 * a32 - a12 * a21 * a33
                      - a13 * a22 * a31) * determinant;
 
-         return eOK;
+         return Status::eOK;
       }
-      else return eError;
+      else return Status::eError;
    }
-   else return eError;
+   else return Status::eError;
 }
 
 void Matrix::transpose()

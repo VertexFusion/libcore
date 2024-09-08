@@ -62,7 +62,7 @@ ZipOutputFile::ZipOutputFile(File* file): jm::Object(),
 void ZipOutputFile::open()
 {
    if(mFile->exists() == false)mFile->createNewFile();
-   mFile->open(kFmReadWrite);
+   mFile->open(FileMode::kReadWrite);
 }
 
 void ZipOutputFile::close()
@@ -162,7 +162,7 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    ZipEntry* entry = static_cast<ZipEntry*>(mEntries.last());
 
    entry->mUncompressedSize = static_cast<uint32>(file->size());
-   file->open(kFmRead);
+   file->open(FileMode::kRead);
    ByteArray buffer = ByteArray(entry->mUncompressedSize, 0);
    file->Stream::readFully(buffer);
    file->close();
@@ -221,7 +221,7 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
 
    mTemp = new jm::File(mFile->parent(), "jmzipdata.tmp");
    mTemp->createNewFile();
-   mTemp->open(kFmReadWrite);
+   mTemp->open(FileMode::kReadWrite);
 
    mEntries.add(entry, nullptr);
 }

@@ -40,12 +40,12 @@ namespace jm
 {
    class Preferences;
 
-   enum LogLevel
+   enum class LogLevel
    {
-      kLogDebug,
-      kLogInformation,
-      kLogWarning,
-      kLogError
+      kDebug,
+      kInformation,
+      kWarning,
+      kError
    };
 
    class DllExport System

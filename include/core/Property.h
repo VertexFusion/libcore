@@ -47,32 +47,32 @@ namespace jm
     \brief Status, to what extent changing the property has an influence on the status of other
     values of all properties.
     */
-   enum PropertyChangeMode
+   enum class PropertyChangeMode
    {
-      kPropertyChangeItself = 0, /*!< Property only changes own value. */
-      kPropertyChangeOthers = 1, /*!< Property can have influence on other values. E.g. if you
+      kItself = 0, /*!< Property only changes own value. */
+      kOthers = 1, /*!< Property can have influence on other values. E.g. if you
 											     change a point of a line, the property "length" will also
 												  changed. */
-      kPropertyChangeCount = 2 /*!< Property can change the number of properties. */
+      kCount = 2 /*!< Property can change the number of properties. */
    };
 
-   enum PropertyType
+   enum class PropertyType
    {
-      kPropertyTypeString,
-      kPropertyTypeInteger,
-      kPropertyTypeDouble,
-      kPropertyTypeDwgColour,
-      kPropertyTypeDwgLayer,
-      kPropertyTypeDwgLineType,
-      kPropertyTypeBoolean,
-      kPropertyTypeValue
+      kString,
+      kInteger,
+      kDouble,
+      kDwgColour,
+      kDwgLayer,
+      kDwgLineType,
+      kBoolean,
+      kValue
    };
 
    struct DllExport Variant
    {
       Variant()
       {
-         mType = kPropertyTypeInteger;
+         mType = PropertyType::kInteger;
          mNumberValue.intValue = 0;
       }
 
@@ -80,7 +80,7 @@ namespace jm
       {
          mType = another.mType;
          mNumberValue = another.mNumberValue;
-         if(mType == kPropertyTypeString)mTextValue = another.mTextValue;
+         if(mType == PropertyType::kString)mTextValue = another.mTextValue;
       };
 
       Variant& operator=(const Variant& another)
@@ -89,7 +89,7 @@ namespace jm
          {
             mType = another.mType;
             mNumberValue = another.mNumberValue;
-            if(mType == kPropertyTypeString)mTextValue = another.mTextValue;
+            if(mType == PropertyType::kString)mTextValue = another.mTextValue;
          }
 
          return *this;
@@ -97,19 +97,19 @@ namespace jm
 
       Variant(int64 number)
       {
-         mType = kPropertyTypeInteger;
+         mType = PropertyType::kInteger;
          mNumberValue.intValue = number;
       }
 
       Variant(double number)
       {
-         mType = kPropertyTypeDouble;
+         mType = PropertyType::kDouble;
          mNumberValue.doubleValue = number;
       }
 
       Variant(const jm::String& string)
       {
-         mType = kPropertyTypeString;
+         mType = PropertyType::kString;
          mTextValue = string;
       }
 
@@ -193,7 +193,7 @@ namespace jm
                   const String& hint,
                   const String& editor,
                   bool readOnly = false,
-                  PropertyChangeMode changeMode = kPropertyChangeItself,
+                  PropertyChangeMode changeMode = PropertyChangeMode::kItself,
                   bool allowEmpty = true);
 
          /*!
@@ -258,14 +258,14 @@ namespace jm
           \brief Set the string value of this property.
           \param value The string value.
           */
-         VxfErrorStatus setStringValue(const String& value);
+         Status setStringValue(const String& value);
 
          /*!
           \brief Set unit value.
           \param value The number.
           \param unit The unit.
           */
-         VxfErrorStatus setUnitValue(double value, const String& unit);
+         Status setUnitValue(double value, const String& unit);
 
          /*!
           \brief Returns the string value of this property.
@@ -276,7 +276,7 @@ namespace jm
           \brief Set the Integer value of this Property
           \param value The Integer value
           */
-         VxfErrorStatus setIntegerValue(int64 value);
+         Status setIntegerValue(int64 value);
 
          /*!
           \brief Returns the Integer Value of this property.
@@ -287,7 +287,7 @@ namespace jm
           \brief Set the Bool value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus setBoolValue(bool value);
+         Status setBoolValue(bool value);
 
          /*!
           \brief Returns the Bool Value of this property.
@@ -298,7 +298,7 @@ namespace jm
           \brief Set the Double value of this Property
           \param value The Bool value
           */
-         VxfErrorStatus setDoubleValue(double value);
+         Status setDoubleValue(double value);
 
          /*!
           \brief Returns the Dool Value of this property.
@@ -453,7 +453,7 @@ namespace jm
           \param pointer The pointer to the String member.
           \param value The new value for the member.
           */
-         virtual VxfErrorStatus setMember(String* pointer, const String& value);
+         virtual Status setMember(String* pointer, const String& value);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
@@ -469,7 +469,7 @@ namespace jm
           \param rangeMin Minimum valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
           */
-         virtual VxfErrorStatus setMember(int64* pointer,
+         virtual Status setMember(int64* pointer,
                                           int64 value,
                                           int64 rangeMin = INT64_MIN,
                                           int64 rangeMax = INT64_MAX);
@@ -485,26 +485,26 @@ namespace jm
           \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
           and eOK if set successfully.
           */
-         virtual VxfErrorStatus setMember(double* pointer, double value);
+         virtual Status setMember(double* pointer, double value);
 
-         virtual VxfErrorStatus setMember(bool* pointer, bool value);
+         virtual Status setMember(bool* pointer, bool value);
 
-         virtual VxfErrorStatus setMember(uint8* pointer, uint8 value);
+         virtual Status setMember(uint8* pointer, uint8 value);
 
-         virtual VxfErrorStatus setMember(int16* pointer, int16 value);
+         virtual Status setMember(int16* pointer, int16 value);
 
-         virtual VxfErrorStatus setMember(Vertex3* pointer, const Vertex3 &value);
+         virtual Status setMember(Vertex3* pointer, const Vertex3 &value);
 
          /*!
           \brief Begins an editing transaction;
           */
-         VxfErrorStatus openTransaction();
+         Status openTransaction();
 
          /*!
           \brief Closes an transaction;
 
           */
-         VxfErrorStatus closeTransaction();
+         Status closeTransaction();
 
       private:
 

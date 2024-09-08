@@ -157,7 +157,7 @@ namespace jm
    \brief This enumeration list all errors posted by this library.
    \note Do no use numbers of this enum for storing persistent data. Numbers are changing.
    */
-   enum VxfErrorStatus
+   enum class Status
    {
       // for usage as boolean replacement
       eNo = 0,       /*!< Same meansing as a bool \c false */

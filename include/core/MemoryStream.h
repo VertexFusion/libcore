@@ -60,7 +60,7 @@ namespace jm
           /*!
           \copdoc Stream::open()
           */
-         VxfErrorStatus open(FileMode mode) override;
+         Status open(FileMode mode) override;
 
           /*!
            \copydoc Stream::isOpen()

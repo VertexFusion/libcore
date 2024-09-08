@@ -41,11 +41,11 @@ MemoryStream::MemoryStream(uint8* stream, int64 length): Stream()
    mWritelength = 0;
 }
 
-VxfErrorStatus MemoryStream::open(FileMode)
+Status MemoryStream::open(FileMode)
 {
    mPosition = 0;
    mWritelength = 0;
-   return eOK;
+   return Status::eOK;
 }
 
 bool MemoryStream::isOpen()

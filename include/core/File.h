@@ -246,7 +246,7 @@ namespace jm
            \brief Opens the file for read or write operations.
            \param mode The mode for opening the file.
            */
-         VxfErrorStatus open(FileMode mode) override;
+         Status open(FileMode mode) override;
 
           /*!
            \brief Checks if the file is open.
@@ -327,12 +327,12 @@ namespace jm
          /*!
           \brief Adds a tag to the file. If the tag already exists, nothing happens.
           */
-         VxfErrorStatus addTag(const String& tag);
+         Status addTag(const String& tag);
 
          /*!
           \brief Remove a tag from the file. If the tag not exists, nothing happens.
           */
-         VxfErrorStatus removeTag(const String& tag);
+         Status removeTag(const String& tag);
 
          //Operatore
          File& operator=(const File& another);
@@ -373,7 +373,7 @@ namespace jm
          void setCString();
 
          //! Helper for storing tag list
-         VxfErrorStatus setTags(const jm::StringList& tags);
+         Status setTags(const jm::StringList& tags);
 
    };
 

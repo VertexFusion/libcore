@@ -42,11 +42,11 @@ namespace jm
    /*!
     \brief Mode for opening streams and files.
     */
-   enum FileMode
+   enum class FileMode
    {
-      kFmRead,      /*!< Open for reading only. Corresponds to \c rb */
-      kFmWrite,     /*!< Open for writing only. Corresponds to \c wb */
-      kFmReadWrite  /*!< Open for reading and writing. Corresponds to \c rb+ */
+      kRead,      /*!< Open for reading only. Corresponds to \c rb */
+      kWrite,     /*!< Open for writing only. Corresponds to \c wb */
+      kReadWrite  /*!< Open for reading and writing. Corresponds to \c rb+ */
    };
 
    /*!
@@ -77,7 +77,7 @@ namespace jm
            \details This method opens the stream for read or write operations based on the specified mode.
            \return The status of the operation.
            */
-         virtual VxfErrorStatus open(FileMode mode) = 0;
+         virtual Status open(FileMode mode) = 0;
 
           /*!
            \brief Returns whether the file is open or not.

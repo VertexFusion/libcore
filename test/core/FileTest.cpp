@@ -57,7 +57,7 @@ void FileTest::doTest()
 
     // Test writing
     testFalse(file.isOpen(),"File::isOpen()==false failed");
-    testTrue(file.open(jm::kFmWrite)==jm::eOK,"File::open() failed");
+    testTrue(file.open(jm::FileMode::kWrite)==jm::Status::eOK,"File::open() failed");
     testTrue(file.isOpen(),"File::isOpen()==true failed");
     testTrue(file.position()==0,"File::position()==0 failed");
     testTrue(file.write((uint8*)"teststring",10)==10,"File::write() failed");
@@ -66,7 +66,7 @@ void FileTest::doTest()
     testFalse(file.isOpen(),"File::isOpen()==false failed");
 
     // Test reading 1
-    testTrue(file.open(jm::kFmRead)==jm::eOK,"File::open() failed");
+    testTrue(file.open(jm::FileMode::kRead)==jm::Status::eOK,"File::open() failed");
     testTrue(file.isOpen(),"File::isOpen()==true failed");
     testTrue(file.position()==0,"File::position()==0 failed");
     jm::ByteArray buffer=jm::ByteArray(10,0);
@@ -77,7 +77,7 @@ void FileTest::doTest()
     testTrue(jm::String(buffer)=="teststring","Read content is wrong");
 
     // Test reading 2
-    testTrue(file.open(jm::kFmRead)==jm::eOK,"File::open() failed");
+    testTrue(file.open(jm::FileMode::kRead)==jm::Status::eOK,"File::open() failed");
     testTrue(file.isOpen(),"File::isOpen()==true failed");
     testTrue(file.position()==0,"File::position()==0 failed");
     uint8 buffer2[11];
@@ -89,7 +89,7 @@ void FileTest::doTest()
     testTrue(jm::String(buffer2)=="teststring","Read content 2 is wrong");
 
     // Test positioning
-    testTrue(file.open(jm::kFmRead)==jm::eOK,"File::open() failed");
+    testTrue(file.open(jm::FileMode::kRead)==jm::Status::eOK,"File::open() failed");
     testTrue(file.position()==0,"File::position()==0 failed");
     file.seek(3);
     testTrue(file.position()==3,"File::position()==3 failed");
@@ -107,13 +107,13 @@ void FileTest::doTest()
     // 2nd and 3rd file
     File file2=File(jm::currentDir(),"test2.txt");
     file2.createNewFile();
-    file2.open(jm::kFmWrite);
+    file2.open(jm::FileMode::kWrite);
     file2.write((uint8*)"teststring",10);
     file2.close();
 
     File file3=File(jm::currentDir(),"test3.txt");
     file3.createNewFile();
-    file3.open(jm::kFmWrite);
+    file3.open(jm::FileMode::kWrite);
     file3.write((uint8*)"testString",10);
     file3.close();
 
@@ -167,7 +167,7 @@ void FileTest::doTest()
     StringList tags = file.getTags();
     testEquals(tags.size(),0,"File::getTags().size()==0 failed");
 
-    testTrue(file.addTag("tag1")==jm::eOK,"File::addTag() failed");
+    testTrue(file.addTag("tag1")==jm::Status::eOK,"File::addTag() failed");
     tags = file.getTags();
     testEquals(tags.size(),1,"File::getTags().size()==1 failed");
     if(tags.size()>0)
@@ -175,7 +175,7 @@ void FileTest::doTest()
         testEquals(tags[0],"tag1","Wrong tag returned");
     }
 
-    testTrue(file.addTag("tag2")==jm::eOK,"File::addTag() failed");
+    testTrue(file.addTag("tag2")==jm::Status::eOK,"File::addTag() failed");
     tags = file.getTags();
     testEquals(tags.size(),2,"File::getTags().size()==2 failed");
     if(tags.size()>0)
@@ -185,7 +185,7 @@ void FileTest::doTest()
         testEquals(tags[1],"tag2","Wrong tag returned");
     }
 
-    testTrue(file.removeTag("tag1")==jm::eOK,"File::removeTag() failed");
+    testTrue(file.removeTag("tag1")==jm::Status::eOK,"File::removeTag() failed");
     tags = file.getTags();
     testEquals(tags.size(),1,"File::getTags().size()==1 failed");
     if(tags.size()!=0)

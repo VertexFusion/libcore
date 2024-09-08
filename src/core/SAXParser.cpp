@@ -49,7 +49,7 @@ void SAXParser::parse(File& file)
    if(!file.canRead())return;
    int64 length = file.size();
    ByteArray buffer = ByteArray(length, 0);
-   file.open(jm::kFmRead);
+   file.open(jm::FileMode::kRead);
    file.Stream::readFully(buffer);
    file.close();
    jm::String content = jm::String(buffer);

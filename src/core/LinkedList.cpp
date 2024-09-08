@@ -49,7 +49,7 @@ LinkedList::LinkedList(Object* owner): Object()
    mOwner = owner;
    if(mOwner == nullptr)
    {
-      System::log("Owner of LinkedList must not be nullptr!", kLogWarning);
+      System::log("Owner of LinkedList must not be nullptr!", LogLevel::kWarning);
    }
 }
 
@@ -210,7 +210,7 @@ void LinkedList::addBefore(LListElement* addBeforeThis, LListElement* itemToAdd,
 }
 
 
-VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
+Status LinkedList::remove(LListElement* element, UndoManager* um)
 {
    LListElement* prev = element->prev;
    LListElement* next = element->next;
@@ -247,11 +247,11 @@ VxfErrorStatus LinkedList::remove(LListElement* element, UndoManager* um)
    element->release();
    count--;
 
-   return eOK;
+   return Status::eOK;
 }
 
 
-VxfErrorStatus LinkedList::remove(const Object* data, UndoManager* um)
+Status LinkedList::remove(const Object* data, UndoManager* um)
 {
    rewind();
    while(hasNext())
@@ -263,7 +263,7 @@ VxfErrorStatus LinkedList::remove(const Object* data, UndoManager* um)
       }
    }
 
-   return eNotFound;
+   return Status::eNotFound;
 }
 
 uint32 LinkedList::size() const

@@ -59,7 +59,7 @@ const String& Test::errorCode() const
 
 void Test::testFail(const String& message)
 {
-   System::log(message, kLogError);
+   System::log(message, LogLevel::kError);
    jm::gTotalErrorCount++;
    jm::gTotalTestCount++;
    jm::gErrorCount++;
@@ -76,7 +76,7 @@ void Test::testEquals(const double actual, const double expected, const String& 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
    System::log(failmessage + " '" + String::valueOf(actual) + "' '" + String::valueOf(expected) + "'",
-               kLogError);
+               LogLevel::kError);
 }
 
 void Test::testEquals(int64 actual, int64 expected, const String& failmessage)
@@ -88,7 +88,7 @@ void Test::testEquals(int64 actual, int64 expected, const String& failmessage)
 
    String msg;
    msg << failmessage << " '" << actual << "' '" << expected << "'";
-   System::log(msg, kLogError);
+   System::log(msg, LogLevel::kError);
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
@@ -103,7 +103,7 @@ void Test::testEquals(int64 actual, int32 expected, const String& failmessage)
 
    String msg;
    msg << failmessage << " '" << actual << "' '" << expected << "'";
-   System::log(msg, kLogError);
+   System::log(msg, LogLevel::kError);
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
@@ -120,7 +120,7 @@ void Test::testEquals(uint64 actual, uint64 expected, const String& failmessage)
    jm::gErrorCount++;
    String msg;
    msg << failmessage << " '" << actual << "' '" << expected << "'";
-   System::log(msg, kLogError);
+   System::log(msg, LogLevel::kError);
 }
 
 void Test::testEquals(void* actual, void* expected, const String& failmessage)
@@ -134,7 +134,7 @@ void Test::testEquals(void* actual, void* expected, const String& failmessage)
    jm::gErrorCount++;
    String msg;
    msg << failmessage << " '" << (uint64)actual << "' '" << (uint64)expected << "'";
-   System::log(msg, kLogError);
+   System::log(msg, LogLevel::kError);
 }
 
 void Test::testEquals(uint64 actual, int32 expected, const String& failmessage)
@@ -178,7 +178,7 @@ void Test::testEqualsIgnoreCase(const String& actual,
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
+   System::log(failmessage + " '" + actual + "' '" + expected + "'", LogLevel::kError);
 }
 
 
@@ -191,7 +191,7 @@ void Test::testEquals(const String& actual, const String& expected, const String
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage + " '" + actual + "' '" + expected + "'", kLogError);
+   System::log(failmessage + " '" + actual + "' '" + expected + "'", LogLevel::kError);
 }
 
 void Test::testNull(void* actual, const String& failmessage)
@@ -203,7 +203,7 @@ void Test::testNull(void* actual, const String& failmessage)
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage, kLogError);
+   System::log(failmessage, LogLevel::kError);
 }
 
 void Test::testNotNull(void* actual, const String& failmessage)
@@ -215,7 +215,7 @@ void Test::testNotNull(void* actual, const String& failmessage)
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage, kLogError);
+   System::log(failmessage, LogLevel::kError);
 }
 
 void Test::testTrue(bool actual, const String& failmessage)
@@ -227,7 +227,7 @@ void Test::testTrue(bool actual, const String& failmessage)
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage, kLogError);
+   System::log(failmessage, LogLevel::kError);
 }
 
 void Test::testFalse(bool actual, const String& failmessage)
@@ -239,7 +239,7 @@ void Test::testFalse(bool actual, const String& failmessage)
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
-   System::log(failmessage, kLogError);
+   System::log(failmessage, LogLevel::kError);
 }
 
 void Test::testUnexpectedException(const String& failmessage)
