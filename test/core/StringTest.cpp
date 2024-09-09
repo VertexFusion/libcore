@@ -180,7 +180,7 @@ void StringTest::doTest()
 
    // Test clear
    str1.clear();
-   testEquals(str1.size(),0l, "String.clear() fails");
+   testTrue(str1.size()==0, "String.clear() fails");
 
    // Test reverse
    str1 = "abcdef";

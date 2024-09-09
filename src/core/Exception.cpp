@@ -107,7 +107,7 @@ void Exception::printStackTrace() const
       size_t size = 1024;
       ByteArray cstr = function.toCString();
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
-      function = String(buffer, (int)size, Charset::ForName("RAW"));
+      function = String(buffer, (int)size, Charset::forName("RAW"));
 
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" <<
                  std::endl;
@@ -172,7 +172,7 @@ String Exception::GetStrackTrace() const
       size_t size = 1024;
       ByteArray cstr = function.toCString();
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
-      function = String(buffer, (int)size, Charset::ForName("RAW"));
+      function = String(buffer, (int)size, Charset::forName("RAW"));
 
       ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r'
           << '\n';

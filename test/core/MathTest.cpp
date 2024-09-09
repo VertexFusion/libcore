@@ -221,19 +221,19 @@ void MathTest::doTest()
    testEquals(jm::floatMaschineEpsilon(), expectedFloatEpsilon, "floatMaschineEpsilon() should return the correct machine epsilon for float");
 
    // Test divFloor function
-   testEquals(jm::divFloor(10, 3), 3l, "divFloor(10, 3) should return 3");
-   testEquals(jm::divFloor(-10, 3), -4l, "divFloor(-10, 3) should return -4");
-   testEquals(jm::divFloor(10, -3), -4l, "divFloor(10, -3) should return -4");
-   testEquals(jm::divFloor(-10, -3), 3l, "divFloor(-10, -3) should return 3");
-   testEquals(jm::divFloor(10, 5), 2l, "divFloor(10, 5) should return 2");
+   testTrue(jm::divFloor(10, 3)==3, "divFloor(10, 3) should return 3");
+   testTrue(jm::divFloor(-10, 3)==-4, "divFloor(-10, 3) should return -4");
+   testTrue(jm::divFloor(10, -3)==-4, "divFloor(10, -3) should return -4");
+   testTrue(jm::divFloor(-10, -3)==3, "divFloor(-10, -3) should return 3");
+   testTrue(jm::divFloor(10, 5)==2, "divFloor(10, 5) should return 2");
 
    // Test modFloor function
-    testEquals(jm::modFloor(10, 3), 1L,"modFloor(10, 3) should return 1");
-    testEquals(jm::modFloor(-10, 3), 2L,"modFloor(-10, 3) should return 2");
-    testEquals(jm::modFloor(10, -3), -2L,"modFloor(10, -3) should return -2");
-    testEquals(jm::modFloor(-10, -3), -1L,"modFloor(-10, -3) should return -1");
-    testEquals(jm::modFloor(0, 3), 0L,"modFloor(0, 3) should return 0");
-    testEquals(jm::modFloor(10, 0), 0L,"modFloor(10, 0) should return 0");
-    testEquals(jm::modFloor(0, 0), 0L,"modFloor(0, 0) should return 0");
+    testTrue(jm::modFloor(10, 3)==1,"modFloor(10, 3) should return 1");
+    testTrue(jm::modFloor(-10, 3)==2,"modFloor(-10, 3) should return 2");
+    testTrue(jm::modFloor(10, -3)==-2,"modFloor(10, -3) should return -2");
+    testTrue(jm::modFloor(-10, -3)==-1,"modFloor(-10, -3) should return -1");
+    testTrue(jm::modFloor(0, 3)==0,"modFloor(0, 3) should return 0");
+    testTrue(jm::modFloor(10, 0)==0,"modFloor(10, 0) should return 0");
+    testTrue(jm::modFloor(0, 0)==0,"modFloor(0, 0) should return 0");
 }
 
