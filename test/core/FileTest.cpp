@@ -193,5 +193,10 @@ void FileTest::doTest()
         testEquals(tags[0],"tag2","Wrong tag returned");
     }
 
+    // Remove last tag
+    testTrue(file.removeTag("tag2")==jm::Status::eOK,"File::removeTag() failed");
+    tags = file.getTags();
+    testEquals(tags.size(),0,"File::getTags().size()==0 failed");
+
     file.Delete();
 }

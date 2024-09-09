@@ -788,7 +788,7 @@ Status File::setTags(const jm::StringList& tags)
    //Create new array and append tag
    int64 newsize = tags.size();
    CFStringRef* strs = new CFStringRef[newsize];
-   for(int64 index = 0; index < newsize - 1; index++)
+   for(int64 index = 0; index < newsize; index++)
    {
       strs[index] = tags[index].toCFString();
    }
@@ -808,7 +808,7 @@ Status File::setTags(const jm::StringList& tags)
                      kCFURLPOSIXPathStyle,
                      isDirectory());
 
-   // Query tags
+   // Set tags
    Boolean result = CFURLSetResourcePropertyForKey(urlref,
                     kCFURLTagNamesKey,
                     newtags,
