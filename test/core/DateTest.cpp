@@ -78,19 +78,19 @@ void DateTest::doTest()
 
    // 30. Juni 1961   02:35:44
    d = Date(-268435456000L);
-   testEquals(d.time(), -268435456000L, "jm::Date::Time() fails");
+   testEquals(d.time(), (int64)-268435456000L, "jm::Date::Time() fails");
    testEquals(d.toString(), "1961-06-30T02:35:44.000Z", "jm::Date::ToString() fails [7]");
    testEquals(df1.format(d), "30.06.1961 02:35:44.000", "jm::DateFormatter::Format() fails [7]");
 
    //01.01.1979
    d = Date(283996800000L);
-   testEquals(d.time(), 283996800000L, "jm::Date::Time() fails");
+   testEquals(d.time(), (int64)283996800000L, "jm::Date::Time() fails");
    testEquals(d.toString(), "1979-01-01T00:00:00.000Z", "jm::Date::ToString() fails [8]");
    testEquals(df1.format(d), "01.01.1979 00:00:00.000", "jm::DateFormatter::Format() fails [8]");
 
    //01.08.1979
    d = Date(302313600000L);
-   testEquals(d.time(), 302313600000L, "jm::Date::Time() fails");
+   testEquals(d.time(), (int64)302313600000L, "jm::Date::Time() fails");
    testEquals(d.toString(), "1979-08-01T00:00:00.000Z", "jm::Date::ToString() fails [9]");
    testEquals(df1.format(d), "01.08.1979 00:00:00.000", "jm::DateFormatter::Format() fails [9]");
 
