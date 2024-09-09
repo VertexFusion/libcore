@@ -826,7 +826,7 @@ Status File::setTags(const jm::StringList& tags)
    CFRelease(newtags);
 
    if(result == true)return Status::eOK;
-   else return eNo;
+   else return Status::eNo;
 
    #endif
 
@@ -962,7 +962,7 @@ File jm::ResourceDir(const String& bundleId)
       CFRelease(cfstr);
 
       System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
-                  kError);
+                  Status::kError);
       return File("/");
    }
 

@@ -677,6 +677,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static VC2017)|x64'">true</ExcludedFromBuild>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="test\core\StringListTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release (static VC2017)|x64'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Test|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="test\core\StringTokenizerTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test|x64'">false</ExcludedFromBuild>
