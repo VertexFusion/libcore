@@ -962,7 +962,7 @@ File jm::ResourceDir(const String& bundleId)
       CFRelease(cfstr);
 
       System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
-                  Status::kError);
+                  LogLevel::kError);
       return File("/");
    }
 
