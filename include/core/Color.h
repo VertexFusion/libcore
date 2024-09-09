@@ -29,8 +29,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef jm_Colour_h
-#define jm_Colour_h
+#ifndef jm_Color_h
+#define jm_Color_h
 
 namespace jm
 {
@@ -41,7 +41,7 @@ namespace jm
     \note Compile with -fshort-enums
     \ingroup core
     */
-   enum class ColourMode
+   enum class ColorMode
    {
       kGrey = 0, /*!< Grey Scale */
       kRgb = 1, /*!< RGB Color Space */
@@ -151,7 +151,7 @@ namespace jm
          /*!
           \brief Returns the colour mode.
           */
-         ColourMode mode() const;
+         ColorMode mode() const;
 
          /*!
           \brief Is the colour white?
@@ -171,7 +171,7 @@ namespace jm
           \brief Sets the colour space directly.
           \note There is no conversion of values.
           */
-         void setMode(ColourMode mode);
+         void setMode(ColorMode mode);
 
          /*!
           \brief Directly sets the transparency. 0 = transparent, 255 = opaque.
@@ -250,7 +250,7 @@ namespace jm
           \brief This method creates a colour in the colour space "CMYK".
           0 means no colour (white on paper), 255 means full colour (dark on paper)
           */
-         static Color FromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
+         static Color fromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha = 255);
 
          /*!
           \brief This method creates a colour in the colour space "RGB" using the HSV model.
@@ -261,7 +261,7 @@ namespace jm
       private:
 
          //Color space of this color
-         ColourMode mMode;
+         ColorMode mMode;
 
 
          union

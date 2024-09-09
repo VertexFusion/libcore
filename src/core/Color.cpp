@@ -45,7 +45,7 @@ using std::max;
 
 Color::Color()
 {
-   mMode = ColourMode::kRgb;
+   mMode = ColorMode::kRgb;
    col.rgb.red = 0;
    col.rgb.green = 0;
    col.rgb.blue = 0;
@@ -85,24 +85,24 @@ void Color::toRgb()
 {
    switch(mMode)
    {
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
          // No conversion necessary.
          break;
 
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
       {
          uint8 grey = col.g.grey;
-         mMode = ColourMode::kRgb;
+         mMode = ColorMode::kRgb;
          col.rgb.red = grey;
          col.rgb.green = grey;
          col.rgb.blue = grey;
          break;
       }
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
       {
          // Description acc. to PDF 1.6-Reference 6.2.4 (S.454)
-         mMode = ColourMode::kRgb;
+         mMode = ColorMode::kRgb;
          uint16 c = col.cmyk.cyan;
          uint16 m = col.cmyk.magenta;
          uint16 y = col.cmyk.yellow;
@@ -119,9 +119,9 @@ void Color::toGreyScale()
 {
    switch(mMode)
    {
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
       {
-         mMode = ColourMode::kGrey;
+         mMode = ColorMode::kGrey;
          // G = 0.2126 R + 0.7152 G + 0.0722 B.
          float grey = 0.2126f * col.rgb.red +
                       0.7152f * col.rgb.green +
@@ -131,11 +131,11 @@ void Color::toGreyScale()
          break;
       }
 
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
          // No conversion necessary.
          break;
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
       {
          // The "detour" via RGB is currently the simplest.
          toRgb();
@@ -149,7 +149,7 @@ void Color::toCmyk()
 {
    switch(mMode)
    {
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
       {
          //The R,G,B values are divided by 255 to change the range from 0..255 to 0..1:
          //R' = R/255
@@ -170,7 +170,7 @@ void Color::toCmyk()
          //The yellow colour (Y) is calculated from the blue (B') and black (K) colours:
          //Y = (1-B'-K) / (1-K)
          float y = (1 - b - k) / (1 - k);
-         mMode = ColourMode::kCmyk;
+         mMode = ColorMode::kCmyk;
          col.cmyk.cyan = static_cast<uint8>(255.0f * c);
          col.cmyk.magenta = static_cast<uint8>(255.0f * m);
          col.cmyk.yellow = static_cast<uint8>(255.0f * y);
@@ -179,10 +179,10 @@ void Color::toCmyk()
          break;
       }
 
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
       {
          uint8 grey = col.g.grey;
-         mMode = ColourMode::kCmyk;
+         mMode = ColorMode::kCmyk;
          col.cmyk.cyan = 0;
          col.cmyk.magenta = 0;
          col.cmyk.yellow = 0;
@@ -191,7 +191,7 @@ void Color::toCmyk()
          break;
       }
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
          //Keine Umwandlung notwendig.
          break;
    }
@@ -242,7 +242,7 @@ uint8 Color::key() const
    return col.cmyk.key;
 }
 
-ColourMode Color::mode() const
+ColorMode Color::mode() const
 {
    return mMode;
 }
@@ -252,13 +252,13 @@ bool Color::isWhite() const
 {
    switch(mMode)
    {
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
          return col.rgb.red == 255 && col.rgb.green == 255 && col.rgb.blue == 255;
 
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
          return col.g.grey == 255;
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
          return col.cmyk.cyan == 0 && col.cmyk.magenta == 0 && col.cmyk.yellow == 0 && col.cmyk.key == 0;
    }
 
@@ -300,7 +300,7 @@ void Color::hsvModel(float& hue, float& saturation, float& value) const
 
 }
 
-void Color::setMode(ColourMode mode)
+void Color::setMode(ColorMode mode)
 {
    mMode = mode;
 }
@@ -354,7 +354,7 @@ Color Color::fromGrey(uint8 grey, uint8 alpha)
 {
    Color c;
 
-   c.mMode = ColourMode::kGrey;
+   c.mMode = ColorMode::kGrey;
    c.col.g.grey = grey;
    c.mAlpha = alpha;
 
@@ -365,7 +365,7 @@ Color Color::fromRgb(uint8 red, uint8 green, uint8 blue, uint8 alpha)
 {
    Color c;
 
-   c.mMode = ColourMode::kRgb;
+   c.mMode = ColorMode::kRgb;
    c.col.rgb.red = red;
    c.col.rgb.green = green;
    c.col.rgb.blue = blue;
@@ -374,11 +374,11 @@ Color Color::fromRgb(uint8 red, uint8 green, uint8 blue, uint8 alpha)
    return c;
 }
 
-Color Color::FromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
+Color Color::fromCmyk(uint8 cyan, uint8 magenta, uint8 yellow, uint8 key, uint8 alpha)
 {
    Color c;
 
-   c.mMode = ColourMode::kCmyk;
+   c.mMode = ColorMode::kCmyk;
    c.col.cmyk.cyan = cyan;
    c.col.cmyk.magenta = magenta;
    c.col.cmyk.yellow = yellow;
@@ -513,17 +513,17 @@ bool jm::operator==(Color const& c1, Color const& c2)
 
    switch(c1.mMode)
    {
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
          if(c1.col.g.grey != c2.col.g.grey)return false;
          break;
 
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
          if(c1.col.rgb.red != c2.col.rgb.red)return false;
          if(c1.col.rgb.green != c2.col.rgb.green)return false;
          if(c1.col.rgb.blue != c2.col.rgb.blue)return false;
          break;
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
          if(c1.col.cmyk.cyan != c2.col.cmyk.cyan)return false;
          if(c1.col.cmyk.magenta != c2.col.cmyk.magenta)return false;
          if(c1.col.cmyk.yellow != c2.col.cmyk.yellow)return false;
@@ -546,17 +546,17 @@ const Color jm::operator-(Color const& c1, Color const& c2)
    Color ret = c1;
    switch(c1.mMode)
    {
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
          ret.col.g.grey -= c2.col.g.grey;
          break;
 
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
          ret.col.rgb.red -= c2.col.rgb.red;
          ret.col.rgb.green -= c2.col.rgb.green;
          ret.col.rgb.blue -= c2.col.rgb.blue;
          break;
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
          ret.col.cmyk.cyan -= c2.col.cmyk.cyan;
          ret.col.cmyk.magenta -= c2.col.cmyk.magenta;
          ret.col.cmyk.yellow -= c2.col.cmyk.yellow;
@@ -573,17 +573,17 @@ const Color jm::operator+(Color const& c1, Color const& c2)
    Color ret = c1;
    switch(c1.mMode)
    {
-      case ColourMode::kGrey:
+      case ColorMode::kGrey:
          ret.col.g.grey += c2.col.g.grey;
          break;
 
-      case ColourMode::kRgb:
+      case ColorMode::kRgb:
          ret.col.rgb.red += c2.col.rgb.red;
          ret.col.rgb.green += c2.col.rgb.green;
          ret.col.rgb.blue += c2.col.rgb.blue;
          break;
 
-      case ColourMode::kCmyk:
+      case ColorMode::kCmyk:
          ret.col.cmyk.cyan += c2.col.cmyk.cyan;
          ret.col.cmyk.magenta += c2.col.cmyk.magenta;
          ret.col.cmyk.yellow += c2.col.cmyk.yellow;

@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Linux)
    C__ =clang
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
-   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3
+   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3
    TESTFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
