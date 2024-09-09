@@ -138,7 +138,7 @@ void jm::System::log(const String& message, LogLevel logLevel)
    // Output to log file
    #ifdef __APPLE__ //macOS and iOS
 
-   if(logLevel == kError)
+   if(logLevel == LogLevel::kError)
    {
       //	setlogmask (LOG_UPTO (LOG_NOTICE));
 
@@ -156,7 +156,7 @@ void jm::System::log(const String& message, LogLevel logLevel)
 
    #elif defined _WIN32//Windows
 
-   if(logLevel == kError)
+   if(logLevel == LogLevel::kError)
    {
       gSystemError = message;
    }
@@ -296,7 +296,7 @@ void jm::System::unloadDynamicLibrary(void* library)
    #elif defined _WIN32//Windows
 
    bool res = (bool)FreeLibrary((HMODULE) library);
-   if(res == false) log("Closing dynamic library failed!", kError);
+   if(res == false) log("Closing dynamic library failed!", LogLevel::kError);
 
    #endif
 }

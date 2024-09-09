@@ -57,7 +57,7 @@ DWORD WINAPI StartThread(LPVOID lpParameter)
    t->alive = true;
    LeaveCriticalSection((CRITICAL_SECTION*)t->mCriticalSection);
 
-   t->Run();
+   t->run();
    CloseHandle(t->mHandle);
    return 0;
 }

@@ -99,12 +99,12 @@ void File::setCString()
 {
    #ifdef __APPLE__ //macOS
    // Under 10.10 umlauts are transferred correctly...
-   mCstr = mPathname.toCString(Charset::ForName("UTF-8"));
+   mCstr = mPathname.toCString(Charset::forName("UTF-8"));
    #elif defined __linux__ //Linux
    mCstr = mPathname.toCString(Charset::forName("UTF-8"));
    #elif defined _WIN32 //Windows
    // Must be under Windows Windows-1252 for fopen
-   mCstr = mPathname.toCString(Charset::ForName("Windows-1252"));
+   mCstr = mPathname.toCString(Charset::forName("Windows-1252"));
    #endif
 }
 
@@ -426,7 +426,7 @@ bool File::renameTo(const String& newPath)
    #elif defined __linux__ //Linux
    ByteArray newname = newPath.toCString();
    #elif defined _WIN32 //Windows
-   ByteArray newname = newPath.toCString(Charset::ForName("Windows-1252"));
+   ByteArray newname = newPath.toCString(Charset::forName("Windows-1252"));
    #endif
 
 
@@ -612,15 +612,15 @@ Status File::open(FileMode mode)
    #elif defined _WIN32 //Windows
    switch(mode)
    {
-      case kRead:
+      case FileMode::kRead:
          fopen_s(&mHandle, mCstr.constData(), "rb");
          break;
 
-      case kWrite:
+      case FileMode::kWrite:
          fopen_s(&mHandle, mCstr.constData(), "wb");
          break;
 
-      case kReadWrite:
+      case FileMode::kReadWrite:
          fopen_s(&mHandle, mCstr.constData(), "rb+");
          break;
    }

@@ -294,7 +294,6 @@
     <ClInclude Include="include\core\DiffInfo.h" />
     <ClInclude Include="include\core\DiffTypes.h" />
     <ClInclude Include="include\core\Document.h" />
-    <ClInclude Include="include\core\Double.h" />
     <ClInclude Include="include\core\Exception.h" />
     <ClInclude Include="include\core\File.h" />
     <ClInclude Include="include\core\Geometry.h" />
@@ -564,7 +563,6 @@
     <ClCompile Include="src\core\DiffDistance.cpp" />
     <ClCompile Include="src\core\DiffInfo.cpp" />
     <ClCompile Include="src\core\Document.cpp" />
-    <ClCompile Include="src\core\Double.cpp" />
     <ClCompile Include="src\core\EditableObject.cpp" />
     <ClCompile Include="src\core\Exception.cpp" />
     <ClCompile Include="src\core\Extents.cpp" />

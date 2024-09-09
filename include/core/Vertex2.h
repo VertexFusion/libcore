@@ -198,6 +198,12 @@ namespace jm
    const Vertex2 operator*(const int64& i, const Vertex2& v);
 
    /*!
+    \brief Implementation of the operator *
+    */
+   DllExport
+   const Vertex2 operator*(const int32& i, const Vertex2& v);
+
+   /*!
     \brief Implementation of the operator -=
     */
    DllExport

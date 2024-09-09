@@ -181,6 +181,14 @@ const Vertex2 jm::operator*(const int64& i, const Vertex2& v)
    return r;
 }
 
+const Vertex2 jm::operator*(const int32& i, const Vertex2& v)
+{
+   Vertex2 r;
+   r.x = i * v.x;
+   r.y = i * v.y;
+   return r;
+}
+
 Vertex2 Vertex2::operator*(double d) const
 {
    return Vertex2(d * x, d * y);

@@ -316,7 +316,7 @@ Vertex2 jm::intersectionPoint(const Vertex2& position1,
    if(direction1.isCollinear(direction2)) return Vertex2(NAN, NAN);
    else
    {
-      Vertex2 x = SolveLinearSystem(direction1, -1l * direction2, position2 - position1);
+      Vertex2 x = SolveLinearSystem(direction1, -1 * direction2, position2 - position1);
       return position2 + x.y * direction2;
    }
 }
@@ -367,7 +367,7 @@ bool jm::crosses(const Vertex2& start1,
 
    if(dir1.isCollinear(dir2)) return false;
 
-   Vertex2 x = SolveLinearSystem(dir1, -1l * dir2, start2 - start1);
+   Vertex2 x = SolveLinearSystem(dir1, -1 * dir2, start2 - start1);
    double lambda1 = x.x;
    double lambda2 = x.y;
 
@@ -392,7 +392,7 @@ Vertex2 jm::extensionPointOnLine(const Vertex2& rayorigin,
    if(direction.isCollinear(direction2)) return Vertex2(NAN, NAN);
    else
    {
-      Vertex2 x = SolveLinearSystem(direction, -1l * direction2, start - rayorigin);
+      Vertex2 x = SolveLinearSystem(direction, -1 * direction2, start - rayorigin);
       lambda = x.y;
    }
 

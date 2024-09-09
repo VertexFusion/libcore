@@ -200,7 +200,7 @@ String Charset::guess(const char* stream, int64 length)
 
    // It is possible that a UTF16 encoding without markers is present. The probability of this is
    // high if every second byte of "European" text is 0.
-   uint16 frame = (uint16) std::min(4096l, length);
+   uint16 frame = (uint16) std::min(int64(4096), length);
    float count1 = 0;
    float count2 = 0;
    for(uint16 a = 0; a < frame; a++)
