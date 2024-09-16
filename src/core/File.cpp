@@ -393,9 +393,9 @@ Date File::lastModified() const
 }
 
 
-bool File::Delete()
+bool File::remove()
 {
-   if(remove(mCstr.constData()) == 0)return true;
+   if(::remove(mCstr.constData()) == 0)return true;
    else return false;
 }
 

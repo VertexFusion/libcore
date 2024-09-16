@@ -67,7 +67,7 @@ namespace jm
        \brief Constructor creates an n-dimensional vector.
        \param rows Number of rows (dimensions) in the vector.
        */
-      Vector(int64 rows);
+      explicit Vector(int64 rows);
 
       /*!
        \brief Destructor

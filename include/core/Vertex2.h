@@ -72,7 +72,11 @@ namespace jm
           */
          Vertex2(double x, double y);
 
-         Vertex2(const Vertex3& v3);
+         /*!
+          \brief Copy constructor
+          \param v3 The other 3d-vector. The z-component is ignored.
+          */
+         explicit Vertex2(const Vertex3& v3);
 
          /*!
           \brief This method returns the absolute value of the vector. The absolute value is equal to the length.
@@ -159,11 +163,6 @@ namespace jm
          Vertex2& operator-=(const Vertex2& another);
 
          /*!
-          \brief Implementation of the operator *
-          */
-         Vertex2 operator*(double b) const;
-
-         /*!
           \brief Implementation of the operator /
           */
          Vertex2 operator/(double b) const;
@@ -189,19 +188,13 @@ namespace jm
     \brief Implementation of the operator *
     */
    DllExport
-   const Vertex2 operator*(const double& d, const Vertex2& v);
+   Vertex2 operator*(double d, const Vertex2& v);
 
    /*!
     \brief Implementation of the operator *
     */
    DllExport
-   const Vertex2 operator*(const int64& i, const Vertex2& v);
-
-   /*!
-    \brief Implementation of the operator *
-    */
-   DllExport
-   const Vertex2 operator*(const int32& i, const Vertex2& v);
+   Vertex2 operator*(const Vertex2& v1, double d);
 
    /*!
     \brief Implementation of the operator -=

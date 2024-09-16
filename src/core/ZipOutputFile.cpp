@@ -133,7 +133,7 @@ void ZipOutputFile::closeEntry()
    ByteArray buffer = ByteArray(entry->mUncompressedSize, 0);
    mTemp->Stream::readFully(buffer);
    mTemp->close();
-   mTemp->Delete();
+   mTemp->remove();
    delete mTemp;
    mTemp = nullptr;
 
@@ -168,7 +168,7 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    file->close();
 
    mTemp->close();
-   mTemp->Delete();
+   mTemp->remove();
    delete mTemp;
    mTemp = nullptr;
 

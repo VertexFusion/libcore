@@ -153,9 +153,9 @@ void FileTest::doTest()
     testEquals(now.day(),mod1.day(),"Day of file change != 0");
 
     // Deleting file and directory
-    testTrue(dir.Delete(),"File::Delete() failed");
-    testTrue(file2.Delete(),"File::Delete() failed");
-    testTrue(file3.Delete(),"File::Delete() failed");
+    testTrue(dir.remove(),"File::remove() failed");
+    testTrue(file2.remove(),"File::remove() failed");
+    testTrue(file3.remove(),"File::remove() failed");
     file2=File(jm::currentDir(),"rendir");
     testFalse(file2.exists(),"File::exists()==false failed");
     file2=File(jm::currentDir(),"test2.txt");
@@ -202,5 +202,5 @@ void FileTest::doTest()
     testEquals(tags.size(),0,"File::getTags().size()==0 failed");
     #endif
 
-    file.Delete();
+    file.remove();
 }

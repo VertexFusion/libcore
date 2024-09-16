@@ -79,7 +79,7 @@ namespace jm
           \param xy 2D Vector with x and y component.
           \param z Z component of vector
           */
-         Vertex3(const Vertex2 xy, double z = 0);
+         explicit Vertex3(const Vertex2& xy, double z = 0);
 
          /*!
           \brief Copy constructor
@@ -209,11 +209,6 @@ namespace jm
          Vertex3& operator-=(const Vertex3& v);
 
          /*!
-          \brief Implementation of the operator *
-          */
-         Vertex3 operator*(double b) const;
-
-         /*!
           \brief Implementation of the operator /
           */
          Vertex3 operator/(double b) const;
@@ -227,12 +222,6 @@ namespace jm
           \brief Implementation of the operator -
           */
          Vertex3 operator-(const Vertex3& v1) const;
-
-         /*!
-         \brief Implementation of the operator ==
-         */
-         DllExport
-         friend const Vertex3 operator*(const double& d, const Vertex3& b);
 
          /*!
          \brief Implementation of the operator ==
@@ -271,6 +260,18 @@ namespace jm
     */
    DllExport
    bool operator!=(Vertex3 const& v1, Vertex3 const& v2);
+
+   /*!
+    \brief Implementation of the operator *
+    */
+   DllExport
+   Vertex3 operator*(double d, const Vertex3& v);
+
+   /*!
+    \brief Implementation of the operator *
+    */
+   DllExport
+   Vertex3 operator*(const Vertex3& v1, double d);
 
 
    /*!

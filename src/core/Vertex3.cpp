@@ -45,7 +45,7 @@ Vertex3::Vertex3(const Vertex3& another):
    z(another.z)
 {}
 
-Vertex3::Vertex3(const Vertex2 xy, double z_):
+Vertex3::Vertex3(const Vertex2& xy, double z_):
    x(xy.x),
    y(xy.y),
    z(z_)
@@ -191,14 +191,14 @@ Vertex3 Vertex3::operator-(const Vertex3& other) const
    return Vertex3(x - other.x, y - other.y, z - other.z);
 }
 
-Vertex3 Vertex3::operator*(double d) const
+Vertex3 jm::operator*(double d,const Vertex3& v)
 {
-   return Vertex3(d * x, d * y, d * z);
+   return Vertex3(d * v.x, d * v.y, d * v.z);
 }
 
-const Vertex3 jm::operator*(const double& d, const Vertex3& b)
+Vertex3 jm::operator*(const Vertex3& v,double d)
 {
-   return Vertex3(d * b.x, d * b.y, d * b.z);
+   return Vertex3(d * v.x, d * v.y, d * v.z);
 }
 
 std::ostream& jm::operator<< (std::ostream& out, const Vertex3& vertex)

@@ -142,7 +142,7 @@ namespace jm
            \brief This method deletes the file permanently. If it is a directory, it will only be deleted if it is empty.
            \return true if the file was successfully deleted, false otherwise.
            */
-         bool Delete();
+         bool remove();
 
           /*!
            \brief Moves the file to the system trash.

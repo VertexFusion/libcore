@@ -431,9 +431,9 @@ namespace jm
     */
    DllExport
    jm::Status circleParameterBy3Points(Vertex2& centre, double& radius,
-         const Vertex2& p1,
-         const Vertex2& p2,
-         const Vertex3& p3);
+                                       const Vertex2& p1,
+                                       const Vertex2& p2,
+                                       const Vertex2& p3);
 
 }
 
