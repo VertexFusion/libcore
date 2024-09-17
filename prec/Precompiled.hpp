@@ -102,6 +102,7 @@
 #include <Lmcons.h>
 #include <direct.h>
 #include <Shlobj.h>
+#include <shlwapi.h>
 
 // We need that for GetUsernameEX
 #define SECURITY_WIN32

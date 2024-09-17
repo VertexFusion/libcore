@@ -234,6 +234,9 @@
     <ClInclude Include="include\core\ByteArray.h">
       <Filter>include\core</Filter>
     </ClInclude>
+    <ClInclude Include="test\core\FileTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\AutoreleasePool.cpp">
@@ -510,6 +513,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\core\StringList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\FileTest.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\StringListTest.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

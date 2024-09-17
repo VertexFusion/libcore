@@ -21,7 +21,7 @@ void FileTest::doTest()
     // Test is null
     File file = File();
     testTrue(file.isNull(),"File::isNull()==true failed");
-    testFalse(file.exists(),"File::exists()==false failed");
+    testFalse(file.exists(),"null File::exists()==false failed");
 
     // Test properties on current directory
     file=jm::currentDir();
@@ -36,7 +36,7 @@ void FileTest::doTest()
     // Create new file
     file=File(jm::currentDir(),"test.txt");
     testFalse(file.isNull(),"File::isNull()==false failed");
-    testFalse(file.exists(),"File::exists()==false failed");
+    testFalse(file.exists(),"test.txt File::exists()==false failed");
     testTrue(file.createNewFile(),"File::createNewFile()==true failed");
     testTrue(file.exists(),"File::exists()==true failed");
     testFalse(file.isDirectory(),"File::isDirectory()==false failed");
@@ -125,7 +125,7 @@ void FileTest::doTest()
     File dir = File(jm::currentDir(),"testdir");
 
     testFalse(dir.isNull(),"File::isNull()==false failed");
-    testFalse(dir.exists(),"File::exists()==false failed");
+    testFalse(dir.exists(),dir.absolutePath() + " File::exists()==false failed");
     testTrue(dir.makeDirectory(),"File::makeDirectory()==true failed");
     testTrue(dir.exists(),"File::exists()==true failed");
     testTrue(dir.isDirectory(),"File::isDirectory()==true failed");
@@ -136,10 +136,11 @@ void FileTest::doTest()
     testEquals(dir.name(),"testdir","file.name()==test.txt failed");
 
     // Renaming
-    testTrue(file.renameTo("renfile"),"File::renameTo()==true failed");
+    testTrue(file.renameTo("renfile"),"renfile File::renameTo()==true failed");
     testEquals(file.name(),"renfile","file.name()==renfile failed");
 
-    testTrue(dir.renameTo("rendir"),"File::renameTo()==true failed");
+    jm::String newName = File(jm::currentDir(), "rendir").absolutePath();
+    testTrue(dir.renameTo(newName),"rendir File::renameTo()==true failed");
     testEquals(dir.name(),"rendir","file.name()==rendir failed");
 
     // Last modofied
@@ -153,15 +154,15 @@ void FileTest::doTest()
     testEquals(now.day(),mod1.day(),"Day of file change != 0");
 
     // Deleting file and directory
-    testTrue(dir.remove(),"File::remove() failed");
-    testTrue(file2.remove(),"File::remove() failed");
-    testTrue(file3.remove(),"File::remove() failed");
+    testTrue(dir.remove(),"dir File::remove() failed");
+    testTrue(file2.remove(),"file2 File::remove() failed");
+    testTrue(file3.remove(),"file3 File::remove() failed");
     file2=File(jm::currentDir(),"rendir");
-    testFalse(file2.exists(),"File::exists()==false failed");
+    testFalse(file2.exists(),"rendir File::exists()==false failed");
     file2=File(jm::currentDir(),"test2.txt");
-    testFalse(file2.exists(),"File::exists()==false failed");
+    testFalse(file2.exists(),"test2.txt File::exists()==false failed");
     file2=File(jm::currentDir(),"test3.txt");
-    testFalse(file2.exists(),"File::exists()==false failed");
+    testFalse(file2.exists(),"test3.txt File::exists()==false failed");
 
 
     // Test tags (actually only on macOS and Linux)

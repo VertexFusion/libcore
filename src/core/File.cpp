@@ -182,6 +182,7 @@ bool File::exists() const
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
    return result == 0;
+   //return PathFileExistsA(mCstr.constData());
 
    #endif
 }
@@ -296,10 +297,8 @@ bool File::isHidden() const
 
    #elif defined _WIN32//Windows
 
-   struct stat filestat;
-   int32 result = stat(mCstr.constData(), &filestat);
-   if(result != 0)return false;  //Existiert nicht
-   if((filestat.st_mode & _S_IFREG) == 0) return true;
+   DWORD attributes = GetFileAttributesA(mCstr.constData());
+   if (attributes & FILE_ATTRIBUTE_HIDDEN)return true;
    return false;
 
    #endif
@@ -395,8 +394,10 @@ Date File::lastModified() const
 
 bool File::remove()
 {
-   if(::remove(mCstr.constData()) == 0)return true;
-   else return false;
+   if(isDirectory() && rmdir(mCstr.constData())==0)return true;
+   else if(::remove(mCstr.constData()) == 0)return true;
+
+   return false;
 }
 
 bool File::moveToTrash()
