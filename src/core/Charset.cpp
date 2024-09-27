@@ -276,5 +276,6 @@ void jm::initCharsets()
 void jm::quitCharsets()
 {
    for(uint16 a = 0; a < Charset::gCharsetCount; a++)delete Charset::gCharsets[a];
+   Charset::gCharsetCount=0;
 }
 
