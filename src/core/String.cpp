@@ -658,7 +658,7 @@ bool String::equalsIgnoreCase(const String& another) const
 
 int32 String::compareTo(const String& another) const
 {
-   int64 smallest = Min(mStrLength, another.mStrLength);
+   int64 smallest = std::min(mStrLength, another.mStrLength);
 
    int64 cnt = 0;
    while(cnt < smallest)
@@ -683,8 +683,8 @@ int32 String::compareFancyTo(const String& another) const
    uint32 str1[256];
    uint32 str2[256];
 
-   int64 strl1 = Min(mStrLength, 256u);
-   int64 strl2 = Min(another.mStrLength, 256u);
+   int64 strl1 = std::min(mStrLength, (int64)256);
+   int64 strl2 = std::min(another.mStrLength, (int64)256);
 
    uint32 l1, l2;
 
@@ -735,7 +735,7 @@ int32 String::compareFancyTo(const String& another) const
    l2 = cntout;
 
    // Compare
-   uint32 smallest = min(l1, l2);
+   uint32 smallest = std::min(l1, l2);
 
    uint32 cnt = 0;
    while(cnt < smallest)
