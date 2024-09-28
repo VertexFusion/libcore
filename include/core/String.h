@@ -341,7 +341,7 @@ namespace jm
            \return The string with the replacements.
            \details This method replaces occurrences of the "oldStr" substring with the "newStr" substring in the string.
            */
-         String replaceAll(String oldStr, String newStr) const;
+         String replace(const String& oldStr, const String& newStr) const;
 
           /*!
            \brief This method reverses the order of characters in the string.

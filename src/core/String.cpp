@@ -444,7 +444,7 @@ String String::replace(Char oldChar, Char newChar) const
    return ret;
 }
 
-String String::replaceAll(String oldStr, String newStr)const
+String String::replace(const String& oldStr,const String& newStr)const
 {
    int64 pos1 = 0;
    int64 pos2 = indexOf(oldStr);
@@ -520,6 +520,7 @@ void String::setCharAt(int64 index, Char character)
 
 void String::append(const String& another)
 {
+   if(another.mStrLength == 0)return;
    checkCapacity(another.mStrLength);
    memcpy(&mValue[mStrLength], &another.mValue[0], sizeof(Char) * another.mStrLength);
    mStrLength += another.mStrLength;

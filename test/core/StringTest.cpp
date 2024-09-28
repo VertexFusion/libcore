@@ -223,4 +223,35 @@ void StringTest::doTest()
    str1 = "abcdef";
    str1.deleteCharRangeAt(6, 0);
    testEquals(str1, String("abcdef"), "String.deleteCharRangeAt() fails");
+
+   // Test deleteCharAt
+   str1 = "abcdef";
+   str1.deleteCharAt(2);
+   testEquals(str1, String("abdef"), "String.deleteCharAt(2) fails");
+
+   str1 = "abcdef";
+   str1.deleteCharAt(0);
+   testEquals(str1, String("bcdef"), "String.deleteCharAt(0) fails");
+
+   str1 = "abcdef";
+   str1.deleteCharAt(5);
+   testEquals(str1, String("abcde"), "String.deleteCharAt(5) fails");
+
+   // Test replace
+   str1 = "abcdef";
+   str1=str1.replace('c', 'd');
+   testEquals(str1, String("abddef"), "String.replace() fails");
+
+   str1 = "abcdef";
+   str1=str1.replace("cd", "xy");
+   testEquals(str1, String("abxyef"), "String.replace() fails");
+
+   str1 = "abcdef";
+   str1=str1.replace("cd", "x");
+   testEquals(str1, String("abxef"), "String.replace() fails");
+
+   str1 = "abcdef";
+   str1=str1.replace("cd", "");
+   testEquals(str1, String("abef"), "String.replace() fails");
+
 }

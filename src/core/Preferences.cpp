@@ -183,9 +183,9 @@ bool Preferences::hasValue(const String& key)const
 void Preferences::setValue(const String& key, const String& value)
 {
    String tmp = value;
-   tmp = tmp.replaceAll("\r\n", "\\n");
-   tmp = tmp.replaceAll("\r", "\\n");
-   tmp = tmp.replaceAll("\n", "\\n");
+   tmp = tmp.replace("\r\n", "\\n");
+   tmp = tmp.replace("\r", "\\n");
+   tmp = tmp.replace("\n", "\\n");
    String* actual = new String(tmp);
    String* old = static_cast<String*>(put(key, actual));
    if(old != nullptr)delete old;
