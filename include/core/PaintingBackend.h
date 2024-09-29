@@ -133,35 +133,35 @@ namespace jm
            without drawing anything.
            \param pt The new position in the WCS.
            */
-         void MoveTo(const Vertex3& pt);
+         void moveTo(const Vertex3& pt);
 
           /*!
            \brief This method "draws" an invisible line to the new point. This is necessary because, for example, in hatching, the line pattern depends on the position and lines may be interrupted. Here, only the offset in the line pattern is changed.
            \param pt The new position in the WCS.
            */
-         void BlindTo(const Vertex3& pt);
+         void blindTo(const Vertex3& pt);
 
           /*!
            \brief This method moves the pen from the current position to the new position,
            and draws a straight line in the process.
            \param pt The new position in the WCS.
            */
-         void LineTo(const Vertex3& pt);
+         void lineTo(const Vertex3& pt);
 
           /*!
            \brief This method closes the current path, draws it, and implicitly opens a new path.
            */
-         void Stroke();
+         void stroke();
 
           /*!
            \brief This method closes the current path, fills the enclosed area with the current color, and implicitly opens a new path.
            */
-         virtual void Fill() = 0;
+         virtual void fill() = 0;
 
           /*!
            \brief This method closes the current path, fills the enclosed area with the current color, draws it, and implicitly opens a new path.
            */
-         virtual void FillAndStroke() = 0;
+         virtual void fillAndStroke() = 0;
 
           /*!
            \brief This method is used to add the graphics primitive Arc to the current path.
@@ -172,7 +172,7 @@ namespace jm
            \param startAngle The start angle in degrees.
            \param endAngle The end angle in degrees.
            */
-         void Arc(const Vertex3& center,
+         void arc(const Vertex3& center,
                   const Vertex3& normal,
                   double radius,
                   double startAngle,
@@ -186,7 +186,7 @@ namespace jm
            \param startAngle The start angle in radians.
            \param endAngle The end angle in radians.
            */
-         void Elliptic(const Vertex3& center,
+         void elliptic(const Vertex3& center,
                        const Vertex3& majorAxis,
                        const Vertex3& minorAxis,
                        double startAngle,
@@ -196,44 +196,44 @@ namespace jm
            \brief This method draws a NURBS (Non-Uniform Rational Basis-Spline) curve.
            \param nurbs The object describing the curve.
            */
-         void Nurbs(Nurbs* nurbs);
+         void nurbs(Nurbs* nurbs);
 
           /*!
            \brief This method draws a straight line between two points in the target context.
            \param start The starting point of the line.
            \param end The ending point of the line.
            */
-         virtual void DrawLineSegment(const Vertex3& start, const Vertex3& end) = 0;
+         virtual void drawLineSegment(const Vertex3& start, const Vertex3& end) = 0;
 
-         virtual void FinishStroke() = 0;
+         virtual void finishStroke() = 0;
 
           /*!
            \brief This method draws a point on the target context.
            \param point The point to be drawn.
            */
-         virtual void DrawPoint(const Vertex3& point) = 0;
+         virtual void drawPoint(const Vertex3& point) = 0;
 
           /*!
            \brief This method resets the line pattern for drawing, so that when starting
            a new line, the pattern starts from the beginning. This is particularly important
            for hatching.
            */
-         virtual void ResetLinePatternOffset() = 0;
+         virtual void resetLinePatternOffset() = 0;
 
-         bool WantCancel();
+         bool wantCancel();
 
       protected:
 
-         void BlindLine(const Vertex3& p1, const Vertex3& p2);
+         void blindLine(const Vertex3& p1, const Vertex3& p2);
 
-         void PutLine(const Vertex3& p1, const Vertex3& p2, bool pendown);
+         void putLine(const Vertex3& p1, const Vertex3& p2, bool pendown);
 
       private:
 
           /*!
            \brief The stack of transformation settings... necessary for inserts.
            */
-         std::vector<Transform>* transformstack;
+         std::vector<Transform>* mTransformstack;
 
           /*!
            \brief The current line style used for drawing lines, or NULL if a solid line is being drawn.
@@ -245,58 +245,58 @@ namespace jm
            \brief The current scaling factor of the line pattern.
            \details All different line styles are manually drawn using strokes.
            */
-         double curLineTypeScale;
+         double mCurLineTypeScale;
 
           /*!
            \brief Current position within the line pattern, relative to the beginning of the pattern.
            IN PATTERN SCALE (without curLineTypeScale).
            \details All different line styles are manually drawn using strokes.
            */
-         double linePatternOffset;
+         double mLinePatternOffset;
 
           /*!
            \brief The position within the current element, relative to the beginning of the element.
            IN PATTERN SCALE (without curLineTypeScale).
            \details All different line styles are manually drawn using strokes.
            */
-         double linePatternSubOffset;
+         double mLinePatternSubOffset;
 
           /*!
            \brief Zero-based index of the current element.
            \details All different line styles are manually drawn using strokes.
            */
-         int linePatternIndex;
+         int32 mLinePatternIndex;
 
           /*!
            \brief This variable stores a flag indicating whether processing should be canceled or not.
            By default, this value is "false". However, if this value is set to "true" externally,
            the Painter must abort its work as soon as possible and return. This is useful for multi-threaded applications.
            */
-         bool cancel;
+         bool mCancel;
 
           /*!
            \brief The total transformation matrix. Needs to be recalculated after each Push and Pop operation on the transformation stack.
            */
-         Transform trans;
+         Transform mTrans;
 
           /*!
            \brief Buffer for storing the points that need to be drawn in a path.
            */
-         std::vector<BufferElement>* buffer;
+         std::vector<BufferElement>* mBuffer;
 
           /*!
            \brief This method updates the transformation matrix.
            */
-         void UpdateTrans();
+         void updateTrans();
 
           /*!
            \brief This method transposes a point in OCS coordinates to the global WCS coordinates of the drawing, taking into account the current transformation settings.
            \details The main reason for changing the transformation settings is block references and nested block references.
            */
-         Vertex3 Trans(const Vertex3& pt) const;
+         Vertex3 trans(const Vertex3& pt) const;
 
    };
 
 }
 
-#endif /* CADPainter_h */
+#endif

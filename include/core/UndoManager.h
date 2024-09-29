@@ -76,7 +76,7 @@ namespace jm
       public:
 
          /*!
-          \brief Konstructor
+          \brief Constructor
           */
          UndoManager();
 
@@ -353,6 +353,8 @@ namespace jm
           a transaction or rollback the data to previous state.
 
           Each time this method is called, the transaction level increments.
+
+          \see closeTransaction()
           */
          void openTransaction();
 
@@ -390,6 +392,8 @@ namespace jm
 
           If the transaction level is still > 0, nothing happens. Only if the level is back to 0
           the closing actions happens.
+
+          \see openTransaction()
           */
          Status closeTransaction();
 

@@ -32,7 +32,6 @@ int main(int argc, const char* argv[])
 
    TestVector* vec = new TestVector(argc, argv);
 
-   //CORE
    vec->addTest(new StringTest());
    vec->addTest(new StringListTest());
    vec->addTest(new StringTokenizerTest());
