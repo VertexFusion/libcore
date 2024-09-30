@@ -152,7 +152,7 @@ namespace jm
           \brief Returns the value as an integer.
           \param qname The qualified name of the attribute.
           */
-         int32 valueAsInt(const String& qname)const;
+         int64 valueAsInt(const String& qname)const;
 
          /*!
           \brief Returns the value as a float.

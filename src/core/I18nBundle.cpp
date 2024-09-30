@@ -141,7 +141,8 @@ void I18nBundle::initDefault()
    jm::String language = System::language();
    gDefaultTranslation = new I18nBundle(language);
 
-   // Append Data
+   // Append Data only if bundle id is set
+   if(jm::System::bundleId().size() == 0)return;
    gDefaultTranslation->appendMo(transFileByBundleId(jm::kEmptyString,
                                  gDefaultTranslation->mLanguage));
 }

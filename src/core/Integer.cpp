@@ -125,7 +125,7 @@ uint8 Integer::digits()const
 
 Integer Integer::fromHex(const jm::String& str)
 {
-   return fromHex(str, 0, str.size());
+   return fromHex(str, 0, int32(str.size()));
 }
 
 Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)

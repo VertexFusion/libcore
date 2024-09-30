@@ -142,7 +142,7 @@ String SAXAttributes::value(const String& qname) const
    return kEmptyString;
 }
 
-int32 SAXAttributes::valueAsInt(const String& qname) const
+int64 SAXAttributes::valueAsInt(const String& qname) const
 {
    return value(qname).toInt();
 }

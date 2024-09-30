@@ -43,10 +43,6 @@ ifeq ($(UNAME_S),Linux)
 
 endif
 
-#####################################################################
-# BELOW THIS LINE THERE IS NO OS DEPENDENT CODE
-#####################################################################
-
 SOURCES =\
  $(PATH_CORE)/AutoreleasePool.cpp\
  $(PATH_CORE)/Base64.cpp\
@@ -114,6 +110,10 @@ SOURCES =\
 ifeq ($(UNAME_S),Darwin)
  MMSOURCES=$(PATH_CORE)/MacBindings.mm
 endif
+
+#####################################################################
+# BELOW THIS LINE THERE IS NO OS DEPENDENT CODE
+#####################################################################
 
 ZLIB =\
  $(PATH_ZLIB)/adler32.c\
