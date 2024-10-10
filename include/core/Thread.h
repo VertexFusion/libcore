@@ -133,7 +133,7 @@ namespace jm
           The thread can also be woken up externally before the time has elapsed.
           \param duration The time duration (in milliseconds) for which the thread should sleep.
           */
-         void sleep(int duration);
+         void sleep(int64 duration);
 
          /*!
           \brief This method puts the thread to sleep. The thread must be externally awakened.

@@ -212,6 +212,12 @@
 		C69922A32AF7AB6C0099AEC0 /* ZipFile.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F52AEEFC6A0085300B /* ZipFile.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922A42AF7AB6C0099AEC0 /* MacBindings.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A22AEF08500085300B /* MacBindings.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922A52AF7AB6C0099AEC0 /* MacInterface.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A32AEF09FF0085300B /* MacInterface.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C6E844C62CB8236A00432AFD /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C52CB8236A00432AFD /* Size.cpp */; };
+		C6E844C72CB8236A00432AFD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C32CB8236A00432AFD /* Point.cpp */; };
+		C6E844C82CB8236A00432AFD /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C42CB8236A00432AFD /* Rect.cpp */; };
+		C6E844C92CB8236A00432AFD /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C52CB8236A00432AFD /* Size.cpp */; };
+		C6E844CA2CB8236A00432AFD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C32CB8236A00432AFD /* Point.cpp */; };
+		C6E844CB2CB8236A00432AFD /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C42CB8236A00432AFD /* Rect.cpp */; };
 		C6F0F51D2AF63BED005BA06F /* EditableObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -464,6 +470,12 @@
 		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C66B3D162C4C1C4300ECB692 /* StringList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringList.cpp; path = src/core/StringList.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6E844C02CB8235100432AFD /* Point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Point.h; path = include/core/Point.h; sourceTree = "<group>"; };
+		C6E844C12CB8235100432AFD /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rect.h; path = include/core/Rect.h; sourceTree = "<group>"; };
+		C6E844C22CB8235100432AFD /* Size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Size.h; path = include/core/Size.h; sourceTree = "<group>"; };
+		C6E844C32CB8236A00432AFD /* Point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Point.cpp; path = src/core/Point.cpp; sourceTree = "<group>"; };
+		C6E844C42CB8236A00432AFD /* Rect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rect.cpp; path = src/core/Rect.cpp; sourceTree = "<group>"; };
+		C6E844C52CB8236A00432AFD /* Size.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Size.cpp; path = src/core/Size.cpp; sourceTree = "<group>"; };
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
 		C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObject.cpp; path = src/core/EditableObject.cpp; sourceTree = "<group>"; };
@@ -595,6 +607,9 @@
 		C62B905D2AEEFC4B0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C6E844C32CB8236A00432AFD /* Point.cpp */,
+				C6E844C42CB8236A00432AFD /* Rect.cpp */,
+				C6E844C52CB8236A00432AFD /* Size.cpp */,
 				C66B3D162C4C1C4300ECB692 /* StringList.cpp */,
 				C64DDBFD2B768F01008ED3A4 /* ByteArray.cpp */,
 				C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */,
@@ -666,6 +681,9 @@
 		C62B90D62AEEFC5F0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C6E844C02CB8235100432AFD /* Point.h */,
+				C6E844C12CB8235100432AFD /* Rect.h */,
+				C6E844C22CB8235100432AFD /* Size.h */,
 				C651C3132B97D9C90043D289 /* ByteArray.h */,
 				C62B90FC2AEEFC6A0085300B /* Array.h */,
 				C62B90E62AEEFC6A0085300B /* AutoreleasePool.h */,
@@ -884,6 +902,9 @@
 				C64321E82B9BB75000D75F5E /* AutoreleasePool.cpp in Sources */,
 				C64321E92B9BB75000D75F5E /* Base64.cpp in Sources */,
 				C64321EA2B9BB75000D75F5E /* Character.cpp in Sources */,
+				C6E844C62CB8236A00432AFD /* Size.cpp in Sources */,
+				C6E844C72CB8236A00432AFD /* Point.cpp in Sources */,
+				C6E844C82CB8236A00432AFD /* Rect.cpp in Sources */,
 				C64321EB2B9BB75000D75F5E /* Charset.cpp in Sources */,
 				C66B3D182C4C1C4300ECB692 /* StringList.cpp in Sources */,
 				C64321EC2B9BB75000D75F5E /* CharsetDecoder.cpp in Sources */,
@@ -955,6 +976,9 @@
 				C69922412AF7AA660099AEC0 /* Serializer.cpp in Sources */,
 				C699224D2AF7AA660099AEC0 /* Character.cpp in Sources */,
 				C69922432AF7AA660099AEC0 /* EditableObject.cpp in Sources */,
+				C6E844C92CB8236A00432AFD /* Size.cpp in Sources */,
+				C6E844CA2CB8236A00432AFD /* Point.cpp in Sources */,
+				C6E844CB2CB8236A00432AFD /* Rect.cpp in Sources */,
 				C699224C2AF7AA660099AEC0 /* Windows1252Decoder.cpp in Sources */,
 				C66B3D172C4C1C4300ECB692 /* StringList.cpp in Sources */,
 				C69922352AF7AA660099AEC0 /* System.cpp in Sources */,

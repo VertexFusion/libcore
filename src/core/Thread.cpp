@@ -107,7 +107,7 @@ void Thread::start()
 }
 
 
-void Thread::sleep(int millis)
+void Thread::sleep(int64 millis)
 {
    #if defined __APPLE__ || defined __linux__
    timespec   ts;
