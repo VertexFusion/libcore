@@ -82,9 +82,12 @@ SOURCES =\
  $(PATH_CORE)/PaintingBackend.cpp\
  $(PATH_CORE)/Preferences.cpp\
  $(PATH_CORE)/Property.cpp\
+ $(PATH_CORE)/Point.cpp\
+ $(PATH_CORE)/Rect.cpp\
  $(PATH_CORE)/SAXAttributes.cpp\
  $(PATH_CORE)/SAXParser.cpp\
  $(PATH_CORE)/Serializer.cpp\
+ $(PATH_CORE)/Size.cpp\
  $(PATH_CORE)/Stream.cpp\
  $(PATH_CORE)/String.cpp\
  $(PATH_CORE)/StringList.cpp\
