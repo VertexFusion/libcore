@@ -111,7 +111,7 @@ const jm::Point jm::operator-(const jm::Point& v1, const jm::Point& v2)
 const jm::Point jm::operator*(const double& d, const jm::Point& v2)
 {
    jm::Point r;
-   r.mX = d * v2.mY;
+   r.mX = d * v2.mX;
    r.mY = d * v2.mY;
    return r;
 }
