@@ -1127,6 +1127,11 @@ int64 String::toInt() const
    return val;
 }
 
+bool String::isEmpty() const
+{
+   return mStrLength == 0;
+}
+
 String String::lineSeparator()
 {
    #ifdef __APPLE__//macOS, iOS

@@ -254,4 +254,12 @@ void StringTest::doTest()
    str1=str1.replace("cd", "");
    testEquals(str1, String("abef"), "String.replace() fails");
 
+   // Test isEmpty
+
+   str1 = "";
+   testTrue(str1.isEmpty(), "String.isEmpty() fails. (1)");
+
+   str1 = " ";
+   testFalse(str1.isEmpty(), "String.isEmpty() fails. (2)");
+
 }

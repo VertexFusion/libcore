@@ -545,6 +545,11 @@ namespace jm
           */
          int64 toInt() const;
 
+         /*!
+          \brief Returns true if the string is empty.         
+          */
+         bool isEmpty() const;
+
          // Operators
          String& operator=(const String& another);
          String& operator+=(const String& another);
