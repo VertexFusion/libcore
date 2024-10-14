@@ -86,15 +86,12 @@ namespace jm
       //! Height
       double mHeight;
 
+      DllExport
       friend const Size operator-(const Size& v1, const Size& v2);
-	  friend const Size operator*(const double& d, const Size& v);
-   };
 
-	/*!
-	 \brief Implementierung des Operators *
-	 */
-	DllExport
-	const Size operator*(const double& d, const Size& v);
+      DllExport
+	   friend const Size operator*(const double& d, const Size& v);
+   };
 
 };
 

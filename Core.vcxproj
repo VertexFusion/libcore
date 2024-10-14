@@ -582,11 +582,14 @@
     <ClCompile Include="src\core\NURBS.cpp" />
     <ClCompile Include="src\core\Object.cpp" />
     <ClCompile Include="src\core\PaintingBackend.cpp" />
+    <ClCompile Include="src\core\Point.cpp" />
     <ClCompile Include="src\core\Preferences.cpp" />
     <ClCompile Include="src\core\Property.cpp" />
+    <ClCompile Include="src\core\Rect.cpp" />
     <ClCompile Include="src\core\SAXAttributes.cpp" />
     <ClCompile Include="src\core\SAXParser.cpp" />
     <ClCompile Include="src\core\Serializer.cpp" />
+    <ClCompile Include="src\core\Size.cpp" />
     <ClCompile Include="src\core\Stream.cpp" />
     <ClCompile Include="src\core\String.cpp" />
     <ClCompile Include="src\core\StringList.cpp" />

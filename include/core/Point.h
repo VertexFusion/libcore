@@ -104,14 +104,14 @@ namespace jm
 
          Point &operator-=(const Point &another);
 
-         friend
-         const Point operator+(const Point& v1, const Point& v2);
+         DllExport
+         friend const Point operator+(const Point& v1, const Point& v2);
 
-         friend
-         const Point operator-(const Point& v1, const Point& v2);
+         DllExport
+         friend const Point operator-(const Point& v1, const Point& v2);
 
-         friend
-         const Point operator*(const double &d, const Point &v2);
+         DllExport
+         friend const Point operator*(const double &d, const Point &v2);
 
       private:
 
@@ -121,15 +121,6 @@ namespace jm
          //! Y-Position
          double mY;
    };
-
-   DllExport
-   const Point operator+(const Point& v1, const Point& v2);
-
-   DllExport
-   const Point operator-(const Point& v1, const Point& v2);
-
-	DllExport
-	const Point operator*(const double &d, const Point &v2);
 
 };
 

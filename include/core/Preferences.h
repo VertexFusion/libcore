@@ -90,7 +90,14 @@ namespace jm
            \param key The property key.
            \param value The value.
            */
-         void setValue(const String& key, int32 value);
+         void setValue(const String& key, int64 value);
+
+          /*!
+           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+           \param key The property key.
+           \param value The value.
+           */
+         void setValue(const String& key, double value);
 
           /*!
            \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
@@ -120,7 +127,15 @@ namespace jm
            \param defaultValue The value of the property if it is not found.
            \return The value of the property.
            */
-         int32 valueInt(const String& key, int32 defaultValue) const;
+         int64 valueInt(const String& key, int64 defaultValue) const;
+
+          /*!
+           \brief Returns the desired property.
+           \param key The property key.
+           \param defaultValue The value of the property if it is not found.
+           \return The value of the property.
+           */
+         double valueDouble(const String& key, double defaultValue) const;
 
           /*!
            \brief Returns the desired property.

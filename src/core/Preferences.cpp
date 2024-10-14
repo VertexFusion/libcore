@@ -191,11 +191,15 @@ void Preferences::setValue(const String& key, const String& value)
    if(old != nullptr)delete old;
 }
 
-void Preferences::setValue(const String& key, int32 value)
+void Preferences::setValue(const String& key, int64 value)
 {
    setValue(key, String::valueOf(value));
 }
 
+void Preferences::setValue(const String& key, double value)
+{
+   setValue(key, String::valueOf(value));
+}
 
 void Preferences::setValue(const String& key, bool value)
 {
@@ -216,16 +220,33 @@ String Preferences::value(const String& key, String const& defaultValue) const
    return *result;
 }
 
-int32 Preferences::valueInt(const String& key, int32 defaultValue) const
+int64 Preferences::valueInt(const String& key, int64 defaultValue) const
 {
    String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 
-   int32 value = defaultValue;
+   int64 value = defaultValue;
    try
    {
-      value = static_cast<int32>(result.toInt());
+      value = result.toInt();
+   }
+   catch(Exception& e)
+   {}
+
+   return value;
+}
+
+double Preferences::valueDouble(const String& key, double defaultValue) const
+{
+   String result = value(key);
+
+   if(result.size() == 0)return defaultValue;
+
+   double value = defaultValue;
+   try
+   {
+      value = result.toDouble();
    }
    catch(Exception& e)
    {}
