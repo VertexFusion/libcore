@@ -318,10 +318,10 @@ jm::Rect jm::Rect::intersection(const jm::Rect& rect) const
 
    if(intersects(rect))
    {
-      double dleft = jm::max(left(), rect.left());
-      double dtop  = jm::max(top(), rect.top());
-      double dright = jm::min(right(), rect.right());
-      double dbottom = jm::min(bottom(), rect.bottom());
+      double dleft = std::max(left(), rect.left());
+      double dtop  = std::max(top(), rect.top());
+      double dright = std::min(right(), rect.right());
+      double dbottom = std::min(bottom(), rect.bottom());
 
       intersection.setOrigin(dleft, dtop);
       intersection.setSize(dright - dleft, dbottom - dtop);
