@@ -264,7 +264,7 @@ namespace jm
                delete[] mData;
 
                mLength = another.mLength;
-               mData = new T[mLength];
+               mData = new T*[mLength];
                for(uint32 a = 0; a < mLength; a++)
                {
                   mData[a] = another.mData[a];
