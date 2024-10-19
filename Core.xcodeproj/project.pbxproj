@@ -155,7 +155,6 @@
 		C69922672AF7AA660099AEC0 /* SAXParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90682AEEFC550085300B /* SAXParser.cpp */; };
 		C69922682AF7AA850099AEC0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919D2AEF008A0085300B /* libz.tbd */; };
 		C69922692AF7AA8A0099AEC0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62B919B2AEF006B0085300B /* CoreServices.framework */; };
-		C699226A2AF7AAC20099AEC0 /* JameoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C69922212AF7AA2C0099AEC0 /* JameoCore.framework */; };
 		C699226E2AF7AB6C0099AEC0 /* Array.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90FC2AEEFC6A0085300B /* Array.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C699226F2AF7AB6C0099AEC0 /* AutoreleasePool.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90E62AEEFC6A0085300B /* AutoreleasePool.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922702AF7AB6C0099AEC0 /* Base64.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90DD2AEEFC6A0085300B /* Base64.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -212,6 +211,11 @@
 		C69922A32AF7AB6C0099AEC0 /* ZipFile.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B90F52AEEFC6A0085300B /* ZipFile.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922A42AF7AB6C0099AEC0 /* MacBindings.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A22AEF08500085300B /* MacBindings.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C69922A52AF7AB6C0099AEC0 /* MacInterface.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = C62B91A32AEF09FF0085300B /* MacInterface.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C6B8A2AD2CC39D9C00A83068 /* libJameoCoreStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C64321E22B9BB73800D75F5E /* libJameoCoreStatic.a */; };
+		C6B8A2B12CC39DB500A83068 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B02CC39DB500A83068 /* CoreServices.framework */; };
+		C6B8A2B32CC39DCD00A83068 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B22CC39DC200A83068 /* libz.tbd */; };
+		C6B8A2B52CC39DDC00A83068 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B42CC39DDC00A83068 /* CoreFoundation.framework */; };
+		C6B8A2B72CC39DEE00A83068 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B62CC39DEE00A83068 /* Foundation.framework */; };
 		C6E844C62CB8236A00432AFD /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C52CB8236A00432AFD /* Size.cpp */; };
 		C6E844C72CB8236A00432AFD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C32CB8236A00432AFD /* Point.cpp */; };
 		C6E844C82CB8236A00432AFD /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C42CB8236A00432AFD /* Rect.cpp */; };
@@ -222,12 +226,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C699226B2AF7AAFB0099AEC0 /* PBXContainerItemProxy */ = {
+		C6B8A2AE2CC39D9C00A83068 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C62B90312AEEFBEB0085300B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C69922202AF7AA2C0099AEC0;
-			remoteInfo = JameoCore;
+			remoteGlobalIDString = C64321E12B9BB73800D75F5E;
+			remoteInfo = JameoCoreStatic;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -470,6 +474,10 @@
 		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C66B3D162C4C1C4300ECB692 /* StringList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringList.cpp; path = src/core/StringList.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6B8A2B02CC39DB500A83068 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		C6B8A2B22CC39DC200A83068 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		C6B8A2B42CC39DDC00A83068 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		C6B8A2B62CC39DEE00A83068 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C6E844C02CB8235100432AFD /* Point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Point.h; path = include/core/Point.h; sourceTree = "<group>"; };
 		C6E844C12CB8235100432AFD /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rect.h; path = include/core/Rect.h; sourceTree = "<group>"; };
 		C6E844C22CB8235100432AFD /* Size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Size.h; path = include/core/Size.h; sourceTree = "<group>"; };
@@ -486,7 +494,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C699226A2AF7AAC20099AEC0 /* JameoCore.framework in Frameworks */,
+				C6B8A2B72CC39DEE00A83068 /* Foundation.framework in Frameworks */,
+				C6B8A2B52CC39DDC00A83068 /* CoreFoundation.framework in Frameworks */,
+				C6B8A2AD2CC39D9C00A83068 /* libJameoCoreStatic.a in Frameworks */,
+				C6B8A2B32CC39DCD00A83068 /* libz.tbd in Frameworks */,
+				C6B8A2B12CC39DB500A83068 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +760,10 @@
 		C62B919A2AEF006B0085300B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6B8A2B62CC39DEE00A83068 /* Foundation.framework */,
+				C6B8A2B42CC39DDC00A83068 /* CoreFoundation.framework */,
+				C6B8A2B22CC39DC200A83068 /* libz.tbd */,
+				C6B8A2B02CC39DB500A83068 /* CoreServices.framework */,
 				C65510DD2C222A0C00480B5E /* Cocoa.framework */,
 				C65510DB2C22294D00480B5E /* CoreFoundation.framework */,
 				C62B919D2AEF008A0085300B /* libz.tbd */,
@@ -788,7 +804,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C699226C2AF7AAFB0099AEC0 /* PBXTargetDependency */,
+				C6B8A2AF2CC39D9C00A83068 /* PBXTargetDependency */,
 			);
 			name = CoreTest;
 			productName = CoreTest;
@@ -1044,10 +1060,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C699226C2AF7AAFB0099AEC0 /* PBXTargetDependency */ = {
+		C6B8A2AF2CC39D9C00A83068 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C69922202AF7AA2C0099AEC0 /* JameoCore */;
-			targetProxy = C699226B2AF7AAFB0099AEC0 /* PBXContainerItemProxy */;
+			target = C64321E12B9BB73800D75F5E /* JameoCoreStatic */;
+			targetProxy = C6B8A2AE2CC39D9C00A83068 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1187,8 +1203,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1196,8 +1216,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1211,7 +1235,10 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				TAPI_LANGUAGE = "c++";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1224,17 +1251,22 @@
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				TAPI_LANGUAGE = "c++";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		C69922282AF7AA2C0099AEC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1254,6 +1286,7 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.JameoCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -1268,10 +1301,12 @@
 		C69922292AF7AA2C0099AEC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1291,6 +1326,7 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.JameoCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;

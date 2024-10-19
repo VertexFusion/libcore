@@ -719,6 +719,7 @@ StringList File::getTags()const
 {
    #ifdef __APPLE__ //macOS
 
+   #if TARGET_OS_IOS == 0
    // Create necessary system related objects
    CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
                        mCstr.constData(),
@@ -763,6 +764,8 @@ StringList File::getTags()const
 
    #endif
 
+   #endif
+
    #ifdef __linux__
 
    const int sz = 4096;
@@ -785,6 +788,8 @@ StringList File::getTags()const
 Status File::setTags(const jm::StringList& tags)
 {
       #ifdef __APPLE__ //macOS
+
+   #if TARGET_OS_IOS == 0
 
    //Create new array and append tag
    int64 newsize = tags.size();
@@ -828,7 +833,6 @@ Status File::setTags(const jm::StringList& tags)
 
    if(result == true)return Status::eOK;
    else return Status::eNo;
-
    #endif
 
    #ifdef __linux__
@@ -839,6 +843,8 @@ Status File::setTags(const jm::StringList& tags)
    int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(),0);
 
    return (result==0)?jm::Status::eOK:jm::Status::eNo;
+
+   #endif
 
    #endif
 
@@ -970,22 +976,21 @@ File jm::ResourceDir(const String& bundleId)
    CFURLRef resourceDirURL = CFBundleCopyResourcesDirectoryURL(thisBundle);
 
 
-   #if TARGET_OS_IPHONE == 1 // iOS add -DTARGET_OS_IPHONE as compiler option if necessary
+   #if TARGET_OS_IOS == 1 // iOS add -DTARGET_OS_IPHONE as compiler option if necessary
 
    // On iOS, the resource folder is also the root folder of the app...
 
    // Convert bundle URL to string
    CFStringRef sr = CFURLCopyPath(resourceDirURL);
-   String filename = String::FromCFString(sr);
+   String filename = String::fromCFString(sr);
 
    // Clean up
    CFRelease(cfstr);
    CFRelease(sr);
    CFRelease(resourceDirURL);
-   delete cstring;
 
    // Return
-   return new File(filename);
+   return File(filename);
 }
 
    #else //macOS
