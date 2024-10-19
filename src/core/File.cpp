@@ -787,7 +787,7 @@ StringList File::getTags()const
 
 Status File::setTags(const jm::StringList& tags)
 {
-      #ifdef __APPLE__ //macOS
+   #ifdef __APPLE__ //macOS
 
    #if TARGET_OS_IOS == 0
 
@@ -834,6 +834,7 @@ Status File::setTags(const jm::StringList& tags)
    if(result == true)return Status::eOK;
    else return Status::eNo;
    #endif
+   #endif
 
    #ifdef __linux__
 
@@ -843,8 +844,6 @@ Status File::setTags(const jm::StringList& tags)
    int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(),0);
 
    return (result==0)?jm::Status::eOK:jm::Status::eNo;
-
-   #endif
 
    #endif
 
