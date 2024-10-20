@@ -758,8 +758,8 @@ int32 String::compareFancyTo(const String& another) const
 String String::substring(int64 beginIndex, int64 endIndex) const
 {
 
-   if(endIndex < beginIndex)throw Exception(Tr("End index is before start index."));
    if(beginIndex < 0)beginIndex = 0;
+   if(endIndex < beginIndex)endIndex=beginIndex;
    if(endIndex > mStrLength) endIndex = mStrLength;
    int64 sublength = endIndex - beginIndex;
    String ret;

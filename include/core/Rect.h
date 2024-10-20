@@ -113,6 +113,14 @@ namespace jm
       /*! \brief Gibt den unteren rechten Punnkt zurück */
       Point bottomRight() const;
 
+      Point topCenter() const;
+
+      Point bottomCenter() const;
+
+      Point leftCenter() const;
+
+      Point rightCenter() const;
+
       void setX(double x);
 
       void setY(double y);

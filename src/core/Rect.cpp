@@ -134,6 +134,30 @@ jm::Point jm::Rect::bottomRight() const
                     mOrigin.y() + mSize.height());
 }
 
+jm::Point jm::Rect::topCenter() const
+{
+   return jm::Point(mOrigin.x() + 0.5 * mSize.width(),
+                    top());
+}
+
+jm::Point jm::Rect::bottomCenter() const
+{
+   return jm::Point(mOrigin.x() + 0.5 * mSize.width(),
+                    bottom());
+}
+
+jm::Point jm::Rect::leftCenter() const
+{
+   return jm::Point(left(),
+                    mOrigin.y()+0.5*mSize.height());
+}
+
+jm::Point jm::Rect::rightCenter() const
+{
+   return jm::Point(right(),
+                    mOrigin.y()+0.5*mSize.height());
+}
+
 void jm::Rect::intersect(const jm::Rect& other)
 {
    setLeft(std::max(left(), other.left()));
