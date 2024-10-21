@@ -506,6 +506,8 @@ namespace jm
           */
          Status closeTransaction();
 
+         Document* document() const;
+
       private:
 
          //! \brief The document this object belongs to

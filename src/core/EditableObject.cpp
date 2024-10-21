@@ -151,3 +151,7 @@ Status EditableObject::closeTransaction()
    return Status::eNotChanged;
 }
 
+Document* EditableObject::document() const
+{
+   return mDocument;
+}

@@ -372,28 +372,33 @@ UndoChangeObjectRef::UndoChangeObjectRef(Object* object, Object** ptr): UndoChan
 {
    mPointer = ptr;
    mValue = *ptr;
+   mValue1 = mValue;
+   mValue2 = nullptr;
+   mSwapped = false;
 
    //Wenn "alter" Pointer einen Wert enthält, erhöhe Referenzzähler um 1.
-   if(mValue != nullptr)mValue->retain();
+   if(mValue1 != nullptr)mValue1->retain();
 }
 
 UndoChangeObjectRef::~UndoChangeObjectRef()
 {
-   if(mValue != nullptr)mValue->release();
+   if(mValue1 != nullptr)mValue1->release();
+   if(mValue2 != nullptr)mValue2->release();
+   mValue=nullptr;
+   mValue2=nullptr;
 }
 
 
 void UndoChangeObjectRef::swap()
 {
-   // This method does not change the reference counters.
-   // Even if a reference is NULL, the "logic" changes the owner, but the bottom line is that the
-   // counter remains the same. The owner is not "saved".
-   // Therefore, no reference meter may be manipulated here.
-
    Object* tmpValue = *mPointer;
 
-   //	if(tmpValue!=NULL)tmpValue->retain();
-   //   if(mValue!=NULL)mValue->release();
+   if(!mSwapped)
+   {
+      mValue2=tmpValue;
+      if(mValue2!=NULL)mValue2->retain();
+      mSwapped=true;
+   }
 
    *mPointer = mValue;
    mValue = tmpValue;

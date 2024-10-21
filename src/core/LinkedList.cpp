@@ -341,7 +341,8 @@ Object* LinkedListIterator::next()
 
 Object* LinkedListIterator::seek() const
 {
-   return current->data;
+   if(current!=nullptr)return current->data;
+   return nullptr;
 }
 
 LinkedListIterator::~LinkedListIterator()

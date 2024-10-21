@@ -555,6 +555,10 @@ namespace jm
 
          Object** mPointer;
          Object* mValue;
+         // We need to store both values and retain the objects to avoid memory issues
+         Object* mValue1;
+         Object* mValue2;
+         bool mSwapped;
 
    };
 
