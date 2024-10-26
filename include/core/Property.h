@@ -442,7 +442,7 @@ namespace jm
           */
          virtual bool shouldRegenerate() const;
 
-      protected:
+         Document* document() const;
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
@@ -505,8 +505,6 @@ namespace jm
 
           */
          Status closeTransaction();
-
-         Document* document() const;
 
       private:
 

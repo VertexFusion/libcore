@@ -133,7 +133,7 @@ namespace jm
             }
 
             // Handle the case when there are not enough elements on the stack
-            throw new jm::Exception(Tr("Not enough elements on the stack"));
+            throw jm::Exception(Tr("Not enough elements on the stack"));
           };
 
           /*!
@@ -147,7 +147,7 @@ namespace jm
             }
 
             // Handle the case when there are not enough elements on the stack
-            throw new jm::Exception(Tr("Not enough elements on the stack"));
+            throw jm::Exception(Tr("Not enough elements on the stack"));
           };
 
           /*!

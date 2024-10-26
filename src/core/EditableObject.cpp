@@ -58,7 +58,8 @@ Status EditableObject::setMember(String* pointer, const String& value)
 {
    if(value.equals(*pointer))return Status::eNotChanged;
 
-   UndoManager* um = mDocument->undoManager();
+   UndoManager* um = nullptr;
+   if(mDocument!=nullptr)um=mDocument->undoManager();
    if(um != nullptr)um->registerChange(this, pointer);
    *pointer = value;
    return Status::eOK;
