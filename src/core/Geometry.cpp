@@ -75,6 +75,43 @@ Vertex3 jm::intersectionPointLineAndPlane(const Vertex3& planePosition,
    return linePosition + direction * lambda;
 }
 
+void jm::intersectionPointsOfCircles(const Vertex2& center1,
+                                     double radius1,
+                                     const Vertex2& center2,
+                                     double radius2,
+                                     Vertex2& intersection1,
+                                     Vertex2& intersection2)
+{
+    double x1 = center1.x, y1 = center1.y;
+    double x2 = center2.x, y2 = center2.y;
+    double r1 = radius1, r2 = radius2;
+
+    double d = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+
+    // Check if circles do not intersect
+    if (d > r1 + r2 || d < std::abs(r1 - r2) || (d == 0 && r1 == r2)) 
+    {
+      intersection1=jm::Vertex2(NAN,NAN);
+      intersection2=jm::Vertex2(NAN,NAN);
+      return;
+    }
+
+    double a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+    double h = std::sqrt(r1 * r1 - a * a);
+
+    double px = x1 + a * (x2 - x1) / d;
+    double py = y1 + a * (y2 - y1) / d;
+
+    double intersection1X = px + h * (y2 - y1) / d;
+    double intersection1Y = py - h * (x2 - x1) / d;
+
+    double intersection2X = px - h * (y2 - y1) / d;
+    double intersection2Y = py + h * (x2 - x1) / d;
+
+    intersection1 = jm::Vertex2(intersection1X, intersection1Y);
+    intersection2 = jm::Vertex2(intersection2X, intersection2Y);
+}
+
 Vertex3 jm::closestPointOnPlane(const Vertex3& point,
                                 const Vertex3& position,
                                 const Vertex3& normal)
