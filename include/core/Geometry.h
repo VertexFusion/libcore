@@ -65,7 +65,9 @@ namespace jm
      \param radius1 The radius of the first circle.
      \param center2 The center point of the second circle.
      \param radius2 The radius of the second circle.
-     \return The intersection points of the two circles. If the circles do not intersect, the
+     \param intersection1 The 1st intersection points of the two circles. If the circles do not intersect, the
+     points have NaN values.
+     \param intersection2 The 1st intersection points of the two circles. If the circles do not intersect, the
      points have NaN values.
      */
     DllExport

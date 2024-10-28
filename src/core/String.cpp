@@ -782,6 +782,8 @@ String String::substring(int64 beginIndex) const
 bool String::argIndicies(int64& first, int64& second)
 {
    if(indexOf(Char('%')) < 0)return false;
+   first=-1;
+   second=-1;
 
    int64 lowest = 100;
 
