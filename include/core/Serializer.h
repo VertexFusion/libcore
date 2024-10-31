@@ -173,7 +173,7 @@ namespace jm
     \return Returns the deserialized number as uint32.
     */
    DllExport
-   uint32 deserializeBEUInt32(uint8* buffer, uint32 offset);
+   uint32 deserializeBEUInt32(uint8* buffer, int64 offset);
 
    /*!
     \brief This method deserializes a number using the Big-Endian method.

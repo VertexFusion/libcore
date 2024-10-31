@@ -129,7 +129,9 @@ namespace jm
           */
          void replace(uint8 oldValue, uint8 newValue);
 
-         uint8& operator[](const int64 index) const;
+         uint8 operator[](int64 index) const;
+
+         uint8& operator[](int64 index);
 
          ByteArray& operator=(const ByteArray& another);
 

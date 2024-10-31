@@ -150,7 +150,7 @@ int16 jm::deserializeBEInt16(uint8* buffer, uint32 offset)
    return (buffer[offset] << 8 | buffer[offset + 1]);
 }
 
-uint32 jm::deserializeBEUInt32(uint8* buffer, uint32 offset)
+uint32 jm::deserializeBEUInt32(uint8* buffer, int64 offset)
 {
    return (buffer[offset] << 24 | buffer[offset + 1] << 16 | buffer[offset + 2] << 8 | buffer[offset +
            3]);
@@ -280,7 +280,7 @@ double jm::deserializeLEDouble(uint8* buffer, uint32 offset)
 
 double jm::deserializeLEDouble(const jm::ByteArray& buffer, int64 offset)
 {
-   return *(double*)&buffer[offset];
+   return *(double*)&buffer.constData()[offset];
 }
 
 float jm::deserializeLEFloat(uint8* buffer, uint32 offset)

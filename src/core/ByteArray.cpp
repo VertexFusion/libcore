@@ -233,13 +233,22 @@ void ByteArray::resize(int64 newSize)
       }
       mRawSize = newSize + 1;
       mArrSize = newSize;
+      if(mData!=nullptr)delete mData;
+      mData=tmp;
    }
 }
 
-uint8& jm::ByteArray::operator[](const int64 index) const
+uint8 jm::ByteArray::operator[](int64 index) const
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
+   return mData[index];
+}
+
+uint8& jm::ByteArray::operator[](int64 index)
+{
+   //if (index >= mLength)
+   //   throw new Exception("Array index out of bounds.");
    return mData[index];
 }
 
