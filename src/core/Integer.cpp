@@ -790,13 +790,3 @@ Integer operator/(Integer left, uint32 right)
 {
    return Integer(left.mValue / right);
 }
-
-Integer jm::Min(Integer left, Integer right)
-{
-   return std::min(left, right);
-}
-
-Integer jm::Max(Integer left, Integer right)
-{
-   return std::max(left, right);
-}

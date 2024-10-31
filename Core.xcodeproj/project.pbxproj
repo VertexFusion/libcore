@@ -465,6 +465,7 @@
 		C62B919F2AEF03A30085300B /* MacBindings.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MacBindings.mm; path = src/core/MacBindings.mm; sourceTree = "<group>"; };
 		C62B91A22AEF08500085300B /* MacBindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacBindings.h; path = include/core/MacBindings.h; sourceTree = SOURCE_ROOT; };
 		C62B91A32AEF09FF0085300B /* MacInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MacInterface.h; path = include/core/MacInterface.h; sourceTree = SOURCE_ROOT; };
+		C633DAEC2CD364AE0030B5D9 /* CODINGSTYLE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODINGSTYLE.md; sourceTree = "<group>"; };
 		C637FA9A2AF7DC8800002ADC /* de_DE.mo */ = {isa = PBXFileReference; lastKnownFileType = file; name = de_DE.mo; path = translations/de_DE.mo; sourceTree = "<group>"; };
 		C637FA9B2AF7DC8800002ADC /* de_DE.po */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = de_DE.po; path = translations/de_DE.po; sourceTree = "<group>"; };
 		C64321E22B9BB73800D75F5E /* libJameoCoreStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJameoCoreStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -527,6 +528,7 @@
 		C62B90302AEEFBEB0085300B = {
 			isa = PBXGroup;
 			children = (
+				C633DAEC2CD364AE0030B5D9 /* CODINGSTYLE.md */,
 				C62B90432AEEFC1C0085300B /* test */,
 				C62B90402AEEFC0A0085300B /* include */,
 				C62B90422AEEFC150085300B /* src */,

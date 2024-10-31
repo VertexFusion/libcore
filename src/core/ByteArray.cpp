@@ -196,7 +196,7 @@ void ByteArray::set(int64 index, uint8 item)
 void ByteArray::replace(int64 tgtOffset, int64 srcOffset, const ByteArray& buffer,
                         int64 length)
 {
-   int64 range = Min(length, mArrSize - tgtOffset);
+   int64 range = std::min(length, mArrSize - tgtOffset);
 
    for(int64 a = 0; a < range; a++)
    {

@@ -414,12 +414,4 @@ class DllExport Integer
       int64 mValue;
 };
 
-namespace jm
-{
-   DllExport
-   Integer Min(Integer left, Integer right);
-
-   DllExport
-   Integer Max(Integer left, Integer right);
-}
 #endif

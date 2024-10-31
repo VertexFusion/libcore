@@ -109,7 +109,7 @@ DiffBacktrace* DiffDistance::solve()
          mDiagonal = mDiagonal->above();
    }
 
-   mDistance = mDiagonal->entry(Min(mRows, mCols));
+   mDistance = mDiagonal->entry(std::min(mRows, mCols));
 
    int64 sz = mRows * mCols;
    std::cout << Tr("Distance %1").arg(mDistance) << std::endl;
