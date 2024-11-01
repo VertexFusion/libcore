@@ -321,7 +321,7 @@ void jm::Rect::normalize()
 }
 
 //
-// Besondere Methoden
+// Special Methods
 //
 
 void jm::Rect::unionWith(const jm::Rect& rect)

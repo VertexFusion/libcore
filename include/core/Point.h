@@ -38,7 +38,7 @@ namespace jm
 {
 
    /*!
-    \brief Defines a point. This point is used for 2D-Coordinates. 
+    \brief Defines a point. This point is used for 2D-Coordinates.
 
     In opposite to Vertex2 this class has no vector operations. It is only used for 2D-Coordinates.
     Typically used in combination with Rect.
@@ -46,12 +46,13 @@ namespace jm
    class DllExport Point
    {
       public:
-         /*! 
+
+         /*!
          \brief Constructor. Creates point <0,0>.
          */
          Point();
 
-         /*! 
+         /*!
          \brief Constructor. Creates point <x,y>.
          \param x X-Component of the point.
          \param y Y-Component of the point.
@@ -60,7 +61,7 @@ namespace jm
 
          Point(const Vertex2 &v){mX=v.x;mY=v.y;};
 
-         /*! 
+         /*!
          \brief Returns the x-component of the point.
          */
          double x() const;

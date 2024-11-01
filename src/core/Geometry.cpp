@@ -89,7 +89,7 @@ void jm::intersectionPointsOfCircles(const Vertex2& center1,
     double d = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 
     // Check if circles do not intersect
-    if (d > r1 + r2 || d < std::abs(r1 - r2) || (d == 0 && r1 == r2)) 
+    if (d > r1 + r2 || d < std::abs(r1 - r2) || (d == 0 && r1 == r2))
     {
       intersection1=jm::Vertex2(NAN,NAN);
       intersection2=jm::Vertex2(NAN,NAN);

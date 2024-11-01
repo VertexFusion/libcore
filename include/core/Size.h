@@ -48,7 +48,7 @@ namespace jm
 
       //! Constructor creates size <width,height>
       Size(double width, double height);
- 
+
       Size(const Point &pt);
 
       //! Returns the width

@@ -396,7 +396,7 @@ void UndoChangeObjectRef::swap()
    if(!mSwapped)
    {
       mValue2=tmpValue;
-      if(mValue2!=NULL)mValue2->retain();
+      if(mValue2!=nullptr)mValue2->retain();
       mSwapped=true;
    }
 

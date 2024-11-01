@@ -546,7 +546,7 @@ namespace jm
          int64 toInt() const;
 
          /*!
-          \brief Returns true if the string is empty.         
+          \brief Returns true if the string is empty. False otherwise.
           */
          bool isEmpty() const;
 

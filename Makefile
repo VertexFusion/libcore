@@ -20,7 +20,7 @@ ifeq ($(UNAME_S),Darwin)
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
 
    CXX = clang++
-   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++23
+   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++20
    OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -x objective-c++ -fobjc-arc
    TESTFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
    LFLAGS = -dynamiclib -current_version 1.4 $(TESTFLAGS)
@@ -36,7 +36,7 @@ ifeq ($(UNAME_S),Linux)
    C__ =clang
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
-   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3
+   CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3 -std=c++20
    TESTFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
