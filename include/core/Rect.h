@@ -222,7 +222,7 @@ namespace jm
       void move(const jm::Point &delta);
 
       /*!
-       \brief \brief The top-left corner of this and the other \c Rect are aligned.
+       \brief The top-left corner of this and the other \c Rect are aligned.
        */
       void alignTopLeft(const Rect &rect);
 
@@ -241,7 +241,7 @@ namespace jm
       void shiftTop(double deltaTop);
 
       /*!
-       \brief \brief Move the left edge relatively (and resize)
+       \brief Move the left edge relatively (and resize)
        */
       void shiftLeft(double deltaLeft);
 
