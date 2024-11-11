@@ -45,6 +45,16 @@ void StringListTest::doTest()
     testEquals(list[1],"item2","list[1]!=item2");
     testEquals(list[2],"item3","list[2]!=item3");
 
+   // Range base for
+   int64 index=0;
+   for(const jm::String& string:list)
+   {
+      if(index==0)testEquals(string,"item1","list[0]!=item1");
+      if(index==1)testEquals(string,"item2","list[1]!=item2");
+      if(index==2)testEquals(string,"item3","list[2]!=item3");
+      index++;
+   }
+
     // remove
     list.remove("item2");
     testEquals(list.size(),2,"StringList::size()==2 failed");

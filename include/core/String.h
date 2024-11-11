@@ -734,6 +734,8 @@ namespace jm
 
          StringList();
 
+         StringList(int64 size);
+
          StringList(const StringList& other);
 
          StringList(const jm::String& string);
@@ -752,7 +754,7 @@ namespace jm
 
          const String& get(int64 index) const;
 
-         void set(::int64 index, const String& item);
+         void set(int64 index, const String& item);
 
          String& operator[](const int64 index) const;
 
@@ -764,6 +766,12 @@ namespace jm
 
          DllExport
          friend StringList& operator<< (StringList& out, const String& str);
+
+         // Method needed for range-base for
+         String* begin();
+
+         // Method needed for range-base for
+         String* end();
 
       private:
 

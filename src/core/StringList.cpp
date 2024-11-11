@@ -41,6 +41,14 @@ StringList::StringList(): Object()
    mSize = 0;
 }
 
+StringList::StringList(int64 size)
+{
+   mData = new String[size];
+   mLength = size;
+   mSize = 0;
+}
+
+
 StringList::StringList(const jm::String& string): Object()
 {
    mData = new String[8];
@@ -207,4 +215,15 @@ StringList& jm::operator<< (StringList& out, const String& str)
 {
    out.append(str);
    return out;
+}
+
+String* StringList::begin()
+{
+   return mData;
+}
+
+// Method needed for range-base for
+String* StringList::end()
+{
+   return mData + mSize;
 }
