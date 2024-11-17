@@ -854,62 +854,61 @@ Matrix Matrix::generate3x3RotationZMatrix(double angle)
 
 Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3& v)
 {
-    // Normalize both vectors
-    jm::Vertex3 u_norm = u.normalized();
-    jm::Vertex3 v_norm = v.normalized();
+   // Normalize both vectors
+   jm::Vertex3 u_norm = u.normalized();
+   jm::Vertex3 v_norm = v.normalized();
 
-    // Calculate the dot product
-    double cosTheta = u_norm.dotProduct(v_norm);
+   // Calculate the dot product
+   double cosTheta = u_norm.dotProduct(v_norm);
 
-    // Check if the angle is π (cosTheta is -1)
+   // Check if the angle is π (cosTheta is -1)
    if (jm::isEqual(cosTheta , -1.0))
    {
-    // Special case for 180 degree rotation
-   // Find an orthogonal vector to u_norm
-   jm::Vertex3 orthogonal = (std::abs(u_norm.x) > std::abs(u_norm.y)) ? jm::Vertex3(-u_norm.z, 0, u_norm.x) : jm::Vertex3(0, -u_norm.z, u_norm.y);
-   orthogonal = orthogonal.normalized();
+      // Special case for 180 degree rotation
+      // Find an orthogonal vector to u_norm
+      jm::Vertex3 orthogonal = (std::abs(u_norm.x) > std::abs(u_norm.y)) ? jm::Vertex3(-u_norm.z, 0, u_norm.x) : jm::Vertex3(0, -u_norm.z, u_norm.y);
+      orthogonal = orthogonal.normalized();
 
-    // Construct the rotation matrix for 180 degree rotation around the orthogonal axis
-    jm::Matrix rotationMatrix=jm::Matrix(3,3);
-    rotationMatrix.set(0, 0, -1 + 2 * orthogonal.x * orthogonal.x);
-    rotationMatrix.set(0, 1, 2 * orthogonal.x * orthogonal.y);
-    rotationMatrix.set(0, 2, 2 * orthogonal.x * orthogonal.z);
+      // Construct the rotation matrix for 180 degree rotation around the orthogonal axis
+      jm::Matrix rotationMatrix=jm::Matrix(3,3);
+      rotationMatrix.set(0, 0, -1 + 2 * orthogonal.x * orthogonal.x);
+      rotationMatrix.set(0, 1, 2 * orthogonal.x * orthogonal.y);
+      rotationMatrix.set(0, 2, 2 * orthogonal.x * orthogonal.z);
 
-    rotationMatrix.set(1, 0, 2 * orthogonal.y * orthogonal.x);
-    rotationMatrix.set(1, 1, -1 + 2 * orthogonal.y * orthogonal.y);
-    rotationMatrix.set(1, 2, 2 * orthogonal.y * orthogonal.z);
+      rotationMatrix.set(1, 0, 2 * orthogonal.y * orthogonal.x);
+      rotationMatrix.set(1, 1, -1 + 2 * orthogonal.y * orthogonal.y);
+      rotationMatrix.set(1, 2, 2 * orthogonal.y * orthogonal.z);
 
-    rotationMatrix.set(2, 0, 2 * orthogonal.z * orthogonal.x);
-    rotationMatrix.set(2, 1, 2 * orthogonal.z * orthogonal.y);
-    rotationMatrix.set(2, 2, -1 + 2 * orthogonal.z * orthogonal.z);
+      rotationMatrix.set(2, 0, 2 * orthogonal.z * orthogonal.x);
+      rotationMatrix.set(2, 1, 2 * orthogonal.z * orthogonal.y);
+      rotationMatrix.set(2, 2, -1 + 2 * orthogonal.z * orthogonal.z);
 
-    return rotationMatrix;
-}
-else
-{
-   // Calculate the cross product
-   jm::Vertex3 axis = u.crossProduct(v).normalized();
+      return rotationMatrix;
+   }
+   else
+   {
+      // Calculate the cross product
+      jm::Vertex3 axis = u.crossProduct(v).normalized();
 
-    // Calculate the sine of the angle
-   double sinTheta = std::sqrt(1 - cosTheta * cosTheta); // sinTheta = sqrt(1 - cosTheta^2)
+      // Calculate the sine of the angle
+      double sinTheta = std::sqrt(1 - cosTheta * cosTheta); // sinTheta = sqrt(1 - cosTheta^2)
 
-    // Construct the rotation matrix using Rodrigues' rotation formula
-    jm::Matrix rotationMatrix=jm::Matrix(3,3);
-    rotationMatrix.set(0, 0, cosTheta + axis.x * axis.x * (1 - cosTheta));
-    rotationMatrix.set(0, 1, axis.x * axis.y * (1 - cosTheta) - axis.z * sinTheta);
-    rotationMatrix.set(0, 2, axis.x * axis.z * (1 - cosTheta) + axis.y * sinTheta);
+      // Construct the rotation matrix using Rodrigues' rotation formula
+      jm::Matrix rotationMatrix=jm::Matrix(3,3);
+      rotationMatrix.set(0, 0, cosTheta + axis.x * axis.x * (1 - cosTheta));
+      rotationMatrix.set(0, 1, axis.x * axis.y * (1 - cosTheta) - axis.z * sinTheta);
+      rotationMatrix.set(0, 2, axis.x * axis.z * (1 - cosTheta) + axis.y * sinTheta);
 
-    rotationMatrix.set(1, 0, axis.y * axis.x * (1 - cosTheta) + axis.z * sinTheta);
-    rotationMatrix.set(1, 1, cosTheta + axis.y * axis.y * (1 - cosTheta));
-    rotationMatrix.set(1, 2, axis.y * axis.z * (1 - cosTheta) - axis.x * sinTheta);
+      rotationMatrix.set(1, 0, axis.y * axis.x * (1 - cosTheta) + axis.z * sinTheta);
+      rotationMatrix.set(1, 1, cosTheta + axis.y * axis.y * (1 - cosTheta));
+      rotationMatrix.set(1, 2, axis.y * axis.z * (1 - cosTheta) - axis.x * sinTheta);
 
-    rotationMatrix.set(2, 0, axis.z * axis.x * (1 - cosTheta) - axis.y * sinTheta);
-    rotationMatrix.set(2, 1, axis.z * axis.y * (1 - cosTheta) + axis.x * sinTheta);
-    rotationMatrix.set(2, 2, cosTheta + axis.z * axis.z * (1 - cosTheta));
+      rotationMatrix.set(2, 0, axis.z * axis.x * (1 - cosTheta) - axis.y * sinTheta);
+      rotationMatrix.set(2, 1, axis.z * axis.y * (1 - cosTheta) + axis.x * sinTheta);
+      rotationMatrix.set(2, 2, cosTheta + axis.z * axis.z * (1 - cosTheta));
 
-    return rotationMatrix;
-
-}
+      return rotationMatrix;
+   }
 }
 
 
