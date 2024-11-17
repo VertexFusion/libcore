@@ -164,6 +164,7 @@ jm::File I18nBundle::transFileByBundleId(const String& filename,
    if(language.size() == 0)language = System::language();
 
    language = language.replace('-', '_');
+   // language should now have the form lang_REGION, for example: de_DE
 
    // Resource of translations
    const File resDir = ResourceDir(jm::System::bundleId());
@@ -180,17 +181,23 @@ jm::File I18nBundle::transFileByBundleId(const String& filename,
    else return translationFile;
 
    // Maybe without region?
-   if(translationFile.exists() == false && language.indexOf('_') > 0)
+   if(translationFile.exists() == false)
    {
-      language = language.substring(0, language.indexOf('_'));
+      if(language.indexOf('_') > 0)
+      {
+         language = language.substring(0, language.indexOf('_'));
+      }
       translationFile = File(translationDir, filename + "." + language + ".mo");
    }
    else return translationFile;
 
    // Maybe without region and without bundle id?
-   if(translationFile.exists() == false && language.indexOf('_') > 0)
+   if(translationFile.exists() == false)
    {
-      language = language.substring(0, language.indexOf('_'));
+      if(language.indexOf('_') > 0)
+      {
+         language = language.substring(0, language.indexOf('_'));
+      }
       translationFile = File(translationDir, language + ".mo");
    }
    else return translationFile;
