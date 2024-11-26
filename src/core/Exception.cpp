@@ -16,6 +16,9 @@ Exception::Exception(const String& message): Object()
    System::log(mMessage, LogLevel::kError);
 
    #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+
+   #ifndef __ANDROID__
+
    tid = pthread_self();
 
    //Stacktrace aufnehmen.
@@ -39,6 +42,8 @@ Exception::Exception(const String& message): Object()
    // Free is acc. to the docs (web find) the correct way to free the memory. delete / delete[] is
    // wrong.
    free(symbols);
+
+   #endif
 
    #elif defined _WIN32//Windows
    //Keine Threadbib

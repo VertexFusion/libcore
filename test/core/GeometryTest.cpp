@@ -864,6 +864,144 @@ void GeometryTest::doTest()
    testFalse(jm::crosses(Vertex2(397.0, 293.0), Vertex2(416.0, 312.0),
                          Vertex2(379.0, 272.0), Vertex2(379.0, 262.0)), "Crosses fails (7)");
 
+
+   // Intersection point 2d
+   jm::Vertex2 v1(0.0,1.0);
+   jm::Vertex2 d1(1.0,0.0);
+   jm::Vertex2 v2(1.0,0.0);
+   jm::Vertex2 d2(0.0,1.0);
+   jm::Vertex2 ip=jm::intersectionPoint(v1, d1, v2, d2);
+
+   testEquals(ip.x, 1.0, "intersectionPoint() fails 1");
+   testEquals(ip.y, 1.0, "intersectionPoint() fails 1");
+
+   d1=jm::Vertex2(-1.0,0.0);
+   d2=jm::Vertex2(0.0,1.0);
+   ip=jm::intersectionPoint(v1, d1, v2, d2);
+
+   testEquals(ip.x, 1.0, "intersectionPoint() fails 2");
+   testEquals(ip.y, 1.0, "intersectionPoint() fails 2");
+
+   d1=jm::Vertex2(1.0,0.0);
+   d2=jm::Vertex2(0.0,-1.0);
+   ip=jm::intersectionPoint(v1, d1, v2, d2);
+
+   testEquals(ip.x, 1.0, "intersectionPoint() fails 3");
+   testEquals(ip.y, 1.0, "intersectionPoint() fails 3");
+
+   d1=jm::Vertex2(-1.0,0.0);
+   d2=jm::Vertex2(0.0,-1.0);
+   ip=jm::intersectionPoint(v1, d1, v2, d2);
+
+   testEquals(ip.x, 1.0, "intersectionPoint() fails 4");
+   testEquals(ip.y, 1.0, "intersectionPoint() fails 4");
+
+   //
+   // circleParameterBy2TangentsRadius
+   //
+   v1=jm::Vertex2(-1.0,1.0);
+   v2=jm::Vertex2(1.0,-1.0);
+   d1=jm::Vertex2(2.0,0.0);
+   d2=jm::Vertex2(0.0,2.0);
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d1,v2,d2);
+
+   testEquals(ip.x, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+
+
+   v1=jm::Vertex2(23,107);
+   v2=jm::Vertex2(26,107);
+   d1=jm::Vertex2(0,-3);
+   d2=jm::Vertex2(-3,0);
+   jm::circleParameterBy2TangentsRadius(ip,3,v1,d1,v2,d2);
+
+   testEquals(ip.x, 26.0, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 104.0, "circleParameterBy2TangentsRadius() fails 1");
+
+   // points on cross point of tangents
+   v1=jm::Vertex2(1.0,1.0);
+   v2=jm::Vertex2(1.0,1.0);
+   d1=jm::Vertex2(-1.0,0.0);
+   d2=jm::Vertex2(0.0,-1.0);
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d1,v2,d2);
+
+   testEquals(ip.x, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d2,v2,d1);
+
+   testEquals(ip.x, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   d1=jm::Vertex2(1.0,0.0);
+   d2=jm::Vertex2(0.0,-1.0);
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d1,v2,d2);
+
+   testEquals(ip.x, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d2,v2,d1);
+
+   testEquals(ip.x, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   d1=jm::Vertex2(-1.0,0.0);
+   d2=jm::Vertex2(0.0,1.0);
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d1,v2,d2);
+
+   testEquals(ip.x, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d2,v2,d1);
+
+   testEquals(ip.x, 0.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   d1=jm::Vertex2(1.0,0.0);
+   d2=jm::Vertex2(0.0,1.0);
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d1,v2,d2);
+
+   testEquals(ip.x, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   jm::circleParameterBy2TangentsRadius(ip,0.5,v1,d2,v2,d1);
+
+   testEquals(ip.x, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+   testEquals(ip.y, 1.5, "circleParameterBy2TangentsRadius() fails 1");
+
+   //
+   // Closest point on line (diagonal)
+   //
+   v1=jm::Vertex2(3, 4);
+   v2=jm::Vertex2(0, 0);
+   d2=jm::Vertex2(1, 1);
+   Vertex2 expected(3.5, 3.5);
+
+   Vertex2 result = closestPointOnLine(v1, v2, d2);
+   testEquals(expected.x, result.x, "closestPointOnLine() fails 1");
+   testEquals(expected.y, result.y, "closestPointOnLine() fails 1");
+
+   //Closest point on line (horizontal)
+   v1=Vertex2(3, 4);
+   v2=Vertex2(0, 4);
+   d2=Vertex2(1, 0);
+   expected=Vertex2(3, 4);
+
+   result = closestPointOnLine(v1, v2, d2);
+   testEquals(expected.x, result.x, "closestPointOnLine() fails 1");
+   testEquals(expected.y, result.y, "closestPointOnLine() fails 1");
+
+   // Closest point on line (vertical)
+   v1=Vertex2(3, 4);
+   v2=Vertex2(3, 0);
+   d2=Vertex2(0, 1);
+   expected=Vertex2(3, 4);
+
+   result = closestPointOnLine(v1, v2, d2);
+   testEquals(expected.x, result.x, "closestPointOnLine() fails 1");
+   testEquals(expected.y, result.y, "closestPointOnLine() fails 1");
+
+
    #ifdef __APPLE__//macOS, iOS
    timespec end = orwl_gettime();
 

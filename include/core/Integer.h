@@ -232,11 +232,13 @@ class DllExport Integer
       DllExport
       friend Integer operator*(uint64 left, Integer right);
 
+      #ifdef WITHULONG
       DllExport
       friend Integer operator*(Integer left, ulong right);
 
       DllExport
       friend Integer operator*(ulong left, Integer right);
+      #endif
 
       DllExport
       friend double operator*(Integer left, double right);
@@ -286,11 +288,13 @@ class DllExport Integer
       DllExport
       friend bool operator<(uint16 left, Integer right);
 
+      #ifdef WITHULONG
       DllExport
       friend bool operator<(Integer left, ulong right);
 
       DllExport
       friend bool operator<(ulong left, Integer right);
+      #endif
 
       DllExport
       friend bool operator<(Integer left, int64 right);
@@ -322,11 +326,13 @@ class DllExport Integer
       DllExport
       friend bool operator<=(uint32 left, Integer right);
 
+      #ifdef WITHULONG
       DllExport
       friend bool operator<=(Integer left, ulong right);
 
       DllExport
       friend bool operator<=(ulong left, Integer right);
+      #endif
 
       DllExport
       friend bool operator<=(Integer left, slong right);

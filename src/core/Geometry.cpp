@@ -125,6 +125,23 @@ Vertex3 jm::closestPointOnPlane(const Vertex3& point,
    return intersectionPointLineAndPlane(position, normal, point, normal, true);
 }
 
+Vertex2 jm::closestPointOnLine(const Vertex2& point,
+                               const Vertex2& position,
+                               const Vertex2& direction)
+{
+   // Vector from the point on the line to the arbitrary point
+   Vertex2 v=point-position;
+
+   // Normalize direction vector d (optional, can be skipped if d is already unit length)
+   Vertex2 d=direction.normalized();
+
+   // Compute the scalar projection of vector v onto the direction vector d
+   double t = v.dotProduct(d);
+
+   // Calculate the nearest point on the line
+   return position+t*d;
+}
+
 Vertex3 jm::closestPointOnLine(const Vertex3& point,
                                const Vertex3& position,
                                const Vertex3& direction)
@@ -718,6 +735,34 @@ jm::Status jm::circleParameterBy3Points(Vertex2& centre, double& radius,
    centre.x = x;
    centre.y = y;
    radius = (p1 - centre).abs();
+
+   return Status::eOK;
+}
+
+jm::Status jm::circleParameterBy2TangentsRadius(Vertex2& center, double radius,
+                                                const Vertex2& p1, const Vertex2 &dir1,
+                                                const Vertex2& p2, const Vertex2 &dir2)
+{
+   // Parallel dirs are not ok
+   if(dir1.isCollinear(dir2))return Status::eInvalidInput;
+
+   // Intersection point of 2 tangents
+   const Vertex2 ctrl=intersectionPoint(p1, dir1, p2, dir2);
+
+   // Correct dirs, they can be in the opposite direction
+   // The points defines the quadrant, where the center is.
+   Vertex2 d1=p1-ctrl;
+   if(jm::isEqual(d1.abs(), 0.0))d1=dir1;
+   Vertex2 d2=p2-ctrl;
+   if(jm::isEqual(d2.abs(), 0.0))d2=dir2;
+
+   Vertex2 bisector = jm::angleBisector(d1, d2);
+   bisector.normalize();
+
+   double angle = std::abs(d1.angleTo(d2)/2.0);
+   double dist=radius/std::sin(angle);
+
+   center = ctrl+dist*bisector;
 
    return Status::eOK;
 }

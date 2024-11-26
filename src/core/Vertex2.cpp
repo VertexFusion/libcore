@@ -89,10 +89,10 @@ bool Vertex2::isOrthogonal(const Vertex2& another) const
 double Vertex2::angleTo(const Vertex2& another) const
 {
    // Enclosed angles returned
-   double tmp = this->dotProduct(another) / (this->abs() * another.abs());
+   double tmp = dotProduct(another) / (abs() * another.abs());
 
    // Same sign convention as in SVG
-   double sgn = (x * another.y - y * another.x) > 0 ? 1 : -1;
+   double sgn = crossProduct(another) > 0 ? 1 : -1;
    double angle = acos(tmp) * sgn;
 
    return angle;

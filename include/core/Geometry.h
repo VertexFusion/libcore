@@ -90,6 +90,11 @@ namespace jm
                                const Vertex3& position,
                                const Vertex3& normal);
 
+   DllExport
+   Vertex2 closestPointOnLine(const Vertex2& point,
+                              const Vertex2& position,
+                              const Vertex2& direction);
+
    /*!
     \brief This method calculates the point on the line that has the minimum distance to the given point.
     The connecting line between the point and the result is perpendicular to the line.
@@ -447,13 +452,34 @@ namespace jm
 
    /*!
     \brief Calculates the circle parameters centre point and radius given by the 3 points.
+    \param center The calculated center point
+    \param radius The calculated radius
+    \param p1 First point on the circle
+    \param p2 Second point on the circle
+    \param p3 Third point on the circle
     */
    DllExport
-   jm::Status circleParameterBy3Points(Vertex2& centre, double& radius,
+   jm::Status circleParameterBy3Points(Vertex2& center, double& radius,
                                        const Vertex2& p1,
                                        const Vertex2& p2,
                                        const Vertex2& p3);
 
+   /*!
+    \brief Calculated the circle center point by the given 2 tangents and radius of the circle.
+
+    The enclosing quadrant of \c p1 and \c p2 containts \c center. If \c center is on \c p1 or \c p2 the direction vector decides
+
+    \param center The calculated center point
+    \param radius The radius of the circle
+    \param p1 Point on the first tangent
+    \param dir1 Direction of the first tangent
+    \param p2 Point on the secont tangent
+    \param dir2  Direction of the second tangent
+    */
+   DllExport
+   jm::Status circleParameterBy2TangentsRadius(Vertex2& center, double radius,
+                                               const Vertex2& p1, const Vertex2 &dir1,
+                                               const Vertex2& p2, const Vertex2 &dir2);
 }
 
 #endif

@@ -540,7 +540,7 @@ int64 File::size() const
    int32 result = stat(mCstr.constData(), &filestat);
 
    // If it doesn't exist, then I can't read it.
-   if(result != 0)throw Exception(Tr("File \"%1\" does not exist.").arg(absolutePath()));
+   if(result != 0)return 0;
 
    return int64((uint64)filestat.st_size);
 }
