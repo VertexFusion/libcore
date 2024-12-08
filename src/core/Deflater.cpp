@@ -29,9 +29,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "Precompiled.hpp"
+#include "PrecompiledCore.hpp"
 
-using std::max;
 using namespace jm;
 
 Deflater::Deflater(): Object()

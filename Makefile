@@ -174,8 +174,8 @@ install:
 test: $(TESTOBJECTS)
 	$(CXX) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS) $(PATH_BIN)/libcore.a
 
-prec/Precompiled.pch: prec/Precompiled.hpp
-	$(CXX) $(CFLAGS) $(INCLUDE) prec/Precompiled.hpp -o prec/Precompiled.pch
+prec/PrecompiledCore.pch: prec/PrecompiledCore.hpp
+	$(CXX) $(CFLAGS) $(INCLUDE) prec/PrecompiledCore.hpp -o prec/PrecompiledCore.pch
 
 %.o: %.c
 	$(C__) $(ZLIBFLAGS) -c $< -o $@
@@ -183,11 +183,11 @@ prec/Precompiled.pch: prec/Precompiled.hpp
 %.o: %.mm
 	$(C__) $(OCFLAGS) $(INCLUDE) -c $< -o $@
 
-%.o: %.cpp prec/Precompiled.pch
-	$(CXX) $(CFLAGS) $(INCLUDE) -include-pch prec/Precompiled.pch -c $< -o $@
+%.o: %.cpp prec/PrecompiledCore.pch
+	$(CXX) $(CFLAGS) $(INCLUDE) -include-pch prec/PrecompiledCore.pch -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(TESTOBJECTS) prec/Precompiled.pch
+	rm -f $(OBJECTS) $(TESTOBJECTS) prec/PrecompiledCore.pch
 	rm -Rf $(PATH_BIN)/*
 
 # DO NOT DELETE

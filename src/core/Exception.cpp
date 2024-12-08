@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Jameo Software. All rights reserved.
 //
 
-#include "Precompiled.hpp"
+#include "PrecompiledCore.hpp"
 
 using namespace jm;
 

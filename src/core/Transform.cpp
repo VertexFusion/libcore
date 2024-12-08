@@ -14,7 +14,7 @@
 //              part, is forbidden except by express written permission of Jameo.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "Precompiled.hpp"
+#include "PrecompiledCore.hpp"
 
 using namespace jm;
 
