@@ -465,15 +465,15 @@ namespace jm
                                        const Vertex2& p3);
 
    /*!
-    \brief Calculated the circle center point by the given 2 tangents and radius of the circle.
+    \brief Calculates the circle center point by the given 2 tangents and radius of the circle.
 
-    The enclosing quadrant of \c p1 and \c p2 containts \c center. If \c center is on \c p1 or \c p2 the direction vector decides
+    The enclosing quadrant of \c p1 and \c p2 contains \c center. If \c center is on \c p1 or \c p2 the direction vector decides
 
     \param center The calculated center point
     \param radius The radius of the circle
     \param p1 Point on the first tangent
     \param dir1 Direction of the first tangent
-    \param p2 Point on the secont tangent
+    \param p2 Point on the second tangent
     \param dir2  Direction of the second tangent
     */
    DllExport

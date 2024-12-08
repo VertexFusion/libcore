@@ -37,7 +37,6 @@
 
 #include "Transform.h"
 #include "Nurbs.h"
-//#include "dwg/DwgLineType.h"
 
 namespace jm
 {
@@ -239,7 +238,7 @@ namespace jm
            \brief The current line style used for drawing lines, or NULL if a solid line is being drawn.
            \discussion All different line styles are manually drawn using strokes.
            */
-         //dwg::LineType* curLineType;
+         //dwg::LineType* mCurLineType;
 
           /*!
            \brief The current scaling factor of the line pattern.

@@ -17,6 +17,9 @@ class StringTest : public jm::Test
       StringTest();
       void doTest() override;
 
+   private:
+      void isEmpty();
+      void compareFancy();
 };
 
 #endif

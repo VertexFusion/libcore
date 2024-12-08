@@ -191,7 +191,7 @@ std::ostream& jm::operator<< (std::ostream& out, const Vertex2& vertex)
    return out;
 }
 
-Vertex2 jm::SolveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r)
+Vertex2 jm::solveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r)
 {
    //Mache eine kurze LR-Zerlegung
    //    dir off     point-origin

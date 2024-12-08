@@ -213,7 +213,7 @@ namespace jm
    	| a.y b.y |   | y |   | r.y |
     */
    DllExport
-   Vertex2 SolveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r);
+   Vertex2 solveLinearSystem(Vertex2 a, Vertex2 b, Vertex2 r);
 }
 
 #endif
