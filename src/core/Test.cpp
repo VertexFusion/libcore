@@ -206,7 +206,7 @@ void Test::testNull(void* actual, const String& failmessage)
    System::log(failmessage, LogLevel::kError);
 }
 
-void Test::testNotNull(void* actual, const String& failmessage)
+void Test::testNotNull(const void* actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
