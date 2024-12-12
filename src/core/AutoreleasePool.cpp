@@ -55,6 +55,7 @@ AutoreleasePool::~AutoreleasePool()
 
 void AutoreleasePool::drain()
 {
+   mPoolMutex.lock();
    PoolEntry* pool = mPool->next;
 
    while(pool != nullptr)
@@ -69,15 +70,18 @@ void AutoreleasePool::drain()
 
    mTop = mPool;
    mPool->next = nullptr;
+   mPoolMutex.unlock();
 }
 
 void AutoreleasePool::add(Object* object)
 {
+   mPoolMutex.lock();
    PoolEntry* entry = new PoolEntry();
    entry->object = object;
    entry->next = nullptr;
    mTop->next = entry;
    mTop = entry;
+   mPoolMutex.unlock();
 }
 
 Mutex* AutoreleasePool::mutex()

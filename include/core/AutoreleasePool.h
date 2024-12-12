@@ -85,6 +85,9 @@ namespace jm
           //! Mutex for reference counter manipulation
           Mutex mMutex;
 
+          //! Mutex for autoreleasepool itself
+          Mutex mPoolMutex;
+
           //! Adds an object. Called in Object::autorelease().
           void add(Object* object);
 
