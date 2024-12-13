@@ -368,9 +368,9 @@ void jm::System::init(const jm::String& bundleId)
 void jm::System::quit()
 {
    // save preferences
+   jm::System::savePreferences();
    if(gPreferences != nullptr)
    {
-      gPreferences->save(*gPrefFile);
       delete gPreferences;
       delete gPrefFile;
       gPreferences=nullptr;
@@ -394,3 +394,12 @@ jm::Preferences* jm::System::preferences()
    return gPreferences;
 }
 
+void jm::System::savePreferences()
+{
+   std::cout<<"SAVE PREFERENCES"<<std::endl;
+   if(gPreferences != nullptr)
+   {
+      gPreferences->save(*gPrefFile);
+      std::cout<<"SAVEED"<<std::endl;
+   }
+}

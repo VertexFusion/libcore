@@ -101,6 +101,11 @@ void* Hashtable::get(const String& key) const
    return nullptr;
 }
 
+bool Hashtable::containsKey(const String& key) const
+{
+   return get(key)!=nullptr;
+}
+
 void* Hashtable::remove(const String& key)
 {
    int64 hash = key.constHashCode();

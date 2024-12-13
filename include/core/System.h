@@ -58,6 +58,8 @@ namespace jm
           */
          static Preferences* preferences();
 
+         static void savePreferences();
+
          /*!
           \brief This method returns the language of the system that is currently set.
           The programme can use this variable to decide which language it should display.
