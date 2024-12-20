@@ -102,6 +102,11 @@ namespace jm
             */
           ZipFile(File* file);
 
+         /*!
+          \brief Destructor
+          */
+         ~ZipFile();
+
           /*!
            \brief Opens the file for reading.
            */
@@ -120,6 +125,7 @@ namespace jm
 
           /*!
            \brief Returns the ZipEntry object if it exists, or nullptr if it does not exist.
+           \note ZipFile is owner of ZipEntry. If you want to get ownership, you must call \c retain()
            \param name The name of the ZipEntry to retrieve.
            \return A pointer to the ZipEntry object if it exists, or nullptr otherwise.
            */

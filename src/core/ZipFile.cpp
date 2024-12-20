@@ -43,6 +43,16 @@ ZipFile::ZipFile(File* file): jm::Object(),
    mFile = file;
 }
 
+ZipFile::~ZipFile()
+{
+   mEntries.rewind();
+   while(mEntries.hasNext())
+   {
+      ZipEntry* entry = static_cast<ZipEntry*>(mEntries.next());
+      entry->release();
+   }
+}
+
 void ZipFile::open()
 {
    uint32 length = (uint32)mFile->size();
@@ -158,8 +168,6 @@ uint32 ZipFile::entryCount() const
 jm::Stream* ZipFile::stream(const ZipEntry* entry)
 {
    ByteArray input = ByteArray(entry->mCompressedSize, 0);
-   uint8* buffer = new uint8[entry->mUncompressedSize];
-   memset(buffer, 0, entry->mUncompressedSize);
 
    //Local Header
    ByteArray localHeader = ByteArray(30, 0);
@@ -169,7 +177,6 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
 
    if(signature != 0x04034b50)
    {
-      delete[] buffer;
       throw jm::Exception(Tr("ZIP file Error. Signature of Entry wrong."));
    }
 
@@ -181,8 +188,10 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    mFile->seek(entry->mHeaderOffset + 30 + fl + el);
    mFile->Stream::readFully(input);
 
+   uint8* buffer=nullptr;
    if(cm == 0) //Daten uncompressed
    {
+      buffer = new uint8[entry->mUncompressedSize];
       memcpy(buffer, input.constData(), entry->mCompressedSize);
    }
    if(cm == 8) //Deflate
@@ -190,10 +199,11 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
       Inflater inf = Inflater(true);
       int64 control;
       inf.SetInput(reinterpret_cast<uint8*>(input.data()), entry->mCompressedSize);
+      // buffer is initialized and set by Inflater
       inf.Inflate(buffer, control);
    }
 
-   return new MemoryStream(buffer, entry->mUncompressedSize);
+   return new MemoryStream(buffer, entry->mUncompressedSize,true);
 }
 
 //

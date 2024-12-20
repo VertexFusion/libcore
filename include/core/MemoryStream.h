@@ -49,13 +49,17 @@ namespace jm
           */
          int64 mWritelength;
 
-
           /*!
            \brief Constructor.
            \param array The byte array on which the stream operations will be applied.
            \param length The length of the byte array.
            */
-         MemoryStream(uint8* array, int64 length);
+         MemoryStream(uint8* array, int64 length,bool takeOwnership=false);
+
+         /*!
+          \brief Destructor
+          */
+         ~MemoryStream();
 
           /*!
           \copdoc Stream::open()
@@ -119,6 +123,9 @@ namespace jm
            \brief The byte array that serves as the source or destination.
            */
          uint8* mStream;
+
+         //! Status if this object is stream owner
+         bool mStreamOwner;
 
           /*!
            \brief The length of the byte array.
