@@ -81,6 +81,11 @@ namespace jm
          static String userFullName();
 
          /*!
+          \brief Returns the first available MAC address of the system.
+          */
+         static String macAddress1();
+
+         /*!
           \brief Returns the bundleId which was provided on init()
           */
          static const String& bundleId();

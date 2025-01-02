@@ -197,7 +197,7 @@ jm::String jm::System::userFullName()
 {
    #ifdef __APPLE__ //macOS und iOS
 
-   return "Not implemented";//String(getenv("USER"));
+   return " jm::System::userFullName() not implemented";//String(getenv("USER"));
 
    #elif defined __linux__//Linux
 
@@ -209,7 +209,7 @@ jm::String jm::System::userFullName()
       return pw->pw_gecos;
    }
 
-   return "Not Found";
+   return "userFullName Not Found";
 
    #elif defined _WIN32//Windows
 
@@ -224,7 +224,7 @@ jm::String jm::System::userFullName()
    // Name could not be determined. Get it differently.
    // Explicit type conversion under VC++ 2010 added.
    ret = GetUserNameEx(NameSamCompatible, (LPWSTR)user_name, &user_name_size);
-   if(ret == 0)return "<ERROR while searching username>";
+   if(ret == 0)return "userFullName Not Found";
 
    // Name has form "Uwe-PC\Uwe"
    String str = String(user_name, user_name_size);
@@ -233,6 +233,74 @@ jm::String jm::System::userFullName()
    #endif
 
 }
+
+jm::String jm::System::macAddress1()
+{
+#ifdef __APPLE__ //macOS und iOS
+
+   struct ifaddrs *ifap, *ifa;
+   char macAddress[18] = {0};
+
+   if (getifaddrs(&ifap) == -1)
+   {
+       perror("getifaddrs");
+       return "";
+   }
+
+   for (ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
+   {
+       if (ifa->ifa_addr->sa_family == AF_LINK) // check for ethernet
+       {
+           struct sockaddr_dl *sdl = (struct sockaddr_dl*)ifa->ifa_addr;
+           if (sdl->sdl_type == IFT_ETHER) // Ethernet interface
+           {
+               unsigned char *mac = (unsigned char *)LLADDR(sdl);
+               snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
+                        mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+               break;
+           }
+       }
+   }
+
+   freeifaddrs(ifap);
+
+   return jm::String(macAddress);
+
+#elif defined __linux__//Linux
+
+   struct ifaddrs *ifap, *ifa;
+   struct sockaddr_in *sa;
+   char macAddress[18] = {0};
+
+   if (getifaddrs(&ifap) == -1)
+   {
+       perror("getifaddrs");
+       return "";
+   }
+
+   for (ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
+   {
+       if (ifa->ifa_addr->sa_family == AF_LINK) // check for ethernet
+       {
+           struct sockaddr_dl *sdl = (struct sockaddr_dl*)ifa->ifa_addr;
+           if (sdl->sdl_type == IFT_ETHER) // Ethernet interface
+           {
+               unsigned char *mac = (unsigned char *)LLADDR(sdl);
+               snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
+                        mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+               break;
+           }
+       }
+   }
+
+   freeifaddrs(ifap);
+
+   return jm::String(macAddress);
+
+#elif defined _WIN32//Windows
+#endif
+}
+
 
 /*
 Windows specific:

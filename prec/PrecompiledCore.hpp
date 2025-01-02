@@ -61,6 +61,10 @@
 #include "dlfcn.h"//macos zum Laden von dylibs
 #include <sys/time.h>
 #include <cstdarg>
+#include <ifaddrs.h> // For MAC address
+#include <netinet/in.h> // For MAC address
+#include <net/if_types.h> // For MAC address
+#include <net/if_dl.h> // For MAC address
 
 #include "core/MacInterface.h"
 #elif defined __linux__ //Linux
@@ -82,6 +86,8 @@
 #include <dlfcn.h>
 #include <pwd.h>
 #include <sys/xattr.h> // For File Tags
+#include <ifaddrs.h> // For MAC address
+#include <netinet.h> // For MAC address
 
 #elif defined _WIN32 // Windows
 
