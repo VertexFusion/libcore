@@ -269,7 +269,7 @@ jm::String jm::System::macAddress1()
 #elif defined __linux__//Linux
 
    struct ifaddrs *ifap, *ifa;
-   struct sockaddr_in *sa;
+   struct sockaddr_ll *sll;
    char macAddress[18] = {0};
 
    if (getifaddrs(&ifap) == -1)
@@ -280,12 +280,12 @@ jm::String jm::System::macAddress1()
 
    for (ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
    {
-       if (ifa->ifa_addr->sa_family == AF_LINK) // check for ethernet
+       if (ifa->ifa_addr->sa_family == AF_PACKET) // check for ethernet
        {
-           struct sockaddr_dl *sdl = (struct sockaddr_dl*)ifa->ifa_addr;
-           if (sdl->sdl_type == IFT_ETHER) // Ethernet interface
+           sll = (struct sockaddr_ll*)ifa->ifa_addr;
+           if (sll->sll_protocol == htons(ETH_P_IP))
            {
-               unsigned char *mac = (unsigned char *)LLADDR(sdl);
+               unsigned char *mac = sll->sll_addr;
                snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
                         mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
                break;

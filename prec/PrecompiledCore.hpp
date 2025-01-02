@@ -68,6 +68,7 @@
 
 #include "core/MacInterface.h"
 #elif defined __linux__ //Linux
+
 #include <errno.h>
 #include <cstdlib>
 #include <stdint.h>
@@ -86,8 +87,19 @@
 #include <dlfcn.h>
 #include <pwd.h>
 #include <sys/xattr.h> // For File Tags
-#include <ifaddrs.h> // For MAC address
-#include <netinet.h> // For MAC address
+#include <ifaddrs.h>
+#include <arpa/inet.h>  
+#include <linux/if_packet.h>
+#include <linux/if_ether.h>
+
+#ifdef __ANDROID__
+#include <jni.h>
+
+// Implemented in nuitk
+JNIEnv* getJNIEnv();
+jobject activity();
+
+#endif
 
 #elif defined _WIN32 // Windows
 

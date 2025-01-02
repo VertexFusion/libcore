@@ -1040,10 +1040,38 @@ File jm::PropertyDir()
    //IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
    return File(home, "Library");
    #elif defined __linux__ //Linux
-   // A subdirectory around the home folder with the application name is provided as the property
-   // directory
-   char* home = getenv("HOME");
-   return File(home, "." + ExecName());
+
+      #ifdef __ANDROID__
+        JNIEnv* env = getJNIEnv();
+
+         if (env == nullptr)
+         {
+            return jm::File();
+         }
+
+         jobject act = activity();
+         jclass jClass = env->GetObjectClass(act);
+         jmethodID methodID = env->GetMethodID(jClass, "getFilesDirPath", "()Ljava/lang/String;");
+
+         jstring str = (jstring)env->CallObjectMethod(act, methodID);
+        jm::String text;
+        if(str!= nullptr)
+        {
+            const char* utf = env->GetStringUTFChars(str, 0);
+            text = jm::String(utf);
+        }
+
+        // Clean up local object references
+        env->DeleteLocalRef(jClass);
+        env->DeleteLocalRef(str);
+        return jm::File(text);
+      #else
+      // A subdirectory around the home folder with the application name is provided as the property
+      // directory
+      char* home = getenv("HOME");
+      return File(home, "." + ExecName());
+      #endif
+
    #elif defined _WIN32 //Windows
 
    return UserDir();
