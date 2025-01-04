@@ -63,6 +63,7 @@
 #include "PaintingBackend.h"
 #include "Point.h"
 #include "Rect.h"
+#include "Resource.h"
 #include "SAXParser.h"
 #include "Serializer.h"
 #include "Size.h"

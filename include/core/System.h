@@ -152,6 +152,11 @@ namespace jm
 
    };
 
+   //
+   // System API (only on Android necessary)
+   //
+   jm::String osSystemLanguage();
+
 }
 
 #endif

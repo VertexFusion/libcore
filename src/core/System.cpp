@@ -54,9 +54,27 @@ jm::String jm::System::language()
 
    #elif defined __linux__//Linux
 
-   //const char* = setlocale(LC_ALL, NULL);
+#ifdef __ANDROID__
+   return osSystemLanguage();
+#else
 
-   return "de-DE";
+   // Set the locale to the user's environment locale (if not already set)
+   if (setlocale(LC_ALL, "") == nullptr)
+   {
+       std::cerr << "Failed to set locale" << std::endl;
+   }
+
+   // Use nl_langinfo to get the language
+   const char* language = setlocale(LC_ALL, nullptr);
+
+   jm::String lang = jm::String(language);
+   int64 index=lang.indexOf('.');
+   //if(index>0)lang=lang.substring(0,index);
+   std::cout<<"LANG: "<<lang<<std::endl;
+   return lang;
+
+#endif
+
    #elif defined _WIN32//Windows
 
    LANGID langid = GetUserDefaultUILanguage();
@@ -176,11 +194,11 @@ jm::String jm::System::userId()
 {
    #ifdef __APPLE__ //macOS und iOS
 
-   return String(getenv("USER"));
+   return String(std::getenv("USER"));
 
    #elif defined __linux__//Linux
 
-   return String(getenv("USER"));
+   return String(std::getenv("USER"));
 
    #elif defined _WIN32//Windows
 

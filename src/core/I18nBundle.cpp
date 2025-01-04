@@ -40,13 +40,12 @@ I18nBundle::I18nBundle(const String& language):
 {
 }
 
-void I18nBundle::appendMo(File file)
+void I18nBundle::appendMo(Stream* file)
 {
-   if(!file.exists())
+   if(file->size()<=0)
    {
       if(System::bundleId().size() > 0)
-      System::log(Tr("Cannot find translation file: %1 %2")
-                  .arg(file.path())
+      System::log(Tr("Cannot find translation file: %1")
                   .arg(mLanguage),
                   LogLevel::kError);
 
@@ -54,20 +53,20 @@ void I18nBundle::appendMo(File file)
    }
 
    // Read file from disk
-   int64 length = file.size();
+   int64 length = file->size();
    ByteArray buf = ByteArray(length, 0);
-   Status status = file.open(FileMode::kRead);
+   Status status = file->open(FileMode::kRead);
    if(status != Status::eOK)
    {
-      System::log(Tr("Cannot open file: %1").arg(file.path()), LogLevel::kError);
+      System::log(Tr("Cannot open translation file"), LogLevel::kError);
       return;
    }
-   int64 check = file.Stream::readFully(buf);
-   file.close();
+   int64 check = file->readFully(buf);
+   file->close();
 
    if(check != length)
    {
-      System::log(Tr("File not fully read: %1").arg(file.path()), LogLevel::kError);
+      System::log(Tr("Translation file not fully read"), LogLevel::kError);
       return;
    }
    uint8* buffer = (uint8*)buf.constData();
@@ -81,12 +80,12 @@ void I18nBundle::appendMo(File file)
 
    if(magic != 0x950412de)
    {
-      System::log(Tr("File magic wrong: %1").arg(file.path()), LogLevel::kError);
+      System::log(Tr("Translation File magic wrong"), LogLevel::kError);
       return;
    }
    if(version != 0)
    {
-      System::log(Tr("MO file version not supported: %1").arg(file.path()), LogLevel::kError);
+      System::log(Tr("MO file version not supported: %1").arg(version), LogLevel::kError);
       return;
    }
 
@@ -143,8 +142,8 @@ void I18nBundle::initDefault()
 
    // Append Data only if bundle id is set
    if(jm::System::bundleId().size() == 0)return;
-   gDefaultTranslation->appendMo(transFileByBundleId(jm::kEmptyString,
-                                 gDefaultTranslation->mLanguage));
+   Resource res=transFileByBundleId(jm::kEmptyString,gDefaultTranslation->mLanguage);
+   gDefaultTranslation->appendMo(&res);
 }
 
 void I18nBundle::quitDefault()
@@ -156,7 +155,7 @@ void I18nBundle::quitDefault()
    }
 }
 
-jm::File I18nBundle::transFileByBundleId(const String& filename,
+jm::Resource I18nBundle::transFileByBundleId(const String& filename,
       const String& lang)
 {
    String language = lang;
@@ -166,17 +165,16 @@ jm::File I18nBundle::transFileByBundleId(const String& filename,
    language = language.replace('-', '_');
    // language should now have the form lang_REGION, for example: de_DE
 
-   // Resource of translations
-   const File resDir = ResourceDir(jm::System::bundleId());
-   const File translationDir = File(resDir, "translations");
+   jm::String dir="translations";
+   dir.append(jm::DIR_SEP);
 
    // Bundle-id + language
-   File translationFile = File(translationDir, filename + "." + language + ".mo");
+   Resource translationFile = Resource(dir + filename + "." + language + ".mo");
 
    // Maybe without bundle id ?
    if(translationFile.exists() == false)
    {
-      translationFile = File(translationDir, language + ".mo");
+      translationFile = Resource(dir + language + ".mo");
    }
    else return translationFile;
 
@@ -187,7 +185,7 @@ jm::File I18nBundle::transFileByBundleId(const String& filename,
       {
          language = language.substring(0, language.indexOf('_'));
       }
-      translationFile = File(translationDir, filename + "." + language + ".mo");
+      translationFile = Resource(dir +filename + "." + language + ".mo");
    }
    else return translationFile;
 
@@ -198,7 +196,7 @@ jm::File I18nBundle::transFileByBundleId(const String& filename,
       {
          language = language.substring(0, language.indexOf('_'));
       }
-      translationFile = File(translationDir, language + ".mo");
+      translationFile = Resource(dir + language + ".mo");
    }
    else return translationFile;
 

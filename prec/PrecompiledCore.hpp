@@ -81,6 +81,7 @@
 #include <cxxabi.h>
 #include <pthread.h>
 #include <locale.h>
+#include <langinfo.h>
 #include <sys/syscall.h>
 #include <stdlib.h>
 #include <sys/types.h>

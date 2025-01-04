@@ -37,7 +37,7 @@ using namespace jm;
 // ZIP FILE
 //
 
-ZipFile::ZipFile(File* file): jm::Object(),
+ZipFile::ZipFile(Stream* file): jm::Object(),
    mEntries(this)
 {
    mFile = file;

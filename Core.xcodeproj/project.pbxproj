@@ -223,6 +223,8 @@
 		C6E844CA2CB8236A00432AFD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C32CB8236A00432AFD /* Point.cpp */; };
 		C6E844CB2CB8236A00432AFD /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C42CB8236A00432AFD /* Rect.cpp */; };
 		C6F0F51D2AF63BED005BA06F /* EditableObjectTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */; };
+		C6F6B3322D29B11C00DBD374 /* Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F6B3312D29B11C00DBD374 /* Resource.cpp */; };
+		C6F6B3332D29B11C00DBD374 /* Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6F6B3312D29B11C00DBD374 /* Resource.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -488,6 +490,8 @@
 		C6F0F51B2AF63BED005BA06F /* EditableObjectTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObjectTest.cpp; path = test/core/EditableObjectTest.cpp; sourceTree = "<group>"; };
 		C6F0F51C2AF63BED005BA06F /* EditableObjectTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditableObjectTest.h; path = test/core/EditableObjectTest.h; sourceTree = "<group>"; };
 		C6F0F51E2AF63C15005BA06F /* EditableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EditableObject.cpp; path = src/core/EditableObject.cpp; sourceTree = "<group>"; };
+		C6F6B3302D29B0B400DBD374 /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resource.h; path = include/core/Resource.h; sourceTree = "<group>"; };
+		C6F6B3312D29B11C00DBD374 /* Resource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Resource.cpp; path = src/core/Resource.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -621,6 +625,7 @@
 		C62B905D2AEEFC4B0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C6F6B3312D29B11C00DBD374 /* Resource.cpp */,
 				C6E844C32CB8236A00432AFD /* Point.cpp */,
 				C6E844C42CB8236A00432AFD /* Rect.cpp */,
 				C6E844C52CB8236A00432AFD /* Size.cpp */,
@@ -695,6 +700,7 @@
 		C62B90D62AEEFC5F0085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C6F6B3302D29B0B400DBD374 /* Resource.h */,
 				C6E844C02CB8235100432AFD /* Point.h */,
 				C6E844C12CB8235100432AFD /* Rect.h */,
 				C6E844C22CB8235100432AFD /* Size.h */,
@@ -916,6 +922,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C64321E62B9BB75000D75F5E /* ByteArray.cpp in Sources */,
+				C6F6B3322D29B11C00DBD374 /* Resource.cpp in Sources */,
 				C64321E72B9BB75000D75F5E /* EditableObject.cpp in Sources */,
 				C64321E82B9BB75000D75F5E /* AutoreleasePool.cpp in Sources */,
 				C64321E92B9BB75000D75F5E /* Base64.cpp in Sources */,
@@ -990,6 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C69922462AF7AA660099AEC0 /* SAXAttributes.cpp in Sources */,
+				C6F6B3332D29B11C00DBD374 /* Resource.cpp in Sources */,
 				C699223D2AF7AA660099AEC0 /* NURBS.cpp in Sources */,
 				C69922412AF7AA660099AEC0 /* Serializer.cpp in Sources */,
 				C699224D2AF7AA660099AEC0 /* Character.cpp in Sources */,

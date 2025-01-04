@@ -33,6 +33,7 @@
 #define jm_I18nBundle_h
 
 #include "Preferences.h"
+#include "Resource.h"
 
 /*!
 \brief Quick macro for translation
@@ -61,9 +62,9 @@ namespace jm
 
          /*!
          	\brief This method reads a *.mo file and adds the content to this bundle.
-         	\param file The mo file.
+         	\param stream The mo resource (file, resource etc.).
          	*/
-         void appendMo(File file);
+         void appendMo(Stream* stream);
 
          String translate(const String& key) const;
 
@@ -86,7 +87,7 @@ namespace jm
          /*!
           \brief Try to examine the language file for given bundle-id
           */
-         static jm::File transFileByBundleId(const String& filename,
+         static jm::Resource transFileByBundleId(const String& filename,
                                              const String& language);
 
       private:

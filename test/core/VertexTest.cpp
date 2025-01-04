@@ -22,7 +22,6 @@
 #include "core/Math.h"
 
 
-using namespace std;
 using namespace jm;
 
 VertexTest::VertexTest(): Test()

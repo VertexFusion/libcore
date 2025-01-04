@@ -98,9 +98,9 @@ namespace jm
 
            /*!
             \brief Constructor for ZipFile class.
-            \param file A pointer to the File object representing the ZIP file.
+            \param file A pointer to the Stream object representing the ZIP file.
             */
-          ZipFile(File* file);
+          ZipFile(Stream* file);
 
          /*!
           \brief Destructor
@@ -156,7 +156,7 @@ namespace jm
       private:
 
           //! The file.
-          File* mFile;
+          Stream* mFile;
 
           //! The entries
          LinkedList mEntries;

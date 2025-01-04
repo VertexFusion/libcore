@@ -31,7 +31,6 @@
 
 #include "PrecompiledCore.hpp"
 
-using namespace std;
 using namespace jm;
 
 String::String(): Object(), Comparable<String>(),
@@ -1166,7 +1165,7 @@ bool jm::operator==(String const& v1, String const& v2)
 namespace jm
 {
 
-   ostream& operator << (ostream& out, const String& str)
+   std::ostream& operator << (std::ostream& out, const String& str)
    {
       //\todo It is best to set and get the charset globally. It's inefficient that way
       if(gConsoleCharset == nullptr)gConsoleCharset = Charset::forName("Windows-1252");
@@ -1176,7 +1175,7 @@ namespace jm
       return out;
    }
 
-   istream& operator>> (istream& in, String& str)
+   std::istream& operator>> (std::istream& in, String& str)
    {
       char cstr[256];
       in.getline(cstr, 256);
