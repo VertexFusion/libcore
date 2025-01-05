@@ -316,6 +316,7 @@ jm::String jm::System::macAddress1()
    return jm::String(macAddress);
 
 #elif defined _WIN32//Windows
+return jm::kEmptyString;
 #endif
 }
 
