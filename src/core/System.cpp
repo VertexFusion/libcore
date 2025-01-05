@@ -69,7 +69,7 @@ jm::String jm::System::language()
 
    jm::String lang = jm::String(language);
    int64 index=lang.indexOf('.');
-   //if(index>0)lang=lang.substring(0,index);
+   if(index>0)lang=lang.substring(0,index);
    std::cout<<"LANG: "<<lang<<std::endl;
    return lang;
 

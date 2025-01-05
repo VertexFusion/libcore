@@ -586,6 +586,7 @@
     <ClCompile Include="src\core\Preferences.cpp" />
     <ClCompile Include="src\core\Property.cpp" />
     <ClCompile Include="src\core\Rect.cpp" />
+    <ClCompile Include="src\core\Resource.cpp" />
     <ClCompile Include="src\core\SAXAttributes.cpp" />
     <ClCompile Include="src\core\SAXParser.cpp" />
     <ClCompile Include="src\core\Serializer.cpp" />
