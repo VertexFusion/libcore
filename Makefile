@@ -84,6 +84,7 @@ SOURCES =\
  $(PATH_CORE)/Property.cpp\
  $(PATH_CORE)/Point.cpp\
  $(PATH_CORE)/Rect.cpp\
+ $(PATH_CORE)/Resource.cpp\
  $(PATH_CORE)/SAXAttributes.cpp\
  $(PATH_CORE)/SAXParser.cpp\
  $(PATH_CORE)/Serializer.cpp\
