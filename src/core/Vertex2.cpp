@@ -123,6 +123,16 @@ Vertex2& Vertex2::rotate(double angle)
    return *this;
 }
 
+Vertex2 Vertex2::rotated(double angle) const
+{
+   // Direction of rotation is counterclockwise.
+   double nx = x * cos(angle) - y * sin(angle);
+   double ny = x * sin(angle) + y * cos(angle);
+
+   return Vertex2(nx,ny);
+}
+
+
 Vertex2 Vertex2::scale(const Vertex2& another) const
 {
    return Vertex2(x * another.x, y * another.y);

@@ -153,6 +153,12 @@ namespace jm
          Vertex2& rotate(double angle);
 
          /*!
+          \brief This method returns a rotated vector around the Z-axis with the specified angle.
+          \param angle The angle of rotation in the mathematical positive sense in radians.
+          */
+         Vertex2 rotated(double angle) const;
+
+         /*!
           \brief This method multiplies this vector line by line with the other vector.
           \return Returns the result of the calculation. This vector remains unchanged.
           */
