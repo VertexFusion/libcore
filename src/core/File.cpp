@@ -967,8 +967,11 @@ File jm::ResourceDir(const String& bundleId)
       //Aufräumen
       CFRelease(cfstr);
 
-      System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
-                  LogLevel::kError);
+      if(!bundleId.isEmpty())
+      {
+         System::log(Tr("BundleRef for %1 not found. Cannot determine resource directory.").arg(bundleId),
+                     LogLevel::kError);
+      }
       return File("/");
    }
 
