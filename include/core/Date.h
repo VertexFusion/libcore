@@ -127,8 +127,9 @@ namespace jm
           \param seconds Seconds (0-59)
           \param millis Milliseconds (0-999)
           */
-         Date(uint16 year, uint16 month, uint16 day, uint16 hours, uint16 minutes, uint16 seconds,
-              uint16 millis);
+         Date(uint16 year, uint16 month, uint16 day,
+              uint16 hours, uint16 minutes, uint16 seconds,
+              uint16 millis=0);
 
          /*!
           \brief Constructor for a Date value given as a NSDate double value (typically on Mac)

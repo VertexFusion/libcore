@@ -738,7 +738,7 @@ namespace jm
 
          StringList(const StringList& other);
 
-         StringList(const jm::String& string);
+         explicit StringList(const jm::String& string);
 
          virtual ~StringList();
 
