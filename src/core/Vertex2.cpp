@@ -190,7 +190,12 @@ Vertex2 Vertex2::operator/(double d) const
    return Vertex2(x / d, y / d);
 }
 
-bool jm::operator!=(Vertex2 const& v1, Vertex2 const& v2)
+bool jm::operator==(const Vertex2& v1, const Vertex2& v2)
+{
+   return isEqual(v1.x, v2.x) && isEqual(v1.y, v2.y);
+}
+
+bool jm::operator!=(const Vertex2& v1, const Vertex2& v2)
 {
    return isNotEqual(v1.x, v2.x) || isNotEqual(v1.y, v2.y) ;
 }

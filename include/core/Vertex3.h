@@ -224,13 +224,13 @@ namespace jm
          Vertex3 operator-(const Vertex3& v1) const;
 
          /*!
-         \brief Implementation of the operator ==
+         \brief Implementation of the operator <<
          */
          DllExport
          friend std::ostream& operator<< (std::ostream& out, const Vertex3& vertex);
 
          /*!
-         \brief Implementation of the operator ==
+         \brief Implementation of the operator <<
          */
          DllExport
          friend String& operator<< (String& out, const Vertex3& vertex);
@@ -253,13 +253,13 @@ namespace jm
     \brief Implementation of the operator ==
     */
    DllExport
-   bool operator==(Vertex3 const& v1, Vertex3 const& v2);
+   bool operator==(const Vertex3& v1, const Vertex3& v2);
 
    /*!
     \brief Implementation of the operator !=
     */
    DllExport
-   bool operator!=(Vertex3 const& v1, Vertex3 const& v2);
+   bool operator!=(const Vertex3& v1, const Vertex3& v2);
 
    /*!
     \brief Implementation of the operator *

@@ -223,7 +223,6 @@ bool jm::operator!=(Vertex3 const& v1, Vertex3 const& v2)
    return isNotEqual(v1.x, v2.x) || isNotEqual(v1.y, v2.y) || isNotEqual(v1.z, v2.z);
 }
 
-
 bool jm::operator==(Vertex3 const& v1, Vertex3 const& v2)
 {
    return isEqual(v1.x, v2.x) && isEqual(v1.y, v2.y) && isEqual(v1.z, v2.z);

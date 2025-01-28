@@ -203,6 +203,12 @@ namespace jm
    Vertex2 operator*(const Vertex2& v1, double d);
 
    /*!
+    \brief Implementation of the operator ==
+    */
+   DllExport
+   bool operator==(const Vertex2& v1, const Vertex2& v2);
+
+   /*!
     \brief Implementation of the operator -=
     */
    DllExport
