@@ -318,9 +318,10 @@ namespace jm
          {
             mLength = (uint32)list.size();
             mData = new float[mLength];
-            std::initializer_list<float>::iterator it;
             uint32 cnt = 0;
-            for(it = list.begin(); it != list.end(); ++it)
+            for(std::initializer_list<float>::iterator it = list.begin();
+                it != list.end();
+                ++it)
             {
                mData[cnt++] = *it;
             }
