@@ -55,15 +55,15 @@ namespace jm
            \brief This method checks if the list contains another element.
            \return "true" if there is at least one more element in the list, otherwise "false".
            */
-         virtual bool hasNext() = 0;
+         virtual bool hasNext() noexcept = 0;
 
           /*!
            \brief This method iterates to the next element in the list and returns it.
-           \return A pointer to the next element in the list.
+           \return A pointer to the next element in the list. Returns nullptr, if end if list reached
            */
-         virtual Object* next() = 0;
+         virtual Object* next() noexcept = 0;
 
-         virtual ~Iterator();
+         virtual ~Iterator() noexcept;
    };
 
 

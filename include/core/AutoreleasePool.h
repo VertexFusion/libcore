@@ -92,7 +92,7 @@ namespace jm
           void add(Object* object);
 
           //! Allow Object::autorelease() access to AddObject().
-          friend Object* Object::autorelease();
+          friend Object* Object::autorelease() noexcept;
 
    };
 }

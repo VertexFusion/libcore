@@ -119,7 +119,7 @@ namespace jm
          /*!
           \brief Copy constructor
           */
-         String(const String& another);
+         String(const String& another) noexcept;
 
          /*!
           \brief Destructor

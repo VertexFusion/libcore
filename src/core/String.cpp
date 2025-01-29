@@ -49,7 +49,7 @@ mHash(0)
    copy(array);
 }
 
-String::String(const String& another): Object(), Comparable<String>(),
+String::String(const String& another) noexcept: Object(), Comparable<String>(),
 mArrLength(another.mArrLength),
 mStrLength(another.mStrLength),
 mHash(another.mHash)

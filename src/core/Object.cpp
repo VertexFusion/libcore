@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-Object::Object():
+Object::Object() noexcept:
    mRefCount(1),
    mPool(System::autoreleasePool())
 {
@@ -41,12 +41,12 @@ Object::Object():
    //mRefCount=2;
 }
 
-Object::~Object()
+Object::~Object() noexcept
 {
    mPool = nullptr;
 }
 
-void Object::release()
+void Object::release() noexcept
 {
    if(mPool == nullptr)return;
 
@@ -68,7 +68,7 @@ void Object::release()
    }
 }
 
-Object* Object::retain()
+Object* Object::retain() noexcept
 {
    Mutex* mutex = mPool->mutex();
    mutex->lock();
@@ -77,13 +77,13 @@ Object* Object::retain()
    return this;
 }
 
-Object* Object::autorelease()
+Object* Object::autorelease() noexcept
 {
    mPool->add(this);
    return this;
 }
 
-int32 Object::referenceCount() const
+int32 Object::referenceCount() const noexcept
 {
    return mRefCount & 0x7FFFFFFF;
 }
@@ -103,12 +103,12 @@ void Object::printDiffInfo(DiffOperation, Object*) const
    // Nothing to do here. Placeholder method.
 }
 
-void Object::setHighBit(bool status)
+void Object::setHighBit(bool status) noexcept
 {
    mRefCount = referenceCount() | (status ? 0x80000000 : 0x00000000);
 }
 
-bool Object::highBit()const
+bool Object::highBit()const noexcept
 {
    return (mRefCount & 0x80000000) != 0;
 }

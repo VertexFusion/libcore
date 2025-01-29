@@ -66,9 +66,9 @@ namespace jm
 
          LinkedListIterator(const LinkedListIterator& other);
 
-         bool hasNext();
+         bool hasNext() noexcept override;
 
-         Object* next();
+         Object* next()  noexcept override;
 
          // Return the next object without moving the iterator
          Object* seek() const;

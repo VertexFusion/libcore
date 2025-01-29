@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-Hashtable::Hashtable(): Object(),
+Hashtable::Hashtable() noexcept: Object(),
 mArrLength(7),
 mDataLength(0),
 mLoadfactor(0.75f),
@@ -43,7 +43,7 @@ mThreshold(mArrLength * mLoadfactor)
    memset(mData, 0, sizeof(HashtableEntry*) * mArrLength);
 }
 
-Hashtable::~Hashtable()
+Hashtable::~Hashtable() noexcept
 {
    clear();
    delete[] mData;
@@ -51,7 +51,7 @@ Hashtable::~Hashtable()
    mArrLength = 0;
 }
 
-void* Hashtable::put(String key, void* value)
+void* Hashtable::put(String key, void* value) noexcept
 {
    // Make sure that no entry already exists in the hash table.
    int64 hash = key.hashCode();
@@ -85,7 +85,7 @@ void* Hashtable::put(String key, void* value)
    return nullptr;
 }
 
-void* Hashtable::get(const String& key) const
+void* Hashtable::get(const String& key) const noexcept
 {
    int64 hash = key.constHashCode();
 
@@ -101,12 +101,12 @@ void* Hashtable::get(const String& key) const
    return nullptr;
 }
 
-bool Hashtable::containsKey(const String& key) const
+bool Hashtable::containsKey(const String& key) const noexcept
 {
    return get(key)!=nullptr;
 }
 
-void* Hashtable::remove(const String& key)
+void* Hashtable::remove(const String& key) noexcept
 {
    int64 hash = key.constHashCode();
    int64 index = (hash & 0x7FFFFFFF) % mArrLength;
@@ -141,7 +141,7 @@ void* Hashtable::remove(const String& key)
    return nullptr;
 }
 
-void Hashtable::clear()
+void Hashtable::clear() noexcept
 {
    for(int64 index = 0; index < mArrLength; index++)
    {
@@ -157,12 +157,12 @@ void Hashtable::clear()
    mDataLength = 0;
 }
 
-int64 Hashtable::size() const
+int64 Hashtable::size() const noexcept
 {
    return mDataLength;
 }
 
-void Hashtable::rehash()
+void Hashtable::rehash() noexcept
 {
    int64 oldLength = mArrLength;
    HashtableEntry** oldData = mData;
@@ -195,12 +195,12 @@ void Hashtable::rehash()
    mData = newData;
 }
 
-Iterator* Hashtable::keys()
+Iterator* Hashtable::keys() noexcept
 {
    return new HashtableIterator(this, true);
 }
 
-Iterator* Hashtable::values()
+Iterator* Hashtable::values() noexcept
 {
    return new HashtableIterator(this, false);
 }
@@ -210,7 +210,7 @@ Iterator* Hashtable::values()
  HashtableIterator
 */
 
-Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey): Iterator(),
+Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey) noexcept: Iterator(),
 retKey(_retKey),
 table(_table),
 entry(nullptr),
@@ -218,7 +218,7 @@ last(nullptr),
 index(0)
 {}
 
-bool Hashtable::HashtableIterator::hasNext()
+bool Hashtable::HashtableIterator::hasNext() noexcept
 {
    while(entry == nullptr && index < table->mArrLength)
    {
@@ -227,7 +227,7 @@ bool Hashtable::HashtableIterator::hasNext()
    return entry != nullptr;
 }
 
-Object* Hashtable::HashtableIterator::next()
+Object* Hashtable::HashtableIterator::next() noexcept
 {
    while(entry == nullptr && index < table->mArrLength)
    {
@@ -240,22 +240,21 @@ Object* Hashtable::HashtableIterator::next()
       entry = entry->next;
       return reinterpret_cast<Object*>((retKey) ? & (last->key) : last->value);
    }
-   else throw Exception("No such element in hashtable iterator.");
-
+   else return nullptr;
 }
 
 /*
  HASHTABLE_ENTRY
  */
 
-Hashtable::HashtableEntry::HashtableEntry():
+Hashtable::HashtableEntry::HashtableEntry() noexcept:
 hash(0),
 key(jm::kEmptyString),
 value(nullptr),
 next(nullptr)
 {}
 
-Hashtable::HashtableEntry::~HashtableEntry()
+Hashtable::HashtableEntry::~HashtableEntry() noexcept
 {
    hash = 0;
    value = nullptr;

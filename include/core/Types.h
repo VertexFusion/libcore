@@ -116,36 +116,36 @@ static const unsigned long __ninf[2] = {0xfff00000, 0x00000000};
 #define NEGATIVE_INFINITY (*(const double *) __ninf)
 #endif
 
-typedef signed char         int8;
-typedef unsigned char       uint8;
-typedef short               int16;
-typedef unsigned short      uint16;
-typedef int                 int32;
-typedef unsigned int        uint32;
+using int8 = signed char;
+using uint8 = unsigned char;
+using int16 = short;
+using uint16 = unsigned short;
+using int32 = int;
+using uint32 = unsigned int;
 
 #ifdef __APPLE__
 
 #define DllExport
-typedef __int64_t           int64;
-typedef __uint64_t          uint64;
-typedef long                slong;
-typedef unsigned long       ulong;
+using int64 = __int64_t;
+using uint64 = __uint64_t;
+using slong = long;
+using ulong = unsigned long;
 #define WITHULONG
 
 #elif defined __linux__
 
 #define DllExport
-typedef __int64_t           int64;
-typedef __uint64_t          uint64;
-typedef long                slong;
+using int64 = __int64_t;
+using uint64 = __uint64_t;
+using slong = long;
 
 #elif defined _WIN32
 
 #define DllExport   __declspec( dllexport )
-typedef __int64           int64;
-typedef unsigned __int64  uint64;
-typedef long                slong;
-typedef unsigned long       ulong;
+using int64 = __int64;
+using uint64 = unsigned __int64;
+using slong = long;
+using ulong = unsigned long;
 #define WITHULONG
 
 #endif

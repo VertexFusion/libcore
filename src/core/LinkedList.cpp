@@ -327,13 +327,14 @@ LinkedListIterator::LinkedListIterator(const LinkedListIterator& other)
 }
 
 
-bool LinkedListIterator::hasNext()
+bool LinkedListIterator::hasNext() noexcept
 {
    return current != nullptr;
 }
 
-Object* LinkedListIterator::next()
+Object* LinkedListIterator::next() noexcept
 {
+   if(current==nullptr)return nullptr;
    Object* ret = current->data;
    current = current->next;
    return ret;

@@ -53,12 +53,12 @@ namespace jm
           /*!
            \brief Default constructor for the Hashtable class.
            */
-         Hashtable();
+         Hashtable() noexcept;
 
           /*!
            \brief Destructor for the Hashtable class.
            */
-         ~Hashtable();
+         ~Hashtable() noexcept;
 
 
           /*!
@@ -67,7 +67,7 @@ namespace jm
            \param value The pointer to the object to be inserted.
            \return If an old object is replaced, it is returned.
            */
-         void* put(String key, void* value);
+         void* put(String key, void* value) noexcept;
 
           /*!
            \brief This method returns the object associated with the specified key.
@@ -75,65 +75,65 @@ namespace jm
            \return A pointer to the object associated with the key, or nullptr if the object is not
            present in the hashtable.
            */
-         void* get(const String& key) const;
+         void* get(const String& key) const noexcept;
 
           /*!
            \brief This method removes the object associated with the specified key.
            \param key The key to which the object is associated.
            \return A pointer to the object that was removed, or nullptr if the object was not found.
            */
-         void* remove(const String& key);
+         void* remove(const String& key) noexcept;
 
          /*!
           \brief Returns the number of entries in this hash table.
           */
-         int64 size() const;
+         int64 size() const noexcept;
 
           /*!
            \brief This method returns true if the hashtable is empty.
            \return true if the hashtable is empty, false otherwise.
            */
-         bool isEmpty() const;
+         bool isEmpty() const noexcept;
 
           /*!
            \brief This method returns true if an object is associated with the specified key.
            \param key The key for which the object is being checked.
            \return true if an object is associated with the key, false otherwise.
            */
-         bool containsKey(const String& key) const;
+         bool containsKey(const String& key) const noexcept;
 
           /*!
            \brief This method returns true if the hashtable contains an object associated with the specified value.
            \param value The value to search for.
            \return true if an object is associated with the value, false otherwise.
            */
-         bool containsValue(void* value) const;
+         bool containsValue(void* value) const noexcept;
 
           /*!
            \brief This method returns an object of the "Iterator" class that iterates through
            the keys of this table.
            \return An Iterator object that iterates through the keys of this table.
            */
-         Iterator* keys();
+         Iterator* keys() noexcept;
 
           /*!
            \brief This method returns an object of the "Iterator" class that iterates through
            the values of this table.
            \return An Iterator object that iterates through the values of this table.
            */
-         Iterator* values();
+         Iterator* values() noexcept;
 
           /*!
            \brief This method removes all elements from the Hashtable.
            */
-         void clear();
+         void clear() noexcept;
 
       protected:
 
           /*!
            \brief This method increases the capacity of the Hashtable.
            */
-         void rehash();
+         void rehash() noexcept;
 
       private:
 
@@ -154,8 +154,8 @@ namespace jm
 
             //! Pointer to the next entry in the linked list.
             HashtableEntry* next;
-            HashtableEntry();
-            ~HashtableEntry();
+            HashtableEntry() noexcept;
+            ~HashtableEntry() noexcept;
          };
 
           //! \brief This field stores the data of the Hashtable.
@@ -188,17 +188,17 @@ namespace jm
                 \param table A pointer to the Hashtable object being iterated.
                 \patam retKey A boolean value indicating whether the iterator should return keys or values.
                 */
-               HashtableIterator(Hashtable* table, bool retKey);
+               HashtableIterator(Hashtable* table, bool retKey) noexcept;
 
                /*!
                 \copydoc Iterator::hasNext()
                 */
-               bool hasNext() override;
+               bool hasNext() noexcept override;
 
                /*!
                 \copydoc Iterator::next()
                 */
-               Object* next() override;
+               Object* next() noexcept override;
 
             private:
                //! retKey A boolean value indicating whether the iterator should return keys or values.

@@ -52,37 +52,37 @@ namespace jm
          /*!
           \brief Constructor.
           */
-         Object();
+         Object() noexcept;
 
          /*!
           \brief Destructor.
           */
-         virtual ~Object();
+         virtual ~Object() noexcept;
 
          /*!
           \brief Decreases the reference counter and releases the object immediately when the
           reference counter becomes 0.
           */
-         void release();
+         void release() noexcept;
 
          /*!
           \brief Increases the reference counter of this object by 1.
           \note An object is automatically released when the reference counter becomes 0.
           \return Reference to this object.
           */
-         Object* retain();
+         Object* retain() noexcept;
 
          /*!
           \brief Same function as release(), but releases the object with a delay if the reference
           counter is 0. AutoreleasePool::drain() must be called in the to release the object.
           \return Reference to this object.
           */
-         Object* autorelease();
+         Object* autorelease() noexcept;
 
          /*!
           \brief Returns the value of the reference counter.
           */
-         int32 referenceCount() const;
+         int32 referenceCount() const noexcept;
 
          /*!
           \brief Comparison of objects.
@@ -107,8 +107,8 @@ namespace jm
          virtual void printDiffInfo(DiffOperation operation, Object* other) const;
 
          // Methods for flagging the object
-         void setHighBit(bool status);
-         bool highBit()const;
+         void setHighBit(bool status) noexcept;
+         bool highBit()const noexcept;
 
       private:
 
