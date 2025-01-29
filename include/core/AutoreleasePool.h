@@ -55,7 +55,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~AutoreleasePool() final;
+         ~AutoreleasePool();
 
          /*!
           \brief Sends a release() to all objects accumulated in the AutoreleasePool.
