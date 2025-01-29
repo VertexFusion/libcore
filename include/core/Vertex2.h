@@ -63,20 +63,20 @@ namespace jm
          /*!
           \brief Constructor creates null vector.
           */
-         Vertex2();
+         Vertex2() noexcept;
 
          /*!
           \brief Constructor creates arbitrary vector
           \param x X-component of the vector
           \param y y-component of the vector
           */
-         Vertex2(double x, double y);
+         Vertex2(double x, double y) noexcept;
 
          /*!
           \brief Copy constructor
           \param v3 The other 3d-vector. The z-component is ignored.
           */
-         explicit Vertex2(const Vertex3& v3);
+         explicit Vertex2(const Vertex3& v3) noexcept;
 
          /*!
           \brief This method returns the absolute value of the vector. The absolute value is equal to the length.

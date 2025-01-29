@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-UndoChange::UndoChange(Object* object)
+UndoChange::UndoChange(Object* object) noexcept
 {
    mPrev = nullptr;
    mNext = nullptr;
@@ -42,7 +42,7 @@ UndoChange::UndoChange(Object* object)
    objname = mObject->displayName();
 }
 
-UndoChange::~UndoChange()
+UndoChange::~UndoChange() noexcept
 {
    if(mObject->referenceCount() == 0)
    {

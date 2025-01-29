@@ -34,15 +34,15 @@
 using namespace jm;
 
 
-Vertex2::Vertex2()
+Vertex2::Vertex2() noexcept
 {}
 
-Vertex2::Vertex2(double xx, double yy):
+Vertex2::Vertex2(double xx, double yy) noexcept:
    x(xx),
    y(yy)
 {}
 
-Vertex2::Vertex2(const Vertex3& v3):
+Vertex2::Vertex2(const Vertex3& v3) noexcept:
    x(v3.x),
    y(v3.y)
 {}

@@ -73,12 +73,12 @@ namespace jm
            \brief Constructor for UndoChange class.
            \param object Pointer to the object in which the change is taking place.
            */
-          UndoChange(Object* object);
+          UndoChange(Object* object) noexcept;
 
          /*!
           \brief Destructor
           */
-         virtual ~UndoChange();
+         virtual ~UndoChange() noexcept;
 
           /*!
            \brief This method performs an undo/redo step by swapping the stored value (here) with the value pointed to by the pointer.
