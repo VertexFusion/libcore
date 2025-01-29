@@ -439,7 +439,7 @@ Color Color::FromHsv(float hue, float saturation, float value, float alpha)
    return c;
 }
 
-//Alpha-Blending nach  Porter Duff Algorithmus
+//Alpha-Blending acc. to Porter Duff Algorithm
 uint8 PorterDuffAlpha(uint8 alphaBackground, uint8 alphaForeground);
 uint8 PorterDuffAlpha(uint8 alphaBackground, uint8 alphaForeground)
 {
@@ -469,7 +469,7 @@ uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colo
 
 Color jm::blend(Color background, Color foreground, uint8 alpha)
 {
-   //Einfaches Alpha-Blendung für Nicht-Transparente Farben
+   //Simple Alpha-Blendung for non transparent color
    if(background.mAlpha == 255 && foreground.mAlpha == 255)
    {
       Color ret;
@@ -481,7 +481,7 @@ Color jm::blend(Color background, Color foreground, uint8 alpha)
       return ret;
    }
 
-   //Blending nach Porter Duff Algorithmus
+   //Blending acc. to Porter Duff Algorithm
    Color ret;
    ret.col.rgb.red = PorterDuffColour(background.col.rgb.red, background.mAlpha,
                                       foreground.col.rgb.red, foreground.mAlpha);
