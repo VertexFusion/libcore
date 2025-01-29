@@ -905,6 +905,7 @@ String jm::ExecPath()
    ssize_t len = ::readlink("/proc/self/exe", buff, sizeof(buff) - 1);
    if(len > 0)
    {
+      if(len>=1024)len=1023;
       buff[len] = '\0';
       return String(buff);
    }
