@@ -54,7 +54,7 @@ void DeflateTest::doTest()
    std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
    //Komprimieren
-   uint8* compressed = NULL;
+   uint8* compressed = nullptr;
    int64 compressedLength = 0;
    jm::Deflater deflater = jm::Deflater();
    deflater.reset();
@@ -64,7 +64,7 @@ void DeflateTest::doTest()
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
    //Dekomprimieren
-   uint8* restored = NULL;
+   uint8* restored = nullptr;
    int64 restoredLength = 0;
    jm::Inflater inflater = jm::Inflater();
    inflater.Reset();
@@ -645,7 +645,7 @@ void DeflateTest::doTest()
    std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
    //Komprimieren
-   compressed = NULL;
+   compressed = nullptr;
    compressedLength = 0;
    deflater.reset();
    deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
@@ -654,7 +654,7 @@ void DeflateTest::doTest()
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
    //Dekomprimieren
-   restored = NULL;
+   restored = nullptr;
    restoredLength = 0;
    inflater.Reset();
    inflater.SetInput(compressed, compressedLength);
@@ -685,7 +685,7 @@ void DeflateTest::doTest()
    std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
 
    //Komprimieren
-   compressed = NULL;
+   compressed = nullptr;
    compressedLength = 0;
    deflater.reset();
    deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
@@ -694,7 +694,7 @@ void DeflateTest::doTest()
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
    //Dekomprimieren
-   restored = NULL;
+   restored = nullptr;
    restoredLength = 0;
    inflater.Reset();
    inflater.SetInput(compressed, compressedLength);

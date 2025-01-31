@@ -93,7 +93,7 @@ void LinkedListTest::DoTest1()
    testEquals(l->hasNext(), false, "LinkedList fails (12)");
 
    //Addbefore
-   l->addBefore(&o3, &o6, NULL);
+   l->addBefore(&o3, &o6, nullptr);
 
    l->rewind();
    testEquals(l->hasNext(), true, "LinkedList fails (13a)");
@@ -123,7 +123,7 @@ void LinkedListTest::DoTest1()
    testEquals(l->hasNext(), false, "LinkedList fails (13m)");
 
    //Remove
-   l->remove(&o6, NULL);
+   l->remove(&o6, nullptr);
 
    l->rewind();
    testEquals(l->hasNext(), true, "LinkedList fails (13a)");
