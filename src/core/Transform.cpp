@@ -252,11 +252,11 @@ void Transform::initIdentity()
 
 Matrix jm::ocsMatrix(const jm::Vertex3& extrusion)
 {
-   //Koordinatenachsen des WCS
+   // Coordinate system axes of WCS
    jm::Vertex3 wy = jm::Vertex3(0.0, 1.0, 0.0);
    jm::Vertex3 wz = jm::Vertex3(0.0, 0.0, 1.0);
 
-   //Koordinatenachsen des OCS
+   // Coordinate system axes of OCS
    jm::Vertex3 ox;
    jm::Vertex3 oy;
    jm::Vertex3 oz = extrusion;
@@ -285,34 +285,18 @@ Matrix jm::wcsMatrix(const jm::Vertex3& extrusion)
 Vertex3 jm::wcsToOcs(jm::Vertex3 wcs,
                      jm::Vertex3 extrusion)
 {
-   /*	Matrix in = Matrix( 1, 3 );
-    in.Set( 0, 0, wcs.x );
-    in.Set( 0, 1, wcs.y );
-    in.Set( 0, 2, wcs.z );*/
-
    jm::Matrix OCS = ocsMatrix(extrusion);
-
+   
    //	Matrix out = in * OCS;
    jm::Vertex3 out = OCS * wcs;
    return out;
-   //	Vertex3 ocs = Vertex3( out.Get( 0, 0 ), out.Get( 0, 1 ), out.Get( 0, 2 ) );
-   //	return ocs;
 }
 
 Vertex3 jm::ocsToWcs(const jm::Vertex3& ocs, const jm::Vertex3& extrusion)
 {
-   /*	Matrix in = Matrix( 1, 3 );
-    in.Set( 0, 0, ocs.x );
-    in.Set( 0, 1, ocs.y );
-    in.Set( 0, 2, ocs.z );*/
-
    jm::Matrix WCS = wcsMatrix(extrusion);
 
    //	Matrix out = in * WCS;
    jm::Vertex3 out = WCS * ocs;
    return out;
-
-   //	Vertex3 wcs = Vertex3( out.Get( 0, 0 ), out.Get( 0, 1 ), out.Get( 0, 2 ) );
-
-   //	return wcs;
 }

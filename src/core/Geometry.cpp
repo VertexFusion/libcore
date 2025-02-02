@@ -214,9 +214,9 @@ Vertex3 jm::closestPointOnCircle(const Vertex3& point,
    // -> lambda = |r| / radius
    // Calculate the intersection.
 
-   Vertex3 loc = closestPointOnPlane(point, center, normal);
-   Vertex3 r = loc - center;
-   double lambda = r.abs() / radius;
+   const Vertex3 loc = closestPointOnPlane(point, center, normal);
+   const Vertex3 r = loc - center;
+   const double lambda = radius / r.abs();
    return center + r * lambda;
 }
 

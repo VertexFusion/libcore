@@ -164,6 +164,12 @@ namespace jm
            */
          void rotateZ(double angle);
 
+         /*!
+          \brief Rotates the vector around the Z-axis by the specified angle and returns the result.
+          \param angle The rotation angle in radians.
+          */
+         Vertex3 rotatedZ(double angle) const;
+
           /*!
            \brief Rotates the vector around the given axis by the specified angle.
            \param angle The rotation angle in radians.

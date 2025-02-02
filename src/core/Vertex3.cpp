@@ -128,6 +128,13 @@ void Vertex3::rotateZ(double angle)
    z = v.z;
 }
 
+Vertex3 Vertex3::rotatedZ(double angle) const
+{
+   Vertex3 result = *this;
+   result.rotateZ(angle);
+   return result;
+}
+
 void Vertex3::rotate(double angle, const Vertex3& axis)
 {
    Matrix r = Matrix::generate3x3RotationMatrix(angle, axis);

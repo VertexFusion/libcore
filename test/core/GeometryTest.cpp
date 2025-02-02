@@ -300,10 +300,7 @@ void GeometryTest::doTest()
 
    Vertex3 closestPointOnLine( Vertex3 position1, Vertex3 direction1, Vertex3 position2, Vertex3 direction2 );
 
-   Vertex3 closestPointOnLine( Vertex3 point, Vertex3 lineStart, Vertex3 lineEnd, bool extend );
-
-   Vertex3 closestPointOnCircle( Vertex3 point, Vertex3 center, double radius, Vertex3 normal );*/
-
+   Vertex3 closestPointOnLine( Vertex3 point, Vertex3 lineStart, Vertex3 lineEnd, bool extend );*/
 
    /*
     * Teste DistancePointToPlane
@@ -350,9 +347,37 @@ void GeometryTest::doTest()
 
    	double distancePointToLine( Vertex3 point, Vertex3 position, Vertex3 direction );
 
-   	double distancePointToLine( Vertex3 point, Vertex3 lineStart, Vertex3 lineEnd, bool extend );
+   	double distancePointToLine( Vertex3 point, Vertex3 lineStart, Vertex3 lineEnd, bool extend );*/
 
-   	double distancePointToCircle( Vertex3 point, Vertex3 center, double radius, Vertex3 normal );*/
+   // Test case 1: Point in circle plane
+   Vertex3 point(10.0, 10.0, 0.0);
+   Vertex3 center(0.0, 0.0, 0.0);
+   double radius = 5.0;
+   Vertex3 normal(0.0, 0.0, 1.0);
+
+   // Expected result
+   Vertex3 expected3d(5.0*cos(M_PI_4), 5.0*sin(M_PI_4), 0.0);
+
+   // Call the function
+   Vertex3 result3d = closestPointOnCircle(point, center, radius, normal);
+
+   testEquals(result3d.x, expected3d.x, "closestPointOnCircle fails (1x)");
+   testEquals(result3d.y, expected3d.y, "closestPointOnCircle fails (1y)");
+   testEquals(result3d.z, expected3d.z, "closestPointOnCircle fails (1z)");
+
+    // Test case 2: Point not on the plane
+    point = Vertex3(10.0, 10.0, 10.0);
+    center= Vertex3(0.0, 0.0, 0.0);
+    radius = 5.0;
+    normal = Vertex3(0.0, 0.0, 1.0);
+
+    expected3d= Vertex3(5.0*cos(M_PI_4), 5.0*sin(M_PI_4), 0.0);
+    result3d = closestPointOnCircle(point, center, radius, normal);
+
+   testEquals(result3d.x, expected3d.x, "closestPointOnCircle fails (2x)");
+   testEquals(result3d.y, expected3d.y, "closestPointOnCircle fails (2y)");
+   testEquals(result3d.z, expected3d.z, "closestPointOnCircle fails (2z)");
+
 
    /*
     * Teste DistanceLineToLine
