@@ -110,7 +110,6 @@ void TestVector::testrun(Test* test)
       test->testUnexpectedException(e.errorMessage());
    }
 
-
    System::log(Tr("Test finished! %1 Tests, %2 Errors.")
                .arg(gTestCount)
                .arg(gErrorCount),
