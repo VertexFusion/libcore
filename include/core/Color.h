@@ -78,7 +78,7 @@ namespace jm
          /*!
           \brief Converts the colour to the RGB colour space.
           */
-         void toRgb();
+         const Color& toRgb();
 
          /*!
           \brief Converts the colour to the CMYK colour space.

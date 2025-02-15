@@ -81,7 +81,7 @@ namespace jm
 
 }
 
-void Color::toRgb()
+const Color& Color::toRgb()
 {
    switch(mMode)
    {
@@ -113,6 +113,8 @@ void Color::toRgb()
          break;
       }
    }
+
+   return *this;
 }
 
 void Color::toGreyScale()
