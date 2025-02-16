@@ -286,7 +286,7 @@ Vertex3 jm::wcsToOcs(jm::Vertex3 wcs,
                      jm::Vertex3 extrusion)
 {
    jm::Matrix OCS = ocsMatrix(extrusion);
-   
+
    //	Matrix out = in * OCS;
    jm::Vertex3 out = OCS * wcs;
    return out;
