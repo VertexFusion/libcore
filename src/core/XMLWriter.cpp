@@ -110,23 +110,27 @@ void XMLWriter::startElement(const jm::String& name)
 
 void XMLWriter::endElement()
 {
-   if(mOpenElements->top().hasContent == false)
+   if(mOpenElements->size()>0)
    {
-      mOutput->write("/>");
-   }
-   else
-   {
-      if(mOpenElements->top().indent && mOpenElements->top().hasCharacters == false)
+      if(mOpenElements->top().hasContent == false)
       {
-         WriteIndent();
+         mOutput->write("/>");
+      }
+      else
+      {
+         if(mOpenElements->top().indent && mOpenElements->top().hasCharacters == false)
+         {
+            WriteIndent();
+         }
+
+         mOutput->write("</");
+         mOutput->write(mOpenElements->top().name);
+         mOutput->write(">");
       }
 
-      mOutput->write("</");
-      mOutput->write(mOpenElements->top().name);
-      mOutput->write(">");
+      mOpenElements->pop();
    }
-
-   mOpenElements->pop();
+   
    mLastIndent = false;
 }
 
