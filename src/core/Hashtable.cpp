@@ -40,7 +40,10 @@ mLoadfactor(0.75f),
 mThreshold(mArrLength * mLoadfactor)
 {
    mData = new HashtableEntry*[mArrLength]; // Array for data
-   memset(mData, 0, sizeof(HashtableEntry*) * mArrLength);
+   for (int64 i = 0; i < mArrLength; i++)
+   {
+      mData[i] = nullptr;  // Explicitly set each pointer to nullptr
+   }
 }
 
 Hashtable::~Hashtable() noexcept

@@ -1130,6 +1130,25 @@ File jm::UserDir()
 
 }
 
+File jm::TempDir()
+{
+   #ifdef __APPLE__ //macOS and ios
+   char* temp = getenv("TMPDIR");
+   return File(temp);
+   #elif defined __linux__ //Linux
+   char cwd[PATH_MAX];
+   getcwd(cwd, sizeof(cwd));
+   return File(cwd);
+   #elif defined _WIN32 //Windows
+   uint16 path[MAX_PATH];
+   memset(path, 0, MAX_PATH * sizeof(uint16));
+   LPWSTR ptr = (LPWSTR) & path[0];
+   uint32 size = GetCurrentDirectory(MAX_PATH, ptr);
+   String name = String((uint16*)path, size);
+   return File(name);
+   #endif
+}
+
 File jm::currentDir()
 {
    #ifdef __APPLE__ //macOS and ios

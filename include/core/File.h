@@ -419,6 +419,9 @@ namespace jm
    extern DllExport
    File UserDir();
 
+   extern DllExport
+   File TempDir();
+
    /*!
     \brief This method returns the current directory.
     */
