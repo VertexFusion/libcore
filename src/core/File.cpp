@@ -436,7 +436,7 @@ bool File::renameTo(const String& newPath)
    if(result == 0)
    {
       mCstr = newname;
-      mPathname=mCstr;
+      mPathname=String(mCstr);
 
       return true;
    }

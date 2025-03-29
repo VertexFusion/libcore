@@ -113,7 +113,7 @@ namespace jm
          /*!
           \brief Constructor sets up a matrix 1x1 with the numerical value as entry,
           */
-         Matrix(double value);
+         explicit Matrix(double value);
 
          /*!
           \brief Copy constructor

@@ -108,10 +108,18 @@ const jm::Point jm::operator-(const jm::Point& v1, const jm::Point& v2)
    return Point(v1.mX - v2.mX, v1.mY - v2.mY);
 }
 
-const jm::Point jm::operator*(const double& d, const jm::Point& v2)
+const jm::Point jm::operator*(const double& d, const jm::Point& p)
 {
    jm::Point r;
-   r.mX = d * v2.mX;
-   r.mY = d * v2.mY;
+   r.mX = d * p.mX;
+   r.mY = d * p.mY;
+   return r;
+}
+
+const jm::Point jm::operator*(const jm::Point& p,const double& d)
+{
+   jm::Point r;
+   r.mX = d * p.mX;
+   r.mY = d * p.mY;
    return r;
 }

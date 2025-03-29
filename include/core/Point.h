@@ -59,7 +59,7 @@ namespace jm
          */
          Point(double x, double y);
 
-         Point(const Vertex2 &v){mX=v.x;mY=v.y;};
+         explicit Point(const Vertex2 &v){mX=v.x;mY=v.y;};
 
          /*!
          \brief Returns the x-component of the point.
@@ -112,7 +112,10 @@ namespace jm
          friend const Point operator-(const Point& v1, const Point& v2);
 
          DllExport
-         friend const Point operator*(const double &d, const Point &v2);
+         friend const Point operator*(const double &d, const Point &p);
+
+         DllExport
+         friend const Point operator*(const Point &p,const double &d);
 
       private:
 

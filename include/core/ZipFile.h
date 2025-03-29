@@ -49,7 +49,7 @@ namespace jm
            \brief Constructor for the ZipEntry class.
            \param name The name of the entry.
            */
-         ZipEntry(const String& name);
+         explicit ZipEntry(const String& name);
 
          /*!
           \brief Returns the name of the entry.
@@ -100,7 +100,7 @@ namespace jm
             \brief Constructor for ZipFile class.
             \param file A pointer to the Stream object representing the ZIP file.
             */
-          ZipFile(Stream* file);
+          explicit ZipFile(Stream* file);
 
          /*!
           \brief Destructor
@@ -176,7 +176,7 @@ namespace jm
           \brief Constructor for the ZipOutputFile class.
           \param file A pointer to the File object representing the ZIP file.
           */
-          ZipOutputFile(File* file);
+          explicit ZipOutputFile(File* file);
 
           /*!
           \brief Opens the file for writing.

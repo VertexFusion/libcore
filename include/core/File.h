@@ -71,7 +71,7 @@ namespace jm
           \brief Constructor
           \param pathname Path to the file.
           */
-         File(const String& pathname);
+         explicit File(const String& pathname);
 
          /*!
           \brief Constructor

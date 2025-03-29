@@ -84,7 +84,7 @@ class Address : public EditableObject
 {
    public:
 
-      Address(AddressBook* book) : EditableObject(book)
+      explicit Address(AddressBook* book) : EditableObject(book)
       {
          mHouseNumber = 0;
          mCountry = Country::kUnknown;

@@ -63,7 +63,7 @@ Exception::Exception(const Exception& other): Object(),
    #endif
 }
 
-Exception::~Exception()
+Exception::~Exception() noexcept
 {
 
 }

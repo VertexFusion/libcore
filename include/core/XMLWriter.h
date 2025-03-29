@@ -51,7 +51,7 @@ namespace jm
            \brief Constructor.
            \param output The \c Stream where the XML data should be written.
            */
-         XMLWriter(Stream* output);
+         explicit XMLWriter(Stream* output);
 
          /*!
           \brief Destructor.

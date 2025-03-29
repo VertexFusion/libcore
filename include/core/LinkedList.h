@@ -62,7 +62,7 @@ namespace jm
 
       public:
 
-         LinkedListIterator(const LinkedList* list);
+         explicit LinkedListIterator(const LinkedList* list);
 
          LinkedListIterator(const LinkedListIterator& other);
 
@@ -100,7 +100,7 @@ namespace jm
            \param owner The owner of the list. Ideally an Editable object. This object may receive
            regenerate events during undo steps.
            */
-         LinkedList(Object* owner);
+         explicit LinkedList(Object* owner);
 
           /*!
            \brief Destructor for the linked list. This function deletes all variables.

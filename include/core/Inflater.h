@@ -163,7 +163,7 @@ namespace jm
           \brief Constructor
           \param wrap Status, if zlib-Header and CRC is omitted.
           */
-         Inflater(bool wrap);
+         explicit Inflater(bool wrap);
 
          /*!
           \brief Destructor

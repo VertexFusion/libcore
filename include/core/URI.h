@@ -66,7 +66,7 @@ namespace jm
 
       public:
 
-         URI(const String& uri);
+         explicit URI(const String& uri);
 
          /*URI(const String& scheme,
              const String &userInformation,

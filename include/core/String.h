@@ -78,7 +78,7 @@ namespace jm
           \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
           \param buffer A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
           */
-         String(const ByteArray& buffer);
+         explicit String(const ByteArray& buffer);
 
          /*!
           \brief This constructor generates a character string.
@@ -734,7 +734,7 @@ namespace jm
 
          StringList();
 
-         StringList(int64 size);
+         explicit StringList(int64 size);
 
          StringList(const StringList& other);
 

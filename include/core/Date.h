@@ -107,7 +107,7 @@ namespace jm
           \brief Constructor
           \param milliseconds Absolute time (UTC) passed in milliseconds since 01.01.1970 00:00:00.000.
           */
-         Date(int64 milliseconds);
+         explicit Date(int64 milliseconds);
 
          /*!
           \brief Constructor
@@ -470,7 +470,7 @@ namespace jm
           \brief Constructor
           \param pattern The pattern for the date format
          */
-         DateFormatter(const String& pattern);
+         explicit DateFormatter(const String& pattern);
 
          ~DateFormatter();
 

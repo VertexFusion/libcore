@@ -56,7 +56,7 @@ namespace jm
           \brief Constructor
           \param message The error message for the developer or user.
           */
-         Exception(const String& message);
+         explicit Exception(const String& message);
 
          /*!
           \brief Constructor

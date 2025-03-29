@@ -95,19 +95,19 @@ namespace jm
          return *this;
       }
 
-      Variant(int64 number)
+      explicit Variant(int64 number)
       {
          mType = PropertyType::kInteger;
          mNumberValue.intValue = number;
       }
 
-      Variant(double number)
+      explicit Variant(double number)
       {
          mType = PropertyType::kDouble;
          mNumberValue.doubleValue = number;
       }
 
-      Variant(const jm::String& string)
+      explicit Variant(const jm::String& string)
       {
          mType = PropertyType::kString;
          mTextValue = string;

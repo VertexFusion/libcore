@@ -57,7 +57,7 @@ namespace jm
    {
       public:
 
-         Resource(const jm::String& path);
+         explicit Resource(const jm::String& path);
 
          Resource(const Resource& other);
 
