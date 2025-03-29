@@ -168,7 +168,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Inflater();
+         ~Inflater() override;
 
           /*!
            \brief Passes a block of bytes to this class for decompression.
