@@ -56,7 +56,7 @@ namespace jm
          /*!
           \brief Destructor.
           */
-         virtual ~XMLWriter();
+         ~XMLWriter() override;
 
           /*!
            \brief This method must be called at the beginning. It opens the stream if it hasn't been opened yet.

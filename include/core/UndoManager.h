@@ -83,7 +83,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~UndoManager();
+         ~UndoManager() override;
 
           /*!
            \brief Sets the document associated with this manager.

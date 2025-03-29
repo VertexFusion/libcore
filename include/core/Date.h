@@ -141,7 +141,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Date();
+         ~Date() override;
 
          /*!
           \brief Status, whether the data is empty
@@ -254,7 +254,7 @@ namespace jm
           \brief This method compares the order of the data.
           \param another The date used for the comparison.
           */
-         int32 compareTo(const Date& another) const;
+         int32 compareTo(const Date& another) const override;
 
          /*!
           \brief Implementing the operator <

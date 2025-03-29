@@ -63,7 +63,7 @@ namespace jm
 
          Resource& operator=(const Resource& other);
 
-         ~Resource();
+         ~Resource() override;
 
          bool exists() const;
 

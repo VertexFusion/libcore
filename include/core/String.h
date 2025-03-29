@@ -124,7 +124,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~String();
+         ~String() override;
 
          #ifdef __APPLE__
 

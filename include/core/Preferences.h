@@ -55,7 +55,7 @@ namespace jm
           /*!
           \brief Destructor. Deletes all entries in the hashtable.
           */
-         virtual ~Preferences();
+        ~Preferences() override;
 
           /*!
            \brief This method reads the data from the file.

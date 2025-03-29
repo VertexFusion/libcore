@@ -58,8 +58,7 @@ namespace jm
           /*!
            \brief Destructor for the Hashtable class.
            */
-         ~Hashtable() noexcept;
-
+         ~Hashtable() noexcept override;
 
           /*!
            \brief This method inserts a new element into the hash table.

@@ -66,7 +66,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Exception()=default;
+         ~Exception() noexcept override;
 
          /*!
           \brief Returns the error message.

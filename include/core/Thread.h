@@ -121,7 +121,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~Thread();
+         ~Thread() override;
 
          /*!
           \brief This method starts the thread.

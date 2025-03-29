@@ -59,7 +59,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~MemoryStream();
+         ~MemoryStream() override;
 
           /*!
           \copdoc Stream::open()

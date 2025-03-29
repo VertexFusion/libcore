@@ -63,6 +63,10 @@ Exception::Exception(const Exception& other): Object(),
    #endif
 }
 
+Exception::~Exception()
+{
+
+}
 
 String Exception::errorMessage() const
 {

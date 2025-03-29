@@ -80,7 +80,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Nurbs();
+         ~Nurbs() override;
 
           /*!
            \brief Returns a point on the curve at a given parameter value.

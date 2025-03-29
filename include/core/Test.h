@@ -128,7 +128,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~Test();
+         ~Test() override;
 
          /*!
           \brief Returns the name of the test.

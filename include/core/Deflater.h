@@ -63,7 +63,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Deflater();
+         ~Deflater() override;
 
          /*!
           \brief Gives this class a block of bytes to compress.

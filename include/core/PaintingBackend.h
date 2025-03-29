@@ -86,7 +86,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~PaintingBackend();
+        ~PaintingBackend() override;
 
           /*!
            \brief This method is called to interrupt the work of the drawing thread as soon as possible.

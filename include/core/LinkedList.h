@@ -73,7 +73,7 @@ namespace jm
          // Return the next object without moving the iterator
          Object* seek() const;
 
-         ~LinkedListIterator();
+         ~LinkedListIterator() override;
 
          LinkedListIterator& operator=(const LinkedListIterator& other);
 
@@ -109,7 +109,7 @@ namespace jm
            Alternatively, you can call UndoManager::clearStacks() to achieve the same effect.
            Otherwise, memory errors may occur.
            */
-         ~LinkedList();
+         ~LinkedList() override;
 
           /*!
            \brief This method returns true if there is a next element in the list

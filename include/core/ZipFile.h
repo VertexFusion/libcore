@@ -105,7 +105,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~ZipFile();
+         ~ZipFile() override;
 
           /*!
            \brief Opens the file for reading.

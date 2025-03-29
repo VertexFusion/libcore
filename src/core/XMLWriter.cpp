@@ -130,7 +130,7 @@ void XMLWriter::endElement()
 
       mOpenElements->pop();
    }
-   
+
    mLastIndent = false;
 }
 

@@ -68,7 +68,7 @@ namespace jm
 
          ByteArray(std::initializer_list<uint8> list);
 
-         virtual ~ByteArray();
+         ~ByteArray() override;
 
          /*!
           \brief Returns the pointer to the data. With the pointer it is possible to modify the

@@ -55,7 +55,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~SAXAttributes();
+        ~SAXAttributes() override;
 
          /*!
           \brief Copy constructor

@@ -72,7 +72,7 @@ namespace jm
             }
          }
 
-         virtual ~Array()
+         ~Array() override
          {
             mSize = 0;
             if(mData != nullptr)delete[] mData;
@@ -195,7 +195,7 @@ namespace jm
             }
          }
 
-         virtual ~Array()
+         ~Array() override
          {
             mLength = 0;
             if(mData != nullptr)delete[] mData;
@@ -327,7 +327,7 @@ namespace jm
             }
          }
 
-         virtual ~FloatArray()
+         ~FloatArray() override
          {
             mLength = 0;
             if(mData != nullptr)delete[] mData;

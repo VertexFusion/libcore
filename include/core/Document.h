@@ -69,7 +69,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Document();
+         ~Document() override;
 
          /*
           *

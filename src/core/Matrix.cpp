@@ -639,7 +639,7 @@ const Vertex3 jm::operator*(Matrix const& A, Vertex3 const& b)
    // | 2 5 8 |   | z |
 
    Vertex3 r;
-   if(A.m != 3 || A.n != 3) throw("Matrix muss 3 Zeilen und 3 Spalten haben");
+   if(A.m != 3 || A.n != 3) throw jm::Exception("Matrix muss 3 Zeilen und 3 Spalten haben");
    r.x = A.data[0] * b.x + A.data[3] * b.y + A.data[6] * b.z;
    r.y = A.data[1] * b.x + A.data[4] * b.y + A.data[7] * b.z;
    r.z = A.data[2] * b.x + A.data[5] * b.y + A.data[8] * b.z;
@@ -918,7 +918,7 @@ const Vector jm::operator*(Matrix const& A, Vector const& b)
    // | 0 3 6 |   | x |
    // | 1 4 7 | * | y |
    // | 2 5 8 |   | z |
-   if(A.n != b.m) throw("Matrix must have the same number of columns as vector number of rows");
+   if(A.n != b.m) throw jm::Exception("Matrix must have the same number of columns as vector number of rows");
 
    Vector ret = Vector(A.m);
 
