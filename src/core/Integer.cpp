@@ -107,7 +107,7 @@ int32 Integer::compareTo(const Integer& another) const
 
 uint8 Integer::digits()const
 {
-   Integer number = mValue;
+   int64 number = mValue;
    uint8 i = 1;
    if(number < 0)
    {
@@ -160,7 +160,7 @@ Integer Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
 
    }
 
-   return r;
+   return Integer(r);
 }
 
 
@@ -168,7 +168,7 @@ jm::String Integer::toHexString()
 {
    jm::String ret;
 
-   Integer number = mValue;
+   int64 number = mValue;
 
    //Prüfe auf 0
    if(number == 0)
@@ -195,14 +195,14 @@ jm::String Integer::toRomanString()
 {
    jm::String output;
 
-   Integer index = 12;
+   int64 index = 12;
 
-   Integer number = mValue;
+   int64 number = mValue;
 
    while(index >= 0)
    {
-      Integer div = number / gArabic[index];
-      Integer rest = number % gArabic[index];
+      int64 div = number / gArabic[index];
+      int64 rest = number % gArabic[index];
       number = rest;
 
       while(div > 0)
@@ -220,7 +220,7 @@ jm::String Integer::toLatinAlphabetString()
 {
    jm::String output;
 
-   Integer number = mValue;
+   int64 number = mValue;
 
    while(number > 0)
    {
@@ -278,7 +278,7 @@ double Integer::Dbl()const
 
 Integer Integer::abs() const
 {
-   return std::abs(mValue);
+   return Integer(std::abs(mValue));
 }
 
 Integer::operator int64() const

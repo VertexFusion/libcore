@@ -91,7 +91,7 @@ namespace jm
       /*!
        \brief Constructor for the Transform class.
        */
-      Transform(const Matrix& m);
+      explicit Transform(const Matrix& m);
 
       /*!
        \brief This method transforms the vertex using the 4x4 transformation matrix.

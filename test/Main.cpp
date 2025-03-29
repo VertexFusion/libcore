@@ -48,10 +48,10 @@ int main(int argc, const char* argv[])
    vec->addTest(new EditableObjectTest());
    vec->addTest(new FileTest());
 
-   Integer result = vec->execute();
+   int64 result = vec->execute();
 
    delete vec;
 
    System::quit();
-   return result.Int32();
+   return result;
 }

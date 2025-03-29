@@ -73,7 +73,7 @@ namespace jm
            \brief Constructor for UndoChange class.
            \param object Pointer to the object in which the change is taking place.
            */
-          UndoChange(Object* object) noexcept;
+          explicit UndoChange(Object* object) noexcept;
 
          /*!
           \brief Destructor
@@ -600,7 +600,7 @@ namespace jm
    {
       public:
 
-         UndoRegenerationMarker(EditableObject* object);
+         explicit UndoRegenerationMarker(EditableObject* object);
 
          /*!
           \copydoc UndoChange::swap()

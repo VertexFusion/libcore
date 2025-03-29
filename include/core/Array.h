@@ -298,7 +298,7 @@ namespace jm
             mData = new float[0];
          };
 
-         FloatArray(uint32 length): Object()
+         explicit FloatArray(uint32 length): Object()
          {
             mLength = length;
             mData = new float[length];

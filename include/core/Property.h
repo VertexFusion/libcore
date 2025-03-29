@@ -174,7 +174,7 @@ namespace jm
          /*!
           \brief Constructor with the property id
           */
-         Property(const String& id);
+         explicit Property(const String& id);
 
          /*!
           \brief Constructor with parameters
@@ -423,7 +423,7 @@ namespace jm
           \brief Default constructor
           \param doc The document, this object belongs to
           */
-         EditableObject(Document* doc);
+         explicit EditableObject(Document* doc);
 
          /*!
           \brief Determines that the visual representation should be renewed for this object in the

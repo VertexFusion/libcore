@@ -86,7 +86,7 @@ namespace jm
          /*!
           \brief Special constructor for the static initialisation of the default decoder. This is always the UTF-8 encoding.
           */
-         Charset(CharsetDecoder* decoder);
+         explicit Charset(CharsetDecoder* decoder);
 
          /*!
           \brief Constructor for the static initialisation (therefore not a string).
@@ -231,7 +231,7 @@ namespace jm
       private:
          bool be;
       public:
-         UTF16Decoder(bool isBE);
+         explicit UTF16Decoder(bool isBE);
          CharArray decode(const char* cString)override;
          ByteArray encode(const CharArray& string) override;
    };

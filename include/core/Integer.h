@@ -45,17 +45,17 @@ class DllExport Integer
 
       Integer();
       Integer(const Integer& other);
-      Integer(uint8 value);
-      Integer(int8 value);
-      Integer(uint16 value);
-      Integer(int16 value);
-      Integer(int32 value);
-      Integer(uint32 value);
-      Integer(int64 value);
-      Integer(uint64 value);
+      explicit Integer(uint8 value);
+      explicit Integer(int8 value);
+      explicit Integer(uint16 value);
+      explicit Integer(int16 value);
+      explicit Integer(int32 value);
+      explicit Integer(uint32 value);
+      explicit Integer(int64 value);
+      explicit Integer(uint64 value);
       //      Integer(slong value); double under linux
       #ifdef WITHULONG
-      Integer(ulong value);
+      explicit Integer(ulong value);
       #endif
       bool equals(const Integer& another) const;
 

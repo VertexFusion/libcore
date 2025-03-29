@@ -58,7 +58,7 @@ namespace jm
           \brief Constructor
           \param language Language String in form: "de-DE"
           */
-         I18nBundle(const String& language);
+         explicit I18nBundle(const String& language);
 
          /*!
          	\brief This method reads a *.mo file and adds the content to this bundle.
