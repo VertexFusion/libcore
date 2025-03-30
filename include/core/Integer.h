@@ -34,45 +34,29 @@
 
 #include "String.h"
 
+namespace jm
+{
+
 /*!
- \brief This class represents an integer number. This makes it easy to perform certain object
- operations. We assume it as 64 bit value.
+ \brief This class collect static methods to manipulate integer values
  \ingroup core
  */
 class DllExport Integer
 {
    public:
 
-      Integer();
-      Integer(const Integer& other);
-      explicit Integer(uint8 value);
-      explicit Integer(int8 value);
-      explicit Integer(uint16 value);
-      explicit Integer(int16 value);
-      explicit Integer(int32 value);
-      explicit Integer(uint32 value);
-      explicit Integer(int64 value);
-      explicit Integer(uint64 value);
-      //      Integer(slong value); double under linux
-      #ifdef WITHULONG
-      explicit Integer(ulong value);
-      #endif
-      bool equals(const Integer& another) const;
-
-      int32 compareTo(const Integer& another) const;
-
       /*!
        \brief Returns the number of digits, this number has.
        \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
        */
-      uint8 digits() const;
+      static uint8 digits(int64 number);
 
       /*!
        \brief Method converts a hexadecimal string value into an integer number.
        \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
        \return Returns the desired number as an integer value.
        */
-      static Integer fromHex(const jm::String& str);
+      static int64 fromHex(const jm::String& str);
 
       /*!
        \brief Method converts a hexadecimal string value into an integer number.
@@ -81,343 +65,29 @@ class DllExport Integer
        \param size Size of hex string
        \return Returns the desired number as an integer value.
        */
-      static Integer fromHex(const jm::String& str, uint32 begin, uint32 size);
+      static int64 fromHex(const jm::String& str, uint32 begin, uint32 size);
 
       /*!
        \brief Converts an integer number to a hexadecimal string value.
        \return Returns the desired number as a string, which is a hexadecimal representation.
        For example, "FF" for 255.
        */
-      jm::String toHexString();
+      static jm::String toHexString(int64 number);
 
       /*!
        \brief Converts an integer number to a string representation of a Roman numeral.
        \return The desired number as a string with the value of a Roman numeral.
        */
-      jm::String toRomanString();
+      static jm::String toRomanString(int64 number);
 
       /*!
        \brief Converts an integer number to a string representation of a capital letter.
        \return The desired number as a string with the value of a capital letter.
        */
-      jm::String toLatinAlphabetString();
+      static jm::String toLatinAlphabetString(int64 number);
 
-      int8 Int8()const;
-      int16 Int16()const;
-      int64 Int64()const;
-      int32 Int32()const;
-      uint8 Uint8()const;
-      uint16 Uint16()const;
-      uint32 Uint32()const;
-      double Dbl()const;
-
-      Integer abs() const;
-
-      operator int64() const;
-
-      /*!
-      	\brief Implementation of the increment operator (PRE).
-      	*/
-      Integer& operator++();
-
-      /*!
-      \brief Implementation of the increment operator (POST).
-      */
-      Integer operator++(int32);
-
-      /*!
-      	\brief Implementation of the increment operator (PRE).
-      	*/
-      Integer& operator--();
-
-      /*!
-      \brief Implementation of the increment operator (POST).
-      */
-      Integer operator--(int32);
-
-      /*!
-      \brief Implementation of the assignment operator.
-      */
-      Integer& operator=(const Integer& another);
-
-      Integer& operator+=(const Integer& another);
-
-      Integer& operator-=(const Integer& another);
-
-      Integer& operator*=(const Integer& another);
-
-      Integer operator<<(const Integer& shift);
-
-      Integer operator<<(int32 shift);
-
-      Integer operator>>(const Integer& shift);
-
-      Integer operator>>(int32 shift);
-
-      DllExport
-      friend Integer operator+(Integer left, Integer right);
-
-      DllExport
-      friend Integer operator+(Integer left, int64 right);
-
-      DllExport
-      friend Integer operator+(int64 left, Integer right);
-
-      DllExport
-      friend Integer operator+(Integer left, int32 right);
-
-      DllExport
-      friend Integer operator+(int32 left, Integer right);
-
-      DllExport
-      friend Integer operator+(Integer left, uint32 right);
-
-      DllExport
-      friend Integer operator+(uint32 left, Integer right);
-
-      DllExport
-      friend Integer operator+(Integer left, uint16 right);
-
-      DllExport
-      friend Integer operator+(uint16 left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, int32 right);
-
-      DllExport
-      friend Integer operator-(int32 left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, uint32 right);
-
-      DllExport
-      friend Integer operator-(uint32 left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, int16 right);
-
-      DllExport
-      friend Integer operator-(int16 left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, uint16 right);
-
-      DllExport
-      friend Integer operator-(uint16 left, Integer right);
-
-      DllExport
-      friend Integer operator-(Integer left, float right);
-
-      DllExport
-      friend Integer operator*(Integer left, Integer right);
-
-      DllExport
-      friend Integer operator*(Integer left, int32 right);
-
-      DllExport
-      friend Integer operator*(int32 left, Integer right);
-
-      DllExport
-      friend Integer operator*(Integer left, uint32 right);
-
-      DllExport
-      friend Integer operator*(uint32 left, Integer right);
-
-      DllExport
-      friend Integer operator*(Integer left, uint64 right);
-
-      DllExport
-      friend Integer operator*(uint64 left, Integer right);
-
-      #ifdef WITHULONG
-      DllExport
-      friend Integer operator*(Integer left, ulong right);
-
-      DllExport
-      friend Integer operator*(ulong left, Integer right);
-      #endif
-
-      DllExport
-      friend double operator*(Integer left, double right);
-
-      DllExport
-      friend double operator*(double left, Integer right);
-
-      DllExport
-      friend double operator*(Integer left, float right);
-
-      DllExport
-      friend double operator*(float left, Integer right);
-
-      DllExport
-      friend Integer operator/(Integer left, Integer right);
-
-      DllExport
-      friend Integer operator/(Integer left, int32 right);
-
-      DllExport
-      friend Integer operator/(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator<(Integer left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, int32 right);
-
-      DllExport
-      friend bool operator<(int32 left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator<(uint32 left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, int16 right);
-
-      DllExport
-      friend bool operator<(int16 left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, uint16 right);
-
-      DllExport
-      friend bool operator<(uint16 left, Integer right);
-
-      #ifdef WITHULONG
-      DllExport
-      friend bool operator<(Integer left, ulong right);
-
-      DllExport
-      friend bool operator<(ulong left, Integer right);
-      #endif
-
-      DllExport
-      friend bool operator<(Integer left, int64 right);
-
-      DllExport
-      friend bool operator<(int64 left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, uint64 right);
-
-      DllExport
-      friend bool operator<(uint64 left, Integer right);
-
-      DllExport
-      friend bool operator<(Integer left, float right);
-
-      DllExport
-      friend bool operator<=(Integer left, Integer right);
-
-      DllExport
-      friend bool operator<=(Integer left, int32 right);
-
-      DllExport
-      friend bool operator<=(int32 left, Integer right);
-
-      DllExport
-      friend bool operator<=(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator<=(uint32 left, Integer right);
-
-      #ifdef WITHULONG
-      DllExport
-      friend bool operator<=(Integer left, ulong right);
-
-      DllExport
-      friend bool operator<=(ulong left, Integer right);
-      #endif
-
-      DllExport
-      friend bool operator<=(Integer left, slong right);
-
-      DllExport
-      friend bool operator<=(slong left, Integer right);
-
-      DllExport
-      friend bool operator<=(Integer left, int64 right);
-
-      DllExport
-      friend bool operator<=(int64 left, Integer right);
-
-      DllExport
-      friend bool operator<=(Integer left, uint64 right);
-
-      DllExport
-      friend bool operator<=(uint64 left, Integer right);
-
-      DllExport
-      friend bool operator>(Integer left, Integer right);
-
-      DllExport
-      friend bool operator>(Integer left, int32 right);
-
-      DllExport
-      friend bool operator>(int32 left, Integer right);
-
-      DllExport
-      friend bool operator>(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator>(uint32 left, Integer right);
-
-      DllExport
-      friend bool operator>=(Integer left, Integer right);
-
-      DllExport
-      friend bool operator>=(Integer left, int32 right);
-
-      DllExport
-      friend bool operator>=(int32 left, Integer right);
-
-      DllExport
-      friend bool operator>=(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator>=(uint32 left, Integer right);
-
-      DllExport
-      friend bool operator==(Integer left, Integer right);
-
-      DllExport
-      friend bool operator==(Integer left, int32 right);
-
-      DllExport
-      friend bool operator==(int32 left, Integer right);
-
-      DllExport
-      friend bool operator==(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator==(uint32 left, Integer right);
-
-      DllExport
-      friend bool operator!=(Integer left, Integer right);
-
-      DllExport
-      friend bool operator!=(Integer left, int16 right);
-
-      DllExport
-      friend bool operator!=(Integer left, uint16 right);
-
-      DllExport
-      friend bool operator!=(Integer left, int32 right);
-
-      DllExport
-      friend bool operator!=(Integer left, uint32 right);
-
-      DllExport
-      friend bool operator!=(uint32 left, Integer right);
-
-   private:
-
-      int64 mValue;
 };
+
+}
 
 #endif

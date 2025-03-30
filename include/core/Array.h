@@ -179,7 +179,7 @@ namespace jm
             mData = new T*[0];
          };
 
-         Array(uint32 length) : Object()
+         explicit Array(uint32 length) : Object()
          {
             mLength = length;
             mData = new T*[length];

@@ -64,6 +64,6 @@ Used in:
 For artistic style, please use the following settings:
 
 ~~~
-astyle -A1 -s3 -C -S -N -U -Y -xw -p -k1 -xC100 *
+astyle -A1 -s3 -C -S -N -U -Y -xw -p -k1 *
 ~~~
 

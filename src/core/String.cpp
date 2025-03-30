@@ -167,7 +167,7 @@ void String::checkCapacity(int64 more)
    if(mod != 0)newLength += 16 - mod;
    mArrLength = newLength;
    Char* tmp = new Char [mArrLength];
-   memcpy(tmp, mValue, 2 * mStrLength);
+   memcpy(tmp, mValue, sizeof(Char) * mStrLength);
    delete[] mValue;
    mValue = tmp;
 }
@@ -188,8 +188,7 @@ String String::fromCFString(CFStringRef cfstring)
    if(ccstr != nullptr)return String(ccstr);
 
    // Fallback
-   char* cstr = new char[length *
-                                2]; //Hope, that not all characters are greater than 4 bytes representation
+   char* cstr = new char[length * 2]; //Hope, that not all characters are greater than 4 bytes representation
    CFStringGetCString(cfstring, cstr, length * 2, kCFStringEncodingUTF8);
    String result = String(cstr);
    delete[] cstr;
@@ -1348,7 +1347,7 @@ String jm::URLDecode(const String& str)
       switch(str.charAt(a).unicode())
       {
          case '%':
-            c = Integer::fromHex(str.substring(a + 1, a + 3)).Int8();
+            c = Integer::fromHex(str.substring(a + 1, a + 3));
             a += 2;
             buffer[pos++] = c;
             break;
