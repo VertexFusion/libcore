@@ -20,7 +20,7 @@ using namespace jm;
 
 PaintingBackend::PaintingBackend(): Object()
 {
-   mTransformstack = new std::vector<Transform>();
+   mTransformstack = new std::vector<Matrix>();
    mBuffer = new std::vector<BufferElement>();
 }
 

@@ -98,7 +98,7 @@ namespace jm
            \brief This method pushes a new transformation onto the transformation stack.
            \param t The transformation to be pushed onto the stack.
            */
-         void pushTransform(const Transform& t);
+         void pushTransform(const Matrix& t);
 
           /*!
            \brief This method removes the top element from the transformation stack.
@@ -232,7 +232,7 @@ namespace jm
           /*!
            \brief The stack of transformation settings... necessary for inserts.
            */
-         std::vector<Transform>* mTransformstack;
+         std::vector<Matrix>* mTransformstack;
 
           /*!
            \brief The current line style used for drawing lines, or NULL if a solid line is being drawn.
@@ -276,7 +276,7 @@ namespace jm
           /*!
            \brief The total transformation matrix. Needs to be recalculated after each Push and Pop operation on the transformation stack.
            */
-         Transform mTrans;
+         Matrix mTrans;
 
           /*!
            \brief Buffer for storing the points that need to be drawn in a path.

@@ -38,7 +38,6 @@
 namespace jm
 {
 
-
    /*!
     \brief This method converts World Coordinate System (WCS) coordinates to Object Coordinate System (OCS) coordinates.
     \param wcs The input WCS coordinates.
@@ -73,111 +72,6 @@ namespace jm
     */
    DllExport
    Matrix wcsMatrix(const Vertex3& extrusion);
-
-   /*!
-    \brief This class is an abstraction of the Matrix class and extends it with additional functions.
-    \details The Transform class represents a transformation matrix used for coordinate system transformations.
-             It provides methods for translation, scaling, rotation, mirroring, and initialization of the matrix.
-             The matrix can be used to transform 3D points and angles in both World Coordinate System (WCS) and Object Coordinate System (OCS).
-    */
-   struct DllExport Transform : public Matrix
-   {
-
-      /*!
-       \brief Default constructor for the Transform class.
-       */
-      Transform();
-
-      /*!
-       \brief Constructor for the Transform class.
-       */
-      explicit Transform(const Matrix& m);
-
-      /*!
-       \brief This method transforms the vertex using the 4x4 transformation matrix.
-       \param vertex The input vertex to be transformed.
-       \return The transformed vertex.
-       */
-      Vertex3 trans(const Vertex3& vertex) const;
-
-      /*!
-       \brief This method transforms the number using the 4x4 transformation matrix.
-       X value is used.
-       \param value The input number to be transformed.
-       \return The transformed number.
-       */
-      double trans(double value) const;
-
-      /*!
-       \brief Transform a rotation angle about the Z-Axis of LCS as usually needed by arcs or texts.
-       \param angle Rotation angle in radians.
-       \return The transformed angle.
-       */
-      double transAngle(double angle) const;
-
-      /*!
-       \brief Initializes this transformation as a translation.
-       \param distance The distance to translate by.
-       */
-      void initMoving(const Vertex3& distance);
-
-      /*!
-       \brief Initializes this transformation as scaling by different factors along the x, y, and z axes.
-       \param factors The scaling factors along the x, y, and z axes.
-       */
-      void initScaling(const Vertex3& factors);
-
-      /*!
-       \brief Initializes this transformation as scaling around a base point.
-       \param basePoint The point around which the scaling is performed.
-       \param factor The scaling factor.
-       */
-      void initScaling(const Vertex3& basePoint, double factor);
-
-      /*!
-       \brief Initializes this Transform as a rotation matrix around the Z-axis.
-       \param angle The rotation angle in radians.
-       */
-      void initRotationZ(double angle);
-
-      /*!
-       \brief Initializes this Transform as a rotation matrix.
-       \param axisPoint The origin vector of the rotation axis.
-       \param axisDirection The normalized direction vector of the rotation axis.
-       \param angle The rotation angle in radians.
-       */
-      void initRotation(const Vertex3& axisPoint,
-                        const Vertex3& axisDirection,
-                        double angle);
-      /*!
-       \brief Initializes this Transform as a mirroring matrix.
-       \param planePoint The point on the mirror plane.
-       \param planeNormal The normal vector of the mirror plane.
-       \details This method initializes the transformation matrix as a mirroring matrix, which reflects points across a mirror plane.
-             The mirror plane is defined by a point on the plane (planePoint) and the normal vector of the plane (planeNormal).
-             The resulting matrix can be used to mirror 3D points and objects.
-       */
-      void initMirroring(const Vertex3& planePoint,
-                         const Vertex3& planeNormal);
-
-      /*!
-       \brief Initializes this Transform as a World Coordinate System (WCS) matrix.
-       \param extrusion The extrusion vector used for the transformation.
-       \details This method initializes the transformation matrix as a WCS matrix, which represents the coordinate system transformation from Object Coordinate System (OCS) to WCS.
-          The extrusion vector is used to define the direction of the Z-axis in the WCS.
-          The resulting matrix can be used to transform 3D points and angles from OCS to WCS.
-       */
-      void initWcs(const Vertex3& extrusion);
-
-      /*!
-       \brief Initializes this transformation as an identity matrix.
-       \details An identity matrix is a square matrix in which all the elements of the principal diagonal are ones and all other elements are zeros.
-             When a vector or point is multiplied by an identity matrix, the result is the same vector or point.
-             This method sets the transformation matrix to an identity matrix, effectively resetting any previous transformations applied.
-       */
-      void initIdentity();
-
-   };
 
 }
 
