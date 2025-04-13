@@ -93,8 +93,8 @@ jm::Point& jm::Point::operator+=(const jm::Point& another)
 
 jm::Point& jm::Point::operator-=(const jm::Point& another)
 {
-   this->mX += another.mX;
-   this->mY += another.mY;
+   this->mX -= another.mX;
+   this->mY -= another.mY;
    return *this;
 }
 

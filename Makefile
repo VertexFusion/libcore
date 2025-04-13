@@ -165,7 +165,8 @@ INCLUDE = -Iinclude -I3rdparty -Iprec
 # Target = ALL
 Debug: $(OBJECTS)
 	mkdir -p $(PATH_BIN)
-	$(CXX) $(LFLAGS) -o $(PATH_BIN)/$(LIB_NAME) $(OBJECTS)
+	$(CXX) $(LFLAGS) -o $(LIB_NAME) $(OBJECTS)
+	mv $(LIB_NAME) $(PATH_BIN)/$(LIB_NAME)
 	ar rcs $(PATH_BIN)/libcore.a $(OBJECTS)
 
 install:
