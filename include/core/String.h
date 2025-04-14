@@ -732,8 +732,16 @@ namespace jm
 
       public:
 
+        /*!
+         \brief Constructor for empty string list.
+         */
          StringList();
 
+         /*!
+          \brief Constructor for empty string list with a given size. The elements are initialized
+          to empty strings.
+          \param size The size of the list.
+          */
          explicit StringList(int64 size);
 
          StringList(const StringList& other);
@@ -741,6 +749,12 @@ namespace jm
          explicit StringList(const jm::String& string);
 
          virtual ~StringList();
+
+         /*!
+          \brief Reserve space for a given number of elements. The size of the list is not changed.
+          \param size The number of elements to reserve space for.
+          */
+         void reserve(int64 size);
 
          void append(const jm::String& string);
 

@@ -45,7 +45,7 @@ StringList::StringList(int64 size)
 {
    mData = new String[size];
    mLength = size;
-   mSize = 0;
+   mSize = size;
 }
 
 
@@ -73,6 +73,11 @@ StringList::~StringList()
    mLength = 0;
    mSize = 0;
    if(mData != nullptr)delete[] mData;
+}
+
+void StringList::reserve(int64 size)
+{
+   checkSize(size);
 }
 
 void StringList::append(const jm::String& string)
@@ -150,14 +155,14 @@ jm::String StringList::join(Char divider) const
 const String& StringList::get(int64 index) const
 {
    if(index < 0 || index >= mSize)
-      throw Exception("Array index out of bounds.");
+      throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    return mData[index];
 }
 
 void StringList::set(int64 index, const String& item)
 {
    if(index < 0 || index >= mSize)
-      throw Exception("Array index out of bounds.");
+      throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    mData[index] = item;
 }
 
@@ -189,7 +194,7 @@ void StringList::checkSize(int64 size)
 String& jm::StringList::operator[](const int64 index) const
 {
    if(index < 0 || index >= mSize)
-      throw Exception("Array index out of bounds.");
+      throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    return mData[index];
 }
 
