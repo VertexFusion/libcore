@@ -53,7 +53,7 @@ namespace jm
     resources are located without its ending. So in the same path do not have resources with same
     name, but different endings.
     */
-   class Resource:public jm::Stream
+   class DllExport Resource:public jm::Stream
    {
       public:
 

@@ -141,7 +141,8 @@ using slong = long;
 
 #elif defined _WIN32
 
-#define DllExport   __declspec( dllexport )
+#define DllExport __declspec( dllexport )
+
 using int64 = __int64;
 using uint64 = unsigned __int64;
 using slong = long;

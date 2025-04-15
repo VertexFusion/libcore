@@ -30,9 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="prec\Precompiled.hpp">
-      <Filter>prec</Filter>
-    </ClInclude>
     <ClInclude Include="include\core\Array.h">
       <Filter>include\core</Filter>
     </ClInclude>
@@ -236,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="test\core\FileTest.h">
       <Filter>test\core</Filter>
+    </ClInclude>
+    <ClInclude Include="prec\PrecompiledCore.hpp">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +519,18 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="test\core\StringListTest.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Point.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Rect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Size.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Resource.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

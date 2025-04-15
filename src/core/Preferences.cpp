@@ -216,7 +216,7 @@ String Preferences::value(const String& key) const
 String Preferences::value(const String& key, String const& defaultValue) const
 {
    String* result = static_cast<String*>(get(key));
-   if(result == nullptr)return defaultValue;
+   if(result == nullptr || result->isEmpty())return defaultValue;
    return *result;
 }
 
