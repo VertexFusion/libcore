@@ -208,21 +208,21 @@ void Preferences::setValue(const String& key, bool value)
 
 String Preferences::value(const String& key) const
 {
-   String* result = (String*)get(key);
+   const String* result = (String*)get(key);
    if(result == nullptr)return kEmptyString;
    return *result;
 }
 
 String Preferences::value(const String& key, String const& defaultValue) const
 {
-   String* result = static_cast<String*>(get(key));
+   const String* result = static_cast<String*>(get(key));
    if(result == nullptr || result->isEmpty())return defaultValue;
    return *result;
 }
 
 int64 Preferences::valueInt(const String& key, int64 defaultValue) const
 {
-   String result = value(key);
+   const String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 
@@ -239,7 +239,7 @@ int64 Preferences::valueInt(const String& key, int64 defaultValue) const
 
 double Preferences::valueDouble(const String& key, double defaultValue) const
 {
-   String result = value(key);
+   const String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 
@@ -256,7 +256,7 @@ double Preferences::valueDouble(const String& key, double defaultValue) const
 
 bool Preferences::valueBool(const String& key, bool defaultValue) const
 {
-   String result = value(key);
+   const String result = value(key);
 
    if(result.size() == 0)return defaultValue;
 
