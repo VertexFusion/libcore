@@ -471,7 +471,7 @@ namespace jm
           */
          String arg(int64 value,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -479,7 +479,7 @@ namespace jm
           */
          String arg(int32 value,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -487,7 +487,7 @@ namespace jm
           */
          String arg(uint32 value,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -495,7 +495,7 @@ namespace jm
           */
          String arg(uint64 value,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -503,7 +503,7 @@ namespace jm
           */
          String arg(const String& value,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -511,7 +511,7 @@ namespace jm
           */
          String arg(Char character,
                     int64 fieldwidth = 0,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -526,7 +526,7 @@ namespace jm
          String arg(double value,
                     int64 fieldwidth = 0,
                     int64 precision = -1,
-                    Char fillchar = Char(' '));
+                    Char fillchar = Char(' ')) const;
 
          static void setConsoleCharset(Charset* cs);
 
@@ -698,7 +698,7 @@ namespace jm
          void copy(const CharArray& array);
 
          //! Helper method for arg.
-         bool argIndicies(int64& first, int64& second);
+         bool argIndicies(int64& first, int64& second) const;
 
    };
 
