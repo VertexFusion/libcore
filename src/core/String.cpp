@@ -777,7 +777,7 @@ String String::substring(int64 beginIndex) const
    return substring(beginIndex, mStrLength);
 }
 
-bool String::argIndicies(int64& first, int64& second)
+bool String::argIndicies(int64& first, int64& second) const
 {
    if(indexOf(Char('%')) < 0)return false;
    first=-1;
@@ -810,7 +810,7 @@ bool String::argIndicies(int64& first, int64& second)
 
 String String::arg(Char character,
                    int64 fieldWidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    int64 first, second;
    bool found = argIndicies(first, second);
@@ -841,7 +841,7 @@ String String::arg(Char character,
 
 String String::arg(int64 value,
                    int64 fieldWidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    int64 first, second;
    bool found = argIndicies(first, second);
@@ -873,28 +873,28 @@ String String::arg(int64 value,
 
 String String::arg(int32 value,
                    int64 fieldWidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
 String String::arg(uint32 value,
                    int64 fieldWidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
 String String::arg(uint64 value,
                    int64 fieldWidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
 String String::arg(const String& value,
                    int64 fieldwidth,
-                   Char fillchar)
+                   Char fillchar) const
 {
    int64 first, second;
    bool found = argIndicies(first, second);
@@ -928,7 +928,7 @@ String String::arg(const String& value,
 String String::arg(double value,
                    int64 fieldWidth,
                    int64 precision,
-                   Char fillchar)
+                   Char fillchar) const
 {
    int64 first, second;
    bool found = argIndicies(first, second);
