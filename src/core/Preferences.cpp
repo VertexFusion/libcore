@@ -131,6 +131,8 @@ void Preferences::save(File file)
 
       Iterator* keyiter = keys();
 
+      jm::StringList entries;
+
       while(keyiter->hasNext())
       {
          String key = *static_cast<String*>(keyiter->next());
@@ -161,10 +163,19 @@ void Preferences::save(File file)
          key.append('=');
          key.append(val);
          key.append(String::lineSeparator());
-         ByteArray cstr = key.toCString();
-         file.write((uint8*)cstr.constData(), cstr.size());
+
+         entries.append(key);
       }
       delete keyiter;
+
+      // sort the entries, so that the file is better readablye by humans
+      entries.sort();
+
+      for(const jm::String& line:entries)
+      {
+         ByteArray cstr = line.toCString();
+         file.write((uint8*)cstr.constData(), cstr.size());
+      }
 
       file.close();
    }
