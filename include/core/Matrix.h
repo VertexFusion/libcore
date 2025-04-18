@@ -234,7 +234,7 @@ namespace jm
           \brief Initializes this transformation as an identity matrix.
           \details An identity matrix is a square matrix in which all the elements of the principal
           diagonal are ones and all other elements are zeros. When a vector or point is multiplied
-          by an identity matrix, the result is the same vector or point. This method sets the 
+          by an identity matrix, the result is the same vector or point. This method sets the
           transformation matrix to an identity matrix, effectively resetting any previous
           transformations applied.
           */
