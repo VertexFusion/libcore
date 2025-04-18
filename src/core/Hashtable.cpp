@@ -34,13 +34,13 @@
 using namespace jm;
 
 Hashtable::Hashtable() noexcept: Object(),
-mArrLength(7),
-mDataLength(0),
-mLoadfactor(0.75f),
-mThreshold(mArrLength * mLoadfactor)
+   mArrLength(7),
+   mDataLength(0),
+   mLoadfactor(0.75f),
+   mThreshold(mArrLength * mLoadfactor)
 {
    mData = new HashtableEntry*[mArrLength]; // Array for data
-   for (int64 i = 0; i < mArrLength; i++)
+   for(int64 i = 0; i < mArrLength; i++)
    {
       mData[i] = nullptr;  // Explicitly set each pointer to nullptr
    }
@@ -106,7 +106,7 @@ void* Hashtable::get(const String& key) const noexcept
 
 bool Hashtable::containsKey(const String& key) const noexcept
 {
-   return get(key)!=nullptr;
+   return get(key) != nullptr;
 }
 
 void* Hashtable::remove(const String& key) noexcept
@@ -214,11 +214,11 @@ Iterator* Hashtable::values() noexcept
 */
 
 Hashtable::HashtableIterator::HashtableIterator(Hashtable* _table, bool _retKey) noexcept: Iterator(),
-retKey(_retKey),
-table(_table),
-entry(nullptr),
-last(nullptr),
-index(0)
+   retKey(_retKey),
+   table(_table),
+   entry(nullptr),
+   last(nullptr),
+   index(0)
 {}
 
 bool Hashtable::HashtableIterator::hasNext() noexcept
@@ -251,10 +251,10 @@ Object* Hashtable::HashtableIterator::next() noexcept
  */
 
 Hashtable::HashtableEntry::HashtableEntry() noexcept:
-hash(0),
-key(jm::kEmptyString),
-value(nullptr),
-next(nullptr)
+   hash(0),
+   key(jm::kEmptyString),
+   value(nullptr),
+   next(nullptr)
 {}
 
 Hashtable::HashtableEntry::~HashtableEntry() noexcept

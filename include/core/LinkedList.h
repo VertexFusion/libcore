@@ -95,31 +95,31 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Constructor for the LinkedList. Initializes all variables.
-           \param owner The owner of the list. Ideally an Editable object. This object may receive
-           regenerate events during undo steps.
-           */
+         /*!
+          \brief Constructor for the LinkedList. Initializes all variables.
+          \param owner The owner of the list. Ideally an Editable object. This object may receive
+          regenerate events during undo steps.
+          */
          explicit LinkedList(Object* owner);
 
-          /*!
-           \brief Destructor for the linked list. This function deletes all variables.
-           \warning If you are using the LinkedList together with UndoManager, you must call
-           LinkedList::clear() with the UndoManager object to gracefully erase the objects.
-           Alternatively, you can call UndoManager::clearStacks() to achieve the same effect.
-           Otherwise, memory errors may occur.
-           */
+         /*!
+          \brief Destructor for the linked list. This function deletes all variables.
+          \warning If you are using the LinkedList together with UndoManager, you must call
+          LinkedList::clear() with the UndoManager object to gracefully erase the objects.
+          Alternatively, you can call UndoManager::clearStacks() to achieve the same effect.
+          Otherwise, memory errors may occur.
+          */
          ~LinkedList() override;
 
-          /*!
-           \brief This method returns true if there is a next element in the list
-           */
+         /*!
+          \brief This method returns true if there is a next element in the list
+          */
          bool hasNext();
 
-          /*!
-           \brief Iterates to the next element in the list and returns the current one.
-           The next element can be NULL, but then hasNext() will return false.
-           */
+         /*!
+          \brief Iterates to the next element in the list and returns the current one.
+          The next element can be NULL, but then hasNext() will return false.
+          */
          Object* next();
 
          /*!
@@ -172,10 +172,10 @@ namespace jm
 
          friend class LinkedListIterator;
 
-          /*!
-            \brief Iterates to the next element in the list and returns the current one.
-            The next element can be NULL, but then hasNext() will return false.
-            */
+         /*!
+           \brief Iterates to the next element in the list and returns the current one.
+           The next element can be NULL, but then hasNext() will return false.
+           */
          LListElement* nextElement();
 
          void add(LListElement* item, UndoManager* um);

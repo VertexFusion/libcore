@@ -74,12 +74,12 @@ void jm::Point::setY(double y)
    mY = y;
 }
 
-jm::Point jm::Point::cWiseMin(const jm::Point &other) const
+jm::Point jm::Point::cWiseMin(const jm::Point& other) const
 {
    return Point(std::min(mX, other.mX), std::min(mY, other.mY));
 }
 
-jm::Point jm::Point::cWiseMax(const jm::Point &other) const
+jm::Point jm::Point::cWiseMax(const jm::Point& other) const
 {
    return Point(std::max(mX, other.mX), std::max(mY, other.mY));
 }
@@ -116,7 +116,7 @@ const jm::Point jm::operator*(const double& d, const jm::Point& p)
    return r;
 }
 
-const jm::Point jm::operator*(const jm::Point& p,const double& d)
+const jm::Point jm::operator*(const jm::Point& p, const double& d)
 {
    jm::Point r;
    r.mX = d * p.mX;

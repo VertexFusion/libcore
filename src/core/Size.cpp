@@ -46,8 +46,8 @@ jm::Size::Size(double width, double height)
 
 jm::Size::Size(const jm::Point& pt)
 {
-   mWidth=pt.x();
-   mHeight=pt.y();
+   mWidth = pt.x();
+   mHeight = pt.y();
 }
 
 double jm::Size::width() const
@@ -80,12 +80,12 @@ void jm::Size::setHeight(double height)
    mHeight = height;
 }
 
-jm::Size jm::Size::cWiseMin(const jm::Size &other) const
+jm::Size jm::Size::cWiseMin(const jm::Size& other) const
 {
    return Size(std::min(mWidth, other.mWidth), std::min(mHeight, other.mHeight));
 }
 
-jm::Size jm::Size::cWiseMax(const jm::Size &other) const
+jm::Size jm::Size::cWiseMax(const jm::Size& other) const
 {
    return Size(std::max(mWidth, other.mWidth), std::max(mHeight, other.mHeight));
 };

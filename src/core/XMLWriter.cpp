@@ -110,7 +110,7 @@ void XMLWriter::startElement(const jm::String& name)
 
 void XMLWriter::endElement()
 {
-   if(mOpenElements->size()>0)
+   if(mOpenElements->size() > 0)
    {
       if(mOpenElements->top().hasContent == false)
       {

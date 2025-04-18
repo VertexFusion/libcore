@@ -47,102 +47,102 @@ namespace jm
    {
       public:
 
-          /*!
-          \brief Constructor
-          */
+         /*!
+         \brief Constructor
+         */
          Preferences();
 
-          /*!
-          \brief Destructor. Deletes all entries in the hashtable.
-          */
-        ~Preferences() override;
+         /*!
+         \brief Destructor. Deletes all entries in the hashtable.
+         */
+         ~Preferences() override;
 
-          /*!
-           \brief This method reads the data from the file.
-           \param file The file containing the properties.
-           \throws Exception if the file is not found or is corrupted.
-           */
+         /*!
+          \brief This method reads the data from the file.
+          \param file The file containing the properties.
+          \throws Exception if the file is not found or is corrupted.
+          */
          void load(File file);
 
-          /*!
-           \brief This method writes the preferences to the file.
-           \param file The name of the file where the properties will be saved.
-           \throws Exception if the file cannot be written.
-           */
+         /*!
+          \brief This method writes the preferences to the file.
+          \param file The name of the file where the properties will be saved.
+          \throws Exception if the file cannot be written.
+          */
          void save(File file);
 
-          /*!
-           \brief Check if the property is present.
-           \param key The key of the property to check.
-           \return true if the property is present, false otherwise.
-           */
+         /*!
+          \brief Check if the property is present.
+          \param key The key of the property to check.
+          \return true if the property is present, false otherwise.
+          */
          bool hasValue(const String& key)const;
 
-          /*!
-           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
-           \param key The property key.
-           \param value The value.
-           */
+         /*!
+          \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+          \param key The property key.
+          \param value The value.
+          */
          void setValue(const String& key, const String& value);
 
-          /*!
-           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
-           \param key The property key.
-           \param value The value.
-           */
+         /*!
+          \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+          \param key The property key.
+          \param value The value.
+          */
          void setValue(const String& key, int64 value);
 
-          /*!
-           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
-           \param key The property key.
-           \param value The value.
-           */
+         /*!
+          \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+          \param key The property key.
+          \param value The value.
+          */
          void setValue(const String& key, double value);
 
-          /*!
-           \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
-           \param key The property key.
-           \param value The value.
-           */
+         /*!
+          \brief Sets the property. Essentially calls the Put() method of Hashtable, but ensures that strings are used.
+          \param key The property key.
+          \param value The value.
+          */
          void setValue(const String& key, bool value);
 
-          /*!
-           \brief Returns the desired property.
-           \param key The property key.
-           \return The value of the property.
-           */
+         /*!
+          \brief Returns the desired property.
+          \param key The property key.
+          \return The value of the property.
+          */
          String value(const String& key) const;
 
-          /*!
-           \brief Returns the desired property.
-           \param key The property key.
-           \param defaultValue The value of the property if it is not found.
-           \return The value of the property.
-           */
+         /*!
+          \brief Returns the desired property.
+          \param key The property key.
+          \param defaultValue The value of the property if it is not found.
+          \return The value of the property.
+          */
          String value(const String& key, const String& defaultValue) const;
 
-          /*!
-           \brief Returns the desired property.
-           \param key The property key.
-           \param defaultValue The value of the property if it is not found.
-           \return The value of the property.
-           */
+         /*!
+          \brief Returns the desired property.
+          \param key The property key.
+          \param defaultValue The value of the property if it is not found.
+          \return The value of the property.
+          */
          int64 valueInt(const String& key, int64 defaultValue) const;
 
-          /*!
-           \brief Returns the desired property.
-           \param key The property key.
-           \param defaultValue The value of the property if it is not found.
-           \return The value of the property.
-           */
+         /*!
+          \brief Returns the desired property.
+          \param key The property key.
+          \param defaultValue The value of the property if it is not found.
+          \return The value of the property.
+          */
          double valueDouble(const String& key, double defaultValue) const;
 
-          /*!
-           \brief Returns the desired property.
-           \param key The property key.
-           \param defaultValue The value of the property if it is not found.
-           \return The value of the property.
-           */
+         /*!
+          \brief Returns the desired property.
+          \param key The property key.
+          \param defaultValue The value of the property if it is not found.
+          \return The value of the property.
+          */
          bool valueBool(const String& key, bool defaultValue) const;
    };
 

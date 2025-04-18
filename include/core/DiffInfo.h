@@ -49,23 +49,23 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Default constructor.
-           */
+         /*!
+          \brief Default constructor.
+          */
          DiffInfo();
 
-          /*!
-           \brief Copy constructor.
-           \param another The DiffInfo object to be copied.
-           */
+         /*!
+          \brief Copy constructor.
+          \param another The DiffInfo object to be copied.
+          */
          DiffInfo(const DiffInfo& another);
 
-          /*!
-           \brief This method writes the diff information of the two objects to the command line.
-           \param operation The diff operation performed.
-           \param obj1 Pointer to the first object.
-           \param obj2 Pointer to the second object.
-           */
+         /*!
+          \brief This method writes the diff information of the two objects to the command line.
+          \param operation The diff operation performed.
+          \param obj1 Pointer to the first object.
+          \param obj2 Pointer to the second object.
+          */
          void print(DiffOperation operation, Object* obj1, Object* obj2);
 
          /*
@@ -87,7 +87,7 @@ namespace jm
                            const String& obj1, const String& obj2, const String& label);
 
          static void printIgnoreCase(DiffOperation operation,
-                             const String& obj1, const String& obj2, const String& label);// Ignore Case
+                                     const String& obj1, const String& obj2, const String& label);// Ignore Case
 
          //			static void Print(DiffOperation operation,
          //			                  const dwg::Color &obj1, const dwg::Color &obj2, const String &label);
@@ -137,9 +137,9 @@ namespace jm
 
       private:
 
-          /*!
-           \brief The current operation, as some Print methods require this to output the correct information.
-           */
+         /*!
+          \brief The current operation, as some Print methods require this to output the correct information.
+          */
          DiffOperation mOperation;
 
    };

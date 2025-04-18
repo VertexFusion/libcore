@@ -36,11 +36,11 @@ using namespace jm;
 StringTokenizer::StringTokenizer(const String& str,
                                  const String& delimiters,
                                  bool retDelim): Object(),
-mStr(str),
-mDelimiters(delimiters),
-mPosition(0),
-mNewStart(-1),
-mRetDelim(retDelim)
+   mStr(str),
+   mDelimiters(delimiters),
+   mPosition(0),
+   mNewStart(-1),
+   mRetDelim(retDelim)
 {}
 
 bool StringTokenizer::isDelimiter(int64 index) const

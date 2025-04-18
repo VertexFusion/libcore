@@ -74,21 +74,21 @@ namespace jm
 
       private:
 
-          /*!
-           \brief This variable stores the offset of the diagonal.
-           Diagonals start at u[0], v[abs(offset)].
-           Diagonals below the middle have negative offsets.
-           */
+         /*!
+          \brief This variable stores the offset of the diagonal.
+          Diagonals start at u[0], v[abs(offset)].
+          Diagonals below the middle have negative offsets.
+          */
          int64 mOffset;
 
-          /*!
-           \brief Pointer to the first vector for comparison.
-           */
+         /*!
+          \brief Pointer to the first vector for comparison.
+          */
          std::vector<Object*>* mU;
 
-          /*!
-           \brief Pointer to the second vector for comparison.
-           */
+         /*!
+          \brief Pointer to the second vector for comparison.
+          */
          std::vector<Object*>* mV;
 
          /*!
@@ -97,14 +97,14 @@ namespace jm
          DiffDiag* mBelow;
          DiffDiag* mAbove;
 
-          /*!
-           \brief This vector stores the elements of the diagonal.
-           */
+         /*!
+          \brief This vector stores the elements of the diagonal.
+          */
          std::vector<int64>* mElements;
 
-          /*!
-           \brief Pointer to DiffDistance object to determine the number of calculated values.
-           */
+         /*!
+          \brief Pointer to DiffDistance object to determine the number of calculated values.
+          */
          DiffDistance* mDistance;
 
    };

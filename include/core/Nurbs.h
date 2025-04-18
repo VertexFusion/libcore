@@ -54,21 +54,21 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Default constructor for the Nurbs class.
-           */
+         /*!
+          \brief Default constructor for the Nurbs class.
+          */
          Nurbs();
 
-          /*!
-           \brief Constructor for the Nurbs class.
-           \param degree The degree of the polynomial.
-           \param controlpoints An array of control points.
-           \param controlCount The length of the controlpoints array.
-           \param knots An array of knots.
-           \param knotCount The length of the knots array.
-           \param weights An array of weights.
-           \param weightCount The length of the weights array.
-           */
+         /*!
+          \brief Constructor for the Nurbs class.
+          \param degree The degree of the polynomial.
+          \param controlpoints An array of control points.
+          \param controlCount The length of the controlpoints array.
+          \param knots An array of knots.
+          \param knotCount The length of the knots array.
+          \param weights An array of weights.
+          \param weightCount The length of the weights array.
+          */
          Nurbs(uint32 degree,
                Vertex3* controlpoints,
                uint32 controlCount,
@@ -82,26 +82,26 @@ namespace jm
           */
          ~Nurbs() override;
 
-          /*!
-           \brief Returns a point on the curve at a given parameter value.
-           \param t The parameter value on the curve. Should be in the range [0, t_max].
-           \return The point on the curve at the given parameter value.
-           */
+         /*!
+          \brief Returns a point on the curve at a given parameter value.
+          \param t The parameter value on the curve. Should be in the range [0, t_max].
+          \return The point on the curve at the given parameter value.
+          */
          Vertex3 point(double t);
 
-          /*!
-           \brief This method returns the smallest value of t. In this case, it returns 0.
-           */
+         /*!
+          \brief This method returns the smallest value of t. In this case, it returns 0.
+          */
          double start();
 
-      /*!
-        \brief This method returns the maximum value of t.
-        */
+         /*!
+           \brief This method returns the maximum value of t.
+           */
          double end();
 
-          /*!
-           \brief Returns the number of control points.
-           */
+         /*!
+          \brief Returns the number of control points.
+          */
          uint32 controlPointCount();
 
          /*!
@@ -116,9 +116,9 @@ namespace jm
 
       private:
 
-          /*!
-           \brief Degree of the polynomial for the NURBS curve.
-           */
+         /*!
+          \brief Degree of the polynomial for the NURBS curve.
+          */
          uint32 mDegree;
 
          /*!
@@ -137,32 +137,32 @@ namespace jm
          //! Knot count.
          uint32 mKnotCount;
 
-          /*!
-           \brief The weights of the control points. For B-Splines, all weights are 1.
-           */
+         /*!
+          \brief The weights of the control points. For B-Splines, all weights are 1.
+          */
          double* mWeights;
 
-          /*!
-           \brief The number of weights.
-           */
+         /*!
+          \brief The number of weights.
+          */
          uint32 mWeightCount;
 
-          /*!
-           \brief This method returns the value of N_i,k(t).
-           \param i The index of the control point.
-           \param k The degree of the polynomial for which N is returned. (Not necessarily the degree of the NURBS)
-           \param t The parameter value along the curve.
-           \return The value of N_i,k(t) at the given parameter value.
-           */
+         /*!
+          \brief This method returns the value of N_i,k(t).
+          \param i The index of the control point.
+          \param k The degree of the polynomial for which N is returned. (Not necessarily the degree of the NURBS)
+          \param t The parameter value along the curve.
+          \return The value of N_i,k(t) at the given parameter value.
+          */
          double N(uint32 i, uint32 k, double t);
 
-          /*!
-           \brief This method returns the weight of the control points R_i,k(t).
-           \param i The index of the control point.
-           \param k The degree of the polynomial for which R is returned.
-           \param t The parameter value along the curve.
-           \return The weight of the control point at the given parameter value.
-           */
+         /*!
+          \brief This method returns the weight of the control points R_i,k(t).
+          \param i The index of the control point.
+          \param k The degree of the polynomial for which R is returned.
+          \param t The parameter value along the curve.
+          \return The weight of the control point at the given parameter value.
+          */
          double R(uint32 i, uint32 k, double t);
    };
 

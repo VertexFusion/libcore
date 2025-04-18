@@ -33,13 +33,13 @@
 
 using namespace jm;
 
-MemoryStream::MemoryStream(uint8* stream, int64 length,bool takeOwnership): Stream()
+MemoryStream::MemoryStream(uint8* stream, int64 length, bool takeOwnership): Stream()
 {
    mStream = stream;
    mStreamlength = length;
    mPosition = 0;
    mWritelength = 0;
-   mStreamOwner=takeOwnership;
+   mStreamOwner = takeOwnership;
 }
 
 MemoryStream::~MemoryStream()

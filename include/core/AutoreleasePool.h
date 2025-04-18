@@ -69,30 +69,30 @@ namespace jm
 
       private:
 
-          //! Struct for the entries of the pool. The pool is a linked list.
-          struct PoolEntry
-          {
+         //! Struct for the entries of the pool. The pool is a linked list.
+         struct PoolEntry
+         {
             Object* object;
             PoolEntry* next;
          };
 
-          //! First element in the pool.
-          PoolEntry* mPool;
+         //! First element in the pool.
+         PoolEntry* mPool;
 
-          //! Top pool element to realise FIFO.
-          PoolEntry* mTop;
+         //! Top pool element to realise FIFO.
+         PoolEntry* mTop;
 
-          //! Mutex for reference counter manipulation
-          Mutex mMutex;
+         //! Mutex for reference counter manipulation
+         Mutex mMutex;
 
-          //! Mutex for autoreleasepool itself
-          Mutex mPoolMutex;
+         //! Mutex for autoreleasepool itself
+         Mutex mPoolMutex;
 
-          //! Adds an object. Called in Object::autorelease().
-          void add(Object* object);
+         //! Adds an object. Called in Object::autorelease().
+         void add(Object* object);
 
-          //! Allow Object::autorelease() access to AddObject().
-          friend Object* Object::autorelease() noexcept;
+         //! Allow Object::autorelease() access to AddObject().
+         friend Object* Object::autorelease() noexcept;
 
    };
 }

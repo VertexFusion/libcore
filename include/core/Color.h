@@ -71,7 +71,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Color()=default;
+         ~Color() = default;
 
          Color& operator=(const Color& other);
 

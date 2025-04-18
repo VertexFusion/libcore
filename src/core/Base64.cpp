@@ -85,8 +85,8 @@ uint8* Base64::encode(const uint8* data, int64& length)
    for(int64 i = 0; i < len; i += 3)
    {
       b1 = data[i];
-      b2 = (i+1<len)?data[i + 1]:0;
-      b3 = (i+2<len)?data[i + 2]:0;
+      b2 = (i + 1 < len) ? data[i + 1] : 0;
+      b3 = (i + 2 < len) ? data[i + 2] : 0;
 
       //1st letter
       c1 = (b1 >> 2) & 0x3f; //mask 00111111

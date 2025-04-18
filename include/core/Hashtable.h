@@ -50,37 +50,37 @@ namespace jm
 
       public:
 
-          /*!
-           \brief Default constructor for the Hashtable class.
-           */
+         /*!
+          \brief Default constructor for the Hashtable class.
+          */
          Hashtable() noexcept;
 
-          /*!
-           \brief Destructor for the Hashtable class.
-           */
+         /*!
+          \brief Destructor for the Hashtable class.
+          */
          ~Hashtable() noexcept override;
 
-          /*!
-           \brief This method inserts a new element into the hash table.
-           \param key The key to which the object will be associated.
-           \param value The pointer to the object to be inserted.
-           \return If an old object is replaced, it is returned.
-           */
+         /*!
+          \brief This method inserts a new element into the hash table.
+          \param key The key to which the object will be associated.
+          \param value The pointer to the object to be inserted.
+          \return If an old object is replaced, it is returned.
+          */
          void* put(String key, void* value) noexcept;
 
-          /*!
-           \brief This method returns the object associated with the specified key.
-           \param key The key to which the object is associated.
-           \return A pointer to the object associated with the key, or nullptr if the object is not
-           present in the hashtable.
-           */
+         /*!
+          \brief This method returns the object associated with the specified key.
+          \param key The key to which the object is associated.
+          \return A pointer to the object associated with the key, or nullptr if the object is not
+          present in the hashtable.
+          */
          void* get(const String& key) const noexcept;
 
-          /*!
-           \brief This method removes the object associated with the specified key.
-           \param key The key to which the object is associated.
-           \return A pointer to the object that was removed, or nullptr if the object was not found.
-           */
+         /*!
+          \brief This method removes the object associated with the specified key.
+          \param key The key to which the object is associated.
+          \return A pointer to the object that was removed, or nullptr if the object was not found.
+          */
          void* remove(const String& key) noexcept;
 
          /*!
@@ -88,58 +88,58 @@ namespace jm
           */
          int64 size() const noexcept;
 
-          /*!
-           \brief This method returns true if the hashtable is empty.
-           \return true if the hashtable is empty, false otherwise.
-           */
+         /*!
+          \brief This method returns true if the hashtable is empty.
+          \return true if the hashtable is empty, false otherwise.
+          */
          bool isEmpty() const noexcept;
 
-          /*!
-           \brief This method returns true if an object is associated with the specified key.
-           \param key The key for which the object is being checked.
-           \return true if an object is associated with the key, false otherwise.
-           */
+         /*!
+          \brief This method returns true if an object is associated with the specified key.
+          \param key The key for which the object is being checked.
+          \return true if an object is associated with the key, false otherwise.
+          */
          bool containsKey(const String& key) const noexcept;
 
-          /*!
-           \brief This method returns true if the hashtable contains an object associated with the specified value.
-           \param value The value to search for.
-           \return true if an object is associated with the value, false otherwise.
-           */
+         /*!
+          \brief This method returns true if the hashtable contains an object associated with the specified value.
+          \param value The value to search for.
+          \return true if an object is associated with the value, false otherwise.
+          */
          bool containsValue(void* value) const noexcept;
 
-          /*!
-           \brief This method returns an object of the "Iterator" class that iterates through
-           the keys of this table.
-           \return An Iterator object that iterates through the keys of this table.
-           */
+         /*!
+          \brief This method returns an object of the "Iterator" class that iterates through
+          the keys of this table.
+          \return An Iterator object that iterates through the keys of this table.
+          */
          Iterator* keys() noexcept;
 
-          /*!
-           \brief This method returns an object of the "Iterator" class that iterates through
-           the values of this table.
-           \return An Iterator object that iterates through the values of this table.
-           */
+         /*!
+          \brief This method returns an object of the "Iterator" class that iterates through
+          the values of this table.
+          \return An Iterator object that iterates through the values of this table.
+          */
          Iterator* values() noexcept;
 
-          /*!
-           \brief This method removes all elements from the Hashtable.
-           */
+         /*!
+          \brief This method removes all elements from the Hashtable.
+          */
          void clear() noexcept;
 
       protected:
 
-          /*!
-           \brief This method increases the capacity of the Hashtable.
-           */
+         /*!
+          \brief This method increases the capacity of the Hashtable.
+          */
          void rehash() noexcept;
 
       private:
 
-          /*!
-           \brief This private typedef simplifies the sorting of data into the data array.
-           It is a linked list for performance reasons.
-           */
+         /*!
+          \brief This private typedef simplifies the sorting of data into the data array.
+          It is a linked list for performance reasons.
+          */
          struct HashtableEntry
          {
             //! The hash value of the entry.
@@ -157,27 +157,27 @@ namespace jm
             ~HashtableEntry() noexcept;
          };
 
-          //! \brief This field stores the data of the Hashtable.
+         //! \brief This field stores the data of the Hashtable.
          HashtableEntry** mData;
 
-          //! \brief This variable stores the actual length of the storage array.
+         //! \brief This variable stores the actual length of the storage array.
          int64 mArrLength;
 
-          //! \brief This variable stores the number of entries in the hashtable.
+         //! \brief This variable stores the number of entries in the hashtable.
          int64 mDataLength;
 
-          //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
-          //! A value of 0 means 0%, while a value of 1 means 100%.
+         //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
+         //! A value of 0 means 0%, while a value of 1 means 100%.
          double mLoadfactor;
 
-          //! \brief This threshold defines the number of entries at which the storage array for
-          //! the data should be resized. It is the absolute number of entries at which a storage
-          //! reorganization is performed.
+         //! \brief This threshold defines the number of entries at which the storage array for
+         //! the data should be resized. It is the absolute number of entries at which a storage
+         //! reorganization is performed.
          int64 mThreshold;
 
-          /*!
-           \brief This subclass implements an iterator that allows iterating through the hashtable.
-           */
+         /*!
+          \brief This subclass implements an iterator that allows iterating through the hashtable.
+          */
          class HashtableIterator: public Iterator
          {
             public:

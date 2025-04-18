@@ -59,7 +59,11 @@ namespace jm
          */
          Point(double x, double y);
 
-         explicit Point(const Vertex2 &v){mX=v.x;mY=v.y;};
+         explicit Point(const Vertex2& v)
+         {
+            mX = v.x;
+            mY = v.y;
+         };
 
          /*!
          \brief Returns the x-component of the point.
@@ -87,13 +91,13 @@ namespace jm
          \brief Returns the component-wise minimum of this point and the other point.
          \param other The other point.
          */
-         Point cWiseMin(const Point &other) const;
+         Point cWiseMin(const Point& other) const;
 
          /*!
          \brief Returns the component-wise maximum of this point and the other point.
          \param other The other point.
          */
-         Point cWiseMax(const Point &other) const;
+         Point cWiseMax(const Point& other) const;
 
          inline jm::Vertex2 toVertex2() const
          {
@@ -101,9 +105,9 @@ namespace jm
          };
 
 
-         Point &operator+=(const Point &another);
+         Point& operator+=(const Point& another);
 
-         Point &operator-=(const Point &another);
+         Point& operator-=(const Point& another);
 
          DllExport
          friend const Point operator+(const Point& v1, const Point& v2);
@@ -112,10 +116,10 @@ namespace jm
          friend const Point operator-(const Point& v1, const Point& v2);
 
          DllExport
-         friend const Point operator*(const double &d, const Point &p);
+         friend const Point operator*(const double& d, const Point& p);
 
          DllExport
-         friend const Point operator*(const Point &p,const double &d);
+         friend const Point operator*(const Point& p, const double& d);
 
       private:
 

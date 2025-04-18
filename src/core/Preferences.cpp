@@ -171,7 +171,7 @@ void Preferences::save(File file)
       // sort the entries, so that the file is better readablye by humans
       entries.sort();
 
-      for(const jm::String& line:entries)
+      for(const jm::String& line : entries)
       {
          ByteArray cstr = line.toCString();
          file.write((uint8*)cstr.constData(), cstr.size());

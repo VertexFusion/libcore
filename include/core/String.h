@@ -143,23 +143,23 @@ namespace jm
           */
          int64 size() const;
 
-          /*!
-           \brief This method generates a C-string from the string, taking into account the standard encoding (UTF-8).
-           \details The generated C-string must be freed by the application later (delete).
-           */
+         /*!
+          \brief This method generates a C-string from the string, taking into account the standard encoding (UTF-8).
+          \details The generated C-string must be freed by the application later (delete).
+          */
          ByteArray toCString()const;
 
-          /*!
-           \brief This method generates a C-string with 16-bit elements, taking into account the Unicode encoding. It is essentially a copy of the buffer.
-           \details The generated C-string must be freed by the application later (delete).
-           */
+         /*!
+          \brief This method generates a C-string with 16-bit elements, taking into account the Unicode encoding. It is essentially a copy of the buffer.
+          \details The generated C-string must be freed by the application later (delete).
+          */
          uint16* toWString() const;
 
-          /*!
-           \brief This method generates a C-string from the string, taking into account the specified character encoding.
-           \param charset The character encoding to use for encoding the string into the C-string.
-           \details The generated C-string must be freed by the application later (delete).
-           */
+         /*!
+          \brief This method generates a C-string from the string, taking into account the specified character encoding.
+          \param charset The character encoding to use for encoding the string into the C-string.
+          \details The generated C-string must be freed by the application later (delete).
+          */
          ByteArray toCString(Charset* charset)const;
 
          /*!
@@ -172,37 +172,37 @@ namespace jm
           */
          void clear();
 
-          /*!
-           \brief This method sets the length to 0 without freeing any memory.
-           \details This method sets the length of the string to 0 without releasing any memory. It effectively clears the content of the string without deallocating the underlying buffer.
-           */
+         /*!
+          \brief This method sets the length to 0 without freeing any memory.
+          \details This method sets the length of the string to 0 without releasing any memory. It effectively clears the content of the string without deallocating the underlying buffer.
+          */
          void zero();
 
-          /*!
-           \brief This method appends another string to this string.
-           \param another The string to be appended to the end of this string.
-           */
+         /*!
+          \brief This method appends another string to this string.
+          \param another The string to be appended to the end of this string.
+          */
          void append(const String& another);
 
-          /*!
-           \brief This method appends a character to this string.
-           \param unicodechar The Unicode code point, character, to be appended to this string.
-           \details The character is appended to the end of the string.
-           */
+         /*!
+          \brief This method appends a character to this string.
+          \param unicodechar The Unicode code point, character, to be appended to this string.
+          \details The character is appended to the end of the string.
+          */
          void append(Char unicodechar);
 
-          /*!
-           \brief This method deletes a character from this string.
-           \param index The zero-based index of the position of the character.
-           */
+         /*!
+          \brief This method deletes a character from this string.
+          \param index The zero-based index of the position of the character.
+          */
          void deleteCharAt(int64 index);
 
-          /*!
-           \brief This method deletes a section from this string.
-           \param index The zero-based index of the starting position.
-           \param length The length of the section to delete.
-           \details This method deletes a section of characters from this string, starting at the specified index and with the specified length.
-           */
+         /*!
+          \brief This method deletes a section from this string.
+          \param index The zero-based index of the starting position.
+          \param length The length of the section to delete.
+          \details This method deletes a section of characters from this string, starting at the specified index and with the specified length.
+          */
          void deleteCharRangeAt(int64 index, int64 length);
 
          /*!
@@ -210,50 +210,50 @@ namespace jm
           */
          bool equals(const Object* other) const override;
 
-          /*!
-           \brief This method checks if this string is identical to another string. It compares each character to determine if the characters are exactly the same.
-           \param another The string to compare with.
-           \return Returns true if both strings are identical, otherwise false.
-           For example, "abc" == "abc" is true, but "aBc" == "abc" is false.
-           */
+         /*!
+          \brief This method checks if this string is identical to another string. It compares each character to determine if the characters are exactly the same.
+          \param another The string to compare with.
+          \return Returns true if both strings are identical, otherwise false.
+          For example, "abc" == "abc" is true, but "aBc" == "abc" is false.
+          */
          bool equals(const String& another) const;
 
-          /*!
-           \brief This method compares the order of the strings. It compares character by character from left to right.
-           \param another The string to compare with.
-           \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
-           */
+         /*!
+          \brief This method compares the order of the strings. It compares character by character from left to right.
+          \param another The string to compare with.
+          \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
+          */
          int32 compareTo(const String& another) const override;
 
-          /*!
-           \brief This method compares the order of the strings, taking into account numbers. Components that can be interpreted as numbers are compared separately. Due to limitations in the MS C++ compiler, currently only the first 256 characters are compared for efficiency reasons.
-           \param another The string to compare with.
-           \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
-           */
+         /*!
+          \brief This method compares the order of the strings, taking into account numbers. Components that can be interpreted as numbers are compared separately. Due to limitations in the MS C++ compiler, currently only the first 256 characters are compared for efficiency reasons.
+          \param another The string to compare with.
+          \details Returns a negative value if this string is less than \c another, zero if they are equal, and a positive value if this string is greater than \c another.
+          */
          int32 compareFancyTo(const String& another) const;
 
-          /*!
-           \brief This method checks if this string is identical to another string, ignoring case.
-           \param another The string to compare with.
-           \return Returns true if both strings are identical, ignoring case, otherwise false.
-           For example, "abc" == "abc" is true, but "aBc" == "abc" is also true.
-           */
+         /*!
+          \brief This method checks if this string is identical to another string, ignoring case.
+          \param another The string to compare with.
+          \return Returns true if both strings are identical, ignoring case, otherwise false.
+          For example, "abc" == "abc" is true, but "aBc" == "abc" is also true.
+          */
          bool equalsIgnoreCase(const String& another) const;
 
-          /*!
-           \brief This method checks if the beginning of this string matches another string.
-           \param another The string to be checked.
-           \return Returns true if this string starts with the specified string, otherwise false.
-           If the specified string is longer than this string, false is always returned.
-           */
+         /*!
+          \brief This method checks if the beginning of this string matches another string.
+          \param another The string to be checked.
+          \return Returns true if this string starts with the specified string, otherwise false.
+          If the specified string is longer than this string, false is always returned.
+          */
          bool startsWith(const String& another) const;
 
-          /*!
-           \brief This method checks if the end of this string matches another string.
-           \param another The string to be checked.
-           \return Returns true if this string ends with the specified string, otherwise false.
-           If the specified string is longer than this string, false is always returned.
-           */
+         /*!
+          \brief This method checks if the end of this string matches another string.
+          \param another The string to be checked.
+          \return Returns true if this string ends with the specified string, otherwise false.
+          If the specified string is longer than this string, false is always returned.
+          */
          bool endsWith(const String& another) const;
 
          /*!
@@ -274,11 +274,11 @@ namespace jm
           */
          bool atIsIgnoreCase(int64 position, const String& another);
 
-          /*!
-           \brief This method calculates the hash code for this string and returns it.
-           \details The hash code is calculated based on the content of the string.
-           \return The hash code for this string.
-           */
+         /*!
+          \brief This method calculates the hash code for this string and returns it.
+          \details The hash code is calculated based on the content of the string.
+          \return The hash code for this string.
+          */
          int64 hashCode();
 
          /*!
@@ -288,181 +288,181 @@ namespace jm
          */
          int64 constHashCode() const;
 
-          /*!
-           \brief This method returns a string in which all uppercase letters have been replaced with lowercase letters.
-           \details The method creates a new string with all uppercase letters replaced by their lowercase counterparts.
-           \return A new string with all uppercase letters replaced by lowercase letters.
-           */
+         /*!
+          \brief This method returns a string in which all uppercase letters have been replaced with lowercase letters.
+          \details The method creates a new string with all uppercase letters replaced by their lowercase counterparts.
+          \return A new string with all uppercase letters replaced by lowercase letters.
+          */
          String toLowerCase() const;
 
-          /*!
-           \brief This method returns a string in which all lowercase letters have been replaced with uppercase letters.
-           \details The method creates a new string with all lowercase letters replaced by their uppercase counterparts.
-           \return A new string with all lowercase letters replaced by uppercase letters.
-           */
+         /*!
+          \brief This method returns a string in which all lowercase letters have been replaced with uppercase letters.
+          \details The method creates a new string with all lowercase letters replaced by their uppercase counterparts.
+          \return A new string with all lowercase letters replaced by uppercase letters.
+          */
          String toUpperCase() const;
 
-          /*!
-           \brief This method creates a substring that consists of a portion of this string.
-           \param beginIndex The zero-based index of the first character to be included in the new substring.
-           \return A new string that starts from the beginIndex and goes until the end of the string.
-           */
+         /*!
+          \brief This method creates a substring that consists of a portion of this string.
+          \param beginIndex The zero-based index of the first character to be included in the new substring.
+          \return A new string that starts from the beginIndex and goes until the end of the string.
+          */
          String substring(int64 beginIndex)const;
 
-          /*!
-           \brief This method creates a substring that consists of a portion of this string.
-           \param beginIndex The zero-based index of the first character to be included in the new substring.
-           \param endIndex The zero-based index of the first character that should not be included in the new substring.
-           \return A new string that starts from the beginIndex and ends one character before the endIndex.
-           \details This method creates a new string that contains a portion of the original string, starting from the character at the beginIndex and ending one character before the endIndex.
-           */
+         /*!
+          \brief This method creates a substring that consists of a portion of this string.
+          \param beginIndex The zero-based index of the first character to be included in the new substring.
+          \param endIndex The zero-based index of the first character that should not be included in the new substring.
+          \return A new string that starts from the beginIndex and ends one character before the endIndex.
+          \details This method creates a new string that contains a portion of the original string, starting from the character at the beginIndex and ending one character before the endIndex.
+          */
          String substring(int64 beginIndex, int64 endIndex) const;
 
-          /*!
-           \brief This method returns a new string with all non-visible text characters (whitespaces) removed from the beginning and end of the string.
-           \details The method creates a new string by removing all non-visible text characters (whitespaces) from the beginning and end of the original string.
-           \return A new string with all non-visible text characters (whitespaces) removed from the beginning and end.
-           */
+         /*!
+          \brief This method returns a new string with all non-visible text characters (whitespaces) removed from the beginning and end of the string.
+          \details The method creates a new string by removing all non-visible text characters (whitespaces) from the beginning and end of the original string.
+          \return A new string with all non-visible text characters (whitespaces) removed from the beginning and end.
+          */
          String trim() const;
 
-          /*!
-           \brief This method replaces characters in the string. The "old" character is replaced with the "new" character at all positions.
-           \param oldChar The old character to be replaced.
-           \param newChar The new character to replace the old character.
-           \return The string with the replacements.
-           \details This method replaces occurrences of the "old" character with the "new" character in the string.
-           */
+         /*!
+          \brief This method replaces characters in the string. The "old" character is replaced with the "new" character at all positions.
+          \param oldChar The old character to be replaced.
+          \param newChar The new character to replace the old character.
+          \return The string with the replacements.
+          \details This method replaces occurrences of the "old" character with the "new" character in the string.
+          */
          String replace(Char oldChar, Char newChar) const;
 
-          /*!
-           \brief This method replaces substrings in the string. The "oldStr" substring is replaced with the "newStr" substring at all positions.
-           \param oldStr The substring to be replaced.
-           \param newStr The substring to replace the old substring.
-           \return The string with the replacements.
-           \details This method replaces occurrences of the "oldStr" substring with the "newStr" substring in the string.
-           */
+         /*!
+          \brief This method replaces substrings in the string. The "oldStr" substring is replaced with the "newStr" substring at all positions.
+          \param oldStr The substring to be replaced.
+          \param newStr The substring to replace the old substring.
+          \return The string with the replacements.
+          \details This method replaces occurrences of the "oldStr" substring with the "newStr" substring in the string.
+          */
          String replace(const String& oldStr, const String& newStr) const;
 
-          /*!
-           \brief This method reverses the order of characters in the string.
-           \details This method reverses the order of characters in the string.
-           */
+         /*!
+          \brief This method reverses the order of characters in the string.
+          \details This method reverses the order of characters in the string.
+          */
          String reverse() const;
 
-          /*!
-           \brief Splits the string into a list of strings, using the specified character as a separator.
-           \param character The character to use as a separator.
-           \return A list of strings resulting from the split operation.
-           \details This method splits the string into multiple substrings based on the specified character. Each substring is added to a list of strings, which is then returned.
-           */
+         /*!
+          \brief Splits the string into a list of strings, using the specified character as a separator.
+          \param character The character to use as a separator.
+          \return A list of strings resulting from the split operation.
+          \details This method splits the string into multiple substrings based on the specified character. Each substring is added to a list of strings, which is then returned.
+          */
          StringList split(Char character);
 
-          /*!
-           \brief This method returns the zero-based position of the first occurrence of the desired character in the string.
-           \param character The character to search for.
-           \return Returns the zero-based index, or -1 if the character is not found in the string.
-           \details This method searches for the first occurrence of the desired character in the string and returns its zero-based position.
-           */
+         /*!
+          \brief This method returns the zero-based position of the first occurrence of the desired character in the string.
+          \param character The character to search for.
+          \return Returns the zero-based index, or -1 if the character is not found in the string.
+          \details This method searches for the first occurrence of the desired character in the string and returns its zero-based position.
+          */
          int64 indexOf(Char character) const;
 
-          /*!
-           \brief This method returns the zero-based position of the first occurrence of the desired
-           string in the string.
-           \param str The string to search for.
-           \return Returns the zero-based index, or -1 if the string is not found in the string.
-           \details This method searches for the first occurrence of the desired string in the string and returns its zero-based position.
-           */
+         /*!
+          \brief This method returns the zero-based position of the first occurrence of the desired
+          string in the string.
+          \param str The string to search for.
+          \return Returns the zero-based index, or -1 if the string is not found in the string.
+          \details This method searches for the first occurrence of the desired string in the string and returns its zero-based position.
+          */
          int64 indexOf(const String& str) const;
 
 
-          /*!
-           \brief This method returns the zero-based position of the first occurrence of the desired
-           character in the string.
-           \param character The character to search for.
-           \param fromIndex The zero-based position to start searching from.
-           \return Returns the zero-based index, or -1 if the character is not found in the string.
-           \details This method searches for the first occurrence of the desired character in the string starting from the specified position and returns its zero-based index.
-           */
+         /*!
+          \brief This method returns the zero-based position of the first occurrence of the desired
+          character in the string.
+          \param character The character to search for.
+          \param fromIndex The zero-based position to start searching from.
+          \return Returns the zero-based index, or -1 if the character is not found in the string.
+          \details This method searches for the first occurrence of the desired character in the string starting from the specified position and returns its zero-based index.
+          */
          int64 indexOf(Char character, int64 fromIndex) const;
 
-          /*!
-           \brief This method returns the zero-based position of the first occurrence of the desired
-           string in the string.
-           \param str The string to search for.
-           \param fromIndex The position to start searching from.
-           \return Returns the zero-based index, or -1 if the string is not found in the string.
-           \details This method searches for the first occurrence of the desired string in the string starting from the specified position and returns its zero-based index.
-           */
+         /*!
+          \brief This method returns the zero-based position of the first occurrence of the desired
+          string in the string.
+          \param str The string to search for.
+          \param fromIndex The position to start searching from.
+          \return Returns the zero-based index, or -1 if the string is not found in the string.
+          \details This method searches for the first occurrence of the desired string in the string starting from the specified position and returns its zero-based index.
+          */
          int64 indexOf(const String& str, int64 fromIndex) const;
 
-          /*!
-           \brief This method returns the zero-based position of the last occurrence of the desired character in the string.
-           \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
-           \param character The character to search for.
-           \return Returns the zero-based index, or -1 if the character is not found in the string.
-           */
+         /*!
+          \brief This method returns the zero-based position of the last occurrence of the desired character in the string.
+          \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
+          \param character The character to search for.
+          \return Returns the zero-based index, or -1 if the character is not found in the string.
+          */
          int64 lastIndexOf(Char character) const;
 
-          /*!
-           \brief This method returns the zero-based position of the last occurrence of the desired
-           string in the string.
-           \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
-           \param str The string to search for.
-           \return Returns the zero-based index, or -1 if the string is not found in the string.
-           */
+         /*!
+          \brief This method returns the zero-based position of the last occurrence of the desired
+          string in the string.
+          \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
+          \param str The string to search for.
+          \return Returns the zero-based index, or -1 if the string is not found in the string.
+          */
          int64 lastIndexOf(const String& str) const;
 
 
-          /*!
-           \brief This method returns the zero-based position of the last occurrence of the desired
-           character in the string.
-           \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
-           \param character The character to search for.
-           \param fromIndex The zero-based index to start searching from (from the end).
-           \return Returns the zero-based index, or -1 if the character is not found in the string.
-           */
+         /*!
+          \brief This method returns the zero-based position of the last occurrence of the desired
+          character in the string.
+          \details This method can also be understood as searching from the end of the string for the first occurrence of the character.
+          \param character The character to search for.
+          \param fromIndex The zero-based index to start searching from (from the end).
+          \return Returns the zero-based index, or -1 if the character is not found in the string.
+          */
          int64 lastIndexOf(Char character, int64 fromIndex) const;
 
-          /*!
-           \brief This method returns the zero-based position of the last occurrence of the desired
-           string in the string.
-           \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
-           \param str The string to search for.
-           \param fromIndex The zero-based index to start searching from (from the end).
-           \return Returns the zero-based index, or -1 if the string is not found in the string.
-           */
+         /*!
+          \brief This method returns the zero-based position of the last occurrence of the desired
+          string in the string.
+          \details This method can also be understood as searching from the end of the string for the first occurrence of the string.
+          \param str The string to search for.
+          \param fromIndex The zero-based index to start searching from (from the end).
+          \return Returns the zero-based index, or -1 if the string is not found in the string.
+          */
          int64 lastIndexOf(const String& str, int64 fromIndex) const;
 
-          /*!
-           \brief This method returns the character at a specific position in the string.
-           \param index The zero-based index of the desired character.
-           \return The character at the specified position.
-           \details This method returns the character at the specified position in the string.
-           */
+         /*!
+          \brief This method returns the character at a specific position in the string.
+          \param index The zero-based index of the desired character.
+          \return The character at the specified position.
+          \details This method returns the character at the specified position in the string.
+          */
          Char charAt(int64 index) const;
 
-          /*!
-           \brief This method replaces a character in the string with a new one.
-           \param index The zero-based index of the character to be replaced.
-           \param character The character to be inserted.
-           \details This method replaces the character at the specified index in the string with the new character.
-           */
+         /*!
+          \brief This method replaces a character in the string with a new one.
+          \param index The zero-based index of the character to be replaced.
+          \param character The character to be inserted.
+          \details This method replaces the character at the specified index in the string with the new character.
+          */
          void setCharAt(int64 index, Char character);
 
-          /*!
-           \brief This method inserts a character into the string at the specified index and shifts all subsequent characters to the right.
-           \param index The zero-based index of the character where the letter should be inserted.
-           \param character The character to be inserted.
-           \details This method inserts the character at the specified index in the string and shifts all subsequent characters to the right.
-           */
+         /*!
+          \brief This method inserts a character into the string at the specified index and shifts all subsequent characters to the right.
+          \param index The zero-based index of the character where the letter should be inserted.
+          \param character The character to be inserted.
+          \details This method inserts the character at the specified index in the string and shifts all subsequent characters to the right.
+          */
          void insert(int64 index, Char character);
 
-          /*!
-           \brief This method inserts a string into the string at the specified index and shifts all subsequent characters to the right.
-           \param index The zero-based index of the character where the string should be inserted.
-           \param string The string to be inserted.
-           \details This method inserts the string at the specified index in the string and shifts all subsequent characters to the right.
-           */
+         /*!
+          \brief This method inserts a string into the string at the specified index and shifts all subsequent characters to the right.
+          \param index The zero-based index of the character where the string should be inserted.
+          \param string The string to be inserted.
+          \details This method inserts the string at the specified index in the string and shifts all subsequent characters to the right.
+          */
          void insert(int64 index, const String& string);
 
          /*!
@@ -732,9 +732,9 @@ namespace jm
 
       public:
 
-        /*!
-         \brief Constructor for empty string list.
-         */
+         /*!
+          \brief Constructor for empty string list.
+          */
          StringList();
 
          /*!

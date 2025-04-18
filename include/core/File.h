@@ -138,183 +138,183 @@ namespace jm
           */
          bool exists() const;
 
-          /*!
-           \brief This method deletes the file permanently. If it is a directory, it will only be deleted if it is empty.
-           \return true if the file was successfully deleted, false otherwise.
-           */
+         /*!
+          \brief This method deletes the file permanently. If it is a directory, it will only be deleted if it is empty.
+          \return true if the file was successfully deleted, false otherwise.
+          */
          bool remove();
 
-          /*!
-           \brief Moves the file to the system trash.
-           */
+         /*!
+          \brief Moves the file to the system trash.
+          */
          bool moveToTrash();
 
-          /*!
-           \brief Renames the file to a new name.
-           \param newPath The new path and name for the file.
-           */
+         /*!
+          \brief Renames the file to a new name.
+          \param newPath The new path and name for the file.
+          */
          bool renameTo(const String& newPath);
 
-          /*!
-           \brief Returns the name of the file. This is the pure name without any path information.
-           \return The name of the file.
-           */
+         /*!
+          \brief Returns the name of the file. This is the pure name without any path information.
+          \return The name of the file.
+          */
          String name() const;
 
-          /*!
-           \brief Returns the directory path of the file, excluding the file name itself.
-           It corresponds to the directory in which this file is located.
-           \return The directory path of the file.
-           */
+         /*!
+          \brief Returns the directory path of the file, excluding the file name itself.
+          It corresponds to the directory in which this file is located.
+          \return The directory path of the file.
+          */
          String parent() const;
 
-          /*!
-           \brief Returns the absolute path of the file from the root of the file system.
-           \return The absolute path of the file.
-           */
+         /*!
+          \brief Returns the absolute path of the file from the root of the file system.
+          \return The absolute path of the file.
+          */
          const String& absolutePath() const;
 
-          /*!
-           \brief Returns the full path of this file. The path can be relative or absolute.
-           \return The full path of the file.
-           */
+         /*!
+          \brief Returns the full path of this file. The path can be relative or absolute.
+          \return The full path of the file.
+          */
          String path() const;
 
-          /*!
-           \brief This method returns the file extension of the file. If the file does not have
-           an extension, the return value is an empty string. An extension is indicated by a dot.
-           For ".tar.gz", only "gz" is returned.
-           \return The file extension.
-           */
+         /*!
+          \brief This method returns the file extension of the file. If the file does not have
+          an extension, the return value is an empty string. An extension is indicated by a dot.
+          For ".tar.gz", only "gz" is returned.
+          \return The file extension.
+          */
          String extension() const;
 
-          /*!
-           \brief Checks if this file is an absolute path.
-           \return true if the file is an absolute path, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is an absolute path.
+          \return true if the file is an absolute path, false otherwise.
+          */
          bool isAbsolute() const;
 
-          /*!
-           \brief Checks if this file is a directory.
-           \return true if the file is a directory, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is a directory.
+          \return true if the file is a directory, false otherwise.
+          */
          bool isDirectory() const;
 
-          /*!
-           \brief Checks if this file is a regular file.
-           \return true if the file is a regular file, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is a regular file.
+          \return true if the file is a regular file, false otherwise.
+          */
          bool isFile() const;
 
-          /*!
-           \brief Checks if this file is a symbolic link.
-           \return true if the file is a symbolic link, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is a symbolic link.
+          \return true if the file is a symbolic link, false otherwise.
+          */
          bool isLink() const;
 
-          /*!
-           \brief Checks if this file is a named pipe (FIFO).
-           \return true if the file is a named pipe, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is a named pipe (FIFO).
+          \return true if the file is a named pipe, false otherwise.
+          */
          bool isPipe() const;
 
-          /*!
-           \brief Checks if this file is hidden.
-           \return true if the file is hidden, false otherwise.
-           */
+         /*!
+          \brief Checks if this file is hidden.
+          \return true if the file is hidden, false otherwise.
+          */
          bool isHidden() const;
 
-          /*!
-           \brief Retrieves a list of all files in the directory.
-           \return A dynamically allocated array of File objects representing the files in the directory. The caller is responsible for deleting the array.
-           */
+         /*!
+          \brief Retrieves a list of all files in the directory.
+          \return A dynamically allocated array of File objects representing the files in the directory. The caller is responsible for deleting the array.
+          */
          Array<File>* listFiles()const;
 
-          /*!
-           \brief Returns the size of the file in bytes.
-           \return The size of the file in bytes.
-           */
+         /*!
+          \brief Returns the size of the file in bytes.
+          \return The size of the file in bytes.
+          */
          int64 size() const override;
 
-          /*!
-           \brief Returns the date of the last modification.
-           \return The date of the last modification.
-           */
+         /*!
+          \brief Returns the date of the last modification.
+          \return The date of the last modification.
+          */
          Date lastModified() const;
 
-          /*!
-           \brief Opens the file for read or write operations.
-           \param mode The mode for opening the file.
-           */
+         /*!
+          \brief Opens the file for read or write operations.
+          \param mode The mode for opening the file.
+          */
          Status open(FileMode mode) override;
 
-          /*!
-           \brief Checks if the file is open.
-           \return true if the file is open, false otherwise.
-           */
+         /*!
+          \brief Checks if the file is open.
+          \return true if the file is open, false otherwise.
+          */
          bool isOpen() override;
 
-          /*!
-           \brief Closes the file if it was previously opened.
-           */
+         /*!
+          \brief Closes the file if it was previously opened.
+          */
          void close() override;
 
-          /*!
-           \brief Reads a maximum of length bytes into the array.
-           \discussion For large blocks, it is possible that not all bytes are read because
-           it is still waiting for data. In this case, only a portion may be returned.
-           If you want to ensure that all data is read, you should call "readFully".
-           \param buffer The buffer to read the data into.
-           \param length The maximum number of bytes to read.
-           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
-           */
+         /*!
+          \brief Reads a maximum of length bytes into the array.
+          \discussion For large blocks, it is possible that not all bytes are read because
+          it is still waiting for data. In this case, only a portion may be returned.
+          If you want to ensure that all data is read, you should call "readFully".
+          \param buffer The buffer to read the data into.
+          \param length The maximum number of bytes to read.
+          \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+          */
          int64 read(unsigned char* buffer,
-                      int64 length) override;
+                    int64 length) override;
 
-          /*!
-           \brief Reads a maximum of length bytes into the array.
-           \param buffer The buffer to read the data into.
-           \param length The maximum number of bytes to read.
-           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
-           */
+         /*!
+          \brief Reads a maximum of length bytes into the array.
+          \param buffer The buffer to read the data into.
+          \param length The maximum number of bytes to read.
+          \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+          */
          int64 readFully(ByteArray& buffer, int64 length) override;
 
 
 
-          /*!
-           \brief Moves the file cursor to the desired position, counted from the beginning of the file.
-           \param position The desired position to move the file cursor to (0-based index).
-           */
+         /*!
+          \brief Moves the file cursor to the desired position, counted from the beginning of the file.
+          \param position The desired position to move the file cursor to (0-based index).
+          */
          void seek(int64 position) override;
 
-          /*!
-           \brief Moves the file cursor to the desired position, relative to the current position.
-           \param offset The offset to move the file cursor by.
-           */
+         /*!
+          \brief Moves the file cursor to the desired position, relative to the current position.
+          \param offset The offset to move the file cursor by.
+          */
          void move(int64 offset) override;
 
-          /*!
-           \brief Returns the current cursor position in the file.
-           \return The current cursor position.
-           */
+         /*!
+          \brief Returns the current cursor position in the file.
+          \return The current cursor position.
+          */
          int64 position() override;
 
-          /*!
-           \brief Writes a buffer to the output file.
-           \param buffer The buffer containing the data to be written.
-           \param length The number of bytes to write from the buffer.
-           \return The number of bytes actually written, or 0 if an error occurred.
-           */
+         /*!
+          \brief Writes a buffer to the output file.
+          \param buffer The buffer containing the data to be written.
+          \param length The number of bytes to write from the buffer.
+          \return The number of bytes actually written, or 0 if an error occurred.
+          */
          int64 write(const uint8* buffer, int64 length) override;
 
-          /*!
-           \brief Compares the absolute file path with another file's absolute path.
-           \param other The file to compare with.
-           \return An integer value indicating the result of the comparison:
-                 - 0 if the file paths are equal.
-                 - a negative value if this file path is lexicographically less than the other file path.
-                 - a positive value if this file path is lexicographically greater than the other file path.
-           */
+         /*!
+          \brief Compares the absolute file path with another file's absolute path.
+          \param other The file to compare with.
+          \return An integer value indicating the result of the comparison:
+                - 0 if the file paths are equal.
+                - a negative value if this file path is lexicographically less than the other file path.
+                - a positive value if this file path is lexicographically greater than the other file path.
+          */
          int32 compareTo(const File& other) const override;
 
          /*!
@@ -345,31 +345,31 @@ namespace jm
          //! The C-String representation of the pathname. It is created and held when needed.
          ByteArray mCstr;
 
-          //! Filehandle in operating system
+         //! Filehandle in operating system
          FILE* mHandle;
 
-          /*!
-           \brief This method normalizes the pathname.
-           \details On Unix, a normalized pathname does not contain duplicate slashes
-           and does not end with a slash.
-           \param pathname The pathname to be normalized.
-           \return The normalized pathname.
-           */
+         /*!
+          \brief This method normalizes the pathname.
+          \details On Unix, a normalized pathname does not contain duplicate slashes
+          and does not end with a slash.
+          \param pathname The pathname to be normalized.
+          \return The normalized pathname.
+          */
          String normalize(const String& pathname);
 
-          /*!
-           \brief This method combines the parent name with the child name.
-           Note: Both parent and child paths must be normalized.
-           \param parent The pathname of the parent file.
-           \param child The pathname of the child file.
-           \return The combined pathname of the parent and child files.
-           */
+         /*!
+          \brief This method combines the parent name with the child name.
+          Note: Both parent and child paths must be normalized.
+          \param parent The pathname of the parent file.
+          \param child The pathname of the child file.
+          \return The combined pathname of the parent and child files.
+          */
          String resolve(String parent,
                         String child);
 
-          /*!
-           \brief This helper method sets the C-string used to resolve the filename in the operating system.
-           */
+         /*!
+          \brief This helper method sets the C-string used to resolve the filename in the operating system.
+          */
          void setCString();
 
          //! Helper for storing tag list

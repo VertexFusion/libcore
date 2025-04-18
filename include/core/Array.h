@@ -49,14 +49,14 @@ namespace jm
    {
       public:
 
-         Array():Object(),
-         mSize(0)
+         Array(): Object(),
+            mSize(0)
          {
             mData = new T[0];
          };
 
          explicit Array(int64 size): Object(),
-         mSize(size)
+            mSize(size)
          {
             mSize = size;
             mData = new T[size];
@@ -320,8 +320,8 @@ namespace jm
             mData = new float[mLength];
             uint32 cnt = 0;
             for(std::initializer_list<float>::iterator it = list.begin();
-                it != list.end();
-                ++it)
+                  it != list.end();
+                  ++it)
             {
                mData[cnt++] = *it;
             }

@@ -57,43 +57,43 @@ namespace jm
             }
          };
 
-          //The top element on the stack
+         //The top element on the stack
          StackElement* mTop;
 
-          // The number of elements on the stack
+         // The number of elements on the stack
          uint32 mCount;
 
       public:
 
-          /*!
-           \brief Constructor for the stack. Initializes all variables.
-           */
+         /*!
+          \brief Constructor for the stack. Initializes all variables.
+          */
          Stack()
          {
             mTop = nullptr;
             mCount = 0;
          };
 
-          /*!
-           \brief Destructor for the stack. Here all variables are deleted.
-           */
+         /*!
+          \brief Destructor for the stack. Here all variables are deleted.
+          */
          ~Stack()
          {
             clear();
          }
 
-          /*!
-           \brief This method returns true if the stack is not empty.
-           */
+         /*!
+          \brief This method returns true if the stack is not empty.
+          */
          inline bool hasElements() const
          {
             return mTop != nullptr;
          };
 
-          /*!
-           \brief Removes and returns the top element from the stack.
-           \return The top element of the stack.
-           */
+         /*!
+          \brief Removes and returns the top element from the stack.
+          \return The top element of the stack.
+          */
          inline T pop()
          {
             StackElement* pop = mTop;
@@ -104,56 +104,58 @@ namespace jm
             return ret;
          };
 
-          /*!
-           \brief Returns the top element of the stack without removing it.
-           \return The top element of the stack.
-           */
+         /*!
+          \brief Returns the top element of the stack without removing it.
+          \return The top element of the stack.
+          */
          inline T& top() const
          {
             return mTop->data;
          };
 
-          /*!
-           \brief Returns the top element of the stack without removing it.
-           \return The top element of the stack.
-           */
+         /*!
+          \brief Returns the top element of the stack without removing it.
+          \return The top element of the stack.
+          */
          inline T* topRef()
          {
             return &mTop->data;
          };
 
-          /*!
-           \brief Returns the second top element of the stack without removing it.
-           \return The second top element of the stack.
-           */
-          inline T top2()
-          {
-            if (mTop != nullptr && mTop->prev != nullptr) {
+         /*!
+          \brief Returns the second top element of the stack without removing it.
+          \return The second top element of the stack.
+          */
+         inline T top2()
+         {
+            if(mTop != nullptr && mTop->prev != nullptr)
+            {
                return mTop->prev->data;
             }
 
             // Handle the case when there are not enough elements on the stack
             throw jm::Exception(Tr("Not enough elements on the stack"));
-          };
+         };
 
-          /*!
-           \brief Returns the third element from the top of the stack without removing it.
-           \return The third element from the top of the stack.
-           */
-          inline T top3()
-          {
-            if (mTop != nullptr && mTop->prev != nullptr && mTop->prev->prev != nullptr) {
+         /*!
+          \brief Returns the third element from the top of the stack without removing it.
+          \return The third element from the top of the stack.
+          */
+         inline T top3()
+         {
+            if(mTop != nullptr && mTop->prev != nullptr && mTop->prev->prev != nullptr)
+            {
                return mTop->prev->prev->data;
             }
 
             // Handle the case when there are not enough elements on the stack
             throw jm::Exception(Tr("Not enough elements on the stack"));
-          };
+         };
 
-          /*!
-           \brief Adds an element to the stack.
-           \param data The data to be added to the stack.
-           */
+         /*!
+          \brief Adds an element to the stack.
+          \param data The data to be added to the stack.
+          */
          inline void push(T data)
          {
             StackElement* item = new StackElement();
@@ -163,26 +165,26 @@ namespace jm
             mCount++;
          }
 
-          /*!
-           \brief Deletes all elements on the stack.
-           */
+         /*!
+          \brief Deletes all elements on the stack.
+          */
          inline void clear()
          {
             while(hasElements())pop();
          };
 
-          /*!
-           \brief Returns the number of elements on the stack.
-           \return The number of elements on the stack.
-           */
+         /*!
+          \brief Returns the number of elements on the stack.
+          \return The number of elements on the stack.
+          */
          inline uint32 size() const
          {
             return mCount;
          }
 
-          /*!
-           \brief Reverses the order of the stack. The bottom element becomes the top.
-           */
+         /*!
+          \brief Reverses the order of the stack. The bottom element becomes the top.
+          */
          inline void reverse()
          {
             StackElement* pop = nullptr;

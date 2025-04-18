@@ -37,56 +37,56 @@
 namespace jm
 {
 
-/*!
- \brief This class collect static methods to manipulate integer values
- \ingroup core
- */
-class DllExport Integer
-{
-   public:
+   /*!
+    \brief This class collect static methods to manipulate integer values
+    \ingroup core
+    */
+   class DllExport Integer
+   {
+      public:
 
-      /*!
-       \brief Returns the number of digits, this number has.
-       \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
-       */
-      static uint8 digits(int64 number);
+         /*!
+          \brief Returns the number of digits, this number has.
+          \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
+          */
+         static uint8 digits(int64 number);
 
-      /*!
-       \brief Method converts a hexadecimal string value into an integer number.
-       \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
-       \return Returns the desired number as an integer value.
-       */
-      static int64 fromHex(const jm::String& str);
+         /*!
+          \brief Method converts a hexadecimal string value into an integer number.
+          \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
+          \return Returns the desired number as an integer value.
+          */
+         static int64 fromHex(const jm::String& str);
 
-      /*!
-       \brief Method converts a hexadecimal string value into an integer number.
-       \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
-       \param begin start index of hex string
-       \param size Size of hex string
-       \return Returns the desired number as an integer value.
-       */
-      static int64 fromHex(const jm::String& str, uint32 begin, uint32 size);
+         /*!
+          \brief Method converts a hexadecimal string value into an integer number.
+          \param str A character string that represents a hexadecimal coded number. E.g. "FF" for 255.
+          \param begin start index of hex string
+          \param size Size of hex string
+          \return Returns the desired number as an integer value.
+          */
+         static int64 fromHex(const jm::String& str, uint32 begin, uint32 size);
 
-      /*!
-       \brief Converts an integer number to a hexadecimal string value.
-       \return Returns the desired number as a string, which is a hexadecimal representation.
-       For example, "FF" for 255.
-       */
-      static jm::String toHexString(int64 number);
+         /*!
+          \brief Converts an integer number to a hexadecimal string value.
+          \return Returns the desired number as a string, which is a hexadecimal representation.
+          For example, "FF" for 255.
+          */
+         static jm::String toHexString(int64 number);
 
-      /*!
-       \brief Converts an integer number to a string representation of a Roman numeral.
-       \return The desired number as a string with the value of a Roman numeral.
-       */
-      static jm::String toRomanString(int64 number);
+         /*!
+          \brief Converts an integer number to a string representation of a Roman numeral.
+          \return The desired number as a string with the value of a Roman numeral.
+          */
+         static jm::String toRomanString(int64 number);
 
-      /*!
-       \brief Converts an integer number to a string representation of a capital letter.
-       \return The desired number as a string with the value of a capital letter.
-       */
-      static jm::String toLatinAlphabetString(int64 number);
+         /*!
+          \brief Converts an integer number to a string representation of a capital letter.
+          \return The desired number as a string with the value of a capital letter.
+          */
+         static jm::String toLatinAlphabetString(int64 number);
 
-};
+   };
 
 }
 

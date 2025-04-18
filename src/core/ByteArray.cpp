@@ -233,8 +233,8 @@ void ByteArray::resize(int64 newSize)
       }
       mRawSize = newSize + 1;
       mArrSize = newSize;
-      if(mData!=nullptr)delete mData;
-      mData=tmp;
+      if(mData != nullptr)delete mData;
+      mData = tmp;
    }
 }
 

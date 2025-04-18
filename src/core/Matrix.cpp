@@ -35,7 +35,7 @@ using namespace jm;
 
 Matrix::Matrix(int64 rows, int64 cols)
 {
-   init(rows,cols);
+   init(rows, cols);
    zeros();
 }
 
@@ -44,7 +44,7 @@ Matrix::Matrix(const Vertex3& c1,
                const Vertex3& c3,
                bool rowwise)
 {
-   init(3,3);
+   init(3, 3);
 
    if(rowwise)
    {
@@ -86,7 +86,7 @@ Matrix::Matrix()
 
 Matrix::Matrix(double value)
 {
-   init(1,1);
+   init(1, 1);
 
    data[0] = value;
 }
@@ -111,7 +111,7 @@ Matrix::Matrix(const Matrix& other)
 
 Matrix::Matrix(const Matrix* other)
 {
-   init(other->m,other->n);
+   init(other->m, other->n);
 
    for(uint32 i = 0; i < m * n; i++)
    {
@@ -603,14 +603,14 @@ Vector Matrix::eigen() const
 
 void Matrix::initIdentity()
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
    zeros();
    diag(1.0f);
 }
 
 void Matrix::initWcs(const jm::Vertex3& extrusion)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    Matrix mx = wcsMatrix(extrusion);
    zeros();
@@ -628,7 +628,7 @@ void Matrix::initWcs(const jm::Vertex3& extrusion)
 
 void Matrix::initMirroring(const jm::Vertex3& planePoint, const jm::Vertex3& planeNormal)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    //Transformationsmatrix:
 
@@ -660,8 +660,8 @@ void Matrix::initMirroring(const jm::Vertex3& planePoint, const jm::Vertex3& pla
    double b = planeNormal.y;
    double c = planeNormal.z;
    double d = - planePoint.x * planeNormal.x
-   - planePoint.y * planeNormal.y
-   - planePoint.z * planeNormal.z;
+              - planePoint.y * planeNormal.y
+              - planePoint.z * planeNormal.z;
 
    zeros();
    set(0, 0, 1.0 - 2.0 * a * a);
@@ -681,7 +681,7 @@ void Matrix::initMirroring(const jm::Vertex3& planePoint, const jm::Vertex3& pla
 
 void Matrix::initMoving(const jm::Vertex3& distance)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    //Transformationsmatrix:
    // | 1 0 0 x |
@@ -697,7 +697,7 @@ void Matrix::initMoving(const jm::Vertex3& distance)
 
 void Matrix::initScaling(const jm::Vertex3& factors)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    zeros();
    set(0, 0, factors.x);
@@ -708,7 +708,7 @@ void Matrix::initScaling(const jm::Vertex3& factors)
 
 void Matrix::initScaling(const jm::Vertex3& basePoint, double factor)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    //Transformationsmatrix:
 
@@ -736,7 +736,7 @@ void Matrix::initScaling(const jm::Vertex3& basePoint, double factor)
 
 void Matrix::initRotationZ(double angle)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    Matrix mx = Matrix::generate3x3RotationZMatrix(angle);
    zeros();
@@ -756,7 +756,7 @@ void Matrix::initRotation(const jm::Vertex3& axisPoint,
                           const jm::Vertex3& axisDirection,
                           double angle)
 {
-   if(m!=4 || n!=4)init(4,4);
+   if(m != 4 || n != 4)init(4, 4);
 
    //Transformationsmatrix:
 
@@ -1092,7 +1092,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
    double cosTheta = u_norm.dotProduct(v_norm);
 
    // Check if the angle is π (cosTheta is -1)
-   if (jm::isEqual(cosTheta , -1.0))
+   if(jm::isEqual(cosTheta, -1.0))
    {
       // Special case for 180 degree rotation
       // Find an orthogonal vector to u_norm
@@ -1100,7 +1100,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
       orthogonal = orthogonal.normalized();
 
       // Construct the rotation matrix for 180 degree rotation around the orthogonal axis
-      jm::Matrix rotationMatrix=jm::Matrix(3,3);
+      jm::Matrix rotationMatrix = jm::Matrix(3, 3);
       rotationMatrix.set(0, 0, -1 + 2 * orthogonal.x * orthogonal.x);
       rotationMatrix.set(0, 1, 2 * orthogonal.x * orthogonal.y);
       rotationMatrix.set(0, 2, 2 * orthogonal.x * orthogonal.z);
@@ -1124,7 +1124,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
       double sinTheta = std::sqrt(1 - cosTheta * cosTheta); // sinTheta = sqrt(1 - cosTheta^2)
 
       // Construct the rotation matrix using Rodrigues' rotation formula
-      jm::Matrix rotationMatrix=jm::Matrix(3,3);
+      jm::Matrix rotationMatrix = jm::Matrix(3, 3);
       rotationMatrix.set(0, 0, cosTheta + axis.x * axis.x * (1 - cosTheta));
       rotationMatrix.set(0, 1, axis.x * axis.y * (1 - cosTheta) - axis.z * sinTheta);
       rotationMatrix.set(0, 2, axis.x * axis.z * (1 - cosTheta) + axis.y * sinTheta);

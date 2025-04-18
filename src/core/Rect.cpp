@@ -33,25 +33,25 @@
 
 jm::Rect::Rect()
 {
-   mOrigin=Point();
-   mSize=Size();
+   mOrigin = Point();
+   mSize = Size();
 }
 
 jm::Rect::Rect(double rx, double ry, double rwidth, double rheight)
 {
-   mOrigin=Point(rx,ry);
-   mSize=Size(rwidth,rheight);
+   mOrigin = Point(rx, ry);
+   mSize = Size(rwidth, rheight);
 }
 
 jm::Rect::Rect(Point origin, Size size)
 {
-   mOrigin=origin;
+   mOrigin = origin;
    mSize = size;
 }
 
-jm::Rect::Rect(double rx, double ry,const Size& size)
+jm::Rect::Rect(double rx, double ry, const Size& size)
 {
-   mOrigin=Point(rx,ry);
+   mOrigin = Point(rx, ry);
    mSize = size;
 }
 
@@ -149,13 +149,13 @@ jm::Point jm::Rect::bottomCenter() const
 jm::Point jm::Rect::leftCenter() const
 {
    return jm::Point(left(),
-                    mOrigin.y()+0.5*mSize.height());
+                    mOrigin.y() + 0.5 * mSize.height());
 }
 
 jm::Point jm::Rect::rightCenter() const
 {
    return jm::Point(right(),
-                    mOrigin.y()+0.5*mSize.height());
+                    mOrigin.y() + 0.5 * mSize.height());
 }
 
 void jm::Rect::intersect(const jm::Rect& other)
@@ -186,24 +186,24 @@ void jm::Rect::setHeight(double height)
    mSize.setHeight(height);
 }
 
-void jm::Rect::setSize(const Size &sz)
+void jm::Rect::setSize(const Size& sz)
 {
-   mSize=sz;
+   mSize = sz;
 }
 
 void jm::Rect::setSize(double width, double height)
 {
-   mSize=Size(width,height);
+   mSize = Size(width, height);
 }
 
 void jm::Rect::setOrigin(const Point& pt)
 {
-   mOrigin=pt;
+   mOrigin = pt;
 }
 
 void jm::Rect::setOrigin(double x, double y)
 {
-   mOrigin=Point(x,y);
+   mOrigin = Point(x, y);
 }
 
 //
@@ -271,8 +271,8 @@ void jm::Rect::moveLeft(double delta)
 
 void jm::Rect::moveRight(double delta)
 {
-  //TODO: DEPRECATED
-  mSize.rWidth() += delta;
+   //TODO: DEPRECATED
+   mSize.rWidth() += delta;
 }
 
 void jm::Rect::moveBottom(double delta)
@@ -334,7 +334,7 @@ void jm::Rect::unionWith(const jm::Rect& rect)
 
 bool jm::Rect::isEmpty() const
 {
-   return jm::isEqual(mSize.width(),0.0) ||jm::isEqual(mSize.height(),0.0);
+   return jm::isEqual(mSize.width(), 0.0) || jm::isEqual(mSize.height(), 0.0);
 }
 jm::Rect jm::Rect::intersection(const jm::Rect& rect) const
 {

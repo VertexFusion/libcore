@@ -198,12 +198,12 @@ Vertex3 Vertex3::operator-(const Vertex3& other) const
    return Vertex3(x - other.x, y - other.y, z - other.z);
 }
 
-Vertex3 jm::operator*(double d,const Vertex3& v)
+Vertex3 jm::operator*(double d, const Vertex3& v)
 {
    return Vertex3(d * v.x, d * v.y, d * v.z);
 }
 
-Vertex3 jm::operator*(const Vertex3& v,double d)
+Vertex3 jm::operator*(const Vertex3& v, double d)
 {
    return Vertex3(d * v.x, d * v.y, d * v.z);
 }

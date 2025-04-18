@@ -337,43 +337,43 @@ namespace jm
           */
          PropertyType mType;
 
-          /*!
-           \brief Identifier of the property.
-           */
+         /*!
+          \brief Identifier of the property.
+          */
          String mId;
 
-          /*!
-           \brief Name of the group where the property will be automatically sorted at the end
-           */
+         /*!
+          \brief Name of the group where the property will be automatically sorted at the end
+          */
          String mGroup;
 
-          /*!
-           \brief Name of the property as displayed in the user interface.
-           */
+         /*!
+          \brief Name of the property as displayed in the user interface.
+          */
          String mName;
 
-          /*!
-           \brief Hint
-           */
+         /*!
+          \brief Hint
+          */
          String mHint;
 
-          /*!
-           \brief Icon name for specific GUI elements.
-           */
+         /*!
+          \brief Icon name for specific GUI elements.
+          */
          String mIcon;
 
-          /*!
-           \brief Editor that should be used. This must be a registered editor in the PropertyEditor.
-           The following standard editors are available:
-           - textfield
-           - checkbox
-           - combobox
-           */
-          String mEditor;
+         /*!
+          \brief Editor that should be used. This must be a registered editor in the PropertyEditor.
+          The following standard editors are available:
+          - textfield
+          - checkbox
+          - combobox
+          */
+         String mEditor;
 
-          /*!
-           \brief Indicates whether the value can be edited by the user or is only displayed as "informative" because it is calculated, for example.
-           */
+         /*!
+          \brief Indicates whether the value can be edited by the user or is only displayed as "informative" because it is calculated, for example.
+          */
          bool mReadOnly;
 
          /*!
@@ -381,17 +381,17 @@ namespace jm
           */
          bool mAllowEmpty;
 
-          /*!
-           \brief Indicates whether a change in the value has an impact on the visible property structure, for example, because a dropdown field makes different properties visible or invisible.
-           This is needed to control visibility in the Property Editor.
-           */
+         /*!
+          \brief Indicates whether a change in the value has an impact on the visible property structure, for example, because a dropdown field makes different properties visible or invisible.
+          This is needed to control visibility in the Property Editor.
+          */
          PropertyChangeMode mChangeMode;
 
-          /*!
-           \brief The value of the property is typically set by the user in the GUI. Therefore, the value is usually a string, boolean, or number.
-           If a different type is present, it is wise to consider whether the transfer should be done as text or if it should be extended here.
-           However, it is always better to parse it as text. As mentioned, it comes from the interface and not from other data.
-           */
+         /*!
+          \brief The value of the property is typically set by the user in the GUI. Therefore, the value is usually a string, boolean, or number.
+          If a different type is present, it is wise to consider whether the transfer should be done as text or if it should be extended here.
+          However, it is always better to parse it as text. As mentioned, it comes from the interface and not from other data.
+          */
          union
          {
             bool boolValue;
@@ -470,9 +470,9 @@ namespace jm
           \param rangeMax Maximum valid value. Default is INT64_MAX
           */
          virtual Status setMember(int64* pointer,
-                                          int64 value,
-                                          int64 rangeMin = INT64_MIN,
-                                          int64 rangeMax = INT64_MAX);
+                                  int64 value,
+                                  int64 rangeMin = INT64_MIN,
+                                  int64 rangeMax = INT64_MAX);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
@@ -493,7 +493,7 @@ namespace jm
 
          virtual Status setMember(int16* pointer, int16 value);
 
-         virtual Status setMember(Vertex3* pointer, const Vertex3 &value);
+         virtual Status setMember(Vertex3* pointer, const Vertex3& value);
 
          /*!
           \brief Begins an editing transaction;

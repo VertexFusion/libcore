@@ -67,17 +67,17 @@ namespace jm
           */
          static String language();
 
-          /*!
-           \brief This method returns the username of the currently logged-in user.
-           This function determines the "system name" UserID. Typically, this is the account name.
-           */
+         /*!
+          \brief This method returns the username of the currently logged-in user.
+          This function determines the "system name" UserID. Typically, this is the account name.
+          */
          static String userId();
 
-          /*!
-           \brief This method returns the username of the currently logged-in user.
-           This function determines the "natural language" user name. It usually contains spaces and
-           is not identical to the account name.
-           */
+         /*!
+          \brief This method returns the username of the currently logged-in user.
+          This function determines the "natural language" user name. It usually contains spaces and
+          is not identical to the account name.
+          */
          static String userFullName();
 
          /*!
@@ -90,18 +90,18 @@ namespace jm
           */
          static const String& bundleId();
 
-          /*!
-           \brief This method must be called first to set up important static objects
-           \note When exiting, \c quit() must be called
-           */
+         /*!
+          \brief This method must be called first to set up important static objects
+          \note When exiting, \c quit() must be called
+          */
          static void init(const jm::String& bundleId);
 
-          /*!
-           \brief This method cleans up static system objects. After calling this method, the program
-           must be terminated because otherwise unwanted side effects may occur when using objects
-           from this library.
-           \note \c init() must be called at startup
-           */
+         /*!
+          \brief This method cleans up static system objects. After calling this method, the program
+          must be terminated because otherwise unwanted side effects may occur when using objects
+          from this library.
+          \note \c init() must be called at startup
+          */
          static void quit();
 
          /*!
@@ -116,33 +116,33 @@ namespace jm
           */
          static void logEnableLabel(LogLevel logLevel);
 
-          /*!
-           \brief Logs a message.
-           */
+         /*!
+          \brief Logs a message.
+          */
          static void log(const String& message, LogLevel logLevel);
 
-          /*!
-           \brief Returns the last error message
-           */
+         /*!
+          \brief Returns the last error message
+          */
          static const String& lastErrorMessage();
 
-          /*!
-           \brief This method loads a dynamic library. On macOS *.dylib, Windows *.dll, and Linux *.so
-           \param file File of the library.
-           \return Pointer to the library or NULL if it was not found.
-           */
+         /*!
+          \brief This method loads a dynamic library. On macOS *.dylib, Windows *.dll, and Linux *.so
+          \param file File of the library.
+          \return Pointer to the library or NULL if it was not found.
+          */
          static void* loadDynamicLibrary(File* file);
 
-          /*!
-           \brief This method unloads a loaded dynamic library
-           */
+         /*!
+          \brief This method unloads a loaded dynamic library
+          */
          static void unloadDynamicLibrary(void* library);
 
-          /*!
-           \brief This method searches for symbols in the library.
-           \param library Reference to the library to search in.
-           \param name Name of the symbol.
-           */
+         /*!
+          \brief This method searches for symbols in the library.
+          \param library Reference to the library to search in.
+          \param name Name of the symbol.
+          */
          static void* findSymbol(void* library, const String& name);
 
          /*!

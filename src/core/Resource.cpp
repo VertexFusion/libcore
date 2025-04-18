@@ -36,44 +36,44 @@ using namespace jm;
 
 Resource::Resource(const String& path)
 {
-#ifdef __ANDROID__
+   #ifdef __ANDROID__
    jm::ByteArray array = jm::osResourceRead(path);
-    if(array.size()<=0)
-    {
-        mStream = nullptr;
-        return;
-    }
-   uint8* buffer=new uint8[array.size()];
-   memcpy(buffer,array.constData(),array.size());
-   mStream=new jm::MemoryStream(buffer,array.size(),true);
-#else
-   mStream=new jm::File(jm::ResourceDir(jm::System::bundleId()),path);
-#endif
+   if(array.size() <= 0)
+   {
+      mStream = nullptr;
+      return;
+   }
+   uint8* buffer = new uint8[array.size()];
+   memcpy(buffer, array.constData(), array.size());
+   mStream = new jm::MemoryStream(buffer, array.size(), true);
+   #else
+   mStream = new jm::File(jm::ResourceDir(jm::System::bundleId()), path);
+   #endif
 }
 
 Resource::Resource(const Resource& other)
 {
-    mStream=other.mStream;
-    if(mStream!=nullptr)mStream->retain();
+   mStream = other.mStream;
+   if(mStream != nullptr)mStream->retain();
 }
 
 Resource& Resource::operator=(const Resource& other)
 {
-    if(this != &other)
-    {
-        mStream=other.mStream;
-        if(mStream!=nullptr)mStream->retain();
-    }
+   if(this != &other)
+   {
+      mStream = other.mStream;
+      if(mStream != nullptr)mStream->retain();
+   }
 
-    return *this;
+   return *this;
 }
 
 Resource::~Resource()
 {
-   if(mStream!=nullptr)
+   if(mStream != nullptr)
    {
       mStream->release();
-      mStream=nullptr;
+      mStream = nullptr;
    }
 }
 
@@ -100,12 +100,12 @@ void Resource::close()
 
 int64 Resource::read(uint8* buffer, int64 length)
 {
-   return mStream->read(buffer,length);
+   return mStream->read(buffer, length);
 }
 
 int64 Resource::readFully(jm::ByteArray& buffer, int64 length)
 {
-   return mStream->readFully(buffer,length);
+   return mStream->readFully(buffer, length);
 }
 
 void Resource::seek(int64 position)
@@ -125,16 +125,16 @@ int64 Resource::position()
 
 int64 Resource::write(const uint8* buffer, int64 length)
 {
-   return mStream->write(buffer,length);
+   return mStream->write(buffer, length);
 }
 
 bool Resource::exists() const
 {
-    if(mStream!= nullptr)
-    {
-        jm::File* file=dynamic_cast<jm::File*>(mStream);
-        if(file!= nullptr)return file->exists();
-        else return true;
-    }
-    return false;
+   if(mStream != nullptr)
+   {
+      jm::File* file = dynamic_cast<jm::File*>(mStream);
+      if(file != nullptr)return file->exists();
+      else return true;
+   }
+   return false;
 }

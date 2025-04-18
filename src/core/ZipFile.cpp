@@ -188,7 +188,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    mFile->seek(entry->mHeaderOffset + 30 + fl + el);
    mFile->Stream::readFully(input);
 
-   uint8* buffer=nullptr;
+   uint8* buffer = nullptr;
    if(cm == 0) //Daten uncompressed
    {
       buffer = new uint8[entry->mUncompressedSize];
@@ -203,7 +203,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
       inf.Inflate(buffer, control);
    }
 
-   return new MemoryStream(buffer, entry->mUncompressedSize,true);
+   return new MemoryStream(buffer, entry->mUncompressedSize, true);
 }
 
 //

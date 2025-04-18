@@ -195,7 +195,7 @@ void EditableObjectTest::doTest()
 
    // Check transaction with expected data failure. As result, we expect no data changes.
    Status status = adr->SetStreetAddress("Teststraße", -19);
-   testTrue(status==Status::eInvalidInput, "VxfErrorStatus wrong (15)");
+   testTrue(status == Status::eInvalidInput, "VxfErrorStatus wrong (15)");
    testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (16)");
    testEquals(adr->GetHouseNumber(), 51, "House number wrong (17)");
    testFalse(um->hasOpenTransaction(), "Transaction is open (18)");
@@ -212,7 +212,7 @@ void EditableObjectTest::doTest()
    // Changing just the house number should not have any effect, though calling setMember with
    // the street will return Status::eNotChanged, which should not have any effect on the transaction
    status = adr->SetStreetAddress("Waldstraße", 7);
-   testTrue(status==Status::eOK, "VxfErrorStatus wrong (24)");
+   testTrue(status == Status::eOK, "VxfErrorStatus wrong (24)");
    testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");
    testEquals(adr->GetHouseNumber(), 7, "House number wrong (26)");
    testFalse(um->hasOpenTransaction(), "Transaction is open (27)");

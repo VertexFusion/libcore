@@ -401,59 +401,59 @@ void MatrixTest::doTest()
 
    // Align X to Z
 
-    jm::Vertex3 zAxis(0, 0, 1);
+   jm::Vertex3 zAxis(0, 0, 1);
 
-    rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, zAxis);
+   rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, zAxis);
 
-    // Apply the rotation matrix to the x-axis
-    rotatedXAxis = rotationMatrix * xAxis;
+   // Apply the rotation matrix to the x-axis
+   rotatedXAxis = rotationMatrix * xAxis;
 
-    // Check if the rotated x-axis aligns with the z-axis
-    testEquals(rotatedXAxis.x, 0.0, "rotatedXAxis.x not 0");
-    testEquals(rotatedXAxis.y, 0.0, "rotatedXAxis.y not 0");
-    testEquals(rotatedXAxis.z, 1.0, "rotatedXAxis.z not 1");
+   // Check if the rotated x-axis aligns with the z-axis
+   testEquals(rotatedXAxis.x, 0.0, "rotatedXAxis.x not 0");
+   testEquals(rotatedXAxis.y, 0.0, "rotatedXAxis.y not 0");
+   testEquals(rotatedXAxis.z, 1.0, "rotatedXAxis.z not 1");
 
-    // Align arbitrary
+   // Align arbitrary
 
-    jm::Vertex3 u(1, 2, 3);
-    jm::Vertex3 v(4, 5, 6);
+   jm::Vertex3 u(1, 2, 3);
+   jm::Vertex3 v(4, 5, 6);
 
-    rotationMatrix = Matrix::generate3x3RotationMatrix(u, v);
+   rotationMatrix = Matrix::generate3x3RotationMatrix(u, v);
 
-    // Apply the rotation matrix to the vector u
-    jm::Vertex3 rotatedU = rotationMatrix * u;
+   // Apply the rotation matrix to the vector u
+   jm::Vertex3 rotatedU = rotationMatrix * u;
 
-    // Normalize both vectors for comparison
-    jm::Vertex3 v_norm = v.normalized();
-    jm::Vertex3 rotatedU_norm = rotatedU.normalized();
+   // Normalize both vectors for comparison
+   jm::Vertex3 v_norm = v.normalized();
+   jm::Vertex3 rotatedU_norm = rotatedU.normalized();
 
-    // Check if the rotated u aligns with v
-    testEquals(rotatedU_norm.x, v_norm.x, "rotatedU_norm.x not v_norm.x");
-    testEquals(rotatedU_norm.y, v_norm.y, "rotatedU_norm.y not v_norm.y");
-    testEquals(rotatedU_norm.z, v_norm.z, "rotatedU_norm.z not v_norm.z");
+   // Check if the rotated u aligns with v
+   testEquals(rotatedU_norm.x, v_norm.x, "rotatedU_norm.x not v_norm.x");
+   testEquals(rotatedU_norm.y, v_norm.y, "rotatedU_norm.y not v_norm.y");
+   testEquals(rotatedU_norm.z, v_norm.z, "rotatedU_norm.z not v_norm.z");
 
-    //
-    // 180 degree rotation
-    //
+   //
+   // 180 degree rotation
+   //
 
-    // Define the x-axis
-    xAxis= jm::Vertex3(1, 0, 0);
+   // Define the x-axis
+   xAxis = jm::Vertex3(1, 0, 0);
 
-    // Define the axis of rotation (y-axis in this case)
-    yAxis = jm::Vertex3(-1, 0, 0);
+   // Define the axis of rotation (y-axis in this case)
+   yAxis = jm::Vertex3(-1, 0, 0);
 
-    // Define the expected result after 180-degree rotation around the y-axis
-    jm::Vertex3 expectedRotatedXAxis(-1, 0, 0);
+   // Define the expected result after 180-degree rotation around the y-axis
+   jm::Vertex3 expectedRotatedXAxis(-1, 0, 0);
 
-    // Create a rotation matrix for 180 degrees (π radians)
-    rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, yAxis);
+   // Create a rotation matrix for 180 degrees (π radians)
+   rotationMatrix = Matrix::generate3x3RotationMatrix(xAxis, yAxis);
 
-    // Apply the rotation matrix to the x-axis
-    rotatedXAxis = rotationMatrix * xAxis;
+   // Apply the rotation matrix to the x-axis
+   rotatedXAxis = rotationMatrix * xAxis;
 
-    // Check if the rotated x-axis aligns with the expected result
-    testEquals(rotatedXAxis.x, expectedRotatedXAxis.x, "rotatedXAxis.x not -1");
-    testEquals(rotatedXAxis.y, expectedRotatedXAxis.y, "rotatedXAxis.y not 0");
-    testEquals(rotatedXAxis.z, expectedRotatedXAxis.z, "rotatedXAxis.z not 0");
+   // Check if the rotated x-axis aligns with the expected result
+   testEquals(rotatedXAxis.x, expectedRotatedXAxis.x, "rotatedXAxis.x not -1");
+   testEquals(rotatedXAxis.y, expectedRotatedXAxis.y, "rotatedXAxis.y not 0");
+   testEquals(rotatedXAxis.z, expectedRotatedXAxis.z, "rotatedXAxis.z not 0");
 
 }

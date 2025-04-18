@@ -334,7 +334,7 @@ bool LinkedListIterator::hasNext() noexcept
 
 Object* LinkedListIterator::next() noexcept
 {
-   if(current==nullptr)return nullptr;
+   if(current == nullptr)return nullptr;
    Object* ret = current->data;
    current = current->next;
    return ret;
@@ -342,7 +342,7 @@ Object* LinkedListIterator::next() noexcept
 
 Object* LinkedListIterator::seek() const
 {
-   if(current!=nullptr)return current->data;
+   if(current != nullptr)return current->data;
    return nullptr;
 }
 

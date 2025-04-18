@@ -59,113 +59,113 @@ namespace jm
 
       public:
 
-          /*!
-           \brief Constructor.
-           */
+         /*!
+          \brief Constructor.
+          */
          Stream();
 
-          /*!
-           \brief Returns the length of the stream.
-           \details This method returns the length of the stream in bytes.
-           \return The length of the stream.
-           */
+         /*!
+          \brief Returns the length of the stream.
+          \details This method returns the length of the stream in bytes.
+          \return The length of the stream.
+          */
          virtual int64 size() const = 0;
 
-          /*!
-           \brief Opens the stream for read or write operations.
-           \param mode The mode to open the stream.
-           \details This method opens the stream for read or write operations based on the specified mode.
-           \return The status of the operation.
-           */
+         /*!
+          \brief Opens the stream for read or write operations.
+          \param mode The mode to open the stream.
+          \details This method opens the stream for read or write operations based on the specified mode.
+          \return The status of the operation.
+          */
          virtual Status open(FileMode mode) = 0;
 
-          /*!
-           \brief Returns whether the file is open or not.
-           \details This method returns a boolean value indicating whether the file is currently open or not.
-           \return \c true if the file is open, \c false otherwise.
-           */
+         /*!
+          \brief Returns whether the file is open or not.
+          \details This method returns a boolean value indicating whether the file is currently open or not.
+          \return \c true if the file is open, \c false otherwise.
+          */
          virtual bool isOpen() = 0;
 
-          /*!
-           \brief Closes the stream if it was previously opened and releases any system resources.
-           \details This method closes the stream if it was previously opened and releases any system resources associated with it.
-           */
+         /*!
+          \brief Closes the stream if it was previously opened and releases any system resources.
+          \details This method closes the stream if it was previously opened and releases any system resources associated with it.
+          */
          virtual void close() = 0;
 
-          /*!
-           \brief Reads a maximum of length bytes into the array.
-           \details For large blocks, it is possible that not all bytes are read because
-           it is still waiting for data. In this case, only a portion may be returned.
-           If you want to ensure that all data is read, you should call readFully().
-           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
-           */
+         /*!
+          \brief Reads a maximum of length bytes into the array.
+          \details For large blocks, it is possible that not all bytes are read because
+          it is still waiting for data. In this case, only a portion may be returned.
+          If you want to ensure that all data is read, you should call readFully().
+          \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+          */
          virtual int64 read(uint8* buffer, int64 length) = 0;
 
-          /*!
-           \brief Reads a maximum of length bytes into the array.
-           \details For large blocks, it is possible that not all bytes are read because
-           it is still waiting for data. In this case, only a portion may be returned.
-           If you want to ensure that all data is read, you should call readFully().
-           \param buffer The buffer to read the data from.
-            \param length The maximum number of bytes to read.
-           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
-           */
+         /*!
+          \brief Reads a maximum of length bytes into the array.
+          \details For large blocks, it is possible that not all bytes are read because
+          it is still waiting for data. In this case, only a portion may be returned.
+          If you want to ensure that all data is read, you should call readFully().
+          \param buffer The buffer to read the data from.
+           \param length The maximum number of bytes to read.
+          \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+          */
          virtual int64 readFully(ByteArray& buffer, int64 length) = 0;
 
-            /*!
-            \brief Reads a maximum of length bytes into the array.
-            \param buffer The buffer to read the data from.
-            \return The actual number of bytes read, or 0 if no bytes were read (EOF).
-            */
+         /*!
+         \brief Reads a maximum of length bytes into the array.
+         \param buffer The buffer to read the data from.
+         \return The actual number of bytes read, or 0 if no bytes were read (EOF).
+         */
          int64 readFully(ByteArray& buffer);
 
-          /*!
-           \brief Moves the file cursor to the desired position, counted from the beginning of the file
-           (0-based index).
-           \note Not every stream supports this method.
-           \details This method moves the file cursor to the specified position, counted from the beginning of the file.
-           */
+         /*!
+          \brief Moves the file cursor to the desired position, counted from the beginning of the file
+          (0-based index).
+          \note Not every stream supports this method.
+          \details This method moves the file cursor to the specified position, counted from the beginning of the file.
+          */
          virtual void seek(int64 position) = 0;
 
-          /*!
-           \brief Moves the file cursor to the desired position, counted from the current position.
-           \details This method moves the file cursor to the specified position, counted from the current position.
-           */
+         /*!
+          \brief Moves the file cursor to the desired position, counted from the current position.
+          \details This method moves the file cursor to the specified position, counted from the current position.
+          */
          virtual void move(int64 offset) = 0;
 
-          /*!
-           \brief Returns the current cursor position in the file.
-           \note Not every stream supports this method.
-           \details This method returns the current cursor position in the file.
-           \return The current cursor position.
-           */
+         /*!
+          \brief Returns the current cursor position in the file.
+          \note Not every stream supports this method.
+          \details This method returns the current cursor position in the file.
+          \return The current cursor position.
+          */
          virtual int64 position() = 0;
 
-          /*!
-           \brief Writes a buffer to the output file.
-           \details This method writes the contents of the buffer to the output file.
-           \param buffer The buffer containing the data to be written.
-           \param length The number of bytes to write from the buffer.
-           \return The actual number of bytes written.
-           */
+         /*!
+          \brief Writes a buffer to the output file.
+          \details This method writes the contents of the buffer to the output file.
+          \param buffer The buffer containing the data to be written.
+          \param length The number of bytes to write from the buffer.
+          \return The actual number of bytes written.
+          */
          virtual int64 write(const uint8* buffer, int64 length) = 0;
 
-          /*!
-           \brief Writes a buffer to the output file.
-           \details This method writes the contents of the buffer to the output file.
-           \param buffer The buffer containing the data to be written.
-           \param length The number of bytes to write from the buffer.
-           \return The actual number of bytes written.
-           */
+         /*!
+          \brief Writes a buffer to the output file.
+          \details This method writes the contents of the buffer to the output file.
+          \param buffer The buffer containing the data to be written.
+          \param length The number of bytes to write from the buffer.
+          \return The actual number of bytes written.
+          */
          inline int64 write(const int8* buffer, int64 length)
          {
             return write((const uint8*)buffer, length);
          };
 
-          /*!
-           \brief Writes a string to the output file. The encoding is the default encoding (UTF-8). NOT AS A C-STRING!
-           \details This method writes the specified string to the output file using the default encoding, which is UTF-8. The string should not be passed as a C-string.
-           */
+         /*!
+          \brief Writes a string to the output file. The encoding is the default encoding (UTF-8). NOT AS A C-STRING!
+          \details This method writes the specified string to the output file using the default encoding, which is UTF-8. The string should not be passed as a C-string.
+          */
          int64 write(const String& string);
 
    };

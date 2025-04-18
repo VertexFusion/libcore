@@ -261,7 +261,7 @@ void SAXParser::parseTagString(const String& xmlline)
             c = line.charAt(pos);
             escape.append(c);
          }
-         while(c != ';' && pos < length-1);
+         while(c != ';' && pos < length - 1);
 
          if(escape.equals("lt;"))token.append('<');
          else if(escape.equals("gt;"))token.append('>');

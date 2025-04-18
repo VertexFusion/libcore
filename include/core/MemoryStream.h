@@ -49,31 +49,31 @@ namespace jm
           */
          int64 mWritelength;
 
-          /*!
-           \brief Constructor.
-           \param array The byte array on which the stream operations will be applied.
-           \param length The length of the byte array.
-           */
-         MemoryStream(uint8* array, int64 length,bool takeOwnership=false);
+         /*!
+          \brief Constructor.
+          \param array The byte array on which the stream operations will be applied.
+          \param length The length of the byte array.
+          */
+         MemoryStream(uint8* array, int64 length, bool takeOwnership = false);
 
          /*!
           \brief Destructor
           */
          ~MemoryStream() override;
 
-          /*!
-          \copdoc Stream::open()
-          */
+         /*!
+         \copdoc Stream::open()
+         */
          Status open(FileMode mode) override;
 
-          /*!
-           \copydoc Stream::isOpen()
-           */
+         /*!
+          \copydoc Stream::isOpen()
+          */
          bool isOpen() override;
 
-          /*!
-          \copydoc Stream::close()
-          */
+         /*!
+         \copydoc Stream::close()
+         */
          void close() override;
 
          /*!
@@ -111,30 +111,30 @@ namespace jm
           */
          int64 size() const override;
 
-          /*!
-           \brief Returns the buffer of the MemoryStream.
-           \return A pointer to the byte array buffer.
-           */
+         /*!
+          \brief Returns the buffer of the MemoryStream.
+          \return A pointer to the byte array buffer.
+          */
          uint8* buffer();
 
       private:
 
-          /*!
-           \brief The byte array that serves as the source or destination.
-           */
+         /*!
+          \brief The byte array that serves as the source or destination.
+          */
          uint8* mStream;
 
          //! Status if this object is stream owner
          bool mStreamOwner;
 
-          /*!
-           \brief The length of the byte array.
-           */
+         /*!
+          \brief The length of the byte array.
+          */
          int64 mStreamlength;
 
-          /*!
-           \brief The current pointer position in the array.
-           */
+         /*!
+          \brief The current pointer position in the array.
+          */
          int64 mPosition;
 
    };

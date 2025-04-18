@@ -188,7 +188,7 @@ namespace jm
    DllExport
    int64 deserializeBEInt64(uint8* buffer, uint32 offset);
    DllExport
-      int64 deserializeBEInt64(const jm::ByteArray& buffer, int64 offset);
+   int64 deserializeBEInt64(const jm::ByteArray& buffer, int64 offset);
 
    /*!
     \brief This method deserializes a number using the Little-Endian method.
@@ -199,7 +199,7 @@ namespace jm
    DllExport
    uint16 deserializeLEUInt16(const uint8* buffer, uint32 offset);
    DllExport
-      uint16 deserializeLEUInt16(const jm::ByteArray& buffer, uint32 offset);
+   uint16 deserializeLEUInt16(const jm::ByteArray& buffer, uint32 offset);
 
    /*!
     \brief This method deserializes a number using the Little-Endian method.
@@ -210,7 +210,7 @@ namespace jm
    DllExport
    int16 deserializeLEInt16(uint8* buffer, uint32 offset);
    DllExport
-      int16 deserializeLEInt16(const jm::ByteArray& buffer, int64 offset);
+   int16 deserializeLEInt16(const jm::ByteArray& buffer, int64 offset);
 
    /*!
     \brief This method deserializes a number using the Little-Endian method.

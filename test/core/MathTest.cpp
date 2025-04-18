@@ -124,20 +124,20 @@ void MathTest::doTest()
    testEquals(jm::radToDeg(M_PI / 2), 90.0, "radToDeg(M_PI / 2) != 90");
 
    // Test sign function
-   testEquals(jm::sign(10),1, "sign(10) != 1");
-   testEquals(jm::sign(-10),-1, "sign(-10) != -1");
-   testEquals(jm::sign(0),0, "sign(0) != 0");
+   testEquals(jm::sign(10), 1, "sign(10) != 1");
+   testEquals(jm::sign(-10), -1, "sign(-10) != -1");
+   testEquals(jm::sign(0), 0, "sign(0) != 0");
 
    // Test round function
-   testEquals(jm::round(10.5), (int64)11,"round(10.5) != 11");
-   testEquals(jm::round(10.4), (int64)10,"round(10.4) != 10");
-   testEquals(jm::round(-10.6), (int64)-11,"round(-10.6) != -11");
-   testEquals(jm::round(-2.5), (int64)-3,"round(-2.5) != -3");
-   testEquals(jm::round(-2.1), (int64)-2,"round(-2.1) != -2");
+   testEquals(jm::round(10.5), (int64)11, "round(10.5) != 11");
+   testEquals(jm::round(10.4), (int64)10, "round(10.4) != 10");
+   testEquals(jm::round(-10.6), (int64) - 11, "round(-10.6) != -11");
+   testEquals(jm::round(-2.5), (int64) - 3, "round(-2.5) != -3");
+   testEquals(jm::round(-2.1), (int64) - 2, "round(-2.1) != -2");
 
    // Test roundFrac function
-   testEquals(jm::roundFrac(10.555, 2l), 10.56f,"roundFrac(10.555, 2) != 10.56");
-   testEquals(jm::roundFrac(-10.554, 2l), -10.55f,"roundFrac(-10.554, 2) != -10.55");
+   testEquals(jm::roundFrac(10.555, 2l), 10.56f, "roundFrac(10.555, 2) != 10.56");
+   testEquals(jm::roundFrac(-10.554, 2l), -10.55f, "roundFrac(-10.554, 2) != -10.55");
 
    // Test isNaN function
    testEquals(jm::isNaN(NAN), true, "isNaN(NAN) should be true");
@@ -221,19 +221,19 @@ void MathTest::doTest()
    testEquals(jm::floatMaschineEpsilon(), expectedFloatEpsilon, "floatMaschineEpsilon() should return the correct machine epsilon for float");
 
    // Test divFloor function
-   testTrue(jm::divFloor(10, 3)==3, "divFloor(10, 3) should return 3");
-   testTrue(jm::divFloor(-10, 3)==-4, "divFloor(-10, 3) should return -4");
-   testTrue(jm::divFloor(10, -3)==-4, "divFloor(10, -3) should return -4");
-   testTrue(jm::divFloor(-10, -3)==3, "divFloor(-10, -3) should return 3");
-   testTrue(jm::divFloor(10, 5)==2, "divFloor(10, 5) should return 2");
+   testTrue(jm::divFloor(10, 3) == 3, "divFloor(10, 3) should return 3");
+   testTrue(jm::divFloor(-10, 3) == -4, "divFloor(-10, 3) should return -4");
+   testTrue(jm::divFloor(10, -3) == -4, "divFloor(10, -3) should return -4");
+   testTrue(jm::divFloor(-10, -3) == 3, "divFloor(-10, -3) should return 3");
+   testTrue(jm::divFloor(10, 5) == 2, "divFloor(10, 5) should return 2");
 
    // Test modFloor function
-    testTrue(jm::modFloor(10, 3)==1,"modFloor(10, 3) should return 1");
-    testTrue(jm::modFloor(-10, 3)==2,"modFloor(-10, 3) should return 2");
-    testTrue(jm::modFloor(10, -3)==-2,"modFloor(10, -3) should return -2");
-    testTrue(jm::modFloor(-10, -3)==-1,"modFloor(-10, -3) should return -1");
-    testTrue(jm::modFloor(0, 3)==0,"modFloor(0, 3) should return 0");
-    testTrue(jm::modFloor(10, 0)==0,"modFloor(10, 0) should return 0");
-    testTrue(jm::modFloor(0, 0)==0,"modFloor(0, 0) should return 0");
+   testTrue(jm::modFloor(10, 3) == 1, "modFloor(10, 3) should return 1");
+   testTrue(jm::modFloor(-10, 3) == 2, "modFloor(-10, 3) should return 2");
+   testTrue(jm::modFloor(10, -3) == -2, "modFloor(10, -3) should return -2");
+   testTrue(jm::modFloor(-10, -3) == -1, "modFloor(-10, -3) should return -1");
+   testTrue(jm::modFloor(0, 3) == 0, "modFloor(0, 3) should return 0");
+   testTrue(jm::modFloor(10, 0) == 0, "modFloor(10, 0) should return 0");
+   testTrue(jm::modFloor(0, 0) == 0, "modFloor(0, 0) should return 0");
 }
 

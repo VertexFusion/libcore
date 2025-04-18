@@ -52,14 +52,14 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Default constructor
-           */
+         /*!
+          \brief Default constructor
+          */
          DiffBacktrace();
 
-          /*!
-           \brief Copy constructor
-           */
+         /*!
+          \brief Copy constructor
+          */
          DiffBacktrace(const DiffBacktrace& another);
 
          /*!
@@ -67,21 +67,21 @@ namespace jm
           */
          ~DiffBacktrace();
 
-          /*!
-           \brief Writes the result of Diff to the standard output stream if something is different
-           */
+         /*!
+          \brief Writes the result of Diff to the standard output stream if something is different
+          */
          void print();
 
-          /*!
-           \brief This method performs the backtracing to obtain the path of changes.
-           \param dd Pointer to the diagonal from which the considered element originates.
-           \param i 0-based index of the element in the diagonal.
-           */
+         /*!
+          \brief This method performs the backtracing to obtain the path of changes.
+          \param dd Pointer to the diagonal from which the considered element originates.
+          \param i 0-based index of the element in the diagonal.
+          */
          static DiffBacktrace* backtrace(DiffDiag* dd, int64 i);
 
-          /*!
-           \brief Returns the diff operation.
-           */
+         /*!
+          \brief Returns the diff operation.
+          */
          DiffOperation operation() const;
 
       private:
@@ -89,8 +89,8 @@ namespace jm
          //! The length of the path being backtraced
          int64 mSize;
 
-          //! Operation performed in this step
-          DiffOperation mOperation;
+         //! Operation performed in this step
+         DiffOperation mOperation;
 
          //! Pointer to the "left" object, if available
          Object* mObj1;
@@ -102,7 +102,7 @@ namespace jm
          DiffBacktrace* mPrev;
 
          //! Pointer to the next element in the backtrace path
-        DiffBacktrace* mNext;
+         DiffBacktrace* mNext;
 
    };
 

@@ -49,7 +49,7 @@ void DiffInfo::print(DiffOperation operation,
                      int32 obj2,
                      const String& label)
 {
-	print(operation,int64(obj1),int64(obj2),label);
+   print(operation, int64(obj1), int64(obj2), label);
 }
 
 void DiffInfo::print(DiffOperation operation,
@@ -57,7 +57,7 @@ void DiffInfo::print(DiffOperation operation,
                      uint32 obj2,
                      const String& label)
 {
-	print(operation,uint64(obj1),uint64(obj2),label);
+   print(operation, uint64(obj1), uint64(obj2), label);
 }
 
 void DiffInfo::print(DiffOperation operation,
@@ -160,9 +160,9 @@ void DiffInfo::print(DiffOperation operation,
 }
 
 void DiffInfo::printIgnoreCase(DiffOperation operation,
-                       const String& obj1,
-                       const String& obj2,
-                       const String& label)
+                               const String& obj1,
+                               const String& obj2,
+                               const String& label)
 {
    switch(operation)
    {

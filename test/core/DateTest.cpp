@@ -78,7 +78,7 @@ void DateTest::doTest()
 
    // 30. Juni 1961   02:35:44
    d = Date(-268435456000L);
-   testEquals(d.time(), (int64)-268435456000L, "jm::Date::Time() fails");
+   testEquals(d.time(), (int64) - 268435456000L, "jm::Date::Time() fails");
    testEquals(d.toString(), "1961-06-30T02:35:44.000Z", "jm::Date::ToString() fails [7]");
    testEquals(df1.format(d), "30.06.1961 02:35:44.000", "jm::DateFormatter::Format() fails [7]");
 

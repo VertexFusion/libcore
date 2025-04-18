@@ -70,7 +70,7 @@ float jm::roundFrac(float f, int32 digits)
    return static_cast<float>(value / factor);
 }
 
-double jm::roundFrac(double value,int64 digits)
+double jm::roundFrac(double value, int64 digits)
 {
    double factor = std::pow(10, digits);
    double result = value * factor;
@@ -242,7 +242,7 @@ int64 jm::divFloor(int64 x, int64 y)
 
 int64 jm::modFloor(int64 x, int64 y)
 {
-   if(y==0)return 0;
+   if(y == 0)return 0;
    int64 r = x % y;
    if((r != 0) && ((r < 0) != (y < 0)))
    {

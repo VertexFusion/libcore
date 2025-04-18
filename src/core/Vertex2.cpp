@@ -129,7 +129,7 @@ Vertex2 Vertex2::rotated(double angle) const
    double nx = x * cos(angle) - y * sin(angle);
    double ny = x * sin(angle) + y * cos(angle);
 
-   return Vertex2(nx,ny);
+   return Vertex2(nx, ny);
 }
 
 
@@ -180,7 +180,7 @@ Vertex2 jm::operator*(double d, Vertex2 const& v)
    return Vertex2(d * v.x, d * v.y);
 }
 
-Vertex2 jm::operator*(const Vertex2& v,double d)
+Vertex2 jm::operator*(const Vertex2& v, double d)
 {
    return Vertex2(d * v.x, d * v.y);
 }

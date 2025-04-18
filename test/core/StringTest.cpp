@@ -180,11 +180,11 @@ void StringTest::doTest()
 
    // Test clear
    str1.clear();
-   testTrue(str1.size()==0, "String.clear() fails");
+   testTrue(str1.size() == 0, "String.clear() fails");
 
    // Test reverse
    str1 = "abcdef";
-   str1=str1.reverse();
+   str1 = str1.reverse();
    testEquals(str1, String("fedcba"), "String.reverse() fails");
 
    // Test insert
@@ -239,19 +239,19 @@ void StringTest::doTest()
 
    // Test replace
    str1 = "abcdef";
-   str1=str1.replace('c', 'd');
+   str1 = str1.replace('c', 'd');
    testEquals(str1, String("abddef"), "String.replace() fails");
 
    str1 = "abcdef";
-   str1=str1.replace("cd", "xy");
+   str1 = str1.replace("cd", "xy");
    testEquals(str1, String("abxyef"), "String.replace() fails");
 
    str1 = "abcdef";
-   str1=str1.replace("cd", "x");
+   str1 = str1.replace("cd", "x");
    testEquals(str1, String("abxef"), "String.replace() fails");
 
    str1 = "abcdef";
-   str1=str1.replace("cd", "");
+   str1 = str1.replace("cd", "");
    testEquals(str1, String("abef"), "String.replace() fails");
 
    isEmpty();
@@ -270,58 +270,58 @@ void StringTest::isEmpty()
 
 void StringTest::compareFancy()
 {
-       // Test case: Both strings are equal
-    String str1("abc123");
-    String str2("abc123");
-    testEquals(str1.compareFancyTo(str2), 0,"String.compareFancyTo() fails (1)");
+   // Test case: Both strings are equal
+   String str1("abc123");
+   String str2("abc123");
+   testEquals(str1.compareFancyTo(str2), 0, "String.compareFancyTo() fails (1)");
 
-    // Test case: First string is less than the second string
-    String str3("abc123");
-    String str4("abc124");
-    testEquals(str3.compareFancyTo(str4), -1,"String.compareFancyTo() fails (2)");
+   // Test case: First string is less than the second string
+   String str3("abc123");
+   String str4("abc124");
+   testEquals(str3.compareFancyTo(str4), -1, "String.compareFancyTo() fails (2)");
 
-    // Test case: First string is greater than the second string
-    String str5("abc125");
-    String str6("abc124");
-    testEquals(str5.compareFancyTo(str6), 1,"String.compareFancyTo() fails (3)");
+   // Test case: First string is greater than the second string
+   String str5("abc125");
+   String str6("abc124");
+   testEquals(str5.compareFancyTo(str6), 1, "String.compareFancyTo() fails (3)");
 
-    // Test case: First string is shorter than the second string
-    String str7("abc12");
-    String str8("abc123");
-    testEquals(str7.compareFancyTo(str8), -1,"String.compareFancyTo() fails (4)");
+   // Test case: First string is shorter than the second string
+   String str7("abc12");
+   String str8("abc123");
+   testEquals(str7.compareFancyTo(str8), -1, "String.compareFancyTo() fails (4)");
 
-    // Test case: First string is longer than the second string
-    String str9("abc1234");
-    String str10("abc123");
-    testEquals(str9.compareFancyTo(str10), 1,"String.compareFancyTo() fails (5)");
+   // Test case: First string is longer than the second string
+   String str9("abc1234");
+   String str10("abc123");
+   testEquals(str9.compareFancyTo(str10), 1, "String.compareFancyTo() fails (5)");
 
-    // Test case: Strings with different characters
-    String str11("abc");
-    String str12("abd");
-    testEquals(str11.compareFancyTo(str12), -1,"String.compareFancyTo() fails (6)");
+   // Test case: Strings with different characters
+   String str11("abc");
+   String str12("abd");
+   testEquals(str11.compareFancyTo(str12), -1, "String.compareFancyTo() fails (6)");
 
-    // Test case: Strings with digits and characters
-    String str13("a1b2c3");
-    String str14("a1b2c4");
-    testEquals(str13.compareFancyTo(str14), -1,"String.compareFancyTo() fails (7)");
+   // Test case: Strings with digits and characters
+   String str13("a1b2c3");
+   String str14("a1b2c4");
+   testEquals(str13.compareFancyTo(str14), -1, "String.compareFancyTo() fails (7)");
 
-    // Test case: Strings with leading zeros in digits
-    String str15("a001");
-    String str16("a1");
-    testEquals(str15.compareFancyTo(str16), 0,"String.compareFancyTo() fails (8)");
+   // Test case: Strings with leading zeros in digits
+   String str15("a001");
+   String str16("a1");
+   testEquals(str15.compareFancyTo(str16), 0, "String.compareFancyTo() fails (8)");
 
-    // Test case: Strings with only digits
-    String str17("123");
-    String str18("124");
-    testEquals(str17.compareFancyTo(str18), -1,"String.compareFancyTo() fails (9)");
+   // Test case: Strings with only digits
+   String str17("123");
+   String str18("124");
+   testEquals(str17.compareFancyTo(str18), -1, "String.compareFancyTo() fails (9)");
 
-    // Test case: Empty strings
-    String str19("");
-    String str20("");
-    testEquals(str19.compareFancyTo(str20), 0,"String.compareFancyTo() fails (10)");
+   // Test case: Empty strings
+   String str19("");
+   String str20("");
+   testEquals(str19.compareFancyTo(str20), 0, "String.compareFancyTo() fails (10)");
 
-    // Test case: One empty string and one non-empty string
-    String str21("");
-    String str22("abc");
-    testEquals(str21.compareFancyTo(str22), -1,"String.compareFancyTo() fails (11)");
+   // Test case: One empty string and one non-empty string
+   String str21("");
+   String str22("abc");
+   testEquals(str21.compareFancyTo(str22), -1, "String.compareFancyTo() fails (11)");
 }

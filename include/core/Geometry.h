@@ -59,24 +59,24 @@ namespace jm
                                          const Vertex3& direction,
                                          bool extend);
 
-    /*!
-     \brief This method calculates the intersection point of 2 circles.
-     \param center1 The center point of the first circle.
-     \param radius1 The radius of the first circle.
-     \param center2 The center point of the second circle.
-     \param radius2 The radius of the second circle.
-     \param intersection1 The 1st intersection points of the two circles. If the circles do not intersect, the
-     points have NaN values.
-     \param intersection2 The 1st intersection points of the two circles. If the circles do not intersect, the
-     points have NaN values.
-     */
-    DllExport
-    void intersectionPointsOfCircles(const Vertex2& center1,
-                                     double radius1,
-                                     const Vertex2& center2,
-                                     double radius2,
-                                     Vertex2& intersection1,
-                                     Vertex2& intersection2);
+   /*!
+    \brief This method calculates the intersection point of 2 circles.
+    \param center1 The center point of the first circle.
+    \param radius1 The radius of the first circle.
+    \param center2 The center point of the second circle.
+    \param radius2 The radius of the second circle.
+    \param intersection1 The 1st intersection points of the two circles. If the circles do not intersect, the
+    points have NaN values.
+    \param intersection2 The 1st intersection points of the two circles. If the circles do not intersect, the
+    points have NaN values.
+    */
+   DllExport
+   void intersectionPointsOfCircles(const Vertex2& center1,
+                                    double radius1,
+                                    const Vertex2& center2,
+                                    double radius2,
+                                    Vertex2& intersection1,
+                                    Vertex2& intersection2);
 
    /*!
     \brief This method calculates the point on the plane that has the minimum distance to the given point.
@@ -478,8 +478,8 @@ namespace jm
     */
    DllExport
    jm::Status circleParameterBy2TangentsRadius(Vertex2& center, double radius,
-                                               const Vertex2& p1, const Vertex2 &dir1,
-                                               const Vertex2& p2, const Vertex2 &dir2);
+         const Vertex2& p1, const Vertex2& dir1,
+         const Vertex2& p2, const Vertex2& dir2);
 }
 
 #endif

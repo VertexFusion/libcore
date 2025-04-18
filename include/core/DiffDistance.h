@@ -56,9 +56,9 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Number of calculated steps.
-           */
+         /*!
+          \brief Number of calculated steps.
+          */
          int64 calc;
 
          /*!
@@ -71,11 +71,11 @@ namespace jm
           */
          ~DiffDistance();
 
-          /*!
-           \brief Clears the internal state to prepare for a new calculation.
+         /*!
+          \brief Clears the internal state to prepare for a new calculation.
 
-           This method clears the internal state of the DiffDistance object in order to prepare for a new calculation.
-           */
+          This method clears the internal state of the DiffDistance object in order to prepare for a new calculation.
+          */
          void clear();
 
          /*!
@@ -88,31 +88,31 @@ namespace jm
           */
          void addV(Object* obj);
 
-          /*!
-           \brief This method calculates the Levenshtein distance between the two vectors.
-           */
+         /*!
+          \brief This method calculates the Levenshtein distance between the two vectors.
+          */
          DiffBacktrace* solve();
 
-          /*!
-           \brief Returns the Levenshtein distance between the two vectors.
+         /*!
+          \brief Returns the Levenshtein distance between the two vectors.
 
-           This method calculates the Levenshtein distance between the two vectors of objects.
-           The Levenshtein distance is a measure of the difference between two strings or vectors.
-           If the distance is 0, it means the objects are identical.
+          This method calculates the Levenshtein distance between the two vectors of objects.
+          The Levenshtein distance is a measure of the difference between two strings or vectors.
+          If the distance is 0, it means the objects are identical.
 
-           \return The Levenshtein distance between the two vectors.
-           */
+          \return The Levenshtein distance between the two vectors.
+          */
          int64 distance() const;
 
       private:
 
-          /*!
-           \brief Calculates the Levenshtein distance between two vectors of objects.
+         /*!
+          \brief Calculates the Levenshtein distance between two vectors of objects.
 
-           The Levenshtein distance is a measure of the difference between two strings. In this case,
-           it calculates the distance between two vectors of objects. If the distance is 0, it means
-           the objects are identical.
-           */
+          The Levenshtein distance is a measure of the difference between two strings. In this case,
+          it calculates the distance between two vectors of objects. If the distance is 0, it means
+          the objects are identical.
+          */
          int64 mDistance;
 
          /*!

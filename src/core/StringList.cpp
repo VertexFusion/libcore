@@ -88,13 +88,13 @@ void StringList::append(const jm::String& string)
 
 void StringList::remove(const jm::String& string)
 {
-   for(int64 index=0;index<mSize;index++)
+   for(int64 index = 0; index < mSize; index++)
    {
-      if(mData[index]==string)
+      if(mData[index] == string)
       {
-         for(int64 index2=index+1;index2<mSize;index2++)
+         for(int64 index2 = index + 1; index2 < mSize; index2++)
          {
-            mData[index2-1]=mData[index2];
+            mData[index2 - 1] = mData[index2];
          }
          mSize--;
          index--;
@@ -137,16 +137,16 @@ void StringList::sort()
 
 jm::String StringList::join(Char divider) const
 {
-   int64 stringSize=mSize-1;
-   for(int64 index=0;index<mSize;index++)stringSize+=mData[index].size();
+   int64 stringSize = mSize - 1;
+   for(int64 index = 0; index < mSize; index++)stringSize += mData[index].size();
 
    jm::String result;
    result.checkCapacity(stringSize);
 
-   for(int64 index=0;index<mSize;index++)
+   for(int64 index = 0; index < mSize; index++)
    {
-      if(index>0)result<<divider;
-      result<<mData[index];
+      if(index > 0)result << divider;
+      result << mData[index];
    }
 
    return result;
@@ -173,7 +173,7 @@ void StringList::clear()
 
 bool StringList::contains(const String& str) const
 {
-   for(int64 index=0;index<mSize;index++)
+   for(int64 index = 0; index < mSize; index++)
    {
       if(mData[index] == str)return true;
    }

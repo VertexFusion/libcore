@@ -298,7 +298,7 @@ bool File::isHidden() const
    #elif defined _WIN32//Windows
 
    DWORD attributes = GetFileAttributesA(mCstr.constData());
-   if (attributes & FILE_ATTRIBUTE_HIDDEN)return true;
+   if(attributes & FILE_ATTRIBUTE_HIDDEN)return true;
    return false;
 
    #endif
@@ -394,7 +394,7 @@ Date File::lastModified() const
 
 bool File::remove()
 {
-   if(isDirectory() && rmdir(mCstr.constData())==0)return true;
+   if(isDirectory() && rmdir(mCstr.constData()) == 0)return true;
    else if(::remove(mCstr.constData()) == 0)return true;
 
    return false;
@@ -436,7 +436,7 @@ bool File::renameTo(const String& newPath)
    if(result == 0)
    {
       mCstr = newname;
-      mPathname=String(mCstr);
+      mPathname = String(mCstr);
 
       return true;
    }
@@ -839,11 +839,11 @@ Status File::setTags(const jm::StringList& tags)
    #ifdef __linux__
 
    String string(tags.join(Char(',')));
-   ByteArray buffer=string.toCString();
+   ByteArray buffer = string.toCString();
 
-   int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(),0);
+   int64 result = setxattr(mCstr.constData(), "user.xdg.tags", buffer.constData(), buffer.size(), 0);
 
-   return (result==0)?jm::Status::eOK:jm::Status::eNo;
+   return (result == 0) ? jm::Status::eOK : jm::Status::eNo;
 
    #endif
 
@@ -855,7 +855,7 @@ Status File::addTag(const String& tag)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
-   StringList tags=getTags();
+   StringList tags = getTags();
    if(!tags.contains(tag))
    {
       tags.append(tag);
@@ -872,7 +872,7 @@ Status File::removeTag(const String& tag)
 {
    #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
-   StringList tags=getTags();
+   StringList tags = getTags();
    if(tags.contains(tag))
    {
       tags.remove(tag);
@@ -905,7 +905,7 @@ String jm::ExecPath()
    ssize_t len = ::readlink("/proc/self/exe", buff, sizeof(buff) - 1);
    if(len > 0)
    {
-      if(len>=1024)len=1023;
+      if(len >= 1024)len = 1023;
       buff[len] = '\0';
       return String(buff);
    }
@@ -1045,36 +1045,36 @@ File jm::PropertyDir()
    return File(home, "Library");
    #elif defined __linux__ //Linux
 
-      #ifdef __ANDROID__
-        JNIEnv* env = getJNIEnv();
+   #ifdef __ANDROID__
+   JNIEnv* env = getJNIEnv();
 
-         if (env == nullptr)
-         {
-            return jm::File();
-         }
+   if(env == nullptr)
+   {
+      return jm::File();
+   }
 
-         jobject act = activity();
-         jclass jClass = env->GetObjectClass(act);
-         jmethodID methodID = env->GetMethodID(jClass, "getFilesDirPath", "()Ljava/lang/String;");
+   jobject act = activity();
+   jclass jClass = env->GetObjectClass(act);
+   jmethodID methodID = env->GetMethodID(jClass, "getFilesDirPath", "()Ljava/lang/String;");
 
-         jstring str = (jstring)env->CallObjectMethod(act, methodID);
-        jm::String text;
-        if(str!= nullptr)
-        {
-            const char* utf = env->GetStringUTFChars(str, 0);
-            text = jm::String(utf);
-        }
+   jstring str = (jstring)env->CallObjectMethod(act, methodID);
+   jm::String text;
+   if(str != nullptr)
+   {
+      const char* utf = env->GetStringUTFChars(str, 0);
+      text = jm::String(utf);
+   }
 
-        // Clean up local object references
-        env->DeleteLocalRef(jClass);
-        env->DeleteLocalRef(str);
-        return jm::File(text);
-      #else
-      // A subdirectory around the home folder with the application name is provided as the property
-      // directory
-      char* home = getenv("HOME");
-      return File(home, "." + ExecName());
-      #endif
+   // Clean up local object references
+   env->DeleteLocalRef(jClass);
+   env->DeleteLocalRef(str);
+   return jm::File(text);
+   #else
+   // A subdirectory around the home folder with the application name is provided as the property
+   // directory
+   char* home = getenv("HOME");
+   return File(home, "." + ExecName());
+   #endif
 
    #elif defined _WIN32 //Windows
 

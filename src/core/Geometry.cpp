@@ -82,34 +82,34 @@ void jm::intersectionPointsOfCircles(const Vertex2& center1,
                                      Vertex2& intersection1,
                                      Vertex2& intersection2)
 {
-    double x1 = center1.x, y1 = center1.y;
-    double x2 = center2.x, y2 = center2.y;
-    double r1 = radius1, r2 = radius2;
+   double x1 = center1.x, y1 = center1.y;
+   double x2 = center2.x, y2 = center2.y;
+   double r1 = radius1, r2 = radius2;
 
-    double d = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+   double d = std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 
-    // Check if circles do not intersect
-    if (d > r1 + r2 || d < std::abs(r1 - r2) || (d == 0 && r1 == r2))
-    {
-      intersection1=jm::Vertex2(NAN,NAN);
-      intersection2=jm::Vertex2(NAN,NAN);
+   // Check if circles do not intersect
+   if(d > r1 + r2 || d < std::abs(r1 - r2) || (d == 0 && r1 == r2))
+   {
+      intersection1 = jm::Vertex2(NAN, NAN);
+      intersection2 = jm::Vertex2(NAN, NAN);
       return;
-    }
+   }
 
-    double a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
-    double h = std::sqrt(r1 * r1 - a * a);
+   double a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+   double h = std::sqrt(r1 * r1 - a * a);
 
-    double px = x1 + a * (x2 - x1) / d;
-    double py = y1 + a * (y2 - y1) / d;
+   double px = x1 + a * (x2 - x1) / d;
+   double py = y1 + a * (y2 - y1) / d;
 
-    double intersection1X = px + h * (y2 - y1) / d;
-    double intersection1Y = py - h * (x2 - x1) / d;
+   double intersection1X = px + h * (y2 - y1) / d;
+   double intersection1Y = py - h * (x2 - x1) / d;
 
-    double intersection2X = px - h * (y2 - y1) / d;
-    double intersection2Y = py + h * (x2 - x1) / d;
+   double intersection2X = px - h * (y2 - y1) / d;
+   double intersection2Y = py + h * (x2 - x1) / d;
 
-    intersection1 = jm::Vertex2(intersection1X, intersection1Y);
-    intersection2 = jm::Vertex2(intersection2X, intersection2Y);
+   intersection1 = jm::Vertex2(intersection1X, intersection1Y);
+   intersection2 = jm::Vertex2(intersection2X, intersection2Y);
 }
 
 Vertex3 jm::closestPointOnPlane(const Vertex3& point,
@@ -130,16 +130,16 @@ Vertex2 jm::closestPointOnLine(const Vertex2& point,
                                const Vertex2& direction)
 {
    // Vector from the point on the line to the arbitrary point
-   Vertex2 v=point-position;
+   Vertex2 v = point - position;
 
    // Normalize direction vector d (optional, can be skipped if d is already unit length)
-   Vertex2 d=direction.normalized();
+   Vertex2 d = direction.normalized();
 
    // Compute the scalar projection of vector v onto the direction vector d
    double t = v.dotProduct(d);
 
    // Calculate the nearest point on the line
-   return position+t*d;
+   return position + t * d;
 }
 
 Vertex3 jm::closestPointOnLine(const Vertex3& point,
@@ -693,9 +693,9 @@ Vertex2 jm::angleBisector(const Vertex2& direction1, const Vertex2& direction2)
 }
 
 jm::Status jm::circleParameterBy3Points(Vertex2& centre, double& radius,
-      const Vertex2& p1,
-      const Vertex2& p2,
-      const Vertex2& p3)
+                                        const Vertex2& p1,
+                                        const Vertex2& p2,
+                                        const Vertex2& p3)
 {
    // Algorithm:
    // Given: 3 points <x1,y1>, <x2,y2>, <x3,y3>
@@ -740,29 +740,29 @@ jm::Status jm::circleParameterBy3Points(Vertex2& centre, double& radius,
 }
 
 jm::Status jm::circleParameterBy2TangentsRadius(Vertex2& center, double radius,
-                                                const Vertex2& p1, const Vertex2 &dir1,
-                                                const Vertex2& p2, const Vertex2 &dir2)
+      const Vertex2& p1, const Vertex2& dir1,
+      const Vertex2& p2, const Vertex2& dir2)
 {
    // Parallel dirs are not ok
    if(dir1.isCollinear(dir2))return Status::eInvalidInput;
 
    // Intersection point of 2 tangents
-   const Vertex2 ctrl=intersectionPoint(p1, dir1, p2, dir2);
+   const Vertex2 ctrl = intersectionPoint(p1, dir1, p2, dir2);
 
    // Correct dirs, they can be in the opposite direction
    // The points defines the quadrant, where the center is.
-   Vertex2 d1=p1-ctrl;
-   if(jm::isEqual(d1.abs(), 0.0))d1=dir1;
-   Vertex2 d2=p2-ctrl;
-   if(jm::isEqual(d2.abs(), 0.0))d2=dir2;
+   Vertex2 d1 = p1 - ctrl;
+   if(jm::isEqual(d1.abs(), 0.0))d1 = dir1;
+   Vertex2 d2 = p2 - ctrl;
+   if(jm::isEqual(d2.abs(), 0.0))d2 = dir2;
 
    Vertex2 bisector = jm::angleBisector(d1, d2);
    bisector.normalize();
 
-   double angle = std::abs(d1.angleTo(d2)/2.0);
-   double dist=radius/std::sin(angle);
+   double angle = std::abs(d1.angleTo(d2) / 2.0);
+   double dist = radius / std::sin(angle);
 
-   center = ctrl+dist*bisector;
+   center = ctrl + dist * bisector;
 
    return Status::eOK;
 }

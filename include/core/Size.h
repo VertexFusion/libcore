@@ -38,59 +38,59 @@
 namespace jm
 {
 
-  /*!
-    \brief Defines a size.
-    */
+   /*!
+     \brief Defines a size.
+     */
    struct DllExport Size
    {
-      //! Constructor creates size <0,0>
-      Size();
+         //! Constructor creates size <0,0>
+         Size();
 
-      //! Constructor creates size <width,height>
-      Size(double width, double height);
+         //! Constructor creates size <width,height>
+         Size(double width, double height);
 
-      explicit Size(const Point &pt);
+         explicit Size(const Point& pt);
 
-      //! Returns the width
-      double width() const;
+         //! Returns the width
+         double width() const;
 
-      //! Returns the height
-      double height() const;
+         //! Returns the height
+         double height() const;
 
-      //! Returns reference to the width
-      double& rWidth();
+         //! Returns reference to the width
+         double& rWidth();
 
-      //! Returns reference to the height
-      double& rHeight();
+         //! Returns reference to the height
+         double& rHeight();
 
-      //Set the with
-      void setWidth(double width);
+         //Set the with
+         void setWidth(double width);
 
-      //Set the height
-      void setHeight(double height);
+         //Set the height
+         void setHeight(double height);
 
-      //! Returns the component-wise minimum of this size and the other size.
-      Size cWiseMin(const Size &other) const;
+         //! Returns the component-wise minimum of this size and the other size.
+         Size cWiseMin(const Size& other) const;
 
-      //! Returns the component-wise maximum of this size and the other size.
-      Size cWiseMax(const Size &other) const;
+         //! Returns the component-wise maximum of this size and the other size.
+         Size cWiseMax(const Size& other) const;
 
-	  bool operator==(const Size &other) const;
-	  bool operator!=(const Size &other) const;
+         bool operator==(const Size& other) const;
+         bool operator!=(const Size& other) const;
 
       private:
 
-      //! Width
-      double mWidth;
+         //! Width
+         double mWidth;
 
-      //! Height
-      double mHeight;
+         //! Height
+         double mHeight;
 
-      DllExport
-      friend const Size operator-(const Size& v1, const Size& v2);
+         DllExport
+         friend const Size operator-(const Size& v1, const Size& v2);
 
-      DllExport
-	   friend const Size operator*(const double& d, const Size& v);
+         DllExport
+         friend const Size operator*(const double& d, const Size& v);
    };
 
 };

@@ -53,15 +53,15 @@ namespace jm
          */
          StringTokenizer(const String& str, const String& delimiter, bool retDelim);
 
-          /*!
-           \brief Returns whether there are more tokens in the string.
-           */
+         /*!
+          \brief Returns whether there are more tokens in the string.
+          */
          bool hasNext();
 
-          /*!
-           \brief Returns the next token.
-           \throw Exception if no token is available.
-           */
+         /*!
+          \brief Returns the next token.
+          \throw Exception if no token is available.
+          */
          String next();
 
       private:
@@ -72,10 +72,10 @@ namespace jm
          //! The delimiters used to split the string.
          String mDelimiters;
 
-          //! The current pointer position.
+         //! The current pointer position.
          int64 mPosition;
 
-          //! The pointer position of the first character of the next token.
+         //! The pointer position of the first character of the next token.
          int64 mNewStart;
 
          //! Status indicating whether the delimiters should be treated as separate tokens and returned or not.

@@ -34,15 +34,15 @@
 using namespace jm;
 
 String::String(): Object(), Comparable<String>(),
-mArrLength(16),
-mStrLength(0),
-mHash(0)
+   mArrLength(16),
+   mStrLength(0),
+   mHash(0)
 {
    mValue = new Char[mArrLength];
 }
 
 String::String(const uint16* buffer, int64 size): Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    CharArray array = CharArray(size);
    memcpy(array.buffer, buffer, sizeof(Char) * size);
@@ -50,16 +50,16 @@ mHash(0)
 }
 
 String::String(const String& another) noexcept: Object(), Comparable<String>(),
-mArrLength(another.mArrLength),
-mStrLength(another.mStrLength),
-mHash(another.mHash)
+   mArrLength(another.mArrLength),
+   mStrLength(another.mStrLength),
+   mHash(another.mHash)
 {
    mValue = new Char[mArrLength];
    memcpy(mValue, another.mValue, sizeof(Char) * mStrLength);
 }
 
 String::String(const char* buffer, int64 size): Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    char* cstring = new char[size + 1];
    memcpy(cstring, buffer, size);
@@ -75,7 +75,7 @@ mHash(0)
 }
 
 String::String(const char* buffer, int64 size, Charset* charset): Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    char* cstring = new char[size + 2];
    memcpy(cstring, buffer, size);
@@ -87,7 +87,7 @@ mHash(0)
 }
 
 String::String(const char* cstring): Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    if(cstring != nullptr)
    {
@@ -106,7 +106,7 @@ mHash(0)
 }
 
 String::String(const ByteArray& buffer) : Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    if(buffer.size() > 0)
    {
@@ -125,14 +125,14 @@ mHash(0)
 }
 
 String::String(const char* cstring, Charset* charset): Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    CharArray array = charset->decode(cstring);
    copy(array);
 }
 
 String::String(const ByteArray& buffer, Charset* charset) : Object(), Comparable<String>(),
-mHash(0)
+   mHash(0)
 {
    CharArray array = charset->decode(buffer.constData());
    copy(array);
@@ -442,7 +442,7 @@ String String::replace(Char oldChar, Char newChar) const
    return ret;
 }
 
-String String::replace(const String& oldStr,const String& newStr)const
+String String::replace(const String& oldStr, const String& newStr)const
 {
    int64 pos1 = 0;
    int64 pos2 = indexOf(oldStr);
@@ -757,7 +757,7 @@ String String::substring(int64 beginIndex, int64 endIndex) const
 {
 
    if(beginIndex < 0)beginIndex = 0;
-   if(endIndex < beginIndex)endIndex=beginIndex;
+   if(endIndex < beginIndex)endIndex = beginIndex;
    if(endIndex > mStrLength) endIndex = mStrLength;
    int64 sublength = endIndex - beginIndex;
    String ret;
@@ -780,8 +780,8 @@ String String::substring(int64 beginIndex) const
 bool String::argIndicies(int64& first, int64& second) const
 {
    if(indexOf(Char('%')) < 0)return false;
-   first=-1;
-   second=-1;
+   first = -1;
+   second = -1;
 
    int64 lowest = 100;
 

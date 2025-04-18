@@ -384,8 +384,8 @@ UndoChangeObjectRef::~UndoChangeObjectRef()
 {
    if(mValue1 != nullptr)mValue1->release();
    if(mValue2 != nullptr)mValue2->release();
-   mValue=nullptr;
-   mValue2=nullptr;
+   mValue = nullptr;
+   mValue2 = nullptr;
 }
 
 
@@ -395,9 +395,9 @@ void UndoChangeObjectRef::swap()
 
    if(!mSwapped)
    {
-      mValue2=tmpValue;
-      if(mValue2!=nullptr)mValue2->retain();
-      mSwapped=true;
+      mValue2 = tmpValue;
+      if(mValue2 != nullptr)mValue2->retain();
+      mSwapped = true;
    }
 
    *mPointer = mValue;

@@ -129,7 +129,7 @@ namespace jm
           */
          Date(uint16 year, uint16 month, uint16 day,
               uint16 hours, uint16 minutes, uint16 seconds,
-              uint16 millis=0);
+              uint16 millis = 0);
 
          /*!
           \brief Constructor for a Date value given as a NSDate double value (typically on Mac)

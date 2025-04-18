@@ -85,23 +85,23 @@ namespace jm
           */
          ~UndoManager() override;
 
-          /*!
-           \brief Sets the document associated with this manager.
-           This enables automatic tracking of changes.
-           \param document The document to be associated with this manager.
-           */
+         /*!
+          \brief Sets the document associated with this manager.
+          This enables automatic tracking of changes.
+          \param document The document to be associated with this manager.
+          */
          void setDocument(jm::Document* document);
 
-          /*!
-           \brief Sets whether changes should be tracked or not.
-           \param status True if changes should be tracked.
-           */
+         /*!
+          \brief Sets whether changes should be tracked or not.
+          \param status True if changes should be tracked.
+          */
          void setActive(bool status);
 
-          /*!
-           \brief Returns the status of the manager, indicating whether changes are being tracked.
-           \return True if changes are being tracked.
-           */
+         /*!
+          \brief Returns the status of the manager, indicating whether changes are being tracked.
+          \return True if changes are being tracked.
+          */
          bool isActive() const;
 
          /*!
@@ -109,236 +109,236 @@ namespace jm
           */
          bool hasOpenUndoStep() const;
 
-          /*!
-           \brief Undoes the last editing step on the file and pushes the change to the RedoStack.
-           \return Returns true if Undo was performed successfully, otherwise false.
-           */
+         /*!
+          \brief Undoes the last editing step on the file and pushes the change to the RedoStack.
+          \return Returns true if Undo was performed successfully, otherwise false.
+          */
          bool undo();
 
-          /*!
-           \brief Repeats the last editing step, undoing previous "undos".
-           \return True if redo was performed successfully, false otherwise.
-           */
+         /*!
+          \brief Repeats the last editing step, undoing previous "undos".
+          \return True if redo was performed successfully, false otherwise.
+          */
          bool redo();
 
-          /*!
-           \brief This method finalizes the current editing step.
-           Programmers must explicitly mark the completion of an editing step that should be undone as a whole.
-           - Only when a step is completed, undo or redo can be performed.
-           - The step is only completed if there are changes.
-           */
+         /*!
+          \brief This method finalizes the current editing step.
+          Programmers must explicitly mark the completion of an editing step that should be undone as a whole.
+          - Only when a step is completed, undo or redo can be performed.
+          - The step is only completed if there are changes.
+          */
          //private:
          void close();
          friend class Document;
       public:
 
-          /*!
-           \brief This method clears the Undo-Stack and the Redo-Stack manually.
-           */
+         /*!
+          \brief This method clears the Undo-Stack and the Redo-Stack manually.
+          */
          void clearStacks();
 
-          /*!
-           \brief This method clears the Undo-Stack manually.
-           */
+         /*!
+          \brief This method clears the Undo-Stack manually.
+          */
          void clearUndoStack();
 
-          /*!
-           \brief This method clears the Redo-Stack manually.
-           */
+         /*!
+          \brief This method clears the Redo-Stack manually.
+          */
          void clearRedoStack();
 
-          /*!
-           \brief Returns the number of elements on the Undo-Stack.
-           */
+         /*!
+          \brief Returns the number of elements on the Undo-Stack.
+          */
          unsigned int undoCount();
 
-          /*!
-           \brief Returns the number of elements on the Redo-Stack.
-           */
+         /*!
+          \brief Returns the number of elements on the Redo-Stack.
+          */
          unsigned int redoCount();
 
-          /*!
-           \brief This method registers a change in the file where a float value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a float value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, float* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a double value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a double value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, double* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a boolean value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a boolean value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, bool* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an unsigned short value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an unsigned short value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, int8* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an unsigned short value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an unsigned short value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, uint8* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an unsigned short value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an unsigned short value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, int16* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an unsigned short value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an unsigned short value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, uint16* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an int32 value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an int32 value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, int32* pointer);
 
-          /*!
-           \brief This method registers a change in the file where an uint32 value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an uint32 value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, uint32* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a Integer value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a Integer value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Integer* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a int64 value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a int64 value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, int64* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a long value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a long value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, uint64* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a Vertex3 value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a Vertex3 value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Vertex2* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a Vertex3 value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a Vertex3 value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Vertex3* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a string value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a string value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, String* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a Date value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a Date value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Date* pointer);
 
-          /*!
-           \brief This method registers a change in the file where a color value of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where a color value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Color* pointer);
 
-          /*!
-           \brief This method registers a general change in the file. This method is used when the user derives their own custom change steps.
-           \param change The change to be registered.
-           */
+         /*!
+          \brief This method registers a general change in the file. This method is used when the user derives their own custom change steps.
+          \param change The change to be registered.
+          */
          void registerChange(UndoChange* change);
 
-          /*!
-           \brief This method registers a change in the file where an object reference of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an object reference of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, Object** pointer);
 
-          /*!
-           \brief This method registers a change in the file where an object reference of an object is modified.
-           If the UndoManager is not active, nothing happens.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object whose value is being modified.
-           \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
-           */
+         /*!
+          \brief This method registers a change in the file where an object reference of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
          void registerChange(Object* object, uint8** pointer, uint64 length);
 
-          /*!
-           \brief This method registers a regeneration marker that is triggered at every
-           undo/redo step to regenerate objects in the view.
-           \details This method opens an undo step and also resets the RedoStack.
-           \param object The object that needs to be regenerated in the view.
-           */
+         /*!
+          \brief This method registers a regeneration marker that is triggered at every
+          undo/redo step to regenerate objects in the view.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object that needs to be regenerated in the view.
+          */
          void registerRegenerationMarker(EditableObject* object);
 
          void registerRelease(Object* object);
@@ -425,41 +425,41 @@ namespace jm
          //! \brief Status, if changes shall be registered and logged.
          bool mActive;
 
-          /*!
-           \brief Indicates whether the Undo process is active, preventing changes made by the manager from being re-registered.
-           */
+         /*!
+          \brief Indicates whether the Undo process is active, preventing changes made by the manager from being re-registered.
+          */
          bool mUndoing;
 
-          /*!
-           \brief Indicates whether a editing step is currently open. If an editing step is open, undo or redo operations cannot be performed.
-           */
+         /*!
+          \brief Indicates whether a editing step is currently open. If an editing step is open, undo or redo operations cannot be performed.
+          */
          bool mOpen;
 
-          /*!
-           \brief The Undo stack for storing Undo operations.
-           The topmost Undo step is the most recent one.
-           */
+         /*!
+          \brief The Undo stack for storing Undo operations.
+          The topmost Undo step is the most recent one.
+          */
          UndoStep* mUndoStack;
 
-          /*!
-           \brief The current editing step.
-           */
+         /*!
+          \brief The current editing step.
+          */
          UndoStep* mCurrent;
 
-          /*!
-           \brief The Redo stack for storing Redo operations.
-           The topmost Redo step is the most recent one.
-           */
+         /*!
+          \brief The Redo stack for storing Redo operations.
+          The topmost Redo step is the most recent one.
+          */
          UndoStep* mRedoStack;
 
-          /*!
-           \brief The number of elements on the Undo stack.
-           */
+         /*!
+          \brief The number of elements on the Undo stack.
+          */
          uint32 mUndoCount;
 
-          /*!
-           \brief The number of elements on the Redo stack.
-           */
+         /*!
+          \brief The number of elements on the Redo stack.
+          */
          uint32 mRedoCount;
 
          //! If a transaction is used, this indicates the level of transaction

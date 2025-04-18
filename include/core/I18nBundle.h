@@ -88,7 +88,7 @@ namespace jm
           \brief Try to examine the language file for given bundle-id
           */
          static jm::Resource transFileByBundleId(const String& filename,
-                                             const String& language);
+                                                 const String& language);
 
       private:
 

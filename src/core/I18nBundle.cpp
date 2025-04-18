@@ -42,12 +42,12 @@ I18nBundle::I18nBundle(const String& language):
 
 void I18nBundle::appendMo(Stream* file)
 {
-   if(file->size()<=0)
+   if(file->size() <= 0)
    {
       if(System::bundleId().size() > 0)
-      System::log(Tr("Cannot find translation file: %1")
-                  .arg(mLanguage),
-                  LogLevel::kError);
+         System::log(Tr("Cannot find translation file: %1")
+                     .arg(mLanguage),
+                     LogLevel::kError);
 
       return;
    }
@@ -142,7 +142,7 @@ void I18nBundle::initDefault()
 
    // Append Data only if bundle id is set
    if(jm::System::bundleId().size() == 0)return;
-   Resource res=transFileByBundleId(jm::kEmptyString,gDefaultTranslation->mLanguage);
+   Resource res = transFileByBundleId(jm::kEmptyString, gDefaultTranslation->mLanguage);
    gDefaultTranslation->appendMo(&res);
 }
 
@@ -165,7 +165,7 @@ jm::Resource I18nBundle::transFileByBundleId(const String& filename,
    language = language.replace('-', '_');
    // language should now have the form lang_REGION, for example: de_DE
 
-   jm::String dir="translations";
+   jm::String dir = "translations";
    dir.append(jm::DIR_SEP);
 
    // Bundle-id + language
@@ -185,7 +185,7 @@ jm::Resource I18nBundle::transFileByBundleId(const String& filename,
       {
          language = language.substring(0, language.indexOf('_'));
       }
-      translationFile = Resource(dir +filename + "." + language + ".mo");
+      translationFile = Resource(dir + filename + "." + language + ".mo");
    }
    else return translationFile;
 

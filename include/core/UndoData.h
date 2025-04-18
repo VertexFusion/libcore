@@ -54,36 +54,36 @@ namespace jm
    {
       public:
 
-          /*!
-           \brief Pointer to the next UndoChange element in the linked list.
-           */
-          UndoChange* mNext;
+         /*!
+          \brief Pointer to the next UndoChange element in the linked list.
+          */
+         UndoChange* mNext;
 
-          /*!
-           \brief Pointer to the previous UndoChange element in the linked list.
-           */
-          UndoChange* mPrev;
+         /*!
+          \brief Pointer to the previous UndoChange element in the linked list.
+          */
+         UndoChange* mPrev;
 
-          /*!
-           \brief Pointer to the object in which the change is taking place.
-           */
-          Object* mObject;
+         /*!
+          \brief Pointer to the object in which the change is taking place.
+          */
+         Object* mObject;
 
-          /*!
-           \brief Constructor for UndoChange class.
-           \param object Pointer to the object in which the change is taking place.
-           */
-          explicit UndoChange(Object* object) noexcept;
+         /*!
+          \brief Constructor for UndoChange class.
+          \param object Pointer to the object in which the change is taking place.
+          */
+         explicit UndoChange(Object* object) noexcept;
 
          /*!
           \brief Destructor
           */
          virtual ~UndoChange() noexcept;
 
-          /*!
-           \brief This method performs an undo/redo step by swapping the stored value (here) with the value pointed to by the pointer.
-           \note This method also triggers a regenerate() in EditableObjects.
-           */
+         /*!
+          \brief This method performs an undo/redo step by swapping the stored value (here) with the value pointed to by the pointer.
+          \note This method also triggers a regenerate() in EditableObjects.
+          */
          virtual void swap();
 
          jm::String objname;
@@ -648,34 +648,34 @@ namespace jm
 
       public:
 
-          /*!
-           \brief The previous step that was executed.
-           When "Undo" is clicked, it will jump to this step.
-           This step represents the state of the file before the changes in the current step were applied.
-           */
+         /*!
+          \brief The previous step that was executed.
+          When "Undo" is clicked, it will jump to this step.
+          This step represents the state of the file before the changes in the current step were applied.
+          */
          UndoStep* prev;
 
-          /*!
-           \brief The list of changes made to the file.
-           Here is the most recent change in this step.
-           */
+         /*!
+          \brief The list of changes made to the file.
+          Here is the most recent change in this step.
+          */
          UndoChange* recent;
 
-          /*!
-           \brief The oldest change in the list of file modifications in this step.
-           This represents the state of the file before the changes in the current step were applied.
-           */
-          UndoChange* eldest;
+         /*!
+          \brief The oldest change in the list of file modifications in this step.
+          This represents the state of the file before the changes in the current step were applied.
+          */
+         UndoChange* eldest;
 
-          /*!
-           \brief The number of changes made in this step.
-           This represents the total count of modifications made to the file in this step.
-           */
-          uint32 count;
+         /*!
+          \brief The number of changes made in this step.
+          This represents the total count of modifications made to the file in this step.
+          */
+         uint32 count;
 
-          /*!
-           \brief Constructor for the UndoStep class.
-           */
+         /*!
+          \brief Constructor for the UndoStep class.
+          */
          UndoStep();
 
          /*!
@@ -683,12 +683,12 @@ namespace jm
           */
          ~UndoStep();
 
-          /*!
-           \brief Adds a change to the step.
-           \param change The change to be added.
-           \details This function adds a change to the list of modifications made in this step.
-           It takes a pointer to an UndoChange object as a parameter and adds it to the list of changes.
-           */
+         /*!
+          \brief Adds a change to the step.
+          \param change The change to be added.
+          \details This function adds a change to the list of modifications made in this step.
+          It takes a pointer to an UndoChange object as a parameter and adds it to the list of changes.
+          */
          void add(UndoChange* change);
 
    };

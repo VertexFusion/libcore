@@ -54,26 +54,26 @@ jm::String jm::System::language()
 
    #elif defined __linux__//Linux
 
-#ifdef __ANDROID__
+   #ifdef __ANDROID__
    return osSystemLanguage();
-#else
+   #else
 
    // Set the locale to the user's environment locale (if not already set)
-   if (setlocale(LC_ALL, "") == nullptr)
+   if(setlocale(LC_ALL, "") == nullptr)
    {
-       std::cerr << "Failed to set locale" << std::endl;
+      std::cerr << "Failed to set locale" << std::endl;
    }
 
    // Use nl_langinfo to get the language
    const char* language = setlocale(LC_ALL, nullptr);
 
    jm::String lang = jm::String(language);
-   int64 index=lang.indexOf('.');
-   if(index>0)lang=lang.substring(0,index);
-   std::cout<<"LANG: "<<lang<<std::endl;
+   int64 index = lang.indexOf('.');
+   if(index > 0)lang = lang.substring(0, index);
+   std::cout << "LANG: " << lang << std::endl;
    return lang;
 
-#endif
+   #endif
 
    #elif defined _WIN32//Windows
 
@@ -254,70 +254,70 @@ jm::String jm::System::userFullName()
 
 jm::String jm::System::macAddress1()
 {
-#ifdef __APPLE__ //macOS und iOS
+   #ifdef __APPLE__ //macOS und iOS
 
-   struct ifaddrs *ifap, *ifa;
+   struct ifaddrs* ifap, *ifa;
    char macAddress[18] = {0};
 
-   if (getifaddrs(&ifap) == -1)
+   if(getifaddrs(&ifap) == -1)
    {
-       perror("getifaddrs");
-       return "";
+      perror("getifaddrs");
+      return "";
    }
 
-   for (ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
+   for(ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
    {
-       if (ifa->ifa_addr->sa_family == AF_LINK) // check for ethernet
-       {
-           struct sockaddr_dl *sdl = (struct sockaddr_dl*)ifa->ifa_addr;
-           if (sdl->sdl_type == IFT_ETHER) // Ethernet interface
-           {
-               unsigned char *mac = (unsigned char *)LLADDR(sdl);
-               snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
-                        mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-               break;
-           }
-       }
+      if(ifa->ifa_addr->sa_family == AF_LINK)  // check for ethernet
+      {
+         struct sockaddr_dl* sdl = (struct sockaddr_dl*)ifa->ifa_addr;
+         if(sdl->sdl_type == IFT_ETHER)  // Ethernet interface
+         {
+            unsigned char* mac = (unsigned char*)LLADDR(sdl);
+            snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
+                     mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+            break;
+         }
+      }
    }
 
    freeifaddrs(ifap);
 
    return jm::String(macAddress);
 
-#elif defined __linux__//Linux
+   #elif defined __linux__//Linux
 
-   struct ifaddrs *ifap, *ifa;
-   struct sockaddr_ll *sll;
+   struct ifaddrs* ifap, *ifa;
+   struct sockaddr_ll* sll;
    char macAddress[18] = {0};
 
-   if (getifaddrs(&ifap) == -1)
+   if(getifaddrs(&ifap) == -1)
    {
-       perror("getifaddrs");
-       return "";
+      perror("getifaddrs");
+      return "";
    }
 
-   for (ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
+   for(ifa = ifap; ifa != nullptr; ifa = ifa->ifa_next)
    {
-       if (ifa->ifa_addr->sa_family == AF_PACKET) // check for ethernet
-       {
-           sll = (struct sockaddr_ll*)ifa->ifa_addr;
-           if (sll->sll_protocol == htons(ETH_P_IP))
-           {
-               unsigned char *mac = sll->sll_addr;
-               snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
-                        mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-               break;
-           }
-       }
+      if(ifa->ifa_addr->sa_family == AF_PACKET)  // check for ethernet
+      {
+         sll = (struct sockaddr_ll*)ifa->ifa_addr;
+         if(sll->sll_protocol == htons(ETH_P_IP))
+         {
+            unsigned char* mac = sll->sll_addr;
+            snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
+                     mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+            break;
+         }
+      }
    }
 
    freeifaddrs(ifap);
 
    return jm::String(macAddress);
 
-#elif defined _WIN32//Windows
-return jm::kEmptyString;
-#endif
+   #elif defined _WIN32//Windows
+   return jm::kEmptyString;
+   #endif
 }
 
 
@@ -345,7 +345,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
    if(libptr == nullptr) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
-                                   std::endl << dlerror() << std::endl;
+                                      std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined __linux__//Linux
@@ -353,7 +353,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
    if(libptr == nullptr) std::cout << "Loading dynamic library " << cstr.constData() << " failed!" <<
-                                   std::endl << dlerror() << std::endl;
+                                      std::endl << dlerror() << std::endl;
    return libptr;
 
    #elif defined _WIN32// Windows
@@ -362,7 +362,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
    delete[] wstr;
    if(libptr == nullptr) std::cout << "Loading dynamic library " << file->absolutePath() << " failed!"
-                                   << /*std::endl << dlerror() <<*/ std::endl;
+                                      << /*std::endl << dlerror() <<*/ std::endl;
    return libptr;
 
    #endif
@@ -396,7 +396,7 @@ void* jm::System::findSymbol(void* library, const String& name)
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
    if(symptr == nullptr) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
-                                   " failed!" << std::endl << dlerror() << std::endl;
+                                      " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined __linux__//Linux
@@ -404,7 +404,7 @@ void* jm::System::findSymbol(void* library, const String& name)
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
    if(symptr == nullptr) std::cout << "Locating " << name << " in dynamic library " << cstr.constData() <<
-                                   " failed!" << std::endl << dlerror() << std::endl;
+                                      " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
    #elif defined _WIN32//Windows
@@ -460,8 +460,8 @@ void jm::System::quit()
    {
       delete gPreferences;
       delete gPrefFile;
-      gPreferences=nullptr;
-      gPrefFile=nullptr;
+      gPreferences = nullptr;
+      gPrefFile = nullptr;
    }
 
    if(gMainThreadPool != nullptr)
@@ -483,10 +483,10 @@ jm::Preferences* jm::System::preferences()
 
 void jm::System::savePreferences()
 {
-   std::cout<<"SAVE PREFERENCES"<<std::endl;
+   std::cout << "SAVE PREFERENCES" << std::endl;
    if(gPreferences != nullptr)
    {
       gPreferences->save(*gPrefFile);
-      std::cout<<"SAVEED"<<std::endl;
+      std::cout << "SAVEED" << std::endl;
    }
 }
