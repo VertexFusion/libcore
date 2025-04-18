@@ -63,7 +63,16 @@ Used in:
 
 For artistic style, please use the following settings:
 
+-A1: Brackets ANSI/BSD-Style
+-s3: Indent: 3 spaces
+-C: Indent 'class' and 'struct'
+-S: Indent 'switch' blocks
+-N: Indent namespaces
+-U: Remove extra space padding around parenthesis on the inside and outside.
+-Y: Indent C++ comments beginning in column one.
+-p: Insert  space  padding  around  operators.
+-k1: Attach a pointer or reference operator (*, &, or ^) to the type
 ~~~
-astyle -A1 -s3 -C -S -N -U -Y -xw -p -k1 *
+astyle -A1 -s3 -C -S -N -U -Y -p -k1 *
 ~~~
 
