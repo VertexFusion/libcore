@@ -29,8 +29,8 @@ jobs:
       uses: SonarSource/sonarqube-scan-action@v4
       env:
         SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} # Put the name of your token here
-        with:
-          args: >
-            --define sonar.cfamily.llvm-cov.reportPath=bin/coretest.cov
+      with:
+        args: >
+          --define sonar.cfamily.llvm-cov.reportPath=bin/coretest.cov
     - name: clean
       run: make clean
