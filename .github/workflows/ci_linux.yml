@@ -21,10 +21,10 @@ jobs:
       run: make test -j8
     - name: run test
       run: | 
-      cd bin
-      ./coretest
-      llvm-profdata merge -o coretest.profdata default.profraw
-      llvm-cov show coretest --show-branches=count -instr-profile=coretest.profdata > coretest.cov
+        cd bin
+        ./coretest
+        llvm-profdata merge -o coretest.profdata default.profraw
+        llvm-cov show coretest --show-branches=count -instr-profile=coretest.profdata > coretest.cov
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v4
       env:
