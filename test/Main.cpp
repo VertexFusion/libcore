@@ -44,7 +44,7 @@ int main(int argc, const char* argv[])
    vec->addTest(new DeflateTest());
    vec->addTest(new UndoManagerTest());
    vec->addTest(new DateTest());
-   vec->addTest(new DateTest());
+   vec->addTest(new DeflateTest());
    vec->addTest(new EditableObjectTest());
    vec->addTest(new FileTest());
 

@@ -61,6 +61,9 @@ void DeflateTest::doTest()
    deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.deflate(compressed, compressedLength);
 
+   testEquals(deflater.totalInSize(), uncompressedLength, "Uncompressed length differs from Deflater::totalInSize().");
+   testEquals(deflater.totalOutSize(), compressedLength, "Compressed length differs from Deflater::totalOutSize().");
+
    std::cout << "Compressed Length: " << compressedLength << std::endl;
 
    //Dekomprimieren

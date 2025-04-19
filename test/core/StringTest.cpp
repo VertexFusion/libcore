@@ -256,8 +256,38 @@ void StringTest::doTest()
 
    isEmpty();
    compareFancy();
-
+   constructors();
 }
+
+void StringTest::constructors()
+{
+   const char* str = "abc";
+   
+   String str1(str,3);
+   testEquals(str1, String("abc"), "String() fails (1)");
+
+   String str2(str,3,jm::Charset::getDefault());
+   testEquals(str2, String("abc"), "String() fails (2)");
+
+   String str3((const char*)nullptr);
+   testEquals(str3, kEmptyString, "String() fails (3)");
+
+   String str4(str);
+   testEquals(str4, String("abc"), "String() fails (4)");
+
+   const uint16 str16[] = {0x0061, 0x0062, 0x0063 , 0x0000};
+
+   String str5(str16, 3);
+   testEquals(str5, String("abc"), "String() fails (5)");
+
+   String str6(str,jm::Charset::getDefault());
+   testEquals(str6, String("abc"), "String() fails (6)");
+
+   jm::ByteArray byteArray = str6.toCString();
+   String str7(byteArray,jm::Charset::getDefault());
+   testEquals(str7, String("abc"), "String() fails (7)");
+}
+
 
 void StringTest::isEmpty()
 {

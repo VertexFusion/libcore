@@ -23,14 +23,5 @@ jobs:
       run: | 
         cd bin
         ./coretest
-        llvm-profdata merge -o coretest.profdata default.profraw
-        llvm-cov show coretest --show-branches=count -instr-profile=coretest.profdata > coretest.cov
-    - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v4
-      env:
-        SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} # Put the name of your token here
-      with:
-        args: >
-          --define sonar.cfamily.llvm-cov.reportPath=bin/coretest.cov
     - name: clean
       run: make clean

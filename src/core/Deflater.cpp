@@ -35,6 +35,8 @@ using namespace jm;
 
 Deflater::Deflater(): Object()
 {
+   mTotalIn=0;
+   mTotalOut=0;
 }
 
 Deflater::~Deflater()
@@ -46,6 +48,7 @@ void Deflater::setInput(uint8* buffer, int64 length)
    mUncompBytes = buffer;
    mUncompLength = length;
    mUncompIndex = 0;
+   mTotalIn += length;
 }
 
 void Deflater::deflate(uint8*& buffer, int64& length)
@@ -70,6 +73,7 @@ void Deflater::deflate(uint8*& buffer, int64& length)
    deflateEnd(&defstream);
 
    length = (uint32)defstream.total_out;
+   mTotalOut += length;
 }
 
 void Deflater::reset()

@@ -220,6 +220,13 @@ void EditableObjectTest::doTest()
    um->close();
    testFalse(um->hasOpenUndoStep(), "Undo Step is open (28)");
 
+   // Regeneration status
+   testTrue(adr->shouldRegenerate(), "Regeneration status wrong (29)");
+   adr->regenerationDone();
+   testFalse(adr->shouldRegenerate(), "Regeneration status wrong (30)");
+   adr->regenerate();
+   testTrue(adr->shouldRegenerate(), "Regeneration status wrong (31)");
+
    delete book;
    delete adr;
 }

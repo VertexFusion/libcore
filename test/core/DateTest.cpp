@@ -102,4 +102,22 @@ void DateTest::doTest()
    //#warning TODO Diese Funktion testen
    d = Date();
    std::cout << d.toString() << std::endl;
+
+   // 24.08.1979 12:00:00
+   d = Date(1979, Date::AUGUST, 24, 12, 0, 0);
+   testEquals(d.toString(), "1979-08-24T12:00:00.000Z", "jm::Date::ToString() fails [11]");
+
+   d= Date(d);
+   testEquals(d.toString(), "1979-08-24T12:00:00.000Z", "jm::Date::ToString() fails [12]");
+
+   // from NSDate 00:00:00 UTC on 1 January 2001.
+   double nsdate = 0.0;
+   d = Date::fromNSDate(nsdate);
+   testEquals(d.toString(), "2001-01-01T00:00:00.000Z", "jm::Date::ToString() fails [13]");
+
+   // Empty ?
+   testFalse(d.isEmpty(), "jm::Date::isEmpty() fails [1]");
+
+   d.setTime(Date::EMPTY);
+   testTrue(d.isEmpty(), "jm::Date::isEmpty() fails [2]");
 }

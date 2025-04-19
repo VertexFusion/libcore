@@ -20,6 +20,7 @@ class StringTest : public jm::Test
    private:
       void isEmpty();
       void compareFancy();
+      void constructors();
 };
 
 #endif
