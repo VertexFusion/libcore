@@ -22,8 +22,8 @@ ifeq ($(UNAME_S),Darwin)
    CXX = clang++
    CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++20
    OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -x objective-c++ -fobjc-arc
-   TESTFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
-   LFLAGS = -dynamiclib -current_version 1.4 $(TESTFLAGS)
+   TESTLFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
+   LFLAGS = -dynamiclib -current_version 1.4 $(TESTESTLFLAGSTFLAGS)
    LIB_NAME = libjameo.dylib
 
 endif
@@ -37,7 +37,7 @@ ifeq ($(UNAME_S),Linux)
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
    CXX= clang++
    CFLAGS = -c -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3 -std=c++20
-   TESTFLAGS = -pthread -ldl
+   TESTLFLAGS = -pthread -ldl
    LFLAGS = -shared -pthread -ldl
    LIB_NAME = libcore.so
 
@@ -157,13 +157,13 @@ TEST =\
  $(PATH_TEST)/core/VertexTest.cpp\
 
 
-TESTOBJECTS =  $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o)
+TESTOBJECTS =  $(ZLIB:.c=.o) $(TEST:.cpp=.to) $(MMSOURCES:.mm=.o) $(SOURCES:.cpp=.to)
 
 # Wo finde ich die Header-Dateien?
 INCLUDE = -Iinclude -I3rdparty -Iprec
 
 # Target = ALL
-Debug: $(OBJECTS)
+all: $(OBJECTS)
 	mkdir -p $(PATH_BIN)
 	$(CXX) $(LFLAGS) -o $(LIB_NAME) $(OBJECTS)
 	mv $(LIB_NAME) $(PATH_BIN)/$(LIB_NAME)
@@ -174,7 +174,7 @@ install:
 	cp $(PATH_BIN)/$(LIB_NAME) $(prefix)/usr/lib/jameo/$(LIB_NAME)
 
 test: $(TESTOBJECTS)
-	$(CXX) $(TESTFLAGS) -o $(PATH_BIN)/coretest $(TESTOBJECTS) $(PATH_BIN)/libcore.a
+	$(CXX) $(TESTLFLAGS) -fprofile-instr-generate -o $(PATH_BIN)/coretest $(TESTOBJECTS)
 
 prec/PrecompiledCore.pch: prec/PrecompiledCore.hpp
 	$(CXX) $(CFLAGS) $(INCLUDE) prec/PrecompiledCore.hpp -o prec/PrecompiledCore.pch
@@ -188,8 +188,17 @@ prec/PrecompiledCore.pch: prec/PrecompiledCore.hpp
 %.o: %.cpp prec/PrecompiledCore.pch
 	$(CXX) $(CFLAGS) $(INCLUDE) -include-pch prec/PrecompiledCore.pch -c $< -o $@
 
+%.to: %.cpp prec/PrecompiledCore.pch
+	$(CXX) $(CFLAGS) -fprofile-instr-generate -fcoverage-mapping $(INCLUDE) -include-pch prec/PrecompiledCore.pch -c $< -o $@
+
 clean:
 	rm -f $(OBJECTS) $(TESTOBJECTS) prec/PrecompiledCore.pch
 	rm -Rf $(PATH_BIN)/*
+	rm -f $(PATH_CORE)/*.gcda
+	rm -f $(PATH_CORE)/*.gcno
+	rm -f $(PATH_TEST)/*.gcda
+	rm -f $(PATH_TEST)/*.gcno
+	rm -f $(PATH_TEST)/core/*.gcda
+	rm -f $(PATH_TEST)/core/*.gcno
 
 # DO NOT DELETE
