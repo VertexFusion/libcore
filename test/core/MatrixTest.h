@@ -17,6 +17,9 @@ class MatrixTest : public jm::Test
       MatrixTest();
       void doTest();
 
+   private:
+
+      void constructors();
 };
 
 #endif /* defined(__jameo__MatrixTest__) */

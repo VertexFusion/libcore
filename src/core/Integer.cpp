@@ -149,12 +149,10 @@ jm::String Integer::toLatinAlphabetString(int64 number)
 
    while(number > 0)
    {
-      int32 div = static_cast<int32>(number / 26);
-      int16 rest = (int16)(number % 26 - 1);
-
-      output.append('A' + rest);
-
-      number = div;
+      number--;
+      int64 digit = number % 26;
+      number = number / 26;
+      output.append(jm::Char('A'+digit));
    }
 
    //Zahlen umkehren

@@ -22,6 +22,7 @@
 #include "core/EditableObjectTest.h"
 #include "core/FileTest.h"
 #include "core/StringListTest.h"
+#include "core/SerializerTest.h"
 
 using namespace jm;
 
@@ -47,6 +48,7 @@ int main(int argc, const char* argv[])
    vec->addTest(new DeflateTest());
    vec->addTest(new EditableObjectTest());
    vec->addTest(new FileTest());
+   vec->addTest(new SerializerTest());
 
    int64 result = vec->execute();
 

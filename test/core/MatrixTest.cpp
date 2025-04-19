@@ -456,4 +456,123 @@ void MatrixTest::doTest()
    testEquals(rotatedXAxis.y, expectedRotatedXAxis.y, "rotatedXAxis.y not 0");
    testEquals(rotatedXAxis.z, expectedRotatedXAxis.z, "rotatedXAxis.z not 0");
 
+   constructors();
 }
+
+void MatrixTest::constructors()
+{
+   // Test default constructor
+   Matrix A;
+   testEquals(A.m, 0, "Matrix.m not 0");
+   testEquals(A.n, 0, "Matrix.n not 0");
+
+   // Test constructor with size
+   A = Matrix(3, 4);
+   testEquals(A.m, 3, "Matrix.m not 3");
+   testEquals(A.n, 4, "Matrix.n not 4");
+
+   testEquals(A.get(0, 0), 0.0, "Value not 0");
+   testEquals(A.get(0, 1), 0.0, "Value not 0");
+   testEquals(A.get(0, 2), 0.0, "Value not 0");
+   testEquals(A.get(0, 3), 0.0, "Value not 0");
+   testEquals(A.get(1, 0), 0.0, "Value not 0");
+   testEquals(A.get(1, 1), 0.0, "Value not 0");
+   testEquals(A.get(1, 2), 0.0, "Value not 0");
+   testEquals(A.get(1, 3), 0.0, "Value not 0");
+   testEquals(A.get(2, 0), 0.0, "Value not 0");
+   testEquals(A.get(2, 1), 0.0, "Value not 0");
+   testEquals(A.get(2, 2), 0.0, "Value not 0");
+   testEquals(A.get(2, 3), 0.0, "Value not 0");
+
+   A.set(0, 0, 1);
+   A.set(0, 1, 2);
+   A.set(0, 2, 3);
+   A.set(0, 3, 4);
+   A.set(1, 0, 5);
+   A.set(1, 1, 6);
+   A.set(1, 2, 7);
+   A.set(1, 3, 8);
+   A.set(2, 0, 9);
+   A.set(2, 1, 10);
+   A.set(2, 2, 11);
+   A.set(2, 3, 12);
+   testEquals(A.get(0, 0), 1.0, "Value not 1");
+   testEquals(A.get(0, 1), 2.0, "Value not 2");
+   testEquals(A.get(0, 2), 3.0, "Value not 3");
+   testEquals(A.get(0, 3), 4.0, "Value not 4");
+   testEquals(A.get(1, 0), 5.0, "Value not 5");
+   testEquals(A.get(1, 1), 6.0, "Value not 6");
+   testEquals(A.get(1, 2), 7.0, "Value not 7");
+   testEquals(A.get(1, 3), 8.0, "Value not 8");
+   testEquals(A.get(2, 0), 9.0, "Value not 9");
+   testEquals(A.get(2, 1), 10.0, "Value not 10");
+   testEquals(A.get(2, 2), 11.0, "Value not 11");
+   testEquals(A.get(2, 3), 12.0, "Value not 12");
+   
+
+   // Test copy constructor
+   Matrix B = A;
+   testEquals(B.m, A.m, "Matrix.m not equal");
+   testEquals(B.n, A.n, "Matrix.n not equal");
+   testEquals(B.get(0, 0), A.get(0, 0), "Value not equal");
+   testEquals(B.get(0, 1), A.get(0, 1), "Value not equal");
+   testEquals(B.get(0, 2), A.get(0, 2), "Value not equal");
+   testEquals(B.get(0, 3), A.get(0, 3), "Value not equal");
+   testEquals(B.get(1, 0), A.get(1, 0), "Value not equal");
+   testEquals(B.get(1, 1), A.get(1, 1), "Value not equal");
+   testEquals(B.get(1, 2), A.get(1, 2), "Value not equal");
+   testEquals(B.get(1, 3), A.get(1, 3), "Value not equal");
+   testEquals(B.get(2, 0), A.get(2, 0), "Value not equal");
+   testEquals(B.get(2, 1), A.get(2, 1), "Value not equal");
+   testEquals(B.get(2, 2), A.get(2, 2), "Value not equal");
+   testEquals(B.get(2, 3), A.get(2, 3), "Value not equal");
+
+   // Test reference constructor
+   B= Matrix(&A);
+   testEquals(B.m, A.m, "Matrix.m not equal");
+   testEquals(B.n, A.n, "Matrix.n not equal");
+   testEquals(B.get(0, 0), A.get(0, 0), "Value not equal");
+   testEquals(B.get(0, 1), A.get(0, 1), "Value not equal");
+   testEquals(B.get(0, 2), A.get(0, 2), "Value not equal");
+   testEquals(B.get(0, 3), A.get(0, 3), "Value not equal");
+   testEquals(B.get(1, 0), A.get(1, 0), "Value not equal");
+   testEquals(B.get(1, 1), A.get(1, 1), "Value not equal");
+   testEquals(B.get(1, 2), A.get(1, 2), "Value not equal");
+   testEquals(B.get(1, 3), A.get(1, 3), "Value not equal");
+   testEquals(B.get(2, 0), A.get(2, 0), "Value not equal");
+   testEquals(B.get(2, 1), A.get(2, 1), "Value not equal");
+   testEquals(B.get(2, 2), A.get(2, 2), "Value not equal");
+   testEquals(B.get(2, 3), A.get(2, 3), "Value not equal");
+
+   // Test Vertex3 constructor
+   jm::Vertex3 c1(1, 2, 3);
+   jm::Vertex3 c2(4, 5, 6);
+   jm::Vertex3 c3(7, 8, 9);
+   A = Matrix(c1, c2, c3,false);
+   testEquals(A.m, 3, "Matrix.m not 3");
+   testEquals(A.n, 3, "Matrix.n not 3");
+   testEquals(A.get(0, 0), 1.0, "Value not 1");
+   testEquals(A.get(1, 0), 2.0, "Value not 2");
+   testEquals(A.get(2, 0), 3.0, "Value not 3");
+   testEquals(A.get(0, 1), 4.0, "Value not 4");
+   testEquals(A.get(1, 1), 5.0, "Value not 5");
+   testEquals(A.get(2, 1), 6.0, "Value not 6");
+   testEquals(A.get(0, 2), 7.0, "Value not 7");
+   testEquals(A.get(1, 2), 8.0, "Value not 8");
+   testEquals(A.get(2, 2), 9.0, "Value not 9");
+
+   A = Matrix(c1, c2, c3,true);
+   testEquals(A.m, 3, "Matrix.m not 3");
+   testEquals(A.n, 3, "Matrix.n not 3");
+   testEquals(A.get(0, 0), 1.0, "Value not 1");
+   testEquals(A.get(0, 1), 2.0, "Value not 2");
+   testEquals(A.get(0, 2), 3.0, "Value not 3");
+   testEquals(A.get(1, 0), 4.0, "Value not 4");
+   testEquals(A.get(1, 1), 5.0, "Value not 5");
+   testEquals(A.get(1, 2), 6.0, "Value not 6");
+   testEquals(A.get(2, 0), 7.0, "Value not 7");
+   testEquals(A.get(2, 1), 8.0, "Value not 8");
+   testEquals(A.get(2, 2), 9.0, "Value not 9");
+
+}
+

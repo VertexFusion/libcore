@@ -235,5 +235,116 @@ void MathTest::doTest()
    testTrue(jm::modFloor(0, 3) == 0, "modFloor(0, 3) should return 0");
    testTrue(jm::modFloor(10, 0) == 0, "modFloor(10, 0) should return 0");
    testTrue(jm::modFloor(0, 0) == 0, "modFloor(0, 0) should return 0");
+
+   integer();
+}
+
+void MathTest::integer()
+{
+   // digits
+   int32 i32 = jm::Integer::digits(0);
+   testEquals(i32, 1, "Integer::digits(0) != 0");
+   i32 = jm::Integer::digits(1);
+   testEquals(i32, 1, "Integer::digits(1) != 1");
+   i32 = jm::Integer::digits(2);
+   testEquals(i32, 1, "Integer::digits(2) != 1");
+   i32 = jm::Integer::digits(10);
+   testEquals(i32, 2, "Integer::digits(10) != 2");
+   i32 = jm::Integer::digits(100);
+   testEquals(i32, 3, "Integer::digits(100) != 3");
+   i32 = jm::Integer::digits(1000);
+   testEquals(i32, 4, "Integer::digits(1000) != 4");
+   i32 = jm::Integer::digits(10000);
+   testEquals(i32, 5, "Integer::digits(10000) != 5");
+   i32 = jm::Integer::digits(100000);
+   testEquals(i32, 6, "Integer::digits(100000) != 6");
+   i32 = jm::Integer::digits(1000000);
+   testEquals(i32, 7, "Integer::digits(1000000) != 7");
+   i32 = jm::Integer::digits(10000000);
+   testEquals(i32, 8, "Integer::digits(10000000) != 8");
+   i32 = jm::Integer::digits(100000000);
+   testEquals(i32, 9, "Integer::digits(100000000) != 9");
+   i32 = jm::Integer::digits(1000000000);
+   testEquals(i32, 10, "Integer::digits(1000000000) != 10");
+   i32 = jm::Integer::digits(10000000000);
+   testEquals(i32, 11, "Integer::digits(10000000000) != 11");
+   i32 = jm::Integer::digits(100000000000);
+   testEquals(i32, 12, "Integer::digits(100000000000) != 12");
+   i32 = jm::Integer::digits(-1);
+   testEquals(i32, 2, "Integer::digits(-1) != 2");
+   i32 = jm::Integer::digits(-2);
+   testEquals(i32, 2, "Integer::digits(-2) != 3");
+   i32 = jm::Integer::digits(-10);
+   testEquals(i32, 3, "Integer::digits(-10) != 4");
+   i32 = jm::Integer::digits(-100);
+   testEquals(i32, 4, "Integer::digits(-100) != 5");
+
+   // fromHex
+   jm::String str = "0";
+   int64 i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 0, "Integer::fromHex(0) != 0");
+   str = "1";
+   i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 1, "Integer::fromHex(1) != 1");
+   str = "02";
+   i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 2, "Integer::fromHex(02) != 2");
+   str = "0A";
+   i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 10, "Integer::fromHex(0A) != 10");
+   str = "123456789ABCDEF";
+   i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 0x123456789ABCDEF, "Integer::fromHex(123456789ABCDEF) != 0x123456789ABCDEF");
+   str = "123456789abcdef";
+   i64 = jm::Integer::fromHex(str);
+   testEquals(i64, 0x123456789ABCDEF, "Integer::fromHex(123456789abcdef) != 0x123456789ABCDEF");
+
+   // toHexString
+   str = jm::Integer::toHexString(0);
+   testEquals(str, "0", "Integer::toHexString(0) != 0");
+   str = jm::Integer::toHexString(1);
+   testEquals(str, "1", "Integer::toHexString(1) != 1");
+   str = jm::Integer::toHexString(12345);
+   testEquals(str, "3039", "Integer::toHexString(12345) != 3039");
+   str = jm::Integer::toHexString(0x123456789ABCDEF);
+   testEquals(str, "123456789ABCDEF", "Integer::toHexString(0x123456789ABCDEF) != 0x123456789ABCDEF");
+
+   // toRomanString
+   str = jm::Integer::toRomanString(1);
+   testEquals(str, "I", "Integer::toRomanString(1) != I");
+   str = jm::Integer::toRomanString(2);
+   testEquals(str, "II", "Integer::toRomanString(2) != II");
+   str = jm::Integer::toRomanString(3);
+   testEquals(str, "III", "Integer::toRomanString(3) != III");
+   str = jm::Integer::toRomanString(4);
+   testEquals(str, "IV", "Integer::toRomanString(4) != IV");
+   str = jm::Integer::toRomanString(5);
+   testEquals(str, "V", "Integer::toRomanString(5) != V");
+   str = jm::Integer::toRomanString(1986);
+   testEquals(str, "MCMLXXXVI", "Integer::toRomanString(1986) != MCMLXXXVI");
+   str = jm::Integer::toRomanString(2999);
+   testEquals(str, "MMCMXCIX", "Integer::toRomanString(2999) != MMCMXCIX");
+   str = jm::Integer::toRomanString(47);
+   testEquals(str, "XLVII", "Integer::toRomanString(47) != XLVII");
+
+   // toLatinAlphabetString
+   str = jm::Integer::toLatinAlphabetString(0);
+   testEquals(str, "", "Integer::toLatinAlphabetString(0) != empty");
+   str = jm::Integer::toLatinAlphabetString(1);
+   testEquals(str, "A", "Integer::toLatinAlphabetString(1) != A");
+   str = jm::Integer::toLatinAlphabetString(2);
+   testEquals(str, "B", "Integer::toLatinAlphabetString(2) != B");
+   str = jm::Integer::toLatinAlphabetString(24);
+   testEquals(str, "X", "Integer::toLatinAlphabetString(24) != X");
+   str = jm::Integer::toLatinAlphabetString(39);
+   testEquals(str, "AM", "Integer::toLatinAlphabetString(39) != AM");
+   str = jm::Integer::toLatinAlphabetString(52);
+   testEquals(str, "AZ", "Integer::toLatinAlphabetString(52) != AZ");
+   str = jm::Integer::toLatinAlphabetString(53);
+   testEquals(str, "BA", "Integer::toLatinAlphabetString(53) != BA");
+   str = jm::Integer::toLatinAlphabetString(703);
+   testEquals(str, "AAA", "Integer::toLatinAlphabetString(703) != AAA");
+   str = jm::Integer::toLatinAlphabetString(702);
+   testEquals(str, "ZZ", "Integer::toLatinAlphabetString(702) != ZZ");
 }
 

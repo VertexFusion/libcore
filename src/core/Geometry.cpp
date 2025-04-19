@@ -216,7 +216,9 @@ Vertex3 jm::closestPointOnCircle(const Vertex3& point,
 
    const Vertex3 loc = closestPointOnPlane(point, center, normal);
    const Vertex3 r = loc - center;
-   const double lambda = radius / r.abs();
+   const double rabs=r.abs();
+   if(jm::isEqual(rabs, 0.0)) return radius;
+   const double lambda = radius / rabs;
    return center + r * lambda;
 }
 

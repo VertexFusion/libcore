@@ -17,6 +17,10 @@ class VertexTest : public jm::Test
       VertexTest();
       void doTest();
 
+   private:
+
+      void vector();
+
 };
 
 #endif

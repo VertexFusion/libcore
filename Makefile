@@ -150,11 +150,13 @@ TEST =\
  $(PATH_TEST)/core/LinkedListTest.cpp\
  $(PATH_TEST)/core/MathTest.cpp\
  $(PATH_TEST)/core/MatrixTest.cpp\
+ $(PATH_TEST)/core/SerializerTest.cpp\
  $(PATH_TEST)/core/StringTest.cpp\
  $(PATH_TEST)/core/StringListTest.cpp\
  $(PATH_TEST)/core/StringTokenizerTest.cpp\
  $(PATH_TEST)/core/UndoManagerTest.cpp\
  $(PATH_TEST)/core/VertexTest.cpp\
+
 
 
 TESTOBJECTS =  $(ZLIB:.c=.o) $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o) $(SOURCES:.cpp=.to)

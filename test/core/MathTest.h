@@ -18,6 +18,10 @@ class MathTest : public jm::Test
       MathTest();
       void doTest();
 
+   private:
+
+      void integer();
+
 };
 
 #endif /* defined(__tornado__MathTest__) */

@@ -96,6 +96,7 @@ namespace jm
     */
    DllExport
    int16 serializeLEUInt16(uint8* buffer, uint32 offset, uint16 value);
+   uint16 serializeBEUInt16(uint8* buffer, uint32 offset, uint16 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -166,6 +167,10 @@ namespace jm
    DllExport
    int16 deserializeBEInt16(uint8* buffer, uint32 offset);
    int16 deserializeBEInt16(const jm::ByteArray& buffer, int64 offset);
+
+   DllExport
+   int32 deserializeBEInt24(uint8* buffer, uint32 offset);
+   int32 deserializeLEInt24(uint8* buffer, uint32 offset);
 
    /*!
     \brief This method deserializes a number using the Big-Endian method.

@@ -13,16 +13,18 @@
 
 class GeometryTest : public jm::Test
 {
+   public:
+      GeometryTest();
+      void doTest();
+
    private:
       void shootAround(double startAngle, double endAngle);
       void shootAway(double startAngle, double endAngle);
       void shootOut(double startAngle, double endAngle);
       void shootTangent(double startAngle, double endAngle);
 
-   public:
-      GeometryTest();
-      void doTest();
-
+      void extents();
+      void points3d();
 };
 
 #endif

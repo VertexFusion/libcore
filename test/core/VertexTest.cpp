@@ -20,6 +20,7 @@
 #include "core/Vertex3.h"
 #include "core/Exception.h"
 #include "core/Math.h"
+#include "core/Vector.h"
 
 
 using namespace jm;
@@ -166,4 +167,82 @@ void VertexTest::doTest()
     TestEquals(v.x, 1.0/2.0, "Vertex2.Rotate 60° (x) fails");
     TestEquals(v.y, sqrt(3.0)/2.0, "Vertex2.Rotate 60° (y) fails");
    */
+
+   vector();
+}
+
+void VertexTest::vector()
+{
+   // Default constructor
+   Vector v = Vector();
+   testEquals(v.m, 0, "Vector m not 0");
+   testNull(v.data, "Vector data not null");
+
+   // Constructor with size   
+   v = Vector(3);
+   testEquals(v.m, 3, "Vector m not 3");
+   testNotNull(v.data, "Vector data null");
+   testEquals(v.data[0], 0.0, "Vector data[0] not 0");
+   testEquals(v.data[1], 0.0, "Vector data[1] not 0");
+   testEquals(v.data[2], 0.0, "Vector data[2] not 0");
+
+   v.data[0] = 1.0;
+   v.data[1] = 2.0;
+   v.data[2] = 3.0;
+
+   // Copy constructor
+   Vector v2 = Vector(v);
+   testEquals(v2.m, 3, "Vector m not 3");
+   testNotNull(v2.data, "Vector data null");
+   testEquals(v2.data[0], 1.0, "Vector data[0] not 1");
+   testEquals(v2.data[1], 2.0, "Vector data[1] not 2");
+   testEquals(v2.data[2], 3.0, "Vector data[2] not 3");
+
+   // abs
+   testEquals(v.abs(), sqrt(14.0), "Vector abs not sqrt(14)");
+
+   // normalize
+   v.normalize();
+   testEquals(v.data[0], 1.0 / sqrt(14.0), "Vector data[0] not 1/sqrt(14)");
+
+   // zeros
+   v.zeros();
+   testEquals(v.data[0], 0.0, "Vector data[0] not 0");
+   testEquals(v.data[1], 0.0, "Vector data[1] not 0");
+   testEquals(v.data[2], 0.0, "Vector data[2] not 0");
+   testEquals(v.m, 3, "Vector m not 3");
+
+   // ones
+   v.ones();
+   testEquals(v.data[0], 1.0, "Vector data[0] not 1");
+   testEquals(v.data[1], 1.0, "Vector data[1] not 1");
+   testEquals(v.data[2], 1.0, "Vector data[2] not 1");
+   testEquals(v.m, 3, "Vector m not 3");
+
+   // dot product
+   v2 = Vector(3);
+   v2.data[0] = 1.0;
+   v2.data[1] = 2.0;
+   v2.data[2] = 3.0;
+   testEquals(v.dotProduct(v2), 6.0, "Vector dot product not 3");
+   testEquals(v2.dotProduct(v), 6.0, "Vector dot product not 3");
+
+   // add
+   Vector result = v + v2;
+   testEquals(result.data[0], 2.0, "Vector add data[0] not 2");
+   testEquals(result.data[1], 3.0, "Vector add data[1] not 3");
+   testEquals(result.data[2], 4.0, "Vector add data[2] not 4");
+   testEquals(result.m, 3, "Vector add m not 3");
+
+   // subtract
+   result = v - v2;
+   testEquals(result.data[0], 0.0, "Vector subtract data[0] not 0");
+   testEquals(result.data[1], -1.0, "Vector subtract data[1] not -1");
+   testEquals(result.data[2], -2.0, "Vector subtract data[2] not -2");
+
+   // multiply
+   result = 2.0 * v2;
+   testEquals(result.data[0], 2.0, "Vector multiply data[0] not 2");
+   testEquals(result.data[1], 4.0, "Vector multiply data[1] not 4");
+   testEquals(result.data[2], 6.0, "Vector multiply data[2] not 6");
 }

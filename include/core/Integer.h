@@ -48,6 +48,7 @@ namespace jm
          /*!
           \brief Returns the number of digits, this number has.
           \return return 1 for a number between 0 and 9, 2 for a number between 10 and 99 and so on...
+          If the number is negative, the sign is also counted.
           */
          static uint8 digits(int64 number);
 
