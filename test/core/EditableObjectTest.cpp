@@ -227,6 +227,7 @@ void EditableObjectTest::doTest()
    adr->regenerate();
    testTrue(adr->shouldRegenerate(), "Regeneration status wrong (31)");
 
+
    delete book;
    delete adr;
 }

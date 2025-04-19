@@ -157,7 +157,7 @@ TEST =\
  $(PATH_TEST)/core/VertexTest.cpp\
 
 
-TESTOBJECTS =  $(ZLIB:.c=.o) $(TEST:.cpp=.to) $(MMSOURCES:.mm=.o) $(SOURCES:.cpp=.to)
+TESTOBJECTS =  $(ZLIB:.c=.o) $(TEST:.cpp=.o) $(MMSOURCES:.mm=.o) $(SOURCES:.cpp=.to)
 
 # Wo finde ich die Header-Dateien?
 INCLUDE = -Iinclude -I3rdparty -Iprec
@@ -194,11 +194,5 @@ prec/PrecompiledCore.pch: prec/PrecompiledCore.hpp
 clean:
 	rm -f $(OBJECTS) $(TESTOBJECTS) prec/PrecompiledCore.pch
 	rm -Rf $(PATH_BIN)/*
-	rm -f $(PATH_CORE)/*.gcda
-	rm -f $(PATH_CORE)/*.gcno
-	rm -f $(PATH_TEST)/*.gcda
-	rm -f $(PATH_TEST)/*.gcno
-	rm -f $(PATH_TEST)/core/*.gcda
-	rm -f $(PATH_TEST)/core/*.gcno
 
 # DO NOT DELETE
