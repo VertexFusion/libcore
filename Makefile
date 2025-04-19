@@ -23,7 +23,7 @@ ifeq ($(UNAME_S),Darwin)
    CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++20
    OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -x objective-c++ -fobjc-arc
    TESTLFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
-   LFLAGS = -dynamiclib -current_version 1.4 $(TESTESTLFLAGSTFLAGS)
+   LFLAGS = -dynamiclib -current_version 1.4 $(TESTLFLAGS)
    LIB_NAME = libjameo.dylib
 
 endif
