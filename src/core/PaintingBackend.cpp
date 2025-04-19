@@ -29,3 +29,13 @@ PaintingBackend::~PaintingBackend()
    delete mTransformstack;
    delete mBuffer;
 }
+
+
+
+
+
+BufferElement::BufferElement(Vertex3 point, BufferMode mode)
+{
+   this->point = point;
+   this->mode = mode;
+}

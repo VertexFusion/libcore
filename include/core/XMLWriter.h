@@ -190,12 +190,7 @@ namespace jm
             bool hasContent;
             bool hasCharacters;
 
-            ElementInfo()
-            {
-               indent = false;
-               hasContent = false;
-               hasCharacters = false;
-            }
+            ElementInfo();
 
          };
 

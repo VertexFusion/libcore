@@ -157,10 +157,7 @@ namespace jm
           \param length The number of bytes to write from the buffer.
           \return The actual number of bytes written.
           */
-         inline int64 write(const int8* buffer, int64 length)
-         {
-            return write((const uint8*)buffer, length);
-         };
+         int64 write(const int8* buffer, int64 length);
 
          /*!
           \brief Writes a string to the output file. The encoding is the default encoding (UTF-8). NOT AS A C-STRING!

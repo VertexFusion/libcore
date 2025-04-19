@@ -64,11 +64,7 @@ namespace jm
        \param point The point to be drawn
        \param mode The mode of drawing
        */
-      BufferElement(Vertex3 point, BufferMode mode)
-      {
-         this->point = point;
-         this->mode = mode;
-      }
+      BufferElement(Vertex3 point, BufferMode mode);
    };
 
    /*!

@@ -59,11 +59,7 @@ namespace jm
          */
          Point(double x, double y);
 
-         explicit Point(const Vertex2& v)
-         {
-            mX = v.x;
-            mY = v.y;
-         };
+         explicit Point(const Vertex2& v);
 
          /*!
          \brief Returns the x-component of the point.
@@ -99,11 +95,7 @@ namespace jm
          */
          Point cWiseMax(const Point& other) const;
 
-         inline jm::Vertex2 toVertex2() const
-         {
-            return jm::Vertex2(mX, mY);
-         };
-
+         jm::Vertex2 toVertex2() const;
 
          Point& operator+=(const Point& another);
 

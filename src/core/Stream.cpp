@@ -45,6 +45,11 @@ int64 Stream::write(const String& string)
    return ret;
 }
 
+int64 Stream::write(const int8* buffer, int64 length)
+{
+   return write((const uint8*)buffer, length);
+}
+
 int64 Stream::readFully(ByteArray& buffer)
 {
    return readFully(buffer, buffer.size());

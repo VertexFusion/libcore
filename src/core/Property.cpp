@@ -272,3 +272,70 @@ bool jm::operator==(Property const& v1, Property const& v2)
    System::log(Tr("Property not comparable"), LogLevel::kDebug);
    return false;
 }
+
+//
+// VARIANT
+//
+
+Variant::Variant()
+{
+   mType = PropertyType::kInteger;
+   mNumberValue.intValue = 0;
+}
+
+Variant::Variant(const Variant& another)
+{
+   mType = another.mType;
+   mNumberValue = another.mNumberValue;
+   if(mType == PropertyType::kString)mTextValue = another.mTextValue;
+};
+
+Variant& Variant::operator=(const Variant& another)
+{
+   if(this != &another)
+   {
+      mType = another.mType;
+      mNumberValue = another.mNumberValue;
+      if(mType == PropertyType::kString)mTextValue = another.mTextValue;
+   }
+
+   return *this;
+}
+
+Variant::Variant(int64 number)
+{
+   mType = PropertyType::kInteger;
+   mNumberValue.intValue = number;
+}
+
+Variant::Variant(double number)
+{
+   mType = PropertyType::kDouble;
+   mNumberValue.doubleValue = number;
+}
+
+Variant::Variant(const jm::String& string)
+{
+   mType = PropertyType::kString;
+   mTextValue = string;
+}
+
+int64 Variant::toInt64() const
+{
+   return mNumberValue.intValue;
+}
+
+int32 Variant::toInt32() const
+{
+   return static_cast<int32>(mNumberValue.intValue);
+}
+
+double Variant::toDouble() const
+{
+   return mNumberValue.doubleValue;
+}
+
+const String& Variant::toString() const
+{
+   return mTextValue;
+}

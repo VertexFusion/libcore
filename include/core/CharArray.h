@@ -44,20 +44,11 @@ namespace jm
    {
       public:
 
-         Char()
-         {
-            mChar = 0;
-         };
+         Char();
 
-         /* explicit */ Char(uint16 character)
-         {
-            mChar = character;
-         };
+         /* explicit */ Char(uint16 character);
 
-         uint16 unicode() const
-         {
-            return mChar;
-         };
+         uint16 unicode() const;
 
          //! \brief Returns the character as lower case (if possible).
          Char toLowerCase() const;
@@ -87,55 +78,37 @@ namespace jm
           \brief Implementation of ==
           */
          DllExport
-         friend bool operator==(Char ch1, Char ch2)
-         {
-            return ch1.mChar == ch2.mChar;
-         };
+         friend bool operator==(Char ch1, Char ch2);
 
          /*!
           \brief Implementation of !=
           */
          DllExport
-         friend bool operator!=(Char ch1, Char ch2)
-         {
-            return ch1.mChar != ch2.mChar;
-         };
+         friend bool operator!=(Char ch1, Char ch2);
 
          /*!
           \brief Implementation of <
           */
          DllExport
-         friend bool operator<(Char ch1, Char ch2)
-         {
-            return ch1.mChar < ch2.mChar;
-         };
+         friend bool operator<(Char ch1, Char ch2);
 
          /*!
           \brief Implementation of <=
           */
          DllExport
-         friend bool operator<=(Char ch1, Char ch2)
-         {
-            return ch1.mChar <= ch2.mChar;
-         };
+         friend bool operator<=(Char ch1, Char ch2);
 
          /*!
           \brief Implementation of >
           */
          DllExport
-         friend bool operator>(Char ch1, Char ch2)
-         {
-            return ch1.mChar > ch2.mChar;
-         };
+         friend bool operator>(Char ch1, Char ch2);
 
          /*!
           \brief Implementation of >=
           */
          DllExport
-         friend bool operator>=(Char ch1, Char ch2)
-         {
-            return ch1.mChar >= ch2.mChar;
-         };
+         friend bool operator>=(Char ch1, Char ch2);
 
       private:
 

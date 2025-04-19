@@ -50,10 +50,7 @@ namespace jm
 
          LListElement();
 
-         jm::String displayName() const override
-         {
-            return "jm::LListElement";
-         };
+         jm::String displayName() const override;
 
    };
 
@@ -155,10 +152,7 @@ namespace jm
 
          LinkedListIterator iterator() const;
 
-         jm::String displayName() const override
-         {
-            return "jm::LinkedList";
-         };
+         jm::String displayName() const override;
 
       private:
 

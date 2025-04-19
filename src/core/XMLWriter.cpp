@@ -250,3 +250,14 @@ void XMLWriter::WriteIndent()
    if(str.size() == 0)return;
    mOutput->write(str);
 }
+
+
+
+
+ 
+XMLWriter::ElementInfo::ElementInfo()
+{
+   indent = false;
+   hasContent = false;
+   hasCharacters = false;
+}

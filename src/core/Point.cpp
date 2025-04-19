@@ -38,6 +38,13 @@ jm::Point::Point()
    mY = 0;
 }
 
+jm::Point::Point(const Vertex2& v)
+{
+   mX = v.x;
+   mY = v.y;
+};
+
+
 jm::Point::Point(double x, double y)
 {
    mX = x;
@@ -82,6 +89,11 @@ jm::Point jm::Point::cWiseMin(const jm::Point& other) const
 jm::Point jm::Point::cWiseMax(const jm::Point& other) const
 {
    return Point(std::max(mX, other.mX), std::max(mY, other.mY));
+}
+
+jm::Vertex2 jm::Point::toVertex2() const
+{
+   return jm::Vertex2(mX, mY);
 }
 
 jm::Point& jm::Point::operator+=(const jm::Point& another)

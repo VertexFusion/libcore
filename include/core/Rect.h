@@ -293,43 +293,25 @@ namespace jm
           \param px X-Component of the point.
           \param py Y-Component of the point.
           */
-         bool contains(double px, double py) const
-         {
-            return (px >= mOrigin.x() &&
-                    px <= mOrigin.x() + mSize.width() &&
-                    py >= mOrigin.y() &&
-                    py <= mOrigin.y() + mSize.height());
-         }
+         bool contains(double px, double py) const;
 
          /*!
           \brief Returns true, if the point pt is within this rectangle. False otherwise.
           \param pt The point.
           */
-         bool contains(const Point& pt) const
-         {
-            return contains(pt.x(), pt.y());
-         }
+         bool contains(const Point& pt) const;
 
          /*!
           \brief Returns true, if the point pt is within this rectangle. False otherwise.
           \param pt The point.
           */
-         bool contains(const Vertex2& pt) const
-         {
-            return contains(pt.x, pt.y);
-         }
+         bool contains(const Vertex2& pt) const;
 
          /*!
           \brief Returns true, if the rectangle rect intersects this rectangle. False otherwise.
           \param rect The rectangle
           */
-         inline bool intersects(const Rect& rect) const
-         {
-            return (mOrigin.x()        <= rect.x() + rect.mSize.width() &&
-                    mOrigin.x() + mSize.width()  >= rect.x() &&
-                    mOrigin.y()        <= rect.y() + rect.mSize.height() &&
-                    mOrigin.y() + mSize.height() >= rect.y());
-         }
+         bool intersects(const Rect& rect) const;
 
       private:
 

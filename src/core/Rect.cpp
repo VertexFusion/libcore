@@ -320,6 +320,45 @@ void jm::Rect::normalize()
    }
 }
 
+bool jm::Rect::contains(double px, double py) const
+{
+   return (px >= mOrigin.x() &&
+           px <= mOrigin.x() + mSize.width() &&
+           py >= mOrigin.y() &&
+           py <= mOrigin.y() + mSize.height());
+}
+
+/*!
+ \brief Returns true, if the point pt is within this rectangle. False otherwise.
+ \param pt The point.
+ */
+bool jm::Rect::contains(const Point& pt) const
+{
+   return contains(pt.x(), pt.y());
+}
+
+/*!
+ \brief Returns true, if the point pt is within this rectangle. False otherwise.
+ \param pt The point.
+ */
+bool jm::Rect::contains(const Vertex2& pt) const
+{
+   return contains(pt.x, pt.y);
+}
+
+/*!
+ \brief Returns true, if the rectangle rect intersects this rectangle. False otherwise.
+ \param rect The rectangle
+ */
+bool jm::Rect::intersects(const Rect& rect) const
+{
+   return (mOrigin.x()        <= rect.x() + rect.mSize.width() &&
+           mOrigin.x() + mSize.width()  >= rect.x() &&
+           mOrigin.y()        <= rect.y() + rect.mSize.height() &&
+           mOrigin.y() + mSize.height() >= rect.y());
+}
+
+
 //
 // Special Methods
 //

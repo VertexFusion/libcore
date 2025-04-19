@@ -70,69 +70,25 @@ namespace jm
 
    struct DllExport Variant
    {
-      Variant()
-      {
-         mType = PropertyType::kInteger;
-         mNumberValue.intValue = 0;
-      }
+      Variant();
 
-      Variant(const Variant& another)
-      {
-         mType = another.mType;
-         mNumberValue = another.mNumberValue;
-         if(mType == PropertyType::kString)mTextValue = another.mTextValue;
-      };
+      Variant(const Variant& another);
 
-      Variant& operator=(const Variant& another)
-      {
-         if(this != &another)
-         {
-            mType = another.mType;
-            mNumberValue = another.mNumberValue;
-            if(mType == PropertyType::kString)mTextValue = another.mTextValue;
-         }
+      Variant& operator=(const Variant& another);
 
-         return *this;
-      }
+      explicit Variant(int64 number);
 
-      explicit Variant(int64 number)
-      {
-         mType = PropertyType::kInteger;
-         mNumberValue.intValue = number;
-      }
+      explicit Variant(double number);
 
-      explicit Variant(double number)
-      {
-         mType = PropertyType::kDouble;
-         mNumberValue.doubleValue = number;
-      }
+      explicit Variant(const jm::String& string);
 
-      explicit Variant(const jm::String& string)
-      {
-         mType = PropertyType::kString;
-         mTextValue = string;
-      }
+      int64 toInt64() const;
 
-      int64 toInt64() const
-      {
-         return mNumberValue.intValue;
-      }
+      int32 toInt32() const;
 
-      int32 toInt32() const
-      {
-         return static_cast<int32>(mNumberValue.intValue);
-      }
+      double toDouble() const;
 
-      double toDouble() const
-      {
-         return mNumberValue.doubleValue;
-      }
-
-      const String& toString() const
-      {
-         return mTextValue;
-      }
-
+      const String& toString() const;
 
       /*!
        \brief Type of Property

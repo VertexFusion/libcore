@@ -40,6 +40,11 @@ LListElement::LListElement(): Object()
    data = nullptr;
 }
 
+jm::String LListElement::displayName() const
+{
+   return "jm::LListElement";
+}
+
 LinkedList::LinkedList(Object* owner): Object()
 {
    listStart = nullptr;
@@ -301,6 +306,15 @@ LinkedListIterator LinkedList::iterator() const
 {
    return LinkedListIterator(this);
 }
+
+jm::String LinkedList::displayName() const
+{
+   return "jm::LinkedList";
+}
+
+//
+// Iterator
+//
 
 LinkedListIterator::LinkedListIterator(const LinkedList* list)
 {

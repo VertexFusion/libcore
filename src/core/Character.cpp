@@ -31,6 +31,20 @@
 
 #include "PrecompiledCore.hpp"
 
+jm::Char::Char()
+{
+   mChar = 0;
+}
+
+/* explicit */ jm::Char::Char(uint16 character)
+{
+   mChar = character;
+}
+
+uint16 jm::Char::unicode() const
+{
+   return mChar;
+}
 
 bool jm::Char::isWhitespace() const
 {
@@ -231,4 +245,34 @@ jm::Char jm::Char::toUpperCase() const
       default:
          return mChar;
    }
+}
+
+bool jm::operator==(Char ch1, Char ch2)
+{
+   return ch1.mChar == ch2.mChar;
+}
+
+bool jm::operator!=(Char ch1, Char ch2)
+{
+   return ch1.mChar != ch2.mChar;
+}
+
+bool jm::operator<(Char ch1, Char ch2)
+{
+   return ch1.mChar < ch2.mChar;
+}
+
+bool jm::operator<=(Char ch1, Char ch2)
+{
+   return ch1.mChar <= ch2.mChar;
+}
+
+bool jm::operator>(Char ch1, Char ch2)
+{
+   return ch1.mChar > ch2.mChar;
+}
+
+bool jm::operator>=(Char ch1, Char ch2)
+{
+   return ch1.mChar >= ch2.mChar;
 }
