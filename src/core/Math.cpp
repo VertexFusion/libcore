@@ -162,6 +162,8 @@ double jm::random()
    uint32 i = rand();
    uint32 m = RAND_MAX;
    return ((double)i) / ((double)m);
+   #else
+   return 0;
    #endif
 }
 

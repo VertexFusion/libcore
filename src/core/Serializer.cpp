@@ -328,15 +328,15 @@ int16 jm::serializeLEFloat(uint8* buffer, uint32 offset, float value)
 
 double jm::deserializeLEDouble(uint8* buffer, uint32 offset)
 {
-   return *(double*)&buffer[offset];
+   return *(const double*)&buffer[offset];
 }
 
 double jm::deserializeLEDouble(const jm::ByteArray& buffer, int64 offset)
 {
-   return *(double*)&buffer.constData()[offset];
+   return *(const double*)&buffer.constData()[offset];
 }
 
 float jm::deserializeLEFloat(uint8* buffer, uint32 offset)
 {
-   return *(float*)&buffer[offset];
+   return *(const float*)&buffer[offset];
 }

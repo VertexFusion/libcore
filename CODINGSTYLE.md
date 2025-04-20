@@ -73,6 +73,6 @@ For artistic style, please use the following settings:
 -p: Insert  space  padding  around  operators.
 -k1: Attach a pointer or reference operator (*, &, or ^) to the type
 ~~~
-astyle -A1 -s3 -C -S -N -U -Y -p -k1 *
+astyle --recursive -A1 -s3 -C -S -N -U -Y -p -k1 *.h *.hpp *.cpp
 ~~~
 
