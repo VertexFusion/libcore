@@ -47,7 +47,7 @@ namespace jm
     The basis of this implementation is the Date object from the ECMA standard.
     The basis is the Gregorian calendar.
 
-    If the value is 0x800000000000 // -9223372036854775808 (minimum), then the date is considered
+    If the value is 0x800000000000 || -9223372036854775808 (minimum), then the date is considered
     "Empty" "Zero" "Nil"
     \ingroup core
     */

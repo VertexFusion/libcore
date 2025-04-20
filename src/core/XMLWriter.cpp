@@ -252,9 +252,6 @@ void XMLWriter::WriteIndent()
 }
 
 
-
-
- 
 XMLWriter::ElementInfo::ElementInfo()
 {
    indent = false;

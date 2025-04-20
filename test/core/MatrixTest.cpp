@@ -508,7 +508,6 @@ void MatrixTest::constructors()
    testEquals(A.get(2, 1), 10.0, "Value not 10");
    testEquals(A.get(2, 2), 11.0, "Value not 11");
    testEquals(A.get(2, 3), 12.0, "Value not 12");
-   
 
    // Test copy constructor
    Matrix B = A;

@@ -149,25 +149,6 @@ void VertexTest::doTest()
    testEquals(v3.y, -1.0, "Vertex2.Rotate -90° (y) fails");
    testEquals(v3.z, 0.0, "Vertex2.Rotate -90° (y) fails");
 
-   /*//-90°
-   v = Vertex2(1,0);
-    v.Rotate(DegToRad(-90));
-    TestEquals(v.x, 0.0, "Vertex2.Rotate -90° (x) fails");
-    TestEquals(v.y, -1.0, "Vertex2.Rotate -90° (y) fails");
-
-   //-360°
-   v = Vertex2(1,0);
-    v.Rotate(DegToRad(360));
-    TestEquals(v.x, 1.0, "Vertex2.Rotate 360° (x) fails");
-    TestEquals(v.y, 0.0, "Vertex2.Rotate 360° (y) fails");
-
-   //60°
-   v = Vertex2(1,0);
-    v.Rotate(DegToRad(60));
-    TestEquals(v.x, 1.0/2.0, "Vertex2.Rotate 60° (x) fails");
-    TestEquals(v.y, sqrt(3.0)/2.0, "Vertex2.Rotate 60° (y) fails");
-   */
-
    vector();
 }
 
@@ -178,7 +159,7 @@ void VertexTest::vector()
    testEquals(v.m, 0, "Vector m not 0");
    testNull(v.data, "Vector data not null");
 
-   // Constructor with size   
+   // Constructor with size
    v = Vector(3);
    testEquals(v.m, 3, "Vector m not 3");
    testNotNull(v.data, "Vector data null");

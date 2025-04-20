@@ -45,8 +45,8 @@ namespace jm
             ┌───────────────────┴─────────────────────┐
    							authority               path
             ┌───────────────┴───────────────┐┌───┴────┐
-      abc://username:password@example.com:123/path/data?key=value#fragid1
-      └┬┘   └───────┬───────┘ └────┬────┘ └┬┘           └───┬───┘ └──┬──┘
+     http://username:password@example.com:123/path/data?key=value#fragid1
+     └─┬┘   └───────┬───────┘ └────┬────┘ └┬┘           └───┬───┘ └──┬──┘
     scheme  user information     host     port            query   fragment
 
       urn:example:mammal:monotreme:echidna

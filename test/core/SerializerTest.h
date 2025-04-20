@@ -18,4 +18,4 @@ class SerializerTest : public jm::Test
       void doTest();
 };
 
-#endif 
+#endif

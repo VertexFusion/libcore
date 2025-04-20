@@ -1036,7 +1036,7 @@ void GeometryTest::doTest()
 
    //
    // Intersection points of two circles
-   // 
+   //
 
    // not intersecting
    v1 = Vertex2(0, 0);
@@ -1102,7 +1102,6 @@ void GeometryTest::doTest()
    testEquals(ip1.y, -3.0, "intersectionPointsOfCircles() fails (8)");
    testEquals(ip2.x, 4.0, "intersectionPointsOfCircles() fails (8)");
    testEquals(ip2.y, 3.0, "intersectionPointsOfCircles() fails (8)");
-   
 
    #ifdef __APPLE__//macOS, iOS
    timespec end = orwl_gettime();

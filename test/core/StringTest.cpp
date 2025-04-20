@@ -262,7 +262,7 @@ void StringTest::doTest()
 void StringTest::constructors()
 {
    const char* str = "abc";
-   
+
    String str1(str,3);
    testEquals(str1, String("abc"), "String() fails (1)");
 

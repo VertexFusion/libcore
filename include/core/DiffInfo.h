@@ -101,7 +101,7 @@ namespace jm
          //			static void Print(DiffOperation operation,
          //			                  const dwg::Handle& obj1, const dwg::Handle& obj2, const String& label);
          /*
-         				//Objekte
+         				/ /Objekte
          				void Print(dxf::DwgAppId* obj1, dxf::DwgAppId* obj2);
          				void Print(dxf::Arc* obj1, dxf::Arc* obj2);
          				void Print(dxf::DwgBlock* obj1, dxf::DwgBlock* obj2);

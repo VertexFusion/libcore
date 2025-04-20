@@ -321,7 +321,7 @@ bool File::isLink() const
    /* \todo Muss noch geklärt werden, wann ein Symlink vorliegt
    struct stat filestat;
    int32 result = stat( cstr, &filestat );
-   if( result != 0 )return false;//Existiert nicht
+   if( result != 0 )return false;/ /Existiert nicht
    if( filestat.st_mode & _S_IFLNK ) return true;*/
    return false;
 
@@ -1088,7 +1088,7 @@ File jm::PropertyDir()
 
    		String ret = String((uint16*)path, textlength);
 
-   		// The Exec-Dir is currently used as the PropertyDir
+   		/ / The Exec-Dir is currently used as the PropertyDir
    		return new ShxFile(ret);
    	}
 
