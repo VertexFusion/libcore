@@ -105,18 +105,8 @@ jobject activity();
 #elif defined _WIN32 // Windows
 
 #define NOMINMAX
-#include <windows.h>
+#include <Windows.h>
 #undef NOMINMAX
-
-// We have to undefine, because we have a function with that name!
-#ifdef DrawText
-#undef DrawText
-#endif
-
-#ifdef GetObject
-#undef GetObject
-#endif
-
 
 #include <Lmcons.h>
 #include <direct.h>
@@ -125,7 +115,7 @@ jobject activity();
 
 // We need that for GetUsernameEX
 #define SECURITY_WIN32
-#include <Security.h>
+#include <security.h>
 #undef SECURITY_WIN32
 
 #endif
