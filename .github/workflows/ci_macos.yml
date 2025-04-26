@@ -16,9 +16,9 @@ jobs:
       with:
         submodules: true
     - name: make
-      run: make
+      run: make -j8
     - name: make test
-      run: make test
+      run: make test -j8
     - name: run test
       run: ./bin/coretest
     - name: clean

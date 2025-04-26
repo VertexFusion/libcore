@@ -497,6 +497,9 @@
     <ClCompile Include="test\core\VertexTest.cpp">
       <Filter>test\core</Filter>
     </ClCompile>
+    <ClCompile Include="test\core\SerializerTest.cpp">
+      <Filter>test\core</Filter>
+    </ClCompile>
     <ClCompile Include="test\Main.cpp">
       <Filter>test</Filter>
     </ClCompile>
