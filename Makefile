@@ -20,8 +20,8 @@ ifeq ($(UNAME_S),Darwin)
    ZLIBFLAGS = -O3 -DHAVE_HIDDEN -fPIC -Wno-everything
 
    CXX = clang++
-   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -std=c++20
-   OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -fPIC -O3 -x objective-c++ -fobjc-arc
+   CFLAGS = -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3 -std=c++20
+   OCFLAGS= -g -Wall -pedantic -Wextra -Wno-long-long -Werror -fPIC -O3 -x objective-c++ -fobjc-arc
    TESTLFLAGS = -framework CoreFoundation -framework CoreServices -framework Foundation
    LFLAGS = -dynamiclib -current_version 1.4 $(TESTLFLAGS)
    LIB_NAME = libjameo.dylib
