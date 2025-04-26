@@ -294,10 +294,10 @@ void MathTest::integer()
    testEquals(i64, 10, "Integer::fromHex(0A) != 10");
    str = "123456789ABCDEF";
    i64 = jm::Integer::fromHex(str);
-   testEquals(i64, 0x123456789ABCDEF, "Integer::fromHex(123456789ABCDEF) != 0x123456789ABCDEF");
+   testEquals(i64, (int64)0x123456789ABCDEF, "Integer::fromHex(123456789ABCDEF) != 0x123456789ABCDEF");
    str = "123456789abcdef";
    i64 = jm::Integer::fromHex(str);
-   testEquals(i64, 0x123456789ABCDEF, "Integer::fromHex(123456789abcdef) != 0x123456789ABCDEF");
+   testEquals(i64, (int64)0x123456789ABCDEF, "Integer::fromHex(123456789abcdef) != 0x123456789ABCDEF");
 
    // toHexString
    str = jm::Integer::toHexString(0);
