@@ -102,16 +102,16 @@ namespace jm
          Point& operator-=(const Point& another);
 
          DllExport
-         friend const Point operator+(const Point& v1, const Point& v2);
+         friend Point operator+(const Point& v1, const Point& v2);
 
          DllExport
-         friend const Point operator-(const Point& v1, const Point& v2);
+         friend Point operator-(const Point& v1, const Point& v2);
 
          DllExport
-         friend const Point operator*(const double& d, const Point& p);
+         friend Point operator*(const double& d, const Point& p);
 
          DllExport
-         friend const Point operator*(const Point& p, const double& d);
+         friend Point operator*(const Point& p, const double& d);
 
       private:
 

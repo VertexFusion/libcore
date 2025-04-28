@@ -861,7 +861,7 @@ namespace jm
    }
 }
 
-const Vertex3 jm::operator*(Matrix const& A, Vertex3 const& b)
+Vertex3 jm::operator*(Matrix const& A, Vertex3 const& b)
 {
    // Index
    // | 0 3 6 |   | x |
@@ -876,7 +876,7 @@ const Vertex3 jm::operator*(Matrix const& A, Vertex3 const& b)
    return r;
 }
 
-const Matrix jm::operator*(Matrix const& A, Matrix const& B)
+Matrix jm::operator*(Matrix const& A, Matrix const& B)
 {
    // The number of columns in the left-hand matrix must match the number of rows in the right-hand
    // matrix
@@ -908,7 +908,7 @@ const Matrix jm::operator*(Matrix const& A, Matrix const& B)
    return R;
 }
 
-const Matrix jm::operator+(Matrix const& A, Matrix const& B)
+Matrix jm::operator+(Matrix const& A, Matrix const& B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
    if(A.n != B.m) throw
@@ -933,7 +933,7 @@ const Matrix jm::operator+(Matrix const& A, Matrix const& B)
    return R;
 }
 
-const Matrix jm::operator-(Matrix const& A, Matrix const& B)
+Matrix jm::operator-(Matrix const& A, Matrix const& B)
 {
    //Die Spaltenanzahl der linken Matrix muss mit der Zeilenanzahl der Rechten Matrix übereinstimmen
    if(A.n != B.m) throw
@@ -958,7 +958,7 @@ const Matrix jm::operator-(Matrix const& A, Matrix const& B)
    return R;
 }
 
-const Matrix jm::operator*(double const& d, Matrix const& A)
+Matrix jm::operator*(double const& d, Matrix const& A)
 {
    Matrix R = Matrix(A.m, A.n);
 
@@ -970,12 +970,12 @@ const Matrix jm::operator*(double const& d, Matrix const& A)
    return R;
 }
 
-const Matrix jm::operator*(Matrix const& A, double const& d)
+Matrix jm::operator*(Matrix const& A, double const& d)
 {
    return d * A;
 }
 
-const Matrix jm::operator/(Matrix const& A, double const& d)
+Matrix jm::operator/(Matrix const& A, double const& d)
 {
    Matrix R = Matrix(A.m, A.n);
 
@@ -1142,7 +1142,7 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
 }
 
 
-const Vector jm::operator*(Matrix const& A, Vector const& b)
+Vector jm::operator*(Matrix const& A, Vector const& b)
 {
    // Index
    // | 0 3 6 |   | x |

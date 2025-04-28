@@ -56,22 +56,22 @@ namespace jm
    struct DllExport Matrix
    {
          DllExport
-         friend const Matrix operator*(const Matrix& A, const Matrix& B);
+         friend Matrix operator*(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator*(const double& d, const Matrix& b);
+         friend Matrix operator*(const double& d, const Matrix& b);
 
          DllExport
-         friend const Vertex3 operator*(const Matrix& A, const Vertex3& b);
+         friend Vertex3 operator*(const Matrix& A, const Vertex3& b);
 
          DllExport
-         friend const Matrix operator+(const Matrix& A, const Matrix& B);
+         friend Matrix operator+(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator-(const Matrix& A, const Matrix& B);
+         friend Matrix operator-(const Matrix& A, const Matrix& B);
 
          DllExport
-         friend const Matrix operator/(const Matrix& A, const double& d);
+         friend Matrix operator/(const Matrix& A, const double& d);
 
       public:
 
@@ -374,49 +374,49 @@ namespace jm
     \brief Implementation of the operator M * M (matrix multiplication).
     */
    DllExport
-   const Matrix operator*(const Matrix& A, const Matrix& B);
+   Matrix operator*(const Matrix& A, const Matrix& B);
 
    /*!
     \brief Implementation of the operator d * M (scalar multiplication).
     */
    DllExport
-   const Matrix operator*(const double& d, const Matrix& b);
+   Matrix operator*(const double& d, const Matrix& b);
 
    /*!
     \brief Implementation of the operator M * d (scalar multiplication).
     */
    DllExport
-   const Matrix operator*(const Matrix& A, const double& d);
+   Matrix operator*(const Matrix& A, const double& d);
 
    /*!
     \brief Implementation of the operator M * v (matrix multiplication with a vector). The matrix must be square.
     */
    DllExport
-   const Vector operator*(const Matrix& A, const Vector& b);
+   Vector operator*(const Matrix& A, const Vector& b);
 
    /*!
     \brief Implementation of the operator M * v (matrix multiplication with a vector). The matrix must be 3x3.
     */
    DllExport
-   const Vertex3 operator*(const Matrix& A, const Vertex3& b);
+   Vertex3 operator*(const Matrix& A, const Vertex3& b);
 
    /*!
     \brief Implementation of the operator M / d (scalar division).
     */
    DllExport
-   const Matrix operator/(const Matrix& b, const double& d);
+   Matrix operator/(const Matrix& b, const double& d);
 
    /*!
     \brief Implementation of the operator M + M (matrix addition).
     */
    DllExport
-   const Matrix operator+(const Matrix& A, const Matrix& B);
+   Matrix operator+(const Matrix& A, const Matrix& B);
 
    /*!
     \brief Implementation of the operator M - M (matrix subtraction).
     */
    DllExport
-   const Matrix operator-(const Matrix& A, const Matrix& B);
+   Matrix operator-(const Matrix& A, const Matrix& B);
 
 }
 #endif

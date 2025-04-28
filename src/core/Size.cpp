@@ -90,7 +90,7 @@ jm::Size jm::Size::cWiseMax(const jm::Size& other) const
    return Size(std::max(mWidth, other.mWidth), std::max(mHeight, other.mHeight));
 };
 
-const jm::Size jm::operator-(const jm::Size& v1, const jm::Size& v2)
+jm::Size jm::operator-(const jm::Size& v1, const jm::Size& v2)
 {
    return jm::Size(v1.mWidth - v2.mWidth, v1.mHeight - v2.mHeight);
 }
@@ -107,7 +107,7 @@ bool jm::Size::operator!=(const jm::Size& other) const
           jm::isNotEqual(mHeight, other.mHeight);
 }
 
-const jm::Size jm::operator*(double const& d, jm::Size const& v)
+jm::Size jm::operator*(double const& d, jm::Size const& v)
 {
    jm::Size r;
    r.mWidth = d * v.mWidth;

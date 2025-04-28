@@ -110,17 +110,17 @@ jm::Point& jm::Point::operator-=(const jm::Point& another)
    return *this;
 }
 
-const jm::Point jm::operator+(const jm::Point& v1, const jm::Point& v2)
+jm::Point jm::operator+(const jm::Point& v1, const jm::Point& v2)
 {
    return Point(v1.mX + v2.mX, v1.mY + v2.mY);
 }
 
-const jm::Point jm::operator-(const jm::Point& v1, const jm::Point& v2)
+jm::Point jm::operator-(const jm::Point& v1, const jm::Point& v2)
 {
    return Point(v1.mX - v2.mX, v1.mY - v2.mY);
 }
 
-const jm::Point jm::operator*(const double& d, const jm::Point& p)
+jm::Point jm::operator*(const double& d, const jm::Point& p)
 {
    jm::Point r;
    r.mX = d * p.mX;
@@ -128,7 +128,7 @@ const jm::Point jm::operator*(const double& d, const jm::Point& p)
    return r;
 }
 
-const jm::Point jm::operator*(const jm::Point& p, const double& d)
+jm::Point jm::operator*(const jm::Point& p, const double& d)
 {
    jm::Point r;
    r.mX = d * p.mX;

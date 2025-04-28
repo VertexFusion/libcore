@@ -543,7 +543,7 @@ bool jm::operator!=(Color const& c1, Color const& c2)
    return !(c1 == c2);
 }
 
-const Color jm::operator-(Color const& c1, Color const& c2)
+Color jm::operator-(Color const& c1, Color const& c2)
 {
    Color ret = c1;
    switch(c1.mMode)
@@ -570,7 +570,7 @@ const Color jm::operator-(Color const& c1, Color const& c2)
    return ret;
 }
 
-const Color jm::operator+(Color const& c1, Color const& c2)
+Color jm::operator+(Color const& c1, Color const& c2)
 {
    Color ret = c1;
    switch(c1.mMode)

@@ -295,8 +295,8 @@ namespace jm
 
          DllExport friend bool operator==(Color const& c1, Color const& c2);
          DllExport friend bool operator!=(Color const& c1, Color const& c2);
-         DllExport friend const Color operator-(Color const& c1, Color const& c2);
-         DllExport friend const Color operator+(Color const& c1, Color const& c2);
+         DllExport friend Color operator-(Color const& c1, Color const& c2);
+         DllExport friend Color operator+(Color const& c1, Color const& c2);
          DllExport friend Color blend(Color background, Color foreground, uint8 alpha);
          DllExport friend Color interpolate(Color colour1, Color colour2, float percent);
    };
@@ -316,10 +316,10 @@ namespace jm
    bool operator!=(Color const& c1, Color const& c2);
 
    DllExport
-   const Color operator-(Color const& c1, Color const& c2);
+   Color operator-(Color const& c1, Color const& c2);
 
    DllExport
-   const Color operator+(Color const& c1, Color const& c2);
+   Color operator+(Color const& c1, Color const& c2);
    #endif
 
 }
