@@ -160,7 +160,10 @@ bool File::makeDirectory()
 {
    #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-   int32 result = mkdir(mCstr.constData(), S_IRWXU | S_IRGRP | S_IROTH);
+    mode_t oldUmask = umask(0);  // set umask temporarily to 0
+    umask(oldUmask);             // restore umask
+
+   int32 result = mkdir(mCstr.constData(), S_IRWXU | S_IRGRP | oldUmask);
    return result == 0;
 
    #elif defined _WIN32//Windows

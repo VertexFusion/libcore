@@ -108,7 +108,7 @@ String::String(const char* cstring): Object(), Comparable<String>(),
 String::String(const ByteArray& buffer) : Object(), Comparable<String>(),
    mHash(0)
 {
-   if(buffer.size() > 0)
+   if(!buffer.isEmpty())
    {
       // Intentionally not used Charset::GetDefault, since this leads to problems with global
       // strings. (Initialization sequence not predictable)
@@ -307,7 +307,7 @@ String String::toLowerCase() const
 
    for(int64 a = 0; a < mStrLength; a++)
    {
-      ret.mValue[a] = ret.mValue[a].toLowerCase();;
+      ret.mValue[a] = ret.mValue[a].toLowerCase();
    }
 
    return ret;
