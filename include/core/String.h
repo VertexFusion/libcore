@@ -263,7 +263,7 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool atIs(int64 position, const String& another);
+         bool atIs(int64 position, const String& another) const;
 
          /*!
           \brief Same as atIs, but ignoring case.
@@ -272,7 +272,7 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool atIsIgnoreCase(int64 position, const String& another);
+         bool atIsIgnoreCase(int64 position, const String& another) const;
 
          /*!
           \brief This method calculates the hash code for this string and returns it.

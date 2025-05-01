@@ -258,7 +258,7 @@ bool String::endsWith(const String& another) const
    return true;
 }
 
-bool String::atIs(int64 position, const String& another)
+bool String::atIs(int64 position, const String& another) const
 {
    if(position + another.mStrLength > mStrLength)return false;
 
@@ -270,7 +270,7 @@ bool String::atIs(int64 position, const String& another)
    return true;
 }
 
-bool String::atIsIgnoreCase(int64 position, const String& another)
+bool String::atIsIgnoreCase(int64 position, const String& another) const
 {
    if(position + another.mStrLength > mStrLength)return false;
 

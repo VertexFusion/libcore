@@ -39,7 +39,7 @@ DateFormatter::DateFormatter(const String& pattern): Object()
    mPatterns->type = DateFormatter::PatternType::kEmpty;
    mLast = mPatterns;
 
-   if(pattern.size() < 1)return;
+   if(pattern.isEmpty())return;
 
    String token;
    bool inText = false;
@@ -69,7 +69,7 @@ DateFormatter::DateFormatter(const String& pattern): Object()
       else
       {
          Char l = c;
-         if(token.size() > 0)l = token.charAt(0);
+         if(!token.isEmpty())l = token.charAt(0);
 
          if(c != l)
          {
@@ -84,7 +84,7 @@ DateFormatter::DateFormatter(const String& pattern): Object()
       }
    }
 
-   if(token.size() > 0)
+   if(!token.isEmpty())
    {
       Pattern* tpattern = new Pattern(token);
       mLast->next = tpattern;
