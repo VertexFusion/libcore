@@ -276,52 +276,38 @@ int64 jm::deserializeLEInt64(const jm::ByteArray& buffer, int64 offset)
 
 int16 jm::serializeLEDouble(uint8* buffer, uint32 offset, double value)
 {
-   union conv
-   {
-      uint64 ival;
-      double dval;
-   };
+   uint64 ival = std::bit_cast<uint64>(value);
 
-   conv c;
-   c.dval = value;
-
-   buffer[offset] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 1] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 2] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 3] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 4] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 5] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 6] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 7] = (uint8)c.ival;
+   buffer[offset] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 1] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 2] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 3] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 4] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 5] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 6] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 7] = (uint8)ival;
 
    return 8;
 }
 
 int16 jm::serializeLEFloat(uint8* buffer, uint32 offset, float value)
 {
-   union conv
-   {
-      uint64 ival;
-      float fval;
-   };
+   uint32 ival = std::bit_cast<uint32>(value);
 
-   conv c;
-   c.fval = value;
-
-   buffer[offset] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 1] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 2] = (uint8)c.ival;
-   c.ival >>= 8;
-   buffer[offset + 3] = (uint8)c.ival;
+   buffer[offset] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 1] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 2] = (uint8)ival;
+   ival >>= 8;
+   buffer[offset + 3] = (uint8)ival;
 
    return 4;
 }
