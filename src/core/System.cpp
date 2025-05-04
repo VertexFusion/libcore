@@ -41,7 +41,7 @@ jm::File* gPrefFile = nullptr;
 
 jm::String jm::System::language()
 {
-   #ifdef __APPLE__ //macOS und iOS
+#ifdef __APPLE__ //macOS und iOS
 
    CFArrayRef langs = CFLocaleCopyPreferredLanguages();
    CFStringRef cflangCode = (CFStringRef) CFArrayGetValueAtIndex(langs, 0);
@@ -52,11 +52,11 @@ jm::String jm::System::language()
 
    return langCode;
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
-   #ifdef __ANDROID__
+#ifdef __ANDROID__
    return osSystemLanguage();
-   #else
+#else
 
    // Set the locale to the user's environment locale (if not already set)
    if(setlocale(LC_ALL, "") == nullptr)
@@ -73,9 +73,9 @@ jm::String jm::System::language()
    std::cout << "LANG: " << lang << std::endl;
    return lang;
 
-   #endif
+#endif
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    LANGID langid = GetUserDefaultUILanguage();
 
@@ -88,7 +88,7 @@ jm::String jm::System::language()
          return "en";
    }
 
-   #endif
+#endif
 
 }
 
@@ -154,7 +154,7 @@ void jm::System::log(const String& message, LogLevel logLevel)
    if(logLevel > LogLevel::kDebug)std::cout << msg << std::endl;
 
    // Output to log file
-   #ifdef __APPLE__ //macOS and iOS
+#ifdef __APPLE__ //macOS and iOS
 
    if(logLevel == LogLevel::kError)
    {
@@ -169,17 +169,17 @@ void jm::System::log(const String& message, LogLevel logLevel)
       //	closelog ();
    }
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    if(logLevel == LogLevel::kError)
    {
       gSystemError = message;
    }
 
-   #endif
+#endif
 
    gSystemMutex.unlock();
 }
@@ -192,15 +192,15 @@ const jm::String& jm::System::lastErrorMessage()
 
 jm::String jm::System::userId()
 {
-   #ifdef __APPLE__ //macOS und iOS
+#ifdef __APPLE__ //macOS und iOS
 
    return String(std::getenv("USER"));
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    return String(std::getenv("USER"));
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    uint16 user_name[UNLEN + 1];
    DWORD user_name_size = sizeof(user_name);
@@ -208,16 +208,16 @@ jm::String jm::System::userId()
    GetUserName((LPWSTR)user_name, &user_name_size);
    return String(user_name, user_name_size);
 
-   #endif
+#endif
 }
 
 jm::String jm::System::userFullName()
 {
-   #ifdef __APPLE__ //macOS und iOS
+#ifdef __APPLE__ //macOS und iOS
 
    return " jm::System::userFullName() not implemented";//String(getenv("USER"));
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    uid_t uid = geteuid();
    struct passwd* pw = nullptr;
@@ -229,7 +229,7 @@ jm::String jm::System::userFullName()
 
    return "userFullName Not Found";
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    uint16 user_name[UNLEN + 1];
    DWORD user_name_size = sizeof(user_name);
@@ -248,13 +248,13 @@ jm::String jm::System::userFullName()
    String str = String(user_name, user_name_size);
    return str.substring(str.indexOf('\\') + 1);
 
-   #endif
+#endif
 
 }
 
 jm::String jm::System::macAddress1()
 {
-   #ifdef __APPLE__ //macOS und iOS
+#ifdef __APPLE__ //macOS und iOS
 
    struct ifaddrs* ifap, *ifa;
    char macAddress[18] = {0};
@@ -284,7 +284,7 @@ jm::String jm::System::macAddress1()
 
    return jm::String(macAddress);
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    struct ifaddrs* ifap, *ifa;
    struct sockaddr_ll* sll;
@@ -315,14 +315,14 @@ jm::String jm::System::macAddress1()
 
    return jm::String(macAddress);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    return jm::kEmptyString;
-   #endif
+#endif
 }
 
 void* jm::System::loadDynamicLibrary(jm::File* file)
 {
-   #ifdef __APPLE__ //macOS and iOS
+#ifdef __APPLE__ //macOS and iOS
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
@@ -330,7 +330,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
                                       std::endl << dlerror() << std::endl;
    return libptr;
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    ByteArray cstr = file->absolutePath().toCString();
    void* libptr = dlopen(cstr.constData(), RTLD_LAZY);   //RTLD_LAZY is default
@@ -338,7 +338,7 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
                                       std::endl << dlerror() << std::endl;
    return libptr;
 
-   #elif defined _WIN32// Windows
+#elif defined _WIN32// Windows
 
    uint16* wstr = file->absolutePath().toWString();
    HMODULE libptr = LoadLibrary((LPCWSTR) wstr);
@@ -347,33 +347,33 @@ void* jm::System::loadDynamicLibrary(jm::File* file)
                                       << /*std::endl << dlerror() <<*/ std::endl;
    return libptr;
 
-   #endif
+#endif
 }
 
 void jm::System::unloadDynamicLibrary(void* library)
 {
-   #ifdef __APPLE__ //macOS und iOS
+#ifdef __APPLE__ //macOS und iOS
 
    int res = dlclose(library);
    if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    int res = dlclose(library);
    if(res != 0) std::cout << "Closing dynamic library failed!" << std::endl << dlerror() << std::endl;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    bool res = (bool)FreeLibrary((HMODULE) library);
    if(res == false) log("Closing dynamic library failed!", LogLevel::kError);
 
-   #endif
+#endif
 }
 
 
 void* jm::System::findSymbol(void* library, const String& name)
 {
-   #ifdef __APPLE__ //macOS and iOS
+#ifdef __APPLE__ //macOS and iOS
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
@@ -381,7 +381,7 @@ void* jm::System::findSymbol(void* library, const String& name)
                                       " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
-   #elif defined __linux__//Linux
+#elif defined __linux__//Linux
 
    ByteArray cstr = name.toCString();
    void* symptr = dlsym(library, cstr.constData());
@@ -389,14 +389,14 @@ void* jm::System::findSymbol(void* library, const String& name)
                                       " failed!" << std::endl << dlerror() << std::endl;
    return symptr;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    ByteArray cstring = name.toCString();
    void* ptr = GetProcAddress((HMODULE) library, cstring.constData());
 
    return ptr;
 
-   #endif
+#endif
 }
 
 // Global AutoreleasePool...

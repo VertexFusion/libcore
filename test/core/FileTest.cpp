@@ -166,7 +166,7 @@ void FileTest::doTest()
 
 
    // Test tags (actually only on macOS and Linux)
-   #if defined(__APPLE__) || defined(__linux__)
+#if defined(__APPLE__) || defined(__linux__)
 
    StringList tags = file.getTags();
    testEquals(tags.size(), 0, "File::getTags().size()==0 failed");
@@ -201,7 +201,7 @@ void FileTest::doTest()
    testTrue(file.removeTag("tag2") == jm::Status::eOK, "File::removeTag() failed");
    tags = file.getTags();
    testEquals(tags.size(), 0, "File::getTags().size()==0 failed");
-   #endif
+#endif
 
    file.remove();
 }

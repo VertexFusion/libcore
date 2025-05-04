@@ -68,7 +68,7 @@ DWORD WINAPI StartThread(LPVOID lpParameter)
 
 Thread::Thread(): jm::Object()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    thread = 0;
    alive = false;
    pthread_condattr_init(&attrc);
@@ -76,40 +76,40 @@ Thread::Thread(): jm::Object()
 
    pthread_mutexattr_init(&attra);
    pthread_mutex_init(&criticalSection, &attra);
-   #elif defined _WIN32
+#elif defined _WIN32
    mCriticalSection = new CRITICAL_SECTION;
    InitializeCriticalSection((CRITICAL_SECTION*)mCriticalSection);
-   #endif
+#endif
 }
 
 
 Thread::~Thread()
 {
-   #if defined _WIN32//Windows
+#if defined _WIN32//Windows
    DeleteCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    delete((CRITICAL_SECTION*)mCriticalSection);
-   #endif
+#endif
 }
 
 void Thread::start()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    void* arg = (void*)this;
 
    int ret = pthread_create(&thread, nullptr, StartThread, arg);
    if(ret != 0)throw Exception("Error on starting Thread");
-   #elif defined _WIN32
+#elif defined _WIN32
    void* arg = (void*)this;
    mHandle = CreateThread(0, 0, StartThread, arg, 0, &mThreadID);
    if(mHandle == nullptr)throw Exception("Error on starting Thread");
 
-   #endif
+#endif
 }
 
 
 void Thread::sleep(int64 millis)
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    timespec   ts;
    timeval    now;
    gettimeofday(&now, nullptr);
@@ -127,108 +127,108 @@ void Thread::sleep(int64 millis)
    pthread_mutex_lock(&criticalSection);
    pthread_cond_timedwait(&cond, &criticalSection, &ts);
    pthread_mutex_unlock(&criticalSection);
-   #elif defined _WIN32
+#elif defined _WIN32
    ::Sleep(millis);
-   #endif
+#endif
 }
 
 void Thread::lock()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
-   #elif defined _WIN32
+#elif defined _WIN32
    EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
-   #endif
+#endif
 }
 
 void Thread::unlock()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    pthread_mutex_unlock(&criticalSection);
-   #elif defined _WIN32
+#elif defined _WIN32
    LeaveCriticalSection((CRITICAL_SECTION*)mCriticalSection);
-   #endif
+#endif
 }
 
 void Thread::sleep()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
    pthread_cond_wait(&cond, &criticalSection);
    pthread_mutex_unlock(&criticalSection);
-   #elif defined _WIN32
+#elif defined _WIN32
    //	EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    SuspendThread(mHandle);
    //	LeaveCriticalSection((CRITICAL_SECTION*)mCriticalSection);
-   #endif
+#endif
 }
 
 void Thread::wakeUp()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    pthread_cond_signal(&cond);
-   #elif defined _WIN32
+#elif defined _WIN32
    ResumeThread(mHandle);
-   #endif
+#endif
 }
 
 void Thread::interrupt()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    pthread_mutex_lock(&criticalSection);
    alive = false;
    pthread_mutex_unlock(&criticalSection);
    pthread_cond_signal(&cond);
    pthread_join(thread, nullptr);
-   #elif defined _WIN32
+#elif defined _WIN32
    TerminateThread(mHandle, 0);
-   #endif
+#endif
 }
 
 bool Thread::isAlive()
 {
-   #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
    bool ret;
    pthread_mutex_lock(&criticalSection);
    ret = alive;
    pthread_mutex_unlock(&criticalSection);
    return ret;
-   #elif defined _WIN32
+#elif defined _WIN32
    bool ret;
    EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    ret = alive;
    LeaveCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    return ret;
-   #endif
+#endif
 }
 
 
 void Thread::setName(const jm::String& name)
 {
-   #if defined __APPLE__
+#if defined __APPLE__
    pthread_setname_np(name.toCString().constData());
-   #elif defined __linux__
+#elif defined __linux__
    ByteArray cstr = name.toCString();
    pthread_setname_np(thread, cstr.constData());
-   #elif defined _WIN32
+#elif defined _WIN32
    uint16* cstr = name.toWString();
    SetThreadDescription(mHandle, (PCWSTR)cstr);
    delete[] cstr;
-   #endif
+#endif
 }
 
 
 
 bool Thread::isMainThread()
 {
-   #ifdef __APPLE__
+#ifdef __APPLE__
    //Nur OS X?
    return pthread_main_np() != 0;
-   #elif defined __linux__
+#elif defined __linux__
    //Linux
    return syscall(SYS_gettid) == getpid();
-   #elif defined _WIN32
+#elif defined _WIN32
    return false;
-   #endif
+#endif
 }
 

@@ -35,71 +35,71 @@ using namespace jm;
 
 Mutex::Mutex()
 {
-   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_condattr_init(&attrc);
    pthread_cond_init(&cond, &attrc);
    pthread_mutexattr_init(&attr);
    pthread_mutex_init(&criticalSection, &attr);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    InitializeCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
-   #endif
+#endif
 }
 
 Mutex::~Mutex()
 {
-   #if defined _WIN32//Windows
+#if defined _WIN32//Windows
    CRITICAL_SECTION* ptr = (CRITICAL_SECTION*)&mCriticalSection;
    DeleteCriticalSection(ptr);
-   #endif
+#endif
 }
 
 void Mutex::lock()
 {
-   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_lock(&criticalSection);
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    EnterCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
 
-   #endif
+#endif
 }
 
 void Mutex::unlock()
 {
-   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_unlock(&criticalSection);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    LeaveCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
 
-   #endif
+#endif
 }
 
 void Mutex::sleep()
 {
-   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_mutex_lock(&criticalSection);
    pthread_cond_wait(&cond, &criticalSection);
    pthread_mutex_unlock(&criticalSection);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    throw jm::Exception("jm::Mutex::Sleep() Not implemented");
 
-   #endif
+#endif
 }
 
 void Mutex::wakeUp()
 {
-   #if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
    pthread_cond_signal(&cond);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    throw jm::Exception("jm::Mutex::WakeUp() Not implemented");
 
-   #endif
+#endif
 }
 

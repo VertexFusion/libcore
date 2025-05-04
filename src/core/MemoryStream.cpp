@@ -113,3 +113,8 @@ uint8* MemoryStream::buffer()
 {
    return mStream;
 }
+
+int64 MemoryStream::writtenLength() const
+{
+   return mWritelength;
+}

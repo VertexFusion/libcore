@@ -40,7 +40,7 @@ DiffDistance::DiffDistance()
    mCols = 0;
    mDiagonal = nullptr;
    mDistance = 0;
-   calc = 0;
+   mCalc = 0;
    u = new std::vector<Object*>();
    v = new std::vector<Object*>();
 }
@@ -62,7 +62,7 @@ void DiffDistance::clear()
    u->clear();
    v->clear();
    mDistance = 0;
-   calc = 0;
+   mCalc = 0;
 }
 
 void DiffDistance::addU(Object* obj)
@@ -114,9 +114,9 @@ DiffBacktrace* DiffDistance::solve()
    int64 sz = mRows * mCols;
    std::cout << Tr("Distance %1").arg(mDistance) << std::endl;
    std::cout << Tr("Calculated %1/%2: %3%")
-             .arg(calc)
+             .arg(mCalc)
              .arg(sz)
-             .arg(calc * 100.0 / double(sz))
+             .arg(mCalc * 100.0 / double(sz))
              << std::endl;
 
    int i = (int) std::min(mRows, mCols);

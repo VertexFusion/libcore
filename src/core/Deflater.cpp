@@ -35,8 +35,8 @@ using namespace jm;
 
 Deflater::Deflater(): Object()
 {
-   mTotalIn=0;
-   mTotalOut=0;
+   mTotalIn = 0;
+   mTotalOut = 0;
 }
 
 Deflater::~Deflater()

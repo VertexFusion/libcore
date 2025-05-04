@@ -152,7 +152,7 @@ jm::String Integer::toLatinAlphabetString(int64 number)
       number--;
       int64 digit = number % 26;
       number = number / 26;
-      output.append(jm::Char('A'+digit));
+      output.append(jm::Char('A' + digit));
    }
 
    //Zahlen umkehren

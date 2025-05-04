@@ -36,7 +36,7 @@ using namespace jm;
 
 Resource::Resource(const String& path)
 {
-   #ifdef __ANDROID__
+#ifdef __ANDROID__
    jm::ByteArray array = jm::osResourceRead(path);
    if(array.size() <= 0)
    {
@@ -46,9 +46,9 @@ Resource::Resource(const String& path)
    uint8* buffer = new uint8[array.size()];
    memcpy(buffer, array.constData(), array.size());
    mStream = new jm::MemoryStream(buffer, array.size(), true);
-   #else
+#else
    mStream = new jm::File(jm::ResourceDir(jm::System::bundleId()), path);
-   #endif
+#endif
 }
 
 Resource::Resource(const Resource& other)

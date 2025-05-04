@@ -127,10 +127,9 @@ namespace jm
           - Only when a step is completed, undo or redo can be performed.
           - The step is only completed if there are changes.
           */
-         //private:
          void close();
+
          friend class Document;
-      public:
 
          /*!
           \brief This method clears the Undo-Stack and the Redo-Stack manually.

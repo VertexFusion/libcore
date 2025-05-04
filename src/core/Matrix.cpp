@@ -1141,6 +1141,15 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
    }
 }
 
+int64 Matrix::rows() const
+{
+   return m;
+}
+
+int64 Matrix::cols() const
+{
+   return n;
+}
 
 Vector jm::operator*(Matrix const& A, Vector const& b)
 {
@@ -1148,14 +1157,14 @@ Vector jm::operator*(Matrix const& A, Vector const& b)
    // | 0 3 6 |   | x |
    // | 1 4 7 | * | y |
    // | 2 5 8 |   | z |
-   if(A.n != b.m) throw jm::Exception("Matrix must have the same number of columns as vector number of rows");
+   if(A.cols() != b.m) throw jm::Exception("Matrix must have the same number of columns as vector number of rows");
 
-   Vector ret = Vector(A.m);
+   Vector ret = Vector(A.rows());
 
-   for(int64 r = 0; r < A.m; r++)
+   for(int64 r = 0; r < A.rows(); r++)
    {
       ret.data[r] = 0.0;
-      for(int64 c = 0; c < A.n; c++)
+      for(int64 c = 0; c < A.cols(); c++)
       {
          ret.data[r] += b.data[c] * A.get(r, c);
       }

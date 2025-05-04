@@ -1134,13 +1134,13 @@ bool String::isEmpty() const
 
 String String::lineSeparator()
 {
-   #ifdef __APPLE__//macOS, iOS
+#ifdef __APPLE__//macOS, iOS
    return "\n";
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    return "\n";
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    return "\r\n";
-   #endif
+#endif
 }
 
 Charset* gConsoleCharset = nullptr;

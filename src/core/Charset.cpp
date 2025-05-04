@@ -168,13 +168,13 @@ String Charset::guess(const char* stream, int64 length)
 
    String encoding;
 
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
    encoding = "MacRoman";
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    encoding = "UTF-8";
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    encoding = "Windows-1252";
-   #endif
+#endif
 
    //
    // If UTF markers are set, it's easy.

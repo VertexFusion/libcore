@@ -45,13 +45,13 @@ namespace jm
    /*!
     \brief This field stores the directory separator character based on the operating system.
     */
-   #ifdef __APPLE__//macOS, iOS
+#ifdef __APPLE__//macOS, iOS
    const Char DIR_SEP = Char('/');
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    const Char DIR_SEP = Char('/');
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    const Char DIR_SEP = Char('\\');
-   #endif
+#endif
 
    /*!
     \brief  This class is a representation of file or directory paths. In addition, data can be read
@@ -121,8 +121,8 @@ namespace jm
          bool canWrite() const;
 
          /*!
-          \brief Creates a new file, but only, if the file not exist. If the file exists,
-         nothing happens.
+          \brief Creates a new file, but only, if the file not exist. If the file exists, nothing
+          happens.
           \return true, if a new file was created. false otherwise.
           */
          bool createNewFile();
@@ -139,7 +139,8 @@ namespace jm
          bool exists() const;
 
          /*!
-          \brief This method deletes the file permanently. If it is a directory, it will only be deleted if it is empty.
+          \brief This method deletes the file permanently. If it is a directory, it will only be
+          deleted if it is empty.
           \return true if the file was successfully deleted, false otherwise.
           */
          bool remove();
@@ -226,7 +227,8 @@ namespace jm
 
          /*!
           \brief Retrieves a list of all files in the directory.
-          \return A dynamically allocated array of File objects representing the files in the directory. The caller is responsible for deleting the array.
+          \return A dynamically allocated array of File objects representing the files in the
+          directory. The caller is responsible for deleting the array.
           */
          Array<File>* listFiles()const;
 
@@ -282,7 +284,8 @@ namespace jm
 
 
          /*!
-          \brief Moves the file cursor to the desired position, counted from the beginning of the file.
+          \brief Moves the file cursor to the desired position, counted from the beginning of the
+          file.
           \param position The desired position to move the file cursor to (0-based index).
           */
          void seek(int64 position) override;
@@ -312,8 +315,10 @@ namespace jm
           \param other The file to compare with.
           \return An integer value indicating the result of the comparison:
                 - 0 if the file paths are equal.
-                - a negative value if this file path is lexicographically less than the other file path.
-                - a positive value if this file path is lexicographically greater than the other file path.
+                - a negative value if this file path is lexicographically less than the other file
+                  path.
+                - a positive value if this file path is lexicographically greater than the other
+                  file path.
           */
          int32 compareTo(const File& other) const override;
 
@@ -339,7 +344,8 @@ namespace jm
 
       private:
 
-         //! The pathname of the file. It is normalized, meaning it uses the directory separators and does not contain duplicates, etc.
+         //! The pathname of the file. It is normalized, meaning it uses the directory separators
+         //! and does not contain duplicates, etc.
          String mPathname;
 
          //! The C-String representation of the pathname. It is created and held when needed.

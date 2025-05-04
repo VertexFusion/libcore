@@ -133,7 +133,7 @@ int64 DiffDiag::entry(int64 j)
          }
       }
 
-      mDistance->calc++;
+      mDistance->mCalc++;
       mElements->push_back(x);
    }
    return x;

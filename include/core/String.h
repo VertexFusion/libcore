@@ -126,7 +126,7 @@ namespace jm
           */
          ~String() override;
 
-         #ifdef __APPLE__
+#ifdef __APPLE__
 
          /*! \brief Converts from CFString
           \note Only visible on mac
@@ -137,7 +137,7 @@ namespace jm
          	\note Only visible on mac
            */
          CFStringRef toCFString()const;
-         #endif
+#endif
          /*!
           \brief Returns the size of the string.
           */

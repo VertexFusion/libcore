@@ -557,9 +557,9 @@ void GeometryTest::doTest()
    //
    //
 
-   #ifdef __APPLE__//macOS, iOS
+#ifdef __APPLE__//macOS, iOS
    timespec start = orwl_gettime();
-   #endif
+#endif
 
    //Strahl geht auf Kreis
 
@@ -1103,13 +1103,13 @@ void GeometryTest::doTest()
    testEquals(ip2.x, 4.0, "intersectionPointsOfCircles() fails (8)");
    testEquals(ip2.y, 3.0, "intersectionPointsOfCircles() fails (8)");
 
-   #ifdef __APPLE__//macOS, iOS
+#ifdef __APPLE__//macOS, iOS
    timespec end = orwl_gettime();
 
    long nanos = end.tv_nsec - start.tv_nsec;
 
    std::cout << "\n\nNANOS: " << nanos << "\n\n";
-   #endif
+#endif
 
    extents();
    points3d();
@@ -1121,7 +1121,7 @@ void GeometryTest::extents()
    Extents e;
    testFalse(e.isValid(), "Extents fails (1)");
 
-   e.add(Vertex3(0.0, 0.0,0.0));
+   e.add(Vertex3(0.0, 0.0, 0.0));
    testTrue(e.isValid(), "Extents fails (2)");
    testEquals(e.minPoint().x, 0.0, "Extents fails (3)");
    testEquals(e.minPoint().y, 0.0, "Extents fails (4)");
@@ -1142,7 +1142,7 @@ void GeometryTest::extents()
    testEquals(e.maxPoint().y, 2.0, "Extents fails (14)");
    testEquals(e.maxPoint().z, 3.0, "Extents fails (15)");
 
-   e.add(Vertex2(-1.0,-2.0));
+   e.add(Vertex2(-1.0, -2.0));
    testTrue(e.isValid(), "Extents fails (16)");
    testEquals(e.minPoint().x, -1.0, "Extents fails (17)");
    testEquals(e.minPoint().y, -2.0, "Extents fails (18)");
@@ -1151,7 +1151,7 @@ void GeometryTest::extents()
    testEquals(e.maxPoint().y, 2.0, "Extents fails (21)");
    testEquals(e.maxPoint().z, 3.0, "Extents fails (22)");
 
-   jm::Vertex3 delta=e.delta();
+   jm::Vertex3 delta = e.delta();
    testEquals(delta.x, 2.0, "Extents fails (23)");
    testEquals(delta.y, 4.0, "Extents fails (24)");
    testEquals(delta.z, 3.0, "Extents fails (25)");
@@ -1166,29 +1166,29 @@ void GeometryTest::points3d()
    jm::Vertex3 pt(3.0, 4.0, 2.0);
    jm::Vertex3 d1(0.0, 0.0, 1.0);
 
-   double distance=jm::distancePointToLine(pt, o1, d1);
+   double distance = jm::distancePointToLine(pt, o1, d1);
    testEquals(distance, 5.0, "distancePointToLine() fails (1)");
 
    // closest point on line
-   jm::Vertex3 result=jm::closestPointOnLine(pt, o1, o2, false);
+   jm::Vertex3 result = jm::closestPointOnLine(pt, o1, o2, false);
    testEquals(result.x, 0.0, "closestPointOnLine() fails (1)");
    testEquals(result.y, 0.0, "closestPointOnLine() fails (2)");
    testEquals(result.z, 2.0, "closestPointOnLine() fails (3)");
 
-   pt=jm::Vertex3(3.0, 4.0, 5.0);
-   result=jm::closestPointOnLine(pt, o1, o2, true);
+   pt = jm::Vertex3(3.0, 4.0, 5.0);
+   result = jm::closestPointOnLine(pt, o1, o2, true);
    testEquals(result.x, 0.0, "closestPointOnLine() fails (4)");
    testEquals(result.y, 0.0, "closestPointOnLine() fails (5)");
    testEquals(result.z, 5.0, "closestPointOnLine() fails (6)");
 
-   distance=jm::distancePointToLine(pt, o1, o2, true);
+   distance = jm::distancePointToLine(pt, o1, o2, true);
    testEquals(distance, 5.0, "distancePointToLine() fails (2)");
 
-   distance=jm::distancePointToLine(pt, o1, o2, false);
+   distance = jm::distancePointToLine(pt, o1, o2, false);
    testTrue(jm::isNaN(distance), "distancePointToLine() fails (3)");
 
-   pt=jm::Vertex3(3.0, 4.0, 5.0);
-   result=jm::closestPointOnLine(pt, o1, o2, false);
+   pt = jm::Vertex3(3.0, 4.0, 5.0);
+   result = jm::closestPointOnLine(pt, o1, o2, false);
    testFalse(result.isValid(), "closestPointOnLine() fails (7)");
    testTrue(isNaN(result.x), "closestPointOnLine() fails (8)");
    testTrue(isNaN(result.y), "closestPointOnLine() fails (9)");
@@ -1196,18 +1196,18 @@ void GeometryTest::points3d()
 
    // distance point to circle
    jm::Vertex3 center(0.0, 0.0, 0.0);
-   double radius=5.0;
+   double radius = 5.0;
    jm::Vertex3 pt1(0.0, 0.0, 0.0);
    jm::Vertex3 pt2(1.0, 0.0, 0.0);
    jm::Vertex3 pt3(5.0, 0.0, 0.0);
    jm::Vertex3 pt4(10.0, 0.0, 0.0);
-   distance=jm::distancePointToCircle(pt1, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
+   distance = jm::distancePointToCircle(pt1, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
    testEquals(distance, 5.0, "distancePointToCircle() fails (1)");
-   distance=jm::distancePointToCircle(pt2, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
+   distance = jm::distancePointToCircle(pt2, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
    testEquals(distance, 4.0, "distancePointToCircle() fails (2)");
-   distance=jm::distancePointToCircle(pt3, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
+   distance = jm::distancePointToCircle(pt3, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
    testEquals(distance, 0.0, "distancePointToCircle() fails (3)");
-   distance=jm::distancePointToCircle(pt4, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
+   distance = jm::distancePointToCircle(pt4, center, radius, jm::Vertex3(0.0, 0.0, 1.0));
    testEquals(distance, 5.0, "distancePointToCircle() fails (4)");
 
 }

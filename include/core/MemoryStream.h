@@ -46,10 +46,6 @@ namespace jm
       public:
 
          /*!
-          */
-         int64 mWritelength;
-
-         /*!
           \brief Constructor.
           \param array The byte array on which the stream operations will be applied.
           \param length The length of the byte array.
@@ -117,25 +113,27 @@ namespace jm
           */
          uint8* buffer();
 
+         /*!
+          \brief Returns the written length of the buffer.
+          */
+         int64 writtenLength() const;
+
       private:
 
-         /*!
-          \brief The byte array that serves as the source or destination.
-          */
+         //! The byte array that serves as the source or destination.
          uint8* mStream;
 
          //! Status if this object is stream owner
          bool mStreamOwner;
 
-         /*!
-          \brief The length of the byte array.
-          */
+         //! The length of the byte array.
          int64 mStreamlength;
 
-         /*!
-          \brief The current pointer position in the array.
-          */
+         //! The current pointer position in the array.
          int64 mPosition;
+
+         //! Written length of the stream
+         int64 mWritelength;
 
    };
 

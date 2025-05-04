@@ -90,7 +90,7 @@
 #include <pwd.h>
 #include <sys/xattr.h> // For File Tags
 #include <ifaddrs.h>
-#include <arpa/inet.h>  
+#include <arpa/inet.h>
 #include <linux/if_packet.h>
 #include <linux/if_ether.h>
 

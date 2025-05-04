@@ -76,16 +76,6 @@ namespace jm
       public:
 
          /*!
-          \brief Number of rows.
-          */
-         int64 m;
-
-         /*!
-          \brief Number of columns.
-          */
-         int64 n;
-
-         /*!
           \brief This constructor creates a matrix and initializes it with zeros.
           \param rows Number of rows.
           \param cols Number of columns.
@@ -358,7 +348,27 @@ namespace jm
 
          Matrix& operator=(const Matrix& A);
 
+         /*!
+          \brief This method returns the number of rows.
+          */
+         int64 rows() const;
+
+         /*!
+          \brief This method returns the number of columns.
+          */
+         int64 cols() const;
+
       private:
+
+         /*!
+          \brief Number of rows.
+          */
+         int64 m;
+
+         /*!
+          \brief Number of columns.
+          */
+         int64 n;
 
          /*!
           \brief This field stores the data. In analogy to the OpenGL storage convention, the data

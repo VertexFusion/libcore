@@ -107,7 +107,7 @@ void DateTest::doTest()
    d = Date(1979, Date::AUGUST, 24, 12, 0, 0);
    testEquals(d.toString(), "1979-08-24T12:00:00.000Z", "jm::Date::ToString() fails [11]");
 
-   d= Date(d);
+   d = Date(d);
    testEquals(d.toString(), "1979-08-24T12:00:00.000Z", "jm::Date::ToString() fails [12]");
 
    // from NSDate 00:00:00 UTC on 1 January 2001.

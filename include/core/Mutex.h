@@ -82,7 +82,7 @@ namespace jm
 
       private:
 
-         #if defined(__APPLE__) || defined(__linux__)//macOS & Linux
+#if defined(__APPLE__) || defined(__linux__)//macOS & Linux
 
          //!pthread data types
          pthread_mutex_t criticalSection;
@@ -90,12 +90,12 @@ namespace jm
          pthread_condattr_t attrc;
          pthread_cond_t cond;
 
-         #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
          //On Windows 7 und 10 sizeof(CRITICAL_SECTION) returns 40 Bytes, so he make hardcode here.
          uint8 mCriticalSection[40];
 
-         #endif
+#endif
    };
 
 }

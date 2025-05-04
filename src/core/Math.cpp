@@ -152,19 +152,19 @@ void jm::swap(uint8& v1, uint8& v2)
 
 double jm::random()
 {
-   #ifdef __APPLE__
+#ifdef __APPLE__
    uint16 x[3] = {(uint16)rand(), (uint16)rand(), (uint16)rand()};
    return erand48(x);
-   #elif defined __linux__
+#elif defined __linux__
    uint16 x[3] = {(uint16)rand(), (uint16)rand(), (uint16)rand()};
    return erand48(x);
-   #elif defined _WIN32
+#elif defined _WIN32
    uint32 i = rand();
    uint32 m = RAND_MAX;
    return ((double)i) / ((double)m);
-   #else
+#else
    return 0;
-   #endif
+#endif
 }
 
 

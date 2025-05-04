@@ -54,17 +54,17 @@ namespace jm
    class DllExport Thread: public Object
    {
          // This method is needed for starting the thread
-         #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
          friend void* ::StartThread(void* arg);
-         #elif defined _WIN32
+#elif defined _WIN32
          friend unsigned long __stdcall ::StartThread(void* lpParameter);
-         #endif
+#endif
 
 
       private:
 
          //macOS, iOS
-         #if defined __APPLE__ || defined __linux__
+#if defined __APPLE__ || defined __linux__
 
          pthread_t thread;
          pthread_condattr_t attrc;
@@ -72,13 +72,13 @@ namespace jm
          pthread_mutex_t criticalSection;
          pthread_mutexattr_t attra;
 
-         #elif defined _WIN32
+#elif defined _WIN32
 
          unsigned long mThreadID;
          void* mHandle;
          void* mCriticalSection;
 
-         #endif
+#endif
          /*!
           \brief Status indicating whether this thread is active and running.
           If the thread is running and this variable becomes false, an exception will be thrown in this thread.

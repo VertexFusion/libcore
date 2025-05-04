@@ -97,15 +97,15 @@ bool File::isNull()const
 
 void File::setCString()
 {
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
    // Under 10.10 umlauts are transferred correctly...
    mCstr = mPathname.toCString(Charset::forName("UTF-8"));
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    mCstr = mPathname.toCString(Charset::forName("UTF-8"));
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    // Must be under Windows Windows-1252 for fopen
    mCstr = mPathname.toCString(Charset::forName("Windows-1252"));
-   #endif
+#endif
 }
 
 String File::resolve(String parent, String child)
@@ -158,28 +158,28 @@ String File::normalize(const String& path)
 
 bool File::makeDirectory()
 {
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
-    mode_t oldUmask = umask(0);  // set umask temporarily to 0
-    umask(oldUmask);             // restore umask
+   mode_t oldUmask = umask(0);  // set umask temporarily to 0
+   umask(oldUmask);             // restore umask
 
    int32 result = mkdir(mCstr.constData(), S_IRWXU | S_IRGRP | oldUmask);
    return result == 0;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    int32 result = _mkdir(mCstr.constData());
    return result == 0;
-   #endif
+#endif
 }
 
 bool File::exists() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    return access(mCstr.constData(), F_OK) == 0;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
    if(mCstr.size() == 0)return false;
 
    struct stat filestat;
@@ -187,17 +187,17 @@ bool File::exists() const
    return result == 0;
    //return PathFileExistsA(mCstr.constData());
 
-   #endif
+#endif
 }
 
 bool File::canRead() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    return access(mCstr.constData(), R_OK) == 0;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -205,18 +205,18 @@ bool File::canRead() const
    if(filestat.st_mode & _S_IREAD) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::canWrite() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    return access(mCstr.constData(), W_OK) == 0;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -224,18 +224,18 @@ bool File::canWrite() const
    if(filestat.st_mode & _S_IWRITE) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::canExecute() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    return access(mCstr.constData(), X_OK) == 0;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -243,20 +243,20 @@ bool File::canExecute() const
    if(filestat.st_mode & _S_IEXEC) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::isDirectory() const
 {
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
    lstat(mCstr.constData(), &st);
    bool ret = S_ISDIR(st.st_mode);
    return ret;
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -264,14 +264,14 @@ bool File::isDirectory() const
    if(filestat.st_mode & _S_IFDIR) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::isFile() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
    lstat(mCstr.constData(), &st);
@@ -279,7 +279,7 @@ bool File::isFile() const
    return ret;
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -287,31 +287,31 @@ bool File::isFile() const
    if(filestat.st_mode & _S_IFREG) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::isHidden() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    return name().charAt(0) == '.';
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    DWORD attributes = GetFileAttributesA(mCstr.constData());
    if(attributes & FILE_ATTRIBUTE_HIDDEN)return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::isLink() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
    lstat(mCstr.constData(), &st);
@@ -319,7 +319,7 @@ bool File::isLink() const
    return ret;
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    /* \todo Muss noch geklärt werden, wann ein Symlink vorliegt
    struct stat filestat;
@@ -328,14 +328,14 @@ bool File::isLink() const
    if( filestat.st_mode & _S_IFLNK ) return true;*/
    return false;
 
-   #endif
+#endif
 
 }
 
 bool File::isPipe() const
 {
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
    struct stat st;
    lstat(mCstr.constData(), &st);
@@ -343,7 +343,7 @@ bool File::isPipe() const
    return ret;
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -351,13 +351,13 @@ bool File::isPipe() const
    if(filestat.st_mode & _S_IFIFO) return true;
    return false;
 
-   #endif
+#endif
 
 }
 
 Date File::lastModified() const
 {
-   #if defined(__APPLE__) //macOS
+#if defined(__APPLE__) //macOS
 
    struct stat st;
    lstat(mCstr.constData(), &st);
@@ -369,7 +369,7 @@ Date File::lastModified() const
 
    return Date(time);
 
-   #elif defined(__linux__) //Linux
+#elif defined(__linux__) //Linux
 
    struct stat st;
    lstat(mCstr.constData(), &st);
@@ -381,7 +381,7 @@ Date File::lastModified() const
 
    return Date(time);
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    struct stat st;
    stat(mCstr.constData(), &st);
@@ -390,7 +390,7 @@ Date File::lastModified() const
    const time_t ct = st.st_mtime;//time_t is the time in seconds
    int64 epoch = (int64)ct;
    return Date(epoch * 1000LL);
-   #endif
+#endif
 
 }
 
@@ -405,17 +405,17 @@ bool File::remove()
 
 bool File::moveToTrash()
 {
-   #if defined(__APPLE__)//macOS
+#if defined(__APPLE__)//macOS
 
    return File_MoveToTrash(mCstr.constData());
 
-   #elif defined(__linux__) //Linus
+#elif defined(__linux__) //Linus
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
 
-   #endif
+#endif
 
    return false;
 }
@@ -425,13 +425,13 @@ bool File::renameTo(const String& newPath)
    int32 result;
 
 
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
    ByteArray newname = newPath.toCString();
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    ByteArray newname = newPath.toCString();
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    ByteArray newname = newPath.toCString(Charset::forName("Windows-1252"));
-   #endif
+#endif
 
 
    result = rename(mCstr.constData(), newname.constData());
@@ -455,7 +455,7 @@ Array<File>* File::listFiles()const
    if(!isDirectory())return
          nullptr;//throw new Exception("ShxFile \"" + absolutePath() + "\" is not a directory.");
 
-   #if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
+#if defined(__APPLE__) || defined(__linux__) // macOS and Linux are identically
 
 
    DIR* dp;
@@ -489,7 +489,7 @@ Array<File>* File::listFiles()const
    return list;
 
 
-   #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
 
    HANDLE hFind;
    WIN32_FIND_DATA data;
@@ -533,7 +533,7 @@ Array<File>* File::listFiles()const
       throw Exception(Tr("Cannot open directory"));
    }
 
-   #endif
+#endif
 }
 
 
@@ -584,21 +584,21 @@ bool File::isAbsolute() const
 
 bool File::createNewFile()
 {
-   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    mHandle = fopen(mCstr.constData(), "wb");
    bool exist = (mHandle != nullptr);
    close();
    return exist;
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    int64 ret = fopen_s(&mHandle, mCstr.constData(), "wb");
    close();
    return ret == 0;
-   #endif
+#endif
 }
 
 Status File::open(FileMode mode)
 {
-   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
    switch(mode)
    {
       case FileMode::kRead:
@@ -613,7 +613,7 @@ Status File::open(FileMode mode)
          mHandle = fopen(mCstr.constData(), "rb+");
          break;
    }
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    switch(mode)
    {
       case FileMode::kRead:
@@ -628,7 +628,7 @@ Status File::open(FileMode mode)
          fopen_s(&mHandle, mCstr.constData(), "rb+");
          break;
    }
-   #endif
+#endif
 
    if(mHandle == nullptr)
    {
@@ -720,9 +720,9 @@ int32 File::compareTo(const File& other) const
 
 StringList File::getTags()const
 {
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
 
-   #if TARGET_OS_IOS == 0
+#if TARGET_OS_IOS == 0
    // Create necessary system related objects
    CFStringRef cfstr = CFStringCreateWithCString(kCFAllocatorDefault,
                        mCstr.constData(),
@@ -765,11 +765,11 @@ StringList File::getTags()const
 
    if(tags != nullptr)CFRelease(tags);
 
-   #endif
+#endif
 
-   #endif
+#endif
 
-   #ifdef __linux__
+#ifdef __linux__
 
    const int sz = 4096;
    char buffer[sz];
@@ -782,7 +782,7 @@ StringList File::getTags()const
       String string(tagList);
       return string.split(',');
    }
-   #endif
+#endif
 
    // Return empty if no tags found array
    return StringList();
@@ -790,9 +790,9 @@ StringList File::getTags()const
 
 Status File::setTags(const jm::StringList& tags)
 {
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
 
-   #if TARGET_OS_IOS == 0
+#if TARGET_OS_IOS == 0
 
    //Create new array and append tag
    int64 newsize = tags.size();
@@ -836,10 +836,10 @@ Status File::setTags(const jm::StringList& tags)
 
    if(result == true)return Status::eOK;
    else return Status::eNo;
-   #endif
-   #endif
+#endif
+#endif
 
-   #ifdef __linux__
+#ifdef __linux__
 
    String string(tags.join(Char(',')));
    ByteArray buffer = string.toCString();
@@ -848,7 +848,7 @@ Status File::setTags(const jm::StringList& tags)
 
    return (result == 0) ? jm::Status::eOK : jm::Status::eNo;
 
-   #endif
+#endif
 
    return Status::eNotImplemented;
 }
@@ -856,7 +856,7 @@ Status File::setTags(const jm::StringList& tags)
 
 Status File::addTag(const String& tag)
 {
-   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
    StringList tags = getTags();
    if(!tags.contains(tag))
@@ -866,14 +866,14 @@ Status File::addTag(const String& tag)
    }
    else return Status::eOK;
 
-   #endif
+#endif
 
    return Status::eNotImplemented;
 }
 
 Status File::removeTag(const String& tag)
 {
-   #if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
+#if defined(__APPLE__) || defined(__linux__)//linux,macOS und ios
 
    StringList tags = getTags();
    if(tags.contains(tag))
@@ -883,7 +883,7 @@ Status File::removeTag(const String& tag)
    }
    else return Status::eOK;
 
-   #endif
+#endif
 
    return Status::eNotImplemented;
 }
@@ -892,7 +892,7 @@ Status File::removeTag(const String& tag)
 String jm::ExecPath()
 {
 
-   #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
    uint32_t size = 1024;
    char path[1024];
    int ok = _NSGetExecutablePath(path, &size);
@@ -903,7 +903,7 @@ String jm::ExecPath()
    path[size - 1] = '\0';
    String ret = String(path);
    return ret;
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    char buff[1024];
    ssize_t len = ::readlink("/proc/self/exe", buff, sizeof(buff) - 1);
    if(len > 0)
@@ -916,7 +916,7 @@ String jm::ExecPath()
    {
       return jm::kEmptyString;
    }
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
 
    const uint32 size = MAX_PATH;
    uint16 path[size];
@@ -937,7 +937,7 @@ String jm::ExecPath()
       return ret;
    }
    throw Exception(Tr("Cannot determinate executable path"));
-   #endif
+#endif
 
 }
 
@@ -982,7 +982,7 @@ File jm::ResourceDir(const String& bundleId)
    CFURLRef resourceDirURL = CFBundleCopyResourcesDirectoryURL(thisBundle);
 
 
-   #if TARGET_OS_IOS == 1 // iOS add -DTARGET_OS_IPHONE as compiler option if necessary
+#if TARGET_OS_IOS == 1 // iOS add -DTARGET_OS_IPHONE as compiler option if necessary
 
    // On iOS, the resource folder is also the root folder of the app...
 
@@ -999,7 +999,7 @@ File jm::ResourceDir(const String& bundleId)
    return File(filename);
 }
 
-   #else //macOS
+#else //macOS
 
    CFURLRef bundleURL = CFBundleCopyBundleURL(thisBundle);
 
@@ -1023,7 +1023,7 @@ File jm::ResourceDir(const String& bundleId)
    // Return
    return File(filename);
 }
-   #endif
+#endif
 
 #elif defined __linux__ //Linux
 File jm::ResourceDir(const String& /*bundleId*/)
@@ -1041,14 +1041,14 @@ File jm::ResourceDir(const String& /*bundleId*/)
 
 File jm::PropertyDir()
 {
-   #ifdef __APPLE__ //macOS und ios
+#ifdef __APPLE__ //macOS und ios
    // Method is designed for IOS so far, but also works under macOS, but still needs to be tested.
    char* home = getenv("HOME");
    //IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
    return File(home, "Library");
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
 
-   #ifdef __ANDROID__
+#ifdef __ANDROID__
    JNIEnv* env = getJNIEnv();
 
    if(env == nullptr)
@@ -1072,14 +1072,14 @@ File jm::PropertyDir()
    env->DeleteLocalRef(jClass);
    env->DeleteLocalRef(str);
    return jm::File(text);
-   #else
+#else
    // A subdirectory around the home folder with the application name is provided as the property
    // directory
    char* home = getenv("HOME");
    return File(home, "." + ExecName());
-   #endif
+#endif
 
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
 
    return UserDir();
    /*	uint16* path[MAX_PATH];
@@ -1097,23 +1097,23 @@ File jm::PropertyDir()
 
    	return nullptr;
    	*/
-   #endif
+#endif
 
 }
 
 File jm::UserDir()
 {
-   #ifdef __APPLE__ //macOS and ios
+#ifdef __APPLE__ //macOS and ios
    // Method is designed for IOS so far, but also works under macOS, but still needs to be tested.
    char* home = getenv("HOME");
    //IOS: https://developer.apple.com/library/mac/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
    return File(home);
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    // A subdirectory around the home folder with the application name is provided as the property
    // directory
    char* home = getenv("HOME");
    return File(home);
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
 
    uint16 path[MAX_PATH];
 
@@ -1129,46 +1129,46 @@ File jm::UserDir()
    }
 
    return File();
-   #endif
+#endif
 
 }
 
 File jm::TempDir()
 {
-   #ifdef __APPLE__ //macOS and ios
+#ifdef __APPLE__ //macOS and ios
    char* temp = getenv("TMPDIR");
    return File(temp);
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    char cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));
    return File(cwd);
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    uint16 path[MAX_PATH];
    memset(path, 0, MAX_PATH * sizeof(uint16));
    LPWSTR ptr = (LPWSTR) & path[0];
    uint32 size = GetCurrentDirectory(MAX_PATH, ptr);
    String name = String((uint16*)path, size);
    return File(name);
-   #endif
+#endif
 }
 
 File jm::currentDir()
 {
-   #ifdef __APPLE__ //macOS and ios
+#ifdef __APPLE__ //macOS and ios
    char cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));
    return File(cwd);
-   #elif defined __linux__ //Linux
+#elif defined __linux__ //Linux
    char cwd[PATH_MAX];
    getcwd(cwd, sizeof(cwd));
    return File(cwd);
-   #elif defined _WIN32 //Windows
+#elif defined _WIN32 //Windows
    uint16 path[MAX_PATH];
    memset(path, 0, MAX_PATH * sizeof(uint16));
    LPWSTR ptr = (LPWSTR) & path[0];
    uint32 size = GetCurrentDirectory(MAX_PATH, ptr);
    String name = String((uint16*)path, size);
    return File(name);
-   #endif
+#endif
 }
 

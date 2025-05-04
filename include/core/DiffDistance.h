@@ -57,11 +57,6 @@ namespace jm
       public:
 
          /*!
-          \brief Number of calculated steps.
-          */
-         int64 calc;
-
-         /*!
           \brief Constructor
           */
          DiffDistance();
@@ -131,6 +126,11 @@ namespace jm
          int64 mCols;
 
          /*!
+          \brief Number of calculated steps.
+          */
+         int64 mCalc;
+
+         /*!
           \brief Comparison vector 1
           */
          std::vector<Object*>* u;
@@ -140,6 +140,7 @@ namespace jm
           */
          std::vector<Object*>* v;
 
+         friend class DiffDiag;
    };
 
 }

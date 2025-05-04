@@ -89,13 +89,13 @@ namespace jm
          String mMessage;
 
          //! The thread id
-         #ifdef __APPLE__ //macOS
+#ifdef __APPLE__ //macOS
          pthread_t tid;
-         #elif defined __linux__//Linux
+#elif defined __linux__//Linux
          pthread_t tid;
-         #elif defined _WIN32//Windows
+#elif defined _WIN32//Windows
          // In Windows a thread id does not exist.
-         #endif
+#endif
 
          // retrieve current stack addresses
          uint32 addrlen;
