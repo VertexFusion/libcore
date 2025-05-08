@@ -206,7 +206,7 @@ jm::String jm::System::userId()
    DWORD user_name_size = sizeof(user_name);
    // Explicit type conversion under VC++ 2010 added.
    GetUserName((LPWSTR)user_name, &user_name_size);
-   return String(user_name, user_name_size);
+   return String(user_name, user_name_size-1); // Size contains 0 at end
 
 #endif
 }
