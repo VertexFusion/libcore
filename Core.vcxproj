@@ -228,6 +228,7 @@
       <PrecompiledHeaderFile>PrecompiledCore.hpp</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
