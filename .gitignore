@@ -3,6 +3,7 @@
 *.to
 *.obj
 *.pch
+*.tmp
 
 # Operating System Files
 .DS_Store

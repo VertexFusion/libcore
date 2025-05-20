@@ -46,6 +46,7 @@
 #include <typeinfo>
 #include <chrono>
 #include <bit>
+#include <numbers>
 
 #ifdef __APPLE__//macOS, iOS
 #include <cstdlib>
