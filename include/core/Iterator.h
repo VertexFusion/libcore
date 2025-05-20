@@ -63,7 +63,7 @@ namespace jm
           */
          virtual Object* next() noexcept = 0;
 
-         virtual ~Iterator() noexcept;
+         virtual ~Iterator() noexcept = default;
    };
 
 

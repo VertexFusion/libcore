@@ -52,7 +52,7 @@ namespace jm
          /*!
           \brief Default constructor.
           */
-         DiffInfo();
+         DiffInfo() = default;
 
          /*!
           \brief Copy constructor.

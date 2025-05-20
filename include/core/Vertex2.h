@@ -63,7 +63,7 @@ namespace jm
          /*!
           \brief Constructor creates null vector.
           */
-         Vertex2() noexcept;
+         Vertex2() noexcept = default;
 
          /*!
           \brief Constructor creates arbitrary vector

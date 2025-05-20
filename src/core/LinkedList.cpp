@@ -360,11 +360,6 @@ Object* LinkedListIterator::seek() const
    return nullptr;
 }
 
-LinkedListIterator::~LinkedListIterator()
-{
-
-}
-
 namespace jm
 {
    LinkedListIterator& LinkedListIterator::operator=(const LinkedListIterator& other)

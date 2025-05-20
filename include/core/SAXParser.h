@@ -212,7 +212,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~SAXParser();
+         virtual ~SAXParser() = default;
 
          /*!
           \brief This method parses the given file.

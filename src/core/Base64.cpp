@@ -75,8 +75,8 @@ const uint8 gBase64rcvt[] =
 uint8* Base64::encode(const uint8* data, int64& length)
 {
    uint8 c1 = 0, c2 = 0, c3 = 0, c4 = 0, b1, b2, b3;
-   int64 len = length;
-   int64 lenb64 = ((len / 3) + 1) * 4;
+   const int64 len = length;
+   const int64 lenb64 = ((len / 3) + 1) * 4;
 
    uint8* ret = new uint8[lenb64];
 
@@ -123,7 +123,7 @@ uint8* Base64::decode(const uint8* data, uint32& length)
 {
    uint8 c1 = 0, c2 = 0, c3 = 0, c4 = 0;
    uint8 b1 = 0, b2 = 0, b3 = 0;
-   int len = length;
+   const int len = length;
 
    uint32 lenb64 = (len * 3) / 4 ;
 

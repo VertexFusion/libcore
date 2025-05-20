@@ -39,10 +39,6 @@ Deflater::Deflater(): Object()
    mTotalOut = 0;
 }
 
-Deflater::~Deflater()
-{
-}
-
 void Deflater::setInput(uint8* buffer, int64 length)
 {
    mUncompBytes = buffer;

@@ -72,7 +72,7 @@ namespace jm
           \param y Y component of vector
           \param z Z component of vector
           */
-         Vertex3(double x = 0, double y = 0, double z = 0) noexcept;
+         explicit Vertex3(double x = 0, double y = 0, double z = 0) noexcept;
 
          /*!
           \brief Constructor for arbitrary vector.
@@ -85,7 +85,7 @@ namespace jm
           \brief Copy constructor
           \param another The other vector
           */
-         Vertex3(const Vertex3& another) noexcept;
+         Vertex3(const Vertex3& another) noexcept = default;
 
          /*!
          \brief Calculates the cross-product of this vector with the other.

@@ -123,12 +123,12 @@ namespace jm
          /*!
           \brief Constructor
           */
-         Test();
+         Test() = default;
 
          /*!
           \brief Destructor
           */
-         ~Test() override;
+         ~Test() = default;
 
          /*!
           \brief Returns the name of the test.

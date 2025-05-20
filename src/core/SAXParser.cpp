@@ -38,11 +38,6 @@ SAXParser::SAXParser(): Object()
 
 }
 
-SAXParser::~SAXParser()
-{
-
-}
-
 void SAXParser::parse(File& file)
 {
    if(!file.exists())return;

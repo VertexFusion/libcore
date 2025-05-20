@@ -39,12 +39,6 @@ Vertex3::Vertex3(double x_, double y_, double z_) noexcept:
    z(z_)
 {}
 
-Vertex3::Vertex3(const Vertex3& another) noexcept:
-   x(another.x),
-   y(another.y),
-   z(another.z)
-{}
-
 Vertex3::Vertex3(const Vertex2& xy, double z_) noexcept:
    x(xy.x),
    y(xy.y),

@@ -39,14 +39,6 @@ int64 jm::gTestCount;
 int64 jm::gTotalErrorCount;
 int64 jm::gTotalTestCount;
 
-Test::Test()
-{}
-
-Test::~Test()
-{
-
-}
-
 void Test::setErrorCode(const String& error)
 {
    mError = error;

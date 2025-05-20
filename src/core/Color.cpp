@@ -162,7 +162,7 @@ void Color::toCmyk()
          float b = col.rgb.blue / 255.0f;
          //The black key (K) colour is calculated from the red (R'), green (G') and blue (B') colours:
          //K = 1-max(R', G', B')
-         float k = 1.0f - std::max(r, std::max(g, b));
+         float k = 1.0f - std::max({r, g, b});
          //The cyan colour (C) is calculated from the red (R') and black (K) colours:
          //C = (1-R'-K) / (1-K)
          float c = (1 - r - k) / (1 - k);
@@ -272,8 +272,8 @@ void Color::hsvModel(float& hue, float& saturation, float& value) const
    Color tmp = *this;
    tmp.toRgb();
 
-   uint8 MAX = std::max(std::max(tmp.red(), tmp.green()), tmp.blue());
-   uint8 MIN = std::min(std::min(tmp.red(), tmp.green()), tmp.blue());
+   uint8 MAX = std::max({tmp.red(), tmp.green(), tmp.blue()});
+   uint8 MIN = std::min({tmp.red(), tmp.green(), tmp.blue()});
 
    float MAX_MIN = static_cast<float>(MAX - MIN);
 

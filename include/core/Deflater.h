@@ -63,7 +63,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~Deflater() override;
+         ~Deflater() override = default;
 
          /*!
           \brief Gives this class a block of bytes to compress.

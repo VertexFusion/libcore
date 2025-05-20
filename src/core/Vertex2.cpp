@@ -33,10 +33,6 @@
 
 using namespace jm;
 
-
-Vertex2::Vertex2() noexcept
-{}
-
 Vertex2::Vertex2(double xx, double yy) noexcept:
    x(xx),
    y(yy)

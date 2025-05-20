@@ -34,11 +34,6 @@
 
 using namespace jm;
 
-DiffInfo::DiffInfo()
-{
-
-}
-
 DiffInfo::DiffInfo(const DiffInfo& another)
 {
    mOperation = another.mOperation;

@@ -84,7 +84,7 @@ void SerializerTest::doTest()
    i32out = 0;
 
    count = jm::serializeBEInt32(buffer, 0, i32in);
-   i32out = jm::deserializeBEInt32(buffer, 0);
+   i32out = jm::deserializeBEInt32(jm::ByteArray(buffer), 0);
    testEquals(count, 4, "int32 conversion failed");
    testEquals(i32in, i32out, "int32 conversion failed");
    testEquals(buffer[0], 0x12, "int32 conversion failed");

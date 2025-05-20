@@ -463,12 +463,6 @@ UndoObjectRelease::UndoObjectRelease(Object* object, bool release): UndoChange(o
    mObject = object;
 }
 
-UndoObjectRelease::~UndoObjectRelease()
-{
-   // Nothing to do here. The super method will release() the object.
-   // This is just the one thing we want to do.
-}
-
 void UndoObjectRelease::swap()
 {
    // We swap the reference counter here

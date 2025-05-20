@@ -64,10 +64,6 @@ Inflater::Inflater(bool wrap): Object()
    mWrap = wrap;
 }
 
-Inflater::~Inflater()
-{
-}
-
 void Inflater::SetInput(uint8* buffer, int64 length)
 {
    mCompBytes = buffer;
@@ -389,9 +385,9 @@ Inflater::HuffmanTree* Inflater::createTree(Array<uint16>* lengths, Array<uint16
       }
 
       //4. Remove bit in tmp
-      for(uint32 a = 0; a < focus.size(); a++)
+      for(jm::Inflater::HuffmanTree* item:focus)
       {
-         focus[a]->tmp = (focus[a]->code) >> 1;
+         item->tmp = (item->code) >> 1;
       }
 
       while(focus.size() > 1)

@@ -70,7 +70,7 @@ namespace jm
          // Return the next object without moving the iterator
          Object* seek() const;
 
-         ~LinkedListIterator() override;
+         ~LinkedListIterator() override = default;
 
          LinkedListIterator& operator=(const LinkedListIterator& other);
 

@@ -56,8 +56,8 @@ namespace jm
           We make a copy of buffer.
           If buffer is NULL a NULL array is created.
           */
-         ByteArray(const int8* buffer, int64 size = -1);
-         ByteArray(const uint8* buffer, int64 size = -1);
+         explicit ByteArray(const int8* buffer, int64 size = -1);
+         explicit ByteArray(const uint8* buffer, int64 size = -1);
 
          /*!
           \brief Creates a byte array of size and fills every byte with ch.

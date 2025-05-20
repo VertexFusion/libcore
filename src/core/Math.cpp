@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-const double T_PI = 1.0 / M_PI;
+const double T_PI = std::numbers::inv_pi;
 const double T_180 = 1.0 / 180.0;
 
 double jm::degToRad(double deg)

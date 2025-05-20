@@ -97,7 +97,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~File() override;
+         ~File() = default;
 
          /*!
           \brief checks if the file is null (has no path).

@@ -39,11 +39,6 @@ CharsetDecoder::CharsetDecoder(): Object()
 
 }
 
-CharsetDecoder::~CharsetDecoder()
-{
-}
-
-
 RawDecoder::RawDecoder(): CharsetDecoder()
 {
 }

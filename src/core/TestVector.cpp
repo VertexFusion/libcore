@@ -44,7 +44,10 @@ TestVector::TestVector(int argc, const char* argv[])
 
 TestVector::~TestVector()
 {
-   for(uint32 a = 0; a < mTests->size(); a++)delete mTests->at(a);
+   for(jm::Test* test: *mTests)
+   {
+      delete test;
+   }
    delete mTests;
 }
 

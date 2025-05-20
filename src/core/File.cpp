@@ -71,11 +71,6 @@ File::File(const File& other): Stream(), Comparable<File>()
    else mCstr = ByteArray();
 }
 
-
-File::~File()
-{
-}
-
 File& File::operator=(const File& another)
 {
    if(this != &another)

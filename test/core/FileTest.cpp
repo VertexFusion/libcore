@@ -86,7 +86,7 @@ void FileTest::doTest()
    testTrue(file.position() == 10, "File::position()==10 failed.");
    file.close();
    testFalse(file.isOpen(), "File::isOpen()==false failed");
-   testTrue(jm::String(buffer2) == "teststring", "Read content 2 is wrong");
+   testTrue(jm::String((char*)buffer2) == "teststring", "Read content 2 is wrong");
 
    // Test positioning
    testTrue(file.open(jm::FileMode::kRead) == jm::Status::eOK, "File::open() failed");

@@ -34,7 +34,3 @@
 
 using namespace jm;
 
-Iterator::~Iterator() noexcept
-{
-
-}

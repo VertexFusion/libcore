@@ -43,22 +43,21 @@ Charset* Charset::gCharsets[7] = { new Charset(new UTF8Decoder()),
             new Charset("ASCII", new RawDecoder())
 };
 
-CharArray::CharArray()
-{
-   length = 0;
-   buffer = nullptr;
-}
+CharArray::CharArray():
+   length(0),
+   buffer(nullptr)
+{}
 
-CharArray::CharArray(const CharArray& another)
+CharArray::CharArray(const CharArray& another):
+   length(another.length)
 {
-   length = another.length;
    buffer = new Char[length];
    memcpy(buffer, another.buffer, length * 2);
 }
 
-CharArray::CharArray(int64 alength)
+CharArray::CharArray(int64 alength):
+   length(alength)
 {
-   length = alength;
    buffer = new Char[length];
 }
 
@@ -200,7 +199,7 @@ String Charset::guess(const char* stream, int64 length)
 
    // It is possible that a UTF16 encoding without markers is present. The probability of this is
    // high if every second byte of "European" text is 0.
-   uint16 frame = (uint16) std::min(int64(4096), length);
+   const uint16 frame = (uint16) std::min(int64(4096), length);
    float count1 = 0;
    float count2 = 0;
    for(uint16 a = 0; a < frame; a++)

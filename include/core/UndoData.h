@@ -622,7 +622,10 @@ namespace jm
    {
       public:
          UndoObjectRelease(Object* object, bool release);
-         virtual ~UndoObjectRelease();
+
+         // Nothing to do here. The super method will release() the object.
+         // This is just the one thing we want to do.
+         virtual ~UndoObjectRelease() = default;
 
          /*!
           \copydoc UndoChange::swap()

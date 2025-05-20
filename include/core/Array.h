@@ -173,21 +173,21 @@ namespace jm
    {
       public:
 
-         Array() : Object()
+         Array() : Object(),
+            mLength(0)
          {
-            mLength = 0;
             mData = new T*[0];
          };
 
-         explicit Array(uint32 length) : Object()
+         explicit Array(uint32 length) : Object(),
+            mLength(length)            
          {
-            mLength = length;
             mData = new T*[length];
          };
 
-         Array(const Array& other) : Object()
+         Array(const Array& other) : Object(),
+            mLength(other.mLength)
          {
-            mLength = other.mLength;
             mData = new T*[mLength];
             for(uint32 a = 0; a < mLength; a++)
             {

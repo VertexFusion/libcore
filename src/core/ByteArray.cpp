@@ -155,13 +155,13 @@ void ByteArray::sort()
       int64 newn = 1;
       for(int64 i = 0; i < n - 1; ++i)
       {
-         int64 j = i + 1;
-         uint8 a1 = mData[i];
-         uint8 a2 = mData[j];
+         const int64 j = i + 1;
+         const uint8 a1 = mData[i];
+         const uint8 a2 = mData[j];
          if(a1 > a2)
          {
             //Vertausche
-            uint8 tmp = mData[i];
+            const uint8 tmp = mData[i];
             mData[i] = mData[j];
             mData[j] = tmp;
 
@@ -196,7 +196,7 @@ void ByteArray::set(int64 index, uint8 item)
 void ByteArray::replace(int64 tgtOffset, int64 srcOffset, const ByteArray& buffer,
                         int64 length)
 {
-   int64 range = std::min(length, mArrSize - tgtOffset);
+   const int64 range = std::min(length, mArrSize - tgtOffset);
 
    for(int64 a = 0; a < range; a++)
    {

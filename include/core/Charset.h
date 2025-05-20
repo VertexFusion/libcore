@@ -54,7 +54,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         ~CharsetDecoder() override;
+         ~CharsetDecoder() override = default;
 
          /*!
           \brief This method decodes a C-string using the encoding implemented in the decoder
