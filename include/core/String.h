@@ -355,7 +355,7 @@ namespace jm
           \return A list of strings resulting from the split operation.
           \details This method splits the string into multiple substrings based on the specified character. Each substring is added to a list of strings, which is then returned.
           */
-         StringList split(Char character);
+         StringList split(Char character) const;
 
          /*!
           \brief This method returns the zero-based position of the first occurrence of the desired character in the string.

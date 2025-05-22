@@ -487,7 +487,7 @@ String String::reverse() const
    return ret;
 }
 
-StringList String::split(Char character)
+StringList String::split(Char character) const
 {
    StringList result;
    String delim;
