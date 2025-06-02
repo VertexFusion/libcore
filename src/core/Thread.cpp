@@ -205,8 +205,10 @@ bool Thread::isAlive()
 
 void Thread::setName(const jm::String& name)
 {
+   if(thread==0)return;
 #if defined __APPLE__
-   pthread_setname_np(name.toCString().constData());
+   ByteArray cstr = name.toCString();
+   pthread_setname_np(thread, cstr.constData());
 #elif defined __linux__
    ByteArray cstr = name.toCString();
    pthread_setname_np(thread, cstr.constData());
