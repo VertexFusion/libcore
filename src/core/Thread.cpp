@@ -205,11 +205,12 @@ bool Thread::isAlive()
 
 void Thread::setName(const jm::String& name)
 {
-   if(thread==0)return;
 #if defined(JM_MACOS) || defined(JM_IOS)
+   if(thread==0)return;
    ByteArray cstr = name.toCString();
    pthread_setname_np(cstr.constData());
 #elif defined(JM_LINUX) || defined(JM_ANDROID)
+   if(thread==0)return;
    ByteArray cstr = name.toCString();
    pthread_setname_np(thread, cstr.constData());
 #elif defined JM_WINDOWS
