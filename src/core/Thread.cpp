@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
 void* StartThread(void* arg)
 {
@@ -47,7 +47,7 @@ void* StartThread(void* arg)
    pthread_exit(nullptr);
 }
 
-#elif defined _WIN32
+#elif defined JM_WINDOWS
 
 DWORD WINAPI StartThread(LPVOID lpParameter)
 {
@@ -68,7 +68,7 @@ DWORD WINAPI StartThread(LPVOID lpParameter)
 
 Thread::Thread(): jm::Object()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    thread = 0;
    alive = false;
    pthread_condattr_init(&attrc);
@@ -76,7 +76,7 @@ Thread::Thread(): jm::Object()
 
    pthread_mutexattr_init(&attra);
    pthread_mutex_init(&criticalSection, &attra);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    mCriticalSection = new CRITICAL_SECTION;
    InitializeCriticalSection((CRITICAL_SECTION*)mCriticalSection);
 #endif
@@ -85,7 +85,7 @@ Thread::Thread(): jm::Object()
 
 Thread::~Thread()
 {
-#if defined _WIN32//Windows
+#if defined JM_WINDOWS
    DeleteCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    delete((CRITICAL_SECTION*)mCriticalSection);
 #endif
@@ -93,12 +93,12 @@ Thread::~Thread()
 
 void Thread::start()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    void* arg = (void*)this;
 
    int ret = pthread_create(&thread, nullptr, StartThread, arg);
    if(ret != 0)throw Exception("Error on starting Thread");
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    void* arg = (void*)this;
    mHandle = CreateThread(0, 0, StartThread, arg, 0, &mThreadID);
    if(mHandle == nullptr)throw Exception("Error on starting Thread");
@@ -109,7 +109,7 @@ void Thread::start()
 
 void Thread::sleep(int64 millis)
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    timespec   ts;
    timeval    now;
    gettimeofday(&now, nullptr);
@@ -127,36 +127,36 @@ void Thread::sleep(int64 millis)
    pthread_mutex_lock(&criticalSection);
    pthread_cond_timedwait(&cond, &criticalSection, &ts);
    pthread_mutex_unlock(&criticalSection);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    ::Sleep(millis);
 #endif
 }
 
 void Thread::lock()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_lock(&criticalSection);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
 #endif
 }
 
 void Thread::unlock()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_unlock(&criticalSection);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    LeaveCriticalSection((CRITICAL_SECTION*)mCriticalSection);
 #endif
 }
 
 void Thread::sleep()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_lock(&criticalSection);
    pthread_cond_wait(&cond, &criticalSection);
    pthread_mutex_unlock(&criticalSection);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    //	EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    SuspendThread(mHandle);
    //	LeaveCriticalSection((CRITICAL_SECTION*)mCriticalSection);
@@ -165,35 +165,35 @@ void Thread::sleep()
 
 void Thread::wakeUp()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_cond_signal(&cond);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    ResumeThread(mHandle);
 #endif
 }
 
 void Thread::interrupt()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_lock(&criticalSection);
    alive = false;
    pthread_mutex_unlock(&criticalSection);
    pthread_cond_signal(&cond);
    pthread_join(thread, nullptr);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    TerminateThread(mHandle, 0);
 #endif
 }
 
 bool Thread::isAlive()
 {
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    bool ret;
    pthread_mutex_lock(&criticalSection);
    ret = alive;
    pthread_mutex_unlock(&criticalSection);
    return ret;
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    bool ret;
    EnterCriticalSection((CRITICAL_SECTION*)mCriticalSection);
    ret = alive;
@@ -206,13 +206,13 @@ bool Thread::isAlive()
 void Thread::setName(const jm::String& name)
 {
    if(thread==0)return;
-#if defined __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
+   ByteArray cstr = name.toCString();
+   pthread_setname_np(cstr.constData());
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
    ByteArray cstr = name.toCString();
    pthread_setname_np(thread, cstr.constData());
-#elif defined __linux__
-   ByteArray cstr = name.toCString();
-   pthread_setname_np(thread, cstr.constData());
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    uint16* cstr = name.toWString();
    SetThreadDescription(mHandle, (PCWSTR)cstr);
    delete[] cstr;
@@ -223,13 +223,12 @@ void Thread::setName(const jm::String& name)
 
 bool Thread::isMainThread()
 {
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
    //Nur OS X?
    return pthread_main_np() != 0;
-#elif defined __linux__
-   //Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
    return syscall(SYS_gettid) == getpid();
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    return false;
 #endif
 }

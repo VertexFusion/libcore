@@ -172,7 +172,7 @@ void String::checkCapacity(int64 more)
    mValue = tmp;
 }
 
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
 
 String String::fromCFString(CFStringRef cfstring)
 {
@@ -1134,11 +1134,11 @@ bool String::isEmpty() const
 
 String String::lineSeparator()
 {
-#ifdef __APPLE__//macOS, iOS
+#if defined(JM_MACOS) || defined(JM_IOS)
    return "\n";
-#elif defined __linux__ //Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
    return "\n";
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    return "\r\n";
 #endif
 }

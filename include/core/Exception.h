@@ -32,11 +32,11 @@
 #ifndef jm_Exception_h
 #define jm_Exception_h
 
-#ifdef __APPLE__ //macOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 #include <pthread.h>
-#elif defined __linux__//Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
 #include <pthread.h>
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 //Keine Threadbib
 #endif
 
@@ -89,11 +89,9 @@ namespace jm
          String mMessage;
 
          //! The thread id
-#ifdef __APPLE__ //macOS
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
          pthread_t tid;
-#elif defined __linux__//Linux
-         pthread_t tid;
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
          // In Windows a thread id does not exist.
 #endif
 

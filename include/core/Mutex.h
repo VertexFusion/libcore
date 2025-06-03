@@ -34,7 +34,7 @@
 
 #include "Types.h"
 
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
 #include <pthread.h>
 
@@ -82,7 +82,7 @@ namespace jm
 
       private:
 
-#if defined(__APPLE__) || defined(__linux__)//macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
          //!pthread data types
          pthread_mutex_t criticalSection;
@@ -90,7 +90,7 @@ namespace jm
          pthread_condattr_t attrc;
          pthread_cond_t cond;
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 
          //On Windows 7 und 10 sizeof(CRITICAL_SECTION) returns 40 Bytes, so he make hardcode here.
          uint8 mCriticalSection[40];

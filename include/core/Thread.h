@@ -32,7 +32,7 @@
 #ifndef jm_Thread_h
 #define jm_Thread_h
 
-#ifdef __APPLE__//macOS, iOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 
 #include <pthread.h>
 
@@ -41,9 +41,9 @@
 #include "Types.h"
 #include "Object.h"
 
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 extern "C" void* StartThread(void* arg);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
 extern "C" unsigned long __stdcall StartThread(void* lpParameter);
 #endif
 
@@ -54,9 +54,9 @@ namespace jm
    class DllExport Thread: public Object
    {
          // This method is needed for starting the thread
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
          friend void* ::StartThread(void* arg);
-#elif defined _WIN32
+#elif defined JM_WINDOWS
          friend unsigned long __stdcall ::StartThread(void* lpParameter);
 #endif
 
@@ -64,7 +64,7 @@ namespace jm
       private:
 
          //macOS, iOS
-#if defined __APPLE__ || defined __linux__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
          pthread_t thread;
          pthread_condattr_t attrc;
@@ -72,7 +72,7 @@ namespace jm
          pthread_mutex_t criticalSection;
          pthread_mutexattr_t attra;
 
-#elif defined _WIN32
+#elif defined JM_WINDOWS
 
          unsigned long mThreadID;
          void* mHandle;

@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Jameo Software. All rights reserved.
 //
 
-#ifdef __APPLE__//macOS, iOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 #include <cmath>
-#elif defined __linux__ //Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
 #include <cstdlib>
 #include <stdint.h>
 #include <cmath>
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 #endif
 
 #include "VertexTest.h"

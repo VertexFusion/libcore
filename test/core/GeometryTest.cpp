@@ -39,8 +39,8 @@ struct timespec orwl_gettime(void)
    t.tv_nsec = diff - (t.tv_sec * ORWL_GIGA);
    return t;
 }
-#elif defined __linux__ //Linux
-#elif defined _WIN32//Windows
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
+#elif defined JM_WINDOWS
 #endif
 
 

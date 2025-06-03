@@ -224,11 +224,15 @@ StringList& jm::operator<< (StringList& out, const String& str)
 
 String* StringList::begin()
 {
-   return mData;
+   return &mData[0];
 }
 
-// Method needed for range-base for
 String* StringList::end()
 {
-   return mData + mSize;
+   // Note: end() returns a pointer to the "element" after the last element.
+   // This is the standard behavior for STL containers.
+   // It allows for range-based for loops to work correctly.
+   // This element is not always initialized or valid, but it is used to indicate the end of the
+   // container.
+   return &mData[mSize];
 }

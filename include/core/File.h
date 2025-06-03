@@ -45,11 +45,9 @@ namespace jm
    /*!
     \brief This field stores the directory separator character based on the operating system.
     */
-#ifdef __APPLE__//macOS, iOS
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    const Char DIR_SEP = Char('/');
-#elif defined __linux__ //Linux
-   const Char DIR_SEP = Char('/');
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    const Char DIR_SEP = Char('\\');
 #endif
 
@@ -113,7 +111,7 @@ namespace jm
          /*!
           \brief Checks if the file can be read.
           */
-         bool canRead() const;
+         bool canRead() const override;
 
          /*!
           \brief Checks if the file can be written.

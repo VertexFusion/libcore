@@ -32,7 +32,7 @@
 #ifndef jm_String_h
 #define jm_String_h
 
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
 #include <CoreFoundation/CFString.h>
 #endif
 
@@ -126,7 +126,7 @@ namespace jm
           */
          ~String() override;
 
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
 
          /*! \brief Converts from CFString
           \note Only visible on mac

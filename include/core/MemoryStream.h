@@ -57,54 +57,26 @@ namespace jm
           */
          ~MemoryStream() override;
 
-         /*!
-         \copdoc Stream::open()
-         */
          Status open(FileMode mode) override;
 
-         /*!
-          \copydoc Stream::isOpen()
-          */
          bool isOpen() override;
 
-         /*!
-         \copydoc Stream::close()
-         */
+         bool canRead() const override;
+
          void close() override;
 
-         /*!
-         \copydoc Stream::read()
-         */
          int64 read(uint8* buffer, int64 length) override;
 
-         /*!
-         \copydoc Stream::readFully()
-         */
          int64 readFully(ByteArray& buffer, int64 length) override;
 
-         /*!
-         \copydoc Stream::readByte()
-         */
          void seek(int64 position) override;
 
-         /*!
-          \copydoc Stream::move()
-          */
          void move(int64 offset) override;
 
-         /*!
-         \copydoc Stream::position()
-         */
          int64 position() override;
 
-         /*!
-         \copydoc Stream::write()
-         */
          int64 write(const uint8* buffer, int64 length) override;
 
-         /*!
-          \copydoc Stream::size()
-          */
          int64 size() const override;
 
          /*!

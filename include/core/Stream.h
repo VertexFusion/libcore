@@ -87,6 +87,11 @@ namespace jm
          virtual bool isOpen() = 0;
 
          /*!
+          \brief Checks if the file/stream can be read.
+          */
+         virtual bool canRead() const = 0;
+
+         /*!
           \brief Closes the stream if it was previously opened and releases any system resources.
           \details This method closes the stream if it was previously opened and releases any system resources associated with it.
           */

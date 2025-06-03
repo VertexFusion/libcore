@@ -48,7 +48,9 @@
 #include <bit>
 #include <numbers>
 
-#ifdef __APPLE__//macOS, iOS
+#include "core/Types.h"
+
+#if defined(JM_MACOS) || defined(JM_IOS)//macOS, iOS
 #include <cstdlib>
 #include <dirent.h>
 #include <stdint.h>
@@ -69,7 +71,7 @@
 #include <net/if_dl.h> // For MAC address
 
 #include "core/MacInterface.h"
-#elif defined __linux__ //Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
 
 #include <errno.h>
 #include <cstdlib>
@@ -95,7 +97,7 @@
 #include <linux/if_packet.h>
 #include <linux/if_ether.h>
 
-#ifdef __ANDROID__
+#ifdef JM_ANDROID // Android
 #include <jni.h>
 
 // Implemented in nuitk
@@ -104,7 +106,7 @@ jobject activity();
 
 #endif
 
-#elif defined _WIN32 // Windows
+#elif defined JM_WINDOWS
 
 #define NOMINMAX
 #include <Windows.h>

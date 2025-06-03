@@ -91,6 +91,7 @@
 		C65510DC2C22294D00480B5E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65510DB2C22294D00480B5E /* CoreFoundation.framework */; };
 		C66B3D172C4C1C4300ECB692 /* StringList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C66B3D162C4C1C4300ECB692 /* StringList.cpp */; };
 		C66B3D182C4C1C4300ECB692 /* StringList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C66B3D162C4C1C4300ECB692 /* StringList.cpp */; };
+		C691C6EF2DE708C000621F77 /* SerializerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C691C6EE2DE708C000621F77 /* SerializerTest.cpp */; };
 		C699222A2AF7AA660099AEC0 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B907F2AEEFC550085300B /* Thread.cpp */; };
 		C699222B2AF7AA660099AEC0 /* Diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90972AEEFC550085300B /* Diff.cpp */; };
 		C699222C2AF7AA660099AEC0 /* DiffInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C62B90792AEEFC550085300B /* DiffInfo.cpp */; };
@@ -476,6 +477,8 @@
 		C65510DB2C22294D00480B5E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C65510DD2C222A0C00480B5E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C66B3D162C4C1C4300ECB692 /* StringList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringList.cpp; path = src/core/StringList.cpp; sourceTree = "<group>"; };
+		C691C6ED2DE708C000621F77 /* SerializerTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SerializerTest.h; path = test/core/SerializerTest.h; sourceTree = "<group>"; };
+		C691C6EE2DE708C000621F77 /* SerializerTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SerializerTest.cpp; path = test/core/SerializerTest.cpp; sourceTree = "<group>"; };
 		C69922212AF7AA2C0099AEC0 /* JameoCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JameoCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B8A2B02CC39DB500A83068 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		C6B8A2B22CC39DC200A83068 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
@@ -590,6 +593,8 @@
 		C62B90442AEEFC270085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C691C6ED2DE708C000621F77 /* SerializerTest.h */,
+				C691C6EE2DE708C000621F77 /* SerializerTest.cpp */,
 				C627D5D52CAA8E89000C2451 /* FileTest.h */,
 				C627D5D62CAA8E89000C2451 /* FileTest.cpp */,
 				C627D5D72CAA8E89000C2451 /* StringListTest.h */,
@@ -912,6 +917,7 @@
 				C62B91912AEF001D0085300B /* DeflateTest.cpp in Sources */,
 				C62B91932AEF001D0085300B /* UndoManagerTest.cpp in Sources */,
 				C62B91922AEF001D0085300B /* VertexTest.cpp in Sources */,
+				C691C6EF2DE708C000621F77 /* SerializerTest.cpp in Sources */,
 				C62B91902AEF001D0085300B /* GeometryTest.cpp in Sources */,
 				C6F0F51D2AF63BED005BA06F /* EditableObjectTest.cpp in Sources */,
 			);

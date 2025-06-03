@@ -36,7 +36,7 @@ using namespace jm;
 
 Resource::Resource(const String& path)
 {
-#ifdef __ANDROID__
+#ifdef JM_ANDROID
    jm::ByteArray array = jm::osResourceRead(path);
    if(array.size() <= 0)
    {
@@ -91,6 +91,11 @@ jm::Status Resource::open(jm::FileMode mode)
 bool Resource::isOpen()
 {
    return mStream->isOpen();
+}
+
+bool Resource::canRead() const
+{
+   return mStream->canRead();
 }
 
 void Resource::close()

@@ -73,6 +73,8 @@ namespace jm
 
          bool isOpen() override;
 
+         bool canRead() const override;
+
          void close() override;
 
          int64 read(uint8* buffer, int64 length) override;

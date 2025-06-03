@@ -64,6 +64,11 @@ void MemoryStream::close()
    mPosition = 0;
 }
 
+bool MemoryStream::canRead() const
+{
+   return true;
+}
+
 int64 MemoryStream::read(uint8* buffer, int64 length)
 {
    int64 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;

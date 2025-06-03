@@ -58,6 +58,12 @@ void ZipFile::open()
    uint32 length = (uint32)mFile->size();
    uint32 seek = length - 22;
 
+   // If we cannot read the file, we cannot do anything
+   if(mFile->canRead() == false)
+   {
+      return;
+   }
+
    mFile->open(FileMode::kRead);
 
    // If the file is empty, then we are done

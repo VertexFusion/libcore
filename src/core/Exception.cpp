@@ -15,9 +15,7 @@ Exception::Exception(const String& message): Object()
    mMessage = message;
    System::log(mMessage, LogLevel::kError);
 
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
-
-#ifndef __ANDROID__
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX)
 
    tid = pthread_self();
 
@@ -43,9 +41,7 @@ Exception::Exception(const String& message): Object()
    // wrong.
    free(symbols);
 
-#endif
-
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    //Keine Threadbib
 #endif
 
@@ -56,9 +52,9 @@ Exception::Exception(const Exception& other): Object(),
    addrlen(other.addrlen),
    mSymbolList(other.mSymbolList)
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    tid = other.tid;
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    //Keine Threadbib
 #endif
 }
@@ -70,7 +66,7 @@ String Exception::errorMessage() const
 
 void Exception::printStackTrace() const
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
    //1. Zeile
    std::cerr << "Exception in thread \"" << tid  << "\"";
@@ -83,7 +79,7 @@ void Exception::printStackTrace() const
    for(uint32 i = 1; i < addrlen; i++)
    {
 
-#ifdef __APPLE__ //macOS
+#if defined(JM_MACOS) || defined(JM_IOS)
       //Formatierung 0   libjameo.dylib                      0x00000001005d7dec _ZN2jm9ExceptionC1ENS_6StringE + 184
 
       //Schneide Index (o) ab
@@ -115,17 +111,17 @@ void Exception::printStackTrace() const
 
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" <<
                  std::endl;
-#elif defined __linux__//Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
       String line = mSymbolList[i];
       std::cerr << "\ta" << line << std::endl;
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
       //Bisher nix
 #endif
 
    }
    delete[] buffer;
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    //Keine Threadbib
 #endif
 
@@ -135,7 +131,7 @@ String Exception::GetStrackTrace() const
 {
    String ret;
 
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
    //1. Zeile
    ret << "Exception in thread \"" << /* reinterpret_cast<int64>(tid)  << */ "\"";
@@ -148,7 +144,7 @@ String Exception::GetStrackTrace() const
    for(uint32 i = 1; i < addrlen; i++)
    {
 
-#ifdef __APPLE__ //macOS
+#if defined(JM_MACOS) || defined(JM_IOS) //macOS
       //Formatierung 0   libjameo.dylib                      0x00000001005d7dec _ZN2jm9ExceptionC1ENS_6StringE + 184
 
       //Schneide Index (o) ab
@@ -180,17 +176,17 @@ String Exception::GetStrackTrace() const
 
       ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r'
           << '\n';
-#elif defined __linux__//Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
       String line = mSymbolList[i];
       ret << "\ta" << line << "\r\n";
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
       //Bisher nix
 #endif
 
    }
    delete[] buffer;
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    //Keine Threadbib
 #endif
 

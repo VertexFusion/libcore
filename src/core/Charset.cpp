@@ -167,11 +167,11 @@ String Charset::guess(const char* stream, int64 length)
 
    String encoding;
 
-#ifdef __APPLE__ //macOS
+#if defined(JM_MACOS) || defined(JM_IOS)
    encoding = "MacRoman";
-#elif defined __linux__ //Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
    encoding = "UTF-8";
-#elif defined _WIN32 //Windows
+#elif defined JM_WINDOWS
    encoding = "Windows-1252";
 #endif
 

@@ -37,15 +37,15 @@ using namespace jm;
 
 Date::Date(): Comparable<Date>()
 {
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
    struct timeval tp;
    gettimeofday(&tp, nullptr);
    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-#elif defined __linux__//Linux
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
    struct timeval tp;
    gettimeofday(&tp, nullptr);
    mTime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-#elif defined _WIN32
+#elif defined JM_WINDOWS
    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>
                                   (std::chrono::system_clock::now().time_since_epoch());
    mTime = ms.count();

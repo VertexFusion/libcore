@@ -8,10 +8,10 @@
 #ifndef MacInterface_h
 #define MacInterface_h
 
-#ifdef __APPLE__//macOS, iOS
+#if defined(JM_MACOS) || defined(JM_IOS)//macOS, iOS
 bool File_MoveToTrash(const char* cstr);
-#elif defined __linux__ //Linux
-#elif defined _WIN32//Windows
+#elif defined JM_LINUX
+#elif defined JM_WINDOWS
 #endif
 
 #endif /* MacInterface_h */

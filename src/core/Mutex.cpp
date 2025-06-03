@@ -35,20 +35,20 @@ using namespace jm;
 
 Mutex::Mutex()
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_condattr_init(&attrc);
    pthread_cond_init(&cond, &attrc);
    pthread_mutexattr_init(&attr);
    pthread_mutex_init(&criticalSection, &attr);
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
    InitializeCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
 #endif
 }
 
 Mutex::~Mutex()
 {
-#if defined _WIN32//Windows
+#if defined JM_WINDOWS
    CRITICAL_SECTION* ptr = (CRITICAL_SECTION*)&mCriticalSection;
    DeleteCriticalSection(ptr);
 #endif
@@ -56,9 +56,9 @@ Mutex::~Mutex()
 
 void Mutex::lock()
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_lock(&criticalSection);
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 
    EnterCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
 
@@ -67,10 +67,10 @@ void Mutex::lock()
 
 void Mutex::unlock()
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_unlock(&criticalSection);
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 
    LeaveCriticalSection((CRITICAL_SECTION*)&mCriticalSection);
 
@@ -79,12 +79,12 @@ void Mutex::unlock()
 
 void Mutex::sleep()
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_mutex_lock(&criticalSection);
    pthread_cond_wait(&cond, &criticalSection);
    pthread_mutex_unlock(&criticalSection);
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 
    throw jm::Exception("jm::Mutex::Sleep() Not implemented");
 
@@ -93,10 +93,10 @@ void Mutex::sleep()
 
 void Mutex::wakeUp()
 {
-#if defined(__APPLE__) || defined(__linux__)   //macOS & Linux
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    pthread_cond_signal(&cond);
 
-#elif defined _WIN32//Windows
+#elif defined JM_WINDOWS
 
    throw jm::Exception("jm::Mutex::WakeUp() Not implemented");
 

@@ -35,6 +35,23 @@
 #ifndef jm_Types_h
 #define jm_Types_h
 
+//! We want universal easy to use compiler flags for OS detection.
+#ifdef _WIN32
+   #define JM_WINDOWS
+#elif defined __APPLE__
+   #if defined TARGET_OS_IOS
+      #define JM_IOS
+   #else   
+      #define JM_MACOS
+   #endif
+#elif defined __linux__
+   #ifdef __ANDROID__
+      #define JM_ANDROID
+   #else
+      #define JM_LINUX
+   #endif
+#endif
+
 //! ASCII Constants for different operations
 #define kTxtClearScreen "\033[2J\033[H" // CLEAR SCREEN AND CURSOR TO HOME
 
@@ -135,7 +152,7 @@ using uint16 = unsigned short;
 using int32 = int;
 using uint32 = unsigned int;
 
-#ifdef __APPLE__
+#if defined(JM_MACOS) || defined(JM_IOS)
 
 #define DllExport
 using int64 = __int64_t;
@@ -144,14 +161,14 @@ using slong = long;
 using ulong = unsigned long;
 #define WITHULONG
 
-#elif defined __linux__
+#elif defined(JM_LINUX) || defined(JM_ANDROID)
 
 #define DllExport
 using int64 = __int64_t;
 using uint64 = __uint64_t;
 using slong = long;
 
-#elif defined _WIN32
+#elif defined JM_WINDOWS
 
 #define DllExport __declspec( dllexport )
 

@@ -54,6 +54,7 @@ void StringListTest::doTest()
       if(index == 2)testEquals(string, "item3", "list[2]!=item3");
       index++;
    }
+   testEquals(index, 3, "index wrong");
 
    // remove
    list.remove("item2");

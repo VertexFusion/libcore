@@ -166,7 +166,7 @@ void FileTest::doTest()
 
 
    // Test tags (actually only on macOS and Linux)
-#if defined(__APPLE__) || defined(__linux__)
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
    StringList tags = file.getTags();
    testEquals(tags.size(), 0, "File::getTags().size()==0 failed");

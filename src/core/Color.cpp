@@ -33,16 +33,6 @@
 
 using namespace jm;
 
-#ifdef __APPLE__//macOS, iOS
-using std::min;
-using std::max;
-#elif defined __linux__ //Linux
-using std::min;
-using std::max;
-#elif defined _WIN32//Windows
-#endif
-
-
 Color::Color()
 {
    mMode = ColorMode::kRgb;
