@@ -85,7 +85,7 @@ bool Vertex3::isNull() const
 
 bool Vertex3::isValid() const
 {
-   return  !(isNaN(x) || isNaN(y) || isNaN(z));
+   return  !(isNaN(x) || isNaN(y) || isNaN(z) || std::isinf(x) || std::isinf(y) || std::isinf(z));
 }
 
 
