@@ -33,5 +33,3 @@
 
 using namespace jm;
 
-using std::cout;
-using std::endl;

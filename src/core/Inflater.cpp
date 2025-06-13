@@ -31,8 +31,6 @@
 
 #include "PrecompiledCore.hpp"
 
-using std::max;
-
 using namespace jm;
 
 //Konstante Huffman-Werte
@@ -225,7 +223,7 @@ void Inflater::checkCapacity()
 
    // Increase
    double ratio = mCompIndex / (double)mCompLength;
-   int64 newLength = mUncompLength + max(int64(4096), int64(mUncompLength / ratio));
+   int64 newLength = mUncompLength + std::max(int64(4096), int64(mUncompLength / ratio));
    uint8* tmp = new uint8[newLength];
    if(tmp == nullptr)throw Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
