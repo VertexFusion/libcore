@@ -90,14 +90,24 @@ namespace jm
          Vertex3 point(double t);
 
          /*!
-          \brief This method returns the smallest value of t. In this case, it returns 0.
+          \brief This method returns the smallest value of t.
           */
-         double start();
+         double start() const;
 
          /*!
            \brief This method returns the maximum value of t.
            */
-         double end();
+         double end() const;
+
+         /*!
+          \brief The start index for calculating min t.
+          */
+         int32 startIndex() const;
+
+         /*!
+          \brief The start index for calculating max t.
+          */
+         int32 endIndex()const;
 
          /*!
           \brief Returns the number of control points.

@@ -50,7 +50,7 @@ Nurbs::Nurbs(uint32 degree,
              double* knots,
              uint32 knotCount,
              double* weights,
-             uint32 weightcount): Object()
+             uint32 weightCount): Object()
 {
    mDegree = degree;
    if(mDegree < 1)throw Exception(Tr("Degree of NURBS must be greater 0."));
@@ -63,7 +63,7 @@ Nurbs::Nurbs(uint32 degree,
    mKnots = new double[mKnotCount];
    for(uint32 a = 0; a < mKnotCount; a++)mKnots[a] = knots[a];
 
-   mWeightCount = weightcount;
+   mWeightCount = weightCount;
    mWeights = new double[mWeightCount];
    for(uint32 a = 0; a < mWeightCount; a++)mWeights[a] = weights[a];
 }
@@ -80,7 +80,8 @@ double Nurbs::N(uint32 i, uint32 k, double t)
 
    if(k == 0)
    {
-      if(mKnots[i] <= t && t < mKnots[i + 1]) return 1.0;
+      if((mKnots[i] <= t && t < mKnots[i + 1])
+         || (jm::isEqual(t,mKnots[mKnotCount-1]) && jm::isEqual(t, mKnots[i + 1]))) return 1.0;
       return 0.0;
    }
 
@@ -89,15 +90,15 @@ double Nurbs::N(uint32 i, uint32 k, double t)
    double c = mKnots[i + k + 1] - t;
    double d = mKnots[i + k + 1] - mKnots[i + 1];
 
-   double N1 = 0;
-   double N2 = 0;
+   double N1 = 0.0;
+   double N2 = 0.0;
 
-   if(!isEqual(b, 0.0))
+   if(!jm::isEqual(b, 0.0))
    {
       N1 = N(i, k - 1, t) * a / b;
    }
 
-   if(!isEqual(d, 0.0))
+   if(!jm::isEqual(d, 0.0))
    {
       N2 = N(i + 1, k - 1, t) * c / d;
    }
@@ -107,33 +108,60 @@ double Nurbs::N(uint32 i, uint32 k, double t)
 double Nurbs::R(uint32 i, uint32 k, double t)
 {
    double a = mWeights[i] * N(i, k, t);
-   double b = 0;
+   double b = 0.0;
 
    for(uint32 j = 0; j < mControlCount; j++)b += mWeights[j] * N(j, k, t);
+
+   if (jm::isEqual(b, 0.0)) return 0.0;
 
    return a / b;
 }
 
 Vertex3 Nurbs::point(double t)
 {
-   Vertex3 P;
+   Vertex3 p;
+   double denominator = 0.0;
 
-   for(uint32 i = 0; i < mControlCount; i++)P += mControlpoints[i] * R(i, mDegree, t);
+   // because i + k + 1 < mKnotCount
+   int32 end = mKnotCount - mDegree - 1;
 
-   return P;
+   for (int32 i = 0; i < end; ++i)
+   {
+      double Ni = N(i, mDegree, t);
+      double weightedNi = mWeights[i] * Ni;
+
+      p += mControlpoints[i] * weightedNi;
+      denominator += weightedNi;
+   }
+
+   if (jm::isEqual(denominator, 0.0))
+   {
+      return Vertex3();
+   }
+
+   return p / denominator;
 }
 
-double Nurbs::start()
+double Nurbs::start() const
 {
-   return 0;
+    if (mKnotCount == 0)return 0.0;
+    return mKnots[mDegree];
 }
 
-double Nurbs::end()
+double Nurbs::end() const
 {
-   if(mKnotCount < 1)return 0;
-   double m = mControlCount - mDegree + 2;
-   if(m < mKnots[mKnotCount - 1])m = mKnots[mKnotCount - 1];
-   return m;
+    if (mKnotCount == 0)return 0.0;
+    return mKnots[mKnotCount - mDegree - 1];
+}
+
+int32 Nurbs::startIndex() const
+{
+   return mDegree;
+}
+
+int32 Nurbs::endIndex() const
+{
+   return mKnotCount - mDegree - 1;
 }
 
 uint32 Nurbs::controlPointCount()
