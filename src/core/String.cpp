@@ -1119,6 +1119,10 @@ int64 String::toInt() const
          val *= 10;
          val += c.digitValue();
       }
+      else if(c.isWhitespace())
+      {
+         //Ignore;
+      }
       else if(c == '-')neg = true;
       else throw jm::Exception("Number format exception for input string: \"" + *this + "\"");
    }
