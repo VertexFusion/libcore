@@ -42,6 +42,8 @@ Nurbs::Nurbs(): Object()
    mKnotCount = 0;
    mWeights = nullptr;
    mWeightCount = 0;
+   mClamped=false;
+   mClosed=false;
 }
 
 Nurbs::Nurbs(uint32 degree,
@@ -66,6 +68,9 @@ Nurbs::Nurbs(uint32 degree,
    mWeightCount = weightCount;
    mWeights = new double[mWeightCount];
    for(uint32 a = 0; a < mWeightCount; a++)mWeights[a] = weights[a];
+
+   mClamped=calcClamped();
+   mClosed=calcClosed();
 }
 
 Nurbs::~Nurbs()
@@ -80,15 +85,15 @@ double Nurbs::N(uint32 i, uint32 k, double t)
 
    if(k == 0)
    {
-      if((mKnots[i] <= t && t < mKnots[i + 1])
-         || (jm::isEqual(t,mKnots[mKnotCount-1]) && jm::isEqual(t, mKnots[i + 1]))) return 1.0;
+      if((jm::isLessEqual(mKnots[i%mKnotCount] , t) && jm::isLess(t , mKnots[(i + 1)%mKnotCount]))
+         || (jm::isEqual(t,mKnots[mKnotCount-1]) && jm::isEqual(t, mKnots[(i + 1)%mKnotCount]))) return 1.0;
       return 0.0;
    }
 
-   double a = t - mKnots[i];
-   double b = mKnots[i + k] - mKnots[i];
-   double c = mKnots[i + k + 1] - t;
-   double d = mKnots[i + k + 1] - mKnots[i + 1];
+   double a = t - mKnots[i%mKnotCount];
+   double b = mKnots[(i + k)%mKnotCount] - mKnots[i%mKnotCount];
+   double c = mKnots[(i + k + 1)%mKnotCount] - t;
+   double d = mKnots[(i + k + 1)%mKnotCount] - mKnots[(i + 1)%mKnotCount];
 
    double N1 = 0.0;
    double N2 = 0.0;
@@ -122,10 +127,9 @@ Vertex3 Nurbs::point(double t)
    Vertex3 p;
    double denominator = 0.0;
 
-   // because i + k + 1 < mKnotCount
-   int32 end = mKnotCount - mDegree - 1;
+   int32 endIdx = mControlCount;
 
-   for (int32 i = 0; i < end; ++i)
+   for (int32 i = 0; i < endIdx; ++i)
    {
       double Ni = N(i, mDegree, t);
       double weightedNi = mWeights[i] * Ni;
@@ -142,16 +146,75 @@ Vertex3 Nurbs::point(double t)
    return p / denominator;
 }
 
+bool Nurbs::isClamped() const
+{
+   return mClamped;
+}
+
+bool Nurbs::isClosed() const
+{
+   return mClosed;
+}
+
+bool Nurbs::calcClamped() const
+{
+    if (mKnotCount == 0) return false;
+
+    // Check start clamping: first degree+1 knots equal?
+    double startKnot = mKnots[0];
+    bool startClamped = true;
+    for (uint32 i = 1; i <= mDegree; ++i)
+    {
+       if(jm::isNotEqual(mKnots[i] , startKnot))
+       {
+            startClamped = false;
+            break;
+       }
+    }
+
+    // Check end clamping: last degree+1 knots equal?
+    double endKnot = mKnots[mKnotCount - 1];
+    bool endClamped = true;
+    for (uint32 i = mKnotCount - mDegree - 1; i < mKnotCount - 1; ++i)
+    {
+        if (jm::isNotEqual(mKnots[i] , endKnot))
+        {
+            endClamped = false;
+            break;
+        }
+    }
+
+    return startClamped && endClamped;
+}
+
+bool Nurbs::calcClosed() const
+{
+   if (mControlCount < 2) return false;
+
+   // 1. Geometric closure check
+   bool geomClosed = (mControlpoints[0]==mControlpoints[mControlCount-1]);
+
+   // 2. Knot vector size heuristic for periodicity
+   uint32 expectedKnots = mControlCount + mDegree + 1;
+   bool paramClosed = mKnotCount< expectedKnots;
+
+   return geomClosed || paramClosed;
+}
+
 double Nurbs::start() const
 {
-    if (mKnotCount == 0)return 0.0;
-    return mKnots[mDegree];
+   if (mKnotCount == 0) return 0.0;
+   if (mDegree >= mKnotCount - 1) return mKnots[0];
+
+   return mKnots[mDegree];
 }
 
 double Nurbs::end() const
 {
-    if (mKnotCount == 0)return 0.0;
-    return mKnots[mKnotCount - mDegree - 1];
+   if (mKnotCount == 0)return 0;
+   if (mDegree >= mKnotCount - 1) return mKnots[mKnotCount-1];
+
+   return mKnots[mKnotCount - mDegree - 1];
 }
 
 int32 Nurbs::startIndex() const
@@ -177,4 +240,19 @@ uint32 Nurbs::knotCount()const
 double Nurbs::knot(uint32 index)const
 {
    return mKnots[index];
+}
+
+uint32 Nurbs::degree() const
+{
+   return mDegree;
+}
+
+jm::Vertex3 Nurbs::controlPoint(uint32 index) const
+{
+   return mControlpoints[index];
+}
+
+double Nurbs::weight(uint32 index) const
+{
+   return mWeights[index];
 }

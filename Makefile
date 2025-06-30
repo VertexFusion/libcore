@@ -150,6 +150,7 @@ TEST =\
  $(PATH_TEST)/core/LinkedListTest.cpp\
  $(PATH_TEST)/core/MathTest.cpp\
  $(PATH_TEST)/core/MatrixTest.cpp\
+ $(PATH_TEST)/core/NurbsTest.cpp\
  $(PATH_TEST)/core/SerializerTest.cpp\
  $(PATH_TEST)/core/StringTest.cpp\
  $(PATH_TEST)/core/StringListTest.cpp\

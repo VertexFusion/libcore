@@ -23,6 +23,7 @@
 #include "core/FileTest.h"
 #include "core/StringListTest.h"
 #include "core/SerializerTest.h"
+#include "core/NurbsTest.h"
 
 using namespace jm;
 
@@ -49,6 +50,7 @@ int main(int argc, const char* argv[])
    vec->addTest(new EditableObjectTest());
    vec->addTest(new FileTest());
    vec->addTest(new SerializerTest());
+   vec->addTest(new NurbsTest());
 
    int64 result = vec->execute();
 

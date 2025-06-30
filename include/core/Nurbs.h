@@ -124,6 +124,43 @@ namespace jm
           */
          double knot(uint32 index)const;
 
+         /*!
+          \brief Returns true, if the NURBS is clamped
+          */
+         bool isClamped() const;
+
+         /*!
+          \brief Returns true, if NURBS is closed
+          */
+         bool isClosed() const;
+
+         /*!
+          \brief Returns the degree
+          */
+         uint32 degree() const;
+
+         jm::Vertex3 controlPoint(uint32 index) const;
+
+         double weight(uint32 index) const;
+
+         /*!
+          \brief This method returns the value of N_i,k(t).
+          \param i The index of the control point.
+          \param k The degree of the polynomial for which N is returned. (Not necessarily the degree of the NURBS)
+          \param t The parameter value along the curve.
+          \return The value of N_i,k(t) at the given parameter value.
+          */
+         double N(uint32 i, uint32 k, double t);
+
+         /*!
+          \brief This method returns the weight of the control points R_i,k(t).
+          \param i The index of the control point.
+          \param k The degree of the polynomial for which R is returned.
+          \param t The parameter value along the curve.
+          \return The weight of the control point at the given parameter value.
+          */
+         double R(uint32 i, uint32 k, double t);
+
       private:
 
          /*!
@@ -158,22 +195,13 @@ namespace jm
          uint32 mWeightCount;
 
          /*!
-          \brief This method returns the value of N_i,k(t).
-          \param i The index of the control point.
-          \param k The degree of the polynomial for which N is returned. (Not necessarily the degree of the NURBS)
-          \param t The parameter value along the curve.
-          \return The value of N_i,k(t) at the given parameter value.
+          \brief We store the clamped status
           */
-         double N(uint32 i, uint32 k, double t);
+         bool mClamped;
+         bool mClosed;
 
-         /*!
-          \brief This method returns the weight of the control points R_i,k(t).
-          \param i The index of the control point.
-          \param k The degree of the polynomial for which R is returned.
-          \param t The parameter value along the curve.
-          \return The weight of the control point at the given parameter value.
-          */
-         double R(uint32 i, uint32 k, double t);
+         bool calcClamped() const;
+         bool calcClosed() const;
    };
 
 }
