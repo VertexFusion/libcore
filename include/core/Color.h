@@ -302,7 +302,7 @@ namespace jm
    };
 
    // Under windows we do not need that, under macOS it is required
-#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
+//# if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
    DllExport
    Color blend(Color background, Color foreground, uint8 alpha);
 
@@ -320,7 +320,7 @@ namespace jm
 
    DllExport
    Color operator+(Color const& c1, Color const& c2);
-#endif
+//# endif
 
 }
 
