@@ -114,7 +114,7 @@ void StringTest::doTest()
    //Teste lastIndexOf
    testEquals(str1.lastIndexOf('a'), 70, "String.lastIndexOf() fails. (1)");
    testEquals(str1.lastIndexOf(' '), 78, "String.lastIndexOf() fails. (2)");
-   testEquals(str1.lastIndexOf('A'), -1, "String.lastIndexOf() fails. (3)");
+   testEquals(str1.lastIndexOf('A'), npos, "String.lastIndexOf() fails. (3)");
    testEquals(str1.lastIndexOf("im"), 11, "String.lastIndexOf() fails. (4)");
    testEquals(str1.lastIndexOf("en"), 72, "String.lastIndexOf() fails. (5)");
 

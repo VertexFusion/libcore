@@ -348,7 +348,7 @@ int64 Date::makeDay(int64 year, int64 month, int64 date) const
          break;
 
       default:
-         tfm = 0xFFFFFFFFFFFFFFFFLL;
+         tfm = EMPTY;
          break;
    }
 

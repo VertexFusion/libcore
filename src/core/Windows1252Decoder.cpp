@@ -84,7 +84,7 @@ ByteArray Windows1252Decoder::encode(const CharArray& string)
 {
    ByteArray cstring = ByteArray(string.length, 0);
 
-   for(int64 a = 0; a < string.length; a++)
+   for(size_t a = 0; a < string.length; a++)
    {
       switch(string.buffer[a].unicode())
       {

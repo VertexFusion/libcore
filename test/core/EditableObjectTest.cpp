@@ -65,7 +65,7 @@ class AddressBook : public Document
 
       void AddAddress(Address* adr);
 
-      int64 GetAddressCount() const;
+      size_t GetAddressCount() const;
 
    private:
 
@@ -135,7 +135,7 @@ void AddressBook::AddAddress(Address* adr)
    mEntries.add(adr, undoManager());
 }
 
-int64 AddressBook::GetAddressCount() const
+size_t AddressBook::GetAddressCount() const
 {
    return mEntries.size();
 }

@@ -71,7 +71,7 @@ namespace jm
           \param length Data length
           */
          void setInput(uint8* buffer,
-                       int64 length);
+                       size_t length);
 
          /*!
           \brief This method compresses the data in the buffer
@@ -81,7 +81,7 @@ namespace jm
           \param length Buffer length
           */
          void deflate(uint8*& buffer,
-                      int64& length);
+                      size_t& length);
 
          /*!
           \brief Resets the compressor so that a new object can be compressed
@@ -91,23 +91,23 @@ namespace jm
          /*!
           \brief Returns the total number of bytes of the uncompressed input
           */
-         int64 totalInSize();
+         size_t totalInSize();
 
          /*!
           \brief Returns the total number of bytes of the compressed output
           */
-         int64 totalOutSize();
+         size_t totalOutSize();
 
       private:
 
          //Current block
          uint8* mUncompBytes;
-         int64 mUncompLength;
-         int64 mUncompIndex;
+         size_t mUncompLength;
+         size_t mUncompIndex;
 
          //Count variables for processed bytes
-         int64 mTotalIn;
-         int64 mTotalOut;
+         size_t mTotalIn;
+         size_t mTotalOut;
 
    };
 

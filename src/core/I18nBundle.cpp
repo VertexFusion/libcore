@@ -53,7 +53,7 @@ void I18nBundle::appendMo(Stream* file)
    }
 
    // Read file from disk
-   int64 length = file->size();
+   size_t length = file->size();
    ByteArray buf = ByteArray(length, 0);
    Status status = file->open(FileMode::kRead);
    if(status != Status::eOK)
@@ -61,7 +61,7 @@ void I18nBundle::appendMo(Stream* file)
       System::log(Tr("Cannot open translation file"), LogLevel::kError);
       return;
    }
-   int64 check = file->readFully(buf);
+   size_t check = file->readFully(buf);
    file->close();
 
    if(check != length)
@@ -115,7 +115,7 @@ void I18nBundle::appendMo(Stream* file)
    }
 
    // Process the records
-   for(int64 index = 0; index < stringCount; index++)
+   for(size_t index = 0; index < stringCount; index++)
    {
       const Record rec = records[index];
       const jm::String orig = jm::String((char*)&buffer[rec.origOffset], rec.origLength);

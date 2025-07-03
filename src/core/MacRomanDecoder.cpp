@@ -613,14 +613,14 @@ uint8 MacRomanDecoder::encodeCharacter(uint16 unicode)
 CharArray MacRomanDecoder::decode(const char* cstring)
 {
    // Determine length
-   uint32 length = 0;
+   size_t length = 0;
    while(cstring[length] != 0)length++;
 
    CharArray array = CharArray(length);
 
-   for(uint32 a = 0; a < length; a++)
+   for(size_t a = 0; a < length; a++)
    {
-      array.buffer[a] = decodeCharacter(cstring[a]);
+      array.buffer[a] = decodeCharacter((uint8)cstring[a]);
    }
 
    return array;
@@ -631,7 +631,7 @@ ByteArray MacRomanDecoder::encode(const CharArray& string)
    // The number of encoded bytes remains the same.
    ByteArray cstring = ByteArray(string.length, 0);
 
-   for(int64 a = 0; a < string.length; a++)
+   for(size_t a = 0; a < string.length; a++)
    {
       cstring[a] = encodeCharacter(string.buffer[a].unicode());
    }

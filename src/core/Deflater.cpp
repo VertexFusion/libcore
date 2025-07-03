@@ -39,7 +39,7 @@ Deflater::Deflater(): Object()
    mTotalOut = 0;
 }
 
-void Deflater::setInput(uint8* buffer, int64 length)
+void Deflater::setInput(uint8* buffer, size_t length)
 {
    mUncompBytes = buffer;
    mUncompLength = length;
@@ -47,7 +47,7 @@ void Deflater::setInput(uint8* buffer, int64 length)
    mTotalIn += length;
 }
 
-void Deflater::deflate(uint8*& buffer, int64& length)
+void Deflater::deflate(uint8*& buffer, size_t& length)
 {
    mUncompIndex = 0;
 
@@ -68,7 +68,7 @@ void Deflater::deflate(uint8*& buffer, int64& length)
    ::deflate(&defstream, Z_FINISH);
    deflateEnd(&defstream);
 
-   length = (uint32)defstream.total_out;
+   length = defstream.total_out;
    mTotalOut += length;
 }
 
@@ -81,12 +81,12 @@ void Deflater::reset()
    mTotalOut = 0;
 }
 
-int64 Deflater::totalInSize()
+size_t Deflater::totalInSize()
 {
    return mTotalIn;
 }
 
-int64 Deflater::totalOutSize()
+size_t Deflater::totalOutSize()
 {
    return mTotalOut;
 }

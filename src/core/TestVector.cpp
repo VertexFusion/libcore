@@ -56,28 +56,28 @@ void TestVector::addTest(Test* test)
    mTests->push_back(test);
 }
 
-int64 TestVector::execute()
+size_t TestVector::execute()
 {
    jm::gTotalTestCount = 0;
    jm::gTotalErrorCount = 0;
 
    clock_t bt = clock();
 
-   int64 single = -1;
+   size_t single = npos;
 
    if(mArg.size() > 0)
    {
       try
       {
-         single = mArg.toInt();
+         single = mArg.toSize();
       }
       catch(jm::Exception& e)
       {}
    }
 
-   for(int64 a = 0; a < static_cast<int64>(mTests->size()); a++)
+   for(size_t a = 0; a < mTests->size(); a++)
    {
-      if(single < 0 || single == a)testrun(mTests->at(a));
+      if(single == npos || single == a)testrun(mTests->at(a));
    }
 
    clock_t et = clock();

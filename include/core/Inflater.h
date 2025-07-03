@@ -62,17 +62,17 @@ namespace jm
 
          // Current Block
          uint8* mCompBytes;
-         int64 mCompLength;
-         int64 mCompIndex;
+         size_t mCompLength;
+         size_t mCompIndex;
 
          // Current Block
          uint8* mUncompBytes;
-         int64 mUncompLength;
-         int64 mUncompIndex;
+         size_t mUncompLength;
+         size_t mUncompIndex;
 
          // Counting variables for processed bytes.
-         int64 mTotalIn;
-         int64 mTotalOut;
+         size_t mTotalIn;
+         size_t mTotalOut;
 
          int32 mBit; // Index of the current bit in the current byte.
 
@@ -146,7 +146,7 @@ namespace jm
 
          void handleCompressedDynamicHuffman();
 
-         void readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count);
+         void readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, size_t count);
 
          void inflate();
 
@@ -175,7 +175,7 @@ namespace jm
           \param buffer The compressed data
           \param length The length of the data
           */
-         void SetInput(uint8* buffer, int64 length);
+         void SetInput(uint8* buffer, size_t length);
 
          /*!
           \brief Returns true if the end of the input block has been reached, but the end of the input stream has not been reached yet.
@@ -193,7 +193,7 @@ namespace jm
           \param buffer The buffer to write the data into.
           \param length The length of the buffer.
           */
-         void Inflate(uint8*& buffer, int64& length);
+         void Inflate(uint8*& buffer, size_t& length);
 
          /*!
           \brief Resets the decompressor, allowing a new object to be decompressed.
@@ -204,19 +204,19 @@ namespace jm
           \brief Returns the number of remaining bytes in the input buffer.
           \return The number of remaining bytes.
           */
-         int64 GetRemaining();
+         size_t GetRemaining();
 
          /*!
           \brief Returns the total number of bytes in the compressed input.
           \return The total number of bytes.
           */
-         int64 GetTotalIn();
+         size_t GetTotalIn();
 
          /*!
           \brief Returns the total number of bytes of the decompressed output.
           \return The total number of bytes.
           */
-         int64 GetTotalOut();
+         size_t GetTotalOut();
 
    };
 

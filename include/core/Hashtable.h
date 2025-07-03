@@ -86,7 +86,7 @@ namespace jm
          /*!
           \brief Returns the number of entries in this hash table.
           */
-         int64 size() const noexcept;
+         size_t size() const noexcept;
 
          /*!
           \brief This method returns true if the hashtable is empty.
@@ -161,10 +161,10 @@ namespace jm
          HashtableEntry** mData;
 
          //! \brief This variable stores the actual length of the storage array.
-         int64 mArrLength;
+         size_t mArrLength;
 
          //! \brief This variable stores the number of entries in the hashtable.
-         int64 mDataLength;
+         size_t mDataLength;
 
          //! This variable stores the load factor threshold at which the Hashtable should be rehashed.
          //! A value of 0 means 0%, while a value of 1 means 100%.
@@ -173,7 +173,7 @@ namespace jm
          //! \brief This threshold defines the number of entries at which the storage array for
          //! the data should be resized. It is the absolute number of entries at which a storage
          //! reorganization is performed.
-         int64 mThreshold;
+         size_t mThreshold;
 
          /*!
           \brief This subclass implements an iterator that allows iterating through the hashtable.
@@ -207,7 +207,7 @@ namespace jm
                Hashtable* table;
                HashtableEntry* entry;
                HashtableEntry* last;
-               int64 index;
+               size_t index;
          };
 
    };

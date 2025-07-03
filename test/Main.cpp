@@ -52,7 +52,7 @@ int main(int argc, const char* argv[])
    vec->addTest(new SerializerTest());
    vec->addTest(new NurbsTest());
 
-   int64 result = vec->execute();
+   int32 result = static_cast<int32>(vec->execute());
 
    delete vec;
 

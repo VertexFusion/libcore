@@ -128,10 +128,10 @@ String File::resolve(String parent, String child)
 String File::normalize(const String& path)
 {
    String pathname = path;
-   int64 length = pathname.size();
+   size_t length = pathname.size();
    Char prev = 0;
 
-   for(int64 a = 0; a < length; a++)
+   for(size_t a = 0; a < length; a++)
    {
       Char character = pathname.charAt(a);
 
@@ -532,7 +532,7 @@ Array<File>* File::listFiles()const
 }
 
 
-int64 File::size() const
+size_t File::size() const
 {
    struct stat filestat;
    int32 result = stat(mCstr.constData(), &filestat);
@@ -540,7 +540,7 @@ int64 File::size() const
    // If it doesn't exist, then I can't read it.
    if(result != 0)return 0;
 
-   return int64((uint64)filestat.st_size);
+   return static_cast<size_t>(filestat.st_size);
 }
 
 
@@ -556,8 +556,7 @@ String File::path() const
 
 String File::parent() const
 {
-   int64 idx = mPathname.lastIndexOf(DIR_SEP);
-   if(idx < 0)idx = 0;
+   size_t idx = mPathname.lastIndexOf(DIR_SEP);
    return mPathname.substring(0, idx);
 }
 
@@ -652,36 +651,36 @@ void File::close()
    mHandle = nullptr;
 }
 
-void File::seek(int64 position)
+void File::seek(size_t position)
 {
    //Data type is long int in fseek
-   size_t res = fseek(mHandle, (long int)position, SEEK_SET);
+   int res = fseek(mHandle, (long int)position, SEEK_SET);
    if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
-void File::move(int64 offset)
+void File::move(ssize_t offset)
 {
    //Data type is long int in fseek
-   size_t res = fseek(mHandle, (long int)offset, SEEK_CUR);
+   int res = fseek(mHandle, (long int)offset, SEEK_CUR);
    if(res != 0)throw Exception(Tr("Error while moving file reading pointer!"));
 }
 
-int64 File::position()
+size_t File::position()
 {
-   return int64((uint64)ftell(mHandle));
+   return static_cast<size_t>(ftell(mHandle));
 }
 
 
-int64 File::read(uint8* buffer, int64 length)
+size_t File::read(uint8* buffer, size_t length)
 {
    return fread(buffer, 1, length, mHandle);
 }
 
-int64 File::readFully(ByteArray& buffer, int64 length)
+size_t File::readFully(ByteArray& buffer, size_t length)
 {
-   int64 rest = length;
-   int64 count = 0;
-   int64 step;
+   size_t rest = length;
+   size_t count = 0;
+   size_t step;
    uint8* buf = reinterpret_cast<uint8*>(buffer.data());
 
    while((rest > 0) && ((step = read(&buf[count], rest)) > 0))
@@ -693,7 +692,7 @@ int64 File::readFully(ByteArray& buffer, int64 length)
    return count;
 }
 
-int64 File::write(const uint8* buffer, int64 length)
+size_t File::write(const uint8* buffer, size_t length)
 {
    return fwrite(buffer, 1, length, mHandle);
 }
@@ -765,12 +764,12 @@ StringList File::getTags()const
 
    const int sz = 4096;
    char buffer[sz];
-   int result = getxattr(mCstr.constData(), "user.xdg.tags", buffer, sz);
+   ssize_t result = getxattr(mCstr.constData(), "user.xdg.tags", buffer, sz);
 
    if(result > 0)
    {
       // Data is stored usually as comma(,) separated list.
-      ByteArray tagList = ByteArray((int8*)buffer, result);
+      ByteArray tagList = ByteArray((int8*)buffer, static_cast<size_t>(result));
       String string(tagList);
       return string.split(',');
    }
@@ -933,14 +932,14 @@ String jm::ExecPath()
 String jm::ExecName()
 {
    String exec = ExecPath();
-   int64 pos = exec.lastIndexOf(DIR_SEP);
+   size_t pos = exec.lastIndexOf(DIR_SEP);
    return exec.substring(pos + 1);
 }
 
 String jm::ExecDir()
 {
    String exec = ExecPath();
-   int64 pos = exec.lastIndexOf(DIR_SEP);
+   size_t pos = exec.lastIndexOf(DIR_SEP);
    if(exec.charAt(pos - 1) == '.' && exec.charAt(pos - 2) == DIR_SEP)pos -= 2;
    return exec.substring(0, pos);
 }

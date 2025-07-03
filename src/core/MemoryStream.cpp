@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-MemoryStream::MemoryStream(uint8* stream, int64 length, bool takeOwnership): Stream()
+MemoryStream::MemoryStream(uint8* stream, size_t length, bool takeOwnership): Stream()
 {
    mStream = stream;
    mStreamlength = length;
@@ -69,9 +69,9 @@ bool MemoryStream::canRead() const
    return true;
 }
 
-int64 MemoryStream::read(uint8* buffer, int64 length)
+size_t MemoryStream::read(uint8* buffer, size_t length)
 {
-   int64 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+   size_t available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    if(available > 0)memcpy(buffer, &mStream[mPosition], available);
    else return 0;
 
@@ -79,37 +79,37 @@ int64 MemoryStream::read(uint8* buffer, int64 length)
    return available;
 }
 
-int64 MemoryStream::readFully(ByteArray& buffer, int64 length)
+size_t MemoryStream::readFully(ByteArray& buffer, size_t length)
 {
    return read((uint8*)buffer.data(), length);
 }
 
-void MemoryStream::seek(int64 newPosition)
+void MemoryStream::seek(size_t newPosition)
 {
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-void MemoryStream::move(int64 offset)
+void MemoryStream::move(ssize_t offset)
 {
-   int64 newPosition = mPosition + offset;
+   size_t newPosition = static_cast<size_t>(static_cast<ssize_t>(mPosition) + offset);
    mPosition = (newPosition < mStreamlength) ? newPosition : mPosition;
 }
 
-int64 MemoryStream::position()
+size_t MemoryStream::position()
 {
    return mPosition;
 }
 
-int64 MemoryStream::write(const uint8* buffer, int64 length)
+size_t MemoryStream::write(const uint8* buffer, size_t length)
 {
-   int64 available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
+   size_t available = (mPosition + length < mStreamlength) ? length : mStreamlength - mPosition;
    memcpy(&mStream[mPosition], buffer, length);
    mPosition += available;
    if(mPosition > mWritelength) mWritelength = mPosition;
    return available;
 }
 
-int64 MemoryStream::size() const
+size_t MemoryStream::size() const
 {
    return mStreamlength;
 }
@@ -119,7 +119,7 @@ uint8* MemoryStream::buffer()
    return mStream;
 }
 
-int64 MemoryStream::writtenLength() const
+size_t MemoryStream::writtenLength() const
 {
    return mWritelength;
 }

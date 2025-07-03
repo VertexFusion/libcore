@@ -67,7 +67,7 @@ namespace jm
 
          bool exists() const;
 
-         int64 size() const override;
+         size_t size() const override;
 
          jm::Status open(jm::FileMode mode) override;
 
@@ -77,17 +77,17 @@ namespace jm
 
          void close() override;
 
-         int64 read(uint8* buffer, int64 length) override;
+         size_t read(uint8* buffer, size_t length) override;
 
-         int64 readFully(jm::ByteArray& buffer, int64 length) override;
+         size_t readFully(jm::ByteArray& buffer, size_t length) override;
 
-         void seek(int64 position) override;
+         void seek(size_t position) override;
 
-         void move(int64 offset) override;
+         void move(ssize_t offset) override;
 
-         int64 position() override;
+         size_t position() override;
 
-         int64 write(const uint8* buffer, int64 length) override;
+         size_t write(const uint8* buffer, size_t length) override;
 
       private:
 

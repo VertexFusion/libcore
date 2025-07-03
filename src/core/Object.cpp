@@ -105,10 +105,10 @@ void Object::printDiffInfo(DiffOperation, Object*) const
 
 void Object::setHighBit(bool status) noexcept
 {
-   mRefCount = referenceCount() | (status ? 0x80000000 : 0x00000000);
+   mRefCount = referenceCount() | static_cast<int32>(status ? 0x80000000 : 0x00000000);
 }
 
 bool Object::highBit()const noexcept
 {
-   return (mRefCount & 0x80000000) != 0;
+   return (mRefCount & static_cast<int32>(0x80000000)) != 0;
 }

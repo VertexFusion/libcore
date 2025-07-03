@@ -33,7 +33,7 @@
 
 using namespace jm;
 
-Matrix::Matrix(int64 rows, int64 cols)
+Matrix::Matrix(size_t rows, size_t cols)
 {
    init(rows, cols);
    zeros();
@@ -100,7 +100,7 @@ Matrix::Matrix(const Matrix& other)
    {
       data = new double[m * n];
 
-      for(uint32 i = 0; i < m * n; i++)
+      for(size_t i = 0; i < m * n; i++)
       {
          data[i] = other.data[i];
       }
@@ -113,7 +113,7 @@ Matrix::Matrix(const Matrix* other)
 {
    init(other->m, other->n);
 
-   for(uint32 i = 0; i < m * n; i++)
+   for(size_t i = 0; i < m * n; i++)
    {
       data[i] = other->data[i];
    }
@@ -128,33 +128,33 @@ Matrix::~Matrix()
    }
 }
 
-void Matrix::init(int64 rows, int64 cols)
+void Matrix::init(size_t rows, size_t cols)
 {
    m = rows;
    n = cols;
    data = new double[m * n];
 }
 
-void Matrix::set(int64 row, int64 col, double value)
+void Matrix::set(size_t row, size_t col, double value)
 {
    // It is saved column by column
    data[row + col * m] = value;
 }
 
-void Matrix::add(int64 row, int64 col, double value)
+void Matrix::add(size_t row, size_t col, double value)
 {
    data[row + col * m] += value;
 }
 
-double Matrix::get(int64 row, int64 col) const
+double Matrix::get(size_t row, size_t col) const
 {
    return data[row + col * m];
 }
 
 void Matrix::zeros()
 {
-   uint64 count = m * n;
-   for(uint32 i = 0; i < count; i++)
+   size_t count = m * n;
+   for(size_t i = 0; i < count; i++)
    {
       data[i] = 0.0;
    }
@@ -384,13 +384,13 @@ Status Matrix::inverse()
 void Matrix::transpose()
 {
    Matrix tmp = this;
-   int64 i = m;
+   size_t i = m;
    m = n;
    n = i;
 
-   for(int64 a = 0; a < tmp.m; a++)
+   for(size_t a = 0; a < tmp.m; a++)
    {
-      for(int64 b = 0; b < tmp.n; b++)
+      for(size_t b = 0; b < tmp.n; b++)
       {
          set(b, a, tmp.get(a, b));
       }
@@ -400,12 +400,12 @@ void Matrix::transpose()
 
 void Matrix::insert(const Matrix& A)
 {
-   int64 rows = std::min(m, A.m);
-   int64 cols = std::min(n, A.n);
+   size_t rows = std::min(m, A.m);
+   size_t cols = std::min(n, A.n);
 
-   for(int64 r = 0; r < rows; r++)
+   for(size_t r = 0; r < rows; r++)
    {
-      for(int64 c = 0; c < cols; c++)
+      for(size_t c = 0; c < cols; c++)
       {
          data[r + c * m] = A.data[r + c * A.m];
       }
@@ -413,14 +413,14 @@ void Matrix::insert(const Matrix& A)
 }
 
 
-void Matrix::insert(const Matrix& A, int64 _r, int64 _c)
+void Matrix::insert(const Matrix& A, size_t _r, size_t _c)
 {
-   int64 rows = std::min(m - _r, A.m);
-   int64 cols = std::min(n - _c, A.n);
+   size_t rows = std::min(m - _r, A.m);
+   size_t cols = std::min(n - _c, A.n);
 
-   for(int64 r = 0; r < rows; r++)
+   for(size_t r = 0; r < rows; r++)
    {
-      for(int64 c = 0; c < cols; c++)
+      for(size_t c = 0; c < cols; c++)
       {
          data[(r + _r) + (c + _c) * m] = A.data[r + c * A.m];
       }
@@ -429,9 +429,9 @@ void Matrix::insert(const Matrix& A, int64 _r, int64 _c)
 
 void Matrix::diag(double value)
 {
-   int64 cnt = std::min(m, n);
+   size_t cnt = std::min(m, n);
 
-   for(int64 i = 0; i < cnt; i++)
+   for(size_t i = 0; i < cnt; i++)
    {
       data[i * (m + 1)] = value;
    }
@@ -450,10 +450,10 @@ double Matrix::norm(MatrixNorm nm) const
    {
       // Column sum norm
       case MatrixNorm::kNorm1:
-         for(uint32 col = 0; col < n; col++)
+         for(size_t col = 0; col < n; col++)
          {
             sum = 0;
-            for(uint32 row = 0; row < m; row++)
+            for(size_t row = 0; row < m; row++)
             {
                sum += fabs(get(row, col));
             }
@@ -463,10 +463,10 @@ double Matrix::norm(MatrixNorm nm) const
 
       // Row sum norm
       case MatrixNorm::kNormInf:
-         for(uint32 row = 0; row < m; row++)
+         for(size_t row = 0; row < m; row++)
          {
             sum = 0;
-            for(uint32 col = 0; col < n; col++)
+            for(size_t col = 0; col < n; col++)
             {
                sum += fabs(get(row, col));
             }
@@ -483,10 +483,10 @@ double Matrix::norm(MatrixNorm nm) const
 
 void Matrix::print() const
 {
-   for(uint32 r = 0; r < m; r++)
+   for(size_t r = 0; r < m; r++)
    {
       std::cout << "[ ";
-      for(uint32 c = 0; c < n; c++)
+      for(size_t c = 0; c < n; c++)
       {
          std::cout << data[r + c * m] << ' ';
       }
@@ -495,13 +495,13 @@ void Matrix::print() const
 
 }
 
-uint32 Matrix::nonZeroElementCount() const
+size_t Matrix::nonZeroElementCount() const
 {
-   uint32 count = 0;
+   size_t count = 0;
 
-   for(uint32 r = 0; r < m; r++)
+   for(size_t r = 0; r < m; r++)
    {
-      for(uint32 c = 0; c < n; c++)
+      for(size_t c = 0; c < n; c++)
       {
          if(data[r + c * m] != 0.0)count++;
       }
@@ -515,9 +515,9 @@ double Matrix::trace() const
    double sum = 0.0;
 
    // Just do ensure, that we make no error even if the matrix is not square.
-   int64 cnt = std::min(m, n);
+   size_t cnt = std::min(m, n);
 
-   for(int64 i = 0; i < cnt; i++)
+   for(size_t i = 0; i < cnt; i++)
    {
       sum += data[i * (m + 1)];
    }
@@ -849,7 +849,7 @@ namespace jm
       {
          data = new double[m * n];
 
-         for(uint32 i = 0; i < m * n; i++)
+         for(size_t i = 0; i < m * n; i++)
          {
             data[i] = A.data[i];
          }
@@ -890,16 +890,16 @@ Matrix jm::operator*(Matrix const& A, Matrix const& B)
    // | 1 4 7 | * | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(int64 i = 0; i < A.m; i++)   // i: Left Rows
+   for(size_t i = 0; i < A.m; i++)   // i: Left Rows
    {
-      for(int64 j = 0; j < B.n; j++)   //j: RIght columns
+      for(size_t j = 0; j < B.n; j++)   //j: RIght columns
       {
-         int64 rIndex = i + j * A.m;
+         size_t rIndex = i + j * A.m;
 
-         for(int64 k = 0; k < A.n; k++)   // k: Left Cols = Right Cols
+         for(size_t k = 0; k < A.n; k++)   // k: Left Cols = Right Cols
          {
-            int64 aIndex = i + k * A.m;
-            int64 bIndex = k + j * B.m;
+            size_t aIndex = i + k * A.m;
+            size_t bIndex = k + j * B.m;
             R.data[rIndex] += A.data[aIndex] * B.data[bIndex];
          }
       }
@@ -921,11 +921,11 @@ Matrix jm::operator+(Matrix const& A, Matrix const& B)
    // | 1 4 7 | + | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(int64 i = 0; i < A.m; i++)   // i: Zeilen der Linken
+   for(size_t i = 0; i < A.m; i++)   // i: Zeilen der Linken
    {
-      for(int64 j = 0; j < B.n; j++)   //j: Spalten der Rechten
+      for(size_t j = 0; j < B.n; j++)   //j: Spalten der Rechten
       {
-         int64 rIndex = i + j * A.m;
+         size_t rIndex = i + j * A.m;
          R.data[rIndex] = A.data[rIndex] + B.data[rIndex];
       }
    }
@@ -946,11 +946,11 @@ Matrix jm::operator-(Matrix const& A, Matrix const& B)
    // | 1 4 7 | - | 1 4 7 |
    // | 2 5 8 |   | 2 5 8 |
 
-   for(int64 i = 0; i < A.m; i++)   // i: Zeilen der Linken
+   for(size_t i = 0; i < A.m; i++)   // i: Zeilen der Linken
    {
-      for(int64 j = 0; j < B.n; j++)   //j: Spalten der Rechten
+      for(size_t j = 0; j < B.n; j++)   //j: Spalten der Rechten
       {
-         int64  rIndex = i + j * A.m;
+         size_t  rIndex = i + j * A.m;
          R.data[rIndex] = A.data[rIndex] - B.data[rIndex];
       }
    }
@@ -962,7 +962,7 @@ Matrix jm::operator*(double const& d, Matrix const& A)
 {
    Matrix R = Matrix(A.m, A.n);
 
-   for(int64 i = 0; i < A.m * A.n; i++)
+   for(size_t i = 0; i < A.m * A.n; i++)
    {
       R.data[i] = d * A.data[i];
    }
@@ -979,7 +979,7 @@ Matrix jm::operator/(Matrix const& A, double const& d)
 {
    Matrix R = Matrix(A.m, A.n);
 
-   for(int64 i = 0; i < A.m * A.n; i++)
+   for(size_t i = 0; i < A.m * A.n; i++)
    {
       R.data[i] = A.data[i] / d;
    }
@@ -1141,12 +1141,12 @@ Matrix Matrix::generate3x3RotationMatrix(const jm::Vertex3& u, const jm::Vertex3
    }
 }
 
-int64 Matrix::rows() const
+size_t Matrix::rows() const
 {
    return m;
 }
 
-int64 Matrix::cols() const
+size_t Matrix::cols() const
 {
    return n;
 }
@@ -1161,10 +1161,10 @@ Vector jm::operator*(Matrix const& A, Vector const& b)
 
    Vector ret = Vector(A.rows());
 
-   for(int64 r = 0; r < A.rows(); r++)
+   for(size_t r = 0; r < A.rows(); r++)
    {
       ret.data[r] = 0.0;
-      for(int64 c = 0; c < A.cols(); c++)
+      for(size_t c = 0; c < A.cols(); c++)
       {
          ret.data[r] += b.data[c] * A.get(r, c);
       }

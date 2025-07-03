@@ -172,7 +172,7 @@ namespace jm
           \param data The unencoded data to be written.
           \param length The length of the data.
           */
-         void WriteBase64(uint8* data, int64 length);
+         void WriteBase64(uint8* data, size_t length);
 
 
       private:

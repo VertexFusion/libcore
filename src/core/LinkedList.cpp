@@ -271,7 +271,7 @@ Status LinkedList::remove(const Object* data, UndoManager* um)
    return Status::eNotFound;
 }
 
-uint32 LinkedList::size() const
+size_t LinkedList::size() const
 {
    return count;
 }

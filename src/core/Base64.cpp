@@ -72,17 +72,17 @@ const uint8 gBase64rcvt[] =
    66, 66, 66, 66, 66, 66
 };//250
 
-uint8* Base64::encode(const uint8* data, int64& length)
+uint8* Base64::encode(const uint8* data, size_t& length)
 {
    uint8 c1 = 0, c2 = 0, c3 = 0, c4 = 0, b1, b2, b3;
-   const int64 len = length;
-   const int64 lenb64 = ((len / 3) + 1) * 4;
+   const size_t len = length;
+   const size_t lenb64 = ((len / 3) + 1) * 4;
 
    uint8* ret = new uint8[lenb64];
 
-   int64 index = 0;
+   size_t index = 0;
 
-   for(int64 i = 0; i < len; i += 3)
+   for(size_t i = 0; i < len; i += 3)
    {
       b1 = data[i];
       b2 = (i + 1 < len) ? data[i + 1] : 0;
@@ -119,19 +119,19 @@ uint8* Base64::encode(const uint8* data, int64& length)
    return ret;
 }
 
-uint8* Base64::decode(const uint8* data, uint32& length)
+uint8* Base64::decode(const uint8* data, size_t& length)
 {
    uint8 c1 = 0, c2 = 0, c3 = 0, c4 = 0;
    uint8 b1 = 0, b2 = 0, b3 = 0;
-   const int len = length;
+   const size_t len = length;
 
-   uint32 lenb64 = (len * 3) / 4 ;
+   size_t lenb64 = (len * 3) / 4 ;
 
    uint8* ret = new uint8[lenb64];
-   uint32 index = 0;
+   size_t index = 0;
    bool brk = false;
 
-   for(int32 i = 0; i < len; i = i + 4)
+   for(size_t i = 0; i < len; i = i + 4)
    {
       c1 = gBase64rcvt[data[i]];
       c2 = gBase64rcvt[data[i + 1]];
@@ -143,10 +143,9 @@ uint8* Base64::decode(const uint8* data, uint32& length)
          c2 = 0;
          brk = true;
       }
-      b1 = ((c1 << 2) | ((c2 >> 4) & 0x3));
+      b1 = ((c1 << 2) | ((c2 >> 4) & 0x3)) &0xff;
       ret[index++] = b1;
       if(brk)break;
-
 
       if(c3 >= 65)
       {

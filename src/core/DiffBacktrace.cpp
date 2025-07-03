@@ -79,7 +79,7 @@ void DiffBacktrace::print()
    while(step != nullptr);
 }
 
-DiffBacktrace* DiffBacktrace::backtrace(DiffDiag* diag, int64 i)
+DiffBacktrace* DiffBacktrace::backtrace(DiffDiag* diag, size_t i)
 {
    bool loop = true;
 

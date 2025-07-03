@@ -80,7 +80,7 @@ namespace jm
          LListElement* listEnd;
          LListElement* current;
 
-         uint32 count;
+         size_t count;
 
    };
 
@@ -148,7 +148,7 @@ namespace jm
          /*!
           \brief Returns the number of entries in this list.
           */
-         uint32 size() const;
+         size_t size() const;
 
          LinkedListIterator iterator() const;
 
@@ -160,7 +160,7 @@ namespace jm
          LListElement* listEnd;
          LListElement* current;
 
-         uint32 count;
+         size_t count;
 
          Object* mOwner;
 

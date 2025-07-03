@@ -33,6 +33,7 @@
 #define jm_Property_h
 
 #include <vector>
+#include <cinttypes>
 
 #include "Types.h"
 #include "String.h"

@@ -77,12 +77,12 @@ DiffDiag* DiffDiag::below()
    return mBelow;
 }
 
-int64 DiffDiag::upperEntry(int64 i)
+int64 DiffDiag::upperEntry(size_t i)
 {
    return above()->entry(i - 1);
 }
 
-int64 DiffDiag::leftEntry(int64 i)
+int64 DiffDiag::leftEntry(size_t i)
 {
    // If diagonals are "mBelow", then diagonal 1 is shorter
 
@@ -90,16 +90,16 @@ int64 DiffDiag::leftEntry(int64 i)
    //	return GetBelow()->GetEntry( i-1 );
 }
 
-int64 DiffDiag::entry(int64 j)
+int64 DiffDiag::entry(size_t j)
 {
-   if(j < int64(mElements->size()))return mElements->at(j);
+   if(j < mElements->size())return mElements->at(j);
 
    int64 x = mElements->at(mElements->size() - 1);
 
-   while(int64(mElements->size()) <= j)
+   while(mElements->size() <= j)
    {
       int64 lu = x;
-      int64 i = mElements->size();
+      size_t i = mElements->size();
 
       //  \ \  \
       //   \ \  \
@@ -139,14 +139,14 @@ int64 DiffDiag::entry(int64 j)
    return x;
 }
 
-Object* DiffDiag::objectU(int64 i)
+Object* DiffDiag::objectU(size_t i)
 {
    return mU->at(i - 1);
 }
 
-Object* DiffDiag::objectV(int64 i)
+Object* DiffDiag::objectV(size_t i)
 {
-   return mV->at(std::abs(mOffset) + i - 1);
+   return mV->at(static_cast<size_t>(std::abs(mOffset)) + i - 1);
 }
 
 int64 DiffDiag::offset()

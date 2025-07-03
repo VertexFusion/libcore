@@ -46,7 +46,11 @@ namespace jm
 
          Char();
 
+         /* explicit */ Char(int character);
+
          /* explicit */ Char(uint16 character);
+
+         /* explicit */ Char(char character);
 
          uint16 unicode() const;
 
@@ -127,7 +131,7 @@ namespace jm
       /*!
        \brief The length of the array.
        */
-      int64 length;
+      size_t length;
 
       /*!
        \brief The array itself.
@@ -143,7 +147,7 @@ namespace jm
        \brief Constructor create an uninitialized array.
        \param length The length of the array
        */
-      explicit CharArray(int64 length);
+      explicit CharArray(size_t length);
 
       /*!
        \brief Copy constructor

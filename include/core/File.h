@@ -234,7 +234,7 @@ namespace jm
           \brief Returns the size of the file in bytes.
           \return The size of the file in bytes.
           */
-         int64 size() const override;
+         size_t size() const override;
 
          /*!
           \brief Returns the date of the last modification.
@@ -268,8 +268,8 @@ namespace jm
           \param length The maximum number of bytes to read.
           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
           */
-         int64 read(unsigned char* buffer,
-                    int64 length) override;
+         size_t read(unsigned char* buffer,
+                     size_t size) override;
 
          /*!
           \brief Reads a maximum of length bytes into the array.
@@ -277,7 +277,7 @@ namespace jm
           \param length The maximum number of bytes to read.
           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
           */
-         int64 readFully(ByteArray& buffer, int64 length) override;
+         size_t readFully(ByteArray& buffer, size_t length) override;
 
 
 
@@ -286,19 +286,19 @@ namespace jm
           file.
           \param position The desired position to move the file cursor to (0-based index).
           */
-         void seek(int64 position) override;
+         void seek(size_t position) override;
 
          /*!
           \brief Moves the file cursor to the desired position, relative to the current position.
           \param offset The offset to move the file cursor by.
           */
-         void move(int64 offset) override;
+         void move(ssize_t offset) override;
 
          /*!
           \brief Returns the current cursor position in the file.
           \return The current cursor position.
           */
-         int64 position() override;
+         size_t position() override;
 
          /*!
           \brief Writes a buffer to the output file.
@@ -306,7 +306,7 @@ namespace jm
           \param length The number of bytes to write from the buffer.
           \return The number of bytes actually written, or 0 if an error occurred.
           */
-         int64 write(const uint8* buffer, int64 length) override;
+         size_t write(const uint8* buffer, size_t length) override;
 
          /*!
           \brief Compares the absolute file path with another file's absolute path.

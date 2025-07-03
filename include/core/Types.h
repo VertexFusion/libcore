@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
-#include <limits>
+#include <cinttypes>
 
 #ifndef jm_Types_h
 #define jm_Types_h
@@ -80,77 +80,14 @@
 #define kTxtBrightMagenta "\033[95m"
 
 
-#ifndef M_2PI
-#define M_2PI    2.0*3.14159265358979323846264338328 /*!<  Defines a value for "2 x pi" */
-#endif
-
-#ifndef M_1_5_PI
-#define M_1_5_PI    1.5*3.14159265358979323846264338328
-#endif
-
-#ifndef M_PI
-#define M_PI    3.14159265358979323846264338328
-#endif
-
-#ifndef M_PI_2
-#define M_PI_2    1.57079632679489661923132169164
-#endif
-
-#ifndef M_PI_4
-#define M_PI_4    0.785398163397448309616
-#endif
-
-#ifndef UINT8_MAX
-#define UINT8_MAX 255
-#endif
-
-#ifndef UINT16_MAX
-#define UINT16_MAX 65535
-#endif
-
-#ifndef UINT32_MAX
-#define UINT32_MAX 4294967295U
-#endif
-
-#ifndef UINT64_MAX
-#define UINT64_MAX 18446744073709551615ULL
-#endif
-
-#ifndef INT32_MAX
-#define INT32_MAX 0x80000000
-#endif
-
-#ifndef INT64_MIN
-#define INT64_MIN 0x8000000000000000
-#endif
-
-#ifndef INT64_MAX
-#define INT64_MAX 0x7FFFFFFFFFFFFFFF
-#endif
-
-#ifndef NAN
-static const unsigned long __jmnan[2] = {0xffffffff, 0x7fffffff};
-#define NAN (*(const double *) __jmnan)
-#endif
-
-// Note: This value is not valid for double.
-#ifndef POSITIVE_INFINITY
-static const unsigned long __pinf[2] = {0x7ff00000, 0x00000000};
-#define POSITIVE_INFINITY (*(const double *) __pinf)
-#endif
-
-// Note: This value is not valid for double.
-#ifndef NEGATIVE_INFINITY
-static const unsigned long __ninf[2] = {0xfff00000, 0x00000000};
-#define NEGATIVE_INFINITY (*(const double *) __ninf)
-#endif
-
 using int8 = signed char;
 using uint8 = unsigned char;
 using int16 = short;
 using uint16 = unsigned short;
 using int32 = int;
 using uint32 = unsigned int;
+
+constexpr size_t npos = static_cast<size_t>(-1);
 
 #if defined(JM_MACOS) || defined(JM_IOS)
 
@@ -180,6 +117,63 @@ using ulong = unsigned long;
 
 #endif
 
+
+#ifndef M_2PI
+#define M_2PI    2.0*3.14159265358979323846264338328 /*!<  Defines a value for "2 x pi" */
+#endif
+
+#ifndef M_1_5_PI
+#define M_1_5_PI    1.5*3.14159265358979323846264338328
+#endif
+
+#ifndef M_PI
+#define M_PI    3.14159265358979323846264338328
+#endif
+
+#ifndef M_PI_2
+#define M_PI_2    1.57079632679489661923132169164
+#endif
+
+#ifndef M_PI_4
+#define M_PI_4    0.785398163397448309616
+#endif
+
+//#ifndef UINT8_MAX
+//#define UINT8_MAX 255
+//#endif
+
+//#ifndef UINT16_MAX
+//#define UINT16_MAX 65535
+//#endif
+
+//#ifndef UINT32_MAX
+//#define UINT32_MAX 4294967295U
+//#endif
+
+//#ifndef UINT64_MAX
+//#define UINT64_MAX 18446744073709551615ULL
+//#endif
+
+//#ifndef INT32_MAX
+//#define INT32_MAX 0x80000000
+//#endif
+
+#ifndef NAN
+static const unsigned long __jmnan[2] = {0xffffffff, 0x7fffffff};
+#define NAN (*(const double *) __jmnan)
+#endif
+
+// Note: This value is not valid for double.
+#ifndef POSITIVE_INFINITY
+static const unsigned long __pinf[2] = {0x7ff00000, 0x00000000};
+#define POSITIVE_INFINITY (*(const double *) __pinf)
+#endif
+
+// Note: This value is not valid for double.
+#ifndef NEGATIVE_INFINITY
+static const unsigned long __ninf[2] = {0xfff00000, 0x00000000};
+#define NEGATIVE_INFINITY (*(const double *) __ninf)
+#endif
 
 namespace jm
 {

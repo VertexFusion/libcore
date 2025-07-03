@@ -50,7 +50,7 @@ namespace jm
           \param array The byte array on which the stream operations will be applied.
           \param length The length of the byte array.
           */
-         MemoryStream(uint8* array, int64 length, bool takeOwnership = false);
+         MemoryStream(uint8* array, size_t length, bool takeOwnership = false);
 
          /*!
           \brief Destructor
@@ -65,19 +65,19 @@ namespace jm
 
          void close() override;
 
-         int64 read(uint8* buffer, int64 length) override;
+         size_t read(uint8* buffer, size_t length) override;
 
-         int64 readFully(ByteArray& buffer, int64 length) override;
+         size_t readFully(ByteArray& buffer, size_t length) override;
 
-         void seek(int64 position) override;
+         void seek(size_t position) override;
 
-         void move(int64 offset) override;
+         void move(ssize_t offset) override;
 
-         int64 position() override;
+         size_t position() override;
 
-         int64 write(const uint8* buffer, int64 length) override;
+         size_t write(const uint8* buffer, size_t length) override;
 
-         int64 size() const override;
+         size_t size() const override;
 
          /*!
           \brief Returns the buffer of the MemoryStream.
@@ -88,7 +88,7 @@ namespace jm
          /*!
           \brief Returns the written length of the buffer.
           */
-         int64 writtenLength() const;
+         size_t writtenLength() const;
 
       private:
 
@@ -99,13 +99,13 @@ namespace jm
          bool mStreamOwner;
 
          //! The length of the byte array.
-         int64 mStreamlength;
+         size_t mStreamlength;
 
          //! The current pointer position in the array.
-         int64 mPosition;
+         size_t mPosition;
 
          //! Written length of the stream
-         int64 mWritelength;
+         size_t mWritelength;
 
    };
 

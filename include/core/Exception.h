@@ -96,7 +96,7 @@ namespace jm
 #endif
 
          // retrieve current stack addresses
-         uint32 addrlen;
+         size_t addrlen;
 
          StringList mSymbolList;
 

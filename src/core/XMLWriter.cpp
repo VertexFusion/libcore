@@ -181,7 +181,7 @@ jm::String XMLWriter::Encode(const jm::String& input)
    return encoded;
 }
 
-void XMLWriter::WriteBase64(uint8* data, int64 length)
+void XMLWriter::WriteBase64(uint8* data, size_t length)
 {
    if(mOpenElements->size() > 0 && mOpenElements->top().hasContent == false)
    {

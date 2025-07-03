@@ -115,7 +115,7 @@ void Thread::sleep(int64 millis)
    gettimeofday(&now, nullptr);
 
    //Konversion machen, damit es keinen overflow gibt, der dann in einer falschen Zeit resultiert.
-   uint64 m = millis;
+   uint64 m = static_cast<uint64>(millis);
 
    /* Convert from timeval to timespec */
    ts.tv_sec = now.tv_sec;

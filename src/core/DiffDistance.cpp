@@ -91,7 +91,7 @@ DiffBacktrace* DiffDistance::solve()
 
 
    // which is the diagonal containing the bottom R.H. element?
-   int64 lba = v->size() - u->size();
+   size_t lba = v->size() - u->size();
 
    DiffDiag* main = new DiffDiag(this, u, v, 0);
 
@@ -99,19 +99,19 @@ DiffBacktrace* DiffDistance::solve()
    if(lba >= 0)
    {
       mDiagonal = main;
-      for(int64 i = 0; i < lba; i++)
+      for(size_t i = 0; i < lba; i++)
          mDiagonal = mDiagonal->above();
    }
    else
    {
       mDiagonal = main->below();
-      for(int64 i = 0; i < ~lba; i++)
+      for(size_t i = 0; i < ~lba; i++)
          mDiagonal = mDiagonal->above();
    }
 
    mDistance = mDiagonal->entry(std::min(mRows, mCols));
 
-   int64 sz = mRows * mCols;
+   size_t sz = mRows * mCols;
    std::cout << Tr("Distance %1").arg(mDistance) << std::endl;
    std::cout << Tr("Calculated %1/%2: %3%")
              .arg(mCalc)
@@ -119,7 +119,7 @@ DiffBacktrace* DiffDistance::solve()
              .arg(mCalc * 100.0 / double(sz))
              << std::endl;
 
-   int i = (int) std::min(mRows, mCols);
+   size_t i = std::min(mRows, mCols);
    return DiffBacktrace::backtrace(mDiagonal, i);
 }
 

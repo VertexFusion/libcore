@@ -206,7 +206,7 @@ namespace jm
          \param offset The offset in the data buffer where writing should start.
          \param length The number of bytes to write.
          */
-         void write(uint8* data, int64 offset, int64 length);
+         void write(uint8* data, int64 offset, size_t length);
 
          /*!
          \brief Writes the content of the file to the stream and closes the file.

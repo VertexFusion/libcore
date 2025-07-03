@@ -77,9 +77,9 @@ Resource::~Resource()
    }
 }
 
-int64 Resource::size() const
+size_t Resource::size() const
 {
-   if(mStream == nullptr)return -1;
+   if(mStream == nullptr)return npos;
    return mStream->size();
 }
 
@@ -103,32 +103,32 @@ void Resource::close()
    mStream->close();
 }
 
-int64 Resource::read(uint8* buffer, int64 length)
+size_t Resource::read(uint8* buffer, size_t length)
 {
    return mStream->read(buffer, length);
 }
 
-int64 Resource::readFully(jm::ByteArray& buffer, int64 length)
+size_t Resource::readFully(jm::ByteArray& buffer, size_t length)
 {
    return mStream->readFully(buffer, length);
 }
 
-void Resource::seek(int64 position)
+void Resource::seek(size_t position)
 {
    mStream->seek(position);
 }
 
-void Resource::move(int64 offset)
+void Resource::move(ssize_t offset)
 {
    mStream->move(offset);
 }
 
-int64 Resource::position()
+size_t Resource::position()
 {
    return mStream->position();
 }
 
-int64 Resource::write(const uint8* buffer, int64 length)
+size_t Resource::write(const uint8* buffer, size_t length)
 {
    return mStream->write(buffer, length);
 }

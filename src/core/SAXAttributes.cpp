@@ -50,7 +50,7 @@ SAXAttributes::SAXAttributes(const SAXAttributes& other)
    mNames->clear();
    mValues->clear();
 
-   for(uint32 a = 0; a < other.mNames->size(); a++)
+   for(size_t a = 0; a < other.mNames->size(); a++)
    {
       mNames->push_back(other.mNames->at(a));
       mValues->push_back(other.mValues->at(a));
@@ -63,7 +63,7 @@ SAXAttributes& SAXAttributes::operator=(const SAXAttributes& other)
    mNames->clear();
    mValues->clear();
 
-   for(uint32 a = 0; a < other.mNames->size(); a++)
+   for(size_t a = 0; a < other.mNames->size(); a++)
    {
       mNames->push_back(other.mNames->at(a));
       mValues->push_back(other.mValues->at(a));
@@ -73,72 +73,77 @@ SAXAttributes& SAXAttributes::operator=(const SAXAttributes& other)
 
 }
 
-void SAXAttributes::addAttribute(String /*uri*/, String localname, String /*qName*/, String value)
+void SAXAttributes::addAttribute(const String& /*uri*/,
+                                 const String& localname,
+                                 const String& /*qName*/,
+                                 const String& value)
 {
    //	std::cout << "Add Attrib: " << localname << " " << value << std::endl;
    mNames->push_back(localname);
    mValues->push_back(value);
 }
 
-int32 SAXAttributes::indexOf(String qName) const
+size_t SAXAttributes::indexOf(const String& qName) const
 {
-   for(uint32 a = 0; a < mNames->size(); a++)
+   for(size_t a = 0; a < mNames->size(); a++)
    {
       if(mNames->at(a).equals(qName))return a;
    }
 
-   return -1;
+   return npos;
 }
 
-int32 SAXAttributes::indexOf(String /*uri*/, String localName) const
+size_t SAXAttributes::indexOf(const String& /*uri*/,
+                              const String& localName) const
 {
    return indexOf(localName);
 }
 
-uint32 SAXAttributes::count() const
+size_t SAXAttributes::count() const
 {
-   return (uint32)mNames->size();
+   return mNames->size();
 }
 
-String SAXAttributes::localName(uint32 index) const
-{
-   return mNames->at(index);
-}
-
-String SAXAttributes::qualifiedName(uint32 index) const
+String SAXAttributes::localName(size_t index) const
 {
    return mNames->at(index);
 }
 
-String SAXAttributes::type(uint32 /*index*/) const
+String SAXAttributes::qualifiedName(size_t index) const
+{
+   return mNames->at(index);
+}
+
+String SAXAttributes::type(size_t /*index*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::type(String /*qname*/) const
+String SAXAttributes::type(const String& /*qname*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::type(String /*uri*/, String /*localName*/) const
+String SAXAttributes::type(const String& /*uri*/,
+                           const String& /*localName*/) const
 {
    return "CDATA";
 }
 
-String SAXAttributes::uri(uint32 /*index*/) const
+String SAXAttributes::uri(size_t /*index*/) const
 {
    return kEmptyString;
 }
 
-String SAXAttributes::value(uint32 index) const
+String SAXAttributes::value(size_t index) const
 {
    return mValues->at(index);
 }
 
 String SAXAttributes::value(const String& qname) const
 {
-   int32 index = indexOf(qname);
-   if(index > -1)return mValues->at(index);
+   size_t index = indexOf(qname);
+   if(index != npos)return mValues->at(index);
    return kEmptyString;
 }
 
@@ -170,9 +175,9 @@ bool SAXAttributes::hasValue(const String& qname) const
    return false;
 }
 
-String SAXAttributes::value(String uri, String localName) const
+String SAXAttributes::value(const String& uri,const String& localName) const
 {
-   int32 index = indexOf(uri, localName);
-   if(index > -1)return mValues->at(index);
+   size_t index = indexOf(uri, localName);
+   if(index != npos)return mValues->at(index);
    return kEmptyString;
 }

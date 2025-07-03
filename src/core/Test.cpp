@@ -34,10 +34,10 @@
 using namespace jm;
 
 // Under macOS 10.9 namespaces added
-int64 jm::gErrorCount;
-int64 jm::gTestCount;
-int64 jm::gTotalErrorCount;
-int64 jm::gTotalTestCount;
+size_t jm::gErrorCount;
+size_t jm::gTestCount;
+size_t jm::gTotalErrorCount;
+size_t jm::gTotalTestCount;
 
 void Test::setErrorCode(const String& error)
 {

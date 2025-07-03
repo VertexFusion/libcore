@@ -39,14 +39,14 @@ StringTokenizer::StringTokenizer(const String& str,
    mStr(str),
    mDelimiters(delimiters),
    mPosition(0),
-   mNewStart(-1),
+   mNewStart(npos),
    mRetDelim(retDelim)
 {}
 
-bool StringTokenizer::isDelimiter(int64 index) const
+bool StringTokenizer::isDelimiter(size_t index) const
 {
-   int64 cnt = 0;
-   int64 l = mDelimiters.size();
+   size_t cnt = 0;
+   size_t l = mDelimiters.size();
    Char c = mStr.charAt(index);
 
    while(cnt < l)
@@ -56,10 +56,10 @@ bool StringTokenizer::isDelimiter(int64 index) const
    return false;
 }
 
-int64 StringTokenizer::findTokenEnd(int64 startPos) const
+size_t StringTokenizer::findTokenEnd(size_t startPos) const
 {
-   int64 pos = startPos;
-   int64 l = mStr.size();
+   size_t pos = startPos;
+   size_t l = mStr.size();
 
    while(pos < l)
    {
@@ -69,10 +69,10 @@ int64 StringTokenizer::findTokenEnd(int64 startPos) const
    return pos;
 }
 
-int64 StringTokenizer::findDelimiterEnd(int64 startPos) const
+size_t StringTokenizer::findDelimiterEnd(size_t startPos) const
 {
-   int64 pos = startPos;
-   int64 l = mStr.size();
+   size_t pos = startPos;
+   size_t l = mStr.size();
 
    if(mRetDelim && pos < l && isDelimiter(pos))return pos;
 
@@ -86,29 +86,29 @@ int64 StringTokenizer::findDelimiterEnd(int64 startPos) const
 
 bool StringTokenizer::hasNext()
 {
-   if(mNewStart < 0)mNewStart = findDelimiterEnd(mPosition);
+   if(mNewStart == npos)mNewStart = findDelimiterEnd(mPosition);
 
    return mNewStart < mStr.size();
 }
 
 String StringTokenizer::next()
 {
-   mPosition = (mNewStart > -1) ? mNewStart : findDelimiterEnd(mPosition);
-   mNewStart = -1;
+   mPosition = (mNewStart != npos) ? mNewStart : findDelimiterEnd(mPosition);
+   mNewStart = npos;
 
    if(mPosition >= mStr.size())throw Exception(Tr("No such element."));
 
    if(mRetDelim && isDelimiter(mPosition))
    {
-      int64 start = mPosition;
-      int64 end = mPosition + 1;
+      size_t start = mPosition;
+      size_t end = mPosition + 1;
       mPosition = end;
       return mStr.substring(start, end);
    }
    else
    {
-      int64 start = mPosition;
-      int64 end = findTokenEnd(start);
+      size_t start = mPosition;
+      size_t end = findTokenEnd(start);
       mPosition = end;
       return mStr.substring(start, end);
    }

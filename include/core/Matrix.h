@@ -80,7 +80,7 @@ namespace jm
           \param rows Number of rows.
           \param cols Number of columns.
           */
-         Matrix(int64 rows, int64 cols);
+         Matrix(size_t rows, size_t cols);
 
          /*!
           \brief Special constructor for a 3x3 matrix.
@@ -126,7 +126,7 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value of the cell.
           */
-         void set(int64 row, int64 col, double value);
+         void set(size_t row, size_t col, double value);
 
          /*!
           \brief Adds to the value of a cell the passed value.
@@ -134,14 +134,14 @@ namespace jm
           \param col The 0-based index of the column.
           \param value The value to be added to the cell.
           */
-         void add(int64 row, int64 col, double value);
+         void add(size_t row, size_t col, double value);
 
          /*!
           \brief Returns the value of a cell.
           \param row The 0-based index of the row.
           \param col The 0-based index of the column.
           */
-         double get(int64 row, int64 col) const;
+         double get(size_t row, size_t col) const;
 
          /*!
           \brief This method fills all elements of the matrix with 0.
@@ -163,7 +163,7 @@ namespace jm
          \brief This method inserts the contents of the Other matrix into this matrix. Upper left
           element is r,c
          */
-         void insert(const Matrix& A, int64 r, int64 c);
+         void insert(const Matrix& A, size_t r, size_t c);
 
          /*!
           \brief This method sets all values on the diagonal elements to the desired value.
@@ -218,7 +218,7 @@ namespace jm
           \brief This method calculates the number of elements that are not 0.0.
           Currently this is done without EPS.
           */
-         uint32 nonZeroElementCount() const;
+         size_t nonZeroElementCount() const;
 
          /*!
           \brief Initializes this transformation as an identity matrix.
@@ -351,24 +351,24 @@ namespace jm
          /*!
           \brief This method returns the number of rows.
           */
-         int64 rows() const;
+         size_t rows() const;
 
          /*!
           \brief This method returns the number of columns.
           */
-         int64 cols() const;
+         size_t cols() const;
 
       private:
 
          /*!
           \brief Number of rows.
           */
-         int64 m;
+         size_t m;
 
          /*!
           \brief Number of columns.
           */
-         int64 n;
+         size_t n;
 
          /*!
           \brief This field stores the data. In analogy to the OpenGL storage convention, the data
@@ -376,7 +376,7 @@ namespace jm
           */
          double* data;
 
-         void init(int64 rows, int64 cols);
+         void init(size_t rows, size_t cols);
    };
 
 

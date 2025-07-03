@@ -77,7 +77,7 @@ namespace jm
           \param dd Pointer to the diagonal from which the considered element originates.
           \param i 0-based index of the element in the diagonal.
           */
-         static DiffBacktrace* backtrace(DiffDiag* dd, int64 i);
+         static DiffBacktrace* backtrace(DiffDiag* dd, size_t i);
 
          /*!
           \brief Returns the diff operation.
@@ -87,7 +87,7 @@ namespace jm
       private:
 
          //! The length of the path being backtraced
-         int64 mSize;
+         size_t mSize;
 
          //! Operation performed in this step
          DiffOperation mOperation;

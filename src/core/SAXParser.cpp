@@ -42,7 +42,7 @@ void SAXParser::parse(File& file)
 {
    if(!file.exists())return;
    if(!file.canRead())return;
-   int64 length = file.size();
+   size_t length = file.size();
    ByteArray buffer = ByteArray(length, 0);
    file.open(jm::FileMode::kRead);
    file.Stream::readFully(buffer);
@@ -61,8 +61,8 @@ void SAXParser::parse(const String& xml)
 
    startDocument();
 
-   int64 length = xml.size(); // Length of XML-Code
-   int64 pos = 0; // Position of pointer
+   size_t length = xml.size(); // Length of XML-Code
+   size_t pos = 0; // Position of pointer
 
    bool inTag = false;   // Status, if tag is open
    bool inValue = false; // Status, if value is open
@@ -83,7 +83,7 @@ void SAXParser::parse(const String& xml)
             String endWhiteSpaces;
 
             // Cut whitespaces at the beginning
-            int64 sub = 0;
+            size_t sub = 0;
             while(sub < token.size() && token.charAt(sub).isWhitespace())
             {
                beginWhitespaces.append(token.charAt(sub));
@@ -186,17 +186,17 @@ void SAXParser::parseTagString(const String& xmlline)
 
    line.append(' ');// Whitespace at the end makes parsing easier because code is saved.
 
-   int64 pos = 0; //Position of pointer
-   int64 length = line.size(); // Length
+   size_t pos = 0; //Position of pointer
+   size_t length = line.size(); // Length
    bool inValue = false; // Status, if in value
    Char c;
    Char opener = 0;
-   int64 tagType = 0; //0: Open, 1: Close 2: Open/Close
-   int64 step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
+   int32 tagType = 0; //0: Open, 1: Close 2: Open/Close
+   int32 step = 0; // 0:Tagname, 1: Attribute name, 2: Attribute value
 
    // Check for '/' at the end
-   pos = line.size() - 1;
-   while(line.charAt(pos).isWhitespace())pos--;
+   if(line.size()>0)pos = line.size() - 1;
+   while(line.charAt(pos).isWhitespace() && pos>0)pos--;
    if(line.charAt(pos) == '/')
    {
       tagType = 2;

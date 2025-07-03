@@ -118,12 +118,12 @@ namespace jm
          /*!
           \brief Number of rows.
           */
-         int64 mRows;
+         size_t mRows;
 
          /*!
           \brief Number of columns
           */
-         int64 mCols;
+         size_t mCols;
 
          /*!
           \brief Number of calculated steps.

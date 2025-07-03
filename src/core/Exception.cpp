@@ -26,7 +26,7 @@ Exception::Exception(const String& message): Object()
    void* taddrlist[max_frames];
 
    // Bekomme die Stack Adressen
-   addrlen = backtrace(taddrlist, sizeof(taddrlist) / sizeof(void*));
+   addrlen = static_cast<size_t>(backtrace(taddrlist, sizeof(taddrlist) / sizeof(void*)));
 
    // Löse die Adressen in Namen auf
    char** symbols = nullptr;

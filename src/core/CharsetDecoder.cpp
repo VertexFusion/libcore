@@ -46,12 +46,12 @@ RawDecoder::RawDecoder(): CharsetDecoder()
 CharArray RawDecoder::decode(const char* cstring)
 {
    //Länge bestimmen
-   uint32 length = 0;
+   size_t length = 0;
    while(cstring[length] != 0)length++;
 
    CharArray array = CharArray(length);
 
-   for(uint32 a = 0; a < length; a++)
+   for(size_t a = 0; a < length; a++)
    {
       array.buffer[a] = Char(cstring[a]);
    }
@@ -63,9 +63,9 @@ ByteArray RawDecoder::encode(const CharArray& string)
 {
    ByteArray cstring = ByteArray(string.length, 0);
 
-   for(uint32 a = 0; a < string.length; a++)
+   for(size_t a = 0; a < string.length; a++)
    {
-      cstring[a] = (uint8)string.buffer[a].unicode();
+      cstring[a] = static_cast<uint8>(string.buffer[a].unicode());
    }
 
    return cstring;

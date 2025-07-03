@@ -359,7 +359,7 @@ namespace jm
           \brief Executes the test vector.
           \return The number or errors. 0, if everything is ok.
           */
-         int64 execute();
+         size_t execute();
 
       private:
 
@@ -377,19 +377,19 @@ namespace jm
 
    //! \brief  global error count during single test run.
    //! \ingroup test
-   extern "C" int64 gErrorCount;
+   extern "C" size_t gErrorCount;
 
    //! \brief  global test count during single test run.
    //! \ingroup test
-   extern "C" int64 gTestCount;
+   extern "C" size_t gTestCount;
 
    //! \brief  global error count over all done tests.
    //! \ingroup test
-   extern "C" int64 gTotalErrorCount;
+   extern "C" size_t gTotalErrorCount;
 
    //! \brief  global test count overall done tests.
    //! \ingroup test
-   extern "C" int64 gTotalTestCount;
+   extern "C" size_t gTotalTestCount;
 
 }
 #endif

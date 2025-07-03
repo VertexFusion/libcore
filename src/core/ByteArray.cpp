@@ -40,17 +40,17 @@ ByteArray::ByteArray() : Object()
    mData = nullptr;
 };
 
-ByteArray::ByteArray(const int8* buffer, int64 size) : Object()
+ByteArray::ByteArray(const int8* buffer, size_t size) : Object()
 {
    init(buffer, size);
 }
 
-ByteArray::ByteArray(const uint8* buffer, int64 size) : Object()
+ByteArray::ByteArray(const uint8* buffer, size_t size) : Object()
 {
    init(reinterpret_cast<const int8*>(buffer), size);
 }
 
-void ByteArray::init(const int8* buffer, int64 size)
+void ByteArray::init(const int8* buffer, size_t size)
 {
    if(buffer == nullptr)
    {
@@ -60,7 +60,7 @@ void ByteArray::init(const int8* buffer, int64 size)
       return;
    }
 
-   if(size < 0)
+   if(size == npos)
    {
       mArrSize = 0;
       while(buffer[mArrSize] != 0)
@@ -78,7 +78,7 @@ void ByteArray::init(const int8* buffer, int64 size)
 }
 
 
-ByteArray::ByteArray(int64 length, uint8 ch) : Object()
+ByteArray::ByteArray(size_t length, uint8 ch) : Object()
 {
    mArrSize = length;
    mRawSize = mArrSize + 1;
@@ -92,7 +92,7 @@ ByteArray::ByteArray(const ByteArray& other) : Object()
    mArrSize = other.mArrSize;
    mRawSize = other.mRawSize;
    mData = new uint8[mRawSize];
-   for(int64 index = 0; index < mRawSize; index++)
+   for(size_t index = 0; index < mRawSize; index++)
    {
       mData[index] = other.mData[index];
    }
@@ -104,7 +104,7 @@ ByteArray::ByteArray(std::initializer_list<uint8> list) : Object()
    mRawSize = mArrSize + 1;
    mData = new uint8[mRawSize];
    std::initializer_list<uint8>::iterator it;
-   int64 cnt = 0;
+   size_t cnt = 0;
    for(it = list.begin(); it != list.end(); ++it)
    {
       mData[cnt++] = *it;
@@ -119,7 +119,7 @@ ByteArray::~ByteArray()
    if(mData != nullptr)delete[] mData;
 };
 
-int64 ByteArray::size() const
+size_t ByteArray::size() const
 {
    return mArrSize;
 };
@@ -149,13 +149,13 @@ void ByteArray::sort()
 {
    if(mArrSize < 1)return;
 
-   int64 n = mArrSize;
+   size_t n = mArrSize;
    do
    {
-      int64 newn = 1;
-      for(int64 i = 0; i < n - 1; ++i)
+      size_t newn = 1;
+      for(size_t i = 0; i < n - 1; ++i)
       {
-         const int64 j = i + 1;
+         const size_t j = i + 1;
          const uint8 a1 = mData[i];
          const uint8 a2 = mData[j];
          if(a1 > a2)
@@ -175,30 +175,32 @@ void ByteArray::sort()
 
 void ByteArray::fill(uint8 ch)
 {
-   for(int64 index = 0; index < mArrSize; index++)mData[index] = ch;
+   for(size_t index = 0; index < mArrSize; index++)mData[index] = ch;
 }
 
 
-uint8 ByteArray::get(int64 index) const
+uint8 ByteArray::get(size_t index) const
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
    return mData[index];
 };
 
-void ByteArray::set(int64 index, uint8 item)
+void ByteArray::set(size_t index, uint8 item)
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
    mData[index] = item;
 };
 
-void ByteArray::replace(int64 tgtOffset, int64 srcOffset, const ByteArray& buffer,
-                        int64 length)
+void ByteArray::replace(size_t tgtOffset,
+                        size_t srcOffset,
+                        const ByteArray& buffer,
+                        size_t length)
 {
-   const int64 range = std::min(length, mArrSize - tgtOffset);
+   const size_t range = std::min(length, mArrSize - tgtOffset);
 
-   for(int64 a = 0; a < range; a++)
+   for(size_t a = 0; a < range; a++)
    {
       mData[a] = buffer.mData[srcOffset + a];
    }
@@ -206,14 +208,14 @@ void ByteArray::replace(int64 tgtOffset, int64 srcOffset, const ByteArray& buffe
 
 void ByteArray::replace(uint8 oldValue, uint8 newValue)
 {
-   for(int64 index = 0; index < mArrSize; index++)
+   for(size_t index = 0; index < mArrSize; index++)
    {
       if(mData[index] == oldValue)mData[index] = newValue;
    }
 }
 
 
-void ByteArray::resize(int64 newSize)
+void ByteArray::resize(size_t newSize)
 {
    if(newSize <= mRawSize - 1)
    {
@@ -223,11 +225,11 @@ void ByteArray::resize(int64 newSize)
    else
    {
       uint8* tmp = new uint8[newSize + 1];
-      for(int64 index = 0; index < mArrSize; index++)
+      for(size_t index = 0; index < mArrSize; index++)
       {
          tmp[index] = mData[index];
       }
-      for(int64 index = mArrSize; index < newSize; index++)
+      for(size_t index = mArrSize; index < newSize; index++)
       {
          tmp[index] = 0;
       }
@@ -238,14 +240,14 @@ void ByteArray::resize(int64 newSize)
    }
 }
 
-uint8 jm::ByteArray::operator[](int64 index) const
+uint8 jm::ByteArray::operator[](size_t index) const
 {
    //if (index >= mLength)
    //	throw new Exception("Array index out of bounds.");
    return mData[index];
 }
 
-uint8& jm::ByteArray::operator[](int64 index)
+uint8& jm::ByteArray::operator[](size_t index)
 {
    //if (index >= mLength)
    //   throw new Exception("Array index out of bounds.");
@@ -261,7 +263,7 @@ ByteArray& jm::ByteArray::operator=(const ByteArray& another)
       mArrSize = another.mArrSize;
       mRawSize = another.mRawSize;
       mData = new uint8[mRawSize];
-      for(int64 a = 0; a < mRawSize; a++)
+      for(size_t a = 0; a < mRawSize; a++)
       {
          mData[a] = another.mData[a];
       }
@@ -276,7 +278,7 @@ namespace jm
    {
       if(a1.size() != a2.size())return false;
 
-      for(int64 index = 0; index < a1.size(); index++)
+      for(size_t index = 0; index < a1.size(); index++)
       {
          if(a1[index] != a2[index])return false;
       }

@@ -71,11 +71,11 @@ namespace jm
           */
          Nurbs(uint32 degree,
                Vertex3* controlpoints,
-               uint32 controlCount,
+               size_t controlCount,
                double* knots,
-               uint32 knotCount,
+               size_t knotCount,
                double* weights,
-               uint32 weightCount);
+               size_t weightCount);
 
          /*!
           \brief Destructor
@@ -102,27 +102,27 @@ namespace jm
          /*!
           \brief The start index for calculating min t.
           */
-         int32 startIndex() const;
+         size_t startIndex() const;
 
          /*!
           \brief The start index for calculating max t.
           */
-         int32 endIndex()const;
+         size_t endIndex()const;
 
          /*!
           \brief Returns the number of control points.
           */
-         uint32 controlPointCount();
+         size_t controlPointCount();
 
          /*!
           \brief Returns the knot count
           */
-         uint32 knotCount()const;
+         size_t knotCount()const;
 
          /*!
           \brief returns a knot
           */
-         double knot(uint32 index)const;
+         double knot(size_t index)const;
 
          /*!
           \brief Returns true, if the NURBS is clamped
@@ -139,9 +139,9 @@ namespace jm
           */
          uint32 degree() const;
 
-         jm::Vertex3 controlPoint(uint32 index) const;
+         jm::Vertex3 controlPoint(size_t index) const;
 
-         double weight(uint32 index) const;
+         double weight(size_t index) const;
 
          /*!
           \brief This method returns the value of N_i,k(t).
@@ -176,13 +176,13 @@ namespace jm
          /*!
           \brief Number of control points.
           */
-         uint32 mControlCount;
+         size_t mControlCount;
 
          //! Knot vector
          double* mKnots;
 
          //! Knot count.
-         uint32 mKnotCount;
+         size_t mKnotCount;
 
          /*!
           \brief The weights of the control points. For B-Splines, all weights are 1.
@@ -192,7 +192,7 @@ namespace jm
          /*!
           \brief The number of weights.
           */
-         uint32 mWeightCount;
+         size_t mWeightCount;
 
          /*!
           \brief We store the clamped status

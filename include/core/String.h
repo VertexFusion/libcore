@@ -99,14 +99,14 @@ namespace jm
           \param buffer An array, which contains the string.
           \param size The length of the string.
           */
-         String(const char* buffer, int64 size);
+         String(const char* buffer, size_t size);
 
          /*!
           \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
           \param buffer An array, which contains the string.
           \param size The length of the string.
           */
-         String(const uint16* buffer, int64 size);
+         String(const uint16* buffer, size_t size);
 
          /*!
           \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
@@ -114,7 +114,7 @@ namespace jm
           \param size The length of the string.
           \param charset The coding with which the character string is encoded.
           */
-         String(const char* buffer, int64 size, Charset* charset);
+         String(const char* buffer, size_t size, Charset* charset);
 
          /*!
           \brief Copy constructor
@@ -141,7 +141,7 @@ namespace jm
          /*!
           \brief Returns the size of the string.
           */
-         int64 size() const;
+         size_t size() const;
 
          /*!
           \brief This method generates a C-string from the string, taking into account the standard encoding (UTF-8).
@@ -165,7 +165,7 @@ namespace jm
          /*!
           \brief Count the occurrences of the character in the string
           */
-         int64 count(Char character)const;
+         size_t count(Char character)const;
 
          /*!
           \brief This method clears the content of the string and releases any allocated memory.
@@ -195,7 +195,7 @@ namespace jm
           \brief This method deletes a character from this string.
           \param index The zero-based index of the position of the character.
           */
-         void deleteCharAt(int64 index);
+         void deleteCharAt(size_t index);
 
          /*!
           \brief This method deletes a section from this string.
@@ -203,7 +203,7 @@ namespace jm
           \param length The length of the section to delete.
           \details This method deletes a section of characters from this string, starting at the specified index and with the specified length.
           */
-         void deleteCharRangeAt(int64 index, int64 length);
+         void deleteCharRangeAt(size_t index, size_t length);
 
          /*!
           \copydoc jm::Object::equals()
@@ -263,7 +263,7 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool atIs(int64 position, const String& another) const;
+         bool atIs(size_t position, const String& another) const;
 
          /*!
           \brief Same as atIs, but ignoring case.
@@ -272,7 +272,7 @@ namespace jm
           \return Returns \c true is the substring sequence at position is the same as \c another.
           Otherwise \c false
           */
-         bool atIsIgnoreCase(int64 position, const String& another) const;
+         bool atIsIgnoreCase(size_t position, const String& another) const;
 
          /*!
           \brief This method calculates the hash code for this string and returns it.
@@ -307,7 +307,7 @@ namespace jm
           \param beginIndex The zero-based index of the first character to be included in the new substring.
           \return A new string that starts from the beginIndex and goes until the end of the string.
           */
-         String substring(int64 beginIndex)const;
+         String substring(size_t beginIndex)const;
 
          /*!
           \brief This method creates a substring that consists of a portion of this string.
@@ -316,7 +316,7 @@ namespace jm
           \return A new string that starts from the beginIndex and ends one character before the endIndex.
           \details This method creates a new string that contains a portion of the original string, starting from the character at the beginIndex and ending one character before the endIndex.
           */
-         String substring(int64 beginIndex, int64 endIndex) const;
+         String substring(size_t beginIndex, size_t endIndex) const;
 
          /*!
           \brief This method returns a new string with all non-visible text characters (whitespaces) removed from the beginning and end of the string.
@@ -363,7 +363,7 @@ namespace jm
           \return Returns the zero-based index, or -1 if the character is not found in the string.
           \details This method searches for the first occurrence of the desired character in the string and returns its zero-based position.
           */
-         int64 indexOf(Char character) const;
+         size_t indexOf(Char character) const;
 
          /*!
           \brief This method returns the zero-based position of the first occurrence of the desired
@@ -372,7 +372,7 @@ namespace jm
           \return Returns the zero-based index, or -1 if the string is not found in the string.
           \details This method searches for the first occurrence of the desired string in the string and returns its zero-based position.
           */
-         int64 indexOf(const String& str) const;
+         size_t indexOf(const String& str) const;
 
 
          /*!
@@ -383,7 +383,7 @@ namespace jm
           \return Returns the zero-based index, or -1 if the character is not found in the string.
           \details This method searches for the first occurrence of the desired character in the string starting from the specified position and returns its zero-based index.
           */
-         int64 indexOf(Char character, int64 fromIndex) const;
+         size_t indexOf(Char character, size_t fromIndex) const;
 
          /*!
           \brief This method returns the zero-based position of the first occurrence of the desired
@@ -393,7 +393,7 @@ namespace jm
           \return Returns the zero-based index, or -1 if the string is not found in the string.
           \details This method searches for the first occurrence of the desired string in the string starting from the specified position and returns its zero-based index.
           */
-         int64 indexOf(const String& str, int64 fromIndex) const;
+         size_t indexOf(const String& str, size_t fromIndex) const;
 
          /*!
           \brief This method returns the zero-based position of the last occurrence of the desired character in the string.
@@ -401,7 +401,7 @@ namespace jm
           \param character The character to search for.
           \return Returns the zero-based index, or -1 if the character is not found in the string.
           */
-         int64 lastIndexOf(Char character) const;
+         size_t lastIndexOf(Char character) const;
 
          /*!
           \brief This method returns the zero-based position of the last occurrence of the desired
@@ -410,7 +410,7 @@ namespace jm
           \param str The string to search for.
           \return Returns the zero-based index, or -1 if the string is not found in the string.
           */
-         int64 lastIndexOf(const String& str) const;
+         size_t lastIndexOf(const String& str) const;
 
 
          /*!
@@ -421,7 +421,7 @@ namespace jm
           \param fromIndex The zero-based index to start searching from (from the end).
           \return Returns the zero-based index, or -1 if the character is not found in the string.
           */
-         int64 lastIndexOf(Char character, int64 fromIndex) const;
+         size_t lastIndexOf(Char character, size_t fromIndex) const;
 
          /*!
           \brief This method returns the zero-based position of the last occurrence of the desired
@@ -431,7 +431,7 @@ namespace jm
           \param fromIndex The zero-based index to start searching from (from the end).
           \return Returns the zero-based index, or -1 if the string is not found in the string.
           */
-         int64 lastIndexOf(const String& str, int64 fromIndex) const;
+         size_t lastIndexOf(const String& str, size_t fromIndex) const;
 
          /*!
           \brief This method returns the character at a specific position in the string.
@@ -439,7 +439,7 @@ namespace jm
           \return The character at the specified position.
           \details This method returns the character at the specified position in the string.
           */
-         Char charAt(int64 index) const;
+         Char charAt(size_t index) const;
 
          /*!
           \brief This method replaces a character in the string with a new one.
@@ -447,7 +447,7 @@ namespace jm
           \param character The character to be inserted.
           \details This method replaces the character at the specified index in the string with the new character.
           */
-         void setCharAt(int64 index, Char character);
+         void setCharAt(size_t index, Char character);
 
          /*!
           \brief This method inserts a character into the string at the specified index and shifts all subsequent characters to the right.
@@ -455,7 +455,7 @@ namespace jm
           \param character The character to be inserted.
           \details This method inserts the character at the specified index in the string and shifts all subsequent characters to the right.
           */
-         void insert(int64 index, Char character);
+         void insert(size_t index, Char character);
 
          /*!
           \brief This method inserts a string into the string at the specified index and shifts all subsequent characters to the right.
@@ -463,7 +463,7 @@ namespace jm
           \param string The string to be inserted.
           \details This method inserts the string at the specified index in the string and shifts all subsequent characters to the right.
           */
-         void insert(int64 index, const String& string);
+         void insert(size_t index, const String& string);
 
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
@@ -544,6 +544,11 @@ namespace jm
           \brief Returns a int representation of the string.
           */
          int64 toInt() const;
+
+         /*!
+          \brief Returns a size_t representation of the string.
+          */
+         size_t toSize() const;
 
          /*!
           \brief Returns true if the string is empty. False otherwise.
@@ -673,7 +678,7 @@ namespace jm
           If not, the array will be enlarged.
           \param more The number of additional bytes.
           */
-         void checkCapacity(int64 more);
+         void checkCapacity(size_t more);
 
       private:
 
@@ -683,10 +688,10 @@ namespace jm
          Char* mValue;
 
          //! Length of array.
-         int64 mArrLength;
+         size_t mArrLength;
 
          //! Length of string.
-         int64 mStrLength;
+         size_t mStrLength;
 
          //! Stored hashvalue for operation. Is 0 if not initialized.
          int32 mHash;
@@ -698,7 +703,7 @@ namespace jm
          void copy(const CharArray& array);
 
          //! Helper method for arg.
-         bool argIndicies(int64& first, int64& second) const;
+         bool argIndicies(size_t& first, size_t& second) const;
 
    };
 
@@ -742,7 +747,7 @@ namespace jm
           to empty strings.
           \param size The size of the list.
           */
-         explicit StringList(int64 size);
+         explicit StringList(size_t size);
 
          StringList(const StringList& other);
 
@@ -754,23 +759,23 @@ namespace jm
           \brief Reserve space for a given number of elements. The size of the list is not changed.
           \param size The number of elements to reserve space for.
           */
-         void reserve(int64 size);
+         void reserve(size_t size);
 
          void append(const jm::String& string);
 
          void remove(const jm::String& string);
 
-         int64 size() const;
+         size_t size() const;
 
          void sort();
 
          jm::String join(Char divider) const;
 
-         const String& get(int64 index) const;
+         const String& get(size_t index) const;
 
-         void set(int64 index, const String& item);
+         void set(size_t index, const String& item);
 
-         String& operator[](const int64 index) const;
+         String& operator[](const size_t index) const;
 
          StringList& operator=(const StringList& another);
 
@@ -790,15 +795,15 @@ namespace jm
       private:
 
          //! The length of the array.
-         int64 mLength;
+         size_t mLength;
 
          //! The data size (can be less then length
-         int64 mSize;
+         size_t mSize;
 
          //! The data array itself.
          String* mData;
 
-         void checkSize(int64 size);
+         void checkSize(size_t size);
    };
 }
 

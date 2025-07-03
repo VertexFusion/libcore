@@ -118,7 +118,7 @@ void Color::toGreyScale()
          float grey = 0.2126f * col.rgb.red +
                       0.7152f * col.rgb.green +
                       0.0733f * col.rgb.blue;
-         col.g.grey = std::min(static_cast<int8>(255), static_cast<int8>(grey));
+         col.g.grey = std::min(static_cast<uint8>(255), static_cast<uint8>(grey));
          mAlpha = 255;
          break;
       }
@@ -386,8 +386,9 @@ Color Color::FromHsv(float hue, float saturation, float value, float alpha)
 
    //Siehe: https://de.wikipedia.org/wiki/HSV-Farbraum
 
-   int hi = static_cast<int>(floor(hue / 60.0f));
-   float f = (hue / 60.0f) - hi;
+   float fhi = std::floor(hue / 60.0f);
+   int hi = static_cast<int>(fhi);
+   float f = (hue / 60.0f) - fhi;
    float p = value * (1.0f - saturation);
    float q = value * (1.0f - saturation * f);
    float t = value * (1.0f - saturation * (1.0f - f));
@@ -440,7 +441,7 @@ uint8 PorterDuffAlpha(uint8 alphaBackground, uint8 alphaForeground)
 
    int32 alphaC = alphaA + ((255 - alphaA) * alphaB) / 255;
 
-   return (uint8) alphaC;
+   return static_cast<uint8>(alphaC);
 }
 
 uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colourForeground,
@@ -456,7 +457,7 @@ uint8 PorterDuffColour(uint8 colourBackground, uint8 alphaBackground, uint8 colo
 
    float C = (alphaA * A + (1 - alphaA) * alphaB * B) / alphaC;
 
-   return (uint8)(C * 255);
+   return static_cast<uint8>(C * 255);
 }
 
 Color jm::blend(Color background, Color foreground, uint8 alpha)

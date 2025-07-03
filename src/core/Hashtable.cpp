@@ -37,10 +37,10 @@ Hashtable::Hashtable() noexcept: Object(),
    mArrLength(7),
    mDataLength(0),
    mLoadfactor(0.75f),
-   mThreshold(mArrLength * mLoadfactor)
+   mThreshold(5)
 {
    mData = new HashtableEntry*[mArrLength]; // Array for data
-   for(int64 i = 0; i < mArrLength; i++)
+   for(size_t i = 0; i < mArrLength; i++)
    {
       mData[i] = nullptr;  // Explicitly set each pointer to nullptr
    }
@@ -146,7 +146,7 @@ void* Hashtable::remove(const String& key) noexcept
 
 void Hashtable::clear() noexcept
 {
-   for(int64 index = 0; index < mArrLength; index++)
+   for(size_t index = 0; index < mArrLength; index++)
    {
       HashtableEntry* e = mData[index];
       while(e != nullptr)
@@ -160,26 +160,26 @@ void Hashtable::clear() noexcept
    mDataLength = 0;
 }
 
-int64 Hashtable::size() const noexcept
+size_t Hashtable::size() const noexcept
 {
    return mDataLength;
 }
 
 void Hashtable::rehash() noexcept
 {
-   int64 oldLength = mArrLength;
+   size_t oldLength = mArrLength;
    HashtableEntry** oldData = mData;
 
-   int64 newLength = oldLength * 2 + 1;
+   size_t newLength = oldLength * 2 + 1;
 
    HashtableEntry** newData = new HashtableEntry*[newLength];
 
-   for(int64 a = 0; a < newLength; a++)newData[a] = nullptr;
+   for(size_t a = 0; a < newLength; a++)newData[a] = nullptr;
 
    mArrLength = newLength;
-   mThreshold = std::ceil(newLength * mLoadfactor);
+   mThreshold = static_cast<size_t>(std::ceil(static_cast<double>(newLength) * mLoadfactor));
 
-   for(int64 a = 0 ; a < oldLength ; a++)
+   for(size_t a = 0 ; a < oldLength ; a++)
    {
       HashtableEntry* old = oldData[a];
 
@@ -187,7 +187,7 @@ void Hashtable::rehash() noexcept
       {
          HashtableEntry* next = old->next;
 
-         int64 index = (old->hash & 0x7FFFFFFF) % mArrLength;
+         size_t index = (old->hash & 0x7FFFFFFF) % mArrLength;
          old->next = newData[index];
          newData[index] = old;
 

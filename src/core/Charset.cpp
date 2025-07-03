@@ -55,7 +55,7 @@ CharArray::CharArray(const CharArray& another):
    memcpy(buffer, another.buffer, length * 2);
 }
 
-CharArray::CharArray(int64 alength):
+CharArray::CharArray(size_t alength):
    length(alength)
 {
    buffer = new Char[length];
@@ -162,7 +162,7 @@ Charset* Charset::forName(const String& name)
    return nullptr;
 }
 
-String Charset::guess(const char* stream, int64 length)
+String Charset::guess(const char* stream, size_t length)
 {
 
    String encoding;
@@ -199,7 +199,7 @@ String Charset::guess(const char* stream, int64 length)
 
    // It is possible that a UTF16 encoding without markers is present. The probability of this is
    // high if every second byte of "European" text is 0.
-   const uint16 frame = (uint16) std::min(int64(4096), length);
+   const uint16 frame = static_cast<uint16>(std::min(4096UL, length));
    float count1 = 0;
    float count2 = 0;
    for(uint16 a = 0; a < frame; a++)
@@ -222,7 +222,7 @@ String Charset::guess(const char* stream, int64 length)
    // Undefined characters in Windows-1252
    if(encoding.equals("Windows-1252"))
    {
-      for(uint32 a = 0; a < length; a++)
+      for(size_t a = 0; a < length; a++)
       {
          switch(stream[a])
          {
@@ -244,7 +244,7 @@ String Charset::guess(const char* stream, int64 length)
 
    // Assume ASCII if no byte is greater than 0x7F
    bool isASCII = true;
-   for(uint32 a = 0; a < length; a++)
+   for(size_t a = 0; a < length; a++)
    {
       if(stream[a] > 0x7F)
       {

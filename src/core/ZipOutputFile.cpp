@@ -42,7 +42,7 @@ uint32 CRC32(const char* s, uint32 n)
       char ch = s[i];
       for(uint32 j = 0; j < 8; j++)
       {
-         uint32 b = (ch ^ crc) & 1;
+         uint32 b = (static_cast<uint32>(ch) ^ crc) & 1;
          crc >>= 1;
          if(b) crc = crc ^ 0xEDB88320;
          ch >>= 1;
@@ -67,7 +67,7 @@ void ZipOutputFile::open()
 
 void ZipOutputFile::close()
 {
-   uint32 start = static_cast<uint32>(mFile->position());
+   size_t start = mFile->position();
 
    //Schreibe Finales Verzeichnis
    mEntries.rewind();
@@ -87,16 +87,16 @@ void ZipOutputFile::close()
       jm::serializeLEInt16(cdfh, 10, 0); //Compression Method
       jm::serializeLEInt16(cdfh, 12, 0);//ShxFile last modification time
       jm::serializeLEInt16(cdfh, 14, 0);//ShxFile last modification date
-      jm::serializeLEInt32(cdfh, 16, entry->mCRC);//CRC
-      jm::serializeLEInt32(cdfh, 20, entry->mCompressedSize);//Compressed Size
-      jm::serializeLEInt32(cdfh, 24, entry->mUncompressedSize);//Uncompressed Size
+      jm::serializeLEInt32(cdfh, 16, (int32)entry->mCRC);//CRC
+      jm::serializeLEInt32(cdfh, 20, (int32)entry->mCompressedSize);//Compressed Size
+      jm::serializeLEInt32(cdfh, 24, (int32)entry->mUncompressedSize);//Uncompressed Size
       jm::serializeLEInt16(cdfh, 28, cname.size());//ShxFile name Length
       jm::serializeLEInt16(cdfh, 30, cextra.size());//Extra field length
       jm::serializeLEInt16(cdfh, 32, ccomment.size());//Comment field length
       jm::serializeLEInt16(cdfh, 34, 0);//Disk Number where file starts. Zu 0 gesetzt
       jm::serializeLEInt16(cdfh, 36, 0);//Internal ShxFile Attributes. Zu 0 gesetzt
       jm::serializeLEInt32(cdfh, 38, 0);//External ShxFile Attributes. Zu 0 gesetzt
-      jm::serializeLEInt32(cdfh, 42, entry->mHeaderOffset);//Relative offset to local ShxFile Header
+      jm::serializeLEInt32(cdfh, 42, (int32)entry->mHeaderOffset);//Relative offset to local ShxFile Header
 
       mFile->write(cdfh, 46);
       if(cname.size() > 0)mFile->write(reinterpret_cast<const uint8*>(cname.constData()), cname.size());
@@ -105,7 +105,7 @@ void ZipOutputFile::close()
 
    }
 
-   uint32 end = static_cast<uint32>(mFile->position());
+   size_t end = mFile->position();
 
    //Frilte End of Directory Record
    uint8 eof[22];
@@ -115,8 +115,8 @@ void ZipOutputFile::close()
    jm::serializeLEInt16(eof, 8, (int16)
                         mEntries.size()); //Number of Central directory records on this disk
    jm::serializeLEInt16(eof, 10, (int16)mEntries.size());//Total Number of Central directory records
-   jm::serializeLEInt32(eof, 12, end - start); //Size of central directory (bytes)
-   jm::serializeLEInt32(eof, 16, start);//Start of central directory relative to start of archive
+   jm::serializeLEInt32(eof, 12, (int32)(end - start)); //Size of central directory (bytes)
+   jm::serializeLEInt32(eof, 16, (int32)start);//Start of central directory relative to start of archive
    jm::serializeLEInt16(eof, 20, 0);//Comment Length.
 
    mFile->write(eof, 22);
@@ -148,9 +148,9 @@ void ZipOutputFile::closeEntry()
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
-   jm::serializeLEInt32(lfhfragment, 0, entry->mCRC);
-   jm::serializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
-   jm::serializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
+   jm::serializeLEInt32(lfhfragment, 0, (int32)entry->mCRC);
+   jm::serializeLEInt32(lfhfragment, 4, (int32)entry->mCompressedSize);
+   jm::serializeLEInt32(lfhfragment, 8, (int32)entry->mUncompressedSize);
 
    mFile->seek(entry->mHeaderOffset + 14);
    mFile->write(lfhfragment, 12);
@@ -183,9 +183,9 @@ void ZipOutputFile::writeAndClose(jm::File* file)
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
-   jm::serializeLEInt32(lfhfragment, 0, entry->mCRC);
-   jm::serializeLEInt32(lfhfragment, 4, entry->mCompressedSize);
-   jm::serializeLEInt32(lfhfragment, 8, entry->mUncompressedSize);
+   jm::serializeLEInt32(lfhfragment, 0, (int32)entry->mCRC);
+   jm::serializeLEInt32(lfhfragment, 4, (int32)entry->mCompressedSize);
+   jm::serializeLEInt32(lfhfragment, 8, (int32)entry->mUncompressedSize);
 
    mFile->seek(entry->mHeaderOffset + 14);
    mFile->write(lfhfragment, 12);
@@ -226,7 +226,7 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    mEntries.add(entry, nullptr);
 }
 
-void ZipOutputFile::write(uint8* data, int64 offset, int64 length)
+void ZipOutputFile::write(uint8* data, int64 offset, size_t length)
 {
    mTemp->write(&data[offset], length);
 }

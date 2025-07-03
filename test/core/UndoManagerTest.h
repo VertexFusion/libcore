@@ -119,7 +119,7 @@ class UndoTestObject: public jm::Object
 
       void SetObject(UndoTestObject* other)
       {
-         undo->registerChange(this, (jm::Object**)&obj);
+         undo->registerChange(this, reinterpret_cast<jm::Object**>(&obj));
          if(obj != nullptr)
          {
             undo->registerRelease(obj);

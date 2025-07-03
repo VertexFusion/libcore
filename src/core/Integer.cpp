@@ -56,12 +56,12 @@ uint8 Integer::digits(int64 number)
 
 int64 Integer::fromHex(const jm::String& str)
 {
-   return fromHex(str, 0, int32(str.size()));
+   return fromHex(str, 0, str.size());
 }
 
 int64 Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
 {
-   uint64 r = 0;
+   int64 r = 0;
 
    uint32 cnt = begin;
    uint32 sz = begin + size;
@@ -71,7 +71,7 @@ int64 Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
       jm::Char c = str.charAt(cnt);
       cnt++;
 
-      uint64 i = 0;
+      int64 i = 0;
 
       if(c.isDigit())
       {
@@ -150,7 +150,7 @@ jm::String Integer::toLatinAlphabetString(int64 number)
    while(number > 0)
    {
       number--;
-      int64 digit = number % 26;
+      int32 digit = number % 26;
       number = number / 26;
       output.append(jm::Char('A' + digit));
    }

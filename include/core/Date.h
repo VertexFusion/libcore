@@ -91,7 +91,7 @@ namespace jm
          static const int16 SATURDAY = 6;
 
          // Constant for Null.
-         static const int64 EMPTY = 0x8000000000000000;
+         static const int64 EMPTY = static_cast<int64>(0x8000000000000000);
 
          /*!
           \brief Standard default constructor

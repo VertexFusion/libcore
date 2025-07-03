@@ -61,13 +61,13 @@ namespace jm
          DiffDiag* above();
          DiffDiag* below();
 
-         int64 upperEntry(int64 i);
-         int64 leftEntry(int64 i);
+         int64 upperEntry(size_t i);
+         int64 leftEntry(size_t i);
 
-         int64 entry(int64 j);
+         int64 entry(size_t j);
 
-         Object* objectU(int64 i);
-         Object* objectV(int64 i);
+         Object* objectU(size_t i);
+         Object* objectV(size_t i);
 
          int64 offset();
 

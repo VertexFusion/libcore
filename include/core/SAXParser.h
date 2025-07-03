@@ -70,53 +70,56 @@ namespace jm
          /*!
           \brief This method is needed by the parser to fill the list with content.
           */
-         void addAttribute(String uri, String localname, String qName, String value);
+         void addAttribute(const String& uri,
+                           const String& localname,
+                           const String& qName,
+                           const String& value);
 
          /*!
           \brief This method searches for the index of an attribute.
           \param qName The qualified name of the attribute.
           \return The index of the attribute, or -1 if not found.
           */
-         int32 indexOf(String qName) const;
+         size_t indexOf(const String& qName) const;
 
          /*!
           \brief This method searches for the index of an attribute.
           \param localName The local name of the attribute.
           \return The index of the attribute, or -1 if not found.
           */
-         int32 indexOf(String uri, String localName) const;
+         size_t indexOf(const String& uri,const String& localName) const;
 
          /*!
           \brief Returns the number of attributes.
           */
-         uint32 count() const;
+         size_t count() const;
 
          /*!
           \brief Returns the local name of an attribute.
           \param index The 0-based index of the attribute.
           \return The local name of the attribute.
           */
-         String localName(uint32 index) const;
+         String localName(size_t index) const;
 
          /*!
           \brief Returns the qualified name.
           \return The qualified name of the attribute.
           */
-         String qualifiedName(uint32 index) const;
+         String qualifiedName(size_t index) const;
 
          /*!
           \brief Returns the attribute type.
           \details The attribute type is one of the following strings: "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
           \return The attribute type.
           */
-         String type(uint32 index) const;
+         String type(size_t index) const;
 
          /*!
           \brief Returns the attribute type.
           \details The attribute type is one of the following strings: "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", "NMTOKENS", "ENTITY", "ENTITIES", or "NOTATION" (always in upper case).
           \return The attribute type.
           */
-         String type(String qname) const;
+         String type(const String& qname) const;
 
          /*!
           \brief Returns the attribute type.
@@ -125,20 +128,20 @@ namespace jm
           \param localName The local name of the attribute.
           \return The attribute type.
           */
-         String type(String uri, String localName) const;
+         String type(const String& uri,const String& localName) const;
 
          /*!
           \brief Returns the URI.
           \return The URI of the attribute.
           */
-         String uri(uint32 index) const;
+         String uri(size_t index) const;
 
          /*!
           \brief Returns the value of the attribute.
           \param index The 0-based index of the attribute.
           \return The value of the attribute.
           */
-         String value(uint32 index) const;
+         String value(size_t index) const;
 
          /*!
           \brief Returns the value.
@@ -183,7 +186,7 @@ namespace jm
           \param uri The URI of the attribute.
           \param localName The local name of the attribute.
           */
-         String value(String uri, String localName) const;
+         String value(const String& uri,const String& localName) const;
 
       private:
 

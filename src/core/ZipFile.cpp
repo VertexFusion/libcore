@@ -75,7 +75,7 @@ void ZipFile::open()
    // incomplete and the data length of the compressed data does not have to be saved at the
    // beginning.
 
-   uint32 signature;
+   int32 signature;
    ByteArray eocd = ByteArray(22, 0);
    bool found = false;
    do
@@ -203,7 +203,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    if(cm == 8) //Deflate
    {
       Inflater inf = Inflater(true);
-      int64 control;
+      size_t control;
       inf.SetInput(reinterpret_cast<uint8*>(input.data()), entry->mCompressedSize);
       // buffer is initialized and set by Inflater
       inf.Inflate(buffer, control);

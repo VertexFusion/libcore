@@ -62,7 +62,7 @@ Inflater::Inflater(bool wrap): Object()
    mWrap = wrap;
 }
 
-void Inflater::SetInput(uint8* buffer, int64 length)
+void Inflater::SetInput(uint8* buffer, size_t length)
 {
    mCompBytes = buffer;
    mCompLength = length;
@@ -79,7 +79,7 @@ bool Inflater::Finished()
    return mEof;
 }
 
-void Inflater::Inflate(uint8*& buffer, int64& length)
+void Inflater::Inflate(uint8*& buffer, size_t& length)
 {
    mUncompIndex = 0;
 
@@ -140,17 +140,17 @@ void Inflater::Reset()
    mEof = false;
 }
 
-int64 Inflater::GetRemaining()
+size_t Inflater::GetRemaining()
 {
    return mCompLength - mCompIndex;
 }
 
-int64 Inflater::GetTotalIn()
+size_t Inflater::GetTotalIn()
 {
    return mTotalIn;
 }
 
-int64 Inflater::GetTotalOut()
+size_t Inflater::GetTotalOut()
 {
    return mTotalOut;
 }
@@ -223,7 +223,7 @@ void Inflater::checkCapacity()
 
    // Increase
    double ratio = mCompIndex / (double)mCompLength;
-   int64 newLength = mUncompLength + std::max(int64(4096), int64(mUncompLength / ratio));
+   size_t newLength = mUncompLength + std::max(4096UL, static_cast<size_t>(mUncompLength / ratio));
    uint8* tmp = new uint8[newLength];
    if(tmp == nullptr)throw Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
@@ -330,7 +330,7 @@ Inflater::HuffmanTree* Inflater::createTree(Array<uint16>* lengths, Array<uint16
    //1. Determine maxBits at the same time
    std::vector<Inflater::HuffmanTree*> nodes;
    int32 maxBits = 0;
-   for(int64 a = 0; a < lengths->size(); a++)
+   for(size_t a = 0; a < lengths->size(); a++)
    {
       // Only insert the elements that exist (i.e. length>0)
       if((*lengths)[a] != 0)
@@ -447,7 +447,7 @@ Inflater::HuffmanTree* Inflater::createTree(Array<uint16>* lengths, Array<uint16
 // Reads the next Huffman value from the stream and returns the code
 uint16 Inflater::decodeHuffmanSymbol(Inflater::HuffmanTree* tree)
 {
-   int16 bits = 0;
+   uint16 bits = 0;
    uint16  ret = 0;
 
    do
@@ -531,9 +531,9 @@ Array<uint16>* Inflater::huffmanCodes(Array<uint16>* codelengths)
 }
 
 
-void Inflater::readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, int32 count)
+void Inflater::readLengthDists(Array<uint16>* target, Inflater::HuffmanTree* tree, size_t count)
 {
-   int32 cnt = 0;
+   size_t cnt = 0;
 
    uint16 length;
    uint16 repeat;
@@ -668,9 +668,9 @@ void Inflater::handleCompressedDynamicHuffman()
          //stream, and copy length bytes from this
          //position to the output stream.
 
-         int64 src = mUncompIndex - distance;
+         size_t src = mUncompIndex - distance;
          if(src < 0)throw Exception("Distance in fix hufmann refer before output stream beginning.");
-         for(int32 a = 0; a < length; a++)
+         for(uint16 a = 0; a < length; a++)
          {
             writeUncompressed(mUncompBytes[src + a]);
          }
@@ -698,8 +698,8 @@ void Inflater::inflate()
    do
    {
       //Blockheader lesen
-      int8 bfinal = nextBit();
-      int8 btype = nextBit() + nextBit() * 2;
+      uint8 bfinal = nextBit();
+      uint8 btype = nextBit() + nextBit() * 2;
       if(bfinal == 1)mLastBlock = true;
 
       //stored with no compression BTYPE = 00

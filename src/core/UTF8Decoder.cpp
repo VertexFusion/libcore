@@ -68,7 +68,7 @@ CharArray UTF8Decoder::decode(const char* cstring)
 
    while(cstring[cntC] != 0)
    {
-      uint8 c = cstring[cntC];
+      uint8 c = static_cast<uint8>(cstring[cntC]);
 
       if((c & 0x80) == 0)     //1 Zeichen
       {
@@ -113,7 +113,7 @@ CharArray UTF8Decoder::decode(const char* cstring)
       }
       else if((c & 0xE0) == 0xC0)     //2 Zeichen
       {
-         c = (c & 0x001F) << 6;
+         c = static_cast<uint16>((c & 0x001F) << 6);
          d = cstring[cntC + 1] & 0x3F;
          ret.buffer[cntV] = Char(c | d);
          cntV++;
@@ -121,7 +121,7 @@ CharArray UTF8Decoder::decode(const char* cstring)
       }
       else if((c & 0xF0) == 0xE0)     //3 Zeichen
       {
-         c = (c & 0x000F) << 12;
+         c = static_cast<uint16>((c & 0x000F) << 12);
          d = (cstring[cntC + 1] & 0x3F) << 6;
          e = cstring[cntC + 2] & 0x3F;
          ret.buffer[cntV] = Char(c | d | e);
@@ -173,12 +173,12 @@ ByteArray UTF8Decoder::encode(const CharArray& string)
 
    ByteArray cstring = ByteArray(cntC, 0);
    cntC = 0;
-   for(int64 a = 0; a < string.length; a++)
+   for(size_t a = 0; a < string.length; a++)
    {
       uint16 character = string.buffer[a].unicode();
       if(character < 0x80)   //1 Zeichen
       {
-         cstring[cntC] = (int8)character;
+         cstring[cntC] = (uint8)character;
          cntC += 1;
       }
       else if(character < 0x800)   //2 Zeichen

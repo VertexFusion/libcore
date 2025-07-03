@@ -159,7 +159,7 @@ namespace jm
           However, even if one of the values above is returned it does not automatically mean that no character set was recognised.
           */
          static String guess(const char* stream,
-                             int64 length);
+                             size_t length);
 
       private:
 

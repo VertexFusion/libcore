@@ -55,10 +55,10 @@ void Preferences::load(File file)
 {
    if(!file.exists())return;
 
-   int64 l = file.size();
+   size_t l = file.size();
    ByteArray buffer = ByteArray(l, 0);
    file.open(FileMode::kRead);
-   int64 check = file.Stream::readFully(buffer);
+   size_t check = file.Stream::readFully(buffer);
    file.close();
    String data = String(buffer);
 
@@ -71,20 +71,20 @@ void Preferences::load(File file)
    {
       String line = st->next();
 
-      int64 pos = line.indexOf('=');
-      if(pos > 0)
+      size_t pos = line.indexOf('=');
+      if(pos != npos)
       {
          String key = line.substring(0, pos).trim();
          String value = line.substring(pos + 1).trim();
 
          //Prüfe auf Zeilenumbruch
-         while((pos = value.indexOf("\\n")) > 0)
+         while((pos = value.indexOf("\\n")) != npos)
          {
             value = value.substring(0, pos) + "\n" + value.substring(pos + 2);
          }
 
          //Ersetze
-         int64 index = 0;
+         size_t index = 0;
          while(index < value.size())
          {
             Char c = value.charAt(index);
@@ -174,7 +174,7 @@ void Preferences::save(File file)
       for(const jm::String& line : entries)
       {
          ByteArray cstr = line.toCString();
-         file.write((uint8*)cstr.constData(), cstr.size());
+         file.write((const uint8*)cstr.constData(), cstr.size());
       }
 
       file.close();

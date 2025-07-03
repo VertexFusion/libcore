@@ -48,26 +48,26 @@ Nurbs::Nurbs(): Object()
 
 Nurbs::Nurbs(uint32 degree,
              Vertex3* controlpoints,
-             uint32 controlCount,
+             size_t controlCount,
              double* knots,
-             uint32 knotCount,
+             size_t knotCount,
              double* weights,
-             uint32 weightCount): Object()
+             size_t weightCount): Object()
 {
    mDegree = degree;
    if(mDegree < 1)throw Exception(Tr("Degree of NURBS must be greater 0."));
 
    mControlCount = controlCount;
    mControlpoints = new Vertex3[mControlCount];
-   for(uint32 a = 0; a < mControlCount; a++)mControlpoints[a] = controlpoints[a];
+   for(size_t a = 0; a < mControlCount; a++)mControlpoints[a] = controlpoints[a];
 
    mKnotCount = knotCount;
    mKnots = new double[mKnotCount];
-   for(uint32 a = 0; a < mKnotCount; a++)mKnots[a] = knots[a];
+   for(size_t a = 0; a < mKnotCount; a++)mKnots[a] = knots[a];
 
    mWeightCount = weightCount;
    mWeights = new double[mWeightCount];
-   for(uint32 a = 0; a < mWeightCount; a++)mWeights[a] = weights[a];
+   for(size_t a = 0; a < mWeightCount; a++)mWeights[a] = weights[a];
 
    mClamped=calcClamped();
    mClosed=calcClosed();
@@ -115,7 +115,7 @@ double Nurbs::R(uint32 i, uint32 k, double t)
    double a = mWeights[i] * N(i, k, t);
    double b = 0.0;
 
-   for(uint32 j = 0; j < mControlCount; j++)b += mWeights[j] * N(j, k, t);
+   for(size_t j = 0; j < mControlCount; j++)b += mWeights[j] * N(j, k, t);
 
    if (jm::isEqual(b, 0.0)) return 0.0;
 
@@ -127,9 +127,9 @@ Vertex3 Nurbs::point(double t)
    Vertex3 p;
    double denominator = 0.0;
 
-   int32 endIdx = mControlCount;
+   size_t endIdx = mControlCount;
 
-   for (int32 i = 0; i < endIdx; ++i)
+   for (size_t i = 0; i < endIdx; ++i)
    {
       double Ni = N(i, mDegree, t);
       double weightedNi = mWeights[i] * Ni;
@@ -217,27 +217,27 @@ double Nurbs::end() const
    return mKnots[mKnotCount - mDegree - 1];
 }
 
-int32 Nurbs::startIndex() const
+size_t Nurbs::startIndex() const
 {
    return mDegree;
 }
 
-int32 Nurbs::endIndex() const
+size_t Nurbs::endIndex() const
 {
    return mKnotCount - mDegree - 1;
 }
 
-uint32 Nurbs::controlPointCount()
+size_t Nurbs::controlPointCount()
 {
    return mControlCount;
 }
 
-uint32 Nurbs::knotCount()const
+size_t Nurbs::knotCount()const
 {
    return mKnotCount;
 }
 
-double Nurbs::knot(uint32 index)const
+double Nurbs::knot(size_t index)const
 {
    return mKnots[index];
 }
@@ -247,12 +247,12 @@ uint32 Nurbs::degree() const
    return mDegree;
 }
 
-jm::Vertex3 Nurbs::controlPoint(uint32 index) const
+jm::Vertex3 Nurbs::controlPoint(size_t index) const
 {
    return mControlpoints[index];
 }
 
-double Nurbs::weight(uint32 index) const
+double Nurbs::weight(size_t index) const
 {
    return mWeights[index];
 }

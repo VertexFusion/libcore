@@ -36,9 +36,19 @@ jm::Char::Char()
    mChar = 0;
 }
 
-/* explicit */ jm::Char::Char(uint16 character)
+jm::Char::Char(int character)
+{
+   mChar = static_cast<uint16>(character);
+}
+
+jm::Char::Char(uint16 character)
 {
    mChar = character;
+}
+
+jm::Char::Char(char character)
+{
+   mChar = static_cast<uint16>(character);
 }
 
 uint16 jm::Char::unicode() const

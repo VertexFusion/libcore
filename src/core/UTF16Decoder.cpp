@@ -93,13 +93,13 @@ ByteArray UTF16Decoder::encode(const CharArray& string)
 
    ByteArray cstring = ByteArray(2 * string.length, 0);
 
-   int64 idx = 0;
-   for(uint32 a = 0; a < string.length; a++)
+   size_t idx = 0;
+   for(size_t a = 0; a < string.length; a++)
    {
       uint16 character = string.buffer[a].unicode();
-      cstring[idx] = (int8)(character >> 8);
+      cstring[idx] = (uint8)(character >> 8);
       idx++;
-      cstring[idx] = (int8)character;
+      cstring[idx] = (uint8)character;
       idx++;
    }
    return cstring;

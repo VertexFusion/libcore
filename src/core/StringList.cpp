@@ -41,7 +41,7 @@ StringList::StringList(): Object()
    mSize = 0;
 }
 
-StringList::StringList(int64 size)
+StringList::StringList(size_t size)
 {
    mData = new String[size];
    mLength = size;
@@ -62,7 +62,7 @@ StringList::StringList(const StringList& other): Object()
    mSize = other.mSize;
    mLength = other.mLength;
    mData = new String[mLength];
-   for(int64 a = 0; a < mSize; a++)
+   for(size_t a = 0; a < mSize; a++)
    {
       mData[a] = other.mData[a];
    }
@@ -75,7 +75,7 @@ StringList::~StringList()
    if(mData != nullptr)delete[] mData;
 }
 
-void StringList::reserve(int64 size)
+void StringList::reserve(size_t size)
 {
    checkSize(size);
 }
@@ -88,11 +88,11 @@ void StringList::append(const jm::String& string)
 
 void StringList::remove(const jm::String& string)
 {
-   for(int64 index = 0; index < mSize; index++)
+   for(size_t index = 0; index < mSize; index++)
    {
       if(mData[index] == string)
       {
-         for(int64 index2 = index + 1; index2 < mSize; index2++)
+         for(size_t index2 = index + 1; index2 < mSize; index2++)
          {
             mData[index2 - 1] = mData[index2];
          }
@@ -102,7 +102,7 @@ void StringList::remove(const jm::String& string)
    }
 }
 
-int64 StringList::size() const
+size_t StringList::size() const
 {
    return mSize;
 }
@@ -111,13 +111,13 @@ void StringList::sort()
 {
    if(mSize < 1)return;
 
-   int64 n = mSize;
+   size_t n = mSize;
    do
    {
-      int64 newn = 1;
-      for(int64 i = 0; i < n - 1; ++i)
+      size_t newn = 1;
+      for(size_t i = 0; i < n - 1; ++i)
       {
-         int64 j = i + 1;
+         size_t j = i + 1;
          String* a1 = &mData[i];
          String* a2 = &mData[j];
          if(a1->compareTo(*a2) > 0)
@@ -137,13 +137,13 @@ void StringList::sort()
 
 jm::String StringList::join(Char divider) const
 {
-   int64 stringSize = mSize - 1;
-   for(int64 index = 0; index < mSize; index++)stringSize += mData[index].size();
+   size_t stringSize = mSize - 1;
+   for(size_t index = 0; index < mSize; index++)stringSize += mData[index].size();
 
    jm::String result;
    result.checkCapacity(stringSize);
 
-   for(int64 index = 0; index < mSize; index++)
+   for(size_t index = 0; index < mSize; index++)
    {
       if(index > 0)result << divider;
       result << mData[index];
@@ -152,16 +152,16 @@ jm::String StringList::join(Char divider) const
    return result;
 }
 
-const String& StringList::get(int64 index) const
+const String& StringList::get(size_t index) const
 {
-   if(index < 0 || index >= mSize)
+   if(index >= mSize)
       throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    return mData[index];
 }
 
-void StringList::set(int64 index, const String& item)
+void StringList::set(size_t index, const String& item)
 {
-   if(index < 0 || index >= mSize)
+   if(index >= mSize)
       throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    mData[index] = item;
 }
@@ -173,7 +173,7 @@ void StringList::clear()
 
 bool StringList::contains(const String& str) const
 {
-   for(int64 index = 0; index < mSize; index++)
+   for(size_t index = 0; index < mSize; index++)
    {
       if(mData[index] == str)return true;
    }
@@ -181,17 +181,17 @@ bool StringList::contains(const String& str) const
 }
 
 
-void StringList::checkSize(int64 size)
+void StringList::checkSize(size_t size)
 {
    if(mSize + size < mLength)return;
    while(mLength < mSize + size)mLength += 8;
    String* tmp = new String[mLength];
-   for(int64 index = 0; index < mSize; index++)tmp[index] = mData[index];
+   for(size_t index = 0; index < mSize; index++)tmp[index] = mData[index];
    delete[] mData;
    mData = tmp;
 }
 
-String& jm::StringList::operator[](const int64 index) const
+String& jm::StringList::operator[](const size_t index) const
 {
    if(index < 0 || index >= mSize)
       throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
@@ -207,7 +207,7 @@ StringList& jm::StringList::operator=(const StringList& another)
       mLength = another.mLength;
       mSize = another.mSize;
       mData = new String[mLength];
-      for(int64 a = 0; a < mSize; a++)
+      for(size_t a = 0; a < mSize; a++)
       {
          mData[a] = another.mData[a];
       }
