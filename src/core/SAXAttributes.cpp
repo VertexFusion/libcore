@@ -170,8 +170,8 @@ bool SAXAttributes::valueAsBool(const String& qname)const
 
 bool SAXAttributes::hasValue(const String& qname) const
 {
-   int32 index = indexOf(qname);
-   if(index > -1)return true;
+   size_t index = indexOf(qname);
+   if(index != npos)return true;
    return false;
 }
 
