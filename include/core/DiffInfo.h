@@ -79,8 +79,11 @@ namespace jm
                            uint32 obj1, uint32 obj2, const String& label);
          static void print(DiffOperation operation,
                            uint64 obj1, uint64 obj2, const String& label);
+
+#ifdef JM_MACOS
          static void print(DiffOperation operation,
                            size_t obj1, size_t obj2, const String& label);
+#endif
 
          static void print(DiffOperation operation,
                            double obj1, double obj2, const String& label);

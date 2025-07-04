@@ -245,10 +245,12 @@ void UndoManager::registerChange(Object* object, uint64* pointer)
    registerChange(new UndoChangeUInt64(object, pointer));
 }
 
+#ifdef JM_MACOS
 void UndoManager::registerChange(Object* object, size_t* pointer)
 {
    registerChange(new UndoChangeSizeType(object, pointer));
 }
+#endif
 
 void UndoManager::registerChange(Object* object, float* pointer)
 {

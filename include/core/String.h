@@ -497,6 +497,7 @@ namespace jm
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' ')) const;
 
+#ifdef JM_MACOS
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
@@ -504,7 +505,7 @@ namespace jm
          String arg(size_t value,
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' ')) const;
-
+#endif
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
@@ -668,8 +669,10 @@ namespace jm
          static String valueOf(uint64 number);
          static String valueOf(int32 number);
          static String valueOf(uint32 number);
-         static String valueOf(size_t number);
 
+#ifdef JM_MACOS
+         static String valueOf(size_t number);
+#endif
          /*!
           \brief Converts a bool value into a string.
           \param value The value.

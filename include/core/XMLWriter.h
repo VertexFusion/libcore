@@ -134,6 +134,7 @@ namespace jm
           */
          void writeAttribute(const String& name, uint64 content);
 
+#ifdef JM_MACOS
          /*!
           \brief This method writes an XML attribute to the currently open start element.
           \details This method should be called before writing any content to the element.
@@ -142,7 +143,7 @@ namespace jm
           \warning This method must be called before writing any content to an element.
           */
          void writeAttribute(const String& name, size_t content);
-
+#endif
          /*!
           \brief This method writes an XML attribute to the currently open start element.
           \details This method should be called before writing any content to the element.

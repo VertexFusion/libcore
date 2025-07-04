@@ -897,12 +897,14 @@ String String::arg(uint64 value,
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
+#ifdef JM_MACOS
 String String::arg(size_t value,
                    int64 fieldWidth,
                    Char fillchar) const
 {
    return arg(static_cast<uint64>(value), fieldWidth, fillchar);
 }
+#endif
 
 String String::arg(const String& value,
                    int64 fieldwidth,
@@ -1053,10 +1055,12 @@ String String::valueOf(uint32 number)
    return valueOf((int64) number);
 }
 
+#ifdef JM_MACOS
 String String::valueOf(size_t number)
 {
    return valueOf((uint64) number);
 }
+#endif
 
 String String::valueOf(double number)
 {

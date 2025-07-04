@@ -228,6 +228,8 @@ namespace jm
           */
          void testEquals(uint64 actual, uint32 expected, const String& failmessage);
 
+#ifdef JM_MACOS
+
          /*!
           \brief This method tests, if size_t \p actual is equal to \p expected.
           \param actual The test value
@@ -235,7 +237,7 @@ namespace jm
           \param failmessage The log message in case of failed test.
           */
          void testEquals(size_t actual, size_t expected, const String& failmessage);
-
+#endif
 
          /*!
           \brief This method tests, if int32 \p actual is equal to \p expected.

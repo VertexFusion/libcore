@@ -44,11 +44,12 @@ namespace jm
    {
 
       public:
-         LListElement* next;
-         LListElement* prev;
-         Object* data;
+         LListElement* next = nullptr;
+         LListElement* prev = nullptr;
+         Object* data = nullptr;
 
-         LListElement();
+         LListElement() = default;
+         ~LListElement() = default;
 
          jm::String displayName() const override;
 

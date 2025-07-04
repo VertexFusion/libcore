@@ -105,6 +105,7 @@ void DiffInfo::print(DiffOperation operation,
    }
 }
 
+#ifdef JM_MACOS
 void DiffInfo::print(DiffOperation operation,
                      size_t obj1,
                      size_t obj2,
@@ -112,6 +113,7 @@ void DiffInfo::print(DiffOperation operation,
 {
    print(operation, uint64(obj1), uint64(obj2), label);
 }
+#endif
 
 void DiffInfo::print(DiffOperation operation,
                      double obj1,

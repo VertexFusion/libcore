@@ -33,13 +33,6 @@
 
 using namespace jm;
 
-LListElement::LListElement(): Object()
-{
-   next = nullptr;
-   prev = nullptr;
-   data = nullptr;
-}
-
 jm::String LListElement::displayName() const
 {
    return "jm::LListElement";
