@@ -32,7 +32,7 @@
 #include "PrecompiledCore.hpp"
 
 
-int16 jm::serializeBEInt16(uint8* buffer, size_t offset, int16 value)
+size_t jm::serializeBEInt16(uint8* buffer, size_t offset, int16 value)
 {
    buffer[offset + 1] = (uint8)value;
    value >>= 8;
@@ -40,7 +40,7 @@ int16 jm::serializeBEInt16(uint8* buffer, size_t offset, int16 value)
    return 2;
 }
 
-uint16 jm::serializeBEUInt16(uint8* buffer, size_t offset, uint16 value)
+size_t jm::serializeBEUInt16(uint8* buffer, size_t offset, uint16 value)
 {
    buffer[offset + 1] = (uint8)value;
    value >>= 8;
@@ -48,7 +48,7 @@ uint16 jm::serializeBEUInt16(uint8* buffer, size_t offset, uint16 value)
    return 2;
 }
 
-int16 jm::serializeBEInt24(uint8* buffer, size_t offset, int32 value)
+size_t jm::serializeBEInt24(uint8* buffer, size_t offset, int32 value)
 {
    buffer[offset + 2] = (uint8)value;
    value >>= 8;
@@ -58,7 +58,7 @@ int16 jm::serializeBEInt24(uint8* buffer, size_t offset, int32 value)
    return 3;
 }
 
-int16 jm::serializeBEInt32(uint8* buffer, size_t offset, int32 value)
+size_t jm::serializeBEInt32(uint8* buffer, size_t offset, int32 value)
 {
    buffer[offset + 3] = (uint8)value;
    value >>= 8;
@@ -70,7 +70,7 @@ int16 jm::serializeBEInt32(uint8* buffer, size_t offset, int32 value)
    return 4;
 }
 
-int16 jm::serializeBEInt64(uint8* buffer, size_t offset, int64 value)
+size_t jm::serializeBEInt64(uint8* buffer, size_t offset, int64 value)
 {
    buffer[offset + 7] = (uint8)value;
    value >>= 8;
@@ -90,7 +90,7 @@ int16 jm::serializeBEInt64(uint8* buffer, size_t offset, int64 value)
    return 8;
 }
 
-int16 jm::serializeLEInt16(uint8* buffer, size_t offset, int16 value)
+size_t jm::serializeLEInt16(uint8* buffer, size_t offset, int16 value)
 {
    buffer[offset] = (uint8)value;
    value >>= 8;
@@ -98,7 +98,7 @@ int16 jm::serializeLEInt16(uint8* buffer, size_t offset, int16 value)
    return 2;
 }
 
-int16 jm::serializeLEUInt16(uint8* buffer, size_t offset, uint16 value)
+size_t jm::serializeLEUInt16(uint8* buffer, size_t offset, uint16 value)
 {
    buffer[offset] = (uint8)value;
    value >>= 8;
@@ -106,7 +106,7 @@ int16 jm::serializeLEUInt16(uint8* buffer, size_t offset, uint16 value)
    return 2;
 }
 
-int16 jm::serializeLEInt24(uint8* buffer, size_t offset, int32 value)
+size_t jm::serializeLEInt24(uint8* buffer, size_t offset, int32 value)
 {
    buffer[offset] = (uint8)value;
    value >>= 8;
@@ -116,7 +116,7 @@ int16 jm::serializeLEInt24(uint8* buffer, size_t offset, int32 value)
    return 3;
 }
 
-int16 jm::serializeLEInt32(uint8* buffer, size_t offset, int32 value)
+size_t jm::serializeLEInt32(uint8* buffer, size_t offset, int32 value)
 {
    buffer[offset] = (uint8)value;
    value >>= 8;
@@ -128,7 +128,7 @@ int16 jm::serializeLEInt32(uint8* buffer, size_t offset, int32 value)
    return 4;
 }
 
-int16 jm::serializeLEInt64(uint8* buffer, size_t offset, int64 value)
+size_t jm::serializeLEInt64(uint8* buffer, size_t offset, int64 value)
 {
    buffer[offset] = (uint8)value;
    value >>= 8;
@@ -278,7 +278,7 @@ int64 jm::deserializeLEInt64(const jm::ByteArray& buffer, size_t offset)
    return (p1 << 32 | p2);
 }
 
-int16 jm::serializeLEDouble(uint8* buffer, size_t offset, double value)
+size_t jm::serializeLEDouble(uint8* buffer, size_t offset, double value)
 {
    uint64 ival = std::bit_cast<uint64>(value);
 
@@ -301,7 +301,7 @@ int16 jm::serializeLEDouble(uint8* buffer, size_t offset, double value)
    return 8;
 }
 
-int16 jm::serializeLEFloat(uint8* buffer, size_t offset, float value)
+size_t jm::serializeLEFloat(uint8* buffer, size_t offset, float value)
 {
    uint32 ival = std::bit_cast<uint32>(value);
 

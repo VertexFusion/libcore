@@ -228,6 +228,14 @@ namespace jm
           */
          void testEquals(uint64 actual, uint32 expected, const String& failmessage);
 
+         /*!
+          \brief This method tests, if size_t \p actual is equal to \p expected.
+          \param actual The test value
+          \param expected The expected value
+          \param failmessage The log message in case of failed test.
+          */
+         void testEquals(size_t actual, size_t expected, const String& failmessage);
+
 
          /*!
           \brief This method tests, if int32 \p actual is equal to \p expected.

@@ -85,7 +85,7 @@ void Exception::printStackTrace() const
       //Schneide Index (o) ab
       String line = mSymbolList[i];
       line = line.trim();
-      int64 pos = line.indexOf(' ');
+      size_t pos = line.indexOf(' ');
       line = line.substring(pos).trim();
 
       //Name der Binärdatei
@@ -107,7 +107,7 @@ void Exception::printStackTrace() const
       size_t size = 1024;
       ByteArray cstr = function.toCString();
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
-      function = String(buffer, (int)size, Charset::forName("RAW"));
+      function = String(buffer, size, Charset::forName("RAW"));
 
       std:: cerr << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" <<
                  std::endl;
@@ -150,7 +150,7 @@ String Exception::GetStrackTrace() const
       //Schneide Index (o) ab
       String line = mSymbolList[i];
       line = line.trim();
-      int64 pos = line.indexOf(' ');
+      size_t pos = line.indexOf(' ');
       line = line.substring(pos).trim();
 
       //Name der Binärdatei
@@ -172,7 +172,7 @@ String Exception::GetStrackTrace() const
       size_t size = 1024;
       ByteArray cstr = function.toCString();
       abi::__cxa_demangle(cstr.constData(), buffer, &size, &status);
-      function = String(buffer, (int)size, Charset::forName("RAW"));
+      function = String(buffer, size, Charset::forName("RAW"));
 
       ret << "\tat [" << binaryName << "] " << function << " (" << address << " " << line << ")" << '\r'
           << '\n';

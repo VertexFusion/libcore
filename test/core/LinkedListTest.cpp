@@ -353,12 +353,12 @@ void LinkedListTest::DoTest3(bool active)
 
    l->clear(um);
    um->close();
-   testEquals(l->size(), 0, "LinkedList fails (13)");
+   testEquals(l->size(), 0UL, "LinkedList fails (13)");
 
    if(active)// Next test only works with enabled undo manager
    {
       um->undo();
-      testEquals(l->size(), 5, "LinkedList fails (14)");
+      testEquals(l->size(), 5UL, "LinkedList fails (14)");
 
       l->rewind();
       testEquals(l->hasNext(), true, "LinkedList fails (15a)");
@@ -386,7 +386,7 @@ void LinkedListTest::DoTest3(bool active)
       l->clear(um);
       um->close();
    }
-   testEquals(l->size(), 0, "LinkedList fails (21)");
+   testEquals(l->size(), 0UL, "LinkedList fails (21)");
 
    delete um;
    testEquals(l->referenceCount(), 1, "LinkList ref fails(22)");

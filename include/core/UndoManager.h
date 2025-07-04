@@ -264,6 +264,15 @@ namespace jm
          void registerChange(Object* object, uint64* pointer);
 
          /*!
+          \brief This method registers a change in the file where a long value of an object is modified.
+          If the UndoManager is not active, nothing happens.
+          \details This method opens an undo step and also resets the RedoStack.
+          \param object The object whose value is being modified.
+          \param pointer A pointer to the value that will be modified. This method automatically saves the old value.
+          */
+         void registerChange(Object* object, size_t* pointer);
+
+         /*!
           \brief This method registers a change in the file where a Vertex3 value of an object is modified.
           If the UndoManager is not active, nothing happens.
           \details This method opens an undo step and also resets the RedoStack.

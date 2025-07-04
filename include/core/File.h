@@ -265,7 +265,7 @@ namespace jm
           it is still waiting for data. In this case, only a portion may be returned.
           If you want to ensure that all data is read, you should call "readFully".
           \param buffer The buffer to read the data into.
-          \param length The maximum number of bytes to read.
+          \param size The maximum number of bytes to read.
           \return The actual number of bytes read, or 0 if no bytes were read (EOF).
           */
          size_t read(unsigned char* buffer,
@@ -290,7 +290,7 @@ namespace jm
 
          /*!
           \brief Moves the file cursor to the desired position, relative to the current position.
-          \param offset The offset to move the file cursor by.
+          \param offset The offset to move the file cursor by. This variable is signed and can be negative.
           */
          void move(ssize_t offset) override;
 

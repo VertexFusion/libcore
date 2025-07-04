@@ -140,6 +140,15 @@ namespace jm
           \param name The name of the attribute.
           \param content The content of the attribute.
           \warning This method must be called before writing any content to an element.
+          */
+         void writeAttribute(const String& name, size_t content);
+
+         /*!
+          \brief This method writes an XML attribute to the currently open start element.
+          \details This method should be called before writing any content to the element.
+          \param name The name of the attribute.
+          \param content The content of the attribute.
+          \warning This method must be called before writing any content to an element.
           \note The content of the attribute should be a string.
           */
          void writeAttribute(const String& name, float content);

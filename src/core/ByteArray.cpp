@@ -217,7 +217,7 @@ void ByteArray::replace(uint8 oldValue, uint8 newValue)
 
 void ByteArray::resize(size_t newSize)
 {
-   if(newSize <= mRawSize - 1)
+   if(newSize + 1 <= mRawSize )
    {
       mArrSize = newSize;
       mData[mArrSize] = 0;

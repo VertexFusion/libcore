@@ -50,7 +50,7 @@ void FileTest::doTest()
    testTrue(file.canWrite(), "File::canWrite()==true failed");
 
    testEquals(file.name(), "test.txt", "file.name()==test.txt failed");
-   testEquals(file.size(), 0, "File.size()==0 failed");
+   testEquals(file.size(), 0UL, "File.size()==0 failed");
    testEquals(file.parent(), jm::currentDir().absolutePath(), "file.parent() failed");
    testEquals(file.extension(), "txt", "file::extension() failed");
    testTrue(file.isAbsolute(), "File::isAbsolute() failed");
@@ -169,11 +169,11 @@ void FileTest::doTest()
 #if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
    StringList tags = file.getTags();
-   testEquals(tags.size(), 0, "File::getTags().size()==0 failed");
+   testEquals(tags.size(), 0UL, "File::getTags().size()==0 failed");
 
    testTrue(file.addTag("tag1") == jm::Status::eOK, "File::addTag() failed");
    tags = file.getTags();
-   testEquals(tags.size(), 1, "File::getTags().size()==1 failed");
+   testEquals(tags.size(), 1UL, "File::getTags().size()==1 failed");
    if(tags.size() > 0)
    {
       testEquals(tags[0], "tag1", "Wrong tag returned");
@@ -181,7 +181,7 @@ void FileTest::doTest()
 
    testTrue(file.addTag("tag2") == jm::Status::eOK, "File::addTag() failed");
    tags = file.getTags();
-   testEquals(tags.size(), 2, "File::getTags().size()==2 failed");
+   testEquals(tags.size(), 2UL, "File::getTags().size()==2 failed");
    if(tags.size() > 0)
    {
       tags.sort();
@@ -191,7 +191,7 @@ void FileTest::doTest()
 
    testTrue(file.removeTag("tag1") == jm::Status::eOK, "File::removeTag() failed");
    tags = file.getTags();
-   testEquals(tags.size(), 1, "File::getTags().size()==1 failed");
+   testEquals(tags.size(), 1UL, "File::getTags().size()==1 failed");
    if(tags.size() != 0)
    {
       testEquals(tags[0], "tag2", "Wrong tag returned");
@@ -200,7 +200,7 @@ void FileTest::doTest()
    // Remove last tag
    testTrue(file.removeTag("tag2") == jm::Status::eOK, "File::removeTag() failed");
    tags = file.getTags();
-   testEquals(tags.size(), 0, "File::getTags().size()==0 failed");
+   testEquals(tags.size(), 0UL, "File::getTags().size()==0 failed");
 #endif
 
    file.remove();

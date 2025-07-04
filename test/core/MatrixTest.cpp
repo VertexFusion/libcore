@@ -25,13 +25,13 @@ void MatrixTest::doTest()
 {
 
    Matrix A = Matrix(1, 1);
-   testEquals(A.rows(), 1, "Matrix.rows() not 1");
-   testEquals(A.cols(), 1, "Matrix.cols() not 1");
+   testEquals(A.rows(), 1UL, "Matrix.rows() not 1");
+   testEquals(A.cols(), 1UL, "Matrix.cols() not 1");
 
 
    A = Matrix(2, 2);
-   testEquals(A.rows(), 2, "Matrix.rows() not 2");
-   testEquals(A.cols(), 2, "Matrix.cols() not 2");
+   testEquals(A.rows(), 2UL, "Matrix.rows() not 2");
+   testEquals(A.cols(), 2UL, "Matrix.cols() not 2");
 
    //Leere Matrix muss 0-Einträge haben
    testEquals(A.get(0, 0), 0.0, "Value not 0");
@@ -47,8 +47,8 @@ void MatrixTest::doTest()
    testEquals(A.get(1, 1), 1.0, "Value not 0");
 
    A = Matrix(3, 3);
-   testEquals(A.rows(), 3, "Matrix.rows() not 3");
-   testEquals(A.cols(), 3, "Matrix.cols() not 3");
+   testEquals(A.rows(), 3UL, "Matrix.rows() not 3");
+   testEquals(A.cols(), 3UL, "Matrix.cols() not 3");
 
    //Leere Matrix muss 0-Einträge haben
    testEquals(A.get(0, 0), 0.0, "Value not 0");
@@ -112,8 +112,8 @@ void MatrixTest::doTest()
    testEquals(data[2], 3.0, "Value not 2 3x1");
 
    A = Matrix(4, 4);
-   testEquals(A.rows(), 4, "Matrix.rows() not 4");
-   testEquals(A.cols(), 4, "Matrix.cols() not 4");
+   testEquals(A.rows(), 4UL, "Matrix.rows() not 4");
+   testEquals(A.cols(), 4UL, "Matrix.cols() not 4");
 
    //Leere Matrix muss 0-Einträge haben
    testEquals(A.get(0, 0), 0.0, "Value not 0");
@@ -180,8 +180,8 @@ void MatrixTest::doTest()
 
    Matrix C = A * B;
 
-   testEquals(C.rows(), 2, "Matrix.rows() not 2");
-   testEquals(C.cols(), 2, "Matrix.cols() not 2");
+   testEquals(C.rows(), 2UL, "Matrix.rows() not 2");
+   testEquals(C.cols(), 2UL, "Matrix.cols() not 2");
 
    testEquals(C.get(0, 0), 7.0, "Value not 7");
    testEquals(C.get(0, 1), 8.0, "Value not 8");
@@ -197,8 +197,8 @@ void MatrixTest::doTest()
 
    C = 4.0 * A;
 
-   testEquals(C.rows(), 2, "Matrix.rows() not 2");
-   testEquals(C.cols(), 2, "Matrix.cols() not 2");
+   testEquals(C.rows(), 2UL, "Matrix.rows() not 2");
+   testEquals(C.cols(), 2UL, "Matrix.cols() not 2");
 
    testEquals(C.get(0, 0), 4.0, "Value not 4");
    testEquals(C.get(0, 1), 8.0, "Value not 8");
@@ -463,13 +463,13 @@ void MatrixTest::constructors()
 {
    // Test default constructor
    Matrix A;
-   testEquals(A.rows(), 0, "Matrix.rows() not 0");
-   testEquals(A.cols(), 0, "Matrix.cols() not 0");
+   testEquals(A.rows(), 0UL, "Matrix.rows() not 0");
+   testEquals(A.cols(), 0UL, "Matrix.cols() not 0");
 
    // Test constructor with size
    A = Matrix(3, 4);
-   testEquals(A.rows(), 3, "Matrix.rows() not 3");
-   testEquals(A.cols(), 4, "Matrix.cols() not 4");
+   testEquals(A.rows(), 3UL, "Matrix.rows() not 3");
+   testEquals(A.cols(), 4UL, "Matrix.cols() not 4");
 
    testEquals(A.get(0, 0), 0.0, "Value not 0");
    testEquals(A.get(0, 1), 0.0, "Value not 0");
@@ -548,8 +548,8 @@ void MatrixTest::constructors()
    jm::Vertex3 c2(4, 5, 6);
    jm::Vertex3 c3(7, 8, 9);
    A = Matrix(c1, c2, c3, false);
-   testEquals(A.rows(), 3, "Matrix.rows() not 3");
-   testEquals(A.cols(), 3, "Matrix.cols() not 3");
+   testEquals(A.rows(), 3UL, "Matrix.rows() not 3");
+   testEquals(A.cols(), 3UL, "Matrix.cols() not 3");
    testEquals(A.get(0, 0), 1.0, "Value not 1");
    testEquals(A.get(1, 0), 2.0, "Value not 2");
    testEquals(A.get(2, 0), 3.0, "Value not 3");
@@ -561,8 +561,8 @@ void MatrixTest::constructors()
    testEquals(A.get(2, 2), 9.0, "Value not 9");
 
    A = Matrix(c1, c2, c3, true);
-   testEquals(A.rows(), 3, "Matrix.rows() not 3");
-   testEquals(A.cols(), 3, "Matrix.cols() not 3");
+   testEquals(A.rows(), 3UL, "Matrix.rows() not 3");
+   testEquals(A.cols(), 3UL, "Matrix.cols() not 3");
    testEquals(A.get(0, 0), 1.0, "Value not 1");
    testEquals(A.get(0, 1), 2.0, "Value not 2");
    testEquals(A.get(0, 2), 3.0, "Value not 3");

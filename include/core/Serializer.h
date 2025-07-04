@@ -45,7 +45,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeBEInt16(uint8* buffer, size_t offset, int16 value);
+   size_t serializeBEInt16(uint8* buffer, size_t offset, int16 value);
 
    /*!
     \brief This method serializes a number using the Big-Endian method.
@@ -55,7 +55,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeBEInt24(uint8* buffer, size_t offset, int32 value);
+   size_t serializeBEInt24(uint8* buffer, size_t offset, int32 value);
 
    /*!
     \brief This method serializes a number using the Big-Endian method.
@@ -65,7 +65,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeBEInt32(uint8* buffer, size_t offset, int32 value);
+   size_t serializeBEInt32(uint8* buffer, size_t offset, int32 value);
 
    /*!
     \brief This method serializes a number using the Big-Endian method.
@@ -75,7 +75,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeBEInt64(uint8* buffer, size_t offset, int64 value);
+   size_t serializeBEInt64(uint8* buffer, size_t offset, int64 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -85,7 +85,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEInt16(uint8* buffer, size_t offset, int16 value);
+   size_t serializeLEInt16(uint8* buffer, size_t offset, int16 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -95,8 +95,8 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEUInt16(uint8* buffer, size_t offset, uint16 value);
-   uint16 serializeBEUInt16(uint8* buffer, size_t offset, uint16 value);
+   size_t serializeLEUInt16(uint8* buffer, size_t offset, uint16 value);
+   size_t serializeBEUInt16(uint8* buffer, size_t offset, uint16 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -106,7 +106,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEInt24(uint8* buffer, size_t offset, int32 value);
+   size_t serializeLEInt24(uint8* buffer, size_t offset, int32 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -116,7 +116,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEInt32(uint8* buffer, size_t offset, int32 value);
+   size_t serializeLEInt32(uint8* buffer, size_t offset, int32 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -126,7 +126,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEInt64(uint8* buffer, size_t offset, int64 value);
+   size_t serializeLEInt64(uint8* buffer, size_t offset, int64 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -136,7 +136,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEDouble(uint8* buffer, size_t offset, double value);
+   size_t serializeLEDouble(uint8* buffer, size_t offset, double value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -146,7 +146,7 @@ namespace jm
     \return Returns the number of bytes written.
     */
    DllExport
-   int16 serializeLEFloat(uint8* buffer, size_t offset, float value);
+   size_t serializeLEFloat(uint8* buffer, size_t offset, float value);
 
 
    /*!

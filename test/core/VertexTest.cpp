@@ -156,12 +156,12 @@ void VertexTest::vector()
 {
    // Default constructor
    Vector v = Vector();
-   testEquals(v.m, 0, "Vector m not 0");
+   testEquals(v.m, 0UL, "Vector m not 0");
    testNull(v.data, "Vector data not null");
 
    // Constructor with size
    v = Vector(3);
-   testEquals(v.m, 3, "Vector m not 3");
+   testEquals(v.m, 3UL, "Vector m not 3");
    testNotNull(v.data, "Vector data null");
    testEquals(v.data[0], 0.0, "Vector data[0] not 0");
    testEquals(v.data[1], 0.0, "Vector data[1] not 0");
@@ -173,7 +173,7 @@ void VertexTest::vector()
 
    // Copy constructor
    Vector v2 = Vector(v);
-   testEquals(v2.m, 3, "Vector m not 3");
+   testEquals(v2.m, 3UL, "Vector m not 3");
    testNotNull(v2.data, "Vector data null");
    testEquals(v2.data[0], 1.0, "Vector data[0] not 1");
    testEquals(v2.data[1], 2.0, "Vector data[1] not 2");
@@ -191,14 +191,14 @@ void VertexTest::vector()
    testEquals(v.data[0], 0.0, "Vector data[0] not 0");
    testEquals(v.data[1], 0.0, "Vector data[1] not 0");
    testEquals(v.data[2], 0.0, "Vector data[2] not 0");
-   testEquals(v.m, 3, "Vector m not 3");
+   testEquals(v.m, 3UL, "Vector m not 3");
 
    // ones
    v.ones();
    testEquals(v.data[0], 1.0, "Vector data[0] not 1");
    testEquals(v.data[1], 1.0, "Vector data[1] not 1");
    testEquals(v.data[2], 1.0, "Vector data[2] not 1");
-   testEquals(v.m, 3, "Vector m not 3");
+   testEquals(v.m, 3UL, "Vector m not 3");
 
    // dot product
    v2 = Vector(3);
@@ -213,7 +213,7 @@ void VertexTest::vector()
    testEquals(result.data[0], 2.0, "Vector add data[0] not 2");
    testEquals(result.data[1], 3.0, "Vector add data[1] not 3");
    testEquals(result.data[2], 4.0, "Vector add data[2] not 4");
-   testEquals(result.m, 3, "Vector add m not 3");
+   testEquals(result.m, 3UL, "Vector add m not 3");
 
    // subtract
    result = v - v2;

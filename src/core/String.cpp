@@ -188,7 +188,7 @@ String String::fromCFString(CFStringRef cfstring)
    if(ccstr != nullptr)return String(ccstr);
 
    // Fallback
-   char* cstr = new char[length * 2]; //Hope, that not all characters are greater than 4 bytes representation
+   char* cstr = new char[(size_t)length * 2]; //Hope, that not all characters are greater than 4 bytes representation
    CFStringGetCString(cfstring, cstr, length * 2, kCFStringEncodingUTF8);
    String result = String(cstr);
    delete[] cstr;
@@ -382,11 +382,13 @@ size_t String::indexOf(const String& str, size_t fromIndex) const
 
 size_t String::lastIndexOf(Char character) const
 {
+   if(mStrLength==0)return npos;
    return lastIndexOf(character, mStrLength - 1);
 }
 
 size_t String::lastIndexOf(const String& str) const
 {
+   if(mStrLength==0)return npos;
    return lastIndexOf(str, mStrLength - 1);
 }
 
@@ -398,31 +400,31 @@ size_t String::lastIndexOf(Char character, size_t fromIndex) const
 
    if(fromIndex > mStrLength - 1)fromIndex = mStrLength - 1;
 
-   for(size_t a = fromIndex; a > 0; a--)
+   for(int64 a = (int64)fromIndex; a >= 0; a--)
    {
-      if(mValue[a] == character)return a;
+      if(mValue[(size_t)a] == character)return (size_t)a;
    }
-   if(mValue[0]==character)return 0;
    return npos;
 }
 
 size_t String::lastIndexOf(const String& str, size_t fromIndex) const
 {
+   if(str.mStrLength>fromIndex)return npos;
    size_t begin = mStrLength - str.mStrLength;
    fromIndex = (fromIndex > begin) ? begin : fromIndex;
 
-   for(size_t a = fromIndex; a >= 0; a--)
+   for(int64 a = (int64)fromIndex; a >= 0; a--)
    {
       bool found = true;
       for(size_t b = 0 ; b < str.mStrLength; b++)
       {
-         if(mValue[a + b] != str.mValue[b])
+         if(mValue[(size_t)a + b] != str.mValue[b])
          {
             found = false;
             break;
          }
       }
-      if(found)return a;
+      if(found)return (size_t)a;
    }
    return npos;
 }
@@ -895,6 +897,13 @@ String String::arg(uint64 value,
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
+String String::arg(size_t value,
+                   int64 fieldWidth,
+                   Char fillchar) const
+{
+   return arg(static_cast<uint64>(value), fieldWidth, fillchar);
+}
+
 String String::arg(const String& value,
                    int64 fieldwidth,
                    Char fillchar) const
@@ -1042,6 +1051,11 @@ String String::valueOf(int32 number)
 String String::valueOf(uint32 number)
 {
    return valueOf((int64) number);
+}
+
+String String::valueOf(size_t number)
+{
+   return valueOf((uint64) number);
 }
 
 String String::valueOf(double number)

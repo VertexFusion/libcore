@@ -232,6 +232,12 @@ void XMLWriter::writeAttribute(const jm::String& name, uint64 content)
 {
    writeAttribute(name, jm::String::valueOf(content));
 }
+
+void XMLWriter::writeAttribute(const jm::String& name, size_t content)
+{
+   writeAttribute(name, jm::String::valueOf((uint64)content));
+}
+
 void XMLWriter::writeAttribute(const jm::String& name, float content)
 {
    writeAttribute(name, jm::String::valueOf(content));

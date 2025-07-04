@@ -87,6 +87,7 @@ using uint16 = unsigned short;
 using int32 = int;
 using uint32 = unsigned int;
 
+//! This constant is used to define an invalid position or size in \c size_t type
 constexpr size_t npos = static_cast<size_t>(-1);
 
 #if defined(JM_MACOS) || defined(JM_IOS)

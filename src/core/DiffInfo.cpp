@@ -106,6 +106,14 @@ void DiffInfo::print(DiffOperation operation,
 }
 
 void DiffInfo::print(DiffOperation operation,
+                     size_t obj1,
+                     size_t obj2,
+                     const String& label)
+{
+   print(operation, uint64(obj1), uint64(obj2), label);
+}
+
+void DiffInfo::print(DiffOperation operation,
                      double obj1,
                      double obj2,
                      const String& label)

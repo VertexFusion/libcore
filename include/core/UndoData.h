@@ -350,6 +350,32 @@ namespace jm
    };
 
    /*!
+    \brief This class encapsulates the step when a uint64 value is modified.
+
+    \details This class is responsible for managing the undo/redo functionality for uint64 values.
+    It is used to store the changes made to a uint64 value and perform the undo/redo operation.
+
+    \ingroup undo
+    */
+   class DllExport UndoChangeSizeType: public UndoChange
+   {
+      public:
+
+         UndoChangeSizeType(Object* object, size_t* ptr);
+
+         /*!
+          \copydoc UndoChange::swap()
+          */
+         void swap() override;
+
+      private:
+
+         size_t* mPointer;
+         size_t mValue;
+
+   };
+
+   /*!
     \brief This class encapsulates the step when a float value is modified.
 
     \details This class is responsible for managing the undo/redo functionality for float values.

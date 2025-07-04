@@ -55,9 +55,13 @@ Used in:
 
 - If possible, we do not use reference indicators like `int32 miWidth`. Avoid storing same value in 
   different types of data.
+  
+## Datatypes
 
+- Use size_t for indicies, sizes of containers, arrays and fields. Use this data type also if the storing
+  type for reading and writing differs.
 - We have defined short abbreviations for common data types. `int32` or `uint32` for `int` or 
-  `unsigned int`. Please use this.
+  `unsigned int`. Please use this specific types when it comes to reading and writing data.
 
 ## Artistic Style (astyle)
 

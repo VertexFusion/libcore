@@ -239,6 +239,24 @@ void UndoChangeUInt64::swap()
 }
 
 //
+// Size
+//
+
+UndoChangeSizeType::UndoChangeSizeType(Object* object, size_t* ptr): UndoChange(object)
+{
+   mPointer = ptr;
+   mValue = *ptr;
+}
+
+void UndoChangeSizeType::swap()
+{
+   size_t tmp = *mPointer;
+   *mPointer = mValue;
+   mValue = tmp;
+   UndoChange::swap();
+}
+
+//
 // Float
 //
 

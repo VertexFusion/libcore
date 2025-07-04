@@ -170,14 +170,14 @@ void EditableObjectTest::doTest()
    um->close();
    testEquals(adr->GetName(), "Uwe Runtemund", "Name wrong (2)");
 
-   testEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (3)");
+   testEquals(book->GetAddressCount(), 0UL, "Size of AdressBook wrong (3)");
    book->AddAddress(adr);
    um->close();
-   testEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (4)");
+   testEquals(book->GetAddressCount(), 1UL, "Size of AdressBook wrong (4)");
    um->undo();
-   testEquals(book->GetAddressCount(), 0, "Size of AdressBook wrong (5)");
+   testEquals(book->GetAddressCount(), 0UL, "Size of AdressBook wrong (5)");
    um->redo();
-   testEquals(book->GetAddressCount(), 1, "Size of AdressBook wrong (6)");
+   testEquals(book->GetAddressCount(), 1UL, "Size of AdressBook wrong (6)");
 
    // Check simple Transaction
    testEquals(adr->GetStreet(), kEmptyString, "Street name wrong (7)");

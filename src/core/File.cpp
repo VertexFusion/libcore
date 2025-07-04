@@ -784,14 +784,14 @@ Status File::setTags(const jm::StringList& tags)
 #ifdef JM_MACOS //macOS
 
    //Create new array and append tag
-   int64 newsize = tags.size();
+   size_t newsize = tags.size();
    CFStringRef* strs = new CFStringRef[newsize];
-   for(int64 index = 0; index < newsize; index++)
+   for(size_t index = 0; index < newsize; index++)
    {
       strs[index] = tags[index].toCFString();
    }
 
-   CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, newsize, &kCFTypeArrayCallBacks);
+   CFArrayRef newtags = CFArrayCreate(nullptr, (const void**)strs, (long)newsize, &kCFTypeArrayCallBacks);
 
    //
    //
@@ -814,7 +814,7 @@ Status File::setTags(const jm::StringList& tags)
 
    // Clean unnecessary stuff
 
-   for(int64 index = 0; index < newsize; index++)
+   for(size_t index = 0; index < newsize; index++)
    {
       CFRelease(strs[index]);
    }

@@ -501,6 +501,14 @@ namespace jm
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
           */
+         String arg(size_t value,
+                    int64 fieldwidth = 0,
+                    Char fillchar = Char(' ')) const;
+
+         /*!
+          \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
+          replace it by a string representation of the number
+          */
          String arg(const String& value,
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' ')) const;
@@ -660,6 +668,7 @@ namespace jm
          static String valueOf(uint64 number);
          static String valueOf(int32 number);
          static String valueOf(uint32 number);
+         static String valueOf(size_t number);
 
          /*!
           \brief Converts a bool value into a string.

@@ -12,41 +12,6 @@
 #include "core/Geometry.h"
 #include "core/Exception.h"
 
-
-#ifdef __APPLE__//macOS, iOS
-#include <sys/time.h>
-#include <mach/mach_time.h>
-#define ORWL_NANO (+1.0E-9)
-#define ORWL_GIGA UINT64_C(1000000000)
-
-static double orwl_timebase = 0.0;
-static uint64_t orwl_timestart = 0;
-
-struct timespec orwl_gettime(void)
-{
-   // be more careful in a multithreaded environement
-   if(!orwl_timestart)
-   {
-      mach_timebase_info_data_t tb = { 0, 0 };
-      mach_timebase_info(&tb);
-      orwl_timebase = tb.numer;
-      orwl_timebase /= tb.denom;
-      orwl_timestart = mach_absolute_time();
-   }
-   struct timespec t;
-   double diff = (mach_absolute_time() - orwl_timestart) * orwl_timebase;
-   t.tv_sec = diff * ORWL_NANO;
-   t.tv_nsec = diff - (t.tv_sec * ORWL_GIGA);
-   return t;
-}
-#elif defined(JM_LINUX) || defined(JM_ANDROID)
-#elif defined JM_WINDOWS
-#endif
-
-
-
-
-
 using namespace jm;
 
 
@@ -556,10 +521,6 @@ void GeometryTest::doTest()
    // Teste nun die Methode mit Kreisabschnitten
    //
    //
-
-#ifdef __APPLE__//macOS, iOS
-   timespec start = orwl_gettime();
-#endif
 
    //Strahl geht auf Kreis
 
@@ -1102,14 +1063,6 @@ void GeometryTest::doTest()
    testEquals(ip1.y, -3.0, "intersectionPointsOfCircles() fails (8)");
    testEquals(ip2.x, 4.0, "intersectionPointsOfCircles() fails (8)");
    testEquals(ip2.y, 3.0, "intersectionPointsOfCircles() fails (8)");
-
-#ifdef __APPLE__//macOS, iOS
-   timespec end = orwl_gettime();
-
-   long nanos = end.tv_nsec - start.tv_nsec;
-
-   std::cout << "\n\nNANOS: " << nanos << "\n\n";
-#endif
 
    extents();
    points3d();

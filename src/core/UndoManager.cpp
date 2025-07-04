@@ -245,6 +245,11 @@ void UndoManager::registerChange(Object* object, uint64* pointer)
    registerChange(new UndoChangeUInt64(object, pointer));
 }
 
+void UndoManager::registerChange(Object* object, size_t* pointer)
+{
+   registerChange(new UndoChangeSizeType(object, pointer));
+}
+
 void UndoManager::registerChange(Object* object, float* pointer)
 {
    registerChange(new UndoChangeFloat(object, pointer));
