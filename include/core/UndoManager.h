@@ -263,7 +263,7 @@ namespace jm
           */
          void registerChange(Object* object, uint64* pointer);
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
          /*!
           \brief This method registers a change in the file where a long value of an object is modified.
           If the UndoManager is not active, nothing happens.

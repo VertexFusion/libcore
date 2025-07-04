@@ -80,7 +80,7 @@ namespace jm
          static void print(DiffOperation operation,
                            uint64 obj1, uint64 obj2, const String& label);
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
          static void print(DiffOperation operation,
                            size_t obj1, size_t obj2, const String& label);
 #endif

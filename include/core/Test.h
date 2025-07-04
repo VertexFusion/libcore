@@ -228,7 +228,7 @@ namespace jm
           */
          void testEquals(uint64 actual, uint32 expected, const String& failmessage);
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 
          /*!
           \brief This method tests, if size_t \p actual is equal to \p expected.

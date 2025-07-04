@@ -32,6 +32,8 @@
 #ifndef jm_String_h
 #define jm_String_h
 
+#include "Types.h"
+
 #if defined(JM_MACOS) || defined(JM_IOS)
 #include <CoreFoundation/CFString.h>
 #endif
@@ -497,7 +499,7 @@ namespace jm
                     int64 fieldwidth = 0,
                     Char fillchar = Char(' ')) const;
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
          /*!
           \brief Searches in the string for a %n (e.g. %1, %2 etc) with the lowest number and
           replace it by a string representation of the number
@@ -670,7 +672,7 @@ namespace jm
          static String valueOf(int32 number);
          static String valueOf(uint32 number);
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
          static String valueOf(size_t number);
 #endif
          /*!
