@@ -166,7 +166,7 @@ LinkedListIterator ZipFile::entryIterator()
    return mEntries.iterator();
 }
 
-uint32 ZipFile::entryCount() const
+size_t ZipFile::entryCount() const
 {
    return mEntries.size();
 }

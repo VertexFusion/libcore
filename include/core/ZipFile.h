@@ -141,7 +141,7 @@ namespace jm
           \brief Returns the number of Zip entries in the ZipFile.
           \return The number of Zip entries.
           */
-         uint32 entryCount() const;
+         size_t entryCount() const;
 
          /*!
           \brief Returns the stream containing the uncompressed data of the entry. The caller

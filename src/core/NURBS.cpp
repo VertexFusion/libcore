@@ -80,7 +80,7 @@ Nurbs::~Nurbs()
    if(mWeights != nullptr)delete[] mWeights;
 }
 
-double Nurbs::N(uint32 i, uint32 k, double t)
+double Nurbs::N(size_t i, uint32 k, double t)
 {
 
    if(k == 0)
@@ -110,7 +110,7 @@ double Nurbs::N(uint32 i, uint32 k, double t)
    return N1 + N2;
 }
 
-double Nurbs::R(uint32 i, uint32 k, double t)
+double Nurbs::R(size_t i, uint32 k, double t)
 {
    double a = mWeights[i] * N(i, k, t);
    double b = 0.0;
@@ -175,7 +175,7 @@ bool Nurbs::calcClamped() const
     // Check end clamping: last degree+1 knots equal?
     double endKnot = mKnots[mKnotCount - 1];
     bool endClamped = true;
-    for (uint32 i = mKnotCount - mDegree - 1; i < mKnotCount - 1; ++i)
+    for (size_t i = mKnotCount - mDegree - 1; i < mKnotCount - 1; ++i)
     {
         if (jm::isNotEqual(mKnots[i] , endKnot))
         {
@@ -195,7 +195,7 @@ bool Nurbs::calcClosed() const
    bool geomClosed = (mControlpoints[0]==mControlpoints[mControlCount-1]);
 
    // 2. Knot vector size heuristic for periodicity
-   uint32 expectedKnots = mControlCount + mDegree + 1;
+   size_t expectedKnots = mControlCount + mDegree + 1;
    bool paramClosed = mKnotCount< expectedKnots;
 
    return geomClosed || paramClosed;

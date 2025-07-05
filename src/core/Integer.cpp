@@ -59,12 +59,12 @@ int64 Integer::fromHex(const jm::String& str)
    return fromHex(str, 0, str.size());
 }
 
-int64 Integer::fromHex(const jm::String& str, uint32 begin, uint32 size)
+int64 Integer::fromHex(const jm::String& str, size_t begin, size_t size)
 {
    int64 r = 0;
 
-   uint32 cnt = begin;
-   uint32 sz = begin + size;
+   size_t cnt = begin;
+   size_t sz = begin + size;
 
    while(cnt < sz)
    {

@@ -150,7 +150,7 @@ namespace jm
           \param t The parameter value along the curve.
           \return The value of N_i,k(t) at the given parameter value.
           */
-         double N(uint32 i, uint32 k, double t);
+         double N(size_t i, uint32 k, double t);
 
          /*!
           \brief This method returns the weight of the control points R_i,k(t).
@@ -159,7 +159,7 @@ namespace jm
           \param t The parameter value along the curve.
           \return The weight of the control point at the given parameter value.
           */
-         double R(uint32 i, uint32 k, double t);
+         double R(size_t i, uint32 k, double t);
 
       private:
 

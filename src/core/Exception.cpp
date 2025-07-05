@@ -30,7 +30,7 @@ Exception::Exception(const String& message): Object()
 
    // Löse die Adressen in Namen auf
    char** symbols = nullptr;
-   symbols = backtrace_symbols(taddrlist, addrlen);
+   symbols = backtrace_symbols(taddrlist, static_cast<int32>(addrlen));
 
    for(uint32 a = 0; a < addrlen; a++)
    {

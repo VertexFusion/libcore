@@ -66,7 +66,7 @@ namespace jm
           \param size Size of hex string
           \return Returns the desired number as an integer value.
           */
-         static int64 fromHex(const jm::String& str, uint32 begin, uint32 size);
+         static int64 fromHex(const jm::String& str, size_t begin, size_t size);
 
          /*!
           \brief Converts an integer number to a hexadecimal string value.
