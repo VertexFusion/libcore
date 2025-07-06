@@ -462,7 +462,7 @@ Array<File>* File::listFiles()const
       throw Exception(Tr("Cannot open directory"));
    }
 
-   uint32 fileCount = 0;
+   size_t fileCount = 0;
 
    //Zähle Einträge
    while(readdir(dp) != nullptr)fileCount++;
@@ -472,7 +472,7 @@ Array<File>* File::listFiles()const
 
    //Array füllen
    Array<File>* list = new Array<File>(fileCount);
-   uint32 cnt = 0;
+   size_t cnt = 0;
 
    while((dirp = readdir(dp)) != nullptr)
    {
@@ -503,7 +503,7 @@ Array<File>* File::listFiles()const
       {
          // cFilename is the raw file name without path.
          uint16* wstr2 = (uint16*)data.cFileName;
-         uint32 len = 0;
+         size_t len = 0;
          while(wstr2[len] != 0)len++;
          files.push_back(String(wstr2, len));
       }
@@ -511,8 +511,8 @@ Array<File>* File::listFiles()const
       FindClose(hFind);
 
       // Fill array
-      Array<File>* list = new Array<File>((uint32)files.size());
-      for(uint32 a = 0; a < files.size(); a++)
+      Array<File>* list = new Array<File>(files.size());
+      for(size_t a = 0; a < files.size(); a++)
       {
          // Only the file name is stored in Files.
          // The path name must therefore precede it for it to work...

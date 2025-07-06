@@ -45,7 +45,7 @@ DateFormatter::DateFormatter(const String& pattern): Object()
    bool inText = false;
    bool isText = false;
 
-   for(uint32 a = 0; a < pattern.size(); a++)
+   for(size_t a = 0; a < pattern.size(); a++)
    {
       Char c = pattern.charAt(a);
 

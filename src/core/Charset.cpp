@@ -99,7 +99,7 @@ Charset::Charset(CharsetDecoder* decoder): Object()
 
 Charset::Charset(const char* name, CharsetDecoder* decoder): Object()
 {
-   uint32 index = 0;
+   size_t index = 0;
    while(name[index] != 0)mName.append(name[index++]);
 
    mAlternatives = nullptr;

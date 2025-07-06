@@ -217,6 +217,7 @@
 		C6B8A2B32CC39DCD00A83068 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B22CC39DC200A83068 /* libz.tbd */; };
 		C6B8A2B52CC39DDC00A83068 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B42CC39DDC00A83068 /* CoreFoundation.framework */; };
 		C6B8A2B72CC39DEE00A83068 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B8A2B62CC39DEE00A83068 /* Foundation.framework */; };
+		C6C43FE42E1A793F00862A39 /* NurbsTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6C43FE32E1A793F00862A39 /* NurbsTest.cpp */; };
 		C6E844C62CB8236A00432AFD /* Size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C52CB8236A00432AFD /* Size.cpp */; };
 		C6E844C72CB8236A00432AFD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C32CB8236A00432AFD /* Point.cpp */; };
 		C6E844C82CB8236A00432AFD /* Rect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C6E844C42CB8236A00432AFD /* Rect.cpp */; };
@@ -484,6 +485,8 @@
 		C6B8A2B22CC39DC200A83068 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		C6B8A2B42CC39DDC00A83068 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		C6B8A2B62CC39DEE00A83068 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		C6C43FE22E1A793F00862A39 /* NurbsTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NurbsTest.h; path = test/core/NurbsTest.h; sourceTree = "<group>"; };
+		C6C43FE32E1A793F00862A39 /* NurbsTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NurbsTest.cpp; path = test/core/NurbsTest.cpp; sourceTree = "<group>"; };
 		C6E844C02CB8235100432AFD /* Point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Point.h; path = include/core/Point.h; sourceTree = "<group>"; };
 		C6E844C12CB8235100432AFD /* Rect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rect.h; path = include/core/Rect.h; sourceTree = "<group>"; };
 		C6E844C22CB8235100432AFD /* Size.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Size.h; path = include/core/Size.h; sourceTree = "<group>"; };
@@ -593,6 +596,8 @@
 		C62B90442AEEFC270085300B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				C6C43FE22E1A793F00862A39 /* NurbsTest.h */,
+				C6C43FE32E1A793F00862A39 /* NurbsTest.cpp */,
 				C691C6ED2DE708C000621F77 /* SerializerTest.h */,
 				C691C6EE2DE708C000621F77 /* SerializerTest.cpp */,
 				C627D5D52CAA8E89000C2451 /* FileTest.h */,
@@ -916,6 +921,7 @@
 				C62B91992AEF001D0085300B /* HashtableTest.cpp in Sources */,
 				C62B91912AEF001D0085300B /* DeflateTest.cpp in Sources */,
 				C62B91932AEF001D0085300B /* UndoManagerTest.cpp in Sources */,
+				C6C43FE42E1A793F00862A39 /* NurbsTest.cpp in Sources */,
 				C62B91922AEF001D0085300B /* VertexTest.cpp in Sources */,
 				C691C6EF2DE708C000621F77 /* SerializerTest.cpp in Sources */,
 				C62B91902AEF001D0085300B /* GeometryTest.cpp in Sources */,
@@ -1218,9 +1224,11 @@
 		C62B91502AEEFFFC0085300B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;
@@ -1234,9 +1242,11 @@
 		C62B91512AEEFFFC0085300B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B7MREKBLSZ;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				PRODUCT_BUNDLE_IDENTIFIER = de.jameo.CoreTest;

@@ -38,7 +38,7 @@ void MathTest::doTest()
    testTrue(i8 == -19, "int8 == -19 fails");
    testFalse(i8 != -19, "int8 != -19 fails");
 
-   for(uint32 a = 0; a < 5; a++)
+   for(size_t a = 0; a < 5; a++)
    {
       double value = values[a];
 

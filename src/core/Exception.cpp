@@ -32,7 +32,7 @@ Exception::Exception(const String& message): Object()
    char** symbols = nullptr;
    symbols = backtrace_symbols(taddrlist, static_cast<int32>(addrlen));
 
-   for(uint32 a = 0; a < addrlen; a++)
+   for(size_t a = 0; a < addrlen; a++)
    {
       mSymbolList.append(String(symbols[a]));
    }
@@ -76,7 +76,7 @@ void Exception::printStackTrace() const
    char* buffer = new char[1024];
    memset(buffer, 0, 1024);
 
-   for(uint32 i = 1; i < addrlen; i++)
+   for(size_t i = 1; i < addrlen; i++)
    {
 
 #if defined(JM_MACOS) || defined(JM_IOS)
@@ -141,7 +141,7 @@ String Exception::GetStrackTrace() const
    char* buffer = new char[1024];
    memset(buffer, 0, 1024);
 
-   for(uint32 i = 1; i < addrlen; i++)
+   for(size_t i = 1; i < addrlen; i++)
    {
 
 #if defined(JM_MACOS) || defined(JM_IOS) //macOS

@@ -670,7 +670,7 @@ void DeflateTest::doTest()
 
    l = std::min(uncompressedLength, restoredLength);
 
-   for(uint32 a = 0; a < l; a++)
+   for(size_t a = 0; a < l; a++)
    {
       testEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
    }
@@ -710,7 +710,7 @@ void DeflateTest::doTest()
 
    l = std::min(uncompressedLength, restoredLength);
 
-   for(uint32 a = 0; a < l; a++)
+   for(size_t a = 0; a < l; a++)
    {
       testEquals(uncompressed[a], restored[a], "Datenfehler in Kompression / Dekompression.");
    }

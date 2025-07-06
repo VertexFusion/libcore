@@ -61,7 +61,7 @@ namespace jm
          StackElement* mTop;
 
          // The number of elements on the stack
-         uint32 mCount;
+         size_t mCount;
 
       public:
 
@@ -177,7 +177,7 @@ namespace jm
           \brief Returns the number of elements on the stack.
           \return The number of elements on the stack.
           */
-         inline uint32 size() const
+         inline size_t size() const
          {
             return mCount;
          }

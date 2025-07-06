@@ -179,8 +179,8 @@ namespace jm
             mData = new T*[0];
          };
 
-         explicit Array(uint32 length) : Object(),
-            mLength(length)            
+         explicit Array(size_t length) : Object(),
+            mLength(length)
          {
             mData = new T*[length];
          };
@@ -189,7 +189,7 @@ namespace jm
             mLength(other.mLength)
          {
             mData = new T*[mLength];
-            for(uint32 a = 0; a < mLength; a++)
+            for(size_t a = 0; a < mLength; a++)
             {
                mData[a] = other.mData[a];
             }
@@ -201,7 +201,7 @@ namespace jm
             if(mData != nullptr)delete[] mData;
          };
 
-         inline uint32 size() const
+         inline size_t size() const
          {
             return mLength;
          };
@@ -211,13 +211,13 @@ namespace jm
             if(mLength < 1)return;
             if(mData[0] == nullptr)return;
 
-            uint32 n = mLength;
+            size_t n = mLength;
             do
             {
-               uint32 newn = 1;
-               for(uint32 i = 0; i < n - 1; ++i)
+               size_t newn = 1;
+               for(size_t i = 0; i < n - 1; ++i)
                {
-                  uint32 j = i + 1;
+                  size_t j = i + 1;
                   const Comparable<T>* a1 = static_cast<Comparable<T>*>(mData[i]);
                   const T& a2 = *mData[j];
                   if(a1->compareTo(a2) > 0)
@@ -235,21 +235,21 @@ namespace jm
             while(n > 1);
          }
 
-         inline T* get(uint32 index) const
+         inline T* get(size_t index) const
          {
             if(index >= mLength)
                throw Exception("Array index out of bounds.");
             return mData[index];
          };
 
-         inline void set(uint32 index, T* item)
+         inline void set(size_t index, T* item)
          {
             if(index >= mLength)
                throw Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
-         inline T*& operator[](const uint32 index) const
+         inline T*& operator[](const size_t index) const
          {
             if(index >= mLength)
                throw Exception("Array index out of bounds.");
@@ -265,7 +265,7 @@ namespace jm
 
                mLength = another.mLength;
                mData = new T*[mLength];
-               for(uint32 a = 0; a < mLength; a++)
+               for(size_t a = 0; a < mLength; a++)
                {
                   mData[a] = another.mData[a];
                }
@@ -277,7 +277,7 @@ namespace jm
       private:
 
          //! The length of the array.
-         uint32 mLength;
+         size_t mLength;
 
          //! The data of the array.
          T** mData;
@@ -298,7 +298,7 @@ namespace jm
             mData = new float[0];
          };
 
-         explicit FloatArray(uint32 length): Object()
+         explicit FloatArray(size_t length): Object()
          {
             mLength = length;
             mData = new float[length];
@@ -308,7 +308,7 @@ namespace jm
          {
             mLength = other.mLength;
             mData = new float[mLength];
-            for(uint32 a = 0; a < mLength; a++)
+            for(size_t a = 0; a < mLength; a++)
             {
                mData[a] = other.mData[a];
             }
@@ -316,9 +316,9 @@ namespace jm
 
          FloatArray(std::initializer_list<float> list): Object()
          {
-            mLength = static_cast<uint32>(list.size());
+            mLength = list.size();
             mData = new float[mLength];
-            uint32 cnt = 0;
+            size_t cnt = 0;
             for(std::initializer_list<float>::iterator it = list.begin();
                   it != list.end();
                   ++it)
@@ -333,7 +333,7 @@ namespace jm
             if(mData != nullptr)delete[] mData;
          };
 
-         inline uint32 Length() const
+         inline size_t Length() const
          {
             return mLength;
          };
@@ -342,13 +342,13 @@ namespace jm
          {
             if(mLength < 1)return;
 
-            uint32 n = mLength;
+            size_t n = mLength;
             do
             {
-               uint32 newn = 1;
-               for(uint32 i = 0; i < n - 1; ++i)
+               size_t newn = 1;
+               for(size_t i = 0; i < n - 1; ++i)
                {
-                  uint32 j = i + 1;
+                  size_t j = i + 1;
                   float a1 = mData[i];
                   float a2 = mData[j];
                   if(a1 > a2)
@@ -366,21 +366,21 @@ namespace jm
             while(n > 1);
          }
 
-         inline float Get(uint32 index) const
+         inline float Get(size_t index) const
          {
             //if(index >= mLength)
             //	throw new Exception("Array index out of bounds.");
             return mData[index];
          };
 
-         inline void Set(uint32 index, float item)
+         inline void Set(size_t index, float item)
          {
             //if(index >= mLength)
             //	throw new Exception("Array index out of bounds.");
             mData[index] = item;
          };
 
-         inline float& operator[](const uint32 index) const
+         inline float& operator[](const size_t index) const
          {
             //if(index >= mLength)
             //	throw new Exception("Array index out of bounds.");
@@ -395,7 +395,7 @@ namespace jm
 
                mLength = another.mLength;
                mData = new float[mLength];
-               for(uint32 a = 0; a < mLength; a++)
+               for(size_t a = 0; a < mLength; a++)
                {
                   mData[a] = another.mData[a];
                }
@@ -407,7 +407,7 @@ namespace jm
       private:
 
          //! The length of the array
-         uint32 mLength;
+         size_t mLength;
 
          //! The data of the array
          float* mData;
