@@ -77,13 +77,6 @@ Matrix::Matrix(const Vertex3& c1,
 
 }
 
-Matrix::Matrix()
-{
-   m = 0;
-   n = 0;
-   data = nullptr;
-}
-
 Matrix::Matrix(double value)
 {
    init(1, 1);
@@ -93,27 +86,25 @@ Matrix::Matrix(double value)
 
 Matrix::Matrix(const Matrix& other)
 {
-   m = other.m;
-   n = other.n;
-
-   if(m * n > 0)
+   init(other.m, other.n);
+   const size_t count = m * n;
+   for(size_t i = 0; i < count; i++)
    {
-      data = new double[m * n];
-
-      for(size_t i = 0; i < m * n; i++)
-      {
-         data[i] = other.data[i];
-      }
-
+      data[i] = other.data[i];
    }
-   else data = nullptr;
 }
 
 Matrix::Matrix(const Matrix* other)
 {
-   init(other->m, other->n);
+   if(other==nullptr)
+   {
+      init(0,0);
+      return;
+   }
 
-   for(size_t i = 0; i < m * n; i++)
+   init(other->m, other->n);
+   const size_t count = m * n;
+   for(size_t i = 0; i < count; i++)
    {
       data[i] = other->data[i];
    }
@@ -132,7 +123,8 @@ void Matrix::init(size_t rows, size_t cols)
 {
    m = rows;
    n = cols;
-   data = new double[m * n];
+   const size_t count = m * n;
+   if(count>0)data = new double[count];
 }
 
 void Matrix::set(size_t row, size_t col, double value)
@@ -153,7 +145,7 @@ double Matrix::get(size_t row, size_t col) const
 
 void Matrix::zeros()
 {
-   size_t count = m * n;
+   const size_t count = m * n;
    for(size_t i = 0; i < count; i++)
    {
       data[i] = 0.0;

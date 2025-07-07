@@ -98,7 +98,7 @@ namespace jm
          /*!
           \brief Default constructor.
           */
-         Matrix();
+         Matrix() = default;
 
          /*!
           \brief Constructor sets up a matrix 1x1 with the numerical value as entry,
@@ -363,18 +363,18 @@ namespace jm
          /*!
           \brief Number of rows.
           */
-         size_t m;
+         size_t m = 0;
 
          /*!
           \brief Number of columns.
           */
-         size_t n;
+         size_t n = 0;
 
          /*!
           \brief This field stores the data. In analogy to the OpenGL storage convention, the data
           is stored column by column.
           */
-         double* data;
+         double* data = nullptr;
 
          void init(size_t rows, size_t cols);
    };
