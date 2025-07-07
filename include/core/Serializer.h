@@ -96,6 +96,8 @@ namespace jm
     */
    DllExport
    size_t serializeLEUInt16(uint8* buffer, size_t offset, uint16 value);
+
+   DllExport
    size_t serializeBEUInt16(uint8* buffer, size_t offset, uint16 value);
 
    /*!
@@ -166,10 +168,14 @@ namespace jm
     */
    DllExport
    int16 deserializeBEInt16(uint8* buffer, size_t offset);
+
+   DllExport
    int16 deserializeBEInt16(const jm::ByteArray& buffer, size_t offset);
 
    DllExport
    int32 deserializeBEInt24(uint8* buffer, size_t offset);
+
+   DllExport
    int32 deserializeLEInt24(uint8* buffer, size_t offset);
 
    /*!
@@ -180,8 +186,11 @@ namespace jm
     */
    DllExport
    uint32 deserializeBEUInt32(uint8* buffer, size_t offset);
+
+   DllExport
    uint32 deserializeBEUInt32(const jm::ByteArray& buffer, size_t offset);
 
+   DllExport
    int32 deserializeBEInt32(const jm::ByteArray& buffer, size_t offset);
 
    /*!
@@ -192,6 +201,7 @@ namespace jm
     */
    DllExport
    int64 deserializeBEInt64(uint8* buffer, size_t offset);
+
    DllExport
    int64 deserializeBEInt64(const jm::ByteArray& buffer, size_t offset);
 
@@ -203,6 +213,7 @@ namespace jm
     */
    DllExport
    uint16 deserializeLEUInt16(const uint8* buffer, size_t offset);
+
    DllExport
    uint16 deserializeLEUInt16(const jm::ByteArray& buffer, size_t offset);
 
@@ -214,6 +225,7 @@ namespace jm
     */
    DllExport
    int16 deserializeLEInt16(uint8* buffer, size_t offset);
+
    DllExport
    int16 deserializeLEInt16(const jm::ByteArray& buffer, size_t offset);
 
@@ -225,6 +237,8 @@ namespace jm
     */
    DllExport
    uint32 deserializeLEUInt32(uint8* buffer, size_t offset);
+
+   DllExport
    uint32 deserializeLEUInt32(const jm::ByteArray& buffer, size_t offset);
 
    /*!
@@ -235,6 +249,8 @@ namespace jm
     */
    DllExport
    int32 deserializeLEInt32(uint8* buffer, size_t offset);
+
+   DllExport
    int32 deserializeLEInt32(const jm::ByteArray& buffer, size_t offset);
 
    /*!
@@ -245,6 +261,8 @@ namespace jm
     */
    DllExport
    int64 deserializeLEInt64(uint8* buffer, size_t offset);
+
+   DllExport
    int64 deserializeLEInt64(const jm::ByteArray& buffer, size_t offset);
 
    /*!
@@ -255,6 +273,8 @@ namespace jm
     */
    DllExport
    double deserializeLEDouble(uint8* buffer, size_t offset);
+
+   DllExport
    double deserializeLEDouble(const jm::ByteArray& buffer, size_t offset);
 
    /*!

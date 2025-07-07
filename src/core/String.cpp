@@ -682,8 +682,8 @@ int32 String::compareFancyTo(const String& another) const
    int32 str1[256];
    int32 str2[256];
 
-   size_t strl1 = std::min(mStrLength, 256UL);
-   size_t strl2 = std::min(another.mStrLength, 256UL);
+   size_t strl1 = std::min(mStrLength, static_cast<size_t>(256));
+   size_t strl2 = std::min(another.mStrLength, static_cast<size_t>(256));
 
    uint32 l1, l2;
 

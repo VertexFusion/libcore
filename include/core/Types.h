@@ -95,8 +95,6 @@ constexpr size_t npos = static_cast<size_t>(-1);
 #define DllExport
 using int64 = __int64_t;
 using uint64 = __uint64_t;
-using slong = long;
-using ulong = unsigned long;
 #define WITHULONG
 
 #elif defined(JM_LINUX) || defined(JM_ANDROID)
@@ -104,7 +102,6 @@ using ulong = unsigned long;
 #define DllExport
 using int64 = __int64_t;
 using uint64 = __uint64_t;
-using slong = long;
 
 #elif defined JM_WINDOWS
 
@@ -112,8 +109,9 @@ using slong = long;
 
 using int64 = __int64;
 using uint64 = unsigned __int64;
-using slong = long;
-using ulong = unsigned long;
+
+using ssize_t = __int64;
+
 #define WITHULONG
 
 #endif

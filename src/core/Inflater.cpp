@@ -223,7 +223,7 @@ void Inflater::checkCapacity()
 
    // Increase
    double ratio = mCompIndex / (double)mCompLength;
-   size_t newLength = mUncompLength + std::max(4096UL, static_cast<size_t>(mUncompLength / ratio));
+   size_t newLength = mUncompLength + std::max(static_cast<size_t>(4096), static_cast<size_t>(mUncompLength / ratio));
    uint8* tmp = new uint8[newLength];
    if(tmp == nullptr)throw Exception("Cannot allocate memory!");
    memcpy(tmp, mUncompBytes, mUncompIndex);
