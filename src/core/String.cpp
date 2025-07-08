@@ -629,7 +629,7 @@ bool String::equals(const String& another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
-   uint32 cnt = 0;
+   size_t cnt = 0;
    while(cnt < mStrLength)
    {
       if(mValue[cnt] != another.mValue[cnt])return false;
@@ -643,7 +643,7 @@ bool String::equalsIgnoreCase(const String& another) const
 {
    if(mStrLength != another.mStrLength)return false;
 
-   uint32 cnt = 0;
+   size_t cnt = 0;
    while(cnt < mStrLength)
    {
       Char c1 = mValue[cnt].toLowerCase();
