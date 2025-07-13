@@ -182,16 +182,16 @@ namespace jm
           \param data The unencoded data to be written.
           \param length The length of the data.
           */
-         void WriteBase64(uint8* data, size_t length);
+         void WriteBase64(const uint8* data, size_t length);
 
 
       private:
 
-         Stream* mOutput;
+         Stream* mOutput = nullptr;
 
-         int32 mIndent;
+         int32 mIndent = 0;
 
-         bool mLastIndent;
+         bool mLastIndent = false;
 
          struct ElementInfo
          {

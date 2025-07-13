@@ -99,7 +99,7 @@ void SAXParser::parse(const String& xml)
 
             // Cut off whitespaces at the end
             sub = token.size() - 1;
-            while(sub >= 0 && sub < token.size() && token.charAt(sub).isWhitespace())
+            while(sub < token.size() && token.charAt(sub).isWhitespace())
             {
                endWhiteSpaces.insert(0, token.charAt(sub));
                sub--;

@@ -1,6 +1,8 @@
 !Unfinished
-include/core/String.h:75#ExplicitCtor
+include/core/String.h:77#ExplicitCtor
 include/core/Array.h:317#ExplicitCtor
 include/core/ByteArray.h:69#ExplicitCtor
 include/core/CharArray.h:49#ExplicitCtor
+include/core/CharArray.h:51#ExplicitCtor
+include/core/CharArray.h:53#ExplicitCtor
 include/core/MacBindings.h:11#Import

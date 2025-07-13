@@ -181,7 +181,7 @@ jm::String XMLWriter::Encode(const jm::String& input)
    return encoded;
 }
 
-void XMLWriter::WriteBase64(uint8* data, size_t length)
+void XMLWriter::WriteBase64(const uint8* data, size_t length)
 {
    if(mOpenElements->size() > 0 && mOpenElements->top().hasContent == false)
    {
@@ -191,7 +191,7 @@ void XMLWriter::WriteBase64(uint8* data, size_t length)
    }
 
 
-   uint8* encoded = jm::Base64::encode(data, length);
+   const uint8* encoded = jm::Base64::encode(data, length);
    mOutput->write(encoded, length);
    delete[] encoded;
    mLastIndent = false;

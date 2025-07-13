@@ -106,8 +106,8 @@ int64 DiffDiag::entry(size_t j)
       //    \lu  u
       //     \  \
       //      l  x
-      Object* o1 = objectU(i);
-      Object* o2 = objectV(i);
+      const Object* o1 = objectU(i);
+      const Object* o2 = objectV(i);
 
       if(o1->equals(o2))
       {

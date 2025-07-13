@@ -107,10 +107,12 @@ Charset::Charset(const char* name, CharsetDecoder* decoder): Object()
    mDecoder = decoder;
 }
 
-Charset::Charset(const String& name, const String* alternatives, uint8 altCount,
-                 CharsetDecoder* decoder): Object()
+Charset::Charset(const String& name,
+                 const String* alternatives,
+                 uint8 altCount,
+                 CharsetDecoder* decoder): Object(),
+   mName(name)
 {
-   mName = name;
    mAlternatives = new String[mAltCount];
    mAltCount = altCount;
    for(uint8 a = 0; a < mAltCount; a++)mAlternatives[a] = alternatives[a];
@@ -126,7 +128,7 @@ Charset::~Charset()
    mAltCount = 0;
 }
 
-String Charset::name() const
+const String& Charset::name() const
 {
    return mName;
 }

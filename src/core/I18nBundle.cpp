@@ -42,13 +42,14 @@ I18nBundle::I18nBundle(const String& language):
 
 void I18nBundle::appendMo(Stream* file)
 {
-   if(file->size() <= 0)
+   if(file->size() == 0 || file->size() == npos)
    {
       if(System::bundleId().size() > 0)
+      {
          System::log(Tr("Cannot find translation file: %1")
                      .arg(mLanguage),
                      LogLevel::kError);
-
+      }
       return;
    }
 

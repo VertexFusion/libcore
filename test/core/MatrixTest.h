@@ -22,4 +22,4 @@ class MatrixTest : public jm::Test
       void constructors();
 };
 
-#endif /* defined(__jameo__MatrixTest__) */
+#endif

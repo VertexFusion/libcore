@@ -297,7 +297,7 @@ namespace jm
           \param actual The test value
           \param failmessage The log message in case of failed test.
           */
-         void testNull(void* actual, const String& failmessage);
+         void testNull(const void* actual, const String& failmessage);
 
          /*!
           \brief This method tests, if \p actual is not \c NULL.

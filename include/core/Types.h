@@ -41,7 +41,7 @@
 #elif defined __APPLE__
    #if defined TARGET_OS_IOS
       #define JM_IOS
-   #else   
+   #else
       #define JM_MACOS
    #endif
 #elif defined __linux__

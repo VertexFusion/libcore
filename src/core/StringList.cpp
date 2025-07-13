@@ -118,8 +118,8 @@ void StringList::sort()
       for(size_t i = 0; i < n - 1; ++i)
       {
          size_t j = i + 1;
-         String* a1 = &mData[i];
-         String* a2 = &mData[j];
+         const String* a1 = &mData[i];
+         const String* a2 = &mData[j];
          if(a1->compareTo(*a2) > 0)
          {
             // Swap
@@ -193,7 +193,7 @@ void StringList::checkSize(size_t size)
 
 String& jm::StringList::operator[](const size_t index) const
 {
-   if(index < 0 || index >= mSize)
+   if(index >= mSize)
       throw Exception(jm::String("Array index %1 out of bounds.").arg(index));
    return mData[index];
 }

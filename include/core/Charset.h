@@ -116,7 +116,7 @@ namespace jm
          /*!
           \brief This method returns the name of the character set.
           */
-         String name() const;
+         const String& name() const;
 
          /*!
           \brief This method tests whether the character set is addressed under the desired name.

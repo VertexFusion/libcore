@@ -193,7 +193,7 @@ void Test::testEquals(const String& actual, const String& expected, const String
    System::log(failmessage + " '" + actual + "' '" + expected + "'", LogLevel::kError);
 }
 
-void Test::testNull(void* actual, const String& failmessage)
+void Test::testNull(const void* actual, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;

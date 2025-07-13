@@ -127,7 +127,6 @@ String DateFormatter::format(const String& format, const Date& date)
 
 DateFormatter::Pattern::Pattern()
 {
-   next = nullptr;
 }
 
 DateFormatter::Pattern::Pattern(const String& value, bool isText)

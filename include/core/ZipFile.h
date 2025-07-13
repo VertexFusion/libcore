@@ -54,7 +54,7 @@ namespace jm
          /*!
           \brief Returns the name of the entry.
           */
-         String name()const;
+         const String& name()const;
 
          /*!
           \brief Set the size of the uncompressed entry.
@@ -78,11 +78,11 @@ namespace jm
          String mName;
          String mExtra;
          String mComment;
-         uint32 mUncompressedSize;
-         uint32 mCompressedSize;
-         uint32 mHeaderOffset;
-         uint32 mCRC;
-         uint32 mDataOffset; // 0-based offset in file
+         uint32 mUncompressedSize = 0;
+         uint32 mCompressedSize = 0;
+         uint32 mHeaderOffset = 0;
+         uint32 mCRC = 0;
+         uint32 mDataOffset = 0; // 0-based offset in file
 
          friend class ZipFile;
          friend class ZipOutputFile;
@@ -121,7 +121,7 @@ namespace jm
           \brief Returns the comment of the ZIP file, or an empty string if no comment exists.
           \return The comment of the ZIP file.
           */
-         String comment();
+         const String& comment() const;
 
          /*!
           \brief Returns the ZipEntry object if it exists, or nullptr if it does not exist.

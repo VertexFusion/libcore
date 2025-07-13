@@ -60,13 +60,12 @@ namespace jm
          friend unsigned long __stdcall ::StartThread(void* lpParameter);
 #endif
 
-
       private:
 
          //macOS, iOS
 #if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
-         pthread_t thread;
+         pthread_t thread = 0;
          pthread_condattr_t attrc;
          pthread_cond_t cond;
          pthread_mutex_t criticalSection;
@@ -74,16 +73,16 @@ namespace jm
 
 #elif defined JM_WINDOWS
 
-         unsigned long mThreadID;
-         void* mHandle;
-         void* mCriticalSection;
+         unsigned long mThreadID = 0;
+         void* mHandle = nullptr;
+         void* mCriticalSection = nullptr;
 
 #endif
          /*!
           \brief Status indicating whether this thread is active and running.
           If the thread is running and this variable becomes false, an exception will be thrown in this thread.
           */
-         bool alive;
+         bool alive = false;
 
          /*!
           \brief This method must be implemented by derived classes. It is the main method

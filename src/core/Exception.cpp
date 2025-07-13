@@ -10,9 +10,9 @@
 
 using namespace jm;
 
-Exception::Exception(const String& message): Object()
+Exception::Exception(const String& message): Object(),
+   mMessage(message)
 {
-   mMessage = message;
    System::log(mMessage, LogLevel::kError);
 
 #if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX)

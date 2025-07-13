@@ -69,8 +69,6 @@ DWORD WINAPI StartThread(LPVOID lpParameter)
 Thread::Thread(): jm::Object()
 {
 #if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
-   thread = 0;
-   alive = false;
    pthread_condattr_init(&attrc);
    pthread_cond_init(&cond, &attrc);
 

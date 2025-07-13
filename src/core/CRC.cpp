@@ -62,10 +62,9 @@ uint16 crctable[256] =
 
 uint16 CRC::crc8(uint16 initial, const uint8* buffer, size_t length)
 {
-   uint8 al;
    while(length-- > 0)
    {
-      al = static_cast<uint8>((*buffer) ^ static_cast<uint8>(initial & 0xFF));
+      uint8 al = static_cast<uint8>((*buffer) ^ static_cast<uint8>(initial & 0xFF));
       initial = (initial >> 8) & 0xFF;
       initial = initial ^ crctable[al & 0xFF];
       buffer++;

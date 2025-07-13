@@ -57,7 +57,7 @@ void NurbsTest::testOpenSplineEndpoints()
                                  Vertex3(1,0,0),
                                  Vertex3(2,0,0),
                                  Vertex3(3,0,0),
-                                 Vertex3(4,0,0), 
+                                 Vertex3(4,0,0),
                                  Vertex3(5,0,0)};
     std::vector<double> knots = {0,0,0,0,1,2,3,3,3,3};
     std::vector<double> weights(cps.size(), 1.0);
@@ -73,7 +73,7 @@ void NurbsTest::testOpenSplineEndpoints()
     // Start-Parameter (knot at degree)
     double startParam = knots[degree];
     Vertex3 startPt = nurbs.point(startParam);
-    
+
     testEquals(startPt.x, cps.front().x,"Start X wrong.");
     testEquals(startPt.y, cps.front().y,"Start Y wrong.");
     testEquals(startPt.z, cps.front().z,"Start Z wrong.");

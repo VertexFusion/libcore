@@ -505,13 +505,13 @@ namespace jm
          struct Pattern
          {
             //Linked list
-            Pattern* next;
+            Pattern* next = nullptr;
 
             //Pattern type
-            PatternType type;
+            PatternType type=PatternType::kEmpty;
 
             //Pattern length
-            uint8 length;
+            uint8 length=0;
 
             //Text (if any)
             String text;

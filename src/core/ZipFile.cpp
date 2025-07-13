@@ -75,14 +75,13 @@ void ZipFile::open()
    // incomplete and the data length of the compressed data does not have to be saved at the
    // beginning.
 
-   int32 signature;
    ByteArray eocd = ByteArray(22, 0);
    bool found = false;
    do
    {
       mFile->seek(seek);
       mFile->Stream::readFully(eocd);
-      signature = jm::deserializeLEInt32((uint8*)eocd.constData(), 0);
+      int32 signature = jm::deserializeLEInt32((uint8*)eocd.constData(), 0);
       seek--;
 
       if(signature == 0x06054b50)
@@ -143,7 +142,7 @@ void ZipFile::close()
    mFile->close();
 }
 
-jm::String ZipFile::comment()
+const jm::String& ZipFile::comment() const
 {
    return kEmptyString;
 }
@@ -216,17 +215,12 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
 // ZIP ENTRY
 //
 
-ZipEntry::ZipEntry(const String& name): jm::Object()
+ZipEntry::ZipEntry(const String& name): jm::Object(),
+   mName(name)
 {
-   mName = name;
-   mUncompressedSize = 0;
-   mCompressedSize = 0;
-   mHeaderOffset = 0;
-   mCRC = 0;
-   mDataOffset = 0;
 }
 
-String ZipEntry::name()const
+const String& ZipEntry::name()const
 {
    return mName;
 }
