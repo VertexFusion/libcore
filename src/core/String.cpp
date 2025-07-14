@@ -1302,6 +1302,21 @@ namespace jm
       return ret;
    }
 
+   String operator+(const jm::Char& left, const String& right)
+   {
+      String ret;
+      ret.append(left);
+      ret.append(right);
+      return ret;
+   }
+
+   String operator+(const String& left, const jm::Char& right)
+   {
+      String ret = left;
+      ret.append(right);
+      return ret;
+   }
+
    String operator+(const int64& left, const String& right)
    {
       String ret = String::valueOf(left);

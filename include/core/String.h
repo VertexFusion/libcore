@@ -620,6 +620,12 @@ namespace jm
          friend String operator+(const String& left, const char*& right);
 
          DllExport
+         friend String operator+(const jm::Char& left, const String& right);
+
+         DllExport
+         friend String operator+(const String& left, const jm::Char& right);
+
+         DllExport
          friend String operator+(const int64& left, const String& right);
 
          DllExport
