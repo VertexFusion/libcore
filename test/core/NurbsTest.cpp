@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Jameo Software. All rights reserved.
 //
 
-#include "NurbsTest.h"
-
 #include "core/Core.h"
+#include "NurbsTest.h"
 
 using namespace jm;
 

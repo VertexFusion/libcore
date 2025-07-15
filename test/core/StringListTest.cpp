@@ -20,15 +20,15 @@ void StringListTest::doTest()
 {
    // Size // append
    StringList list;
-   testEquals(list.size(), 0UL, "StringList::size()==0 failed");
+   testTrue(list.size() == 0, "StringList::size()==0 failed");
    list.append("item3");
-   testEquals(list.size(), 1UL, "StringList::size()==1 failed");
+   testTrue(list.size() == 1, "StringList::size()==1 failed");
    testEquals(list[0], "item3", "list[0]!=item3");
    list.append("item1");
-   testEquals(list.size(), 2UL, "StringList::size()==2 failed");
+   testTrue(list.size() == 2, "StringList::size()==2 failed");
    testEquals(list[1], "item1", "list[1]!=item1");
    list.append("item2");
-   testEquals(list.size(), 3UL, "StringList::size()==3 failed");
+   testTrue(list.size() == 3, "StringList::size()==3 failed");
    testEquals(list[2], "item2", "list[2]!=item2");
 
    // contains
@@ -58,17 +58,17 @@ void StringListTest::doTest()
 
    // remove
    list.remove("item2");
-   testEquals(list.size(), 2UL, "StringList::size()==2 failed");
+   testTrue(list.size() == 2, "StringList::size()==2 failed");
    testEquals(list[0], "item1", "list[0]!=item1");
    testEquals(list[1], "item3", "list[1]!=item3");
 
    // clear
    list.clear();
-   testEquals(list.size(), 0UL, "StringList::clear() failed");
+   testTrue(list.size() == 0, "StringList::clear() failed");
 
    // Initialize list with specified size
    StringList list2(5);
-   testEquals(list2.size(), 5UL, "StringList::size()==5 failed");
+   testTrue(list2.size() == 5, "StringList::size()==5 failed");
    testEquals(list2[0], jm::kEmptyString, "list[0]!=");
    testEquals(list2[1], jm::kEmptyString, "list[1]!=");
    testEquals(list2[2], jm::kEmptyString, "list[2]!=");

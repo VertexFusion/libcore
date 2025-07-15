@@ -87,8 +87,8 @@ void StringTest::doTest()
    testEquals(str2.hashCode(), 277800975, "String.hashCode() fails");
 
    //lastIndexOf
-   testEquals(str1.indexOf('i'), 2UL, "String.indexOf() fails");
-   testEquals(str1.lastIndexOf('i'), 18UL, "String.lastIndexOf() fails");
+   testTrue(str1.indexOf('i') == 2, "String.indexOf() fails");
+   testTrue(str1.lastIndexOf('i') == 18, "String.lastIndexOf() fails");
 
    //substring
    str1 = "abc123def";
@@ -101,24 +101,24 @@ void StringTest::doTest()
    str1 = "franz jagt im komplett verwahrlosten taxi quer durch bayern. Dabei schauen wir zu.";
    str2 = "en";
 
-   testEquals(str1.indexOf('a'), 2UL, "String.indexOf() fails. (1)");
-   testEquals(str1.indexOf(' '), 5UL, "String.indexOf() fails. (2)");
-   testEquals(str1.indexOf('A'), npos, "String.indexOf() fails. (3)");
-   testEquals(str1.indexOf('a', 4), 7UL, "String.indexOf() fails. (4)");
-   testEquals(str1.indexOf("im"), 11UL, "String.indexOf() fails. (5)");
-   testEquals(str1.indexOf("en"), 34UL, "String.indexOf() fails. (6)");
-   testEquals(str1.indexOf("en", 35), 72UL, "String.indexOf() fails. (7)");
-   testEquals(str1.indexOf("im", 11), 11UL, "String.indexOf() fails. (8)");
-   testEquals(str1.indexOf("im", 15), npos, "String.indexOf() fails. (8)");
+   testTrue(str1.indexOf('a') == 2, "String.indexOf() fails. (1)");
+   testTrue(str1.indexOf(' ') == 5, "String.indexOf() fails. (2)");
+   testTrue(str1.indexOf('A') == npos, "String.indexOf() fails. (3)");
+   testTrue(str1.indexOf('a', 4) == 7, "String.indexOf() fails. (4)");
+   testTrue(str1.indexOf("im") == 11, "String.indexOf() fails. (5)");
+   testTrue(str1.indexOf("en") == 34, "String.indexOf() fails. (6)");
+   testTrue(str1.indexOf("en", 35) == 72, "String.indexOf() fails. (7)");
+   testTrue(str1.indexOf("im", 11) == 11, "String.indexOf() fails. (8)");
+   testTrue(str1.indexOf("im", 15) == npos, "String.indexOf() fails. (8)");
 
    //Teste lastIndexOf
-   testEquals(str1.lastIndexOf('a'), 70UL, "String.lastIndexOf() fails. (1)");
-   testEquals(str1.lastIndexOf(' '), 78UL, "String.lastIndexOf() fails. (2)");
-   testEquals(str1.lastIndexOf('A'), npos, "String.lastIndexOf() fails. (3)");
-   testEquals(str1.lastIndexOf("im"), 11UL, "String.lastIndexOf() fails. (4)");
-   testEquals(str1.lastIndexOf("en"), 72UL, "String.lastIndexOf() fails. (5)");
-   testEquals(str1.lastIndexOf("mypw"), npos, "String.lastIndexOf() fails. (6)");
-   testEquals(str2.lastIndexOf("mypw"), npos, "String.lastIndexOf() fails. (7)");
+   testTrue(str1.lastIndexOf('a') == 70, "String.lastIndexOf() fails. (1)");
+   testTrue(str1.lastIndexOf(' ') == 78, "String.lastIndexOf() fails. (2)");
+   testTrue(str1.lastIndexOf('A') == npos, "String.lastIndexOf() fails. (3)");
+   testTrue(str1.lastIndexOf("im") == 11, "String.lastIndexOf() fails. (4)");
+   testTrue(str1.lastIndexOf("en") == 72, "String.lastIndexOf() fails. (5)");
+   testTrue(str1.lastIndexOf("mypw") == npos, "String.lastIndexOf() fails. (6)");
+   testTrue(str2.lastIndexOf("mypw") == npos, "String.lastIndexOf() fails. (7)");
 
    // Teste to lower/upper case
    str1 = "alles ok.äöü";

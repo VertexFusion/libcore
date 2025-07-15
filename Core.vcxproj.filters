@@ -237,6 +237,9 @@
     <ClInclude Include="prec\PrecompiledCore.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="test\core\NurbsTest.h">
+      <Filter>test\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\AutoreleasePool.cpp">
@@ -535,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="src\core\Resource.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="test\core\NurbsTest.cpp">
+      <Filter>test\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

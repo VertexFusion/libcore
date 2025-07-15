@@ -50,7 +50,7 @@ void FileTest::doTest()
    testTrue(file.canWrite(), "File::canWrite()==true failed");
 
    testEquals(file.name(), "test.txt", "file.name()==test.txt failed");
-   testEquals(file.size(), 0UL, "File.size()==0 failed");
+   testTrue(file.size() == 0, "File.size()==0 failed");
    testEquals(file.parent(), jm::currentDir().absolutePath(), "file.parent() failed");
    testEquals(file.extension(), "txt", "file::extension() failed");
    testTrue(file.isAbsolute(), "File::isAbsolute() failed");

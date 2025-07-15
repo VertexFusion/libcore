@@ -28,14 +28,14 @@ void SerializerTest::doTest()
 
    size_t count = jm::serializeBEInt16(buffer, 0, i16in);
    i16out = jm::deserializeBEInt16(buffer, 0);
-   testEquals(count, 2UL, "int16 conversion failed");
+   testTrue(count == 2, "int16 conversion failed");
    testEquals(i16in, i16out, "int16 conversion failed");
    testEquals(buffer[0], 0x80, "int16 conversion failed");
    testEquals(buffer[1], 0x00, "int16 conversion failed");
 
    count = jm::serializeLEInt16(buffer, 0, i16in);
    i16out = jm::deserializeLEInt16(buffer, 0);
-   testEquals(count, 2UL, "int16 conversion failed");
+   testTrue(count == 2, "int16 conversion failed");
    testEquals(i16in, i16out, "int16 conversion failed");
    testEquals(buffer[0], 0x00, "int16 conversion failed");
    testEquals(buffer[1], 0x80, "int16 conversion failed");
@@ -43,14 +43,14 @@ void SerializerTest::doTest()
    i16in = 1234;
    count = jm::serializeBEInt16(buffer, 0, i16in);
    i16out = jm::deserializeBEInt16(buffer, 0);
-   testEquals(count, 2UL, "int16 conversion failed");
+   testTrue(count == 2, "int16 conversion failed");
    testEquals(i16in, i16out, "int16 conversion failed");
    testEquals(buffer[0], 0x04, "int16 conversion failed");
    testEquals(buffer[1], 0xd2, "int16 conversion failed");
 
    count = jm::serializeLEInt16(buffer, 0, i16in);
    i16out = jm::deserializeLEInt16(buffer, 0);
-   testEquals(count, 2UL, "int16 conversion failed");
+   testTrue(count == 2, "int16 conversion failed");
    testEquals(i16in, i16out, "int16 conversion failed");
    testEquals(buffer[0], 0xd2, "int16 conversion failed");
    testEquals(buffer[1], 0x04, "int16 conversion failed");
@@ -63,7 +63,7 @@ void SerializerTest::doTest()
 
    count = jm::serializeBEInt24(buffer, 0, i32in);
    i32out = jm::deserializeBEInt24(buffer, 0);
-   testEquals(count, 3UL, "int24 conversion failed");
+   testTrue(count == 3, "int24 conversion failed");
    testEquals(i32in, i32out, "int24 conversion failed");
    testEquals(buffer[0], 0x12, "int24 conversion failed");
    testEquals(buffer[1], 0x34, "int24 conversion failed");
@@ -71,7 +71,7 @@ void SerializerTest::doTest()
 
    count = jm::serializeLEInt24(buffer, 0, i32in);
    i32out = jm::deserializeLEInt24(buffer, 0);
-   testEquals(count, 3UL, "int24 conversion failed");
+   testTrue(count == 3, "int24 conversion failed");
    testEquals(i32in, i32out, "int24 conversion failed");
    testEquals(buffer[0], 0x56, "int24 conversion failed");
    testEquals(buffer[1], 0x34, "int24 conversion failed");
@@ -85,7 +85,7 @@ void SerializerTest::doTest()
 
    count = jm::serializeBEInt32(buffer, 0, i32in);
    i32out = jm::deserializeBEInt32(jm::ByteArray(buffer), 0);
-   testEquals(count, 4UL, "int32 conversion failed");
+   testTrue(count == 4, "int32 conversion failed");
    testEquals(i32in, i32out, "int32 conversion failed");
    testEquals(buffer[0], 0x12, "int32 conversion failed");
    testEquals(buffer[1], 0x34, "int32 conversion failed");
@@ -94,7 +94,7 @@ void SerializerTest::doTest()
 
    count = jm::serializeLEInt32(buffer, 0, i32in);
    i32out = jm::deserializeLEInt32(buffer, 0);
-   testEquals(count, 4UL, "int32 conversion failed");
+   testTrue(count == 4, "int32 conversion failed");
    testEquals(i32in, i32out, "int32 conversion failed");
    testEquals(buffer[0], 0x78, "int32 conversion failed");
    testEquals(buffer[1], 0x56, "int32 conversion failed");
@@ -108,7 +108,7 @@ void SerializerTest::doTest()
    int64 i64out = 0;
    count = jm::serializeBEInt64(buffer, 0, i64in);
    i64out = jm::deserializeBEInt64(buffer, 0);
-   testEquals(count, 8UL, "int64 conversion failed");
+   testTrue(count == 8, "int64 conversion failed");
    testEquals(i64in, i64out, "int64 conversion failed");
    testEquals(buffer[0], 0x12, "int64 conversion failed");
    testEquals(buffer[1], 0x34, "int64 conversion failed");
@@ -121,7 +121,7 @@ void SerializerTest::doTest()
 
    count = jm::serializeLEInt64(buffer, 0, i64in);
    i64out = jm::deserializeLEInt64(buffer, 0);
-   testEquals(count, 8UL, "int64 conversion failed");
+   testTrue(count == 8, "int64 conversion failed");
    testEquals(i64in, i64out, "int64 conversion failed");
    testEquals(buffer[0], 0xf0, "int64 conversion failed");
    testEquals(buffer[1], 0xde, "int64 conversion failed");
@@ -140,14 +140,14 @@ void SerializerTest::doTest()
 
    count = jm::serializeBEUInt16(buffer, 0, u16in);
    u16out = jm::deserializeBEUInt16(buffer, 0);
-   testEquals(count, 2UL, "uint16 conversion failed");
+   testTrue(count == 2, "uint16 conversion failed");
    testEquals(u16in, u16out, "uint16 conversion failed");
    testEquals(buffer[0], 0x12, "uint16 conversion failed");
    testEquals(buffer[1], 0x34, "uint16 conversion failed");
 
    count = jm::serializeLEUInt16(buffer, 0, u16in);
    u16out = jm::deserializeLEUInt16(buffer, 0);
-   testEquals(count, 2UL, "uint16 conversion failed");
+   testTrue(count == 2, "uint16 conversion failed");
    testEquals(u16in, u16out, "uint16 conversion failed");
    testEquals(buffer[0], 0x34, "uint16 conversion failed");
    testEquals(buffer[1], 0x12, "uint16 conversion failed");
@@ -159,7 +159,7 @@ void SerializerTest::doTest()
    float f32out = 0.0f;
    count = jm::serializeLEFloat(buffer, 0, f32in);
    f32out = jm::deserializeLEFloat(buffer, 0);
-   testEquals(count, 4UL, "float conversion failed");
+   testTrue(count == 4, "float conversion failed");
    testEquals(f32in, f32out, "float conversion failed");
    testEquals(buffer[0], 0x2b, "float conversion failed 0");
    testEquals(buffer[1], 0x52, "float conversion failed 1");
@@ -173,7 +173,7 @@ void SerializerTest::doTest()
    double f64out = 0.0;
    count = jm::serializeLEDouble(buffer, 0, f64in);
    f64out = jm::deserializeLEDouble(buffer, 0);
-   testEquals(count, 8UL, "double conversion failed");
+   testTrue(count == 8, "double conversion failed");
    testEquals(f64in, f64out, "double conversion failed");
    testEquals(buffer[0], 0xF1, "double conversion failed 0");
    testEquals(buffer[1], 0xFd, "double conversion failed 1");

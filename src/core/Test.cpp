@@ -101,12 +101,12 @@ void Test::testEquals(int64 actual, int32 expected, const String& failmessage)
    jm::gErrorCount++;
 }
 
-void Test::testEquals(uint64 actual, uint64 expected, const String& failmessage)
+void Test::testEquals(size_t actual, uint64 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
 
-   if(actual == expected) return;
+   if (actual == expected) return;
 
    jm::gTotalErrorCount++;
    jm::gErrorCount++;
