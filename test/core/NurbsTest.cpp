@@ -170,7 +170,9 @@ void NurbsTest::testPeriodicSpline()
     //testTrue(nurbs.isPeriodic(),"isPeriodic() return wrong value");
 
     // Parameterbereich abdecken und prüfen, dass Punkt innerhalb erwartetem Bereich liegt
-    for(double t = knots[degree]; t <= knots[knots.size()-degree-1]; t += 0.5)
+    double t = knots[degree];
+    const double limit = knots[knots.size()-degree-1];
+    while(t <= limit)
     {
         Vertex3 p = nurbs.point(t);
         // Für eine Linie auf X-Achse sollte y,z ~0 sein
@@ -178,6 +180,8 @@ void NurbsTest::testPeriodicSpline()
         testEquals(p.z, 0.0, "pz");
         testTrue(jm::isGreaterEqual(p.x, 0.0),"px");
         testTrue(jm::isLessEqual(p.x, 3.0),"px");
+
+        t += 0.5;
     }
 }
 

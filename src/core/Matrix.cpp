@@ -785,6 +785,61 @@ void Matrix::initRotation(const jm::Vertex3& axisPoint,
 
 }
 
+void Matrix::initLookAt(const jm::Vertex3& camera,
+                        const jm::Vertex3& center,
+                        const jm::Vertex3& up)
+{
+   if(m != 4 || n != 4)init(4, 4);
+
+   jm::Vertex3 f = center - camera;
+   f.normalize();
+   jm::Vertex3 upn = up;
+   upn.normalize();
+   jm::Vertex3 s = f.crossProduct(upn);
+   s.normalize();
+   jm::Vertex3 u = s.crossProduct(f);
+   u.normalize();
+
+   const double A = s.x;
+   const double B = s.y;
+   const double C = s.z;
+
+   const double D = u.x;
+   const double E = u.y;
+   const double F = u.z;
+
+   const double G = -f.x;
+   const double H = -f.y;
+   const double I = -f.z;
+
+   //1st column.
+   set(0, 0, A);
+   set(1, 0, D);
+   set(2, 0, G);
+   set(3, 0, 0);
+
+   //2nd column
+   set(0, 1, B);
+   set(1, 1, E);
+   set(2, 1, H);
+   set(3, 1, 0);
+
+   //3rd column
+   set(0, 2, C);
+   set(1, 2, F);
+   set(2, 2, I);
+   set(3, 2, 0);
+
+   //4th column
+   const double x=-camera.x;
+   const double y=-camera.y;
+   const double z=-camera.z;
+   set(0, 3, A*x+B*y+C*z);
+   set(1, 3, D*x+E*y+F*z);
+   set(2, 3, G*x+H*y+I*z);
+   set(3, 3, 1);
+}
+
 jm::Vertex3 Matrix::trans(const jm::Vertex3& vertex) const
 {
    jm::Vector input = jm::Vector(4);

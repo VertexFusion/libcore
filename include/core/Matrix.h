@@ -289,6 +289,16 @@ namespace jm
                            double angle);
 
          /*!
+          \brief Initialize this matrix as a "look-at" matrix.
+          \param camera The camera position
+          \param center The "target" center of the view
+          \param up The up vector (needed for rotation)
+          */
+         void initLookAt(const jm::Vertex3& camera,
+                         const jm::Vertex3& center,
+                         const jm::Vertex3& up);
+
+         /*!
           \brief This method transforms the vertex using the 4x4 transformation matrix.
           \param vertex The input vertex to be transformed.
           \return The transformed vertex.
