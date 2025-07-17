@@ -152,6 +152,17 @@ Status EditableObject::setMember(Vertex3* pointer, const Vertex3& value)
    return Status::eOK;
 }
 
+Status EditableObject::setMember(Vertex2* pointer, const Vertex2& value)
+{
+   if(value == *pointer)return Status::eNotChanged;
+
+   UndoManager* um = nullptr;
+   if(mDocument != nullptr)um = mDocument->undoManager();
+   if(um != nullptr)um->registerChange(this, pointer);
+   *pointer = value;
+   return Status::eOK;
+}
+
 Status EditableObject::openTransaction()
 {
    UndoManager* um = nullptr;

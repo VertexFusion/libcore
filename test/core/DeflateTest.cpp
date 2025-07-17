@@ -51,8 +51,6 @@ void DeflateTest::doTest()
    size_t uncompressedLength = 0;
    while(uncompressed[uncompressedLength] != 0)uncompressedLength++;
 
-   std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
-
    //Komprimieren
    uint8* compressed = nullptr;
    size_t compressedLength = 0;
@@ -61,10 +59,8 @@ void DeflateTest::doTest()
    deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.deflate(compressed, compressedLength);
 
-   testEquals(deflater.totalInSize(), uncompressedLength, "Uncompressed length differs from Deflater::totalInSize().");
-   testEquals(deflater.totalOutSize(), compressedLength, "Compressed length differs from Deflater::totalOutSize().");
-
-   std::cout << "Compressed Length: " << compressedLength << std::endl;
+   testTrue(deflater.totalInSize() == uncompressedLength, "Uncompressed length differs from Deflater::totalInSize().");
+   testTrue(deflater.totalOutSize() == compressedLength, "Compressed length differs from Deflater::totalOutSize().");
 
    //Dekomprimieren
    uint8* restored = nullptr;
@@ -73,8 +69,6 @@ void DeflateTest::doTest()
    inflater.Reset();
    inflater.SetInput(compressed, compressedLength);
    inflater.Inflate(restored, restoredLength);
-
-   std::cout << "Restored Length: " << restoredLength << std::endl;
 
    //Vergleiche uncompressed und restored...
    testEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
@@ -685,16 +679,12 @@ void DeflateTest::doTest()
    uncompressed = jm::ByteArray(1000000, 0);
    uncompressedLength = 1000000;
 
-   std::cout << "Uncompressed Length: " << uncompressedLength << std::endl;
-
    //Komprimieren
    compressed = nullptr;
    compressedLength = 0;
    deflater.reset();
    deflater.setInput((uint8*)uncompressed.data(), uncompressedLength);
    deflater.deflate(compressed, compressedLength);
-
-   std::cout << "Compressed Length: " << compressedLength << std::endl;
 
    //Dekomprimieren
    restored = nullptr;
@@ -703,10 +693,8 @@ void DeflateTest::doTest()
    inflater.SetInput(compressed, compressedLength);
    inflater.Inflate(restored, restoredLength);
 
-   std::cout << "Restored Length: " << restoredLength << std::endl;
-
    //Vergleiche uncompressed und restored...
-   testEquals((int64)uncompressedLength, (int64)restoredLength, "Länge der Daten unterschiedlich.");
+   testTrue(uncompressedLength==restoredLength, "Länge der Daten unterschiedlich.");
 
    l = std::min(uncompressedLength, restoredLength);
 

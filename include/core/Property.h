@@ -452,6 +452,8 @@ namespace jm
 
          virtual Status setMember(size_t* pointer, size_t value);
 
+         virtual Status setMember(Vertex2* pointer, const Vertex2& value);
+
          virtual Status setMember(Vertex3* pointer, const Vertex3& value);
 
          /*!

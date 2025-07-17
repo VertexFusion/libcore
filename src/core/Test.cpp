@@ -101,7 +101,7 @@ void Test::testEquals(int64 actual, int32 expected, const String& failmessage)
    jm::gErrorCount++;
 }
 
-void Test::testEquals(size_t actual, uint64 expected, const String& failmessage)
+void Test::testEquals(uint64 actual, uint64 expected, const String& failmessage)
 {
    jm::gTotalTestCount++;
    jm::gTestCount++;
@@ -158,13 +158,6 @@ void Test::testEquals(int32 actual, uint32 expected, const String& failmessage)
 {
    testEquals((int64)actual, (int64)expected, failmessage);
 }
-
-#ifdef JM_MACOS
-void Test::testEquals(size_t actual, size_t expected, const String& failmessage)
-{
-   testEquals((uint64)actual, (uint64)expected, failmessage);
-}
-#endif
 
 void Test::testEqualsIgnoreCase(const String& actual,
                                 const String& expected,

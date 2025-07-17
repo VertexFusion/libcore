@@ -511,8 +511,8 @@ void MatrixTest::constructors()
 
    // Test copy constructor
    Matrix B = A;
-   testEquals(B.rows(), A.rows(), "Matrix.rows() not equal");
-   testEquals(B.cols(), A.cols(), "Matrix.cols() not equal");
+   testTrue(B.rows()==A.rows(), "Matrix.rows() not equal");
+   testTrue(B.cols()==A.cols(), "Matrix.cols() not equal");
    testEquals(B.get(0, 0), A.get(0, 0), "Value not equal");
    testEquals(B.get(0, 1), A.get(0, 1), "Value not equal");
    testEquals(B.get(0, 2), A.get(0, 2), "Value not equal");
@@ -528,8 +528,8 @@ void MatrixTest::constructors()
 
    // Test reference constructor
    B = Matrix(&A);
-   testEquals(B.rows(), A.rows(), "Matrix.rows() not equal");
-   testEquals(B.cols(), A.cols(), "Matrix.cols() not equal");
+   testTrue(B.rows()==A.rows(), "Matrix.rows() not equal");
+   testTrue(B.cols()==A.cols(), "Matrix.cols() not equal");
    testEquals(B.get(0, 0), A.get(0, 0), "Value not equal");
    testEquals(B.get(0, 1), A.get(0, 1), "Value not equal");
    testEquals(B.get(0, 2), A.get(0, 2), "Value not equal");
