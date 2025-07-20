@@ -107,6 +107,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1c46334fa83b5d5f1c43583c17792ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the regeneration status.  <br /></td></tr>
 <tr class="separator:a1c46334fa83b5d5f1c43583c17792ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fa7b88ac2e1cc17a9396b948e432722" id="r_a9fa7b88ac2e1cc17a9396b948e432722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjm_1_1Document.html">Document</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1EditableObject.html#a9fa7b88ac2e1cc17a9396b948e432722">document</a> () const</td></tr>
+<tr class="memdesc:a9fa7b88ac2e1cc17a9396b948e432722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the document this object belongs to.  <br /></td></tr>
 <tr class="separator:a9fa7b88ac2e1cc17a9396b948e432722"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a997111909de333e7de0445c07f729faa" id="r_a997111909de333e7de0445c07f729faa"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024">Status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1EditableObject.html#a997111909de333e7de0445c07f729faa">setMember</a> (<a class="el" href="classjm_1_1String.html">String</a> *pointer, const <a class="el" href="classjm_1_1String.html">String</a> &amp;value)</td></tr>
 <tr class="memdesc:a997111909de333e7de0445c07f729faa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method set the <code>value</code> to the member the <code>pointer</code> references.  <br /></td></tr>
@@ -198,7 +199,7 @@ Public Member Functions</h2></td></tr>
 <p>Default constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">doc</td><td>The document, this object belongs to </td></tr>
+    <tr><td class="paramname">doc</td><td>The document, this object belongs to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -239,6 +240,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the document this object belongs to. </p>
 
 </div>
 </div>
@@ -386,15 +389,15 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The method set the <code>value</code> to the member the <code>pointer</code> references. </p>
-<p>The pointer must point to an member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
+<p>The pointer must point to a member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pointer</td><td>The pointer to the Double member. </td></tr>
+    <tr><td class="paramname">pointer</td><td>The pointer to the double member. </td></tr>
     <tr><td class="paramname">value</td><td>The new value for the member. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>eInvalidInput if value is <code>NaN</code>, eNotChanged if value is equal to current value and eOK if set successfully. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a996103e723535d0f48021a7df61c0315">jm::Status::eInvalidInput</a> if value is <code>NaN</code>, <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a354bbf5ae5755617a8e48ae9535e2d26">jm::Status::eNotChanged</a> if value is equal to current value and <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a0f72179a90f281c647699bac99fd3a6e">jm::Status::eOK</a> if set successfully. </dd></dl>
 
 </div>
 </div>
@@ -481,17 +484,18 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The method set the <code>value</code> to the member the <code>pointer</code> references. </p>
-<p>The pointer must point to an member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
+<p>The pointer must point to a member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
 <p>With the range values, a specified range for the input can be defined. For example, if you set <code>rangeMin</code> to 0, this method only accept positive numbers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pointer</td><td>The pointer to the <a class="el" href="classjm_1_1Integer.html" title="This class collect static methods to manipulate integer values.">Integer</a> member. </td></tr>
     <tr><td class="paramname">value</td><td>The new value for the member. </td></tr>
     <tr><td class="paramname">rangeMin</td><td>Minimum valid value. Default is INT64_MIN </td></tr>
-    <tr><td class="paramname">rangeMax</td><td>Maximum valid value. Default is INT64_MAX </td></tr>
+    <tr><td class="paramname">rangeMax</td><td>Maximum valid value. Default is INT64_MAX</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a0f72179a90f281c647699bac99fd3a6e">jm::Status::eOK</a> on success, <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a354bbf5ae5755617a8e48ae9535e2d26">jm::Status::eNotChanged</a> if value is equal to current value adn <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a996103e723535d0f48021a7df61c0315">jm::Status::eInvalidInput</a>, if value is out of range. </dd></dl>
 
 </div>
 </div>
@@ -566,14 +570,15 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The method set the <code>value</code> to the member the <code>pointer</code> references. </p>
-<p>The pointer must point to an member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
+<p>The pointer must point to a member which is part of this or derived object. Here also the Undo-Manager is called for registering the change.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pointer</td><td>The pointer to the <a class="el" href="classjm_1_1String.html" title="string implements our generic string because std::string is inadequate and inconvenient....">String</a> member. </td></tr>
-    <tr><td class="paramname">value</td><td>The new value for the member. </td></tr>
+    <tr><td class="paramname">pointer</td><td>The pointer to the <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> member. </td></tr>
+    <tr><td class="paramname">value</td><td>The new value for the member.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a0f72179a90f281c647699bac99fd3a6e">jm::Status::eOK</a> on success, <a class="el" href="namespacejm.html#ac147e79b4957079be421fe6f726c6024a354bbf5ae5755617a8e48ae9535e2d26">jm::Status::eNotChanged</a> if value is equal to current value. </dd></dl>
 
 </div>
 </div>

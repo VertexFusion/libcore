@@ -8,7 +8,7 @@ var searchData=
   ['inflate_5',['Inflate',['../classjm_1_1Inflater.html#ac3a4682e2d471926957d7b2f01d3f1eb',1,'jm::Inflater']]],
   ['inflater_6',['inflater',['../classjm_1_1Inflater.html#a6362f65cdf929e4c28e7b253e019340c',1,'jm::Inflater::Inflater()'],['../classjm_1_1Inflater.html#aebf4c650e9f3caf0e498f9b6985e1685',1,'jm::Inflater::Inflater(bool wrap)']]],
   ['init_7',['init',['../classjm_1_1System.html#a5f052bf7598384a6f97e640bf68a3c45',1,'jm::System']]],
-  ['initcharsets_8',['initCharsets',['../namespacejm.html#a1929c449d4c7aa8d59e01b6151b5eacd',1,'jm']]],
+  ['initcharsets_8',['initCharsets',['../group__string.html#ga1929c449d4c7aa8d59e01b6151b5eacd',1,'jm']]],
   ['initdefault_9',['initDefault',['../classjm_1_1I18nBundle.html#a6119f93b7ae68f17251f9be43f87752c',1,'jm::I18nBundle']]],
   ['initidentity_10',['initIdentity',['../structjm_1_1Matrix.html#ab56d908031066e1aaf1d6da5ed0f498d',1,'jm::Matrix']]],
   ['initlookat_11',['initLookAt',['../structjm_1_1Matrix.html#a57cf26150e2b81adabe327779495f2c9',1,'jm::Matrix']]],

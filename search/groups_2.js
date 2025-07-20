@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['test_0',['Test',['../group__test.html',1,'']]]
+  ['data_20management_0',['Data Management',['../group__datamgr.html',1,'']]],
+  ['diff_1',['Diff',['../group__diff.html',1,'']]]
 ];

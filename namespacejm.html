@@ -236,7 +236,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classjm_1_1Stream.html" title="The Stream class is an abstraction class for manipulating data streams through a unified interface....">Stream</a> class is an abstraction class for manipulating data streams through a unified interface. The stream itself can be a file, a byte array, a network interface, or anything else.  <a href="classjm_1_1Stream.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1String.html">String</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>string</code> implements our generic string because <code>std::string</code> is inadequate and inconvenient. The internal character encoding is Unicode (UTF-8).  <a href="classjm_1_1String.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a></code> implements our generic string because <code>std::string</code> is inadequate and inconvenient. The internal character encoding is Unicode (UTF-8).  <a href="classjm_1_1String.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1StringList.html">StringList</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a list of strings. It provides useful methods for manipulating string lists.  <a href="classjm_1_1StringList.html#details">More...</a><br /></td></tr>
@@ -245,6 +245,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classjm_1_1StringTokenizer.html" title="The StringTokenizer class is used to tokenize a string based on specified delimiters....">StringTokenizer</a> class is used to tokenize a string based on specified delimiters. It splits the string into individual pieces.  <a href="classjm_1_1StringTokenizer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1System.html">System</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic system information.  <a href="classjm_1_1System.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html">Test</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This base class represents a test object. It is used to implement unit tests for any code. Typically a set of tests is collected in one derived test class.  <a href="classjm_1_1Test.html#details">More...</a><br /></td></tr>
@@ -253,6 +254,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classjm_1_1TestVector.html" title="A TestVector is a collection of several tests and will execute them all and return the number of erro...">TestVector</a> is a collection of several tests and will execute them all and return the number of errors on execution.  <a href="classjm_1_1TestVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Thread.html">Thread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classjm_1_1Thread.html" title="Thread implementation.">Thread</a> implementation.  <a href="classjm_1_1Thread.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoChange.html">UndoChange</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This element of a linked list stores the changes made to the file in an Undo Step.  <a href="classjm_1_1UndoChange.html#details">More...</a><br /></td></tr>
@@ -470,12 +472,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1929c449d4c7aa8d59e01b6151b5eacd" id="r_a1929c449d4c7aa8d59e01b6151b5eacd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a1929c449d4c7aa8d59e01b6151b5eacd">initCharsets</a> ()</td></tr>
-<tr class="memdesc:a1929c449d4c7aa8d59e01b6151b5eacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the charsets. \discussion Called by <a class="el" href="classjm_1_1System.html#a5f052bf7598384a6f97e640bf68a3c45" title="This method must be called first to set up important static objects.">System::init</a>. Therefore no export necessary.  <br /></td></tr>
-<tr class="separator:a1929c449d4c7aa8d59e01b6151b5eacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82cdab3da7e142df0155f8b17cb8bf0a" id="r_a82cdab3da7e142df0155f8b17cb8bf0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a82cdab3da7e142df0155f8b17cb8bf0a">quitCharsets</a> ()</td></tr>
-<tr class="memdesc:a82cdab3da7e142df0155f8b17cb8bf0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the charset objects. \discussion Called by <a class="el" href="classjm_1_1System.html#a2dfa06867af5d627d1f717307e90d852" title="This method cleans up static system objects. After calling this method, the program must be terminate...">System::quit</a>. Therefore no export necessary.  <br /></td></tr>
-<tr class="separator:a82cdab3da7e142df0155f8b17cb8bf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1929c449d4c7aa8d59e01b6151b5eacd" id="r_ga1929c449d4c7aa8d59e01b6151b5eacd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__string.html#ga1929c449d4c7aa8d59e01b6151b5eacd">initCharsets</a> ()</td></tr>
+<tr class="memdesc:ga1929c449d4c7aa8d59e01b6151b5eacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the charsets.  <br /></td></tr>
+<tr class="separator:ga1929c449d4c7aa8d59e01b6151b5eacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82cdab3da7e142df0155f8b17cb8bf0a" id="r_ga82cdab3da7e142df0155f8b17cb8bf0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__string.html#ga82cdab3da7e142df0155f8b17cb8bf0a">quitCharsets</a> ()</td></tr>
+<tr class="memdesc:ga82cdab3da7e142df0155f8b17cb8bf0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the charset objects.  <br /></td></tr>
+<tr class="separator:ga82cdab3da7e142df0155f8b17cb8bf0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa822d8883dc0b56c01e8c379f35f6a67" id="r_aa822d8883dc0b56c01e8c379f35f6a67"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="structjm_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#aa822d8883dc0b56c01e8c379f35f6a67">blend</a> (<a class="el" href="structjm_1_1Color.html">Color</a> background, <a class="el" href="structjm_1_1Color.html">Color</a> foreground, uint8 alpha)</td></tr>
 <tr class="separator:aa822d8883dc0b56c01e8c379f35f6a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af98fc6268f50088c749c75dd5077c2af" id="r_af98fc6268f50088c749c75dd5077c2af"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="structjm_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#af98fc6268f50088c749c75dd5077c2af">interpolate</a> (<a class="el" href="structjm_1_1Color.html">Color</a> colour1, <a class="el" href="structjm_1_1Color.html">Color</a> colour2, float percent)</td></tr>
@@ -809,7 +811,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a0bd698fec27ffed6840f2f2af1a93429"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method deserializes a number using the Little-Endian method.  <br /></td></tr>
 <tr class="separator:a0bd698fec27ffed6840f2f2af1a93429"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadeee18374b2b2117484fd641a7a2b2e" id="r_aadeee18374b2b2117484fd641a7a2b2e"><td class="memItemLeft" align="right" valign="top">DllExport double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#aadeee18374b2b2117484fd641a7a2b2e">ConvertToDouble</a> (<a class="el" href="classjm_1_1String.html">String</a> str)</td></tr>
-<tr class="memdesc:aadeee18374b2b2117484fd641a7a2b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method converts a <a class="el" href="classjm_1_1String.html" title="string implements our generic string because std::string is inadequate and inconvenient....">String</a> into a double.  <br /></td></tr>
+<tr class="memdesc:aadeee18374b2b2117484fd641a7a2b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method converts a <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> into a double.  <br /></td></tr>
 <tr class="separator:aadeee18374b2b2117484fd641a7a2b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84a23f4025231b953b12a9fcda0a0454" id="r_a84a23f4025231b953b12a9fcda0a0454"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="classjm_1_1String.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a84a23f4025231b953b12a9fcda0a0454">URLDecode</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;str)</td></tr>
 <tr class="separator:a84a23f4025231b953b12a9fcda0a0454"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -818,10 +820,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a3629609e5992862a31230e836763537d" id="r_a3629609e5992862a31230e836763537d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjm_1_1String.html">jm::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a3629609e5992862a31230e836763537d">osSystemLanguage</a> ()</td></tr>
 <tr class="separator:a3629609e5992862a31230e836763537d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63e9d6bf8aa81ee1e69ebac18552656f" id="r_a63e9d6bf8aa81ee1e69ebac18552656f"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a63e9d6bf8aa81ee1e69ebac18552656f">wcsToOcs</a> (<a class="el" href="classjm_1_1Vertex3.html">Vertex3</a> wcs, <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a> extrusion)</td></tr>
-<tr class="memdesc:a63e9d6bf8aa81ee1e69ebac18552656f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method converts World Coordinate <a class="el" href="classjm_1_1System.html">System</a> (WCS) coordinates to <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html">System</a> (OCS) coordinates.  <br /></td></tr>
+<tr class="memdesc:a63e9d6bf8aa81ee1e69ebac18552656f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method converts World Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (WCS) coordinates to <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (OCS) coordinates.  <br /></td></tr>
 <tr class="separator:a63e9d6bf8aa81ee1e69ebac18552656f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10eb976078032271266e56beb9c7ecb" id="r_ae10eb976078032271266e56beb9c7ecb"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#ae10eb976078032271266e56beb9c7ecb">ocsToWcs</a> (const <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a> &amp;ocs, const <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a> &amp;extrusion)</td></tr>
-<tr class="memdesc:ae10eb976078032271266e56beb9c7ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method converts <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html">System</a> (OCS) coordinates to World Coordinate <a class="el" href="classjm_1_1System.html">System</a> (WCS) coordinates.  <br /></td></tr>
+<tr class="memdesc:ae10eb976078032271266e56beb9c7ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method converts <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (OCS) coordinates to World Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (WCS) coordinates.  <br /></td></tr>
 <tr class="separator:ae10eb976078032271266e56beb9c7ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac05076674c81cc375bc6be12874d1f07" id="r_ac05076674c81cc375bc6be12874d1f07"><td class="memItemLeft" align="right" valign="top">DllExport <a class="el" href="structjm_1_1Matrix.html">Matrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#ac05076674c81cc375bc6be12874d1f07">ocsMatrix</a> (const <a class="el" href="classjm_1_1Vertex3.html">Vertex3</a> &amp;extrusion)</td></tr>
 <tr class="memdesc:ac05076674c81cc375bc6be12874d1f07"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method calculates the OCS transformation matrix using the "Arbitrary Axis Algorithm" from the DXF reference.  <br /></td></tr>
@@ -1746,7 +1748,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Method converts a <a class="el" href="classjm_1_1String.html" title="string implements our generic string because std::string is inadequate and inconvenient....">String</a> into a double. </p>
+<p>Method converts a <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> into a double. </p>
 <p>This method is similar to Double::ValueFrom(), but as a decimal divider a point or a comma is accepted. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>The string in form: "1.23". </td></tr>
@@ -3288,25 +3290,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1929c449d4c7aa8d59e01b6151b5eacd" name="a1929c449d4c7aa8d59e01b6151b5eacd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1929c449d4c7aa8d59e01b6151b5eacd">&#9670;&#160;</a></span>initCharsets()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void jm::initCharsets </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialises the charsets. \discussion Called by <a class="el" href="classjm_1_1System.html#a5f052bf7598384a6f97e640bf68a3c45" title="This method must be called first to set up important static objects.">System::init</a>. Therefore no export necessary. </p>
-
-</div>
-</div>
 <a id="af98fc6268f50088c749c75dd5077c2af" name="af98fc6268f50088c749c75dd5077c2af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af98fc6268f50088c749c75dd5077c2af">&#9670;&#160;</a></span>interpolate() <span class="overload">[1/4]</span></h2>
 
@@ -4293,7 +4276,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method converts <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html">System</a> (OCS) coordinates to World Coordinate <a class="el" href="classjm_1_1System.html">System</a> (WCS) coordinates. </p>
+<p>This method converts <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (OCS) coordinates to World Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (WCS) coordinates. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ocs</td><td>The input OCS coordinates. </td></tr>
@@ -5154,25 +5137,6 @@ Variables</h2></td></tr>
 
 <p>This method returns the directory where the current application stores its settings. </p>
 <dl class="section return"><dt>Returns</dt><dd>The directory where the application's settings are stored. </dd></dl>
-
-</div>
-</div>
-<a id="a82cdab3da7e142df0155f8b17cb8bf0a" name="a82cdab3da7e142df0155f8b17cb8bf0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82cdab3da7e142df0155f8b17cb8bf0a">&#9670;&#160;</a></span>quitCharsets()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void jm::quitCharsets </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Deletes the charset objects. \discussion Called by <a class="el" href="classjm_1_1System.html#a2dfa06867af5d627d1f717307e90d852" title="This method cleans up static system objects. After calling this method, the program must be terminate...">System::quit</a>. Therefore no export necessary. </p>
 
 </div>
 </div>
@@ -6298,7 +6262,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This method converts World Coordinate <a class="el" href="classjm_1_1System.html">System</a> (WCS) coordinates to <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html">System</a> (OCS) coordinates. </p>
+<p>This method converts World Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (WCS) coordinates to <a class="el" href="classjm_1_1Object.html" title="Most objects are derived from this class. This makes it possible to simplify the API,...">Object</a> Coordinate <a class="el" href="classjm_1_1System.html" title="Basic system information.">System</a> (OCS) coordinates. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wcs</td><td>The input WCS coordinates. </td></tr>

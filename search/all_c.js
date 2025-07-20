@@ -24,7 +24,7 @@ var searchData=
   ['modfloor_21',['modFloor',['../namespacejm.html#a69981053c0d0f41a8de4e7c05c92a389',1,'jm']]],
   ['monday_22',['MONDAY',['../classjm_1_1Date.html#ac60c57608b7d7957bd6f9c6f04f7f878',1,'jm::Date']]],
   ['month_23',['month',['../classjm_1_1Date.html#a94a9ba8f23599e2646cfd1c01ee7a75a',1,'jm::Date']]],
-  ['move_24',['move',['../classjm_1_1File.html#a5dabc8eaf8c8d9da037ba04e003090ad',1,'jm::File::move()'],['../classjm_1_1Stream.html#ab8deecfd32f9abdc6d14c74460445f94',1,'jm::Stream::move()'],['../classjm_1_1Resource.html#aaa01785bd3e6c6989ec7c8c56ccb53c1',1,'jm::Resource::move()'],['../structjm_1_1Rect.html#ae752f2493b1102381dc49a8f81d5890a',1,'jm::Rect::move()'],['../classjm_1_1MemoryStream.html#a350dbece1f19365e1e10dcf388af1514',1,'jm::MemoryStream::move()']]],
+  ['move_24',['move',['../classjm_1_1MemoryStream.html#a350dbece1f19365e1e10dcf388af1514',1,'jm::MemoryStream::move()'],['../classjm_1_1Stream.html#ab8deecfd32f9abdc6d14c74460445f94',1,'jm::Stream::move()'],['../classjm_1_1Resource.html#aaa01785bd3e6c6989ec7c8c56ccb53c1',1,'jm::Resource::move()'],['../structjm_1_1Rect.html#ae752f2493b1102381dc49a8f81d5890a',1,'jm::Rect::move()'],['../classjm_1_1File.html#a5dabc8eaf8c8d9da037ba04e003090ad',1,'jm::File::move()']]],
   ['movebottom_25',['moveBottom',['../structjm_1_1Rect.html#aee1008826a158aae07df389fd58797c4',1,'jm::Rect']]],
   ['movehorizontal_26',['moveHorizontal',['../structjm_1_1Rect.html#ad6fae192597d4450cfb9a350386fcfca',1,'jm::Rect']]],
   ['moveleft_27',['moveLeft',['../structjm_1_1Rect.html#a8a0f76859e4c1bcb3ee2b4e77467f7c2',1,'jm::Rect']]],
@@ -39,5 +39,6 @@ var searchData=
   ['ms_5fper_5fsecond_36',['MS_PER_SECOND',['../classjm_1_1Date.html#ad410853d0341710f4483d957bbc5349b',1,'jm::Date']]],
   ['mtextvalue_37',['mTextValue',['../structjm_1_1Variant.html#ae711a3f844edbb46cacfe2ff5397ae51',1,'jm::Variant']]],
   ['mtype_38',['mType',['../structjm_1_1Variant.html#a2fa2323a842f0f07f5a81b61cf2d2f3b',1,'jm::Variant']]],
-  ['mutex_39',['mutex',['../classjm_1_1AutoreleasePool.html#aab478a43a5bfcdca5d944f1fa523a5b1',1,'jm::AutoreleasePool::mutex()'],['../classjm_1_1Mutex.html#afc31e776461319491e0b4b28eb713d12',1,'jm::Mutex::Mutex()'],['../classjm_1_1Mutex.html',1,'jm::Mutex']]]
+  ['mutex_39',['mutex',['../classjm_1_1AutoreleasePool.html#aab478a43a5bfcdca5d944f1fa523a5b1',1,'jm::AutoreleasePool::mutex()'],['../classjm_1_1Mutex.html#afc31e776461319491e0b4b28eb713d12',1,'jm::Mutex::Mutex()'],['../classjm_1_1Mutex.html',1,'jm::Mutex']]],
+  ['mutex_20and_20threads_40',['Mutex and Threads',['../group__thread.html',1,'']]]
 ];

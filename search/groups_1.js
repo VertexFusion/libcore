@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['management_0',['Data Management',['../group__datamgr.html',1,'']]]
+  ['basic_20application_20infrastructure_0',['Basic Application Infrastructure',['../group__app.html',1,'']]]
 ];

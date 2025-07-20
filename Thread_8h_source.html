@@ -130,79 +130,78 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacejm.html">jm</a></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html">   54</a></span>   <span class="keyword">class </span>DllExport <a class="code hl_class" href="classjm_1_1Thread.html">Thread</a>: <span class="keyword">public</span> <a class="code hl_class" href="classjm_1_1Object.html">Object</a></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>   {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>         <span class="comment">// This method is needed for starting the thread</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>         <span class="keyword">friend</span> <span class="keywordtype">void</span>* ::StartThread(<span class="keywordtype">void</span>* arg);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#elif defined JM_WINDOWS</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>         <span class="keyword">friend</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> __stdcall ::StartThread(<span class="keywordtype">void</span>* lpParameter);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>         <span class="comment">//macOS, iOS</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacejm.html">jm</a></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html">   63</a></span>   <span class="keyword">class </span>DllExport <a class="code hl_class" href="classjm_1_1Thread.html">Thread</a>: <span class="keyword">public</span> <a class="code hl_class" href="classjm_1_1Object.html">Object</a></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>   {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>         <span class="comment">// This method is needed for starting the thread</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>         pthread_t thread = 0;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>         pthread_condattr_t attrc;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>         pthread_cond_t cond;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>         pthread_mutex_t criticalSection;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>         pthread_mutexattr_t attra;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>         <span class="keyword">friend</span> <span class="keywordtype">void</span>* ::StartThread(<span class="keywordtype">void</span>* arg);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#elif defined JM_WINDOWS</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>         <span class="keyword">friend</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> __stdcall ::StartThread(<span class="keywordtype">void</span>* lpParameter);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#elif defined JM_WINDOWS</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> mThreadID = 0;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>         <span class="keywordtype">void</span>* mHandle = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>         <span class="keywordtype">void</span>* mCriticalSection = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>         <span class="keywordtype">bool</span> alive = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> run() = 0;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ad24c23bce573c85a88783241c7c52b27">   99</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ad24c23bce573c85a88783241c7c52b27">lock</a>();</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c">  106</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c">unlock</a>();</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>         <span class="comment">//macOS, iOS</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>         pthread_t thread = 0;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>         pthread_condattr_t attrc;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>         pthread_cond_t cond;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>         pthread_mutex_t criticalSection;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>         pthread_mutexattr_t attra;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#elif defined JM_WINDOWS</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>         <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> mThreadID = 0;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>         <span class="keywordtype">void</span>* mHandle = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>         <span class="keywordtype">void</span>* mCriticalSection = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>         <span class="keywordtype">bool</span> alive = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>         <span class="keyword">virtual</span> <span class="keywordtype">void</span> run() = 0;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ad24c23bce573c85a88783241c7c52b27">  108</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ad24c23bce573c85a88783241c7c52b27">lock</a>();</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a92d7d686dc27538b687c31b4dd897fae">  113</a></span>         <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classjm_1_1Thread.html#a92d7d686dc27538b687c31b4dd897fae">isMainThread</a>();</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ae2b841c2c20fbe0e56664dcd8167328e">  118</a></span>         <a class="code hl_function" href="classjm_1_1Thread.html#ae2b841c2c20fbe0e56664dcd8167328e">Thread</a>();</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ab985fa96c56c8021a4b90ba08091b8b2">  123</a></span>         <a class="code hl_function" href="classjm_1_1Thread.html#ab985fa96c56c8021a4b90ba08091b8b2">~Thread</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ae226c18f00516c5a16dffbe22a8bf6a0">  128</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ae226c18f00516c5a16dffbe22a8bf6a0">start</a>();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a953c0aa16fb032da81c0ac5c34efcdcb">  135</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a953c0aa16fb032da81c0ac5c34efcdcb">sleep</a>(int64 duration);</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a5c39d4e55d6b41a85e3d0e5cd7fbf2d9">  140</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a5c39d4e55d6b41a85e3d0e5cd7fbf2d9">sleep</a>();</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a926e14062e6d536f4160e1e9754f8914">  145</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a926e14062e6d536f4160e1e9754f8914">wakeUp</a>();</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ad7f0deabafdf9f5b568e5436c8998ebd">  151</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ad7f0deabafdf9f5b568e5436c8998ebd">interrupt</a>();</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a89357389067e14eda5494208beb890d1">  158</a></span>         <span class="keywordtype">bool</span> <a class="code hl_function" href="classjm_1_1Thread.html#a89357389067e14eda5494208beb890d1">isAlive</a>();</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a84607e2cff7cb085f47d8a62ecc2c868">  164</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a84607e2cff7cb085f47d8a62ecc2c868">setName</a>(<span class="keyword">const</span> <a class="code hl_class" href="classjm_1_1String.html">String</a>&amp; name);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>   };</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c">  115</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c">unlock</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a92d7d686dc27538b687c31b4dd897fae">  122</a></span>         <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classjm_1_1Thread.html#a92d7d686dc27538b687c31b4dd897fae">isMainThread</a>();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ae2b841c2c20fbe0e56664dcd8167328e">  127</a></span>         <a class="code hl_function" href="classjm_1_1Thread.html#ae2b841c2c20fbe0e56664dcd8167328e">Thread</a>();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ab985fa96c56c8021a4b90ba08091b8b2">  132</a></span>         <a class="code hl_function" href="classjm_1_1Thread.html#ab985fa96c56c8021a4b90ba08091b8b2">~Thread</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ae226c18f00516c5a16dffbe22a8bf6a0">  137</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ae226c18f00516c5a16dffbe22a8bf6a0">start</a>();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a953c0aa16fb032da81c0ac5c34efcdcb">  144</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a953c0aa16fb032da81c0ac5c34efcdcb">sleep</a>(int64 duration);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a5c39d4e55d6b41a85e3d0e5cd7fbf2d9">  149</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a5c39d4e55d6b41a85e3d0e5cd7fbf2d9">sleep</a>();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a926e14062e6d536f4160e1e9754f8914">  154</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a926e14062e6d536f4160e1e9754f8914">wakeUp</a>();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#ad7f0deabafdf9f5b568e5436c8998ebd">  160</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#ad7f0deabafdf9f5b568e5436c8998ebd">interrupt</a>();</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a89357389067e14eda5494208beb890d1">  167</a></span>         <span class="keywordtype">bool</span> <a class="code hl_function" href="classjm_1_1Thread.html#a89357389067e14eda5494208beb890d1">isAlive</a>();</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classjm_1_1Thread.html#a84607e2cff7cb085f47d8a62ecc2c868">  173</a></span>         <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Thread.html#a84607e2cff7cb085f47d8a62ecc2c868">setName</a>(<span class="keyword">const</span> <a class="code hl_class" href="classjm_1_1String.html">String</a>&amp; name);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>   };</div>
 </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>}</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassjm_1_1Object_html"><div class="ttname"><a href="classjm_1_1Object.html">jm::Object</a></div><div class="ttdoc">Most objects are derived from this class. This makes it possible to simplify the API,...</div><div class="ttdef"><b>Definition</b> Object.h:48</div></div>
-<div class="ttc" id="aclassjm_1_1String_html"><div class="ttname"><a href="classjm_1_1String.html">jm::String</a></div><div class="ttdoc">string implements our generic string because std::string is inadequate and inconvenient....</div><div class="ttdef"><b>Definition</b> String.h:64</div></div>
-<div class="ttc" id="aclassjm_1_1Thread_html"><div class="ttname"><a href="classjm_1_1Thread.html">jm::Thread</a></div><div class="ttdef"><b>Definition</b> Thread.h:55</div></div>
+<div class="ttc" id="aclassjm_1_1String_html"><div class="ttname"><a href="classjm_1_1String.html">jm::String</a></div><div class="ttdoc">String implements our generic string because std::string is inadequate and inconvenient....</div><div class="ttdef"><b>Definition</b> String.h:70</div></div>
+<div class="ttc" id="aclassjm_1_1Thread_html"><div class="ttname"><a href="classjm_1_1Thread.html">jm::Thread</a></div><div class="ttdoc">Thread implementation.</div><div class="ttdef"><b>Definition</b> Thread.h:64</div></div>
 <div class="ttc" id="aclassjm_1_1Thread_html_a50759717ae8871899b9877a8370ba17c"><div class="ttname"><a href="classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c">jm::Thread::unlock</a></div><div class="ttdeci">void unlock()</div><div class="ttdoc">This method releases the lock held by this thread, allowing other threads to access the critical sect...</div></div>
 <div class="ttc" id="aclassjm_1_1Thread_html_a5c39d4e55d6b41a85e3d0e5cd7fbf2d9"><div class="ttname"><a href="classjm_1_1Thread.html#a5c39d4e55d6b41a85e3d0e5cd7fbf2d9">jm::Thread::sleep</a></div><div class="ttdeci">void sleep()</div><div class="ttdoc">This method puts the thread to sleep. The thread must be externally awakened.</div></div>
 <div class="ttc" id="aclassjm_1_1Thread_html_a84607e2cff7cb085f47d8a62ecc2c868"><div class="ttname"><a href="classjm_1_1Thread.html#a84607e2cff7cb085f47d8a62ecc2c868">jm::Thread::setName</a></div><div class="ttdeci">void setName(const String &amp;name)</div><div class="ttdoc">Set the name of the thread.</div></div>

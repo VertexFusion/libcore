@@ -421,7 +421,9 @@ Friends</h2></td></tr>
 <p>Closes the transaction. </p>
 <p>Dependent on the value of the transaction status, this method decides to call Commit() or Rollback();</p>
 <p>If the transaction level is still &gt; 0, nothing happens. Only if the level is back to 0 the closing actions happens.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classjm_1_1UndoManager.html#a7caf066f84e745e1d892668ef8714354" title="Begin a transaction.">openTransaction()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classjm_1_1UndoManager.html#a7caf066f84e745e1d892668ef8714354" title="Begin a transaction.">openTransaction()</a> </dd>
+<dd>
+<a class="el" href="classjm_1_1EditableObject.html#aadf8fab20cf9d43b57e575e31530f0ab" title="Closes an transaction;.">EditableObject::closeTransaction()</a>; </dd></dl>
 
 </div>
 </div>
@@ -541,7 +543,9 @@ Friends</h2></td></tr>
 <p>Begin a transaction. </p>
 <p>A transaction is used to change data on objects, which have a meaningful relationship and always shall be consistent. So after changing data, you have to decide of committing a transaction or rollback the data to previous state.</p>
 <p>Each time this method is called, the transaction level increments.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classjm_1_1UndoManager.html#ac65183b50165f7cf8ad069ad4b9a9d57" title="Closes the transaction.">closeTransaction()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classjm_1_1UndoManager.html#ac65183b50165f7cf8ad069ad4b9a9d57" title="Closes the transaction.">closeTransaction()</a> </dd>
+<dd>
+<a class="el" href="classjm_1_1EditableObject.html#a5cdb50d4bb1a0bd8af80ea17badbb74d" title="Begins an editing transaction;.">EditableObject::openTransaction()</a>; </dd></dl>
 
 </div>
 </div>
