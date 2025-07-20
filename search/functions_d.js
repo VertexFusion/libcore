@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['n_0',['N',['../classjm_1_1Nurbs.html#a21cec9fe131dde1187fb8122f82be4f7',1,'jm::Nurbs']]],
+  ['name_1',['name',['../classjm_1_1Charset.html#a1a3ac8eec0a60749d5929d72e41b6204',1,'jm::Charset::name()'],['../classjm_1_1File.html#a8a92fce2da482adb21f509bfc8659bfb',1,'jm::File::name()'],['../structjm_1_1Property.html#afb210ad7b4fa1ce5a04f022e8545ba3f',1,'jm::Property::name()'],['../classjm_1_1Test.html#a470a581a691050a16f077c7cb8eeb867',1,'jm::Test::name()'],['../classjm_1_1ZipEntry.html#a09e17f51708412fb1f4935e66743bdd2',1,'jm::ZipEntry::name()']]],
+  ['needsinput_2',['NeedsInput',['../classjm_1_1Inflater.html#a3876586097128f49193c6c5306b12b88',1,'jm::Inflater']]],
+  ['next_3',['next',['../classjm_1_1Iterator.html#a712a4948f9a7538a3a3e15395cc2a1e8',1,'jm::Iterator::next()'],['../classjm_1_1LinkedListIterator.html#a6b3f89267839e30ed5990abbde0a6cce',1,'jm::LinkedListIterator::next()'],['../classjm_1_1LinkedList.html#aca47e38964cb3918971f124c085fe9c5',1,'jm::LinkedList::next()'],['../classjm_1_1StringTokenizer.html#a7c7667c9c42d195ae27e831698a508f8',1,'jm::StringTokenizer::next()']]],
+  ['nonzeroelementcount_4',['nonZeroElementCount',['../structjm_1_1Matrix.html#ab228776fe3f84254995029c7d9eb6339',1,'jm::Matrix']]],
+  ['norm_5',['norm',['../structjm_1_1Matrix.html#ab3b49aeefc81cfb8fb482aadbc2ac772',1,'jm::Matrix']]],
+  ['normalize_6',['normalize',['../structjm_1_1Rect.html#a474345c8d4038cde51da942a11dd8775',1,'jm::Rect::normalize()'],['../structjm_1_1Vector.html#afd1177bc0954b01e59cd8ed48bff0a79',1,'jm::Vector::normalize()'],['../classjm_1_1Vertex2.html#a2d175241bb540201372ee0306102a5bd',1,'jm::Vertex2::normalize()'],['../classjm_1_1Vertex3.html#a4beb57a8b726cc1194ccf47e89197a9f',1,'jm::Vertex3::normalize()']]],
+  ['normalized_7',['normalized',['../classjm_1_1Vertex2.html#a242f7ab7c193fae0d324e688eafa91e4',1,'jm::Vertex2::normalized()'],['../classjm_1_1Vertex3.html#aab74daeda19ee29d41075553e127321e',1,'jm::Vertex3::normalized()']]],
+  ['nurbs_8',['nurbs',['../classjm_1_1Nurbs.html#ac4f562522c8620f2b3ba7f7375f97039',1,'jm::Nurbs::Nurbs()'],['../classjm_1_1Nurbs.html#a6c8e1f7c45aebede2e3659c871c174c0',1,'jm::Nurbs::Nurbs(uint32 degree, Vertex3 *controlpoints, size_t controlCount, double *knots, size_t knotCount, double *weights, size_t weightCount)'],['../classjm_1_1PaintingBackend.html#ad91d5e6190c7ff5787771204e7b4690b',1,'jm::PaintingBackend::nurbs()']]]
+];
