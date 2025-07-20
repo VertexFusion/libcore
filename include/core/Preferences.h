@@ -42,6 +42,8 @@ namespace jm
    /*!
     \brief The Preferences class abstracts the reading and writing of properties in a preferences file.
     The file should have the extension .properties.
+
+    \ingroup app
     */
    class DllExport Preferences: public Hashtable
    {

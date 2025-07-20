@@ -36,6 +36,13 @@
 #include "String.h"
 #include "File.h"
 
+/*!
+ \defgroup app Basic Application Infrastructure
+
+ \brief A collection of classes to provide basic application infrastructure like resource
+ management, translation, logging or loading and saving of application properties
+ */
+
 namespace jm
 {
    class Preferences;
@@ -48,6 +55,10 @@ namespace jm
       kError
    };
 
+   /*!
+   \brief Basic system information.
+   \ingroup app
+   */
    class DllExport System
    {
 

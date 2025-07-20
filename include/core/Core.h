@@ -89,26 +89,20 @@ datatypes and concepts often used in our software.
 
 This includes the following basic data types or enhancements:
 
-- Additional basic datatypes: string, date, file, colour, ...
+- \ref app
+- Additional basic datatypes: \ref string, date, file, color, ...
 - Basic linear algebra (vectors, matrices) and geometry functions
 - \ref datamgr including Undo, Redo and Transactions
-- Simple XML in- and out
-- Mutex and Threads
-- Diff algorithm
-- Addition random stuff
+- Simple \ref xml
+- \ref thread
+- \ref diff algorithm
 - \ref test "Unit tests"
+- Additional more or less usefull random stuff
 
 \author  Uwe Runtemund
-\copyright 2012-2023 Jameo Software, Germany. https://jameo.de
+\copyright 2012-2025 Jameo Software, Germany. https://jameo.de
 
 Legal notes for this website: https://jameo.de/en/about/
 */
-
-
-/*!
- \defgroup diff Diff
-
- \brief Collection of classes related to the diff algorithm.
- */
 
 #endif

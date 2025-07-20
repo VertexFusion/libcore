@@ -41,7 +41,7 @@ namespace jm
    /*!
     \brief The class Charset is a mapping function to make a string out of arbitrarily coded
     C-strings, or vice versa.
-    \ingroup core
+    \ingroup string
     */
    class DllExport CharsetDecoder: public Object
    {
@@ -76,7 +76,7 @@ namespace jm
    /*!
     \brief  The class Charset is a factory class to make a string out of arbitrarily coded C-strings
     and vice versa.
-    \ingroup core
+    \ingroup string
     */
    class DllExport Charset: public Object
    {
@@ -199,7 +199,7 @@ namespace jm
    /*!
     \brief Decoder converts the bytes 1 to 1. Only the LSB is taken into account. Values > 255 are
     therefore truncated.
-    \ingroup core
+    \ingroup string
     */
    class DllExport RawDecoder: public CharsetDecoder
    {
@@ -211,7 +211,7 @@ namespace jm
 
    /*!
     \brief Decoder for UTF8 encoding.
-    \ingroup core
+    \ingroup string
     */
    class DllExport UTF8Decoder: public CharsetDecoder
    {
@@ -224,7 +224,7 @@ namespace jm
 
    /*!
     \brief Decoder for UTF16 encoding.
-    \ingroup core
+    \ingroup string
     */
    class DllExport UTF16Decoder: public CharsetDecoder
    {
@@ -238,7 +238,7 @@ namespace jm
 
    /*!
     \brief  Decoder for Windows CP 1252 encoding.
-    \ingroup core
+    \ingroup string
     */
    class DllExport Windows1252Decoder: public CharsetDecoder
    {
@@ -254,7 +254,7 @@ namespace jm
 
    /*!
     \brief Decoder for Macintosh Roman Codierung (CP 10000) encoding.
-    \ingroup core
+    \ingroup string
     */
    class DllExport MacRomanDecoder: public CharsetDecoder
    {
@@ -273,13 +273,15 @@ namespace jm
 
    /*!
    \brief Initialises the charsets.
-   \discussion Called by System::init. Therefore no export necessary.
+   \note Called by System::init. Therefore no export or direct call by developer necessary.
+   \ingroup string
    */
    void initCharsets();
 
    /*!
    \brief Deletes the charset objects.
-   \discussion Called by System::quit. Therefore no export necessary.
+   \note Called by System::quit. Therefore no export or direct call by developer necessary.
+   \ingroup string
    */
    void quitCharsets();
 

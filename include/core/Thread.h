@@ -48,9 +48,18 @@ extern "C" unsigned long __stdcall StartThread(void* lpParameter);
 #endif
 
 
+/*!
+ \defgroup thread Mutex and Threads
+
+ \brief A collection of classes for a unified interface for mutex and threads.
+ */
 
 namespace jm
 {
+   /*!
+    \brief Thread implementation
+    \ingroup thread
+    */
    class DllExport Thread: public Object
    {
          // This method is needed for starting the thread

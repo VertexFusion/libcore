@@ -35,6 +35,12 @@
 #include "Object.h"
 #include "DiffBacktrace.h"
 
+/*!
+ \defgroup diff Diff
+
+ \brief A collection of classes related to the diff algorithm.
+ */
+
 namespace jm
 {
 

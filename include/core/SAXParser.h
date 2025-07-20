@@ -41,6 +41,7 @@ namespace jm
 {
    /*!
     \brief This class represents the attributes used in the SAX parser.
+    \ingroup xml
     */
    class DllExport SAXAttributes: public Object
    {
@@ -201,6 +202,7 @@ namespace jm
     \brief This class represents an XML/HTML parser based on the SAX (Simple API for XML) principle.
     The advantage lies in the serial processing of tags.
     This abstract base class must be derived by the parsers and implement some methods.
+    \ingroup xml
     */
    class DllExport SAXParser: public Object
    {

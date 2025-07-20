@@ -378,7 +378,7 @@ namespace jm
 
          /*!
           \brief Default constructor
-          \param doc The document, this object belongs to
+          \param doc The document, this object belongs to.
           */
          explicit EditableObject(Document* doc);
 
@@ -395,27 +395,33 @@ namespace jm
          virtual void regenerationDone();
 
          /*!
-          \brief Returns the regeneration status
+          \brief Returns the regeneration status.
           */
          virtual bool shouldRegenerate() const;
 
+         /*!
+          \brief Returns the document this object belongs to.
+          */
          Document* document() const;
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
 
-          The pointer must point to an member which is part of this or derived object. Here also the
+          The pointer must point to a member which is part of this or derived object. Here also the
           Undo-Manager is called for registering the change.
 
           \param pointer The pointer to the String member.
           \param value The new value for the member.
+
+          \return jm::Status::eOK on success, jm::Status::eNotChanged if value is equal to current
+          value.
           */
          virtual Status setMember(String* pointer, const String& value);
 
          /*!
           \brief The method set the \p value to the member the \p pointer references.
 
-          The pointer must point to an member which is part of this or derived object. Here also the
+          The pointer must point to a member which is part of this or derived object. Here also the
           Undo-Manager is called for registering the change.
 
           With the range values, a specified range for the input can be defined.
@@ -425,6 +431,9 @@ namespace jm
           \param value The new value for the member.
           \param rangeMin Minimum valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
+
+          \return jm::Status::eOK on success, jm::Status::eNotChanged if value is equal to current
+          value adn jm::Status::eInvalidInput, if value is out of range.
           */
          virtual Status setMember(int64* pointer,
                                   int64 value,
@@ -434,13 +443,13 @@ namespace jm
          /*!
           \brief The method set the \p value to the member the \p pointer references.
 
-          The pointer must point to an member which is part of this or derived object. Here also the
+          The pointer must point to a member which is part of this or derived object. Here also the
           Undo-Manager is called for registering the change.
 
-          \param pointer The pointer to the Double member.
+          \param pointer The pointer to the double member.
           \param value The new value for the member.
-          \return eInvalidInput if value is \c NaN, eNotChanged if value is equal to current value
-          and eOK if set successfully.
+          \return jm::Status::eInvalidInput if value is \c NaN, jm::Status::eNotChanged if value is equal to current value
+          and jm::Status::eOK if set successfully.
           */
          virtual Status setMember(double* pointer, double value);
 

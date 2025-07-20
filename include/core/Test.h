@@ -70,7 +70,7 @@ class ExampleTest: public jm::Test
 		};
 };
 
-// Entry methof of test application
+// Entry method of test application
 int main( int argc, const char* argv[] )
 {
 	// init Jameo System

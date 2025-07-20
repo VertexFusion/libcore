@@ -35,14 +35,20 @@
 #include "String.h"
 #include "Stack.h"
 
+/*!
+ \defgroup xml XML Processing
+
+ \brief A collection of classes to provide XML processing features.
+ */
+
 namespace jm
 {
 
    /*!
     \brief This class provides methods to write XML data.
     \details The XMLWriter class allows you to write XML files by providing various methods to handle different aspects of XML writing.
+    \ingroup xml
     */
-
    class DllExport XMLWriter: public Object
    {
       public:

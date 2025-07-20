@@ -48,7 +48,7 @@ namespace jm
    /*!
     \brief This class provides a central resource to translate an application into the local
     language for the user.
-    \ingroup core
+    \ingroup app
     */
    class DllExport I18nBundle: public Preferences
    {

@@ -40,6 +40,8 @@ namespace jm
    /*!
     \brief The StringTokenizer class is used to tokenize a string based on specified delimiters.
     It splits the string into individual pieces.
+
+    \ingroup string
     */
    class DllExport StringTokenizer: public Object
    {

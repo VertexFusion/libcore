@@ -46,7 +46,7 @@ namespace jm
     are already predefined here. In addition, development time is saved. These include:
     - Undo and redo management
     - File path, load and save
-    \ingroup core
+    \ingroup datamgr
     */
    class DllExport Document: public jm::Object
    {

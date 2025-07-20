@@ -42,6 +42,12 @@
 #include "ByteArray.h"
 #include "CharArray.h"
 
+/*!
+ \defgroup string Strings and Text
+
+ \brief A collection of classes to provide string and text handling.
+ */
+
 namespace jm
 {
    class Charset;
@@ -49,7 +55,7 @@ namespace jm
    class StringList;
 
    /*!
-    \brief \c string implements our generic string because \c std::string is inadequate and
+    \brief \c String implements our generic string because \c std::string is inadequate and
     inconvenient. The internal character encoding is Unicode (UTF-8).
 
     For the conversion from std::string to jm::String the following call can be used:
@@ -58,7 +64,7 @@ namespace jm
     jm::String str = jm::String(msg.c_str());
     \endcode
 
-     \ingroup core
+     \ingroup string
     */
    class DllExport String: public Object, public Comparable<String>
    {

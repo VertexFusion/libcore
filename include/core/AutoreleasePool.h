@@ -40,7 +40,7 @@ namespace jm
    /*!
     \brief This class provides the memory pool component to release objects at regular intervals
     that the programmer has designated for delayed release by Object::autorelease().
-    \ingroup core
+    \ingroup datamgr
     */
    class DllExport AutoreleasePool: public Object
    {

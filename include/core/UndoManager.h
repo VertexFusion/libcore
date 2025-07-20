@@ -45,6 +45,76 @@
 
  All these possibilities are implemented here in a programmer-friendly way.
 
+ Example for implementing undo management in data structure:
+~~~~~{.cpp}
+#include "core/Core.h"
+
+// Example Person shows principle procedure to implement undo management.
+class Person: public jm::EditableObject
+{
+	public:
+
+      // Constructor
+      Person(jm::Document* doc):jm::EditableObject(doc)
+      {
+      };
+
+      // Example setter
+      jm::Status setName(const jm::String& name)
+      {
+         return setMember(&mName,name);
+      };
+
+      // Example getter
+      const jm::String& name() const
+      {
+         return mName;
+      }
+   
+   private:
+
+      // Name of the person
+      jm::String mName;
+};
+~~~~~
+
+
+Example of calling undo/redo:
+~~~~~{.cpp}
+...
+   jm::Document* doc = ...; // Already initialized
+   Person* p = ...;
+   jm::UndoManager* um = doc->undoManager(); 
+
+   p->setName("Uwe");
+
+   // Close the undo step if changes are done.
+   um->close();
+
+   // Undo, if necessary
+   um->undo();
+
+   // Redo, if necessary
+   um->redo();
+...
+~~~~~
+
+When you want to ensure, that several changes will only be done at all, use transactions:
+~~~~~{.cpp}
+...
+   jm::Document* doc = ...; // Already initialized
+   Person* p = ...;
+   jm::UndoManager* um = doc->undoManager(); 
+   um->openTransaction();
+   p->setName("Uwe");
+   p->setGender("male");
+
+   // Close the undo step if changes are done.
+   um->closeTransaction();
+
+...
+~~~~~
+
  */
 
 namespace jm
@@ -365,6 +435,7 @@ namespace jm
           Each time this method is called, the transaction level increments.
 
           \see closeTransaction()
+          \see EditableObject::openTransaction();
           */
          void openTransaction();
 
@@ -404,6 +475,7 @@ namespace jm
           the closing actions happens.
 
           \see openTransaction()
+          \see EditableObject::closeTransaction();
           */
          Status closeTransaction();
 

@@ -45,6 +45,11 @@ namespace jm
 
    /*!
     \brief Mutex class.
+
+    A mutex is used in a multi threading environment for preventing race conditions for member
+    access of objects.
+
+    \ingroup thread
     */
    class DllExport Mutex
    {
