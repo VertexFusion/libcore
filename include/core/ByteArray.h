@@ -115,6 +115,12 @@ namespace jm
           */
          void resize(size_t newSize);
 
+         /*!
+          \brief Reserve space for a given number of bytes. The size of the array  is not changed.
+          \param size The number of elements to reserve space for.
+          */
+         void reserve(size_t size);
+
          uint8 get(size_t index) const;
 
          void set(size_t index, uint8 item);

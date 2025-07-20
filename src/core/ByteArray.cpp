@@ -240,6 +240,27 @@ void ByteArray::resize(size_t newSize)
    }
 }
 
+void jm::ByteArray::reserve(size_t size)
+{
+   const size_t newsize = mArrSize + size + 1;
+   if(newsize <= mRawSize )
+   {
+      return;
+   }
+   else
+   {
+      uint8* tmp = new uint8[newsize];
+      for(size_t index = 0; index < mArrSize; index++)
+      {
+         tmp[index] = mData[index];
+      }
+      mRawSize = newsize;
+      if(mData != nullptr)delete mData;
+      mData = tmp;
+   }
+}
+
+
 uint8 jm::ByteArray::operator[](size_t index) const
 {
    //if (index >= mLength)

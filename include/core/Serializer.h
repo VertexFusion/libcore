@@ -119,6 +119,8 @@ namespace jm
     */
    DllExport
    size_t serializeLEInt32(uint8* buffer, size_t offset, int32 value);
+   DllExport
+   size_t serializeLEInt32(jm::ByteArray& buffer, size_t offset, int32 value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.
@@ -139,6 +141,8 @@ namespace jm
     */
    DllExport
    size_t serializeLEDouble(uint8* buffer, size_t offset, double value);
+   DllExport
+   size_t serializeLEDouble(jm::ByteArray& buffer, size_t offset, double value);
 
    /*!
     \brief This method serializes a number using the Little-Endian method.

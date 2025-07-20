@@ -128,6 +128,12 @@ size_t jm::serializeLEInt32(uint8* buffer, size_t offset, int32 value)
    return 4;
 }
 
+size_t jm::serializeLEInt32(jm::ByteArray& buffer, size_t offset, int32 value)
+{
+   return jm::serializeLEInt32((uint8*)buffer.data(),offset,value);
+}
+
+
 size_t jm::serializeLEInt64(uint8* buffer, size_t offset, int64 value)
 {
    buffer[offset] = (uint8)value;
@@ -300,6 +306,12 @@ size_t jm::serializeLEDouble(uint8* buffer, size_t offset, double value)
 
    return 8;
 }
+
+size_t jm::serializeLEDouble(jm::ByteArray& buffer, size_t offset, double value)
+{
+   return jm::serializeLEDouble((uint8*)buffer.data(), offset, value);
+}
+
 
 size_t jm::serializeLEFloat(uint8* buffer, size_t offset, float value)
 {
