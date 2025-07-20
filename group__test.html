@@ -111,45 +111,45 @@ Variables</h2></td></tr>
 <div class="line"><span class="comment">// Example test class to show simple test anatomy.</span></div>
 <div class="line"><span class="keyword">class </span>ExampleTest: <span class="keyword">public</span> <a class="code hl_class" href="classjm_1_1Test.html">jm::Test</a></div>
 <div class="line">{</div>
-<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">   <span class="keyword">public</span>:</div>
 <div class="line"> </div>
-<div class="line">        <span class="comment">// Constructor</span></div>
-<div class="line">        ExampleTest():Test()</div>
-<div class="line">        {</div>
-<div class="line">            <a class="code hl_function" href="classjm_1_1Test.html#a98add3c1d65ceb3277afdf041f9bf6c5">setName</a>(<span class="stringliteral">&quot;Example Test&quot;</span>);</div>
-<div class="line">        };</div>
+<div class="line">      <span class="comment">// Constructor</span></div>
+<div class="line">      ExampleTest():Test()</div>
+<div class="line">      {</div>
+<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#a98add3c1d65ceb3277afdf041f9bf6c5">setName</a>(<span class="stringliteral">&quot;Example Test&quot;</span>);</div>
+<div class="line">      };</div>
 <div class="line"> </div>
-<div class="line">        <span class="comment">// Mandatory overridden test method. The heart of the test!</span></div>
-<div class="line">        <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Test.html#a8a4010d473f9ba405b20cd4250ce535b">doTest</a>()<span class="keyword"> override</span></div>
-<div class="line"><span class="keyword">        </span>{</div>
-<div class="line">            int32 a=2;</div>
-<div class="line">            int32 b=5;</div>
-<div class="line">            <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
-<div class="line">            a=5;</div>
-<div class="line">            <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
-<div class="line">        };</div>
+<div class="line">      <span class="comment">// Mandatory overridden test method. The heart of the test!</span></div>
+<div class="line">      <span class="keywordtype">void</span> <a class="code hl_function" href="classjm_1_1Test.html#a8a4010d473f9ba405b20cd4250ce535b">doTest</a>()<span class="keyword"> override</span></div>
+<div class="line"><span class="keyword">      </span>{</div>
+<div class="line">         int32 a=2;</div>
+<div class="line">         int32 b=5;</div>
+<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
+<div class="line">         a=5;</div>
+<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
+<div class="line">      };</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Entry method of test application</span></div>
 <div class="line"><span class="keywordtype">int</span> main( <span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span>* argv[] )</div>
 <div class="line">{</div>
-<div class="line">    <span class="comment">// init Jameo System</span></div>
-<div class="line">    <a class="code hl_function" href="classjm_1_1System.html#a5f052bf7598384a6f97e640bf68a3c45">jm::System::init</a>();</div>
-<div class="line">    <a class="code hl_function" href="classjm_1_1System.html#a570d85ad880cbfb261efcdcf121c162e">jm::System::log</a>( <span class="stringliteral">&quot;Example Test Suite&quot;</span> , <a class="code hl_enumvalue" href="namespacejm.html#a50edbb59a73af4f63e60c4810f8a900ba03ad47ffc4dc595c6ef481d21790fb5a">jm::LogLevel::kInformation</a> );</div>
+<div class="line">   <span class="comment">// init Jameo System</span></div>
+<div class="line">   <a class="code hl_function" href="classjm_1_1System.html#a5f052bf7598384a6f97e640bf68a3c45">jm::System::init</a>();</div>
+<div class="line">   <a class="code hl_function" href="classjm_1_1System.html#a570d85ad880cbfb261efcdcf121c162e">jm::System::log</a>( <span class="stringliteral">&quot;Example Test Suite&quot;</span> , <a class="code hl_enumvalue" href="namespacejm.html#a50edbb59a73af4f63e60c4810f8a900ba03ad47ffc4dc595c6ef481d21790fb5a">jm::LogLevel::kInformation</a> );</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// init test vector</span></div>
-<div class="line">    <a class="code hl_class" href="classjm_1_1TestVector.html">jm::TestVector</a>* vec = <span class="keyword">new</span> <a class="code hl_class" href="classjm_1_1TestVector.html">jm::TestVector</a>(argc, argv);</div>
-<div class="line">    vec-&gt;<a class="code hl_function" href="classjm_1_1TestVector.html#a550c63a0ec68fb9b66b21a3da9587747">addTest</a>( <span class="keyword">new</span> ExampleTest() );</div>
+<div class="line">   <span class="comment">// init test vector</span></div>
+<div class="line">   <a class="code hl_class" href="classjm_1_1TestVector.html">jm::TestVector</a>* vec = <span class="keyword">new</span> <a class="code hl_class" href="classjm_1_1TestVector.html">jm::TestVector</a>(argc, argv);</div>
+<div class="line">   vec-&gt;<a class="code hl_function" href="classjm_1_1TestVector.html#a550c63a0ec68fb9b66b21a3da9587747">addTest</a>( <span class="keyword">new</span> ExampleTest() );</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Execute test vector</span></div>
-<div class="line">    int32 result = vec-&gt;<a class="code hl_function" href="classjm_1_1TestVector.html#aae496b5934d0716df27552a2e69a8e39">execute</a>().Int32();</div>
+<div class="line">   <span class="comment">// Execute test vector</span></div>
+<div class="line">   int32 result = <span class="keyword">static_cast&lt;</span>int32<span class="keyword">&gt;</span>(vec-&gt;<a class="code hl_function" href="classjm_1_1TestVector.html#aae496b5934d0716df27552a2e69a8e39">execute</a>());</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Clean up</span></div>
-<div class="line">    <span class="keyword">delete</span> vec;</div>
-<div class="line">    <a class="code hl_function" href="classjm_1_1System.html#a2dfa06867af5d627d1f717307e90d852">jm::System::quit</a>();</div>
+<div class="line">   <span class="comment">// Clean up</span></div>
+<div class="line">   <span class="keyword">delete</span> vec;</div>
+<div class="line">   <a class="code hl_function" href="classjm_1_1System.html#a2dfa06867af5d627d1f717307e90d852">jm::System::quit</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Return the number of errors to help calling scripts</span></div>
-<div class="line">    <span class="keywordflow">return</span> result;</div>
+<div class="line">   <span class="comment">// Return the number of errors to help calling scripts</span></div>
+<div class="line">   <span class="keywordflow">return</span> result;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassjm_1_1System_html_a2dfa06867af5d627d1f717307e90d852"><div class="ttname"><a href="classjm_1_1System.html#a2dfa06867af5d627d1f717307e90d852">jm::System::quit</a></div><div class="ttdeci">static void quit()</div><div class="ttdoc">This method cleans up static system objects. After calling this method, the program must be terminate...</div></div>
 <div class="ttc" id="aclassjm_1_1System_html_a570d85ad880cbfb261efcdcf121c162e"><div class="ttname"><a href="classjm_1_1System.html#a570d85ad880cbfb261efcdcf121c162e">jm::System::log</a></div><div class="ttdeci">static void log(const String &amp;message, LogLevel logLevel)</div><div class="ttdoc">Logs a message.</div></div>
