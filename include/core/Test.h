@@ -82,7 +82,7 @@ int main( int argc, const char* argv[] )
 	vec->addTest( new ExampleTest() );
 
 	// Execute test vector
-	int32 result = vec->execute().Int32();
+	int32 result = static_cast<int32>(vec->execute());
 
 	// Clean up
 	delete vec;

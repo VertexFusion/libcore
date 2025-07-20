@@ -99,6 +99,13 @@ This includes the following basic data types or enhancements:
 - \ref test "Unit tests"
 - Additional more or less usefull random stuff
 
+The following operating systems are maintained and fully supported:
+- Android
+- iOS
+- Linux
+- macOS
+- Windows
+
 \author  Uwe Runtemund
 \copyright 2012-2025 Jameo Software, Germany. https://jameo.de
 

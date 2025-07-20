@@ -23,8 +23,8 @@ If bindings into other languages are desired, we will create our own repositorie
 them here. 
 
 In general we are looking forward to fellow contributors who will help us with this.
-
+[GitHub Pages](https://pages.github.com/)
 ## Links
-- ![License](LICENSE)
-- ![Coding Style](CODINGSTYLE.md)
-- ![https://vertexfusion.github.io/libcore/][Documentation]
+- [License](LICENSE)
+- [Coding Style](CODINGSTYLE.md)
+- [Documentation](https://vertexfusion.github.io/libcore/)
