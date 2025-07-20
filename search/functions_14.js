@@ -33,7 +33,7 @@ var searchData=
   ['unloaddynamiclibrary_30',['unloadDynamicLibrary',['../classjm_1_1System.html#a542eb7caddd3e80c63318bdba3927fe7',1,'jm::System']]],
   ['unlock_31',['unlock',['../classjm_1_1Mutex.html#a54dd774e2ded6b7e6056cde0f71f4566',1,'jm::Mutex::unlock()'],['../classjm_1_1Thread.html#a50759717ae8871899b9877a8370ba17c',1,'jm::Thread::unlock()']]],
   ['upperentry_32',['upperEntry',['../classjm_1_1DiffDiag.html#a3cdee60f77ab001afdffc2cd0d926f8c',1,'jm::DiffDiag']]],
-  ['uri_33',['uri',['../classjm_1_1URI.html#aaf5fec1653aa4471e8dafc671e938cad',1,'jm::URI::URI()'],['../classjm_1_1SAXAttributes.html#aa7ee05d8b92cfd15edf617e4e20cfcd2',1,'jm::SAXAttributes::uri()']]],
+  ['uri_33',['uri',['../classjm_1_1SAXAttributes.html#aa7ee05d8b92cfd15edf617e4e20cfcd2',1,'jm::SAXAttributes::uri()'],['../classjm_1_1URI.html#aaf5fec1653aa4471e8dafc671e938cad',1,'jm::URI::URI()']]],
   ['urldecode_34',['URLDecode',['../namespacejm.html#a84a23f4025231b953b12a9fcda0a0454',1,'jm']]],
   ['urlencode_35',['URLEncode',['../namespacejm.html#ade89871992cd6b5c661c6c0378e2051d',1,'jm']]],
   ['userdir_36',['UserDir',['../namespacejm.html#a2228192b94645086fac81b6d48252249',1,'jm']]],

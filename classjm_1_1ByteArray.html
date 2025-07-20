@@ -136,6 +136,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af0a20f5b7aa31a1cadc487fb129e6f73" id="r_af0a20f5b7aa31a1cadc487fb129e6f73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1ByteArray.html#af0a20f5b7aa31a1cadc487fb129e6f73">resize</a> (size_t newSize)</td></tr>
 <tr class="memdesc:af0a20f5b7aa31a1cadc487fb129e6f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize the byte array. If the new size is bigger, it will increase the array. If the size is smaller, the bytes beyond the new size are excluded, but the array will have the same size.  <br /></td></tr>
 <tr class="separator:af0a20f5b7aa31a1cadc487fb129e6f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a701116b5e667113f692e37e1e1a533fe" id="r_a701116b5e667113f692e37e1e1a533fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1ByteArray.html#a701116b5e667113f692e37e1e1a533fe">reserve</a> (size_t <a class="el" href="classjm_1_1ByteArray.html#a12f1e9f08467364bbf96a5b8ef9b1a42">size</a>)</td></tr>
+<tr class="memdesc:a701116b5e667113f692e37e1e1a533fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserve space for a given number of bytes. The size of the array is not changed.  <br /></td></tr>
+<tr class="separator:a701116b5e667113f692e37e1e1a533fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4364c5205222dd215c1feaf78ebf82f4" id="r_a4364c5205222dd215c1feaf78ebf82f4"><td class="memItemLeft" align="right" valign="top">uint8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1ByteArray.html#a4364c5205222dd215c1feaf78ebf82f4">get</a> (size_t index) const</td></tr>
 <tr class="separator:a4364c5205222dd215c1feaf78ebf82f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62bed6e2ff9ce35681fb84f93f96185d" id="r_a62bed6e2ff9ce35681fb84f93f96185d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1ByteArray.html#a62bed6e2ff9ce35681fb84f93f96185d">set</a> (size_t index, uint8 item)</td></tr>
@@ -616,6 +619,32 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Replaces every byte of oldValue by the newValue. </p>
+
+</div>
+</div>
+<a id="a701116b5e667113f692e37e1e1a533fe" name="a701116b5e667113f692e37e1e1a533fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a701116b5e667113f692e37e1e1a533fe">&#9670;&#160;</a></span>reserve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jm::ByteArray::reserve </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reserve space for a given number of bytes. The size of the array is not changed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>The number of elements to reserve space for. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

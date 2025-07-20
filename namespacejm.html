@@ -744,12 +744,16 @@ Functions</h2></td></tr>
 <tr class="memitem:acce7ad554fd48fceebc94e718f71a177" id="r_acce7ad554fd48fceebc94e718f71a177"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#acce7ad554fd48fceebc94e718f71a177">serializeLEInt32</a> (uint8 *buffer, size_t offset, int32 value)</td></tr>
 <tr class="memdesc:acce7ad554fd48fceebc94e718f71a177"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method serializes a number using the Little-Endian method.  <br /></td></tr>
 <tr class="separator:acce7ad554fd48fceebc94e718f71a177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3df412ba8d8a7bf19479ba79cd28d1b8" id="r_a3df412ba8d8a7bf19479ba79cd28d1b8"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a3df412ba8d8a7bf19479ba79cd28d1b8">serializeLEInt32</a> (<a class="el" href="classjm_1_1ByteArray.html">jm::ByteArray</a> &amp;buffer, size_t offset, int32 value)</td></tr>
+<tr class="separator:a3df412ba8d8a7bf19479ba79cd28d1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35b0644fe5c5dd04a17fd6a11b162725" id="r_a35b0644fe5c5dd04a17fd6a11b162725"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a35b0644fe5c5dd04a17fd6a11b162725">serializeLEInt64</a> (uint8 *buffer, size_t offset, int64 value)</td></tr>
 <tr class="memdesc:a35b0644fe5c5dd04a17fd6a11b162725"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method serializes a number using the Little-Endian method.  <br /></td></tr>
 <tr class="separator:a35b0644fe5c5dd04a17fd6a11b162725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9704db7eb4a3dda642c943a61ca2777d" id="r_a9704db7eb4a3dda642c943a61ca2777d"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a9704db7eb4a3dda642c943a61ca2777d">serializeLEDouble</a> (uint8 *buffer, size_t offset, double value)</td></tr>
 <tr class="memdesc:a9704db7eb4a3dda642c943a61ca2777d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method serializes a number using the Little-Endian method.  <br /></td></tr>
 <tr class="separator:a9704db7eb4a3dda642c943a61ca2777d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8f0e6e3c007135050e1b1c0d3c63bf" id="r_a9c8f0e6e3c007135050e1b1c0d3c63bf"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#a9c8f0e6e3c007135050e1b1c0d3c63bf">serializeLEDouble</a> (<a class="el" href="classjm_1_1ByteArray.html">jm::ByteArray</a> &amp;buffer, size_t offset, double value)</td></tr>
+<tr class="separator:a9c8f0e6e3c007135050e1b1c0d3c63bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac322ec7da7c0de224ff9d4be1cf706fa" id="r_ac322ec7da7c0de224ff9d4be1cf706fa"><td class="memItemLeft" align="right" valign="top">DllExport size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejm.html#ac322ec7da7c0de224ff9d4be1cf706fa">serializeLEFloat</a> (uint8 *buffer, size_t offset, float value)</td></tr>
 <tr class="memdesc:ac322ec7da7c0de224ff9d4be1cf706fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method serializes a number using the Little-Endian method.  <br /></td></tr>
 <tr class="separator:ac322ec7da7c0de224ff9d4be1cf706fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -5577,8 +5581,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a9c8f0e6e3c007135050e1b1c0d3c63bf" name="a9c8f0e6e3c007135050e1b1c0d3c63bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8f0e6e3c007135050e1b1c0d3c63bf">&#9670;&#160;</a></span>serializeLEDouble() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DllExport size_t jm::serializeLEDouble </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjm_1_1ByteArray.html">jm::ByteArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9704db7eb4a3dda642c943a61ca2777d" name="a9704db7eb4a3dda642c943a61ca2777d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9704db7eb4a3dda642c943a61ca2777d">&#9670;&#160;</a></span>serializeLEDouble()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9704db7eb4a3dda642c943a61ca2777d">&#9670;&#160;</a></span>serializeLEDouble() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -5757,8 +5795,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a3df412ba8d8a7bf19479ba79cd28d1b8" name="a3df412ba8d8a7bf19479ba79cd28d1b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df412ba8d8a7bf19479ba79cd28d1b8">&#9670;&#160;</a></span>serializeLEInt32() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DllExport size_t jm::serializeLEInt32 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classjm_1_1ByteArray.html">jm::ByteArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="acce7ad554fd48fceebc94e718f71a177" name="acce7ad554fd48fceebc94e718f71a177"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acce7ad554fd48fceebc94e718f71a177">&#9670;&#160;</a></span>serializeLEInt32()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acce7ad554fd48fceebc94e718f71a177">&#9670;&#160;</a></span>serializeLEInt32() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

@@ -21,5 +21,5 @@ var searchData=
   ['moveto_18',['moveTo',['../classjm_1_1PaintingBackend.html#af6540636842f5f745c0cb91a0d1a0242',1,'jm::PaintingBackend']]],
   ['movetotrash_19',['moveToTrash',['../classjm_1_1File.html#a3f6e3dcb22c6dc5d2777a120e4419ce2',1,'jm::File']]],
   ['movevertical_20',['moveVertical',['../structjm_1_1Rect.html#afeb6a4079561b9cd9ebd80ef276d6cd8',1,'jm::Rect']]],
-  ['mutex_21',['mutex',['../classjm_1_1AutoreleasePool.html#aab478a43a5bfcdca5d944f1fa523a5b1',1,'jm::AutoreleasePool::mutex()'],['../classjm_1_1Mutex.html#afc31e776461319491e0b4b28eb713d12',1,'jm::Mutex::Mutex()']]]
+  ['mutex_21',['mutex',['../classjm_1_1Mutex.html#afc31e776461319491e0b4b28eb713d12',1,'jm::Mutex::Mutex()'],['../classjm_1_1AutoreleasePool.html#aab478a43a5bfcdca5d944f1fa523a5b1',1,'jm::AutoreleasePool::mutex()']]]
 ];

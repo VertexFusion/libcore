@@ -30,5 +30,5 @@ var searchData=
   ['atisignorecase_27',['atIsIgnoreCase',['../classjm_1_1String.html#ac567a36a188f7817fe93f7a6b8c57955',1,'jm::String']]],
   ['august_28',['AUGUST',['../classjm_1_1Date.html#a369e3065999102ca6d318f23d7bb62f6',1,'jm::Date']]],
   ['autorelease_29',['autorelease',['../classjm_1_1Object.html#a8bee3e26ee2ed958a51a16bf483bf451',1,'jm::Object']]],
-  ['autoreleasepool_30',['autoreleasepool',['../classjm_1_1AutoreleasePool.html#aef02a204fa60772045f657460269f4fd',1,'jm::AutoreleasePool::AutoreleasePool()'],['../classjm_1_1System.html#af9c0bd44f8bbd854efe48b8f5698a08a',1,'jm::System::autoreleasePool()'],['../classjm_1_1AutoreleasePool.html',1,'jm::AutoreleasePool']]]
+  ['autoreleasepool_30',['autoreleasepool',['../classjm_1_1System.html#af9c0bd44f8bbd854efe48b8f5698a08a',1,'jm::System::autoreleasePool()'],['../classjm_1_1AutoreleasePool.html#aef02a204fa60772045f657460269f4fd',1,'jm::AutoreleasePool::AutoreleasePool()'],['../classjm_1_1AutoreleasePool.html',1,'jm::AutoreleasePool']]]
 ];

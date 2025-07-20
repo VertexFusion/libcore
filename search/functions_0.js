@@ -24,5 +24,5 @@ var searchData=
   ['atis_21',['atIs',['../classjm_1_1String.html#a5c584cc283bedd3c29faf8de419d5e49',1,'jm::String']]],
   ['atisignorecase_22',['atIsIgnoreCase',['../classjm_1_1String.html#ac567a36a188f7817fe93f7a6b8c57955',1,'jm::String']]],
   ['autorelease_23',['autorelease',['../classjm_1_1Object.html#a8bee3e26ee2ed958a51a16bf483bf451',1,'jm::Object']]],
-  ['autoreleasepool_24',['autoreleasepool',['../classjm_1_1AutoreleasePool.html#aef02a204fa60772045f657460269f4fd',1,'jm::AutoreleasePool::AutoreleasePool()'],['../classjm_1_1System.html#af9c0bd44f8bbd854efe48b8f5698a08a',1,'jm::System::autoreleasePool()']]]
+  ['autoreleasepool_24',['autoreleasepool',['../classjm_1_1System.html#af9c0bd44f8bbd854efe48b8f5698a08a',1,'jm::System::autoreleasePool()'],['../classjm_1_1AutoreleasePool.html#aef02a204fa60772045f657460269f4fd',1,'jm::AutoreleasePool::AutoreleasePool()']]]
 ];

@@ -8,7 +8,7 @@ var searchData=
   ['left_5',['left',['../structjm_1_1Rect.html#a9a18bcab0ccebef9569235cac9fd74e7',1,'jm::Rect']]],
   ['leftcenter_6',['leftCenter',['../structjm_1_1Rect.html#a2d5f69b9479b494cc0dfa13f8e0d533c',1,'jm::Rect']]],
   ['leftentry_7',['leftEntry',['../classjm_1_1DiffDiag.html#af3bc14ea69b9bcb91c72c1933e2b5c4f',1,'jm::DiffDiag']]],
-  ['length_8',['length',['../classjm_1_1FloatArray.html#a116c4f9785be9299ee13b52bf9f3fb84',1,'jm::FloatArray::Length()'],['../structjm_1_1CharArray.html#a038c745fba0a594d146c61f1bac3d4f2',1,'jm::CharArray::length']]],
+  ['length_8',['length',['../structjm_1_1CharArray.html#a038c745fba0a594d146c61f1bac3d4f2',1,'jm::CharArray::length'],['../classjm_1_1FloatArray.html#a116c4f9785be9299ee13b52bf9f3fb84',1,'jm::FloatArray::Length()']]],
   ['library_9',['Jameo Core Library',['../index.html',1,'']]],
   ['lineseparator_10',['lineSeparator',['../classjm_1_1String.html#ad954e7ea7263f88817150e44222f01d2',1,'jm::String']]],
   ['lineto_11',['lineTo',['../classjm_1_1PaintingBackend.html#a2b0e14dd460e34e1df4211b4818aaadd',1,'jm::PaintingBackend']]],
