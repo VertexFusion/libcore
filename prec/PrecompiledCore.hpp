@@ -112,10 +112,10 @@ jobject activity();
 #include <Windows.h>
 #undef NOMINMAX
 
-#include <Lmcons.h>
+#include <lmcons.h>
 #include <direct.h>
-#include <Shlobj.h>
-#include <shlwapi.h>
+#include <ShlObj.h>
+#include <Shlwapi.h>
 
 // We need that for GetUsernameEX
 #define SECURITY_WIN32

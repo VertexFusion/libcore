@@ -37,7 +37,9 @@ void NurbsTest::testBasisFunctionPartitionOfUnity()
                 weights.size());
 
     // Summe der Basisfunktionen muss 1 sein
-    for(double t = knots[degree]; t <= knots[knots.size()-degree-1]; t += 0.1)
+    double t = knots[degree];
+    const double limit = knots[knots.size()-degree-1];
+    while( t <= limit)
     {
         double sumN = 0.0;
         for (uint32 i = 0; i < cps.size(); ++i)
@@ -46,6 +48,7 @@ void NurbsTest::testBasisFunctionPartitionOfUnity()
         }
 
         testEquals(sumN, 1.0,"sumN wrong");
+        t += 0.1;
     }
 }
 
