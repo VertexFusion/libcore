@@ -687,7 +687,7 @@ size_t File::readFully(ByteArray& buffer, size_t length)
    {
       count += step;
       rest -= step;
-   };
+   }
 
    return count;
 }

@@ -779,7 +779,7 @@ namespace jm
 
          explicit StringList(const jm::String& string);
 
-         virtual ~StringList();
+         ~StringList() override;
 
          /*!
           \brief Reserve space for a given number of elements. The size of the list is not changed.

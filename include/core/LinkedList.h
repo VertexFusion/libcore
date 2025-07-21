@@ -49,7 +49,7 @@ namespace jm
          Object* data = nullptr;
 
          LListElement() = default;
-         ~LListElement() = default;
+         ~LListElement() override = default;
 
          jm::String displayName() const override;
 

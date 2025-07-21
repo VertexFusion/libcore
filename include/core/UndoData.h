@@ -570,7 +570,7 @@ namespace jm
       public:
 
          UndoChangeObjectRef(Object* object, Object** ptr);
-         ~UndoChangeObjectRef();
+         ~UndoChangeObjectRef() override;
 
          /*!
           \copydoc UndoChange::swap()
@@ -651,7 +651,7 @@ namespace jm
 
          // Nothing to do here. The super method will release() the object.
          // This is just the one thing we want to do.
-         virtual ~UndoObjectRelease() = default;
+         ~UndoObjectRelease() override = default;
 
          /*!
           \copydoc UndoChange::swap()

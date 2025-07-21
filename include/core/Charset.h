@@ -111,7 +111,7 @@ namespace jm
          /*!
           \brief Destructor
           */
-         virtual ~Charset();
+         ~Charset() override;
 
          /*!
           \brief This method returns the name of the character set.
@@ -247,7 +247,7 @@ namespace jm
 
       public:
          Windows1252Decoder();
-         ~Windows1252Decoder();
+         ~Windows1252Decoder() override;
          CharArray decode(const char* cString)override;
          ByteArray encode(const CharArray& string) override;
    };
@@ -263,7 +263,7 @@ namespace jm
 
       public:
          MacRomanDecoder();
-         ~MacRomanDecoder();
+         ~MacRomanDecoder() override;
          CharArray decode(const char* cString)override;
          ByteArray encode(const CharArray& string) override;
 
