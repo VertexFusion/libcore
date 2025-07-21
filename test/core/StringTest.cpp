@@ -31,7 +31,7 @@ void StringTest::doTest()
    String str7 = String("abcabc");
    String str8 = String("äöüabc");
 
-   //Teste UTF-8 Charakter
+   //Test UTF-8 character
    testEquals(str5.charAt(0).unicode(), 0x00C4, "A-Umlaut fails");
    testEquals(str5.charAt(1).unicode(), 0x00D6, "O-Umlaut fails");
    testEquals(str5.charAt(2).unicode(), 0x00DC, "U-Umlaut fails");
@@ -329,7 +329,7 @@ void StringTest::compareFancy()
 
    // Test case: Strings with different characters
    String str11("abc");
-   String str12("abd");
+   String str12("abe");
    testEquals(str11.compareFancyTo(str12), -1, "String.compareFancyTo() fails (6)");
 
    // Test case: Strings with digits and characters

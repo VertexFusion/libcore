@@ -52,7 +52,7 @@ namespace jm
     \note On Android, resource names must not contain a point (.), and must be lowercase. In Android
     resources are located without its ending. So in the same path do not have resources with same
     name, but different endings.
-    
+
    \ingroup app
     */
    class DllExport Resource: public jm::Stream

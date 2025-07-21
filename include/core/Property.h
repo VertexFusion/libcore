@@ -433,7 +433,7 @@ namespace jm
           \param rangeMax Maximum valid value. Default is INT64_MAX
 
           \return jm::Status::eOK on success, jm::Status::eNotChanged if value is equal to current
-          value adn jm::Status::eInvalidInput, if value is out of range.
+          value and jm::Status::eInvalidInput, if value is out of range.
           */
          virtual Status setMember(int64* pointer,
                                   int64 value,

@@ -70,7 +70,7 @@ class Person: public jm::EditableObject
       {
          return mName;
       }
-   
+
    private:
 
       // Name of the person
@@ -84,7 +84,7 @@ Example of calling undo/redo:
 ...
    jm::Document* doc = ...; // Already initialized
    Person* p = ...;
-   jm::UndoManager* um = doc->undoManager(); 
+   jm::UndoManager* um = doc->undoManager();
 
    p->setName("Uwe");
 
@@ -104,7 +104,7 @@ When you want to ensure, that several changes will only be done at all, use tran
 ...
    jm::Document* doc = ...; // Already initialized
    Person* p = ...;
-   jm::UndoManager* um = doc->undoManager(); 
+   jm::UndoManager* um = doc->undoManager();
    um->openTransaction();
    p->setName("Uwe");
    p->setGender("male");

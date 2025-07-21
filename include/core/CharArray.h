@@ -39,7 +39,7 @@ namespace jm
 {
    /*!
     \brief This datatype presents a 16 bit unicode character.
-    
+
     \ingroup string
     */
    class DllExport Char

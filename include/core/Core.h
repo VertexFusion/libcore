@@ -97,7 +97,7 @@ This includes the following basic data types or enhancements:
 - \ref thread
 - \ref diff algorithm
 - \ref test "Unit tests"
-- Additional more or less usefull random stuff
+- Additional more or less useful random stuff
 
 The following operating systems are maintained and fully supported:
 - Android
