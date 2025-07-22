@@ -8,7 +8,7 @@ var searchData=
   ['ocsmatrix_5',['ocsMatrix',['../namespacejm.html#ac05076674c81cc375bc6be12874d1f07',1,'jm']]],
   ['ocstowcs_6',['ocsToWcs',['../namespacejm.html#ae10eb976078032271266e56beb9c7ecb',1,'jm']]],
   ['october_7',['OCTOBER',['../classjm_1_1Date.html#aacb5f82be34193f44e4afede703c8d9e',1,'jm::Date']]],
-  ['offset_8',['offset',['../classjm_1_1DiffDiag.html#a21609040204aa5dafce2e4c62f1641ee',1,'jm::DiffDiag']]],
+  ['offset_8',['offset',['../classjm_1_1DiffDiag.html#a2e135e7f4c212dc4288d99b88784770b',1,'jm::DiffDiag']]],
   ['ones_9',['ones',['../structjm_1_1Vector.html#a13008055453545b13bf31a7c98fd2790',1,'jm::Vector']]],
   ['open_10',['open',['../classjm_1_1Resource.html#a21c23837a149d3c81d87ef1257562e48',1,'jm::Resource::open()'],['../classjm_1_1Stream.html#a774a38fc6688f8a48bfaad254fd3cbee',1,'jm::Stream::open()'],['../classjm_1_1ZipFile.html#a7dabc3258368c7caf7eba0a27c6a9adc',1,'jm::ZipFile::open()'],['../classjm_1_1ZipOutputFile.html#a2dcd0b727d9a0c619ae3890700570180',1,'jm::ZipOutputFile::open()'],['../classjm_1_1MemoryStream.html#a3d77f97a35fe0dadd76041166baeb639',1,'jm::MemoryStream::open()'],['../classjm_1_1File.html#a0fdba4a04ecc6e55ef373bb19e6f3974',1,'jm::File::open()']]],
   ['openstep_11',['openStep',['../classjm_1_1UndoManager.html#a0b52284e68db7bb4da269fb3d109ba5b',1,'jm::UndoManager']]],

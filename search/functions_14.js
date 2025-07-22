@@ -23,7 +23,7 @@ var searchData=
   ['undochangeuint8_20',['UndoChangeUInt8',['../classjm_1_1UndoChangeUInt8.html#a9c470d2edae80c860422f459d20e04c8',1,'jm::UndoChangeUInt8']]],
   ['undochangevertex2_21',['UndoChangeVertex2',['../classjm_1_1UndoChangeVertex2.html#a639f44b667ff3531dec06e3ab1a13cfd',1,'jm::UndoChangeVertex2']]],
   ['undochangevertex3_22',['UndoChangeVertex3',['../classjm_1_1UndoChangeVertex3.html#a1c7c72474ad110585a69991e2d790f1e',1,'jm::UndoChangeVertex3']]],
-  ['undocount_23',['undoCount',['../classjm_1_1UndoManager.html#ac8f7a0bef908a779526e72bef0bb39a1',1,'jm::UndoManager']]],
+  ['undocount_23',['undoCount',['../classjm_1_1UndoManager.html#a5ab094901189626db259f47d1f3b059e',1,'jm::UndoManager']]],
   ['undomanager_24',['undomanager',['../classjm_1_1UndoManager.html#a002cc75b42604030a8b7b8557259a793',1,'jm::UndoManager::UndoManager()'],['../classjm_1_1Document.html#a23a7656aa10d0a5d70ef08d2278496ba',1,'jm::Document::undoManager()']]],
   ['undoobjectrelease_25',['UndoObjectRelease',['../classjm_1_1UndoObjectRelease.html#a750ec29c28feea98a5b0c6ef31fcaaa9',1,'jm::UndoObjectRelease']]],
   ['undoregenerationmarker_26',['UndoRegenerationMarker',['../classjm_1_1UndoRegenerationMarker.html#ae9402d02f11e10a75c18afc02e0235d0',1,'jm::UndoRegenerationMarker']]],

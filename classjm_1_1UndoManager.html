@@ -131,12 +131,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5685ef05ca3376dae10c449e63345eed" id="r_a5685ef05ca3376dae10c449e63345eed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#a5685ef05ca3376dae10c449e63345eed">clearRedoStack</a> ()</td></tr>
 <tr class="memdesc:a5685ef05ca3376dae10c449e63345eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method clears the Redo-Stack manually.  <br /></td></tr>
 <tr class="separator:a5685ef05ca3376dae10c449e63345eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8f7a0bef908a779526e72bef0bb39a1" id="r_ac8f7a0bef908a779526e72bef0bb39a1"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#ac8f7a0bef908a779526e72bef0bb39a1">undoCount</a> ()</td></tr>
-<tr class="memdesc:ac8f7a0bef908a779526e72bef0bb39a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements on the Undo-Stack.  <br /></td></tr>
-<tr class="separator:ac8f7a0bef908a779526e72bef0bb39a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7772a78d063b2d9d40fb252dc9fc807a" id="r_a7772a78d063b2d9d40fb252dc9fc807a"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#a7772a78d063b2d9d40fb252dc9fc807a">redoCount</a> ()</td></tr>
-<tr class="memdesc:a7772a78d063b2d9d40fb252dc9fc807a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements on the Redo-Stack.  <br /></td></tr>
-<tr class="separator:a7772a78d063b2d9d40fb252dc9fc807a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab094901189626db259f47d1f3b059e" id="r_a5ab094901189626db259f47d1f3b059e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#a5ab094901189626db259f47d1f3b059e">undoCount</a> () const</td></tr>
+<tr class="memdesc:a5ab094901189626db259f47d1f3b059e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements on the Undo-Stack.  <br /></td></tr>
+<tr class="separator:a5ab094901189626db259f47d1f3b059e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03cd128e343d4118070cec32881029a8" id="r_a03cd128e343d4118070cec32881029a8"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#a03cd128e343d4118070cec32881029a8">redoCount</a> () const</td></tr>
+<tr class="memdesc:a03cd128e343d4118070cec32881029a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements on the Redo-Stack.  <br /></td></tr>
+<tr class="separator:a03cd128e343d4118070cec32881029a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4060115d84ae60010a21f3084694f923" id="r_a4060115d84ae60010a21f3084694f923"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1UndoManager.html#a4060115d84ae60010a21f3084694f923">registerChange</a> (<a class="el" href="classjm_1_1Object.html">Object</a> *object, float *pointer)</td></tr>
 <tr class="memdesc:a4060115d84ae60010a21f3084694f923"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method registers a change in the file where a float value of an object is modified. If the <a class="el" href="classjm_1_1UndoManager.html" title="This class represents the manager for undo operations.">UndoManager</a> is not active, nothing happens.  <br /></td></tr>
 <tr class="separator:a4060115d84ae60010a21f3084694f923"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -569,8 +569,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="a7772a78d063b2d9d40fb252dc9fc807a" name="a7772a78d063b2d9d40fb252dc9fc807a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7772a78d063b2d9d40fb252dc9fc807a">&#9670;&#160;</a></span>redoCount()</h2>
+<a id="a03cd128e343d4118070cec32881029a8" name="a03cd128e343d4118070cec32881029a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03cd128e343d4118070cec32881029a8">&#9670;&#160;</a></span>redoCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -579,7 +579,7 @@ Friends</h2></td></tr>
           <td class="memname">unsigned int jm::UndoManager::redoCount </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1517,8 +1517,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8f7a0bef908a779526e72bef0bb39a1" name="ac8f7a0bef908a779526e72bef0bb39a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8f7a0bef908a779526e72bef0bb39a1">&#9670;&#160;</a></span>undoCount()</h2>
+<a id="a5ab094901189626db259f47d1f3b059e" name="a5ab094901189626db259f47d1f3b059e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ab094901189626db259f47d1f3b059e">&#9670;&#160;</a></span>undoCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1527,7 +1527,7 @@ Friends</h2></td></tr>
           <td class="memname">unsigned int jm::UndoManager::undoCount </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

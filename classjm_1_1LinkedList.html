@@ -101,11 +101,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac80f497421f6976a30ee56d936e125d1" id="r_ac80f497421f6976a30ee56d936e125d1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1LinkedList.html#ac80f497421f6976a30ee56d936e125d1">~LinkedList</a> () override</td></tr>
 <tr class="memdesc:ac80f497421f6976a30ee56d936e125d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the linked list. This function deletes all variables.  <br /></td></tr>
 <tr class="separator:ac80f497421f6976a30ee56d936e125d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae744efd5d76e480351f8bb2ef5f40110" id="r_ae744efd5d76e480351f8bb2ef5f40110"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1LinkedList.html#ae744efd5d76e480351f8bb2ef5f40110">hasNext</a> ()</td></tr>
-<tr class="memdesc:ae744efd5d76e480351f8bb2ef5f40110"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method returns true if there is a next element in the list.  <br /></td></tr>
-<tr class="separator:ae744efd5d76e480351f8bb2ef5f40110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95db563c75e18d56de953bdeb2ab197" id="r_ad95db563c75e18d56de953bdeb2ab197"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1LinkedList.html#ad95db563c75e18d56de953bdeb2ab197">hasNext</a> () const</td></tr>
+<tr class="memdesc:ad95db563c75e18d56de953bdeb2ab197"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method returns true if there is a next element in the list.  <br /></td></tr>
+<tr class="separator:ad95db563c75e18d56de953bdeb2ab197"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca47e38964cb3918971f124c085fe9c5" id="r_aca47e38964cb3918971f124c085fe9c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjm_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1LinkedList.html#aca47e38964cb3918971f124c085fe9c5">next</a> ()</td></tr>
-<tr class="memdesc:aca47e38964cb3918971f124c085fe9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates to the next element in the list and returns the current one. The next element can be NULL, but then <a class="el" href="classjm_1_1LinkedList.html#ae744efd5d76e480351f8bb2ef5f40110" title="This method returns true if there is a next element in the list.">hasNext()</a> will return false.  <br /></td></tr>
+<tr class="memdesc:aca47e38964cb3918971f124c085fe9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates to the next element in the list and returns the current one. The next element can be NULL, but then <a class="el" href="classjm_1_1LinkedList.html#ad95db563c75e18d56de953bdeb2ab197" title="This method returns true if there is a next element in the list.">hasNext()</a> will return false.  <br /></td></tr>
 <tr class="separator:aca47e38964cb3918971f124c085fe9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1defbf8def45ee81929dbbfe3a6fe5d8" id="r_a1defbf8def45ee81929dbbfe3a6fe5d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjm_1_1Object.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1LinkedList.html#a1defbf8def45ee81929dbbfe3a6fe5d8">first</a> () const</td></tr>
 <tr class="memdesc:a1defbf8def45ee81929dbbfe3a6fe5d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first element of the list.  <br /></td></tr>
@@ -364,8 +364,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="ae744efd5d76e480351f8bb2ef5f40110" name="ae744efd5d76e480351f8bb2ef5f40110"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae744efd5d76e480351f8bb2ef5f40110">&#9670;&#160;</a></span>hasNext()</h2>
+<a id="ad95db563c75e18d56de953bdeb2ab197" name="ad95db563c75e18d56de953bdeb2ab197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad95db563c75e18d56de953bdeb2ab197">&#9670;&#160;</a></span>hasNext()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -374,7 +374,7 @@ Friends</h2></td></tr>
           <td class="memname">bool jm::LinkedList::hasNext </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -434,7 +434,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Iterates to the next element in the list and returns the current one. The next element can be NULL, but then <a class="el" href="classjm_1_1LinkedList.html#ae744efd5d76e480351f8bb2ef5f40110" title="This method returns true if there is a next element in the list.">hasNext()</a> will return false. </p>
+<p>Iterates to the next element in the list and returns the current one. The next element can be NULL, but then <a class="el" href="classjm_1_1LinkedList.html#ad95db563c75e18d56de953bdeb2ab197" title="This method returns true if there is a next element in the list.">hasNext()</a> will return false. </p>
 
 </div>
 </div>

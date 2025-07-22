@@ -9,7 +9,7 @@ var searchData=
   ['rect_6',['rect',['../structjm_1_1Rect.html#a7895f59088c963fe18a0fa321d8f447d',1,'jm::Rect::Rect()'],['../structjm_1_1Rect.html#a801778526e19cb48ac0e16606eae5d20',1,'jm::Rect::Rect(double rx, double ry, double rwidth, double rheight)'],['../structjm_1_1Rect.html#aa92d10bda0fca15f16b327774634374b',1,'jm::Rect::Rect(Point origin, Size size)'],['../structjm_1_1Rect.html#ad600402e40599c43c8d1381c4ba551a3',1,'jm::Rect::Rect(double x, double y, const Size &amp;size)']]],
   ['red_7',['red',['../structjm_1_1Color.html#a4664f27dde595d6b32106eb4b8c39ed8',1,'jm::Color']]],
   ['redo_8',['redo',['../classjm_1_1UndoManager.html#abb407bbac3e3f015f016a28798752822',1,'jm::UndoManager']]],
-  ['redocount_9',['redoCount',['../classjm_1_1UndoManager.html#a7772a78d063b2d9d40fb252dc9fc807a',1,'jm::UndoManager']]],
+  ['redocount_9',['redoCount',['../classjm_1_1UndoManager.html#a03cd128e343d4118070cec32881029a8',1,'jm::UndoManager']]],
   ['ref_10',['ref',['../structjm_1_1Matrix.html#a98102410eff083acf72ace839cc23851',1,'jm::Matrix']]],
   ['referencecount_11',['referenceCount',['../classjm_1_1Object.html#a3f6cca3188d285b678c283d0566e3dc7',1,'jm::Object']]],
   ['regenerate_12',['regenerate',['../classjm_1_1Document.html#ae79721aadd987ae248f13d83e643779f',1,'jm::Document::regenerate()'],['../classjm_1_1EditableObject.html#a84b1ff17410ae5021b008c3863b7c9af',1,'jm::EditableObject::regenerate()']]],
