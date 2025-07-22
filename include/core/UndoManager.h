@@ -219,12 +219,12 @@ namespace jm
          /*!
           \brief Returns the number of elements on the Undo-Stack.
           */
-         unsigned int undoCount();
+         unsigned int undoCount() const;
 
          /*!
           \brief Returns the number of elements on the Redo-Stack.
           */
-         unsigned int redoCount();
+         unsigned int redoCount() const;
 
          /*!
           \brief This method registers a change in the file where a float value of an object is modified.

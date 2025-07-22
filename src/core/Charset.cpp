@@ -133,7 +133,7 @@ const String& Charset::name() const
    return mName;
 }
 
-bool Charset::hasName(const String& name)
+bool Charset::hasName(const String& name) const
 {
    if(mName.equals(name))return true;
 

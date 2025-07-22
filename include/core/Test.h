@@ -370,7 +370,7 @@ namespace jm
 
          //! \brief  Helper method for single test run.
          //! \param test Test to run.
-         void testrun(Test* test);
+         void testrun(Test* test) const;
 
    };
 

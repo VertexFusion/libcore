@@ -69,7 +69,7 @@ namespace jm
          Object* objectU(size_t i);
          Object* objectV(size_t i);
 
-         int64 offset();
+         int64 offset() const;
 
 
       private:

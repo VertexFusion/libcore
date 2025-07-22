@@ -160,7 +160,7 @@ ZipEntry* ZipFile::entry(const String& name)
    return nullptr;
 }
 
-LinkedListIterator ZipFile::entryIterator()
+LinkedListIterator ZipFile::entryIterator() const
 {
    return mEntries.iterator();
 }

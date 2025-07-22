@@ -135,7 +135,7 @@ namespace jm
           \brief Returns an iterator over the Zip entries.
           \return An iterator over the Zip entries.
           */
-         LinkedListIterator entryIterator();
+         LinkedListIterator entryIterator() const;
 
          /*!
           \brief Returns the number of Zip entries in the ZipFile.

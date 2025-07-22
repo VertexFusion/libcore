@@ -81,12 +81,12 @@ void Deflater::reset()
    mTotalOut = 0;
 }
 
-size_t Deflater::totalInSize()
+size_t Deflater::totalInSize() const
 {
    return mTotalIn;
 }
 
-size_t Deflater::totalOutSize()
+size_t Deflater::totalOutSize() const
 {
    return mTotalOut;
 }

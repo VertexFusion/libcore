@@ -149,7 +149,7 @@ Object* DiffDiag::objectV(size_t i)
    return mV->at(static_cast<size_t>(std::abs(mOffset)) + i - 1);
 }
 
-int64 DiffDiag::offset()
+int64 DiffDiag::offset() const
 {
    return mOffset;
 }

@@ -91,12 +91,12 @@ namespace jm
          /*!
           \brief Returns the total number of bytes of the uncompressed input
           */
-         size_t totalInSize();
+         size_t totalInSize() const;
 
          /*!
           \brief Returns the total number of bytes of the compressed output
           */
-         size_t totalOutSize();
+         size_t totalOutSize() const;
 
       private:
 

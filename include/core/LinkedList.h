@@ -112,7 +112,7 @@ namespace jm
          /*!
           \brief This method returns true if there is a next element in the list
           */
-         bool hasNext();
+         bool hasNext() const;
 
          /*!
           \brief Iterates to the next element in the list and returns the current one.

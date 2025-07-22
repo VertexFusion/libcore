@@ -97,7 +97,7 @@ size_t TestVector::execute()
    return gTotalErrorCount;
 }
 
-void TestVector::testrun(Test* test)
+void TestVector::testrun(Test* test) const
 {
    if(test == nullptr)return;
 

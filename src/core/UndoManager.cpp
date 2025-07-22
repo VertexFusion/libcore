@@ -190,12 +190,12 @@ void UndoManager::clearRedoStack()
    mRedoCount = 0;
 }
 
-uint32 UndoManager::undoCount()
+uint32 UndoManager::undoCount() const
 {
    return mUndoCount;
 }
 
-uint32 UndoManager::redoCount()
+uint32 UndoManager::redoCount() const
 {
    return mRedoCount;
 }

@@ -56,7 +56,7 @@ LinkedList::~LinkedList()
    clear(nullptr);
 }
 
-bool LinkedList::hasNext()
+bool LinkedList::hasNext() const
 {
    return current != nullptr;
 }

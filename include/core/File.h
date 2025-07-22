@@ -359,7 +359,7 @@ namespace jm
           \param pathname The pathname to be normalized.
           \return The normalized pathname.
           */
-         String normalize(const String& pathname);
+         String normalize(const String& pathname) const;
 
          /*!
           \brief This method combines the parent name with the child name.
@@ -369,7 +369,7 @@ namespace jm
           \return The combined pathname of the parent and child files.
           */
          String resolve(String parent,
-                        String child);
+                        String child) const;
 
          /*!
           \brief This helper method sets the C-string used to resolve the filename in the operating system.

@@ -103,7 +103,7 @@ void File::setCString()
 #endif
 }
 
-String File::resolve(String parent, String child)
+String File::resolve(String parent, String child) const
 {
    // Parent and child are normalized
    String sep;
@@ -125,7 +125,7 @@ String File::resolve(String parent, String child)
    }
 }
 
-String File::normalize(const String& path)
+String File::normalize(const String& path) const
 {
    String pathname = path;
    size_t length = pathname.size();

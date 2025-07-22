@@ -123,7 +123,7 @@ namespace jm
           \param name The name that is to be checked using this method.
           \return Returns true if either the name of the character set or one of the alternative names matches \c name. Otherwise, return value is false.
           */
-         bool hasName(const String& name);
+         bool hasName(const String& name) const;
 
          /*!
           \brief This method decodes the C-string and generates a chararray that has been converted through the encoding.
