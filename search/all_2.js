@@ -45,7 +45,7 @@ var searchData=
   ['containskey_42',['containsKey',['../classjm_1_1Hashtable.html#a0f6f4e915b6d54dfdb4805a6fbcacf14',1,'jm::Hashtable']]],
   ['containsvalue_43',['containsValue',['../classjm_1_1Hashtable.html#a19960c1fbdefdc7c101b296761584455',1,'jm::Hashtable']]],
   ['controlpoint_44',['controlPoint',['../classjm_1_1Nurbs.html#adbf44b8ef02d93995fa571d0f6ce45a9',1,'jm::Nurbs']]],
-  ['controlpointcount_45',['controlPointCount',['../classjm_1_1Nurbs.html#a38db953b5c4f6e8f16e8abcdfaee4bfc',1,'jm::Nurbs']]],
+  ['controlpointcount_45',['controlPointCount',['../classjm_1_1Nurbs.html#a7537d953b3b56f87f0d53a22330b3542',1,'jm::Nurbs']]],
   ['converttodouble_46',['ConvertToDouble',['../namespacejm.html#aadeee18374b2b2117484fd641a7a2b2e',1,'jm']]],
   ['core_20library_47',['Jameo Core Library',['../index.html',1,'']]],
   ['count_48',['count',['../classjm_1_1String.html#a14f068917abacb43946a7d26cd5840cf',1,'jm::String::count()'],['../classjm_1_1SAXAttributes.html#a31294fd9c979140754d36c26678fe18c',1,'jm::SAXAttributes::count()'],['../classjm_1_1UndoStep.html#a94dc8943d5555b567556aac855d2e2fb',1,'jm::UndoStep::count']]],

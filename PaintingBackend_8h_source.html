@@ -138,7 +138,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structjm_1_1BufferElement.html#af212a4231b76282fe8ad6c2bc05f44ee">   59</a></span>      <a class="code hl_class" href="classjm_1_1Vertex3.html">Vertex3</a> <a class="code hl_variable" href="structjm_1_1BufferElement.html#af212a4231b76282fe8ad6c2bc05f44ee">point</a>; <span class="comment">// The point to be drawn</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structjm_1_1BufferElement.html#a3e53b3a39618d85b785b121a8770026a">   60</a></span>      <a class="code hl_enumeration" href="namespacejm.html#adcf5eb8f6e8d8ee7c6ee90146a5e7587">BufferMode</a> <a class="code hl_variable" href="structjm_1_1BufferElement.html#a3e53b3a39618d85b785b121a8770026a">mode</a>; <span class="comment">// The mode of drawing (move-to, line-to, blind-to)</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structjm_1_1BufferElement.html#a2c48941c7aa76b4b79d8286cd06430b4">   67</a></span>      <a class="code hl_function" href="structjm_1_1BufferElement.html#a2c48941c7aa76b4b79d8286cd06430b4">BufferElement</a>(<a class="code hl_class" href="classjm_1_1Vertex3.html">Vertex3</a> point, <a class="code hl_enumeration" href="namespacejm.html#adcf5eb8f6e8d8ee7c6ee90146a5e7587">BufferMode</a> mode);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structjm_1_1BufferElement.html#a95b561f332bfe389e3d99fa9f6e72f2c">   67</a></span>      <a class="code hl_function" href="structjm_1_1BufferElement.html#a95b561f332bfe389e3d99fa9f6e72f2c">BufferElement</a>(<span class="keyword">const</span> <a class="code hl_class" href="classjm_1_1Vertex3.html">Vertex3</a> &amp;point, <a class="code hl_enumeration" href="namespacejm.html#adcf5eb8f6e8d8ee7c6ee90146a5e7587">BufferMode</a> mode);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>   };</div>
 </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
@@ -209,23 +209,23 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>      <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>         std::vector&lt;Matrix&gt;* mTransformstack;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>         std::vector&lt;Matrix&gt;* mTransformstack = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>         <span class="comment">//dwg::LineType* mCurLineType;</span></div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>         <span class="keywordtype">double</span> mCurLineTypeScale;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>         <span class="keywordtype">double</span> mCurLineTypeScale = 1.0;</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>         <span class="keywordtype">double</span> mLinePatternOffset;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>         <span class="keywordtype">double</span> mLinePatternOffset = 0.0;</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>         <span class="keywordtype">double</span> mLinePatternSubOffset;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>         <span class="keywordtype">double</span> mLinePatternSubOffset = 0.0;</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>         int32 mLinePatternIndex;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>         int32 mLinePatternIndex = 0;</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>         <span class="keywordtype">bool</span> mCancel;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>         <span class="keywordtype">bool</span> mCancel = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>         <a class="code hl_struct" href="structjm_1_1Matrix.html">Matrix</a> mTrans;</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>         std::vector&lt;BufferElement&gt;* mBuffer;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>         std::vector&lt;BufferElement&gt;* mBuffer = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>         <span class="keywordtype">void</span> updateTrans();</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
@@ -272,8 +272,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="ttc" id="anamespacejm_html_adcf5eb8f6e8d8ee7c6ee90146a5e7587a49ea718b3403b9126ea97e8c44b66b3c"><div class="ttname"><a href="namespacejm.html#adcf5eb8f6e8d8ee7c6ee90146a5e7587a49ea718b3403b9126ea97e8c44b66b3c">jm::BufferMode::kBmLineTo</a></div><div class="ttdeci">@ kBmLineTo</div></div>
 <div class="ttc" id="anamespacejm_html_adcf5eb8f6e8d8ee7c6ee90146a5e7587a830c7735393b127ac187a911251fbc9d"><div class="ttname"><a href="namespacejm.html#adcf5eb8f6e8d8ee7c6ee90146a5e7587a830c7735393b127ac187a911251fbc9d">jm::BufferMode::kBmBlindTo</a></div><div class="ttdeci">@ kBmBlindTo</div></div>
 <div class="ttc" id="astructjm_1_1BufferElement_html"><div class="ttname"><a href="structjm_1_1BufferElement.html">jm::BufferElement</a></div><div class="ttdoc">This struct stores the drawing information.</div><div class="ttdef"><b>Definition</b> PaintingBackend.h:58</div></div>
-<div class="ttc" id="astructjm_1_1BufferElement_html_a2c48941c7aa76b4b79d8286cd06430b4"><div class="ttname"><a href="structjm_1_1BufferElement.html#a2c48941c7aa76b4b79d8286cd06430b4">jm::BufferElement::BufferElement</a></div><div class="ttdeci">BufferElement(Vertex3 point, BufferMode mode)</div><div class="ttdoc">Constructor.</div></div>
 <div class="ttc" id="astructjm_1_1BufferElement_html_a3e53b3a39618d85b785b121a8770026a"><div class="ttname"><a href="structjm_1_1BufferElement.html#a3e53b3a39618d85b785b121a8770026a">jm::BufferElement::mode</a></div><div class="ttdeci">BufferMode mode</div><div class="ttdef"><b>Definition</b> PaintingBackend.h:60</div></div>
+<div class="ttc" id="astructjm_1_1BufferElement_html_a95b561f332bfe389e3d99fa9f6e72f2c"><div class="ttname"><a href="structjm_1_1BufferElement.html#a95b561f332bfe389e3d99fa9f6e72f2c">jm::BufferElement::BufferElement</a></div><div class="ttdeci">BufferElement(const Vertex3 &amp;point, BufferMode mode)</div><div class="ttdoc">Constructor.</div></div>
 <div class="ttc" id="astructjm_1_1BufferElement_html_af212a4231b76282fe8ad6c2bc05f44ee"><div class="ttname"><a href="structjm_1_1BufferElement.html#af212a4231b76282fe8ad6c2bc05f44ee">jm::BufferElement::point</a></div><div class="ttdeci">Vertex3 point</div><div class="ttdef"><b>Definition</b> PaintingBackend.h:59</div></div>
 <div class="ttc" id="astructjm_1_1Color_html"><div class="ttname"><a href="structjm_1_1Color.html">jm::Color</a></div><div class="ttdoc">A class as a colour representation is so fundamental for us that it is used as a basic data type....</div><div class="ttdef"><b>Definition</b> Color.h:59</div></div>
 <div class="ttc" id="astructjm_1_1Matrix_html"><div class="ttname"><a href="structjm_1_1Matrix.html">jm::Matrix</a></div><div class="ttdoc">An m x n-dimensional matrix.</div><div class="ttdef"><b>Definition</b> Matrix.h:57</div></div>

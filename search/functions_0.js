@@ -5,7 +5,7 @@ var searchData=
   ['absolutepath_2',['absolutePath',['../classjm_1_1File.html#a28d989ba3a2cef72539cea033d93484f',1,'jm::File']]],
   ['add_3',['add',['../classjm_1_1LinkedList.html#a0da141593da32e74737b05a9e66d29e1',1,'jm::LinkedList::add()'],['../structjm_1_1Matrix.html#a7dcade69ab8f1961a9357e7df6edc3e7',1,'jm::Matrix::add()'],['../classjm_1_1UndoStep.html#ab5b80b19f79103e36bdec2f07d9b502b',1,'jm::UndoStep::add()'],['../classjm_1_1Extents.html#ac5db2bb44c97c3a1962acefaabc9bb8c',1,'jm::Extents::add(const Vertex2 &amp;pt)'],['../classjm_1_1Extents.html#acf1f22cb47f847b1c62adc86cd6d750c',1,'jm::Extents::add(const Vertex3 &amp;pt)'],['../classjm_1_1Extents.html#a401886137a0807cad7ee514789dc6680',1,'jm::Extents::add(const Extents &amp;ext)']]],
   ['addattribute_4',['addAttribute',['../classjm_1_1SAXAttributes.html#ae8a253fe2f2afe4843f5c4f098f547e0',1,'jm::SAXAttributes']]],
-  ['addbefore_5',['addBefore',['../classjm_1_1LinkedList.html#a63c80a866fb0b389b9e44f19c9421447',1,'jm::LinkedList']]],
+  ['addbefore_5',['addBefore',['../classjm_1_1LinkedList.html#aaad77e391971b7ef9acaf440104e0120',1,'jm::LinkedList']]],
   ['addtag_6',['addTag',['../classjm_1_1File.html#a498f3704f8e517940cf3672a07e59425',1,'jm::File']]],
   ['addtest_7',['addTest',['../classjm_1_1TestVector.html#a550c63a0ec68fb9b66b21a3da9587747',1,'jm::TestVector']]],
   ['addu_8',['addU',['../classjm_1_1DiffDistance.html#a24e9665e17607a5b31af08b8f0ab8e56',1,'jm::DiffDistance']]],

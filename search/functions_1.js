@@ -14,7 +14,7 @@ var searchData=
   ['bottomleft_11',['bottomLeft',['../structjm_1_1Rect.html#a20a65050d76da251320677d7daddb0d8',1,'jm::Rect']]],
   ['bottomright_12',['bottomRight',['../structjm_1_1Rect.html#a46a275de066289b674e29305dddd07c7',1,'jm::Rect']]],
   ['buffer_13',['buffer',['../classjm_1_1MemoryStream.html#ae7389fac3ac1677d575c329b831e5def',1,'jm::MemoryStream']]],
-  ['bufferelement_14',['BufferElement',['../structjm_1_1BufferElement.html#a2c48941c7aa76b4b79d8286cd06430b4',1,'jm::BufferElement']]],
+  ['bufferelement_14',['BufferElement',['../structjm_1_1BufferElement.html#a95b561f332bfe389e3d99fa9f6e72f2c',1,'jm::BufferElement']]],
   ['bundleid_15',['bundleId',['../classjm_1_1System.html#ad311d8e2fdece487c5da00f6cf2c3712',1,'jm::System']]],
   ['bytearray_16',['bytearray',['../classjm_1_1ByteArray.html#a2a4f62d3d9c0ece0b51e704d00bfbbc8',1,'jm::ByteArray::ByteArray()'],['../classjm_1_1ByteArray.html#a1786a4bfa5380a548f6e3c964bbe5cab',1,'jm::ByteArray::ByteArray(const int8 *buffer, size_t size=npos)'],['../classjm_1_1ByteArray.html#a3be62da601e5ab46e81522aa675b5a3b',1,'jm::ByteArray::ByteArray(const uint8 *buffer, size_t size=npos)'],['../classjm_1_1ByteArray.html#af1806f22e4ba335bbbe6f306b5db1f2c',1,'jm::ByteArray::ByteArray(size_t size, uint8 ch)'],['../classjm_1_1ByteArray.html#a2f2ac6a713e84ae5b156c5662cecefd0',1,'jm::ByteArray::ByteArray(const ByteArray &amp;other)'],['../classjm_1_1ByteArray.html#a0276215599ae98da94ebd7604da55cd7',1,'jm::ByteArray::ByteArray(std::initializer_list&lt; uint8 &gt; list)']]]
 ];

@@ -124,9 +124,9 @@ Variables</h2></td></tr>
 <div class="line"><span class="keyword">      </span>{</div>
 <div class="line">         int32 a=2;</div>
 <div class="line">         int32 b=5;</div>
-<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
+<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#af49083e2c463aaf3bcfc6e2df9daa8cc">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
 <div class="line">         a=5;</div>
-<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
+<div class="line">         <a class="code hl_function" href="classjm_1_1Test.html#af49083e2c463aaf3bcfc6e2df9daa8cc">testEquals</a>(a,b,<span class="stringliteral">&quot;a is not b&quot;</span>);</div>
 <div class="line">      };</div>
 <div class="line">};</div>
 <div class="line"> </div>
@@ -160,7 +160,7 @@ Variables</h2></td></tr>
 <div class="ttc" id="aclassjm_1_1Test_html"><div class="ttname"><a href="classjm_1_1Test.html">jm::Test</a></div><div class="ttdoc">This base class represents a test object. It is used to implement unit tests for any code....</div><div class="ttdef"><b>Definition</b> Test.h:119</div></div>
 <div class="ttc" id="aclassjm_1_1Test_html_a8a4010d473f9ba405b20cd4250ce535b"><div class="ttname"><a href="classjm_1_1Test.html#a8a4010d473f9ba405b20cd4250ce535b">jm::Test::doTest</a></div><div class="ttdeci">virtual void doTest()=0</div><div class="ttdoc">This is the main test method, which must be implemented by every derived test class.</div></div>
 <div class="ttc" id="aclassjm_1_1Test_html_a98add3c1d65ceb3277afdf041f9bf6c5"><div class="ttname"><a href="classjm_1_1Test.html#a98add3c1d65ceb3277afdf041f9bf6c5">jm::Test::setName</a></div><div class="ttdeci">void setName(const String &amp;name)</div><div class="ttdoc">Set the name of the text.</div></div>
-<div class="ttc" id="aclassjm_1_1Test_html_ad242d62c8cba68bd6645e3811ba67727"><div class="ttname"><a href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">jm::Test::testEquals</a></div><div class="ttdeci">void testEquals(const double actual, const double expected, const String &amp;failmessage)</div><div class="ttdoc">This method tests, if double actual is equal to expected under consideration of RESABS.</div></div>
+<div class="ttc" id="aclassjm_1_1Test_html_af49083e2c463aaf3bcfc6e2df9daa8cc"><div class="ttname"><a href="classjm_1_1Test.html#af49083e2c463aaf3bcfc6e2df9daa8cc">jm::Test::testEquals</a></div><div class="ttdeci">void testEquals(const double actual, const double expected, const String &amp;failmessage) const</div><div class="ttdoc">This method tests, if double actual is equal to expected under consideration of RESABS.</div></div>
 <div class="ttc" id="anamespacejm_html_a50edbb59a73af4f63e60c4810f8a900ba03ad47ffc4dc595c6ef481d21790fb5a"><div class="ttname"><a href="namespacejm.html#a50edbb59a73af4f63e60c4810f8a900ba03ad47ffc4dc595c6ef481d21790fb5a">jm::LogLevel::kInformation</a></div><div class="ttdeci">@ kInformation</div></div>
 </div><!-- fragment --><p>The console output of the app will be something like:</p>
 <div class="fragment"><div class="line">[2023-11-01T12:15:17.768Z] INFO: Example Test Suite</div>

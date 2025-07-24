@@ -110,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a4010d473f9ba405b20cd4250ce535b" id="r_a8a4010d473f9ba405b20cd4250ce535b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a8a4010d473f9ba405b20cd4250ce535b">doTest</a> ()=0</td></tr>
 <tr class="memdesc:a8a4010d473f9ba405b20cd4250ce535b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main test method, which must be implemented by every derived test class.  <br /></td></tr>
 <tr class="separator:a8a4010d473f9ba405b20cd4250ce535b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a8dd08ee52a6204c9866d001c92235a" id="r_a5a8dd08ee52a6204c9866d001c92235a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a5a8dd08ee52a6204c9866d001c92235a">testUnexpectedException</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a5a8dd08ee52a6204c9866d001c92235a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shall be called in the catch clause of an <a class="el" href="classjm_1_1Exception.html" title="This class represents an exception that can be &quot;thrown&quot; in case of unexpected errors.">jm::Exception</a>.  <br /></td></tr>
-<tr class="separator:a5a8dd08ee52a6204c9866d001c92235a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a324c3c84d927b8b4895664e482893042" id="r_a324c3c84d927b8b4895664e482893042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a324c3c84d927b8b4895664e482893042">testUnexpectedException</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a324c3c84d927b8b4895664e482893042"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method shall be called in the catch clause of an <a class="el" href="classjm_1_1Exception.html" title="This class represents an exception that can be &quot;thrown&quot; in case of unexpected errors.">jm::Exception</a>.  <br /></td></tr>
+<tr class="separator:a324c3c84d927b8b4895664e482893042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classjm_1_1Object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classjm_1_1Object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classjm_1_1Object.html">jm::Object</a></td></tr>
 <tr class="memitem:af4430f6bb1706651ad86b017323a0558 inherit pub_methods_classjm_1_1Object" id="r_af4430f6bb1706651ad86b017323a0558"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Object.html#af4430f6bb1706651ad86b017323a0558">Object</a> () noexcept</td></tr>
 <tr class="memdesc:af4430f6bb1706651ad86b017323a0558 inherit pub_methods_classjm_1_1Object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
@@ -154,60 +154,60 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a5af9ea8a1f1e01800e8249e116d24a63" id="r_a5af9ea8a1f1e01800e8249e116d24a63"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classjm_1_1String.html">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a5af9ea8a1f1e01800e8249e116d24a63">errorCode</a> () const</td></tr>
 <tr class="memdesc:a5af9ea8a1f1e01800e8249e116d24a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the (last) error message.  <br /></td></tr>
 <tr class="separator:a5af9ea8a1f1e01800e8249e116d24a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a460957b57bb48e7688893270b02c31e0" id="r_a460957b57bb48e7688893270b02c31e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a460957b57bb48e7688893270b02c31e0">testFail</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;message)</td></tr>
-<tr class="memdesc:a460957b57bb48e7688893270b02c31e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call this method, if you made a test by yourself and this test failed.  <br /></td></tr>
-<tr class="separator:a460957b57bb48e7688893270b02c31e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad242d62c8cba68bd6645e3811ba67727" id="r_ad242d62c8cba68bd6645e3811ba67727"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#ad242d62c8cba68bd6645e3811ba67727">testEquals</a> (const double actual, const double expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:ad242d62c8cba68bd6645e3811ba67727"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if double <code>actual</code> is equal to <code>expected</code> under consideration of <code>RESABS</code>.  <br /></td></tr>
-<tr class="separator:ad242d62c8cba68bd6645e3811ba67727"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad090e51f35b06c0551db7e25b0d87a40" id="r_ad090e51f35b06c0551db7e25b0d87a40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#ad090e51f35b06c0551db7e25b0d87a40">testEquals</a> (int64 actual, int64 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:ad090e51f35b06c0551db7e25b0d87a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1Integer.html" title="This class collect static methods to manipulate integer values.">Integer</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:ad090e51f35b06c0551db7e25b0d87a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91fe57a8abcd89596ed475b0521f5421" id="r_a91fe57a8abcd89596ed475b0521f5421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a91fe57a8abcd89596ed475b0521f5421">testEquals</a> (int64 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a91fe57a8abcd89596ed475b0521f5421"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1Integer.html" title="This class collect static methods to manipulate integer values.">Integer</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a91fe57a8abcd89596ed475b0521f5421"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50bf0699d469fd573db9f49fccccae4e" id="r_a50bf0699d469fd573db9f49fccccae4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a50bf0699d469fd573db9f49fccccae4e">testEquals</a> (uint64 actual, uint64 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a50bf0699d469fd573db9f49fccccae4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a50bf0699d469fd573db9f49fccccae4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7208cdc7ac7127fcfd776b198cb61081" id="r_a7208cdc7ac7127fcfd776b198cb61081"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a7208cdc7ac7127fcfd776b198cb61081">testEquals</a> (void *actual, void *expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a7208cdc7ac7127fcfd776b198cb61081"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if void* <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a7208cdc7ac7127fcfd776b198cb61081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4417100026f5d7f3a367a3cfbee70249" id="r_a4417100026f5d7f3a367a3cfbee70249"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a4417100026f5d7f3a367a3cfbee70249">testEquals</a> (uint64 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a4417100026f5d7f3a367a3cfbee70249"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a4417100026f5d7f3a367a3cfbee70249"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b31e0cefe884719b27e014043e06973" id="r_a2b31e0cefe884719b27e014043e06973"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a2b31e0cefe884719b27e014043e06973">testEquals</a> (uint64 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a2b31e0cefe884719b27e014043e06973"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a2b31e0cefe884719b27e014043e06973"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65514e3295a6a8671a2f90c04f7b3d8b" id="r_a65514e3295a6a8671a2f90c04f7b3d8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a65514e3295a6a8671a2f90c04f7b3d8b">testEquals</a> (int32 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a65514e3295a6a8671a2f90c04f7b3d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if int32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a65514e3295a6a8671a2f90c04f7b3d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46dd7ea0c65e0218743ffc771366a335" id="r_a46dd7ea0c65e0218743ffc771366a335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a46dd7ea0c65e0218743ffc771366a335">testEquals</a> (uint32 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a46dd7ea0c65e0218743ffc771366a335"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a46dd7ea0c65e0218743ffc771366a335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afee58dd424ae32b8b9fd27e1fd304e9b" id="r_afee58dd424ae32b8b9fd27e1fd304e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#afee58dd424ae32b8b9fd27e1fd304e9b">testEquals</a> (uint32 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:afee58dd424ae32b8b9fd27e1fd304e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:afee58dd424ae32b8b9fd27e1fd304e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71ab3711151eee9d5a007a624020e5cb" id="r_a71ab3711151eee9d5a007a624020e5cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a71ab3711151eee9d5a007a624020e5cb">testEquals</a> (int32 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a71ab3711151eee9d5a007a624020e5cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if int32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:a71ab3711151eee9d5a007a624020e5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad98f2dd71da98afd2e5589b494b2a2cc" id="r_ad98f2dd71da98afd2e5589b494b2a2cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#ad98f2dd71da98afd2e5589b494b2a2cc">testEquals</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:ad98f2dd71da98afd2e5589b494b2a2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
-<tr class="separator:ad98f2dd71da98afd2e5589b494b2a2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a1dd7b29241d2998eb4871f03db5f9c" id="r_a7a1dd7b29241d2998eb4871f03db5f9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a7a1dd7b29241d2998eb4871f03db5f9c">testEqualsIgnoreCase</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a7a1dd7b29241d2998eb4871f03db5f9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> <code>actual</code> is equal to <code>expected</code> ignoring cases.  <br /></td></tr>
-<tr class="separator:a7a1dd7b29241d2998eb4871f03db5f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7a0f26cce4bfc20fc4a5bad55d9dee6" id="r_ad7a0f26cce4bfc20fc4a5bad55d9dee6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#ad7a0f26cce4bfc20fc4a5bad55d9dee6">testNull</a> (const void *actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:ad7a0f26cce4bfc20fc4a5bad55d9dee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>NULL</code>.  <br /></td></tr>
-<tr class="separator:ad7a0f26cce4bfc20fc4a5bad55d9dee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb79c1fde696f904f1ebb65a9635536" id="r_a8cb79c1fde696f904f1ebb65a9635536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a8cb79c1fde696f904f1ebb65a9635536">testNotNull</a> (const void *actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a8cb79c1fde696f904f1ebb65a9635536"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is not <code>NULL</code>.  <br /></td></tr>
-<tr class="separator:a8cb79c1fde696f904f1ebb65a9635536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accf56cda7fa75200375fbc605f5f1cf9" id="r_accf56cda7fa75200375fbc605f5f1cf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#accf56cda7fa75200375fbc605f5f1cf9">testTrue</a> (bool actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:accf56cda7fa75200375fbc605f5f1cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>true</code>.  <br /></td></tr>
-<tr class="separator:accf56cda7fa75200375fbc605f5f1cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8191d91b9faa71220c758bd0c7f8679c" id="r_a8191d91b9faa71220c758bd0c7f8679c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a8191d91b9faa71220c758bd0c7f8679c">testFalse</a> (bool actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage)</td></tr>
-<tr class="memdesc:a8191d91b9faa71220c758bd0c7f8679c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>false</code>.  <br /></td></tr>
-<tr class="separator:a8191d91b9faa71220c758bd0c7f8679c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b7e955d8b08c61a5c40648e38748e1" id="r_a16b7e955d8b08c61a5c40648e38748e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a16b7e955d8b08c61a5c40648e38748e1">testFail</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;message) const</td></tr>
+<tr class="memdesc:a16b7e955d8b08c61a5c40648e38748e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call this method, if you made a test by yourself and this test failed.  <br /></td></tr>
+<tr class="separator:a16b7e955d8b08c61a5c40648e38748e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af49083e2c463aaf3bcfc6e2df9daa8cc" id="r_af49083e2c463aaf3bcfc6e2df9daa8cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#af49083e2c463aaf3bcfc6e2df9daa8cc">testEquals</a> (const double actual, const double expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:af49083e2c463aaf3bcfc6e2df9daa8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if double <code>actual</code> is equal to <code>expected</code> under consideration of <code>RESABS</code>.  <br /></td></tr>
+<tr class="separator:af49083e2c463aaf3bcfc6e2df9daa8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b0bb9ff3f5dc1cb68c496fa959089c3" id="r_a7b0bb9ff3f5dc1cb68c496fa959089c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a7b0bb9ff3f5dc1cb68c496fa959089c3">testEquals</a> (int64 actual, int64 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a7b0bb9ff3f5dc1cb68c496fa959089c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1Integer.html" title="This class collect static methods to manipulate integer values.">Integer</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a7b0bb9ff3f5dc1cb68c496fa959089c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e3b8155e9997b872af2a505e1451cc" id="r_aa3e3b8155e9997b872af2a505e1451cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#aa3e3b8155e9997b872af2a505e1451cc">testEquals</a> (int64 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:aa3e3b8155e9997b872af2a505e1451cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1Integer.html" title="This class collect static methods to manipulate integer values.">Integer</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:aa3e3b8155e9997b872af2a505e1451cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa12eaeb413d808b9f68d7ca3792371" id="r_acfa12eaeb413d808b9f68d7ca3792371"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#acfa12eaeb413d808b9f68d7ca3792371">testEquals</a> (uint64 actual, uint64 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:acfa12eaeb413d808b9f68d7ca3792371"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:acfa12eaeb413d808b9f68d7ca3792371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e53bab0c0f1c57b65ff6a4b676ea54" id="r_a49e53bab0c0f1c57b65ff6a4b676ea54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a49e53bab0c0f1c57b65ff6a4b676ea54">testEquals</a> (void *actual, void *expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a49e53bab0c0f1c57b65ff6a4b676ea54"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if void* <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a49e53bab0c0f1c57b65ff6a4b676ea54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61bffa78c8e4876269c1c4ad45f5e9e7" id="r_a61bffa78c8e4876269c1c4ad45f5e9e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a61bffa78c8e4876269c1c4ad45f5e9e7">testEquals</a> (uint64 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a61bffa78c8e4876269c1c4ad45f5e9e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a61bffa78c8e4876269c1c4ad45f5e9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28894e693fdef58acce9e532790d9c9f" id="r_a28894e693fdef58acce9e532790d9c9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a28894e693fdef58acce9e532790d9c9f">testEquals</a> (uint64 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a28894e693fdef58acce9e532790d9c9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint64 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a28894e693fdef58acce9e532790d9c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1e6897cb827b0fa9d38bb4e0336bd9" id="r_aed1e6897cb827b0fa9d38bb4e0336bd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#aed1e6897cb827b0fa9d38bb4e0336bd9">testEquals</a> (int32 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:aed1e6897cb827b0fa9d38bb4e0336bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if int32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:aed1e6897cb827b0fa9d38bb4e0336bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85b13c78c2f9070de1e5ba63b91dc99b" id="r_a85b13c78c2f9070de1e5ba63b91dc99b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a85b13c78c2f9070de1e5ba63b91dc99b">testEquals</a> (uint32 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a85b13c78c2f9070de1e5ba63b91dc99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a85b13c78c2f9070de1e5ba63b91dc99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad015ba638037f0d57ed1dcea4c4ba1f2" id="r_ad015ba638037f0d57ed1dcea4c4ba1f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#ad015ba638037f0d57ed1dcea4c4ba1f2">testEquals</a> (uint32 actual, int32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:ad015ba638037f0d57ed1dcea4c4ba1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if uint32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:ad015ba638037f0d57ed1dcea4c4ba1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78dfa871c8e498a9f4a27c1642d8531b" id="r_a78dfa871c8e498a9f4a27c1642d8531b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a78dfa871c8e498a9f4a27c1642d8531b">testEquals</a> (int32 actual, uint32 expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a78dfa871c8e498a9f4a27c1642d8531b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if int32 <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:a78dfa871c8e498a9f4a27c1642d8531b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef23051eaf0fa8ff6a6ad8b5ea74f6af" id="r_aef23051eaf0fa8ff6a6ad8b5ea74f6af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#aef23051eaf0fa8ff6a6ad8b5ea74f6af">testEquals</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:aef23051eaf0fa8ff6a6ad8b5ea74f6af"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> <code>actual</code> is equal to <code>expected</code>.  <br /></td></tr>
+<tr class="separator:aef23051eaf0fa8ff6a6ad8b5ea74f6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af242f89f1cef79c2cde8236501cd29fa" id="r_af242f89f1cef79c2cde8236501cd29fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#af242f89f1cef79c2cde8236501cd29fa">testEqualsIgnoreCase</a> (const <a class="el" href="classjm_1_1String.html">String</a> &amp;actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;expected, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:af242f89f1cef79c2cde8236501cd29fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <a class="el" href="classjm_1_1String.html" title="String implements our generic string because std::string is inadequate and inconvenient....">String</a> <code>actual</code> is equal to <code>expected</code> ignoring cases.  <br /></td></tr>
+<tr class="separator:af242f89f1cef79c2cde8236501cd29fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50ba8175bc11d469873e856557b249ef" id="r_a50ba8175bc11d469873e856557b249ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a50ba8175bc11d469873e856557b249ef">testNull</a> (const void *actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a50ba8175bc11d469873e856557b249ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>NULL</code>.  <br /></td></tr>
+<tr class="separator:a50ba8175bc11d469873e856557b249ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84fd1c65ea722a28bfd95c04e18f4b39" id="r_a84fd1c65ea722a28bfd95c04e18f4b39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a84fd1c65ea722a28bfd95c04e18f4b39">testNotNull</a> (const void *actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a84fd1c65ea722a28bfd95c04e18f4b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is not <code>NULL</code>.  <br /></td></tr>
+<tr class="separator:a84fd1c65ea722a28bfd95c04e18f4b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcb631a974ef617dd66c3084cc9425ac" id="r_afcb631a974ef617dd66c3084cc9425ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#afcb631a974ef617dd66c3084cc9425ac">testTrue</a> (bool actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:afcb631a974ef617dd66c3084cc9425ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>true</code>.  <br /></td></tr>
+<tr class="separator:afcb631a974ef617dd66c3084cc9425ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26df17b6fe8b16fd35a941777e9c97bf" id="r_a26df17b6fe8b16fd35a941777e9c97bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjm_1_1Test.html#a26df17b6fe8b16fd35a941777e9c97bf">testFalse</a> (bool actual, const <a class="el" href="classjm_1_1String.html">String</a> &amp;failmessage) const</td></tr>
+<tr class="memdesc:a26df17b6fe8b16fd35a941777e9c97bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method tests, if <code>actual</code> is <code>false</code>.  <br /></td></tr>
+<tr class="separator:a26df17b6fe8b16fd35a941777e9c97bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This base class represents a test object. It is used to implement unit tests for any code. Typically a set of tests is collected in one derived test class. </p>
@@ -400,8 +400,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad242d62c8cba68bd6645e3811ba67727" name="ad242d62c8cba68bd6645e3811ba67727"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad242d62c8cba68bd6645e3811ba67727">&#9670;&#160;</a></span>testEquals() <span class="overload">[1/12]</span></h2>
+<a id="af49083e2c463aaf3bcfc6e2df9daa8cc" name="af49083e2c463aaf3bcfc6e2df9daa8cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49083e2c463aaf3bcfc6e2df9daa8cc">&#9670;&#160;</a></span>testEquals() <span class="overload">[1/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -430,7 +430,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -452,8 +452,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad98f2dd71da98afd2e5589b494b2a2cc" name="ad98f2dd71da98afd2e5589b494b2a2cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad98f2dd71da98afd2e5589b494b2a2cc">&#9670;&#160;</a></span>testEquals() <span class="overload">[2/12]</span></h2>
+<a id="aef23051eaf0fa8ff6a6ad8b5ea74f6af" name="aef23051eaf0fa8ff6a6ad8b5ea74f6af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef23051eaf0fa8ff6a6ad8b5ea74f6af">&#9670;&#160;</a></span>testEquals() <span class="overload">[2/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,7 +482,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -504,8 +504,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a65514e3295a6a8671a2f90c04f7b3d8b" name="a65514e3295a6a8671a2f90c04f7b3d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65514e3295a6a8671a2f90c04f7b3d8b">&#9670;&#160;</a></span>testEquals() <span class="overload">[3/12]</span></h2>
+<a id="aed1e6897cb827b0fa9d38bb4e0336bd9" name="aed1e6897cb827b0fa9d38bb4e0336bd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed1e6897cb827b0fa9d38bb4e0336bd9">&#9670;&#160;</a></span>testEquals() <span class="overload">[3/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -534,7 +534,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -556,8 +556,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a71ab3711151eee9d5a007a624020e5cb" name="a71ab3711151eee9d5a007a624020e5cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71ab3711151eee9d5a007a624020e5cb">&#9670;&#160;</a></span>testEquals() <span class="overload">[4/12]</span></h2>
+<a id="a78dfa871c8e498a9f4a27c1642d8531b" name="a78dfa871c8e498a9f4a27c1642d8531b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78dfa871c8e498a9f4a27c1642d8531b">&#9670;&#160;</a></span>testEquals() <span class="overload">[4/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -586,7 +586,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -608,8 +608,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a91fe57a8abcd89596ed475b0521f5421" name="a91fe57a8abcd89596ed475b0521f5421"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91fe57a8abcd89596ed475b0521f5421">&#9670;&#160;</a></span>testEquals() <span class="overload">[5/12]</span></h2>
+<a id="aa3e3b8155e9997b872af2a505e1451cc" name="aa3e3b8155e9997b872af2a505e1451cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3e3b8155e9997b872af2a505e1451cc">&#9670;&#160;</a></span>testEquals() <span class="overload">[5/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -638,7 +638,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -660,8 +660,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad090e51f35b06c0551db7e25b0d87a40" name="ad090e51f35b06c0551db7e25b0d87a40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad090e51f35b06c0551db7e25b0d87a40">&#9670;&#160;</a></span>testEquals() <span class="overload">[6/12]</span></h2>
+<a id="a7b0bb9ff3f5dc1cb68c496fa959089c3" name="a7b0bb9ff3f5dc1cb68c496fa959089c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b0bb9ff3f5dc1cb68c496fa959089c3">&#9670;&#160;</a></span>testEquals() <span class="overload">[6/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -690,7 +690,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -712,8 +712,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afee58dd424ae32b8b9fd27e1fd304e9b" name="afee58dd424ae32b8b9fd27e1fd304e9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afee58dd424ae32b8b9fd27e1fd304e9b">&#9670;&#160;</a></span>testEquals() <span class="overload">[7/12]</span></h2>
+<a id="ad015ba638037f0d57ed1dcea4c4ba1f2" name="ad015ba638037f0d57ed1dcea4c4ba1f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad015ba638037f0d57ed1dcea4c4ba1f2">&#9670;&#160;</a></span>testEquals() <span class="overload">[7/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -742,7 +742,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -764,8 +764,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a46dd7ea0c65e0218743ffc771366a335" name="a46dd7ea0c65e0218743ffc771366a335"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46dd7ea0c65e0218743ffc771366a335">&#9670;&#160;</a></span>testEquals() <span class="overload">[8/12]</span></h2>
+<a id="a85b13c78c2f9070de1e5ba63b91dc99b" name="a85b13c78c2f9070de1e5ba63b91dc99b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85b13c78c2f9070de1e5ba63b91dc99b">&#9670;&#160;</a></span>testEquals() <span class="overload">[8/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -794,7 +794,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -816,8 +816,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4417100026f5d7f3a367a3cfbee70249" name="a4417100026f5d7f3a367a3cfbee70249"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4417100026f5d7f3a367a3cfbee70249">&#9670;&#160;</a></span>testEquals() <span class="overload">[9/12]</span></h2>
+<a id="a61bffa78c8e4876269c1c4ad45f5e9e7" name="a61bffa78c8e4876269c1c4ad45f5e9e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bffa78c8e4876269c1c4ad45f5e9e7">&#9670;&#160;</a></span>testEquals() <span class="overload">[9/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -846,7 +846,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -868,8 +868,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2b31e0cefe884719b27e014043e06973" name="a2b31e0cefe884719b27e014043e06973"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b31e0cefe884719b27e014043e06973">&#9670;&#160;</a></span>testEquals() <span class="overload">[10/12]</span></h2>
+<a id="a28894e693fdef58acce9e532790d9c9f" name="a28894e693fdef58acce9e532790d9c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28894e693fdef58acce9e532790d9c9f">&#9670;&#160;</a></span>testEquals() <span class="overload">[10/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -898,7 +898,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -920,8 +920,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a50bf0699d469fd573db9f49fccccae4e" name="a50bf0699d469fd573db9f49fccccae4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50bf0699d469fd573db9f49fccccae4e">&#9670;&#160;</a></span>testEquals() <span class="overload">[11/12]</span></h2>
+<a id="acfa12eaeb413d808b9f68d7ca3792371" name="acfa12eaeb413d808b9f68d7ca3792371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa12eaeb413d808b9f68d7ca3792371">&#9670;&#160;</a></span>testEquals() <span class="overload">[11/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -950,7 +950,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -972,8 +972,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7208cdc7ac7127fcfd776b198cb61081" name="a7208cdc7ac7127fcfd776b198cb61081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7208cdc7ac7127fcfd776b198cb61081">&#9670;&#160;</a></span>testEquals() <span class="overload">[12/12]</span></h2>
+<a id="a49e53bab0c0f1c57b65ff6a4b676ea54" name="a49e53bab0c0f1c57b65ff6a4b676ea54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49e53bab0c0f1c57b65ff6a4b676ea54">&#9670;&#160;</a></span>testEquals() <span class="overload">[12/12]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1002,7 +1002,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1024,8 +1024,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a1dd7b29241d2998eb4871f03db5f9c" name="a7a1dd7b29241d2998eb4871f03db5f9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a1dd7b29241d2998eb4871f03db5f9c">&#9670;&#160;</a></span>testEqualsIgnoreCase()</h2>
+<a id="af242f89f1cef79c2cde8236501cd29fa" name="af242f89f1cef79c2cde8236501cd29fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af242f89f1cef79c2cde8236501cd29fa">&#9670;&#160;</a></span>testEqualsIgnoreCase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1054,7 +1054,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1076,8 +1076,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a460957b57bb48e7688893270b02c31e0" name="a460957b57bb48e7688893270b02c31e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a460957b57bb48e7688893270b02c31e0">&#9670;&#160;</a></span>testFail()</h2>
+<a id="a16b7e955d8b08c61a5c40648e38748e1" name="a16b7e955d8b08c61a5c40648e38748e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16b7e955d8b08c61a5c40648e38748e1">&#9670;&#160;</a></span>testFail()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1090,7 +1090,7 @@ Protected Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classjm_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>message</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -1104,8 +1104,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8191d91b9faa71220c758bd0c7f8679c" name="a8191d91b9faa71220c758bd0c7f8679c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8191d91b9faa71220c758bd0c7f8679c">&#9670;&#160;</a></span>testFalse()</h2>
+<a id="a26df17b6fe8b16fd35a941777e9c97bf" name="a26df17b6fe8b16fd35a941777e9c97bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26df17b6fe8b16fd35a941777e9c97bf">&#9670;&#160;</a></span>testFalse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1128,7 +1128,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1149,8 +1149,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8cb79c1fde696f904f1ebb65a9635536" name="a8cb79c1fde696f904f1ebb65a9635536"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cb79c1fde696f904f1ebb65a9635536">&#9670;&#160;</a></span>testNotNull()</h2>
+<a id="a84fd1c65ea722a28bfd95c04e18f4b39" name="a84fd1c65ea722a28bfd95c04e18f4b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84fd1c65ea722a28bfd95c04e18f4b39">&#9670;&#160;</a></span>testNotNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1173,7 +1173,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1194,8 +1194,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad7a0f26cce4bfc20fc4a5bad55d9dee6" name="ad7a0f26cce4bfc20fc4a5bad55d9dee6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7a0f26cce4bfc20fc4a5bad55d9dee6">&#9670;&#160;</a></span>testNull()</h2>
+<a id="a50ba8175bc11d469873e856557b249ef" name="a50ba8175bc11d469873e856557b249ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50ba8175bc11d469873e856557b249ef">&#9670;&#160;</a></span>testNull()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1218,7 +1218,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1239,8 +1239,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="accf56cda7fa75200375fbc605f5f1cf9" name="accf56cda7fa75200375fbc605f5f1cf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accf56cda7fa75200375fbc605f5f1cf9">&#9670;&#160;</a></span>testTrue()</h2>
+<a id="afcb631a974ef617dd66c3084cc9425ac" name="afcb631a974ef617dd66c3084cc9425ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcb631a974ef617dd66c3084cc9425ac">&#9670;&#160;</a></span>testTrue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1263,7 +1263,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -1284,8 +1284,8 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5a8dd08ee52a6204c9866d001c92235a" name="a5a8dd08ee52a6204c9866d001c92235a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a8dd08ee52a6204c9866d001c92235a">&#9670;&#160;</a></span>testUnexpectedException()</h2>
+<a id="a324c3c84d927b8b4895664e482893042" name="a324c3c84d927b8b4895664e482893042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a324c3c84d927b8b4895664e482893042">&#9670;&#160;</a></span>testUnexpectedException()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1295,7 +1295,7 @@ Protected Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classjm_1_1String.html">String</a> &amp;&#160;</td>
           <td class="paramname"><em>failmessage</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">

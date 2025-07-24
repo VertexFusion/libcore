@@ -3,7 +3,7 @@ var searchData=
   ['wakeup_0',['wakeup',['../classjm_1_1Mutex.html#a678f367d8584bd11faac9c9b0856b956',1,'jm::Mutex::wakeUp()'],['../classjm_1_1Thread.html#a926e14062e6d536f4160e1e9754f8914',1,'jm::Thread::wakeUp()']]],
   ['wantcancel_1',['wantCancel',['../classjm_1_1PaintingBackend.html#a666d48fb3d7b70dab5da2181f325918e',1,'jm::PaintingBackend']]],
   ['wcsmatrix_2',['wcsMatrix',['../namespacejm.html#af9ca0f8e41d0418aed9b2751403c65ec',1,'jm']]],
-  ['wcstoocs_3',['wcsToOcs',['../namespacejm.html#a63e9d6bf8aa81ee1e69ebac18552656f',1,'jm']]],
+  ['wcstoocs_3',['wcsToOcs',['../namespacejm.html#a5356e16b4c7625bde8612fec9b155448',1,'jm']]],
   ['wednesday_4',['WEDNESDAY',['../classjm_1_1Date.html#a289ec1a33052cd757108481b6fb94eb6',1,'jm::Date']]],
   ['weight_5',['weight',['../classjm_1_1Nurbs.html#aa89b8fe7a47c544c95ed8fb42b936c91',1,'jm::Nurbs']]],
   ['width_6',['width',['../structjm_1_1Rect.html#a88200d759b61c3c880156017bfcf7612',1,'jm::Rect::width()'],['../structjm_1_1Size.html#a3e688c78364a3af67108a137ec20b0ff',1,'jm::Size::width()']]],
