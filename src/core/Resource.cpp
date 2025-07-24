@@ -38,7 +38,7 @@ Resource::Resource(const String& path)
 {
 #ifdef JM_ANDROID
    jm::ByteArray array = jm::osResourceRead(path);
-   if(array.size() <= 0)
+   if(array.size() == 0 || array.size()==npos)
    {
       mStream = nullptr;
       return;
@@ -137,7 +137,7 @@ bool Resource::exists() const
 {
    if(mStream != nullptr)
    {
-      jm::File* file = dynamic_cast<jm::File*>(mStream);
+      const jm::File* file = dynamic_cast<const jm::File*>(mStream);
       if(file != nullptr)return file->exists();
       else return true;
    }

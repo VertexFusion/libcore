@@ -136,7 +136,7 @@ namespace jm
 
          void add(Object* data, UndoManager* um);
 
-         void addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
+         void addBefore(const Object* addBeforeThis, Object* itemToAdd, UndoManager* um);
 
          /*!
           \brief removes the element from the list.

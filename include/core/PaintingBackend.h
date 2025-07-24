@@ -64,7 +64,7 @@ namespace jm
        \param point The point to be drawn
        \param mode The mode of drawing
        */
-      BufferElement(Vertex3 point, BufferMode mode);
+      BufferElement(const Vertex3 &point, BufferMode mode);
    };
 
    /*!
@@ -228,7 +228,7 @@ namespace jm
          /*!
           \brief The stack of transformation settings... necessary for inserts.
           */
-         std::vector<Matrix>* mTransformstack;
+         std::vector<Matrix>* mTransformstack = nullptr;
 
          /*!
           \brief The current line style used for drawing lines, or NULL if a solid line is being drawn.
@@ -240,34 +240,34 @@ namespace jm
           \brief The current scaling factor of the line pattern.
           \details All different line styles are manually drawn using strokes.
           */
-         double mCurLineTypeScale;
+         double mCurLineTypeScale = 1.0;
 
          /*!
           \brief Current position within the line pattern, relative to the beginning of the pattern.
           IN PATTERN SCALE (without curLineTypeScale).
           \details All different line styles are manually drawn using strokes.
           */
-         double mLinePatternOffset;
+         double mLinePatternOffset = 0.0;
 
          /*!
           \brief The position within the current element, relative to the beginning of the element.
           IN PATTERN SCALE (without curLineTypeScale).
           \details All different line styles are manually drawn using strokes.
           */
-         double mLinePatternSubOffset;
+         double mLinePatternSubOffset = 0.0;
 
          /*!
           \brief Zero-based index of the current element.
           \details All different line styles are manually drawn using strokes.
           */
-         int32 mLinePatternIndex;
+         int32 mLinePatternIndex = 0;
 
          /*!
           \brief This variable stores a flag indicating whether processing should be canceled or not.
           By default, this value is "false". However, if this value is set to "true" externally,
           the Painter must abort its work as soon as possible and return. This is useful for multi-threaded applications.
           */
-         bool mCancel;
+         bool mCancel = false;
 
          /*!
           \brief The total transformation matrix. Needs to be recalculated after each Push and Pop operation on the transformation stack.
@@ -277,7 +277,7 @@ namespace jm
          /*!
           \brief Buffer for storing the points that need to be drawn in a path.
           */
-         std::vector<BufferElement>* mBuffer;
+         std::vector<BufferElement>* mBuffer = nullptr;
 
          /*!
           \brief This method updates the transformation matrix.

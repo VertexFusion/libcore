@@ -150,7 +150,7 @@ namespace jm
          /*!
           \brief This method shall be called in the catch clause of an jm::Exception.
          */
-         void testUnexpectedException(const String& failmessage);
+         void testUnexpectedException(const String& failmessage) const;
 
       protected:
 
@@ -168,7 +168,7 @@ namespace jm
          /*!
           \brief Call this method, if you made a test by yourself and this test failed.
           */
-         void testFail(const String& message);
+         void testFail(const String& message) const;
 
          /*!
           \brief This method tests, if double \p actual is equal to \p expected under consideration
@@ -177,7 +177,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(const double actual, const double expected, const String& failmessage);
+         void testEquals(const double actual, const double expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if Integer \p actual is equal to \p expected.
@@ -185,7 +185,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(int64 actual, int64 expected, const String& failmessage);
+         void testEquals(int64 actual, int64 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if Integer \p actual is equal to \p expected.
@@ -193,7 +193,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(int64 actual, int32 expected, const String& failmessage);
+         void testEquals(int64 actual, int32 expected, const String& failmessage) const;
 
 
          /*!
@@ -202,7 +202,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(uint64 actual, uint64 expected, const String& failmessage);
+         void testEquals(uint64 actual, uint64 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if void* \p actual is equal to \p expected.
@@ -210,7 +210,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(void* actual, void* expected, const String& failmessage);
+         void testEquals(void* actual, void* expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if uint64 \p actual is equal to \p expected.
@@ -218,7 +218,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(uint64 actual, int32 expected, const String& failmessage);
+         void testEquals(uint64 actual, int32 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if uint64 \p actual is equal to \p expected.
@@ -226,7 +226,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(uint64 actual, uint32 expected, const String& failmessage);
+         void testEquals(uint64 actual, uint32 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if int32 \p actual is equal to \p expected.
@@ -234,7 +234,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(int32 actual, int32 expected, const String& failmessage);
+         void testEquals(int32 actual, int32 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if uint32 \p actual is equal to \p expected.
@@ -242,7 +242,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(uint32 actual, uint32 expected, const String& failmessage);
+         void testEquals(uint32 actual, uint32 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if uint32 \p actual is equal to \p expected.
@@ -250,7 +250,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(uint32 actual, int32 expected, const String& failmessage);
+         void testEquals(uint32 actual, int32 expected, const String& failmessage) const;
 
 
          /*!
@@ -259,7 +259,7 @@ namespace jm
           \param expected The expected value
           \param failmessage The log message in case of failed test.
           */
-         void testEquals(int32 actual, uint32 expected, const String& failmessage);
+         void testEquals(int32 actual, uint32 expected, const String& failmessage) const;
 
          /*!
           \brief This method tests, if String \p actual is equal to \p expected.
@@ -269,7 +269,7 @@ namespace jm
           */
          void testEquals(const String& actual,
                          const String& expected,
-                         const String& failmessage);
+                         const String& failmessage) const;
 
          /*!
           \brief This method tests, if String \p actual is equal to \p expected ignoring cases.
@@ -279,35 +279,35 @@ namespace jm
           */
          void testEqualsIgnoreCase(const String& actual,
                                    const String& expected,
-                                   const String& failmessage);
+                                   const String& failmessage) const;
 
          /*!
           \brief This method tests, if \p actual is \c NULL.
           \param actual The test value
           \param failmessage The log message in case of failed test.
           */
-         void testNull(const void* actual, const String& failmessage);
+         void testNull(const void* actual, const String& failmessage) const;
 
          /*!
           \brief This method tests, if \p actual is not \c NULL.
           \param actual The test value
           \param failmessage The log message in case of failed test.
           */
-         void testNotNull(const void* actual, const String& failmessage);
+         void testNotNull(const void* actual, const String& failmessage) const;
 
          /*!
           \brief This method tests, if \p actual is \c true.
           \param actual The test value
           \param failmessage The log message in case of failed test.
           */
-         void testTrue(bool actual, const String& failmessage);
+         void testTrue(bool actual, const String& failmessage) const;
 
          /*!
           \brief This method tests, if \p actual is \c false.
           \param actual The test value
           \param failmessage The log message in case of failed test.
           */
-         void testFalse(bool actual, const String& failmessage);
+         void testFalse(bool actual, const String& failmessage) const;
 
       private:
 

@@ -70,11 +70,11 @@ namespace jm
           \param weightCount The length of the weights array.
           */
          Nurbs(uint32 degree,
-               Vertex3* controlpoints,
+               const Vertex3* controlpoints,
                size_t controlCount,
-               double* knots,
+               const double* knots,
                size_t knotCount,
-               double* weights,
+               const double* weights,
                size_t weightCount);
 
          /*!
@@ -112,7 +112,7 @@ namespace jm
          /*!
           \brief Returns the number of control points.
           */
-         size_t controlPointCount();
+         size_t controlPointCount() const;
 
          /*!
           \brief Returns the knot count

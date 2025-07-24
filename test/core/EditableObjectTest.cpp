@@ -210,7 +210,7 @@ void EditableObjectTest::doTest()
    testEquals(adr->GetHouseNumber(), 51, "House number wrong (23)");
 
    // Changing just the house number should not have any effect, though calling setMember with
-   // the street will return Status::eNotChanged, which should not have any effect on the transaction
+   // the street will return Status::eOK, which should not have any effect on the transaction
    status = adr->SetStreetAddress("Waldstraße", 7);
    testTrue(status == Status::eOK, "VxfErrorStatus wrong (24)");
    testEquals(adr->GetStreet(), "Waldstraße", "Street name wrong (25)");

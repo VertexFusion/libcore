@@ -429,8 +429,7 @@ bool UndoManager::hasOpenTransaction() const
 
 void UndoManager::registerTransactionStatus(Status status)
 {
-   if(status != Status::eOK &&
-         status != Status::eNotChanged)mTransactionStatus = status;
+   if(status != Status::eOK)mTransactionStatus = status;
 }
 
 Status UndoManager::transactionStatus()const

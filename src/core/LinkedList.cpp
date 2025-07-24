@@ -150,7 +150,7 @@ void LinkedList::add(LListElement* item, UndoManager* um)
    count++;
 }
 
-void LinkedList::addBefore(Object* addBeforeThis, Object* itemToAdd, UndoManager* um)
+void LinkedList::addBefore(const Object* addBeforeThis, Object* itemToAdd, UndoManager* um)
 {
    LListElement* before = nullptr;
 

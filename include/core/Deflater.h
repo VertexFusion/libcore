@@ -101,13 +101,13 @@ namespace jm
       private:
 
          //Current block
-         uint8* mUncompBytes;
-         size_t mUncompLength;
-         size_t mUncompIndex;
+         uint8* mUncompBytes = nullptr;
+         size_t mUncompLength = 0;
+         size_t mUncompIndex = 0;
 
          //Count variables for processed bytes
-         size_t mTotalIn;
-         size_t mTotalOut;
+         size_t mTotalIn = 0;
+         size_t mTotalOut = 0;
 
    };
 

@@ -518,7 +518,7 @@ namespace jm
 
             Pattern();
 
-            Pattern(const String& value, bool text = false);
+            explicit Pattern(const String& value, bool text = false);
 
             void appendPattern(String& value, const Date& date) const;
          };

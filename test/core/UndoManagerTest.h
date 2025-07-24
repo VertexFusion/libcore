@@ -17,33 +17,21 @@ class UndoTestObject: public jm::Object
 
       jm::UndoManager* undo;
 
-      int8 b1;
-      uint8 b2;
-      int16 s1;
-      uint16 s2;
-      int32 i1;
-      uint32 i2;
-      int64 l1;
-      uint64 l2;
-      jm::String str;
-      float f;
-      double d;
-      UndoTestObject* obj;
+      int8 b1 = 0;
+      uint8 b2 = 0;
+      int16 s1 = 0;
+      uint16 s2 = 0;
+      int32 i1 = 0;
+      uint32 i2 = 0;
+      int64 l1 = 0;
+      uint64 l2 = 0;
+      jm::String str = jm::kEmptyString;
+      float f = 0.0;
+      double d = 0.0;
+      UndoTestObject* obj = nullptr;
 
       UndoTestObject(): jm::Object()
       {
-         str = jm::kEmptyString;
-         b1 = 0;
-         b2 = 0;
-         s1 = 0;
-         s2 = 0;
-         i1 = 0;
-         i2 = 0;
-         l1 = 0;
-         l2 = 0;
-         f = 0;
-         d = 0;
-         obj = nullptr;
       }
 
       ~UndoTestObject()

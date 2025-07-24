@@ -52,14 +52,14 @@ Date::Date(): Comparable<Date>()
 #endif
 }
 
-Date::Date(const Date& other): Comparable<Date>()
+Date::Date(const Date& other): Comparable<Date>(),
+   mTime(other.mTime)
 {
-   mTime = other.mTime;
 }
 
-Date::Date(int64 milliseconds): Comparable<Date>()
+Date::Date(int64 milliseconds): Comparable<Date>(),
+   mTime(milliseconds)
 {
-   mTime = milliseconds;
 }
 
 Date::Date(uint16 year, uint16 month, uint16 day): Comparable<Date>()

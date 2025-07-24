@@ -269,7 +269,7 @@ jm::String jm::System::macAddress1()
          struct sockaddr_dl* sdl = (struct sockaddr_dl*)ifa->ifa_addr;
          if(sdl->sdl_type == IFT_ETHER)  // Ethernet interface
          {
-            unsigned char* mac = (unsigned char*)LLADDR(sdl);
+            const unsigned char* mac = (const unsigned char*)LLADDR(sdl);
             snprintf(macAddress, sizeof(macAddress), "%02x:%02x:%02x:%02x:%02x:%02x",
                      mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
             break;

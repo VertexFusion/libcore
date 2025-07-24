@@ -211,8 +211,6 @@ namespace jm
 										  code is mapped to another data type, or you try to name a colour
 										  although the colour name is not defined in a colour book. */
       eInvalidInput,			/*!< Operation not done. Input is invalid. */
-      eNotChanged,			/*!< Operation not done. Value not changed. Often not really an error,
-										  but a notice. */
 
       eOnLockedLayer,		/*!< Operation not done. The entity is on a locked layer. */
       eUndefinedBlock,		/*!< Operation not done. The requested block is undefined. */

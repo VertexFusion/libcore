@@ -43,7 +43,7 @@ Preferences::~Preferences()
    Iterator* i = keys();
    while(i->hasNext())
    {
-      String* s = static_cast<String*>(i->next());
+      const String* s = static_cast<String*>(i->next());
       String* p = static_cast<String*>(get(*s));
       delete p;
    }
@@ -242,7 +242,7 @@ int64 Preferences::valueInt(const String& key, int64 defaultValue) const
    {
       value = result.toInt();
    }
-   catch(Exception& e)
+   catch(const Exception& e)
    {}
 
    return value;
@@ -259,7 +259,7 @@ double Preferences::valueDouble(const String& key, double defaultValue) const
    {
       value = result.toDouble();
    }
-   catch(Exception& e)
+   catch(const Exception& e)
    {}
 
    return value;

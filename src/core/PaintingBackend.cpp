@@ -34,7 +34,7 @@ PaintingBackend::~PaintingBackend()
 
 
 
-BufferElement::BufferElement(Vertex3 point, BufferMode mode)
+BufferElement::BufferElement(const Vertex3& point, BufferMode mode)
 {
    this->point = point;
    this->mode = mode;

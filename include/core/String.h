@@ -750,7 +750,7 @@ namespace jm
    extern DllExport
    String URLEncode(const String& str);
 
-   static String kEmptyString = "";
+   static const String kEmptyString = "";
 
 
    /*!

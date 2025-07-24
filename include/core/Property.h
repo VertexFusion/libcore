@@ -413,7 +413,7 @@ namespace jm
           \param pointer The pointer to the String member.
           \param value The new value for the member.
 
-          \return jm::Status::eOK on success, jm::Status::eNotChanged if value is equal to current
+          \return jm::Status::eOK on success or if value is equal to current
           value.
           */
          virtual Status setMember(String* pointer, const String& value);
@@ -432,7 +432,7 @@ namespace jm
           \param rangeMin Minimum valid value. Default is INT64_MIN
           \param rangeMax Maximum valid value. Default is INT64_MAX
 
-          \return jm::Status::eOK on success, jm::Status::eNotChanged if value is equal to current
+          \return jm::Status::eOK on success ur if value is equal to current
           value and jm::Status::eInvalidInput, if value is out of range.
           */
          virtual Status setMember(int64* pointer,
@@ -448,8 +448,8 @@ namespace jm
 
           \param pointer The pointer to the double member.
           \param value The new value for the member.
-          \return jm::Status::eInvalidInput if value is \c NaN, jm::Status::eNotChanged if value is equal to current value
-          and jm::Status::eOK if set successfully.
+          \return jm::Status::eInvalidInput if value is \c NaN, jm::Status::eOK if value is equal to current value
+          if set successfully.
           */
          virtual Status setMember(double* pointer, double value);
 

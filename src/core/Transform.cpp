@@ -50,8 +50,8 @@ Matrix jm::wcsMatrix(const jm::Vertex3& extrusion)
 }
 
 
-Vertex3 jm::wcsToOcs(jm::Vertex3 wcs,
-                     jm::Vertex3 extrusion)
+Vertex3 jm::wcsToOcs(const jm::Vertex3& wcs,
+                     const jm::Vertex3& extrusion)
 {
    jm::Matrix OCS = ocsMatrix(extrusion);
 

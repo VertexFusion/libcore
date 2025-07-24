@@ -71,7 +71,7 @@ size_t TestVector::execute()
       {
          single = mArg.toSize();
       }
-      catch(jm::Exception& e)
+      catch(const jm::Exception& e)
       {}
    }
 

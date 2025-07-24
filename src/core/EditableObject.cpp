@@ -56,7 +56,7 @@ bool EditableObject::shouldRegenerate() const
 
 Status EditableObject::setMember(String* pointer, const String& value)
 {
-   if(value.equals(*pointer))return Status::eNotChanged;
+   if(value.equals(*pointer))return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -70,7 +70,7 @@ Status EditableObject::setMember(int64* pointer,
                                  int64 rangeMin,
                                  int64 rangeMax)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -88,7 +88,7 @@ Status EditableObject::setMember(int64* pointer,
 Status EditableObject::setMember(double* pointer, double value)
 {
    if(isNaN(value))return Status::eInvalidInput;
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -99,7 +99,7 @@ Status EditableObject::setMember(double* pointer, double value)
 
 Status EditableObject::setMember(bool* pointer, bool value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -110,7 +110,7 @@ Status EditableObject::setMember(bool* pointer, bool value)
 
 Status EditableObject::setMember(uint8* pointer, uint8 value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -121,7 +121,7 @@ Status EditableObject::setMember(uint8* pointer, uint8 value)
 
 Status EditableObject::setMember(int16* pointer, int16 value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -132,7 +132,7 @@ Status EditableObject::setMember(int16* pointer, int16 value)
 
 Status EditableObject::setMember(size_t* pointer, size_t value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -143,7 +143,7 @@ Status EditableObject::setMember(size_t* pointer, size_t value)
 
 Status EditableObject::setMember(Vertex3* pointer, const Vertex3& value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -154,7 +154,7 @@ Status EditableObject::setMember(Vertex3* pointer, const Vertex3& value)
 
 Status EditableObject::setMember(Vertex2* pointer, const Vertex2& value)
 {
-   if(value == *pointer)return Status::eNotChanged;
+   if(value == *pointer)return Status::eOK;
 
    UndoManager* um = nullptr;
    if(mDocument != nullptr)um = mDocument->undoManager();
@@ -179,7 +179,7 @@ Status EditableObject::closeTransaction()
    {
       return um->closeTransaction();
    }
-   return Status::eNotChanged;
+   return Status::eOK;
 }
 
 Document* EditableObject::document() const

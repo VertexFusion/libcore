@@ -35,8 +35,6 @@ using namespace jm;
 
 Deflater::Deflater(): Object()
 {
-   mTotalIn = 0;
-   mTotalOut = 0;
 }
 
 void Deflater::setInput(uint8* buffer, size_t length)

@@ -45,8 +45,8 @@ namespace jm
     \return The corresponding OCS coordinates.
     */
    DllExport
-   Vertex3 wcsToOcs(Vertex3 wcs,
-                    Vertex3 extrusion);
+   Vertex3 wcsToOcs(const Vertex3& wcs,
+                    const Vertex3& extrusion);
 
    /*!
     \brief This method converts Object Coordinate System (OCS) coordinates to World Coordinate System (WCS) coordinates.

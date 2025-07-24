@@ -47,11 +47,11 @@ Nurbs::Nurbs(): Object()
 }
 
 Nurbs::Nurbs(uint32 degree,
-             Vertex3* controlpoints,
+             const Vertex3* controlpoints,
              size_t controlCount,
-             double* knots,
+             const double* knots,
              size_t knotCount,
-             double* weights,
+             const double* weights,
              size_t weightCount): Object()
 {
    if(degree < 1)throw Exception(Tr("Degree of NURBS must be greater 0."));
@@ -230,7 +230,7 @@ size_t Nurbs::endIndex() const
    return mKnotCount - mDegree - 1;
 }
 
-size_t Nurbs::controlPointCount()
+size_t Nurbs::controlPointCount() const
 {
    return mControlCount;
 }

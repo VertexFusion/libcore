@@ -906,12 +906,11 @@ String jm::ExecPath()
    }
 #elif defined JM_WINDOWS
 
-   const uint32 size = MAX_PATH;
-   uint16 path[size];
-
    HMODULE hModule = GetModuleHandle(nullptr);
    if(hModule != nullptr)
    {
+      const uint32 size = MAX_PATH;
+      uint16 path[size];
 
       // When passing nullptr to GetModuleHandle, it returns handle of exe itself
       GetModuleFileNameW(hModule, (LPWSTR)path, size);

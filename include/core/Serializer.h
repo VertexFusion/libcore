@@ -162,7 +162,7 @@ namespace jm
     \return Returns the deserialized number as uint16.
     */
    DllExport
-   uint16 deserializeBEUInt16(uint8* buffer, size_t offset);
+   uint16 deserializeBEUInt16(const uint8* buffer, size_t offset);
 
    /*!
     \brief This method deserializes a number using the Big-Endian method.
@@ -171,16 +171,16 @@ namespace jm
     \return Returns the deserialized number as int16.
     */
    DllExport
-   int16 deserializeBEInt16(uint8* buffer, size_t offset);
+   int16 deserializeBEInt16(const uint8* buffer, size_t offset);
 
    DllExport
    int16 deserializeBEInt16(const jm::ByteArray& buffer, size_t offset);
 
    DllExport
-   int32 deserializeBEInt24(uint8* buffer, size_t offset);
+   int32 deserializeBEInt24(const uint8* buffer, size_t offset);
 
    DllExport
-   int32 deserializeLEInt24(uint8* buffer, size_t offset);
+   int32 deserializeLEInt24(const uint8* buffer, size_t offset);
 
    /*!
     \brief This method deserializes a number using the Big-Endian method.
@@ -189,7 +189,7 @@ namespace jm
     \return Returns the deserialized number as uint32.
     */
    DllExport
-   uint32 deserializeBEUInt32(uint8* buffer, size_t offset);
+   uint32 deserializeBEUInt32(const uint8* buffer, size_t offset);
 
    DllExport
    uint32 deserializeBEUInt32(const jm::ByteArray& buffer, size_t offset);
@@ -204,7 +204,7 @@ namespace jm
     \return Returns the deserialized number as int64.
     */
    DllExport
-   int64 deserializeBEInt64(uint8* buffer, size_t offset);
+   int64 deserializeBEInt64(const uint8* buffer, size_t offset);
 
    DllExport
    int64 deserializeBEInt64(const jm::ByteArray& buffer, size_t offset);
@@ -228,7 +228,7 @@ namespace jm
     \return Returns the deserialized number as int16.
     */
    DllExport
-   int16 deserializeLEInt16(uint8* buffer, size_t offset);
+   int16 deserializeLEInt16(const uint8* buffer, size_t offset);
 
    DllExport
    int16 deserializeLEInt16(const jm::ByteArray& buffer, size_t offset);
@@ -240,7 +240,7 @@ namespace jm
     \return Returns the deserialized number as uint32.
     */
    DllExport
-   uint32 deserializeLEUInt32(uint8* buffer, size_t offset);
+   uint32 deserializeLEUInt32(const uint8* buffer, size_t offset);
 
    DllExport
    uint32 deserializeLEUInt32(const jm::ByteArray& buffer, size_t offset);
@@ -252,7 +252,7 @@ namespace jm
     \return Returns the deserialized number as int32.
     */
    DllExport
-   int32 deserializeLEInt32(uint8* buffer, size_t offset);
+   int32 deserializeLEInt32(const uint8* buffer, size_t offset);
 
    DllExport
    int32 deserializeLEInt32(const jm::ByteArray& buffer, size_t offset);
@@ -264,7 +264,7 @@ namespace jm
     \return Returns the deserialized number as int64.
     */
    DllExport
-   int64 deserializeLEInt64(uint8* buffer, size_t offset);
+   int64 deserializeLEInt64(const uint8* buffer, size_t offset);
 
    DllExport
    int64 deserializeLEInt64(const jm::ByteArray& buffer, size_t offset);
@@ -276,7 +276,7 @@ namespace jm
     \return Returns the deserialized number as double.
     */
    DllExport
-   double deserializeLEDouble(uint8* buffer, size_t offset);
+   double deserializeLEDouble(const uint8* buffer, size_t offset);
 
    DllExport
    double deserializeLEDouble(const jm::ByteArray& buffer, size_t offset);
@@ -288,7 +288,7 @@ namespace jm
     \return Returns the deserialized number as float.
     */
    DllExport
-   float deserializeLEFloat(uint8* buffer, size_t offset);
+   float deserializeLEFloat(const uint8* buffer, size_t offset);
 
 }
 
