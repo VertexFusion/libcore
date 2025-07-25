@@ -66,7 +66,6 @@ jm::String jm::System::language()
    jm::String lang = jm::String(language);
    size_t index = lang.indexOf('.');
    if(index > 0)lang = lang.substring(0, index);
-   std::cout << "LANG: " << lang << std::endl;
    return lang;
 
 #elif defined JM_ANDROID
@@ -462,10 +461,8 @@ jm::Preferences* jm::System::preferences()
 
 void jm::System::savePreferences()
 {
-   std::cout << "SAVE PREFERENCES" << std::endl;
    if(gPreferences != nullptr)
    {
       gPreferences->save(*gPrefFile);
-      std::cout << "SAVEED" << std::endl;
    }
 }

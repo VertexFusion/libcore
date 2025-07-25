@@ -48,7 +48,7 @@ void I18nBundle::appendMo(Stream* file)
       {
          System::log(Tr("Cannot find translation file: %1")
                      .arg(mLanguage),
-                     LogLevel::kError);
+                     LogLevel::kDebug);
       }
       return;
    }
