@@ -422,10 +422,13 @@ void jm::System::init(const jm::String& bundleId)
    // Load default translation
    I18nBundle::initDefault();
 
-   // Load default preferences, if any
-   if(bundleId.size() == 0)return; // No preferences for this bundle
-   jm::File propDir = jm::PropertyDir();
+   // Preferences hashtable should be always there
    gPreferences = new jm::Preferences();
+
+   if(bundleId.size() == 0)return; // No preferences for this bundle
+
+   // Load default preferences, if any
+   jm::File propDir = jm::PropertyDir();
    gPrefFile  = new jm::File(propDir, bundleId + ".properties");
    if(gPrefFile->exists())gPreferences->load(*gPrefFile);
 }
