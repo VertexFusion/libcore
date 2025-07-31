@@ -464,7 +464,7 @@ jm::Preferences* jm::System::preferences()
 
 void jm::System::savePreferences()
 {
-   if(gPreferences != nullptr)
+   if(gPreferences != nullptr && gPrefFile != nullptr)
    {
       gPreferences->save(*gPrefFile);
    }
