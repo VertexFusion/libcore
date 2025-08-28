@@ -41,6 +41,15 @@ String::String(): Object(), Comparable<String>(),
    mValue = new Char[mArrLength];
 }
 
+String::String(jm::Char character): Object(), Comparable<String>(),
+   mArrLength(16),
+   mStrLength(0),
+   mHash(0)
+{
+   mValue = new Char[mArrLength];
+   append(character);
+}
+
 String::String(const uint16* buffer, size_t size): Object(), Comparable<String>(),
    mHash(0)
 {

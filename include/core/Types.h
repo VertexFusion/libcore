@@ -67,6 +67,7 @@
 #define kTxtMagenta "\033[35m"
 #define kTxtCyan "\033[36m"
 #define kTxtWhite "\033[37m"
+#define kTxtGrey "\033[90m"
 
 #define kTxtBgBlack "\033[40m"
 #define kTxtBgRed "\033[41m"

@@ -83,6 +83,13 @@ namespace jm
          String(const char* cstring);
 
          /*!
+          \brief Constructor for single character String
+          \param character The character representing the string
+          */
+         explicit String(jm::Char character);
+
+
+         /*!
           \brief This constructor generates a character string. The encoding is the standard encoding (UTF-8).
           \param buffer A C-string that represents the character string. A C string is characterized by the fact that the end of the character string is symbolized by a 0 byte.
           */
@@ -833,4 +840,18 @@ namespace jm
    };
 }
 
+
+#include <functional>  // Für std::hash
+
+namespace std
+{
+    template <>
+    struct hash<jm::String>
+    {
+        std::size_t operator()(const jm::String& s) const noexcept
+        {
+            return static_cast<std::size_t>(s.constHashCode());
+        }
+    };
+}
 #endif

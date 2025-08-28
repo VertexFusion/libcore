@@ -100,6 +100,11 @@ bool jm::Char::isLetter() const
    return false;
 }
 
+bool jm::Char::isDigitOrLetter() const
+{
+   return isLetter() || isDigit();
+}
+
 int32 jm::Char::digitValue()const
 {
    if(mChar >= '0' && mChar <= '9') return mChar - '0';
