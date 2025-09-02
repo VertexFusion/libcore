@@ -402,6 +402,15 @@ int64 Date::date() const
    return dateFromTime(localTime(mTime));
 }
 
+void Date::setDate(int64 date)
+{
+   int64 t = mTime;
+   int64 day =makeDay(yearFromTime(t),monthFromTime(t),date);
+   int64 newDate = makeDate(day,timeWithinDay(t));
+   mTime = utc(newDate);
+}
+
+
 int64 Date::utcDate() const
 {
    return dateFromTime(mTime);

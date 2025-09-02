@@ -186,6 +186,11 @@ namespace jm
          int64 date() const;
 
          /*!
+          \brief Set the new date and respectd month or year rollovers
+          */
+         void setDate(int64 date);
+
+         /*!
           \brief Returns the day of the month in UTC time
           */
          int64 utcDate() const;
