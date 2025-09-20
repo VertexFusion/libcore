@@ -42,7 +42,9 @@
    #if defined TARGET_OS_IOS
       #define JM_IOS
    #else
-      #define JM_MACOS
+      #ifndef JM_MACOS
+         #define JM_MACOS
+      #endif
    #endif
 #elif defined __linux__
    #ifdef __ANDROID__
