@@ -105,7 +105,7 @@ void DiffInfo::print(DiffOperation operation,
    }
 }
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 void DiffInfo::print(DiffOperation operation,
                      size_t obj1,
                      size_t obj2,

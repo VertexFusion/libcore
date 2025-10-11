@@ -188,7 +188,7 @@ bool File::exists() const
 bool File::canRead() const
 {
 
-#if defined(__APPLE__) || defined(JM_LINUX) || defined(JM_ANDROID)
+#if defined(JM_MACOS) || defined(JM_IOS) || defined(JM_LINUX) || defined(JM_ANDROID)
 
    return access(mCstr.constData(), R_OK) == 0;
 
@@ -880,7 +880,7 @@ Status File::removeTag(const String& tag)
 String jm::ExecPath()
 {
 
-#ifdef JM_MACOS //macOS
+#if defined JM_MACOS || defined JM_IOS//macOS
    uint32_t size = 1024;
    char path[1024];
    int ok = _NSGetExecutablePath(path, &size);
@@ -923,9 +923,8 @@ String jm::ExecPath()
 
       return ret;
    }
-   throw Exception(Tr("Cannot determinate executable path"));
 #endif
-
+   throw Exception(Tr("Cannot determinate executable path"));
 }
 
 String jm::ExecName()

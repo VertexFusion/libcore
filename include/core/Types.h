@@ -39,7 +39,8 @@
 #ifdef _WIN32
    #define JM_WINDOWS
 #elif defined __APPLE__
-   #if defined TARGET_OS_IOS
+#include <TargetConditionals.h>
+   #if TARGET_OS_IOS
       #define JM_IOS
    #else
       #ifndef JM_MACOS

@@ -906,7 +906,7 @@ String String::arg(uint64 value,
    return arg(static_cast<int64>(value), fieldWidth, fillchar);
 }
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 String String::arg(size_t value,
                    int64 fieldWidth,
                    Char fillchar) const
@@ -1064,7 +1064,7 @@ String String::valueOf(uint32 number)
    return valueOf((int64) number);
 }
 
-#ifdef JM_MACOS
+#if defined(JM_MACOS) || defined(JM_IOS)
 String String::valueOf(size_t number)
 {
    return valueOf((uint64) number);
