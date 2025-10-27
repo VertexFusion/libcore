@@ -84,9 +84,9 @@ void ZipOutputFile::close()
       jm::serializeLEInt16(cdfh, 4, 0);//Version made by. Auf 0 gesetzt
       jm::serializeLEInt16(cdfh, 6, 0);//Minimum Version needed. Auf 0 gesetzt
       jm::serializeLEInt16(cdfh, 8, 0);//General Purpose Bit Flag. Auf 0 gesetzt
-      jm::serializeLEInt16(cdfh, 10, 0); //Compression Method
-      jm::serializeLEInt16(cdfh, 12, 0);//ShxFile last modification time
-      jm::serializeLEInt16(cdfh, 14, 0);//ShxFile last modification date
+      jm::serializeLEInt16(cdfh, 10, (int16)entry->mCompressionMethod); //Compression Method
+      jm::serializeLEInt16(cdfh, 12, 0);// file last modification time
+      jm::serializeLEInt16(cdfh, 14, 0);// file last modification date
       jm::serializeLEInt32(cdfh, 16, (int32)entry->mCRC);//CRC
       jm::serializeLEInt32(cdfh, 20, (int32)entry->mCompressedSize);//Compressed Size
       jm::serializeLEInt32(cdfh, 24, (int32)entry->mUncompressedSize);//Uncompressed Size
@@ -123,6 +123,7 @@ void ZipOutputFile::close()
 
    mFile->close();
 }
+
 
 void ZipOutputFile::closeEntry()
 {
@@ -167,6 +168,8 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    file->Stream::readFully(buffer);
    file->close();
 
+
+
    mTemp->close();
    mTemp->remove();
    delete mTemp;
@@ -175,11 +178,31 @@ void ZipOutputFile::writeAndClose(jm::File* file)
    //CRC berechnen
    entry->mCRC = CRC32(buffer.constData(), entry->mUncompressedSize);
 
-   //Schreibe unkomprimiert
-   entry->mCompressedSize = entry->mUncompressedSize;
+   uint32 pos=0;
 
-   mFile->write(reinterpret_cast<const uint8*>(buffer.constData()), entry->mUncompressedSize);
-   uint32 pos = static_cast<uint32>(mFile->position());
+   //Schreibe unkomprimiert
+   if(entry->mCompressionMethod==ZipCompression::kNone)
+   {
+      entry->mCompressedSize = entry->mUncompressedSize;
+
+      mFile->write(reinterpret_cast<const uint8*>(buffer.constData()), entry->mCompressedSize);
+   }
+   else if(entry->mCompressionMethod==ZipCompression::kDeflate)
+   {
+      uint8* output = nullptr;
+      size_t outputLength=0;
+
+      jm::Deflater deflater=jm::Deflater(true);
+      deflater.reset();
+      deflater.setInput((uint8*)buffer.constData(),entry->mUncompressedSize);
+      deflater.deflate(output, outputLength);
+      entry->mCompressedSize = (uint32)outputLength;
+
+      mFile->write(output, entry->mCompressedSize);
+
+      delete[]output;
+   }
+   pos = static_cast<uint32>(mFile->position());
 
    //Aktualisiere Header
    uint8 lfhfragment[12];
@@ -199,12 +222,14 @@ void ZipOutputFile::putNextEntry(ZipEntry* entry)
    ByteArray cname = entry->mName.toCString();
    ByteArray cextra = entry->mExtra.toCString();
 
+   ZipCompression cm = entry->mCompressionMethod;
+
    //Schreibe Local FileHeader
    uint8 lfh[30];
    jm::serializeLEInt32(lfh, 0, 0x04034b50);//Signature
    jm::serializeLEInt16(lfh, 4, 0);//Minimum Version needed. Auf 0 gesetzt
    jm::serializeLEInt16(lfh, 6, 0);//General Purpose Bit Flag. Auf 0 gesetzt
-   jm::serializeLEInt16(lfh, 8, 0);//Compression Method
+   jm::serializeLEInt16(lfh, 8, static_cast<int16>(cm));//Compression Method
    jm::serializeLEInt16(lfh, 10, 0);//File last modification time
    jm::serializeLEInt16(lfh, 12, 0);//File last modification date
    jm::serializeLEInt32(lfh, 14, 0);//CRC

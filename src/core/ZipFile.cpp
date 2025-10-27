@@ -185,7 +185,7 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
       throw jm::Exception(Tr("ZIP file Error. Signature of Entry wrong."));
    }
 
-   uint16 cm = jm::deserializeLEUInt16(localHeader, 8);
+   ZipCompression cm = static_cast<ZipCompression>(jm::deserializeLEUInt16(localHeader, 8));
    uint32 fl = jm::deserializeLEUInt16(localHeader, 26);
    uint32 el = jm::deserializeLEUInt16(localHeader, 28);
 
@@ -194,12 +194,12 @@ jm::Stream* ZipFile::stream(const ZipEntry* entry)
    mFile->Stream::readFully(input);
 
    uint8* buffer = nullptr;
-   if(cm == 0) //Daten uncompressed
+   if(cm == ZipCompression::kNone ) //Daten uncompressed
    {
       buffer = new uint8[entry->mUncompressedSize];
       memcpy(buffer, input.constData(), entry->mCompressedSize);
    }
-   if(cm == 8) //Deflate
+   if(cm == ZipCompression::kDeflate) //Deflate
    {
       Inflater inf = Inflater(true);
       size_t control;
@@ -238,4 +238,14 @@ uint32 ZipEntry::uncompressedSize()const
 bool ZipEntry::isDirectory()const
 {
    return false;
+}
+
+ZipCompression ZipEntry::method() const
+{
+   return mCompressionMethod;
+}
+
+void ZipEntry::setMethod(ZipCompression method)
+{
+   mCompressionMethod=method;
 }

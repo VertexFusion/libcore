@@ -37,6 +37,11 @@
 
 namespace jm
 {
+   enum class ZipCompression
+   {
+      kNone=0,
+      kDeflate=8
+   };
 
    /*!
    \brief Entry for a ZIP file.
@@ -73,6 +78,16 @@ namespace jm
           */
          bool isDirectory()const;
 
+         /*!
+          \brief Returns the compression method
+          */
+         ZipCompression method() const;
+
+         /*!
+          \brief Set the compression mode
+          */
+         void setMethod(ZipCompression method);
+
       private:
 
          String mName;
@@ -83,6 +98,7 @@ namespace jm
          uint32 mHeaderOffset = 0;
          uint32 mCRC = 0;
          uint32 mDataOffset = 0; // 0-based offset in file
+         ZipCompression mCompressionMethod = ZipCompression::kDeflate;
 
          friend class ZipFile;
          friend class ZipOutputFile;

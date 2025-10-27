@@ -58,7 +58,7 @@ namespace jm
           \brief Constructor
           \param wrap Status, whether zlib header and CRC are omitted
           */
-         //Deflater( bool wrap );
+         Deflater( bool wrap );
 
          /*!
           \brief Destructor
@@ -99,6 +99,8 @@ namespace jm
          size_t totalOutSize() const;
 
       private:
+
+         bool mWrap = false;
 
          //Current block
          uint8* mUncompBytes = nullptr;

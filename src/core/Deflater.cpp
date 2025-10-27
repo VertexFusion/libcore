@@ -37,6 +37,12 @@ Deflater::Deflater(): Object()
 {
 }
 
+Deflater::Deflater( bool wrap ): Object()
+{
+   mWrap = wrap;
+}
+
+
 void Deflater::setInput(uint8* buffer, size_t length)
 {
    mUncompBytes = buffer;
@@ -61,8 +67,17 @@ void Deflater::deflate(uint8*& buffer, size_t& length)
    defstream.avail_out = (uInt)mUncompLength; // size of output
    defstream.next_out = reinterpret_cast<Bytef*>(buffer);  // output char array
 
-   // the actual compression work.
-   deflateInit(&defstream, Z_BEST_COMPRESSION);
+   if(mWrap)
+   {
+      ::deflateInit2(&defstream, Z_BEST_COMPRESSION, Z_DEFLATED,
+                   -MAX_WBITS, 8, Z_DEFAULT_STRATEGY);
+   }
+   else
+   {
+      // the actual compression work.
+      deflateInit(&defstream, Z_BEST_COMPRESSION);
+   }
+
    ::deflate(&defstream, Z_FINISH);
    deflateEnd(&defstream);
 

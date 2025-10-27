@@ -1011,7 +1011,7 @@ File jm::ResourceDir(const String& bundleId)
 }
 #endif
 
-#elif defined JM_LINUX
+#elif defined JM_LINUX || defined JM_ANDROID
 File jm::ResourceDir(const String& /*bundleId*/)
 {
    // The resource directory is /usr/share/appname
