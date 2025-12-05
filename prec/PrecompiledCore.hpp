@@ -117,6 +117,11 @@ jobject activity();
 #include <ShlObj.h>
 #include <Shlwapi.h>
 
+// Needed for MAC Address
+#include <iphlpapi.h>
+#include <iostream>
+#include <sstream>
+
 // We need that for GetUsernameEX
 #define SECURITY_WIN32
 #include <security.h>

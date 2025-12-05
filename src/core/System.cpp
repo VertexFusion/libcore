@@ -312,7 +312,29 @@ jm::String jm::System::macAddress1()
    return jm::String(macAddress);
 
 #elif defined JM_WINDOWS
+   IP_ADAPTER_INFO AdapterInfo[16];       // Max 16 Adapter
+   DWORD dwBufLen = sizeof(AdapterInfo);
+
+   if (GetAdaptersInfo(AdapterInfo, &dwBufLen) != ERROR_SUCCESS) {
+      return "";
+   }
+
+   PIP_ADAPTER_INFO pAdapterInfo = AdapterInfo;
+   while (pAdapterInfo)
+   {
+      if (pAdapterInfo->Type == MIB_IF_TYPE_ETHERNET && pAdapterInfo->AddressLength == 6)
+      {
+         char macAddress[18] = { 0 };
+         sprintf_s(macAddress, sizeof(macAddress), "%02X:%02X:%02X:%02X:%02X:%02X",
+            pAdapterInfo->Address[0], pAdapterInfo->Address[1], pAdapterInfo->Address[2],
+            pAdapterInfo->Address[3], pAdapterInfo->Address[4], pAdapterInfo->Address[5]);
+         return jm::String(macAddress);
+      }
+      pAdapterInfo = pAdapterInfo->Next;
+   }
+
    return jm::kEmptyString;
+
 #endif
 }
 
