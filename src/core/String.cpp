@@ -776,7 +776,7 @@ String String::substring(size_t beginIndex, size_t endIndex) const
    size_t sublength = endIndex - beginIndex;
    String ret;
 
-   if(sublength > 0)
+   if(sublength > 0 && sublength <= mStrLength)
    {
       ret.checkCapacity(sublength);
       memcpy(&ret.mValue[0], &mValue[beginIndex], sizeof(Char) * sublength);
