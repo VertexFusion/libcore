@@ -589,3 +589,7 @@ Color jm::operator+(Color const& c1, Color const& c2)
    return ret;
 }
 
+int32_t Color::toInt()
+{
+   return ((col.rgb.red) << 24) | ((col.rgb.green) << 16) | ((col.rgb.blue) << 8) | (mAlpha);
+}

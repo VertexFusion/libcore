@@ -258,6 +258,7 @@ namespace jm
           */
          static Color FromHsv(float hue, float saturation, float value, float alpha = 1.0);
 
+         int32_t toInt();
       private:
 
          //Color space of this color
